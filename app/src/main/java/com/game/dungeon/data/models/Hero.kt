@@ -22,7 +22,8 @@ data class Hero(
     var shieldId: String? = null,
     var accessory1Id: String? = null,
     var accessory2Id: String? = null,
-    val isInParty: Boolean = false
+    val isInParty: Boolean = false,
+    val partyPosition: Int = 0 // Position in the party list (0-indexed)
 ) {
     @get:Ignore
     val isAlive: Boolean get() = currentHp > 0

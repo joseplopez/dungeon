@@ -186,8 +186,8 @@ fun PixelGoldDisplay(amount: Long) {
 }
 
 fun formatGold(n: Long): String = when {
-    n >= 1_000_000 -> "${n / 1_000_000}M"
-    n >= 1_000 -> "${n / 1_000}K"
+    n >= 1_000_000 -> "%.3fM".format(n / 1_000_000f)
+    n >= 1_000 -> "%.3fK".format(n / 1_000f)
     else -> n.toString()
 }
 

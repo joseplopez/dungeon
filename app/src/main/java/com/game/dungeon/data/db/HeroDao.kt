@@ -12,11 +12,14 @@ interface HeroDao {
     @Query("SELECT * FROM heroes")
     fun getAllHeroes(): Flow<List<Hero>>
 
-    @Query("SELECT * FROM heroes WHERE isInParty = 1 AND currentHp > 0")
+    @Query("SELECT * FROM heroes WHERE isInParty = 1 AND currentHp > 0 ORDER BY partyPosition ASC")
     fun getParty(): Flow<List<Hero>>
 
     @Upsert
     suspend fun upsert(hero: Hero)
+
+    @Upsert
+    suspend fun upsertAll(heroes: List<Hero>)
 
     @Delete
     suspend fun delete(hero: Hero)

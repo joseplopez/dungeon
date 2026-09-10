@@ -37,6 +37,7 @@ class GameRepository @Inject constructor(
     fun getRoster(): Flow<List<Hero>> = database.heroDao.getAllHeroes()
     fun getParty(): Flow<List<Hero>> = database.heroDao.getParty()
     suspend fun saveHero(hero: Hero) = database.heroDao.upsert(hero)
+    suspend fun saveHeroes(heroes: List<Hero>) = database.heroDao.upsertAll(heroes)
     suspend fun removeHero(hero: Hero) = database.heroDao.delete(hero)
 
     // Items

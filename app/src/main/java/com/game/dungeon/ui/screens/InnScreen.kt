@@ -139,7 +139,9 @@ fun InnScreen(
                             viewModel.resetStartFloor()
                         },
                         onFire = { viewModel.fireHero(it) },
-                        onEquip = onNavigateToEquipment
+                        onEquip = onNavigateToEquipment,
+                        onMoveUp = { viewModel.moveHeroUp(it) },
+                        onMoveDown = { viewModel.moveHeroDown(it) }
                     )
                 }
             }
@@ -242,7 +244,9 @@ fun PartyPanel(
     canSendToDungeon: Boolean,
     onSend: () -> Unit,
     onFire: (String) -> Unit,
-    onEquip: (String) -> Unit
+    onEquip: (String) -> Unit,
+    onMoveUp: (String) -> Unit,
+    onMoveDown: (String) -> Unit
 ) {
     Column(modifier) {
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = CenterVertically) {
@@ -253,7 +257,13 @@ fun PartyPanel(
         Spacer(Modifier.height(4.dp))
         LazyColumn(verticalArrangement = Arrangement.spacedBy(4.dp)) {
             items(hiredHeroes) { hero ->
-                PartyMemberCard(hero, onFire = { onFire(hero.id) }, onEquip = { onEquip(hero.id) })
+                PartyMemberCard(
+                    hero = hero, 
+                    onFire = { onFire(hero.id) }, 
+                    onEquip = { onEquip(hero.id) },
+                    onMoveUp = { onMoveUp(hero.id) },
+                    onMoveDown = { onMoveDown(hero.id) }
+                )
             }
             repeat(maxPartySize - hiredHeroes.size) {
                 item { EmptyPartySlot() }
@@ -266,10 +276,23 @@ fun PartyPanel(
 fun PartyMemberCard(
     hero: Hero,
     onFire: () -> Unit,
-    onEquip: () -> Unit
+    onEquip: () -> Unit,
+    onMoveUp: () -> Unit,
+    onMoveDown: () -> Unit
 ) {
     GoldenBorderBox(Modifier.fillMaxWidth().height(120.dp)) {
         Row(Modifier.fillMaxSize().padding(8.dp), verticalAlignment = CenterVertically) {
+            // Reorder Arrows
+            Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                Box(Modifier.size(32.dp).background(BgMedium).border(1.dp, GoldDark).clickable { onMoveUp() }, contentAlignment = Center) {
+                    Text("▲", fontSize = 16.sp, color = GoldBright)
+                }
+                Box(Modifier.size(32.dp).background(BgMedium).border(1.dp, GoldDark).clickable { onMoveDown() }, contentAlignment = Center) {
+                    Text("▼", fontSize = 16.sp, color = GoldBright)
+                }
+            }
+            
+            Spacer(Modifier.width(8.dp))
             HeroSprite(hero.heroClass, Modifier.size(56.dp))
             Spacer(Modifier.width(12.dp))
             Column(Modifier.weight(1f)) {

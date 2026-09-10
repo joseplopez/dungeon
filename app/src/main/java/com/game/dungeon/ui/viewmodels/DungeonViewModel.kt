@@ -317,7 +317,18 @@ class DungeonViewModel @Inject constructor(
     }
   }
 
-  private fun findName(state: FFBattleState, id: String) =
-    state.heroes.find { it.id==id }?.name ?: state.enemies.find { it.id==id }?.name ?: "?"
+  private fun findName(state: FFBattleState, id: String): String {
+    val hero = state.heroes.find { it.id == id }
+    if (hero != null) return hero.name
+    
+    val enemy = state.enemies.find { it.id == id }
+    if (enemy != null) return enemy.name
+    
+    // Fallback: check fallen heroes list if not found in active heroes
+    val fallen = state.fallenHeroes.find { it.id == id }
+    if (fallen != null) return fallen.name
+    
+    return "?"
+  }
   private fun findIsHero(state: FFBattleState, id: String) = state.heroes.any { it.id==id }
 }

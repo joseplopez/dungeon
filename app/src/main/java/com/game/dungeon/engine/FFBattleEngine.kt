@@ -62,9 +62,14 @@ class FFBattleEngine {
 
                 for (actor in turnOrder) {
                     if (!enemies.any { it.currentHp > 0 } || !aliveHeroes.any { it.isAlive }) break
+                    
                     when (actor) {
-                        is Hero -> executeHeroTurn(actor, aliveHeroes, enemies, onEvent)
-                        is Enemy -> executeEnemyTurn(actor, aliveHeroes, onEvent)
+                        is Hero -> {
+                            if (actor.isAlive) executeHeroTurn(actor, aliveHeroes, enemies, onEvent)
+                        }
+                        is Enemy -> {
+                            if (actor.currentHp > 0) executeEnemyTurn(actor, aliveHeroes, onEvent)
+                        }
                     }
                     delay(speed.delayMs)
                 }
@@ -362,7 +367,23 @@ class FFBattleEngine {
         maxOf(1, (attacker.magic * 1.5f - target.magicDefense * 0.5f + Random.nextInt(-2, 3)).toInt())
 
     private fun executeEnemyTurn(enemy: Enemy, heroes: MutableList<Hero>, onEvent: (FFBattleEvent)->Unit) {
-        val target = heroes.filter { it.isAlive }.minByOrNull { it.currentHp } ?: return
+        val aliveHeroes = heroes.filter { it.isAlive }
+        if (aliveHeroes.isEmpty()) return
+
+        // Option 3: Weighted Random (Bias towards highest Defense)
+        // We assign weights based on defense. Higher defense = more likely to be hit.
+        val totalDefense = aliveHeroes.sumOf { it.defense }.coerceAtLeast(1)
+        var roll = Random.nextInt(totalDefense)
+        
+        var target = aliveHeroes.last() // Fallback
+        for (hero in aliveHeroes) {
+            if (roll < hero.defense) {
+                target = hero
+                break
+            }
+            roll -= hero.defense
+        }
+
         val dmg = maxOf(1, enemy.attack - target.defense + Random.nextInt(-2, 3))
         target.currentHp -= dmg
         onEvent(FFBattleEvent.DamageDealt(enemy.id, target.id, dmg, false, false))

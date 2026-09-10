@@ -7,58 +7,60 @@ import com.game.dungeon.data.models.Item
 import com.game.dungeon.data.models.ItemSlot
 import com.game.dungeon.data.repository.GameRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+@OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class EquipmentViewModel @Inject constructor(
     private val repository: GameRepository
 ) : ViewModel() {
 
-    private val _selectedHero = MutableStateFlow<Hero?>(null)
-    val selectedHero = _selectedHero.asStateFlow()
+    private val _selectedHeroId = MutableStateFlow<String?>(null)
 
-    private val _equippedItems = MutableStateFlow<List<Item>>(emptyList())
-    val equippedItems = _equippedItems.asStateFlow()
-
-    private val _inventory = MutableStateFlow<List<Item>>(emptyList())
-    val inventory = _inventory.asStateFlow()
-
-    init {
-        viewModelScope.launch {
-            repository.getInventory().collect { _inventory.value = it }
+    // Reactively fetch the hero whenever the ID changes
+    val selectedHero: StateFlow<Hero?> = _selectedHeroId
+        .flatMapLatest { id ->
+            if (id == null) flowOf(null)
+            else repository.getRoster().map { roster -> roster.find { it.id == id } }
         }
-    }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
+
+    // Reactively fetch equipped items for the CURRENTly selected hero only
+    val equippedItems: StateFlow<List<Item>> = _selectedHeroId
+        .flatMapLatest { id ->
+            if (id == null) flowOf(emptyList())
+            else repository.getEquippedItems(id)
+        }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+
+    val inventory: StateFlow<List<Item>> = repository.getInventory()
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
     fun selectHero(heroId: String) {
-        viewModelScope.launch {
-            repository.getRoster().map { roster -> roster.find { it.id == heroId } }
-                .collect { hero ->
-                    _selectedHero.value = hero
-                    if (hero != null) {
-                        repository.getEquippedItems(hero.id).collect { _equippedItems.value = it }
-                    }
-                }
-        }
+        _selectedHeroId.value = heroId
     }
 
     fun equipItem(item: Item) {
-        val hero = _selectedHero.value ?: return
+        val heroId = _selectedHeroId.value ?: return
         viewModelScope.launch {
+            val currentEquipped = equippedItems.value
+            
             // If it's a unique slot (Weapon, Armor, Shield), unequip existing first
             if (item.slot != ItemSlot.ACCESSORY) {
-                _equippedItems.value.find { it.slot == item.slot }?.let {
+                currentEquipped.find { it.slot == item.slot }?.let {
                     repository.saveItem(it.copy(ownerId = null))
                 }
             } else {
                 // For accessories, check if we have 2 already
-                val accessories = _equippedItems.value.filter { it.slot == ItemSlot.ACCESSORY }
+                val accessories = currentEquipped.filter { it.slot == ItemSlot.ACCESSORY }
                 if (accessories.size >= 2) {
                     repository.saveItem(accessories.first().copy(ownerId = null))
                 }
             }
-            repository.saveItem(item.copy(ownerId = hero.id))
+            repository.saveItem(item.copy(ownerId = heroId))
         }
     }
 

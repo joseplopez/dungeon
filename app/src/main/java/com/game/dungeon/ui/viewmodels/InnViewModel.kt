@@ -66,8 +66,43 @@ class InnViewModel @Inject constructor(
         if (gs.gold >= jobClass.hireCost && _hiredHeroes.value.size < maxPartySize) {
             viewModelScope.launch {
                 repository.saveGameState(gs.copy(gold = gs.gold - jobClass.hireCost))
-                val hero = Hero.create(jobClass).copy(isInParty = true)
+                val hero = Hero.create(jobClass).copy(
+                    isInParty = true,
+                    partyPosition = _hiredHeroes.value.size
+                )
                 repository.saveHero(hero)
+            }
+        }
+    }
+
+    fun moveHeroUp(heroId: String) {
+        val heroes = _hiredHeroes.value.toMutableList()
+        val index = heroes.indexOfFirst { it.id == heroId }
+        if (index > 0) {
+            val hero = heroes[index]
+            val prevHero = heroes[index - 1]
+            
+            val updatedHero = hero.copy(partyPosition = index - 1)
+            val updatedPrev = prevHero.copy(partyPosition = index)
+            
+            viewModelScope.launch {
+                repository.saveHeroes(listOf(updatedHero, updatedPrev))
+            }
+        }
+    }
+
+    fun moveHeroDown(heroId: String) {
+        val heroes = _hiredHeroes.value.toMutableList()
+        val index = heroes.indexOfFirst { it.id == heroId }
+        if (index != -1 && index < heroes.size - 1) {
+            val hero = heroes[index]
+            val nextHero = heroes[index + 1]
+            
+            val updatedHero = hero.copy(partyPosition = index + 1)
+            val updatedNext = nextHero.copy(partyPosition = index)
+            
+            viewModelScope.launch {
+                repository.saveHeroes(listOf(updatedHero, updatedNext))
             }
         }
     }
