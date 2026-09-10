@@ -13,9 +13,6 @@ import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.geometry.Offset
-import androidx.compose.ui.geometry.Size
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
@@ -68,6 +65,9 @@ fun TownScreen(
                                 Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                                     Text("🪙", fontSize = 14.sp)
                                     Text(formatGold(gil), style = PixelGold)
+                                    if (gs != null) {
+                                        Text("/${formatGold(gs!!.maxGil)}", style = PixelSmall, color = StoneGray)
+                                    }
                                 }
                                 Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                                     Text("💎", fontSize = 14.sp)
@@ -132,7 +132,7 @@ fun TownScreen(
     if (showCrystalShop) {
         CrystalShopDialog(
             availableCrystals = availableCrystals,
-            unlockedJobs = gs?.unlockedJobs ?: setOf(HeroClass.FREELANCER),
+            unlockedJobs = gs?.unlockedJobs ?: setOf(JobClass.FREELANCER),
             gil = gil,
             onBuy = { viewModel.buyCrystal(it) },
             onDismiss = { showCrystalShop = false }
@@ -142,12 +142,7 @@ fun TownScreen(
     if (showUpgrades) {
         UpgradesDialog(
             gs = gs ?: GameState(),
-            onUpgradeInn = { viewModel.upgradeInn() },
-            onUpgradeArmory = { viewModel.upgradeArmory() },
-            onUpgradeMagicShop = { viewModel.upgradeMagicShop() },
-            onUpgradeBarracks = { viewModel.upgradeBarracks() },
-            onUpgradeVault = { viewModel.upgradeVault() },
-            onUpgradePathfinder = { viewModel.upgradePathfinder() },
+            onUpgrade = { viewModel.upgradeBuilding(it) },
             onDismiss = { showUpgrades = false }
         )
     }
@@ -202,16 +197,30 @@ fun CrystalShopDialog(
     onDismiss: () -> Unit
 ) {
     Dialog(onDismissRequest = onDismiss) {
-        GoldenBorderBox(Modifier.fillMaxWidth(0.7f).height(400.dp).background(BgDarkest).padding(16.dp)) {
-            Column {
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = CenterVertically) {
+        GoldenBorderBox(
+            Modifier
+                .fillMaxWidth(0.95f)
+                .height(450.dp)
+                .background(BgDarkest)
+
+        ) {
+            Column(Modifier.padding(all = 24.dp)) {
+                Row(
+                    Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = CenterVertically
+                ) {
                     Text("CRYSTAL SHOP", style = PixelHeading)
                     PixelButton("✕", onClick = onDismiss, modifier = Modifier.size(32.dp))
                 }
                 Text("Unlock new job classes", style = PixelSmall, color = GoldDark)
-                PixelDivider()
                 Spacer(Modifier.height(8.dp))
-                LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                PixelDivider()
+                Spacer(Modifier.height(12.dp))
+                LazyColumn(
+                    verticalArrangement = Arrangement.spacedBy(12.dp),
+                    modifier = Modifier.weight(1f)
+                ) {
                     items(availableCrystals) { crystal ->
                         val isUnlocked = unlockedJobs.contains(crystal.unlocksJob)
                         CrystalShopRow(crystal, isUnlocked, gil, onBuy = { onBuy(crystal.color) })
@@ -262,41 +271,84 @@ fun CrystalShopRow(
 @Composable
 fun UpgradesDialog(
     gs: GameState,
-    onUpgradeInn: () -> Unit,
-    onUpgradeArmory: () -> Unit,
-    onUpgradeMagicShop: () -> Unit,
-    onUpgradeBarracks: () -> Unit,
-    onUpgradeVault: () -> Unit,
-    onUpgradePathfinder: () -> Unit,
+    onUpgrade: (UpgradeType) -> Unit,
     onDismiss: () -> Unit
 ) {
     Dialog(onDismissRequest = onDismiss) {
-        GoldenBorderBox(Modifier.fillMaxWidth(0.8f).height(450.dp).background(BgDarkest).padding(16.dp)) {
+        GoldenBorderBox(Modifier.fillMaxWidth(0.98f).fillMaxHeight(0.85f).background(BgDarkest).padding(16.dp)) {
             Column {
-                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = CenterVertically) {
-                    Text("TOWN UPGRADES", style = PixelHeading)
-                    PixelButton("✕", onClick = onDismiss, modifier = Modifier.size(32.dp))
+                Row(
+                    Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp), 
+                    horizontalArrangement = Arrangement.SpaceBetween, 
+                    verticalAlignment = CenterVertically
+                ) {
+                    Column {
+                        Text("TOWN UPGRADES", style = PixelHeading)
+                        if (gs.planningLevel > 0) {
+                            Text("Discount: ${(gs.upgradeDiscount * 100).toInt()}%", style = PixelSmall, color = HpGreen)
+                        }
+                    }
+                    PixelButton("✕", onClick = onDismiss, modifier = Modifier.size(36.dp))
                 }
                 PixelDivider()
-                Spacer(Modifier.height(8.dp))
-                LazyColumn(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    val upgrades = listOf(
-                        Triple("🍺 Taproom", gs.innLevel, "Unlocks advanced jobs") to onUpgradeInn,
-                        Triple("⚔️ Armory", gs.armoryLevel, "Better equipment drops") to onUpgradeArmory,
-                        Triple("🔮 Magic Shop", gs.magicShopLevel, "Unlocks magic items") to onUpgradeMagicShop,
-                        Triple("🏕 Barracks", gs.barracksLevel, "+1 party slot") to onUpgradeBarracks,
-                        Triple("🏦 Vault", gs.vaultLevel, "+Gil storage cap") to onUpgradeVault,
-                        Triple("🧭 Pathfinder", gs.pathfinderLevel, "Select start floor") to onUpgradePathfinder
-                    )
-                    items(upgrades) { (info, action) ->
-                        val (label, level, desc) = info
-                        PixelPanel(Modifier.fillMaxWidth().height(80.dp), borderColor = GoldDark) {
-                            Row(Modifier.fillMaxSize().padding(4.dp), verticalAlignment = CenterVertically) {
-                                Column(Modifier.weight(1f)) {
-                                    Text(label, style = PixelBody, color = GoldBright)
-                                    Text("LVL $level - $desc", style = PixelSmall, color = StoneGray)
+                Spacer(Modifier.height(12.dp))
+                LazyColumn(
+                    modifier = Modifier.weight(1f).padding(horizontal = 4.dp),
+                    verticalArrangement = Arrangement.spacedBy(12.dp)
+                ) {
+                    items(UpgradeType.entries) { type ->
+                        val currentLevel = when (type) {
+                            UpgradeType.INN -> gs.innLevel
+                            UpgradeType.BARRACKS -> gs.barracksLevel
+                            UpgradeType.VAULT -> gs.vaultLevel
+                            UpgradeType.ARMORY -> gs.armoryLevel
+                            UpgradeType.MAGIC_SHOP -> gs.magicShopLevel
+                            UpgradeType.TRAINING -> gs.trainingLevel
+                            UpgradeType.PLANNING -> gs.planningLevel
+                            UpgradeType.CLINIC -> gs.clinicLevel
+                            UpgradeType.PATHFINDER -> gs.pathfinderLevel
+                        }
+                        
+                        val isMax = currentLevel >= type.maxLevel
+                        val rawCost = type.baseCost * (currentLevel + 1)
+                        val finalCost = (rawCost * (1f - gs.upgradeDiscount)).toLong()
+                        val canAfford = gs.gold >= finalCost
+
+                        PixelPanel(Modifier.fillMaxWidth().wrapContentHeight(), borderColor = if(isMax) StoneGray else GoldDark) {
+                            Column(Modifier.fillMaxWidth().padding(4.dp)) {
+                                Row(Modifier.fillMaxWidth(), verticalAlignment = CenterVertically) {
+                                    Text(type.emoji, fontSize = 24.sp)
+                                    Spacer(Modifier.width(16.dp))
+                                    Column(Modifier.weight(1f)) {
+                                        Text(type.displayName, style = PixelBody, color = if(isMax) StoneGray else GoldBright)
+                                        val levelText = if (type == UpgradeType.PATHFINDER) {
+                                            val maxStart = (gs.highestFloor * (currentLevel * 0.25f)).toInt().coerceIn(1, gs.highestFloor.coerceAtLeast(1))
+                                            "LVL $currentLevel / ${type.maxLevel} (Max Floor: $maxStart)"
+                                        } else {
+                                            "LVL $currentLevel / ${type.maxLevel}"
+                                        }
+                                        Text(levelText, style = PixelSmall, color = GoldDark)
+                                    }
+                                    Spacer(Modifier.width(12.dp))
+                                    if (isMax) {
+                                        Text("MAX", style = PixelBody, color = HpGreen, modifier = Modifier.width(80.dp), textAlign = TextAlign.Center)
+                                    } else {
+                                        PixelButton(
+                                            "${finalCost}G", 
+                                            onClick = { onUpgrade(type) }, 
+                                            enabled = canAfford, 
+                                            modifier = Modifier.width(80.dp).height(40.dp)
+                                        )
+                                    }
                                 }
-                                PixelButton("UP (500G)", onClick = action, enabled = gs.gold >= 500, modifier = Modifier.width(120.dp).height(40.dp))
+                                Spacer(Modifier.height(8.dp))
+                                Text(
+                                    type.description, 
+                                    style = PixelSmall, 
+                                    color = StoneGray,
+                                    lineHeight = 16.sp,
+                                    modifier = Modifier.fillMaxWidth()
+                                )
                             }
                         }
                     }

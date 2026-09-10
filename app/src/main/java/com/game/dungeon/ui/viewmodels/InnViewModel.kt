@@ -53,7 +53,7 @@ class InnViewModel @Inject constructor(
         }
 
     val maxPartySize: Int
-        get() = 3 + (gameState.value?.barracksLevel ?: 0)
+        get() = gameState.value?.getMaxPartySize() ?: 3
 
     val canSendToDungeon: Boolean
         get() = _hiredHeroes.value.isNotEmpty()
@@ -133,11 +133,23 @@ class InnViewModel @Inject constructor(
                 // Clear inventory
                 repository.clearInventory()
 
+                // Calculate Magicite Bonus (50% + 10% per dimension above 1)
+                val multiplier = 0.50f + (gs.currentDimension - 1) * 0.10f
+                val bonusMagicite = (gs.magiciteEarnedThisDim * multiplier).toInt()
+                
+                // Calculate Gold kept (Deep Pockets Relic)
+                val goldKept = (gs.gold * gs.pocketsBonus).toLong()
+
                 // Reset GameState for new dimension
                 val nextGs = gs.copy(
-                    gold = 0,
+                    gold = goldKept,
+                    magicite = gs.magicite + bonusMagicite,
                     currentDimension = gs.currentDimension + 1,
-                    highestFloor = 0
+                    highestFloor = 0,
+                    magiciteEarnedThisDim = 0,
+                    gilEarnedThisDim = 0,
+                    bossesKilledThisDim = 0,
+                    itemsFoundThisDim = 0
                 )
                 repository.saveGameState(nextGs)
                 _startFloor.value = 1
@@ -147,12 +159,15 @@ class InnViewModel @Inject constructor(
 
     fun setStartFloor(floor: Int) {
         val gs = gameState.value ?: return
-        if (gs.pathfinderLevel <= 0) {
+        val pathLevel = gs.pathfinderLevel
+        if (pathLevel <= 0) {
             _startFloor.value = 1
             return
         }
         val maxFloor = gs.highestFloor
-        _startFloor.value = floor.coerceIn(1, maxOf(1, maxFloor))
+        // Max allowed floor based on level: 25%, 50%, 75%, 100%
+        val limit = (maxFloor * (pathLevel * 0.25f)).toInt().coerceIn(1, maxFloor)
+        _startFloor.value = floor.coerceIn(1, limit)
     }
 
     fun resetStartFloor() {
@@ -165,13 +180,16 @@ class InnViewModel @Inject constructor(
         if (heroes.isEmpty()) return
 
         // Cost: 10 Gil per Level per Hero, proportional to % of HP missing
-        val totalCost = heroes.sumOf { hero ->
+        val rawCost = heroes.sumOf { hero ->
             if (hero.currentHp < hero.maxHp) {
                 val hpMissingRatio = (hero.maxHp - hero.currentHp).toFloat() / hero.maxHp.toFloat()
                 val baseCost = hero.level * 10
                 (baseCost * hpMissingRatio).toLong().coerceAtLeast(1L)
             } else 0L
         }
+        
+        val discount = gs.restDiscount
+        val totalCost = (rawCost * (1f - discount)).toLong().coerceAtLeast(if (rawCost > 0) 1L else 0L)
 
         if (totalCost > 0 && gs.gold >= totalCost) {
             viewModelScope.launch {

@@ -84,10 +84,13 @@ class BattleEngine {
             val floorBonus = (enemies.firstOrNull()?.floor ?: 1) * 5
             val totalGold = baseGold + floorBonus
             
-            val isBossFloor = (enemies.firstOrNull()?.floor ?: 1) % 10 == 0
-            val dropChance = if (isBossFloor) 23 else 8 // 8% base + 15% boss
+            val isBoss = enemies.any { it.isBoss }
+            val dropChance = if (isBoss) 100 else 8 // Bosses always drop an item
             val loot = if (Random.nextInt(1, 101) <= dropChance) {
-                Item.random(enemies.firstOrNull()?.floor ?: 1)
+                Item.random(
+                    floor = enemies.firstOrNull()?.floor ?: 1,
+                    minRarity = if (isBoss) Rarity.RARE else Rarity.COMMON
+                )
             } else null
 
             emit(BattleEvent.Victory(totalGold, loot))

@@ -6,7 +6,15 @@ data class RelicBonuses(
     val mpBonus: Int,
     val magicBonus: Int,
     val goldMultiplier: Float,
-    val magiciteChanceBonus: Float
+    val magiciteChanceBonus: Float,
+    // Town upgrade bonuses
+    val expMultiplier: Float,
+    val itemStatBonus: Float,
+    val magicShopLevel: Int,
+    // Ascended Relics
+    val magnetBonus: Float,
+    val pocketsBonus: Float,
+    val doubleLootChance: Int
 ) {
     companion object {
         fun from(gs: GameState) = RelicBonuses(
@@ -15,7 +23,13 @@ data class RelicBonuses(
             mpBonus = gs.mpRelic * 10,
             magicBonus = gs.magicRelic * 2,
             goldMultiplier = 1f + gs.goldRelic * 0.05f,
-            magiciteChanceBonus = gs.magiciteRelic * 0.01f
+            magiciteChanceBonus = gs.magiciteRelic * 0.01f,
+            expMultiplier = gs.expMultiplier,
+            itemStatBonus = gs.itemStatBonus,
+            magicShopLevel = gs.magicShopLevel,
+            magnetBonus = gs.magnetBonus,
+            pocketsBonus = gs.pocketsBonus,
+            doubleLootChance = gs.doubleLootChance
         )
     }
 }

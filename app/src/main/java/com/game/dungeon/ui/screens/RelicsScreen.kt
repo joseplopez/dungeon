@@ -3,6 +3,7 @@ package com.game.dungeon.ui.screens
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
@@ -16,6 +17,7 @@ import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -23,10 +25,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.game.dungeon.data.models.GameState
 import com.game.dungeon.data.models.RelicType
-import com.game.dungeon.ui.components.BottomPixelNav
-import com.game.dungeon.ui.components.GoldenBorderBox
-import com.game.dungeon.ui.components.MusicToggleButton
-import com.game.dungeon.ui.components.PixelButton
+import com.game.dungeon.ui.components.*
 import com.game.dungeon.ui.theme.*
 import com.game.dungeon.ui.viewmodels.RelicsViewModel
 import kotlin.random.Random
@@ -76,12 +75,20 @@ fun RelicsScreen(
 
             // Relic grid
             LazyVerticalGrid(
-                columns = GridCells.Fixed(2),
-                modifier = Modifier.weight(1f).padding(8.dp),
-                verticalArrangement = Arrangement.spacedBy(6.dp),
-                horizontalArrangement = Arrangement.spacedBy(6.dp)
+                columns = GridCells.Fixed(3),
+                modifier = Modifier.weight(1f).padding(horizontal = 12.dp, vertical = 4.dp),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
-                items(RelicType.entries) { relicType ->
+                val dimension = gameState?.currentDimension ?: 1
+                items(RelicType.entries.filter { type ->
+                    when (type) {
+                        RelicType.MAGNET -> dimension >= 2
+                        RelicType.POCKETS -> dimension >= 3
+                        RelicType.DOUBLE_LOOT -> dimension >= 4
+                        else -> true
+                    }
+                }) { relicType ->
                     RelicCard(
                         relicType = relicType,
                         gameState = gameState ?: GameState(),
@@ -109,43 +116,118 @@ fun RelicCard(
         RelicType.MAGIC -> gameState.magicRelic
         RelicType.GOLD -> gameState.goldRelic
         RelicType.MAGICITE_FIND -> gameState.magiciteRelic
+        RelicType.MAGNET -> gameState.magnetRelic
+        RelicType.POCKETS -> gameState.pocketsRelic
+        RelicType.DOUBLE_LOOT -> gameState.doubleLootRelic
     }
     val cost = (level + 1) * 10
-    val (icon, name, description, bonusText) = when (relicType) {
-        RelicType.ATTACK -> Quad("⚔️", "Attack", "Physical damage bonus", "+${level * 2} ATK (next: +${(level + 1) * 2})")
-        RelicType.HP -> Quad("❤️", "Vitality", "Maximum HP bonus", "+${level * 15} HP")
-        RelicType.MP -> Quad("💙", "Spirit", "Maximum MP bonus", "+${level * 10} MP")
-        RelicType.MAGIC -> Quad("🔮", "Magic", "Magic damage bonus", "+${level * 2} MAG")
-        RelicType.GOLD -> Quad("🪙", "Fortune", "Gil earned bonus", "+${level * 5}% Gil")
-        RelicType.MAGICITE_FIND -> Quad("💎", "Essence", "Magicite find chance", "+${level}% chance")
+    
+    val icon = when (relicType) {
+        RelicType.ATTACK -> "⚔️"
+        RelicType.HP -> "❤️"
+        RelicType.MP -> "💙"
+        RelicType.MAGIC -> "🔮"
+        RelicType.GOLD -> "🪙"
+        RelicType.MAGICITE_FIND -> "💎"
+        RelicType.MAGNET -> "🧲"
+        RelicType.POCKETS -> "🎒"
+        RelicType.DOUBLE_LOOT -> "🎁"
+    }
+    
+    val name = when (relicType) {
+        RelicType.ATTACK -> "Attack"
+        RelicType.HP -> "Vitality"
+        RelicType.MP -> "Spirit"
+        RelicType.MAGIC -> "Magic"
+        RelicType.GOLD -> "Fortune"
+        RelicType.MAGICITE_FIND -> "Essence"
+        RelicType.MAGNET -> "Magnet"
+        RelicType.POCKETS -> "Pockets"
+        RelicType.DOUBLE_LOOT -> "Loot"
     }
 
-    GoldenBorderBox(Modifier.fillMaxWidth().height(110.dp)) {
-        Column(Modifier.fillMaxSize().padding(8.dp)) {
-            Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                Text(icon, fontSize = 18.sp)
-                Column {
-                    Text(name, style = PixelBody, color = GoldBright)
-                    Text("Level $level", style = PixelSmall, color = GoldDark)
+    val desc = when (relicType) {
+        RelicType.ATTACK -> "Phys Dmg"
+        RelicType.HP -> "Max HP"
+        RelicType.MP -> "Max MP"
+        RelicType.MAGIC -> "Mag Dmg"
+        RelicType.GOLD -> "Gil Gain"
+        RelicType.MAGICITE_FIND -> "Find Rate"
+        RelicType.MAGNET -> "Magci Drop"
+        RelicType.POCKETS -> "Gold Keep"
+        RelicType.DOUBLE_LOOT -> "Boss Double"
+    }
+
+    val currentVal = when (relicType) {
+        RelicType.ATTACK -> level * 2
+        RelicType.HP -> level * 15
+        RelicType.MP -> level * 10
+        RelicType.MAGIC -> level * 2
+        RelicType.GOLD -> level * 5
+        RelicType.MAGICITE_FIND -> level
+        RelicType.MAGNET -> level * 5
+        RelicType.POCKETS -> level * 10
+        RelicType.DOUBLE_LOOT -> level * 5
+    }
+    val nextVal = when (relicType) {
+        RelicType.ATTACK -> (level + 1) * 2
+        RelicType.HP -> (level + 1) * 15
+        RelicType.MP -> (level + 1) * 10
+        RelicType.MAGIC -> (level + 1) * 2
+        RelicType.GOLD -> (level + 1) * 5
+        RelicType.MAGICITE_FIND -> (level + 1)
+        RelicType.MAGNET -> (level + 1) * 5
+        RelicType.POCKETS -> (level + 1) * 10
+        RelicType.DOUBLE_LOOT -> (level + 1) * 5
+    }
+    val suffix = if (relicType == RelicType.GOLD || relicType == RelicType.MAGICITE_FIND ||
+                     relicType == RelicType.MAGNET || relicType == RelicType.POCKETS || 
+                     relicType == RelicType.DOUBLE_LOOT) "%" else ""
+
+    PixelPanel(
+        modifier = Modifier.fillMaxWidth().height(125.dp),
+        borderColor = if (magicite >= cost) GoldDark else EnemyRed
+    ) {
+        Column(Modifier.fillMaxSize().padding(4.dp)) {
+            // Header: Icon, Name, Level
+            Row(Modifier.fillMaxWidth(), verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
+                Text(icon, fontSize = 20.sp)
+                Column(horizontalAlignment = Alignment.End) {
+                    Text(name.uppercase(), style = PixelGold, fontSize = 11.sp)
+                    Text("LVL $level", style = PixelSmall, color = GoldDark, fontSize = 9.sp)
                 }
             }
-            Text(bonusText, style = PixelSmall, color = SystemCyan)
-            Spacer(Modifier.weight(1f))
-            Row(
-                modifier = Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = CenterVertically
-            ) {
-                Text("Cost: ${cost}💎", style = PixelSmall, color = if (magicite >= cost) GoldBright else EnemyRed)
-                PixelButton(
-                    label = "UPGRADE",
-                    onClick = onUpgrade,
-                    enabled = magicite >= cost,
-                    modifier = Modifier.height(24.dp).width(72.dp)
-                )
+
+            // Comparison View
+            Box(Modifier.fillMaxWidth().weight(1f), contentAlignment = Alignment.Center) {
+                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                    Text(desc, style = PixelSmall, color = StoneGray, fontSize = 9.sp)
+                    Row(verticalAlignment = CenterVertically) {
+                        Text("+$currentVal$suffix", style = PixelBody, color = SystemCyan, fontSize = 11.sp)
+                        Text(" → ", style = PixelBody, color = GoldDark, fontSize = 11.sp)
+                        Text("+$nextVal$suffix", style = PixelBody, color = GoldBright, fontSize = 11.sp)
+                    }
+                }
             }
+
+            // Progress Bar (simple 10 segments)
+            Row(Modifier.fillMaxWidth().height(3.dp).padding(horizontal = 4.dp), horizontalArrangement = Arrangement.spacedBy(1.dp)) {
+                val progress = level % 10
+                repeat(10) { i ->
+                    Box(Modifier.weight(1f).fillMaxHeight().background(if (i < progress) GoldBright else StoneGray))
+                }
+            }
+
+            Spacer(Modifier.height(6.dp))
+
+            // Centered Upgrade Button with Cost
+            PixelButton(
+                label = "UPGRADE ($cost 💎)",
+                onClick = onUpgrade,
+                enabled = magicite >= cost,
+                modifier = Modifier.fillMaxWidth().height(32.dp),
+                horizontalPadding = 0.dp
+            )
         }
     }
 }
-
-data class Quad<A, B, C, D>(val first: A, val second: B, val third: C, val fourth: D)

@@ -50,19 +50,40 @@ class TownViewModel @Inject constructor(
         }
     }
 
-    fun upgradeInn() = upgrade { copy(innLevel = innLevel + 1) }
-    fun upgradeArmory() = upgrade { copy(armoryLevel = armoryLevel + 1) }
-    fun upgradeMagicShop() = upgrade { copy(magicShopLevel = magicShopLevel + 1) }
-    fun upgradeBarracks() = upgrade { copy(barracksLevel = barracksLevel + 1) }
-    fun upgradeVault() = upgrade { copy(vaultLevel = vaultLevel + 1) }
-    fun upgradePathfinder() = upgrade { copy(pathfinderLevel = pathfinderLevel + 1) }
-
-    private fun upgrade(block: GameState.() -> GameState) {
+    fun upgradeBuilding(type: UpgradeType) {
         val gs = gameState.value ?: return
-        val cost = 500 // Simplified cost for now
-        if (gs.gold >= cost) {
+        val currentLevel = when (type) {
+            UpgradeType.INN -> gs.innLevel
+            UpgradeType.BARRACKS -> gs.barracksLevel
+            UpgradeType.VAULT -> gs.vaultLevel
+            UpgradeType.ARMORY -> gs.armoryLevel
+            UpgradeType.MAGIC_SHOP -> gs.magicShopLevel
+            UpgradeType.TRAINING -> gs.trainingLevel
+            UpgradeType.PLANNING -> gs.planningLevel
+            UpgradeType.CLINIC -> gs.clinicLevel
+            UpgradeType.PATHFINDER -> gs.pathfinderLevel
+        }
+
+        if (currentLevel >= type.maxLevel) return
+
+        val rawCost = type.baseCost * (currentLevel + 1)
+        val discount = gs.upgradeDiscount
+        val finalCost = (rawCost * (1f - discount)).toLong()
+
+        if (gs.gold >= finalCost) {
+            val nextGs = when (type) {
+                UpgradeType.INN -> gs.copy(innLevel = gs.innLevel + 1)
+                UpgradeType.BARRACKS -> gs.copy(barracksLevel = gs.barracksLevel + 1)
+                UpgradeType.VAULT -> gs.copy(vaultLevel = gs.vaultLevel + 1)
+                UpgradeType.ARMORY -> gs.copy(armoryLevel = gs.armoryLevel + 1)
+                UpgradeType.MAGIC_SHOP -> gs.copy(magicShopLevel = gs.magicShopLevel + 1)
+                UpgradeType.TRAINING -> gs.copy(trainingLevel = gs.trainingLevel + 1)
+                UpgradeType.PLANNING -> gs.copy(planningLevel = gs.planningLevel + 1)
+                UpgradeType.CLINIC -> gs.copy(clinicLevel = gs.clinicLevel + 1)
+                UpgradeType.PATHFINDER -> gs.copy(pathfinderLevel = gs.pathfinderLevel + 1)
+            }
             viewModelScope.launch {
-                repository.saveGameState(gs.block().copy(gold = gs.gold - cost))
+                repository.saveGameState(nextGs.copy(gold = gs.gold - finalCost))
             }
         }
     }

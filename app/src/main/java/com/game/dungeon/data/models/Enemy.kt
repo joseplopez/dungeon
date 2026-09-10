@@ -22,11 +22,21 @@ data class Enemy(
     val gilDropped: Int get() = gilReward
 
     companion object {
-        fun fromTemplate(template: FFEnemyTemplate, floor: Int, difficultyMult: Float = 1.0f): Enemy {
+        fun fromTemplate(
+            template: FFEnemyTemplate,
+            floor: Int,
+            difficultyMult: Float = 1.0f,
+            relicBonuses: RelicBonuses? = null
+        ): Enemy {
             val baseHp = (20 + floor * 8) * template.hpMult * difficultyMult
             val baseAtk = (5 + floor * 1.5).toInt() * template.atkMult * difficultyMult
             val baseDef = (1 + floor / 3).toInt() * template.defMult * difficultyMult
             
+            // Magnet Relic: +5% base magicite drop rate
+            val baseChance = template.magiciteChance
+            val bonusChance = relicBonuses?.magnetBonus ?: 0f
+            val finalChance = (baseChance + bonusChance).coerceIn(0f, 1f)
+
             return Enemy(
                 name = template.name,
                 emoji = template.emoji,
@@ -37,7 +47,7 @@ data class Enemy(
                 magicDefense = (baseDef * 0.8f).toInt(),
                 speed = 5 + (floor / 10),
                 gilReward = template.gilReward,
-                magiciteDropped = if (Math.random() < template.magiciteChance) 1 else 0,
+                magiciteDropped = if (Math.random() < finalChance) 1 else 0,
                 floor = floor,
                 isBoss = template.isBoss
             )

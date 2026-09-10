@@ -76,4 +76,30 @@ class EquipmentViewModel @Inject constructor(
             repository.deleteItem(item)
         }
     }
+
+    fun quickEquip() {
+        val heroId = _selectedHeroId.value ?: return
+        viewModelScope.launch {
+            val inv = repository.getInventory().first()
+            val equipped = equippedItems.value
+            val pool = inv + equipped
+            
+            val bestWeapon = pool.filter { it.slot == ItemSlot.WEAPON }.maxByOrNull { it.powerScore }
+            val bestArmor = pool.filter { it.slot == ItemSlot.ARMOR }.maxByOrNull { it.powerScore }
+            val bestShield = pool.filter { it.slot == ItemSlot.SHIELD }.maxByOrNull { it.powerScore }
+            val bestAccessories = pool.filter { it.slot == ItemSlot.ACCESSORY }
+                .sortedByDescending { it.powerScore }
+                .take(2)
+
+            val toEquip = listOfNotNull(bestWeapon, bestArmor, bestShield) + bestAccessories
+            
+            // 1. Unequip everything currently on this hero
+            repository.unequipAll(heroId)
+            
+            // 2. Equip the new best ones
+            toEquip.forEach {
+                repository.saveItem(it.copy(ownerId = heroId))
+            }
+        }
+    }
 }

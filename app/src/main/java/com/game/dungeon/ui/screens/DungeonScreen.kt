@@ -142,6 +142,7 @@ fun DungeonScreen(
                 currentFloor = state.currentFloor,
                 gilEarnedThisRun = state.gilEarnedThisRun,
                 magiciteEarnedThisRun = state.magiciteEarnedThisRun,
+                gilLostToPenalty = state.gilLostToPenalty,
                 fallenHeroes = state.fallenHeroes,
                 itemsFoundThisRun = state.itemsFoundThisRun,
                 originalPartySize = state.originalPartySize,
@@ -378,6 +379,7 @@ fun RunCompleteOverlay(
     currentFloor: Int,
     gilEarnedThisRun: Long,
     magiciteEarnedThisRun: Int,
+    gilLostToPenalty: Long,
     fallenHeroes: List<Hero>,
     itemsFoundThisRun: List<Item>,
     originalPartySize: Int,
@@ -438,6 +440,13 @@ fun RunCompleteOverlay(
                                 Column {
                                     Text(formatGold(gilEarnedThisRun), style = PixelTitle, color = GoldBright)
                                     Text("GIL", style = PixelSmall, color = GoldDark)
+                                }
+                                if (gilLostToPenalty > 0) {
+                                    Spacer(Modifier.width(8.dp))
+                                    Column(horizontalAlignment = CenterHorizontally) {
+                                        Text("-${formatGold(gilLostToPenalty)}", style = PixelHeading, color = EnemyRed)
+                                        Text("WIPE PENALTY", style = PixelSmall, color = EnemyRed)
+                                    }
                                 }
                             }
                             

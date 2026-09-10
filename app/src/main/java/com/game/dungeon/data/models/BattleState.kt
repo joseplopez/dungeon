@@ -9,6 +9,7 @@ data class BattleState(
     val speed: BattleSpeed = BattleSpeed.NORMAL,
     val goldEarned: Long = 0,
     val itemsFound: List<Item> = emptyList(),
+    val bossesKilled: Int = 0,
     val floatingTexts: List<FloatingTextData> = emptyList(),
     val recentlyHitIds: Set<String> = emptySet(),
     val showFloorComplete: Boolean = false,

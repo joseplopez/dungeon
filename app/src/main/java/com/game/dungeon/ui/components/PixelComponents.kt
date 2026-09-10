@@ -63,7 +63,9 @@ fun PixelButton(
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
-    active: Boolean = false
+    active: Boolean = false,
+    horizontalPadding: androidx.compose.ui.unit.Dp = 12.dp,
+    verticalPadding: androidx.compose.ui.unit.Dp = 6.dp
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
@@ -82,7 +84,7 @@ fun PixelButton(
             .clickable(interactionSource = interactionSource, indication = null, enabled = enabled) { onClick() }
             .background(bgColor)
             .border(2.dp, if (active) GoldBright else GoldDark)
-            .padding(horizontal = 12.dp, vertical = 6.dp),
+            .padding(horizontal = horizontalPadding, vertical = verticalPadding),
         contentAlignment = Center
     ) {
         Text(label, style = PixelBody, color = textColor)
@@ -90,7 +92,13 @@ fun PixelButton(
 }
 
 @Composable
-fun PixelHpBar(current: Int, max: Int, modifier: Modifier = Modifier, showText: Boolean = false) {
+fun PixelHpBar(
+    current: Int,
+    max: Int,
+    modifier: Modifier = Modifier,
+    showText: Boolean = false,
+    barHeight: androidx.compose.ui.unit.Dp = 8.dp
+) {
     val ratio = (current.toFloat() / max.toFloat()).coerceIn(0f, 1f)
     val animRatio by animateFloatAsState(ratio, animationSpec = tween(300))
     val barColor = when {
@@ -102,7 +110,7 @@ fun PixelHpBar(current: Int, max: Int, modifier: Modifier = Modifier, showText: 
     Column(horizontalAlignment = Alignment.CenterHorizontally) {
         Box(
             modifier
-                .height(8.dp)
+                .height(barHeight)
                 .border(1.dp, Color.Black)
         ) {
             Box(Modifier.fillMaxSize().background(Color(0xFF220000))) // dark red bg

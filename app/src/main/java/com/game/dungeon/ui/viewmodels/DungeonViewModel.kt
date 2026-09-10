@@ -36,7 +36,9 @@ class DungeonViewModel @Inject constructor(
     val runComplete: Boolean = false,
     val gilEarnedThisRun: Long = 0,
     val magiciteEarnedThisRun: Int = 0,
+    val gilLostToPenalty: Long = 0,
     val itemsFoundThisRun: List<Item> = emptyList(),
+    val bossesKilledThisRun: Int = 0,
     val fallenHeroes: List<Hero> = emptyList(),
     val dyingHeroIds: Set<String> = emptySet(),
     val originalPartySize: Int = 0,
@@ -190,8 +192,6 @@ class DungeonViewModel @Inject constructor(
                 dyingHeroIds = it.dyingHeroIds - event.heroId
             ) }
             repo.getRoster().first().find { it.id == event.heroId }?.let { hero ->
-                // OPTION B: Equipment is automatically returned to inventory
-                repo.unequipAll(hero.id)
                 repo.removeHero(hero)
             }
         }
@@ -224,7 +224,8 @@ class DungeonViewModel @Inject constructor(
           state.copy(
             showBossBanner = true,
             bossBannerText = "${event.bossName} defeated!${if(event.dimensionComplete) " ✨ Dimension Complete!" else ""}",
-            battleLog = (state.battleLog + FFLogEntry("⚔️ BOSS DEFEATED: ${event.bossName}!", LogType.BOSS)).takeLast(25)
+            battleLog = (state.battleLog + FFLogEntry("⚔️ BOSS DEFEATED: ${event.bossName}!", LogType.BOSS)).takeLast(25),
+            bossesKilledThisRun = state.bossesKilledThisRun + 1
           )
         }
         viewModelScope.launch { delay(3000); battleState.update { it.copy(showBossBanner=false) } }
@@ -263,18 +264,33 @@ class DungeonViewModel @Inject constructor(
       }
       is FFBattleEvent.AllHeroesFell -> {
         viewModelScope.launch {
-          val earned = battleState.value.gilEarnedThisRun
+          val grossEarned = battleState.value.gilEarnedThisRun
           val magicite = battleState.value.magiciteEarnedThisRun
-          repo.addGil(earned)
+          
+          // Death Penalty: Lose 30% of the gold EARNED THIS RUN (Rebalanced from 50%)
+          val penalty = (grossEarned * 0.30f).toLong()
+          val netGil = grossEarned - penalty
+          
+          repo.addGil(netGil)
           repo.addMagicite(magicite)
+          repo.trackDimensionStats(
+              gil = netGil,
+              items = battleState.value.itemsFoundThisRun.size,
+              bosses = battleState.value.bossesKilledThisRun
+          )
           
           // Permadeath: Remove all heroes from party/database since they all fell
           battleState.value.heroes.forEach { hero ->
-              repo.unequipAll(hero.id) // OPTION B: Equipment returned
               repo.removeHero(hero) 
           }
           
-          battleState.update { it.copy(isRunning=false, runComplete=true, heroes = emptyList()) }
+          battleState.update { it.copy(
+              isRunning = false, 
+              runComplete = true, 
+              heroes = emptyList(), 
+              gilLostToPenalty = penalty,
+              battleLog = (it.battleLog + FFLogEntry("💀 TOTAL WIPE: Lost 30% of run earnings.", LogType.HERO_FELL)).takeLast(25)
+          ) }
         }
       }
       else -> {}
@@ -304,8 +320,15 @@ class DungeonViewModel @Inject constructor(
   fun retreat() {
     battleJob?.cancel()
     viewModelScope.launch {
-      repo.addGil(battleState.value.gilEarnedThisRun)
-      repo.addMagicite(battleState.value.magiciteEarnedThisRun)
+      val gil = battleState.value.gilEarnedThisRun
+      val magicite = battleState.value.magiciteEarnedThisRun
+      repo.addGil(gil)
+      repo.addMagicite(magicite)
+      repo.trackDimensionStats(
+          gil = gil,
+          items = battleState.value.itemsFoundThisRun.size,
+          bosses = battleState.value.bossesKilledThisRun
+      )
       
       // Save current state of surviving heroes and remove dead ones
       battleState.value.heroes.forEach { hero ->

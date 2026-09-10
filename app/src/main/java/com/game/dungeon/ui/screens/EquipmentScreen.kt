@@ -55,7 +55,11 @@ fun EquipmentScreen(
                     Column(Modifier.weight(0.4f), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                         hero?.let { h ->
                             StatPanel(h, equipped)
-                            EquippedPanel(equipped, onSelect = { selectedItemForDetail = it })
+                            EquippedPanel(
+                                equipped = equipped,
+                                onQuickEquip = { viewModel.quickEquip() },
+                                onSelect = { selectedItemForDetail = it }
+                            )
                         }
                     }
 
@@ -119,10 +123,18 @@ fun StatPanel(hero: Hero, equipped: List<Item>) {
 }
 
 @Composable
-fun EquippedPanel(equipped: List<Item>, onSelect: (Item) -> Unit) {
+fun EquippedPanel(equipped: List<Item>, onQuickEquip: () -> Unit, onSelect: (Item) -> Unit) {
     PixelPanel(Modifier.fillMaxWidth(), borderColor = GoldDark) {
         Column(Modifier.padding(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-            Text("EQUIPPED", style = PixelHeading, color = GoldBright)
+            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                Text("EQUIPPED", style = PixelHeading, color = GoldBright)
+                PixelButton(
+                    label = "QUICK EQUIP",
+                    onClick = onQuickEquip,
+                    modifier = Modifier.height(28.dp),
+                    horizontalPadding = 8.dp
+                )
+            }
             LazyColumn(
                 modifier = Modifier.fillMaxWidth().heightIn(max = 200.dp),
                 verticalArrangement = Arrangement.spacedBy(8.dp)

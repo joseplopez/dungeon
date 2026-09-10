@@ -94,7 +94,8 @@ class BattleViewModel @Inject constructor(
                     it.copy(
                         goldEarned = it.goldEarned + event.gold,
                         recentLoot = event.loot,
-                        itemsFound = if (event.loot != null) it.itemsFound + event.loot else it.itemsFound
+                        itemsFound = if (event.loot != null) it.itemsFound + event.loot else it.itemsFound,
+                        bossesKilled = it.bossesKilled + if (_battleState.value.enemies.any { e -> e.isBoss }) 1 else 0
                     ) 
                 }
                 event.loot?.let { loot ->
@@ -114,6 +115,11 @@ class BattleViewModel @Inject constructor(
                             gold = it.gold + _battleState.value.goldEarned,
                             highestFloor = newHighestFloor
                         ))
+                        repository.trackDimensionStats(
+                            gil = _battleState.value.goldEarned,
+                            items = _battleState.value.itemsFound.size,
+                            bosses = _battleState.value.bossesKilled
+                        )
                     }
                     
                     kotlinx.coroutines.delay(1500)
@@ -188,7 +194,13 @@ class BattleViewModel @Inject constructor(
         viewModelScope.launch {
             val state = repository.getGameState().first()
             state?.let {
-                repository.saveGameState(it.copy(gold = it.gold + _battleState.value.goldEarned))
+                val gold = _battleState.value.goldEarned
+                repository.saveGameState(it.copy(gold = it.gold + gold))
+                repository.trackDimensionStats(
+                    gil = gold,
+                    items = _battleState.value.itemsFound.size,
+                    bosses = _battleState.value.bossesKilled
+                )
             }
             _battleState.update { it.copy(isRunning = false) }
         }

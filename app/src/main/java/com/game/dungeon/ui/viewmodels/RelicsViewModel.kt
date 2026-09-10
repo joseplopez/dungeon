@@ -29,6 +29,9 @@ class RelicsViewModel @Inject constructor(
             RelicType.MAGIC -> gs.magicRelic
             RelicType.GOLD -> gs.goldRelic
             RelicType.MAGICITE_FIND -> gs.magiciteRelic
+            RelicType.MAGNET -> gs.magnetRelic
+            RelicType.POCKETS -> gs.pocketsRelic
+            RelicType.DOUBLE_LOOT -> gs.doubleLootRelic
         }
         val cost = (currentLevel + 1) * 10
 
@@ -40,6 +43,9 @@ class RelicsViewModel @Inject constructor(
                 RelicType.MAGIC -> gs.copy(magicRelic = gs.magicRelic + 1)
                 RelicType.GOLD -> gs.copy(goldRelic = gs.goldRelic + 1)
                 RelicType.MAGICITE_FIND -> gs.copy(magiciteRelic = gs.magiciteRelic + 1)
+                RelicType.MAGNET -> gs.copy(magnetRelic = gs.magnetRelic + 1)
+                RelicType.POCKETS -> gs.copy(pocketsRelic = gs.pocketsRelic + 1)
+                RelicType.DOUBLE_LOOT -> gs.copy(doubleLootRelic = gs.doubleLootRelic + 1)
             }.copy(magicite = gs.magicite - cost)
 
             viewModelScope.launch {

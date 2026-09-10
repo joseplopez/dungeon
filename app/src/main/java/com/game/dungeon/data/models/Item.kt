@@ -29,13 +29,27 @@ data class Item(
 ) {
     val sellValue: Long get() = (floorFound * 5L + rarity.ordinal * 20L).coerceAtLeast(5L)
 
+    val powerScore: Int get() = attackBonus + defenseBonus + magicBonus + (hpBonus / 5)
+
     companion object {
-        fun random(floor: Int): Item {
-            val rarity = when (val roll = (1..100).random()) {
-                in 1..70 -> Rarity.COMMON
-                in 71..90 -> Rarity.RARE
-                in 91..98 -> Rarity.EPIC
-                else -> Rarity.LEGENDARY
+        fun random(
+            floor: Int,
+            relicBonuses: RelicBonuses? = null,
+            minRarity: Rarity = Rarity.COMMON
+        ): Item {
+            // Magic Shop influence: Increase higher rarity odds by 1% per level
+            val msLevel = relicBonuses?.magicShopLevel ?: 0
+            val roll = (1..100).random()
+            
+            var rarity = when {
+                roll >= (99 - msLevel) -> Rarity.LEGENDARY
+                roll >= (91 - msLevel * 2) -> Rarity.EPIC
+                roll >= (71 - msLevel * 3) -> Rarity.RARE
+                else -> Rarity.COMMON
+            }
+
+            if (rarity.ordinal < minRarity.ordinal) {
+                rarity = minRarity
             }
             
             val slot = ItemSlot.entries.random()
@@ -49,21 +63,25 @@ data class Item(
             }
             
             val bonusMult = when (rarity) {
-                Rarity.COMMON -> 1
-                Rarity.RARE -> 2
-                Rarity.EPIC -> 4
-                Rarity.LEGENDARY -> 8
+                Rarity.COMMON -> 1f
+                Rarity.RARE -> 2f
+                Rarity.EPIC -> 4f
+                Rarity.LEGENDARY -> 8f
             }
             
+            // Armory influence: Increase base stats by %
+            val statBonus = 1f + (relicBonuses?.itemStatBonus ?: 0f)
+            val finalMult = bonusMult * statBonus
+
             return Item(
                 id = id,
                 name = "${rarity.name} $name",
                 slot = slot,
                 rarity = rarity,
-                attackBonus = if (slot == ItemSlot.WEAPON) (1 + floor / 5) * bonusMult else 0,
-                defenseBonus = if (slot == ItemSlot.ARMOR || slot == ItemSlot.SHIELD) (1 + floor / 10) * bonusMult else 0,
-                magicBonus = if (slot == ItemSlot.ACCESSORY) (1 + floor / 10) * bonusMult else 0,
-                hpBonus = (floor / 2) * bonusMult,
+                attackBonus = if (slot == ItemSlot.WEAPON) ((1 + floor / 5) * finalMult).toInt() else 0,
+                defenseBonus = if (slot == ItemSlot.ARMOR || slot == ItemSlot.SHIELD) ((1 + floor / 10) * finalMult).toInt() else 0,
+                magicBonus = if (slot == ItemSlot.ACCESSORY) ((1 + floor / 10) * finalMult).toInt() else 0,
+                hpBonus = ((floor / 2) * finalMult).toInt(),
                 emoji = emoji,
                 floorFound = floor
             )

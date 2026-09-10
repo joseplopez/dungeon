@@ -22,7 +22,14 @@ object AppModule {
             context,
             GameDatabase::class.java,
             "game_database"
-        ).fallbackToDestructiveMigration(true).build()
+        )
+        .addMigrations(
+            GameDatabase.MIGRATION_9_10,
+            GameDatabase.MIGRATION_10_11,
+            GameDatabase.MIGRATION_11_12
+        )
+        .fallbackToDestructiveMigration(true) // Keep as safety, but explicit migrations prioritized
+        .build()
     }
 
     @Provides
