@@ -1,0 +1,46 @@
+package com.game.dungeon.data.models
+
+import java.util.UUID
+
+typealias FFEnemy = Enemy
+
+data class Enemy(
+    val id: String = UUID.randomUUID().toString(),
+    val name: String,
+    val emoji: String,
+    var currentHp: Int,
+    val maxHp: Int,
+    val attack: Int,
+    val defense: Int,
+    val magicDefense: Int = 0,
+    val speed: Int = 5,
+    val gilReward: Int,
+    val magiciteDropped: Int = 0,
+    val floor: Int,
+    val isBoss: Boolean = false
+) {
+    val gilDropped: Int get() = gilReward
+
+    companion object {
+        fun fromTemplate(template: FFEnemyTemplate, floor: Int, difficultyMult: Float = 1.0f): Enemy {
+            val baseHp = (20 + floor * 8) * template.hpMult * difficultyMult
+            val baseAtk = (5 + floor * 1.5).toInt() * template.atkMult * difficultyMult
+            val baseDef = (1 + floor / 3).toInt() * template.defMult * difficultyMult
+            
+            return Enemy(
+                name = template.name,
+                emoji = template.emoji,
+                maxHp = baseHp.toInt(),
+                currentHp = baseHp.toInt(),
+                attack = baseAtk.toInt(),
+                defense = baseDef.toInt(),
+                magicDefense = (baseDef * 0.8f).toInt(),
+                speed = 5 + (floor / 10),
+                gilReward = template.gilReward,
+                magiciteDropped = if (Math.random() < template.magiciteChance) 1 else 0,
+                floor = floor,
+                isBoss = template.isBoss
+            )
+        }
+    }
+}

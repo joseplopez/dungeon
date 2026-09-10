@@ -1,0 +1,61 @@
+# Built objects
+# -----------
+*.pyc
+*.class
+*.o
+*.obj
+
+# Build artifacts
+# ---------------
+bin/
+gen/
+out/
+build/
+.gradle/
+obj/
+
+# Local configuration
+# -------------------
+local.properties
+
+# Log files
+# ---------
+*.log
+
+# Android Studio / IntelliJ IDEA
+# ------------------------------
+.idea/
+*.iml
+*.iws
+*.ipr
+/captures/
+
+# OS generated files
+# ------------------
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# External native build
+# ---------------------
+.externalNativeBuild
+.cxx
+
+# Keystore files
+# --------------
+*.jks
+*.keystore
+!debug.keystore
+
+# Google Services
+# ---------------
+# google-services.json
+# crashlytics.properties
+
+# Kotlin
+# ------
+.kotlin/
