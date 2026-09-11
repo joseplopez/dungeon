@@ -12,6 +12,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
@@ -116,6 +117,8 @@ fun RelicCard(
         RelicType.MAGIC -> gameState.magicRelic
         RelicType.GOLD -> gameState.goldRelic
         RelicType.MAGICITE_FIND -> gameState.magiciteRelic
+        RelicType.CRIT_CHANCE -> gameState.critChanceRelic
+        RelicType.CRIT_DAMAGE -> gameState.critDamageRelic
         RelicType.MAGNET -> gameState.magnetRelic
         RelicType.POCKETS -> gameState.pocketsRelic
         RelicType.DOUBLE_LOOT -> gameState.doubleLootRelic
@@ -129,6 +132,8 @@ fun RelicCard(
         RelicType.MAGIC -> "🔮"
         RelicType.GOLD -> "🪙"
         RelicType.MAGICITE_FIND -> "💎"
+        RelicType.CRIT_CHANCE -> "🎯"
+        RelicType.CRIT_DAMAGE -> "💥"
         RelicType.MAGNET -> "🧲"
         RelicType.POCKETS -> "🎒"
         RelicType.DOUBLE_LOOT -> "🎁"
@@ -141,6 +146,8 @@ fun RelicCard(
         RelicType.MAGIC -> "Magic"
         RelicType.GOLD -> "Fortune"
         RelicType.MAGICITE_FIND -> "Essence"
+        RelicType.CRIT_CHANCE -> "Hawk Eye"
+        RelicType.CRIT_DAMAGE -> "Hitter"
         RelicType.MAGNET -> "Magnet"
         RelicType.POCKETS -> "Pockets"
         RelicType.DOUBLE_LOOT -> "Loot"
@@ -153,6 +160,8 @@ fun RelicCard(
         RelicType.MAGIC -> "Mag Dmg"
         RelicType.GOLD -> "Gil Gain"
         RelicType.MAGICITE_FIND -> "Find Rate"
+        RelicType.CRIT_CHANCE -> "Crit Rate"
+        RelicType.CRIT_DAMAGE -> "Crit Dmg"
         RelicType.MAGNET -> "Magci Drop"
         RelicType.POCKETS -> "Gold Keep"
         RelicType.DOUBLE_LOOT -> "Boss Double"
@@ -165,6 +174,8 @@ fun RelicCard(
         RelicType.MAGIC -> level * 2
         RelicType.GOLD -> level * 5
         RelicType.MAGICITE_FIND -> level
+        RelicType.CRIT_CHANCE -> level
+        RelicType.CRIT_DAMAGE -> level * 5
         RelicType.MAGNET -> level * 5
         RelicType.POCKETS -> level * 10
         RelicType.DOUBLE_LOOT -> level * 5
@@ -176,11 +187,14 @@ fun RelicCard(
         RelicType.MAGIC -> (level + 1) * 2
         RelicType.GOLD -> (level + 1) * 5
         RelicType.MAGICITE_FIND -> (level + 1)
+        RelicType.CRIT_CHANCE -> (level + 1)
+        RelicType.CRIT_DAMAGE -> (level + 1) * 5
         RelicType.MAGNET -> (level + 1) * 5
         RelicType.POCKETS -> (level + 1) * 10
         RelicType.DOUBLE_LOOT -> (level + 1) * 5
     }
     val suffix = if (relicType == RelicType.GOLD || relicType == RelicType.MAGICITE_FIND ||
+                     relicType == RelicType.CRIT_CHANCE || relicType == RelicType.CRIT_DAMAGE ||
                      relicType == RelicType.MAGNET || relicType == RelicType.POCKETS || 
                      relicType == RelicType.DOUBLE_LOOT) "%" else ""
 
@@ -199,8 +213,8 @@ fun RelicCard(
             }
 
             // Comparison View
-            Box(Modifier.fillMaxWidth().weight(1f), contentAlignment = Alignment.Center) {
-                Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Box(Modifier.fillMaxWidth().weight(1f), contentAlignment = Center) {
+                Column(horizontalAlignment = CenterHorizontally) {
                     Text(desc, style = PixelSmall, color = StoneGray, fontSize = 9.sp)
                     Row(verticalAlignment = CenterVertically) {
                         Text("+$currentVal$suffix", style = PixelBody, color = SystemCyan, fontSize = 11.sp)

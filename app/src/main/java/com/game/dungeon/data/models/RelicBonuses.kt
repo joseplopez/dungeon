@@ -11,6 +11,9 @@ data class RelicBonuses(
     val expMultiplier: Float,
     val itemStatBonus: Float,
     val magicShopLevel: Int,
+    // Crit
+    val critChanceBonus: Int,
+    val critDamageBonus: Int,
     // Ascended Relics
     val magnetBonus: Float,
     val pocketsBonus: Float,
@@ -27,6 +30,8 @@ data class RelicBonuses(
             expMultiplier = gs.expMultiplier,
             itemStatBonus = gs.itemStatBonus,
             magicShopLevel = gs.magicShopLevel,
+            critChanceBonus = gs.critChanceRelic,
+            critDamageBonus = gs.critDamageRelic * 5,
             magnetBonus = gs.magnetBonus,
             pocketsBonus = gs.pocketsBonus,
             doubleLootChance = gs.doubleLootChance

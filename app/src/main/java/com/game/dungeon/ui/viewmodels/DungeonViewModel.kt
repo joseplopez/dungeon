@@ -45,6 +45,7 @@ class DungeonViewModel @Inject constructor(
     val attackingHeroId: String? = null,
     val hitEnemyId: String? = null,
     val hitHeroId: String? = null,
+    val isCriticalHit: Boolean = false,
     val recentLoot: Item? = null,
     val showFloorBanner: Boolean = false,
     val floorBannerText: String = "",
@@ -61,22 +62,37 @@ class DungeonViewModel @Inject constructor(
     val dimension = FFDimensionData.getDimension(gs.currentDimension)
     val relics = RelicBonuses.from(gs)
 
-    battleState.value = FFBattleState(
-      currentFloor = startFloor.coerceAtLeast(1),
-      dimension = dimension,
-      heroes = party.map { it.copy() },
-      originalPartySize = party.size,
-      isRunning = true
-    )
+    viewModelScope.launch {
+        // Fetch items for all heroes to bake stats
+        val partyWithStats = party.map { hero ->
+            val items = repo.getEquippedItems(hero.id).first()
+            hero.copy(
+                attackBonus = items.sumOf { it.attackBonus } + relics.attackBonus,
+                defenseBonus = items.sumOf { it.defenseBonus },
+                magicBonus = items.sumOf { it.magicBonus } + relics.magicBonus,
+                hpBonus = items.sumOf { it.hpBonus } + relics.hpBonus,
+                critChance = 5 + items.sumOf { it.critChanceBonus } + relics.critChanceBonus,
+                critDamage = 50 + items.sumOf { it.critDamageBonus } + relics.critDamageBonus
+            )
+        }
 
-    battleJob = viewModelScope.launch {
-      engine.runBattle(
-        heroes = battleState.value.heroes,
-        dimension = dimension,
-        startFloor = startFloor.coerceAtLeast(1),
-        speed = battleState.value.speed,
-        relicBonuses = relics
-      ) { event -> handleEvent(event) }
+        battleState.value = FFBattleState(
+            currentFloor = startFloor.coerceAtLeast(1),
+            dimension = dimension,
+            heroes = partyWithStats,
+            originalPartySize = party.size,
+            isRunning = true
+        )
+
+        battleJob = launch {
+            engine.runBattle(
+                heroes = battleState.value.heroes,
+                dimension = dimension,
+                startFloor = startFloor.coerceAtLeast(1),
+                speed = battleState.value.speed,
+                relicBonuses = relics
+            ) { event -> handleEvent(event) }
+        }
     }
   }
 
@@ -95,13 +111,14 @@ class DungeonViewModel @Inject constructor(
             hitEnemyId = if (!findIsHero(state, event.targetId)) event.targetId else null,
             hitHeroId = if (findIsHero(state, event.targetId)) event.targetId else null,
             attackingHeroId = if (findIsHero(state, event.attackerId)) event.attackerId else null,
+            isCriticalHit = event.isCritical,
             battleLog = (state.battleLog + FFLogEntry(logMsg,
               if(findIsHero(state, event.attackerId)) LogType.HERO_ATTACK else LogType.ENEMY_ATTACK)).takeLast(25)
           )
         }
         viewModelScope.launch {
-          delay(150)
-          battleState.update { it.copy(hitEnemyId=null, hitHeroId=null, attackingHeroId=null) }
+          delay(300) // Increased from 150ms for better animation visibility
+          battleState.update { it.copy(hitEnemyId=null, hitHeroId=null, attackingHeroId=null, isCriticalHit=false) }
         }
       }
       is FFBattleEvent.ExpGained -> {

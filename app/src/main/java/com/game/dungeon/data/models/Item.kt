@@ -3,6 +3,7 @@ package com.game.dungeon.data.models
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import java.util.UUID
+import kotlin.random.Random
 
 enum class ItemSlot { WEAPON, ARMOR, SHIELD, ACCESSORY }
 
@@ -23,13 +24,15 @@ data class Item(
     val defenseBonus: Int = 0,
     val magicBonus: Int = 0,
     val hpBonus: Int = 0,
+    val critChanceBonus: Int = 0,
+    val critDamageBonus: Int = 0,
     val emoji: String,
     val floorFound: Int,
     val ownerId: String? = null // To track who is wearing it, or if it's in inventory
 ) {
     val sellValue: Long get() = (floorFound * 5L + rarity.ordinal * 20L).coerceAtLeast(5L)
 
-    val powerScore: Int get() = attackBonus + defenseBonus + magicBonus + (hpBonus / 5)
+    val powerScore: Int get() = attackBonus + defenseBonus + magicBonus + (hpBonus / 5) + (critChanceBonus * 2) + (critDamageBonus / 2)
 
     companion object {
         fun random(
@@ -73,6 +76,13 @@ data class Item(
             val statBonus = 1f + (relicBonuses?.itemStatBonus ?: 0f)
             val finalMult = bonusMult * statBonus
 
+            var critChance = 0
+            var critDmg = 0
+            if (rarity.ordinal >= Rarity.RARE.ordinal) {
+                if (Random.nextInt(100) < 30) critChance = (Random.nextInt(2, 6) * bonusMult).toInt()
+                if (Random.nextInt(100) < 30) critDmg = (Random.nextInt(5, 15) * bonusMult).toInt()
+            }
+
             return Item(
                 id = id,
                 name = "${rarity.name} $name",
@@ -82,6 +92,8 @@ data class Item(
                 defenseBonus = if (slot == ItemSlot.ARMOR || slot == ItemSlot.SHIELD) ((1 + floor / 10) * finalMult).toInt() else 0,
                 magicBonus = if (slot == ItemSlot.ACCESSORY) ((1 + floor / 10) * finalMult).toInt() else 0,
                 hpBonus = ((floor / 2) * finalMult).toInt(),
+                critChanceBonus = critChance,
+                critDamageBonus = critDmg,
                 emoji = emoji,
                 floorFound = floor
             )

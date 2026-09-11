@@ -152,9 +152,13 @@ class FFBattleEngine {
         when (hero.aiPriority) {
             AIPriority.ATTACK -> {
                 val target = enemies.filter { it.currentHp > 0 }.minByOrNull { it.currentHp } ?: return
-                val dmg = calcPhysicalDamage(hero, target)
+                val (dmg, isCrit) = calcPhysicalDamage(hero, target)
                 target.currentHp -= dmg
-                onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, dmg > hero.attack * 1.5f))
+                val logMsg = if (isCrit) "💥 ${hero.name} strikes a VITAL POINT for $dmg! (CRITICAL)"
+                             else "${hero.name} attacks for $dmg."
+                onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, isCrit))
+                onEvent(FFBattleEvent.AbilityUsed(hero.id, if (isCrit) "CRITICAL" else "Attack", logMsg))
+                
                 if (target.currentHp <= 0) {
                     val exp = ((target.floor * 2) * relicBonuses.expMultiplier).toInt()
                     onEvent(FFBattleEvent.EnemyDefeated(target.id, target.gilDropped, target.magiciteDropped, exp))
@@ -163,9 +167,13 @@ class FFBattleEngine {
             }
             AIPriority.MAGIC -> {
                 val target = enemies.filter { it.currentHp > 0 }.maxByOrNull { it.currentHp } ?: return
-                val dmg = calcMagicDamage(hero, target)
+                val (dmg, isCrit) = calcMagicDamage(hero, target)
                 target.currentHp -= dmg
-                onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, true, false))
+                val logMsg = if (isCrit) "✨ ${hero.name}'s spell SURGES for $dmg! (CRITICAL)"
+                             else "${hero.name} casts spell for $dmg."
+                onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, true, isCrit))
+                onEvent(FFBattleEvent.AbilityUsed(hero.id, if (isCrit) "SURGE" else "Magic", logMsg))
+                
                 if (target.currentHp <= 0) {
                     val exp = ((target.floor * 2) * relicBonuses.expMultiplier).toInt()
                     onEvent(FFBattleEvent.EnemyDefeated(target.id, target.gilDropped, target.magiciteDropped, exp))
@@ -183,9 +191,9 @@ class FFBattleEngine {
                 } else {
                     // No one to heal — attack instead
                     val target = enemies.filter { it.currentHp > 0 }.minByOrNull { it.currentHp } ?: return
-                    val dmg = calcPhysicalDamage(hero, target)
+                    val (dmg, isCrit) = calcPhysicalDamage(hero, target)
                     target.currentHp -= dmg
-                    onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, false))
+                    onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, isCrit))
                     if (target.currentHp <= 0) {
                         val exp = ((target.floor * 2) * relicBonuses.expMultiplier).toInt()
                         onEvent(FFBattleEvent.EnemyDefeated(target.id, target.gilDropped, target.magiciteDropped, exp))
@@ -206,7 +214,8 @@ class FFBattleEngine {
         when (hero.heroClass) {
             JobClass.WARRIOR -> {
                 val target = enemies.filter { it.currentHp > 0 }.maxByOrNull { it.currentHp } ?: return
-                val dmg = (calcPhysicalDamage(hero, target) * 2f).toInt()
+                val (baseDmg, _) = calcPhysicalDamage(hero, target)
+                val dmg = (baseDmg * 2f).toInt()
                 target.currentHp -= dmg
                 onEvent(FFBattleEvent.AbilityUsed(hero.id, "Mighty Strike", "${hero.name} unleashes Mighty Strike!"))
                 onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, true))
@@ -229,7 +238,8 @@ class FFBattleEngine {
             JobClass.BLACK_MAGE -> {
                 onEvent(FFBattleEvent.AbilityUsed(hero.id, "Flare", "${hero.name} casts FLARE!"))
                 enemies.filter { it.currentHp > 0 }.forEach { enemy ->
-                    val dmg = (calcMagicDamage(hero, enemy) * 1.8f).toInt()
+                    val (baseDmg, _) = calcMagicDamage(hero, enemy)
+                    val dmg = (baseDmg * 1.8f).toInt()
                     enemy.currentHp -= dmg
                     onEvent(FFBattleEvent.DamageDealt(hero.id, enemy.id, dmg, true, true))
                     if (enemy.currentHp <= 0) {
@@ -241,10 +251,10 @@ class FFBattleEngine {
             }
             JobClass.THIEF -> {
                 val target = enemies.filter { it.currentHp > 0 }.firstOrNull() ?: return
-                val dmg = calcPhysicalDamage(hero, target)
+                val (dmg, isCrit) = calcPhysicalDamage(hero, target)
                 target.currentHp -= dmg
                 onEvent(FFBattleEvent.AbilityUsed(hero.id, "Mug", "${hero.name} Mugs the enemy!"))
-                onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, false))
+                onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, isCrit))
                 if (target.magiciteDropped > 0 && hero.hasRansack) {
                     onEvent(FFBattleEvent.MagiciteStolen(hero.id, target.magiciteDropped))
                 }
@@ -259,10 +269,11 @@ class FFBattleEngine {
                 hero.currentHp = minOf(hero.currentHp + selfHeal, hero.maxHp)
                 onEvent(FFBattleEvent.HealCast(hero.id, hero.id, selfHeal))
                 val target = enemies.filter { it.currentHp > 0 }.firstOrNull() ?: return
-                val dmg = (calcPhysicalDamage(hero, target) * 1.5f).toInt()
+                val (baseDmg, isCrit) = calcPhysicalDamage(hero, target)
+                val dmg = (baseDmg * 1.5f).toInt()
                 target.currentHp -= dmg
                 onEvent(FFBattleEvent.AbilityUsed(hero.id, "Chakra", "${hero.name} uses Chakra!"))
-                onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, false))
+                onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, isCrit))
                 if (target.currentHp <= 0) {
                     val exp = ((target.floor * 2) * relicBonuses.expMultiplier).toInt()
                     onEvent(FFBattleEvent.EnemyDefeated(target.id, target.gilDropped, target.magiciteDropped, exp))
@@ -271,7 +282,8 @@ class FFBattleEngine {
             }
             JobClass.KNIGHT -> {
                 val target = enemies.filter { it.currentHp > 0 }.maxByOrNull { it.currentHp } ?: return
-                val dmg = (calcPhysicalDamage(hero, target) * 1.8f).toInt()
+                val (baseDmg, _) = calcPhysicalDamage(hero, target)
+                val dmg = (baseDmg * 1.8f).toInt()
                 target.currentHp -= dmg
                 onEvent(FFBattleEvent.AbilityUsed(hero.id, "Holy Sword", "${hero.name} raises Holy Sword!"))
                 onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, true))
@@ -284,9 +296,9 @@ class FFBattleEngine {
             JobClass.PALADIN -> {
                 onEvent(FFBattleEvent.AbilityUsed(hero.id, "Saint's Fall", "${hero.name} calls Saint's Fall!"))
                 enemies.filter { it.currentHp > 0 }.forEach { enemy ->
-                    val dmg = calcPhysicalDamage(hero, enemy)
+                    val (dmg, isCrit) = calcPhysicalDamage(hero, enemy)
                     enemy.currentHp -= dmg
-                    onEvent(FFBattleEvent.DamageDealt(hero.id, enemy.id, dmg, false, false))
+                    onEvent(FFBattleEvent.DamageDealt(hero.id, enemy.id, dmg, false, isCrit))
                     if (enemy.currentHp <= 0) {
                         val exp = ((enemy.floor * 2) * relicBonuses.expMultiplier).toInt()
                         onEvent(FFBattleEvent.EnemyDefeated(enemy.id, enemy.gilDropped, enemy.magiciteDropped, exp))
@@ -300,9 +312,9 @@ class FFBattleEngine {
                 onEvent(FFBattleEvent.AbilityUsed(hero.id, "Doublecast", "${hero.name} Doublecasts!"))
                 repeat(2) {
                     val target = enemies.filter { it.currentHp > 0 }.firstOrNull() ?: return
-                    val dmg = calcMagicDamage(hero, target)
+                    val (dmg, isCrit) = calcMagicDamage(hero, target)
                     target.currentHp -= dmg
-                    onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, true, false))
+                    onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, true, isCrit))
                     if (target.currentHp <= 0) {
                         val exp = ((target.floor * 2) * relicBonuses.expMultiplier).toInt()
                         onEvent(FFBattleEvent.EnemyDefeated(target.id, target.gilDropped, target.magiciteDropped, exp))
@@ -318,10 +330,11 @@ class FFBattleEngine {
                 val (name, _, mult) = summons.random()
                 var totalDmg = 0
                 enemies.filter { it.currentHp > 0 }.forEach { enemy ->
-                    val dmg = (calcMagicDamage(hero, enemy) * mult).toInt()
+                    val (baseDmg, isCrit) = calcMagicDamage(hero, enemy)
+                    val dmg = (baseDmg * mult).toInt()
                     enemy.currentHp -= dmg
                     totalDmg += dmg
-                    onEvent(FFBattleEvent.DamageDealt(hero.id, enemy.id, dmg, true, mult > 2f))
+                    onEvent(FFBattleEvent.DamageDealt(hero.id, enemy.id, dmg, true, isCrit || mult > 2f))
                     if (enemy.currentHp <= 0) {
                         val exp = ((enemy.floor * 2) * relicBonuses.expMultiplier).toInt()
                         onEvent(FFBattleEvent.EnemyDefeated(enemy.id, enemy.gilDropped, enemy.magiciteDropped, exp))
@@ -360,7 +373,7 @@ class FFBattleEngine {
                 val dmg = (hero.attack * 2f).toInt()
                 enemies.filter { it.currentHp > 0 }.forEach { enemy ->
                     enemy.currentHp -= dmg
-                    onEvent(FFBattleEvent.DamageDealt(hero.id, enemy.id, dmg, false, false))
+                    onEvent(FFBattleEvent.DamageDealt(hero.id, enemy.id, dmg, false, true))
                     if (enemy.currentHp <= 0) {
                         val exp = ((enemy.floor * 2) * relicBonuses.expMultiplier).toInt()
                         onEvent(FFBattleEvent.EnemyDefeated(enemy.id, enemy.gilDropped, enemy.magiciteDropped, exp))
@@ -390,11 +403,23 @@ class FFBattleEngine {
         return leveledUp
     }
 
-    private fun calcPhysicalDamage(attacker: Hero, target: Enemy): Int =
-        maxOf(1, attacker.attack - target.defense + Random.nextInt(-3, 4))
+    private fun calcPhysicalDamage(attacker: Hero, target: Enemy): Pair<Int, Boolean> {
+        val isCrit = Random.nextInt(100) < attacker.critChance
+        val critMult = 1.0f + (attacker.critDamage / 100f)
+        val totalAtk = attacker.attack + attacker.attackBonus
+        val baseDmg = maxOf(1, totalAtk - target.defense + Random.nextInt(-3, 4))
+        val finalDmg = if (isCrit) (baseDmg * critMult).toInt() else baseDmg
+        return finalDmg to isCrit
+    }
 
-    private fun calcMagicDamage(attacker: Hero, target: Enemy): Int =
-        maxOf(1, (attacker.magic * 1.5f - target.magicDefense * 0.5f + Random.nextInt(-2, 3)).toInt())
+    private fun calcMagicDamage(attacker: Hero, target: Enemy): Pair<Int, Boolean> {
+        val isCrit = Random.nextInt(100) < (attacker.critChance / 2) // Magic crit is half as likely but possible
+        val critMult = 1.0f + (attacker.critDamage / 100f)
+        val totalMag = attacker.magic + attacker.magicBonus
+        val baseDmg = maxOf(1, (totalMag * 1.5f - target.magicDefense * 0.5f + Random.nextInt(-2, 3)).toInt())
+        val finalDmg = if (isCrit) (baseDmg * critMult).toInt() else baseDmg
+        return finalDmg to isCrit
+    }
 
     private fun executeEnemyTurn(enemy: Enemy, heroes: MutableList<Hero>, onEvent: (FFBattleEvent)->Unit) {
         val aliveHeroes = heroes.filter { it.isAlive }
@@ -402,19 +427,20 @@ class FFBattleEngine {
 
         // Option 3: Weighted Random (Bias towards highest Defense)
         // We assign weights based on defense. Higher defense = more likely to be hit.
-        val totalDefense = aliveHeroes.sumOf { it.defense }.coerceAtLeast(1)
+        val totalDefense = aliveHeroes.sumOf { it.defense + it.defenseBonus }.coerceAtLeast(1)
         var roll = Random.nextInt(totalDefense)
         
         var target = aliveHeroes.last() // Fallback
         for (hero in aliveHeroes) {
-            if (roll < hero.defense) {
+            val hDef = hero.defense + hero.defenseBonus
+            if (roll < hDef) {
                 target = hero
                 break
             }
-            roll -= hero.defense
+            roll -= hDef
         }
 
-        val dmg = maxOf(1, enemy.attack - target.defense + Random.nextInt(-2, 3))
+        val dmg = maxOf(1, enemy.attack - (target.defense + target.defenseBonus) + Random.nextInt(-2, 3))
         target.currentHp -= dmg
         onEvent(FFBattleEvent.DamageDealt(enemy.id, target.id, dmg, false, false))
         if (target.currentHp <= 0) {

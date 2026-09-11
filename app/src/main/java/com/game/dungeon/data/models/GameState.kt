@@ -36,6 +36,8 @@ data class GameState(
     val hpRelic: Int = 0,            // +15 HP per level
     val mpRelic: Int = 0,            // +10 MP per level
     val magicRelic: Int = 0,         // +2 MAG per level
+    val critChanceRelic: Int = 0,    // +1% Crit Chance per level
+    val critDamageRelic: Int = 0,    // +5% Crit Damage per level
     val goldRelic: Int = 0,          // +5% Gil per level
     val magiciteRelic: Int = 0,      // +Magicite find chance per level
 

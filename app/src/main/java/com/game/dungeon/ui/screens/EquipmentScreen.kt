@@ -104,16 +104,23 @@ fun StatPanel(hero: Hero, equipped: List<Item>) {
     PixelPanel(Modifier.fillMaxWidth(), borderColor = GoldDark) {
         Column(Modifier.padding(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
             Text("STATS", style = PixelHeading, color = GoldBright)
-            listOf("HP", "ATK", "DEF", "MAG").forEach { stat ->
+            listOf("HP", "ATK", "DEF", "MAG", "CRIT_CHANCE", "CRIT_DAMAGE").forEach { stat ->
                 val base = baseStats[stat] ?: 0
                 val curr = currentStats[stat] ?: 0
                 val diff = curr - base
+                val label = when(stat) {
+                    "CRIT_CHANCE" -> "CRIT %"
+                    "CRIT_DAMAGE" -> "CRIT DMG"
+                    else -> stat
+                }
+                val valueSuffix = if (stat == "CRIT_CHANCE" || stat == "CRIT_DAMAGE") "%" else ""
+                
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                    Text(stat, style = PixelBody, color = Color.White)
+                    Text(label, style = PixelBody, color = Color.White)
                     Row {
-                        Text("$curr", style = PixelBody, color = GoldBright)
+                        Text("$curr$valueSuffix", style = PixelBody, color = GoldBright)
                         if (diff > 0) {
-                            Text(" (+$diff)", style = PixelSmall, color = HpGreen)
+                            Text(" (+$diff$valueSuffix)", style = PixelSmall, color = HpGreen)
                         }
                     }
                 }
@@ -234,6 +241,8 @@ fun ItemDetailOverlay(
                     if (item.defenseBonus > 0) Text("DEF: +${item.defenseBonus}", style = PixelBody, color = GoldBright)
                     if (item.magicBonus > 0) Text("MAG: +${item.magicBonus}", style = PixelBody, color = GoldBright)
                     if (item.hpBonus > 0) Text("HP: +${item.hpBonus}", style = PixelBody, color = GoldBright)
+                    if (item.critChanceBonus > 0) Text("CRIT %: +${item.critChanceBonus}%", style = PixelBody, color = HpGreen)
+                    if (item.critDamageBonus > 0) Text("CRIT DMG: +${item.critDamageBonus}%", style = PixelBody, color = HpGreen)
                 }
 
                 Spacer(Modifier.height(8.dp))

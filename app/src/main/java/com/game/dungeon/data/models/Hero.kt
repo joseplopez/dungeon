@@ -22,6 +22,12 @@ data class Hero(
     var shieldId: String? = null,
     var accessory1Id: String? = null,
     var accessory2Id: String? = null,
+    var attackBonus: Int = 0,
+    var defenseBonus: Int = 0,
+    var magicBonus: Int = 0,
+    var hpBonus: Int = 0,
+    var critChance: Int = 5,
+    var critDamage: Int = 50,
     val isInParty: Boolean = false,
     val partyPosition: Int = 0 // Position in the party list (0-indexed)
 ) {
@@ -51,7 +57,9 @@ data class Hero(
             "HP" to maxHp + equippedItems.sumOf { it.hpBonus },
             "ATK" to attack + equippedItems.sumOf { it.attackBonus },
             "DEF" to defense + equippedItems.sumOf { it.defenseBonus },
-            "MAG" to magic + equippedItems.sumOf { it.magicBonus }
+            "MAG" to magic + equippedItems.sumOf { it.magicBonus },
+            "CRIT_CHANCE" to 5 + equippedItems.sumOf { it.critChanceBonus },
+            "CRIT_DAMAGE" to 50 + equippedItems.sumOf { it.critDamageBonus }
         )
     }
 

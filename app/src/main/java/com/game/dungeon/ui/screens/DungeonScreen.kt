@@ -17,12 +17,16 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Alignment.Companion.End
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
+import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.CompositingStrategy
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
@@ -31,6 +35,7 @@ import com.game.dungeon.ui.components.*
 import com.game.dungeon.ui.theme.*
 import com.game.dungeon.ui.viewmodels.DungeonViewModel
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlin.math.cos
 import kotlin.math.sin
 import kotlin.random.Random
@@ -73,6 +78,7 @@ fun DungeonScreen(
                 attackingUnitId = state.attackingHeroId,
                 hitEnemyId = state.hitEnemyId,
                 hitHeroId = state.hitHeroId,
+                isCritical = state.isCriticalHit,
                 dimension = dimension,
                 floor = state.currentFloor
             )
@@ -226,6 +232,7 @@ fun BattleArea(
     attackingUnitId: String?,
     hitEnemyId: String?,
     hitHeroId: String?,
+    isCritical: Boolean,
     dimension: FFDimension?,
     floor: Int
 ) {
@@ -242,6 +249,7 @@ fun BattleArea(
                         hero = hero,
                         isAttacking = attackingUnitId == hero.id,
                         isHit = hitHeroId == hero.id,
+                        isCritical = isCritical && hitHeroId == hero.id,
                         isDying = dyingHeroIds.contains(hero.id)
                     )
                 }
@@ -261,6 +269,7 @@ fun BattleArea(
                     EnemyUnitDisplay(
                         enemy = enemy,
                         isHit = hitEnemyId == enemy.id,
+                        isCritical = isCritical && hitEnemyId == enemy.id,
                         isBoss = isBoss
                     )
                 }
@@ -270,12 +279,24 @@ fun BattleArea(
 }
 
 @Composable
-fun HeroUnitDisplay(hero: Hero, isAttacking: Boolean, isHit: Boolean, isDying: Boolean) {
+fun HeroUnitDisplay(hero: Hero, isAttacking: Boolean, isHit: Boolean, isCritical: Boolean, isDying: Boolean) {
     val alphaAnim = remember { Animatable(1f) }
+    val shakeOffset = remember { Animatable(0f) }
     
     LaunchedEffect(isDying) {
         if (isDying) {
             alphaAnim.animateTo(0f, tween(1000))
+        }
+    }
+
+    LaunchedEffect(isHit) {
+        if (isHit) {
+            val intensity = if (isCritical) 12f else 6f
+            repeat(3) {
+                shakeOffset.animateTo(intensity, tween(30, easing = LinearEasing))
+                shakeOffset.animateTo(-intensity, tween(30, easing = LinearEasing))
+            }
+            shakeOffset.animateTo(0f, tween(30))
         }
     }
 
@@ -288,7 +309,7 @@ fun HeroUnitDisplay(hero: Hero, isAttacking: Boolean, isHit: Boolean, isDying: B
     Column(
         horizontalAlignment = CenterHorizontally,
         modifier = Modifier
-            .offset(x = lungeOffset.dp)
+            .offset(x = (lungeOffset + shakeOffset.value).dp)
             .graphicsLayer(alpha = alphaAnim.value)
     ) {
         if (!isDying) {
@@ -300,7 +321,34 @@ fun HeroUnitDisplay(hero: Hero, isAttacking: Boolean, isHit: Boolean, isDying: B
         }
         
         Box(Modifier.size(80.dp)) {
-            HeroSprite(hero.heroClass, Modifier.fillMaxSize())
+            val flashAlpha = remember { Animatable(0f) }
+            val scope = rememberCoroutineScope()
+            
+            LaunchedEffect(isHit) {
+                if (isHit) {
+                    scope.launch {
+                        flashAlpha.snapTo(1f)
+                        flashAlpha.animateTo(0f, tween(300))
+                    }
+                }
+            }
+
+            HeroSprite(
+                hero.heroClass, 
+                Modifier
+                    .fillMaxSize()
+                    .graphicsLayer(compositingStrategy = CompositingStrategy.Offscreen)
+                    .drawWithContent {
+                        drawContent()
+                        if (flashAlpha.value > 0f) {
+                            drawRect(
+                                color = (if (isCritical) GoldBright else EnemyRed).copy(alpha = flashAlpha.value),
+                                blendMode = BlendMode.SrcIn
+                            )
+                        }
+                    }
+            )
+            
             if (isDying) {
                 // Dissolve effect
                 Canvas(Modifier.fillMaxSize()) {
@@ -314,7 +362,7 @@ fun HeroUnitDisplay(hero: Hero, isAttacking: Boolean, isHit: Boolean, isDying: B
                 }
             }
             if (isHit) {
-                Canvas(Modifier.fillMaxSize()) { drawRect(Color.White.copy(alpha = 0.7f)) }
+                UnitHitParticles(isCritical)
             }
         }
         Text(hero.name, style = PixelSmall, color = Color.White)
@@ -330,8 +378,24 @@ fun HeroUnitDisplay(hero: Hero, isAttacking: Boolean, isHit: Boolean, isDying: B
 }
 
 @Composable
-fun EnemyUnitDisplay(enemy: Enemy, isHit: Boolean, isBoss: Boolean) {
-    Column(horizontalAlignment = CenterHorizontally) {
+fun EnemyUnitDisplay(enemy: Enemy, isHit: Boolean, isCritical: Boolean, isBoss: Boolean) {
+    val shakeOffset = remember { Animatable(0f) }
+
+    LaunchedEffect(isHit) {
+        if (isHit) {
+            val intensity = if (isCritical) 12f else 6f
+            repeat(3) {
+                shakeOffset.animateTo(intensity, tween(30, easing = LinearEasing))
+                shakeOffset.animateTo(-intensity, tween(30, easing = LinearEasing))
+            }
+            shakeOffset.animateTo(0f, tween(30))
+        }
+    }
+
+    Column(
+        horizontalAlignment = CenterHorizontally,
+        modifier = Modifier.offset(x = shakeOffset.value.dp)
+    ) {
         if (isBoss) {
             Text(enemy.name, style = PixelHeading, color = EnemyRed)
             PixelHpBar(enemy.currentHp, enemy.maxHp, Modifier.width(100.dp))
@@ -340,9 +404,36 @@ fun EnemyUnitDisplay(enemy: Enemy, isHit: Boolean, isBoss: Boolean) {
         }
         
         Box(Modifier.size(if (isBoss) 96.dp else 72.dp).graphicsLayer(scaleX = -1f)) {
-            EnemySprite(enemy.name, Modifier.fillMaxSize())
+            val flashAlpha = remember { Animatable(0f) }
+            val scope = rememberCoroutineScope()
+
+            LaunchedEffect(isHit) {
+                if (isHit) {
+                    scope.launch {
+                        flashAlpha.snapTo(1f)
+                        flashAlpha.animateTo(0f, tween(300))
+                    }
+                }
+            }
+
+            EnemySprite(
+                enemy.name, 
+                Modifier
+                    .fillMaxSize()
+                    .graphicsLayer(compositingStrategy = CompositingStrategy.Offscreen)
+                    .drawWithContent {
+                        drawContent()
+                        if (flashAlpha.value > 0f) {
+                            drawRect(
+                                color = (if (isCritical) GoldBright else EnemyRed).copy(alpha = flashAlpha.value),
+                                blendMode = BlendMode.SrcIn
+                            )
+                        }
+                    }
+            )
+
             if (isHit) {
-                Canvas(Modifier.fillMaxSize()) { drawRect(Color.White.copy(alpha = 0.7f)) }
+                UnitHitParticles(isCritical)
             }
         }
         if (!isBoss) {
@@ -350,6 +441,58 @@ fun EnemyUnitDisplay(enemy: Enemy, isHit: Boolean, isBoss: Boolean) {
         }
     }
 }
+
+@Composable
+fun UnitHitParticles(isCritical: Boolean) {
+    val particleColor = if (isCritical) GoldBright else EnemyRed
+    val particleCount = if (isCritical) 20 else 10
+    
+    Box(Modifier.fillMaxSize()) {
+        // Pixel Particles
+        val particles = remember {
+            List(particleCount) {
+                val angle = Random.nextFloat() * 2 * Math.PI.toFloat()
+                val speed = Random.nextFloat() * 120f + 60f
+                ParticleState(
+                    x = 40f,
+                    y = 40f,
+                    vx = cos(angle) * speed,
+                    vy = sin(angle) * speed,
+                    size = (Random.nextInt(2, 5)).dp
+                )
+            }
+        }
+
+        particles.forEach { p ->
+            var px by remember { mutableStateOf(p.x) }
+            var py by remember { mutableStateOf(p.y) }
+            var alpha by remember { mutableStateOf(1f) }
+
+            LaunchedEffect(Unit) {
+                val startTime = System.currentTimeMillis()
+                val duration = 400L
+                while (System.currentTimeMillis() - startTime < duration) {
+                    val elapsed = System.currentTimeMillis() - startTime
+                    val progress = elapsed.toFloat() / duration
+                    px = p.x + (p.vx * progress)
+                    py = p.y + (p.vy * progress)
+                    alpha = 1f - progress
+                    delay(16)
+                }
+            }
+
+            Box(
+                Modifier
+                    .size(p.size)
+                    .offset(x = px.dp, y = py.dp)
+                    .graphicsLayer(alpha = alpha)
+                    .background(if(isCritical) GoldDark else particleColor)
+            )
+        }
+    }
+}
+
+data class ParticleState(val x: Float, val y: Float, val vx: Float, val vy: Float, val size: androidx.compose.ui.unit.Dp)
 
 @Composable
 fun BattleLogPanel(battleLog: List<DungeonViewModel.FFLogEntry>) {
@@ -545,6 +688,8 @@ fun RunCompleteOverlay(
                             if (item.defenseBonus > 0) Text("DEF: +${item.defenseBonus}", style = PixelBody, color = GoldBright)
                             if (item.magicBonus > 0) Text("MAG: +${item.magicBonus}", style = PixelBody, color = GoldBright)
                             if (item.hpBonus > 0) Text("HP: +${item.hpBonus}", style = PixelBody, color = GoldBright)
+                            if (item.critChanceBonus > 0) Text("CRIT %: +${item.critChanceBonus}%", style = PixelBody, color = HpGreen)
+                            if (item.critDamageBonus > 0) Text("CRIT DMG: +${item.critDamageBonus}%", style = PixelBody, color = HpGreen)
                         }
 
                         Spacer(Modifier.height(8.dp))

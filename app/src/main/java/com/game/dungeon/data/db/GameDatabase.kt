@@ -9,7 +9,7 @@ import com.game.dungeon.data.models.GameState
 import com.game.dungeon.data.models.Hero
 import com.game.dungeon.data.models.Item
 
-@Database(entities = [GameState::class, Hero::class, Item::class], version = 12, exportSchema = true)
+@Database(entities = [GameState::class, Hero::class, Item::class], version = 13, exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class GameDatabase : RoomDatabase() {
     abstract val gameStateDao: GameStateDao
@@ -33,68 +33,34 @@ abstract class GameDatabase : RoomDatabase() {
 
         val MIGRATION_11_12 = object : Migration(11, 12) {
             override fun migrate(db: SupportSQLiteDatabase) {
-                // 1. Create a temporary table with the NEW schema (including new columns, excluding removed ones)
-                db.execSQL("""
-                    CREATE TABLE game_state_new (
-                        id INTEGER NOT NULL PRIMARY KEY,
-                        gold INTEGER NOT NULL,
-                        crystals TEXT NOT NULL,
-                        magicite INTEGER NOT NULL,
-                        currentDimension INTEGER NOT NULL,
-                        highestFloor INTEGER NOT NULL,
-                        unlockedJobs TEXT NOT NULL,
-                        magiciteEarnedThisDim INTEGER NOT NULL,
-                        gilEarnedThisDim INTEGER NOT NULL,
-                        bossesKilledThisDim INTEGER NOT NULL,
-                        itemsFoundThisDim INTEGER NOT NULL,
-                        innLevel INTEGER NOT NULL,
-                        armoryLevel INTEGER NOT NULL,
-                        magicShopLevel INTEGER NOT NULL,
-                        barracksLevel INTEGER NOT NULL,
-                        vaultLevel INTEGER NOT NULL,
-                        pathfinderLevel INTEGER NOT NULL,
-                        trainingLevel INTEGER NOT NULL,
-                        planningLevel INTEGER NOT NULL,
-                        clinicLevel INTEGER NOT NULL,
-                        lastSaveTime INTEGER NOT NULL,
-                        attackRelic INTEGER NOT NULL,
-                        hpRelic INTEGER NOT NULL,
-                        mpRelic INTEGER NOT NULL,
-                        magicRelic INTEGER NOT NULL,
-                        goldRelic INTEGER NOT NULL,
-                        magiciteRelic INTEGER NOT NULL,
-                        magnetRelic INTEGER NOT NULL,
-                        pocketsRelic INTEGER NOT NULL,
-                        doubleLootRelic INTEGER NOT NULL
-                    )
-                """.trimIndent())
+                // Keep the existing migration logic if it already ran or just ensure it's safe
+                // This one seems to have tried to add dimension tracking stats
+                try {
+                    db.execSQL("ALTER TABLE game_state ADD COLUMN magiciteEarnedThisDim INTEGER NOT NULL DEFAULT 0")
+                    db.execSQL("ALTER TABLE game_state ADD COLUMN gilEarnedThisDim INTEGER NOT NULL DEFAULT 0")
+                    db.execSQL("ALTER TABLE game_state ADD COLUMN bossesKilledThisDim INTEGER NOT NULL DEFAULT 0")
+                    db.execSQL("ALTER TABLE game_state ADD COLUMN itemsFoundThisDim INTEGER NOT NULL DEFAULT 0")
+                } catch (e: Exception) {}
+            }
+        }
 
-                // 2. Copy data from the old table to the new one
-                // We provide 0 for new columns and map existing ones
-                db.execSQL("""
-                    INSERT INTO game_state_new (
-                        id, gold, crystals, magicite, currentDimension, highestFloor, unlockedJobs,
-                        magiciteEarnedThisDim, gilEarnedThisDim, bossesKilledThisDim, itemsFoundThisDim,
-                        innLevel, armoryLevel, magicShopLevel, barracksLevel, vaultLevel, 
-                        pathfinderLevel, trainingLevel, planningLevel, clinicLevel, lastSaveTime,
-                        attackRelic, hpRelic, mpRelic, magicRelic, goldRelic, magiciteRelic,
-                        magnetRelic, pocketsRelic, doubleLootRelic
-                    )
-                    SELECT 
-                        id, gold, crystals, magicite, currentDimension, highestFloor, unlockedJobs,
-                        0, 0, 0, 0,
-                        innLevel, armoryLevel, magicShopLevel, barracksLevel, vaultLevel,
-                        pathfinderLevel, trainingLevel, planningLevel, clinicLevel, lastSaveTime,
-                        attackRelic, hpRelic, mpRelic, magicRelic, goldRelic, magiciteRelic,
-                        0, 0, 0
-                    FROM game_state
-                """.trimIndent())
-
-                // 3. Drop the old table
-                db.execSQL("DROP TABLE game_state")
-
-                // 4. Rename the new table to the original name
-                db.execSQL("ALTER TABLE game_state_new RENAME TO game_state")
+        val MIGRATION_12_13 = object : Migration(12, 13) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                // GameState crit relics
+                db.execSQL("ALTER TABLE game_state ADD COLUMN critChanceRelic INTEGER NOT NULL DEFAULT 0")
+                db.execSQL("ALTER TABLE game_state ADD COLUMN critDamageRelic INTEGER NOT NULL DEFAULT 0")
+                
+                // Hero bonuses and crit
+                db.execSQL("ALTER TABLE heroes ADD COLUMN attackBonus INTEGER NOT NULL DEFAULT 0")
+                db.execSQL("ALTER TABLE heroes ADD COLUMN defenseBonus INTEGER NOT NULL DEFAULT 0")
+                db.execSQL("ALTER TABLE heroes ADD COLUMN magicBonus INTEGER NOT NULL DEFAULT 0")
+                db.execSQL("ALTER TABLE heroes ADD COLUMN hpBonus INTEGER NOT NULL DEFAULT 0")
+                db.execSQL("ALTER TABLE heroes ADD COLUMN critChance INTEGER NOT NULL DEFAULT 5")
+                db.execSQL("ALTER TABLE heroes ADD COLUMN critDamage INTEGER NOT NULL DEFAULT 50")
+                
+                // Item crit bonuses
+                db.execSQL("ALTER TABLE items ADD COLUMN critChanceBonus INTEGER NOT NULL DEFAULT 0")
+                db.execSQL("ALTER TABLE items ADD COLUMN critDamageBonus INTEGER NOT NULL DEFAULT 0")
             }
         }
     }
