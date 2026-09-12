@@ -1,7 +1,9 @@
 package com.game.dungeon.data.models
 
+import androidx.annotation.StringRes
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.game.dungeon.R
 
 @Entity(tableName = "game_state")
 data class GameState(
@@ -61,19 +63,20 @@ data class GameState(
 }
 
 enum class UpgradeType(
-    val displayName: String,
-    val description: String,
+    @StringRes val nameRes: Int,
+    @StringRes val descRes: Int,
     val baseCost: Int,
     val maxLevel: Int,
     val emoji: String
 ) {
-    INN("Taproom", "Unlocks advanced job classes", 500, 1, "🍺"),
-    BARRACKS("Barracks", "Increases maximum party size", 1000, 2, "🏕"),
-    VAULT("Vault", "Increases maximum Gil storage", 300, 10, "🏦"),
-    ARMORY("Armory", "Increases stats of found equipment", 400, 20, "🛡️"),
-    MAGIC_SHOP("Magic Shop", "Increases odds of finding rare items", 600, 10, "🔮"),
-    TRAINING("Training", "Increases EXP gained in dungeon", 500, 10, "📈"),
-    PLANNING("Planning", "Decreases cost of town upgrades", 1000, 5, "🏗"),
-    CLINIC("Clinic", "Decreases cost of resting at the Inn", 200, 10, "🏥"),
-    PATHFINDER("Pathfinder", "Unlock higher start floors", 800, 4, "🧭")
+    INN(R.string.upgrade_inn_name, R.string.upgrade_inn_desc, 500, 1, "🍺"),
+    BARRACKS(R.string.upgrade_barracks_name, R.string.upgrade_barracks_desc, 1000, 2, "🏕"),
+    VAULT(R.string.upgrade_vault_name, R.string.upgrade_vault_desc, 300, 10, "🏦"),
+    ARMORY(R.string.upgrade_armory_name, R.string.upgrade_armory_desc, 400, 20, "🛡️"),
+    MAGIC_SHOP(R.string.upgrade_magic_shop_name, R.string.upgrade_magic_shop_desc, 600, 10, "🔮"),
+    TRAINING(R.string.upgrade_training_name, R.string.upgrade_training_desc, 500, 10, "📈"),
+    PLANNING(R.string.upgrade_planning_name, R.string.upgrade_planning_desc, 1000, 5, "🏗"),
+    CLINIC(R.string.upgrade_clinic_name, R.string.upgrade_clinic_desc, 200, 10, "🏥"),
+    PATHFINDER(R.string.upgrade_pathfinder_name, R.string.upgrade_pathfinder_desc, 800, 4, "🧭")
 }
+

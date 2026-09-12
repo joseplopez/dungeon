@@ -18,12 +18,14 @@ import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.game.dungeon.R
 import com.game.dungeon.data.models.GameState
 import com.game.dungeon.data.models.RelicType
 import com.game.dungeon.ui.components.*
@@ -65,10 +67,10 @@ fun RelicsScreen(
                     verticalAlignment = CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    PixelButton("◀ BACK", onClick = { navController.popBackStack() }, modifier = Modifier.height(32.dp))
+                    PixelButton(stringResource(R.string.back_button), onClick = { navController.popBackStack() }, modifier = Modifier.height(32.dp))
                     Column(horizontalAlignment = CenterHorizontally) {
-                        Text("RELICS", style = PixelHeading)
-                        Text("💎 $magicite MAGICITE", style = PixelGold)
+                        Text(stringResource(R.string.relics_title), style = PixelHeading)
+                        Text(stringResource(R.string.magicite_format, magicite), style = PixelGold)
                     }
                     MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
                 }
@@ -138,34 +140,6 @@ fun RelicCard(
         RelicType.POCKETS -> "🎒"
         RelicType.DOUBLE_LOOT -> "🎁"
     }
-    
-    val name = when (relicType) {
-        RelicType.ATTACK -> "Attack"
-        RelicType.HP -> "Vitality"
-        RelicType.MP -> "Spirit"
-        RelicType.MAGIC -> "Magic"
-        RelicType.GOLD -> "Fortune"
-        RelicType.MAGICITE_FIND -> "Essence"
-        RelicType.CRIT_CHANCE -> "Hawk Eye"
-        RelicType.CRIT_DAMAGE -> "Hitter"
-        RelicType.MAGNET -> "Magnet"
-        RelicType.POCKETS -> "Pockets"
-        RelicType.DOUBLE_LOOT -> "Loot"
-    }
-
-    val desc = when (relicType) {
-        RelicType.ATTACK -> "Phys Dmg"
-        RelicType.HP -> "Max HP"
-        RelicType.MP -> "Max MP"
-        RelicType.MAGIC -> "Mag Dmg"
-        RelicType.GOLD -> "Gil Gain"
-        RelicType.MAGICITE_FIND -> "Find Rate"
-        RelicType.CRIT_CHANCE -> "Crit Rate"
-        RelicType.CRIT_DAMAGE -> "Crit Dmg"
-        RelicType.MAGNET -> "Magci Drop"
-        RelicType.POCKETS -> "Gold Keep"
-        RelicType.DOUBLE_LOOT -> "Boss Double"
-    }
 
     val currentVal = when (relicType) {
         RelicType.ATTACK -> level * 2
@@ -207,15 +181,15 @@ fun RelicCard(
             Row(Modifier.fillMaxWidth(), verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
                 Text(icon, fontSize = 20.sp)
                 Column(horizontalAlignment = Alignment.End) {
-                    Text(name.uppercase(), style = PixelGold, fontSize = 11.sp)
-                    Text("LVL $level", style = PixelSmall, color = GoldDark, fontSize = 9.sp)
+                    Text(stringResource(relicType.nameRes).uppercase(), style = PixelGold, fontSize = 11.sp)
+                    Text(stringResource(R.string.relic_level_format, level), style = PixelSmall, color = GoldDark, fontSize = 9.sp)
                 }
             }
 
             // Comparison View
             Box(Modifier.fillMaxWidth().weight(1f), contentAlignment = Center) {
                 Column(horizontalAlignment = CenterHorizontally) {
-                    Text(desc, style = PixelSmall, color = StoneGray, fontSize = 9.sp)
+                    Text(stringResource(relicType.descRes), style = PixelSmall, color = StoneGray, fontSize = 9.sp)
                     Row(verticalAlignment = CenterVertically) {
                         Text("+$currentVal$suffix", style = PixelBody, color = SystemCyan, fontSize = 11.sp)
                         Text(" → ", style = PixelBody, color = GoldDark, fontSize = 11.sp)
@@ -236,7 +210,7 @@ fun RelicCard(
 
             // Centered Upgrade Button with Cost
             PixelButton(
-                label = "UPGRADE ($cost 💎)",
+                label = stringResource(R.string.upgrade_cost_format, cost),
                 onClick = onUpgrade,
                 enabled = magicite >= cost,
                 modifier = Modifier.fillMaxWidth().height(32.dp),

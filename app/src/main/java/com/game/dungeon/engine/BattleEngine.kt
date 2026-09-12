@@ -1,5 +1,6 @@
 package com.game.dungeon.engine
 
+import android.content.Context
 import com.game.dungeon.data.models.*
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.Flow
@@ -16,7 +17,7 @@ sealed class BattleEvent {
     data class AttackHit(val targetId: String) : BattleEvent()
 }
 
-class BattleEngine {
+class BattleEngine(private val context: Context) {
     fun runBattle(heroes: List<Hero>, enemies: List<Enemy>, speed: BattleSpeed): Flow<BattleEvent> = flow {
         val currentHeroes = heroes.map { it.copy() }.toMutableList()
         val currentEnemies = enemies.map { it.copy() }.toMutableList()
@@ -89,6 +90,7 @@ class BattleEngine {
             val loot = if (Random.nextInt(1, 101) <= dropChance) {
                 Item.random(
                     floor = enemies.firstOrNull()?.floor ?: 1,
+                    context = context,
                     minRarity = if (isBoss) Rarity.RARE else Rarity.COMMON
                 )
             } else null

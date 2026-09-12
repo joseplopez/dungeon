@@ -13,6 +13,7 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -21,6 +22,7 @@ import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.game.dungeon.R
 import com.game.dungeon.data.models.*
 import com.game.dungeon.ui.components.*
 import com.game.dungeon.ui.theme.*
@@ -150,7 +152,7 @@ fun DimensionAdvanceBanner(currentDimension: Int, onClick: () -> Unit) {
             verticalAlignment = CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
-            Text("⚡ ADVANCE TO ${nextDimension.title} ⚡", style = PixelSmall, color = GoldBright)
+            Text(stringResource(R.string.advance_banner_format, stringResource(nextDimension.titleRes)), style = PixelSmall, color = GoldBright)
         }
     }
 }
@@ -171,7 +173,7 @@ fun ColumnScope.HubArea(
     if ((pathfinderLevel > 0) && (highestFloor > 1)) {
         GoldenBorderBox(Modifier.fillMaxWidth().height(64.dp).background(BgDarkest)) {
             Row(Modifier.fillMaxSize().padding(horizontal = 6.dp), verticalAlignment = CenterVertically) {
-                Text("FLOOR:", style = PixelSmall, color = GoldBright)
+                Text(stringResource(R.string.floor_label), style = PixelSmall, color = GoldBright)
                 Spacer(Modifier.width(4.dp))
                 PixelButton("- 5", onClick = { onSetStartFloor(startFloor - 5) }, horizontalPadding = 4.dp, modifier = Modifier.width(40.dp).height(32.dp))
                 Spacer(Modifier.width(2.dp))
@@ -223,14 +225,14 @@ fun ColumnScope.HubArea(
         val canAffordRest = restCost in 1..gil
 
         PixelButton(
-            label = if (restCost > 0) "REST AT INN (${restCost}G)" else "REST AT INN (0G)",
+            label = if (restCost > 0) stringResource(R.string.rest_at_inn_cost, restCost) else stringResource(R.string.rest_at_inn_free),
             onClick = onRest,
             enabled = canAffordRest || (restCost == 0L && hiredHeroes.isNotEmpty() && woundedHeroes.isNotEmpty()),
             modifier = Modifier.fillMaxWidth().height(48.dp)
         )
 
         PixelButton(
-            label = if (canSend) "⚔ ENTER DUNGEON ⚔" else "NEED WARRIORS",
+            label = if (canSend) stringResource(R.string.enter_dungeon) else stringResource(R.string.need_warriors),
             onClick = onSend,
             enabled = canSend,
             active = canSend,
@@ -238,7 +240,7 @@ fun ColumnScope.HubArea(
         )
         
         if (woundedHeroes.isEmpty() && hiredHeroes.isNotEmpty()) {
-            Text("Party is fully rested", style = PixelSmall, color = HpGreen, modifier = Modifier.padding(top = 2.dp))
+            Text(stringResource(R.string.fully_rested), style = PixelSmall, color = HpGreen, modifier = Modifier.padding(top = 2.dp))
         }
     }
 }
@@ -254,8 +256,8 @@ fun HirePanel(
 ) {
     GoldenBorderBox(modifier.fillMaxSize()) {
         Column(Modifier.padding(8.dp)) {
-            Text("HIRE WARRIORS", style = PixelHeading)
-            Text("Permanent death active", style = PixelSmall, color = EnemyRed)
+            Text(stringResource(R.string.hire_warriors), style = PixelHeading)
+            Text(stringResource(R.string.permadeath_warning), style = PixelSmall, color = EnemyRed)
             PixelDivider()
             Spacer(Modifier.height(4.dp))
             LazyColumn(
@@ -287,9 +289,9 @@ fun HireJobRow(
             HeroSprite(job, Modifier.size(40.dp))
             Spacer(Modifier.width(8.dp))
             Column(Modifier.weight(1f)) {
-                Text(job.displayName, style = PixelBody, color = GoldBright, fontWeight = FontWeight.Bold)
+                Text(stringResource(job.nameRes), style = PixelBody, color = GoldBright, fontWeight = FontWeight.Bold)
                 Text(
-                    job.description, 
+                    stringResource(job.descRes), 
                     style = PixelSmall, 
                     color = StoneGray
                 )
@@ -321,7 +323,7 @@ fun PartyPanel(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = CenterVertically
             ) {
-                Text("PARTY (${hiredHeroes.size}/$maxPartySize)", style = PixelHeading)
+                Text(stringResource(R.string.party_size_format, hiredHeroes.size, maxPartySize), style = PixelHeading)
             }
             PixelDivider()
             Spacer(Modifier.height(4.dp))
@@ -383,7 +385,7 @@ fun PartyMemberCard(
                 Spacer(Modifier.height(4.dp))
                 
                 Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    PixelButton("EQUIP", onClick = onEquip, modifier = Modifier.height(30.dp).weight(1f))
+                    PixelButton(stringResource(R.string.equip_button), onClick = onEquip, modifier = Modifier.height(30.dp).weight(1f))
                     Box(
                         Modifier.size(26.dp).background(HpRed).clickable { onFire() },
                         contentAlignment = Center
@@ -406,7 +408,7 @@ fun EmptyPartySlot() {
             .border(1.dp, StoneGray.copy(alpha = 0.3f)),
         contentAlignment = Center
     ) {
-        Text("EMPTY SLOT", style = PixelSmall, color = StoneGray.copy(alpha = 0.5f))
+        Text(stringResource(R.string.empty_slot), style = PixelSmall, color = StoneGray.copy(alpha = 0.5f))
     }
 }
 
@@ -430,7 +432,7 @@ fun InnTopBar(gil: Long, magicite: Int, isMuted: Boolean, onToggleMusic: () -> U
                     }
                 }
                 
-                Text("THE INN", style = PixelHeading)
+                Text(stringResource(R.string.building_inn), style = PixelHeading)
 
                 MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
             }
@@ -450,22 +452,22 @@ fun DimensionResetDialog(gs: GameState, onDismiss: () -> Unit, onConfirm: () -> 
     Dialog(onDismissRequest = onDismiss) {
         GoldenBorderBox(Modifier.fillMaxWidth().background(BgDarkest).padding(16.dp)) {
             Column(horizontalAlignment = CenterHorizontally, verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                Text("DIMENSION COMPLETE!", style = PixelHeading, color = GoldBright)
-                Text(nextDimension.storyIntro, style = PixelSmall, color = Color.White, textAlign = TextAlign.Center)
+                Text(stringResource(R.string.dimension_complete), style = PixelHeading, color = GoldBright)
+                Text(stringResource(nextDimension.storyRes), style = PixelSmall, color = Color.White, textAlign = TextAlign.Center)
                 
                 PixelDivider()
                 
-                Text("HALL OF FAME", style = PixelBody, color = GoldBright)
+                Text(stringResource(R.string.hall_of_fame), style = PixelBody, color = GoldBright)
                 Column(Modifier.fillMaxWidth().padding(horizontal = 24.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                    HallOfFameRow("Gil Earned", formatGold(gs.gilEarnedThisDim))
-                    HallOfFameRow("Magicite Found", gs.magiciteEarnedThisDim.toString())
-                    HallOfFameRow("Bosses Slain", gs.bossesKilledThisDim.toString())
-                    HallOfFameRow("Items Found", gs.itemsFoundThisDim.toString())
+                    HallOfFameRow(stringResource(R.string.gil_earned_label), formatGold(gs.gilEarnedThisDim))
+                    HallOfFameRow(stringResource(R.string.magicite_found_label), gs.magiciteEarnedThisDim.toString())
+                    HallOfFameRow(stringResource(R.string.bosses_slain_label), gs.bossesKilledThisDim.toString())
+                    HallOfFameRow(stringResource(R.string.items_found_label), gs.itemsFoundThisDim.toString())
                 }
 
                 PixelDivider()
                 
-                Text("ASCENSION REWARDS", style = PixelBody, color = HpGreen)
+                Text(stringResource(R.string.ascension_rewards), style = PixelBody, color = HpGreen)
                 Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                     Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                         Text("💎", fontSize = 14.sp)
@@ -479,16 +481,17 @@ fun DimensionResetDialog(gs: GameState, onDismiss: () -> Unit, onConfirm: () -> 
                     }
                 }
                 
-                Text("Warning: Resets heroes, equipment and current floor.", style = PixelSmall, color = StoneGray, textAlign = TextAlign.Center)
+                Text(stringResource(R.string.dimension_reset_warning), style = PixelSmall, color = StoneGray, textAlign = TextAlign.Center)
                 
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    PixelButton("CANCEL", onClick = onDismiss, Modifier.weight(1f))
-                    PixelButton("ADVANCE!", onClick = onConfirm, active = true, modifier = Modifier.weight(1f))
+                    PixelButton(stringResource(R.string.cancel_button), onClick = onDismiss, Modifier.weight(1f))
+                    PixelButton(stringResource(R.string.advance_button), onClick = onConfirm, active = true, modifier = Modifier.weight(1f))
                 }
             }
         }
     }
 }
+
 
 @Composable
 fun HallOfFameRow(label: String, value: String) {

@@ -11,8 +11,10 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.game.dungeon.R
 import com.game.dungeon.data.models.Hero
 import com.game.dungeon.data.models.Item
 import com.game.dungeon.data.models.ItemSlot
@@ -43,8 +45,8 @@ fun EquipmentScreen(
             Column(Modifier.fillMaxSize().padding(16.dp)) {
                 // Top Bar
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                    PixelButton("◀ BACK", onClick = onBack)
-                    Text("EQUIPMENT: ${hero?.name ?: ""}", style = PixelHeading, color = GoldBright)
+                    PixelButton(stringResource(R.string.back_button), onClick = onBack)
+                    Text(stringResource(R.string.equipment_title, hero?.name ?: ""), style = PixelHeading, color = GoldBright)
                     MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
                 }
 
@@ -103,7 +105,7 @@ fun StatPanel(hero: Hero, equipped: List<Item>) {
 
     PixelPanel(Modifier.fillMaxWidth(), borderColor = GoldDark) {
         Column(Modifier.padding(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-            Text("STATS", style = PixelHeading, color = GoldBright)
+            Text(stringResource(R.string.stats_header), style = PixelHeading, color = GoldBright)
             listOf("HP", "ATK", "DEF", "MAG", "CRIT_CHANCE", "CRIT_DAMAGE").forEach { stat ->
                 val base = baseStats[stat] ?: 0
                 val curr = currentStats[stat] ?: 0
@@ -134,9 +136,9 @@ fun EquippedPanel(equipped: List<Item>, onQuickEquip: () -> Unit, onSelect: (Ite
     PixelPanel(Modifier.fillMaxWidth(), borderColor = GoldDark) {
         Column(Modifier.padding(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                Text("EQUIPPED", style = PixelHeading, color = GoldBright)
+                Text(stringResource(R.string.equipped_header), style = PixelHeading, color = GoldBright)
                 PixelButton(
-                    label = "QUICK EQUIP",
+                    label = stringResource(R.string.quick_equip),
                     onClick = onQuickEquip,
                     modifier = Modifier.height(28.dp),
                     horizontalPadding = 8.dp
@@ -165,7 +167,7 @@ fun EquippedPanel(equipped: List<Item>, onQuickEquip: () -> Unit, onSelect: (Ite
                             Text(if (item != null) item.emoji else "➕", fontSize = 18.sp)
                             Spacer(Modifier.width(8.dp))
                             Text(
-                                text = item?.name ?: "${slot.name} SLOT",
+                                text = item?.name ?: stringResource(R.string.slot_format, slot.name),
                                 style = PixelBody,
                                 color = if (item != null) Color.White else StoneGray
                             )
@@ -182,26 +184,30 @@ fun InventoryPanel(inventory: List<Item>, onSelect: (Item) -> Unit) {
     PixelPanel(Modifier.fillMaxSize(), borderColor = GoldDark) {
         if (inventory.isEmpty()) {
             Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                Text("EMPTY", style = PixelBody, color = StoneGray)
+                Text(stringResource(R.string.empty_inventory), style = PixelBody, color = StoneGray)
             }
         } else {
-            LazyColumn(verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                items(inventory) { item ->
-                    Row(
-                        Modifier
-                            .fillMaxWidth()
-                            .height(50.dp)
-                            .background(BgMedium)
-                            .border(1.dp, Color(item.rarity.color))
-                            .clickable { onSelect(item) }
-                            .padding(horizontal = 12.dp),
-                        verticalAlignment = Alignment.CenterVertically
-                    ) {
-                        Text(item.emoji, fontSize = 24.sp)
-                        Spacer(Modifier.width(12.dp))
-                        Column {
-                            Text(item.name, style = PixelBody, color = Color.White)
-                            Text("Lvl ${item.floorFound} ${item.rarity.name}", style = PixelSmall, color = StoneGray)
+            Column(Modifier.fillMaxWidth().padding(8.dp)) {
+                Text(stringResource(R.string.inventory_header), style = PixelHeading, color = GoldBright)
+                Spacer(Modifier.height(8.dp))
+                LazyColumn(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                    items(inventory) { item ->
+                        Row(
+                            Modifier
+                                .fillMaxWidth()
+                                .height(50.dp)
+                                .background(BgMedium)
+                                .border(1.dp, Color(item.rarity.color))
+                                .clickable { onSelect(item) }
+                                .padding(horizontal = 12.dp),
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(item.emoji, fontSize = 24.sp)
+                            Spacer(Modifier.width(12.dp))
+                            Column {
+                                Text(item.name, style = PixelBody, color = Color.White)
+                                Text(stringResource(R.string.item_lvl_rarity_format, item.floorFound, item.rarity.name), style = PixelSmall, color = StoneGray)
+                            }
                         }
                     }
                 }
@@ -249,14 +255,14 @@ fun ItemDetailOverlay(
 
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     if (isEquipped) {
-                        PixelButton("UNEQUIP", onClick = onUnequip, modifier = Modifier.weight(1f))
+                        PixelButton(stringResource(R.string.unequip_button), onClick = onUnequip, modifier = Modifier.weight(1f))
                     } else {
-                        PixelButton("EQUIP", onClick = onEquip, modifier = Modifier.weight(1f))
+                        PixelButton(stringResource(R.string.equip_button), onClick = onEquip, modifier = Modifier.weight(1f))
                     }
-                    PixelButton("SELL (${item.sellValue}G)", onClick = onSell, modifier = Modifier.weight(1f), active = true)
+                    PixelButton(stringResource(R.string.sell_button_format, item.sellValue), onClick = onSell, modifier = Modifier.weight(1f), active = true)
                 }
                 
-                PixelButton("CLOSE", onClick = onClose, modifier = Modifier.fillMaxWidth())
+                PixelButton(stringResource(R.string.close_button), onClick = onClose, modifier = Modifier.fillMaxWidth())
             }
         }
     }

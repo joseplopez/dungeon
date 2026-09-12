@@ -1,5 +1,6 @@
 package com.game.dungeon.data.models
 
+import android.content.Context
 import java.util.UUID
 
 typealias FFEnemy = Enemy
@@ -25,6 +26,7 @@ data class Enemy(
         fun fromTemplate(
             template: FFEnemyTemplate,
             floor: Int,
+            context: Context,
             difficultyMult: Float = 1.0f,
             relicBonuses: RelicBonuses? = null
         ): Enemy {
@@ -38,7 +40,7 @@ data class Enemy(
             val finalChance = (baseChance + bonusChance).coerceIn(0f, 1f)
 
             return Enemy(
-                name = template.name,
+                name = context.getString(template.nameRes),
                 emoji = template.emoji,
                 maxHp = baseHp.toInt(),
                 currentHp = baseHp.toInt(),

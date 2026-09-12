@@ -1,11 +1,15 @@
 package com.game.dungeon.ui.viewmodels
 
+import android.content.Context
+import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.game.dungeon.R
 import com.game.dungeon.data.models.*
 import com.game.dungeon.data.repository.GameRepository
 import com.game.dungeon.engine.*
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
@@ -14,10 +18,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DungeonViewModel @Inject constructor(
-  private val repo: GameRepository
+  private val repo: GameRepository,
+  @ApplicationContext private val context: Context
 ) : ViewModel() {
 
-  private val engine = FFBattleEngine()
+  private val engine = FFBattleEngine(context)
 
   val battleState = MutableStateFlow(FFBattleState())
   val gameState = repo.getGameState().stateIn(viewModelScope, SharingStarted.Eagerly, GameState())
@@ -53,7 +58,12 @@ class DungeonViewModel @Inject constructor(
     val bossBannerText: String = ""
   )
 
-  data class FFLogEntry(val message: String, val type: LogType, val timestamp: Long = System.currentTimeMillis())
+  data class FFLogEntry(
+    @StringRes val messageRes: Int,
+    val args: List<Any> = emptyList(),
+    val type: LogType,
+    val timestamp: Long = System.currentTimeMillis()
+  )
   enum class LogType { HERO_ATTACK, ENEMY_ATTACK, ABILITY, SUMMON, HEAL, SYSTEM, BOSS, HERO_FELL }
 
   fun startRun(party: List<Hero>, startFloor: Int = 1) {
@@ -103,17 +113,22 @@ class DungeonViewModel @Inject constructor(
       }
       is FFBattleEvent.DamageDealt -> {
         battleState.update { state ->
-          val logMsg = if (event.isMagic) "${findName(state, event.attackerId)} casts spell for ${event.damage}!" 
-                       else "${findName(state, event.attackerId)} attacks for ${event.damage}${if(event.isCritical) " (CRITICAL!)" else ""}!"
+          val isHeroAttacking = findIsHero(state, event.attackerId)
+          val attackerName = findName(state, event.attackerId)
+          val logRes = if (event.isMagic) {
+            if (event.isCritical) R.string.log_magic_crit else R.string.log_magic_attack
+          } else {
+            if (event.isCritical) R.string.log_physical_crit else R.string.log_physical_attack
+          }
           state.copy(
             heroes = state.heroes.map { h -> if (h.id == event.targetId) h.copy(currentHp = (h.currentHp - event.damage).coerceAtLeast(0)) else h },
             enemies = state.enemies.map { e -> if (e.id == event.targetId) e.copy(currentHp = (e.currentHp - event.damage).coerceAtLeast(0)) else e },
             hitEnemyId = if (!findIsHero(state, event.targetId)) event.targetId else null,
             hitHeroId = if (findIsHero(state, event.targetId)) event.targetId else null,
-            attackingHeroId = if (findIsHero(state, event.attackerId)) event.attackerId else null,
+            attackingHeroId = if (isHeroAttacking) event.attackerId else null,
             isCriticalHit = event.isCritical,
-            battleLog = (state.battleLog + FFLogEntry(logMsg,
-              if(findIsHero(state, event.attackerId)) LogType.HERO_ATTACK else LogType.ENEMY_ATTACK)).takeLast(25)
+            battleLog = (state.battleLog + FFLogEntry(logRes, listOf(attackerName, event.damage),
+              if(isHeroAttacking) LogType.HERO_ATTACK else LogType.ENEMY_ATTACK)).takeLast(25)
           )
         }
         viewModelScope.launch {
@@ -125,7 +140,7 @@ class DungeonViewModel @Inject constructor(
           battleState.update { state ->
               val logEntries = mutableListOf<FFLogEntry>()
               if (event.leveledUp) {
-                  logEntries.add(FFLogEntry("⭐ ${findName(state, event.heroId)} reached Level ${event.newLevel}!", LogType.SYSTEM))
+                  logEntries.add(FFLogEntry(R.string.log_level_up, listOf(findName(state, event.heroId), event.newLevel), LogType.SYSTEM))
               }
               state.copy(
                   heroes = state.heroes.map { h -> 
@@ -152,10 +167,9 @@ class DungeonViewModel @Inject constructor(
       is FFBattleEvent.EnemyDefeated -> {
           battleState.update { state ->
               val enemy = state.enemies.find { it.id == event.enemyId }
-              val logMsg = "Victory! ${enemy?.name} defeated. +${event.expDropped} EXP"
               state.copy(
                   enemies = state.enemies.filter { it.id != event.enemyId },
-                  battleLog = (state.battleLog + FFLogEntry(logMsg, LogType.SYSTEM)).takeLast(25)
+                  battleLog = (state.battleLog + FFLogEntry(R.string.log_victory_xp, listOf(enemy?.name ?: "?", event.expDropped), LogType.SYSTEM)).takeLast(25)
               )
           }
       }
@@ -167,7 +181,7 @@ class DungeonViewModel @Inject constructor(
               }
               state.copy(
                   heroes = updatedHeroes,
-                  battleLog = (state.battleLog + FFLogEntry("${findName(state, event.casterId)} heals ${findName(state, event.targetId)} for ${event.amount}", LogType.HEAL)).takeLast(25)
+                  battleLog = (state.battleLog + FFLogEntry(R.string.log_heal_format, listOf(findName(state, event.casterId), findName(state, event.targetId), event.amount), LogType.HEAL)).takeLast(25)
               )
           }
       }
@@ -180,14 +194,14 @@ class DungeonViewModel @Inject constructor(
               }
               state.copy(
                   heroes = updatedHeroes,
-                  battleLog = (state.battleLog + FFLogEntry("${findName(state, event.casterId)} heals the party!", LogType.HEAL)).takeLast(25)
+                  battleLog = (state.battleLog + FFLogEntry(R.string.log_group_heal, listOf(findName(state, event.casterId)), LogType.HEAL)).takeLast(25)
               )
           }
       }
       is FFBattleEvent.AbilityUsed -> {
           battleState.update { state ->
               state.copy(
-                  battleLog = (state.battleLog + FFLogEntry("✨ ${event.description}", LogType.ABILITY)).takeLast(25)
+                  battleLog = (state.battleLog + FFLogEntry(R.string.log_generic, listOf(event.description), LogType.ABILITY)).takeLast(25)
               )
           }
       }
@@ -198,10 +212,12 @@ class DungeonViewModel @Inject constructor(
             dyingHeroIds = state.dyingHeroIds + event.heroId,
             fallenHeroes = state.fallenHeroes + fallen,
             battleLog = (state.battleLog + FFLogEntry(
-              "💀 ${event.heroName} has fallen...",
+              R.string.log_fallen_format,
+              listOf(event.heroName),
               LogType.HERO_FELL)).takeLast(25)
           )
         }
+
         viewModelScope.launch {
             delay(1000)
             battleState.update { it.copy(
@@ -216,8 +232,7 @@ class DungeonViewModel @Inject constructor(
       is FFBattleEvent.FloorComplete -> {
         battleState.update { state ->
           val newBiome = state.dimension?.biomes?.find { event.floor + 1 in it.floorRange }
-          val biomeChanged = newBiome != state.currentBiome
-          val levelUpText = if (event.leveledUpHeroIds.isNotEmpty()) " (Level Up!)" else ""
+          
           state.copy(
             currentFloor = event.floor + 1,
             currentBiome = newBiome ?: state.currentBiome,
@@ -226,7 +241,7 @@ class DungeonViewModel @Inject constructor(
             magiciteEarnedThisRun = state.magiciteEarnedThisRun + event.magiciteEarned,
             itemsFoundThisRun = state.itemsFoundThisRun + event.itemsFound,
             showFloorBanner = true,
-            floorBannerText = if (biomeChanged) "Entering ${newBiome?.name}..." else "Floor ${event.floor} cleared! +${event.gilEarned}G$levelUpText"
+            floorBannerText = "" // Will be handled in UI with localized string
           )
         }
         viewModelScope.launch {
@@ -240,8 +255,8 @@ class DungeonViewModel @Inject constructor(
         battleState.update { state ->
           state.copy(
             showBossBanner = true,
-            bossBannerText = "${event.bossName} defeated!${if(event.dimensionComplete) " ✨ Dimension Complete!" else ""}",
-            battleLog = (state.battleLog + FFLogEntry("⚔️ BOSS DEFEATED: ${event.bossName}!", LogType.BOSS)).takeLast(25),
+            bossBannerText = event.bossName, // Just name, UI handles rest
+            battleLog = (state.battleLog + FFLogEntry(R.string.log_boss_defeated, listOf(event.bossName), LogType.BOSS)).takeLast(25),
             bossesKilledThisRun = state.bossesKilledThisRun + 1
           )
         }
@@ -250,7 +265,8 @@ class DungeonViewModel @Inject constructor(
       is FFBattleEvent.SummonUsed -> {
         battleState.update { state ->
           state.copy(battleLog = (state.battleLog + FFLogEntry(
-            "🌟 ${findName(state, event.heroId)} summons ${event.summonName}! Total: ${event.totalDamage} damage!",
+            R.string.log_summon_format,
+            listOf(findName(state, event.heroId), event.summonName, event.totalDamage),
             LogType.SUMMON)).takeLast(25))
         }
       }
@@ -258,24 +274,14 @@ class DungeonViewModel @Inject constructor(
           battleState.update { state ->
               state.copy(
                   magiciteEarnedThisRun = state.magiciteEarnedThisRun + event.amount,
-                  battleLog = (state.battleLog + FFLogEntry("${findName(state, event.heroId)} stole ${event.amount} Magicite!", LogType.ABILITY)).takeLast(25)
+                  battleLog = (state.battleLog + FFLogEntry(R.string.log_magicite_stolen, listOf(findName(state, event.heroId), event.amount), LogType.ABILITY)).takeLast(25)
               )
           }
       }
       is FFBattleEvent.BardSong -> {
            battleState.update { state ->
               state.copy(
-                  battleLog = (state.battleLog + FFLogEntry("🎵 ${event.songName}: ${event.effect}", LogType.ABILITY)).takeLast(25)
-              )
-          }
-      }
-      is FFBattleEvent.EnemyDefeated -> {
-          battleState.update { state ->
-              val enemy = state.enemies.find { it.id == event.enemyId }
-              val logMsg = "Victory! ${enemy?.name} defeated. +${event.expDropped} EXP"
-              state.copy(
-                  enemies = state.enemies.filter { it.id != event.enemyId },
-                  battleLog = (state.battleLog + FFLogEntry(logMsg, LogType.SYSTEM)).takeLast(25)
+                  battleLog = (state.battleLog + FFLogEntry(R.string.log_bard_song, listOf(event.songName, event.effect), LogType.ABILITY)).takeLast(25)
               )
           }
       }
@@ -306,7 +312,7 @@ class DungeonViewModel @Inject constructor(
               runComplete = true, 
               heroes = emptyList(), 
               gilLostToPenalty = penalty,
-              battleLog = (it.battleLog + FFLogEntry("💀 TOTAL WIPE: Lost 30% of run earnings.", LogType.HERO_FELL)).takeLast(25)
+              battleLog = (it.battleLog + FFLogEntry(R.string.log_total_wipe, emptyList(), LogType.HERO_FELL)).takeLast(25)
           ) }
         }
       }

@@ -1,5 +1,6 @@
 package com.game.dungeon.ui.viewmodels
 
+import android.content.Context
 import androidx.compose.ui.graphics.Color
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
@@ -10,6 +11,7 @@ import com.game.dungeon.engine.BattleEvent
 import com.game.dungeon.ui.theme.EnemyRed
 import com.game.dungeon.ui.theme.HeroBlue
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -22,13 +24,14 @@ import kotlin.random.Random
 
 @HiltViewModel
 class BattleViewModel @Inject constructor(
-    private val repository: GameRepository
+    private val repository: GameRepository,
+    @ApplicationContext private val context: Context
 ) : ViewModel() {
 
     private val _battleState = MutableStateFlow(BattleState())
     val battleState: StateFlow<BattleState> = _battleState.asStateFlow()
 
-    private val engine = BattleEngine()
+    private val engine = BattleEngine(context)
     private var battleJob: Job? = null
 
     fun startBattle(floor: Int) {
@@ -43,7 +46,7 @@ class BattleViewModel @Inject constructor(
             val gameState = repository.getGameState().first() ?: GameState()
             val dimension = FFDimensionData.getDimension(gameState.currentDimension)
             val enemies = FFDimensionData.getEnemiesForFloor(dimension, floor).map { 
-                Enemy.fromTemplate(it, floor)
+                Enemy.fromTemplate(it, floor, context)
             }
             
             _battleState.update { 

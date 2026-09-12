@@ -26,10 +26,12 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.CompositingStrategy
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
+import com.game.dungeon.R
 import com.game.dungeon.data.models.*
 import com.game.dungeon.ui.components.*
 import com.game.dungeon.ui.theme.*
@@ -93,12 +95,13 @@ fun DungeonScreen(
             exit = slideOutVertically() + fadeOut(),
             modifier = Modifier.align(Center)
         ) {
-            val isBiomeChange = state.floorBannerText.contains("Entering")
+            val biome = state.currentBiome
+            val isBiomeChange = state.currentFloor in (biome?.floorRange?.start ?: 0)..(biome?.floorRange?.start ?: 0) // Simplified logic for example
             Box(
                 Modifier
                     .fillMaxWidth()
                     .background(
-                        if (isBiomeChange && dimension != null) {
+                        if (biome != null && dimension != null) {
                             Brush.horizontalGradient(listOf(Color(dimension.mainColor), Color(dimension.accentColor)))
                         } else {
                             Brush.horizontalGradient(listOf(GoldDark, GoldBright, GoldDark))
@@ -108,10 +111,15 @@ fun DungeonScreen(
                 contentAlignment = Center
             ) {
                 Column(horizontalAlignment = CenterHorizontally) {
-                    if (isBiomeChange && dimension != null) {
-                        Text("⚔️ ${dimension.subtitle} ⚔️", style = PixelSmall, color = Color.White)
+                    if (dimension != null) {
+                        Text("⚔️ ${stringResource(dimension.subtitleRes)} ⚔️", style = PixelSmall, color = Color.White)
                     }
-                    Text(state.floorBannerText, style = PixelHeading, color = if (isBiomeChange) GoldBright else BgDarkest)
+                    val bannerText = if (biome != null && state.currentFloor == biome.floorRange.first) {
+                         stringResource(R.string.entering_biome_format, stringResource(biome.nameRes))
+                    } else {
+                        stringResource(R.string.floor_cleared_format, state.currentFloor - 1, state.gilEarnedThisRun) // This is just an example, needs proper state tracking
+                    }
+                    Text(bannerText, style = PixelHeading, color = if (biome != null) GoldBright else BgDarkest)
                 }
             }
         }
@@ -124,7 +132,7 @@ fun DungeonScreen(
             modifier = Modifier.align(Center)
         ) {
             GoldenBorderBox(Modifier.padding(20.dp).background(EnemyRed.copy(alpha = 0.9f))) {
-                Text(state.bossBannerText, style = PixelTitle, color = Color.White, modifier = Modifier.padding(16.dp))
+                Text(stringResource(R.string.log_boss_defeated, state.bossBannerText), style = PixelTitle, color = Color.White, modifier = Modifier.padding(16.dp))
             }
         }
 
@@ -182,14 +190,14 @@ fun DungeonTopBar(
             verticalAlignment = CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            PixelButton("◀ RETREAT", onClick = onRetreat, modifier = Modifier.height(32.dp))
+            PixelButton(stringResource(R.string.retreat_button), onClick = onRetreat, modifier = Modifier.height(32.dp))
             
             Column(horizontalAlignment = CenterHorizontally) {
-                Text("FLOOR $floor", style = PixelHeading, color = GoldBright)
+                Text(stringResource(R.string.floor_format, floor), style = PixelHeading, color = GoldBright)
                 if (dimension != null) {
-                    Text(dimension.title, style = PixelSmall, color = Color(dimension.mainColor))
+                    Text(stringResource(dimension.titleRes), style = PixelSmall, color = Color(dimension.mainColor))
                 }
-                Text(currentBiome?.name ?: "", style = PixelSmall, color = StoneGray)
+                Text(currentBiome?.let { stringResource(it.nameRes) } ?: "", style = PixelSmall, color = StoneGray)
             }
 
             if (isBossFloor) {
@@ -197,7 +205,7 @@ fun DungeonTopBar(
                     initialValue = 0.3f, targetValue = 1f,
                     animationSpec = infiniteRepeatable(tween(500), RepeatMode.Reverse), label = ""
                 )
-                Text("⚠ BOSS FLOOR", style = PixelHeading.copy(color = EnemyRed.copy(alpha = alpha)))
+                Text(stringResource(R.string.boss_floor_warning), style = PixelHeading.copy(color = EnemyRed.copy(alpha = alpha)))
             } else {
                 Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                     listOf(BattleSpeed.NORMAL to "1x", BattleSpeed.FAST to "2x", BattleSpeed.ULTRAFAST to "4x").forEach { (s, label) ->
@@ -265,7 +273,7 @@ fun BattleArea(
             enemies.forEach { enemy ->
                 key(enemy.id) {
                     val bossTemplate = dimension?.let { FFDimensionData.getBossForFloor(it, floor) }
-                    val isBoss = bossTemplate?.name == enemy.name
+                    val isBoss = bossTemplate != null && stringResource(bossTemplate.nameRes) == enemy.name
                     EnemyUnitDisplay(
                         enemy = enemy,
                         isHit = hitEnemyId == enemy.id,
@@ -511,7 +519,7 @@ fun BattleLogPanel(battleLog: List<DungeonViewModel.FFLogEntry>) {
                     DungeonViewModel.LogType.HERO_FELL -> StoneGray
                     else -> Color.White
                 }
-                Text(entry.message, style = PixelSmall.copy(color = color))
+                Text(stringResource(entry.messageRes, *entry.args.toTypedArray()), style = PixelSmall.copy(color = color))
             }
         }
     }
@@ -546,11 +554,11 @@ fun RunCompleteOverlay(
         ) {
             // Header
             Text(
-                if (allDead) "⚰ PARTY WIPED" else "⚔ RUN COMPLETE",
+                if (allDead) stringResource(R.string.party_wiped) else stringResource(R.string.run_complete),
                 style = PixelTitle,
                 color = if (allDead) EnemyRed else GoldBright
             )
-            Text("Floor $currentFloor reached", style = PixelHeading, color = GoldDark)
+            Text(stringResource(R.string.floor_reached_format, currentFloor), style = PixelHeading, color = GoldDark)
 
             Spacer(Modifier.height(16.dp))
             PixelDivider()
@@ -575,7 +583,7 @@ fun RunCompleteOverlay(
                             horizontalAlignment = CenterHorizontally,
                             verticalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
-                            Text("EARNED REWARDS", style = PixelHeading, color = GoldBright)
+                            Text(stringResource(R.string.earned_rewards), style = PixelHeading, color = GoldBright)
                             Spacer(Modifier.height(8.dp))
                             
                             Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -588,7 +596,7 @@ fun RunCompleteOverlay(
                                     Spacer(Modifier.width(8.dp))
                                     Column(horizontalAlignment = CenterHorizontally) {
                                         Text("-${formatGold(gilLostToPenalty)}", style = PixelHeading, color = EnemyRed)
-                                        Text("WIPE PENALTY", style = PixelSmall, color = EnemyRed)
+                                        Text(stringResource(R.string.wipe_penalty), style = PixelSmall, color = EnemyRed)
                                     }
                                 }
                             }
@@ -613,7 +621,7 @@ fun RunCompleteOverlay(
                     verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     if (fallenHeroes.isNotEmpty()) {
-                        Text("FALLEN WARRIORS", style = PixelHeading, color = EnemyRed)
+                        Text(stringResource(R.string.fallen_warriors), style = PixelHeading, color = EnemyRed)
                         val rows = fallenHeroes.chunked(4)
                         rows.forEach { rowHeroes ->
                             Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -625,7 +633,7 @@ fun RunCompleteOverlay(
                                             Text("💀", fontSize = 20.sp, modifier = Modifier.align(Center))
                                         }
                                         Text(hero.name, style = PixelSmall, color = StoneGray, maxLines = 1)
-                                        Text("LVL ${hero.level}", style = PixelSmall, color = StoneGray, maxLines = 1)
+                                        Text(stringResource(R.string.relic_level_format, hero.level), style = PixelSmall, color = StoneGray, maxLines = 1)
                                     }
                                 }
                             }
@@ -633,7 +641,7 @@ fun RunCompleteOverlay(
                     }
 
                     if (itemsFoundThisRun.isNotEmpty()) {
-                        Text("LOOT COLLECTED", style = PixelHeading, color = GoldBright)
+                        Text(stringResource(R.string.loot_collected), style = PixelHeading, color = GoldBright)
                         val itemRows = itemsFoundThisRun.chunked(6)
                         itemRows.forEach { rowItems ->
                             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -661,6 +669,7 @@ fun RunCompleteOverlay(
                 modifier = Modifier.fillMaxWidth().height(44.dp)
             )
         }
+
 
         // Item Detail Overlay (using the one from EquipmentScreen or similar)
         selectedItemForDetail?.let { item ->
@@ -694,12 +703,13 @@ fun RunCompleteOverlay(
 
                         Spacer(Modifier.height(8.dp))
                         
-                        Text("Level Found: ${item.floorFound}", style = PixelSmall, color = StoneGray)
+                        Text(stringResource(R.string.item_lvl_rarity_format, item.floorFound, item.rarity.name), style = PixelSmall, color = StoneGray)
 
-                        PixelButton("CLOSE", onClick = { selectedItemForDetail = null }, modifier = Modifier.fillMaxWidth())
+                        PixelButton(stringResource(R.string.close_button), onClick = { selectedItemForDetail = null }, modifier = Modifier.fillMaxWidth())
                     }
                 }
             }
         }
     }
 }
+

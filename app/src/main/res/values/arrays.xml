@@ -1,0 +1,38 @@
+<resources>
+    <string-array name="hero_names">
+        <item>Cecil</item>
+        <item>Terra</item>
+        <item>Cloud</item>
+        <item>Lightning</item>
+        <item>Tidus</item>
+        <item>Noctis</item>
+        <item>Zidane</item>
+        <item>Squall</item>
+        <item>Bartz</item>
+        <item>Firion</item>
+        <item>Onion</item>
+        <item>Rosa</item>
+        <item>Rydia</item>
+        <item>Aerith</item>
+        <item>Yuna</item>
+        <item>Celes</item>
+        <item>Tifa</item>
+        <item>Garnet</item>
+        <item>Rinoa</item>
+        <item>Penelo</item>
+        <item>Vivi</item>
+        <item>Steiner</item>
+        <item>Fran</item>
+        <item>Balthier</item>
+        <item>Edge</item>
+        <item>Kain</item>
+        <item>Locke</item>
+        <item>Sabin</item>
+        <item>Edgar</item>
+        <item>Cyan</item>
+        <item>Gau</item>
+        <item>Mog</item>
+        <item>Umaro</item>
+        <item>Gogo</item>
+    </string-array>
+</resources>

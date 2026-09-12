@@ -1,18 +1,20 @@
 package com.game.dungeon.data.models
 
+import androidx.annotation.StringRes
+
 data class FFDimension(
     val number: Int,
-    val title: String,
-    val subtitle: String,
+    @StringRes val titleRes: Int,
+    @StringRes val subtitleRes: Int,
     val mainColor: Long,
     val accentColor: Long,
     val biomes: List<FFBiome>,
     val enemies: List<FFEnemyTemplate>,
-    val storyIntro: String
+    @StringRes val storyRes: Int
 )
 
 data class FFBiome(
-    val name: String,
+    @StringRes val nameRes: Int,
     val floorRange: IntRange,
     val backgroundType: BiomeType
 )
@@ -27,7 +29,7 @@ enum class BiomeType {
 }
 
 data class FFEnemyTemplate(
-    val name: String,
+    @StringRes val nameRes: Int,
     val emoji: String,
     val minFloor: Int, val maxFloor: Int,
     val hpMult: Float = 1f,
@@ -37,3 +39,4 @@ data class FFEnemyTemplate(
     val magiciteChance: Float = 0.05f,
     val isBoss: Boolean = false
 )
+

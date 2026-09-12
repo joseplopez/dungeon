@@ -1,7 +1,9 @@
 package com.game.dungeon.data.models
 
+import android.content.Context
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.game.dungeon.R
 import java.util.UUID
 import kotlin.random.Random
 
@@ -37,6 +39,7 @@ data class Item(
     companion object {
         fun random(
             floor: Int,
+            context: Context,
             relicBonuses: RelicBonuses? = null,
             minRarity: Rarity = Rarity.COMMON
         ): Item {
@@ -58,12 +61,21 @@ data class Item(
             val slot = ItemSlot.entries.random()
             val id = UUID.randomUUID().toString()
             
-            val (name, emoji) = when (slot) {
-                ItemSlot.WEAPON -> "Sword" to "⚔️"
-                ItemSlot.ARMOR -> "Plate" to "🛡️"
-                ItemSlot.SHIELD -> "Shield" to "🛡️"
-                ItemSlot.ACCESSORY -> "Ring" to "💍"
+            val (nameRes, emoji) = when (slot) {
+                ItemSlot.WEAPON -> R.string.item_sword to "⚔️"
+                ItemSlot.ARMOR -> R.string.item_plate to "🛡️"
+                ItemSlot.SHIELD -> R.string.item_shield to "🛡️"
+                ItemSlot.ACCESSORY -> R.string.item_ring to "💍"
             }
+
+            val rarityRes = when (rarity) {
+                Rarity.COMMON -> R.string.item_rarity_common
+                Rarity.RARE -> R.string.item_rarity_rare
+                Rarity.EPIC -> R.string.item_rarity_epic
+                Rarity.LEGENDARY -> R.string.item_rarity_legendary
+            }
+            
+            val fullName = context.getString(R.string.item_name_template, context.getString(rarityRes), context.getString(nameRes))
             
             val bonusMult = when (rarity) {
                 Rarity.COMMON -> 1f
@@ -85,7 +97,7 @@ data class Item(
 
             return Item(
                 id = id,
-                name = "${rarity.name} $name",
+                name = fullName,
                 slot = slot,
                 rarity = rarity,
                 attackBonus = if (slot == ItemSlot.WEAPON) ((1 + floor / 5) * finalMult).toInt() else 0,

@@ -1,17 +1,20 @@
 package com.game.dungeon.ui.viewmodels
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.game.dungeon.data.models.*
 import com.game.dungeon.data.repository.GameRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
+import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class InnViewModel @Inject constructor(
-    private val repository: GameRepository
+    private val repository: GameRepository,
+    @ApplicationContext private val context: Context
 ) : ViewModel() {
 
     val gameState = repository.getGameState().stateIn(viewModelScope, SharingStarted.Eagerly, GameState())
@@ -66,7 +69,7 @@ class InnViewModel @Inject constructor(
         if (gs.gold >= jobClass.hireCost && _hiredHeroes.value.size < maxPartySize) {
             viewModelScope.launch {
                 repository.saveGameState(gs.copy(gold = gs.gold - jobClass.hireCost))
-                val hero = Hero.create(jobClass).copy(
+                val hero = Hero.create(jobClass, context).copy(
                     isInParty = true,
                     partyPosition = _hiredHeroes.value.size
                 )

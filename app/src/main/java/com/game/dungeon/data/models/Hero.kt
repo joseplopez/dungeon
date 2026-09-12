@@ -3,6 +3,7 @@ package com.game.dungeon.data.models
 import androidx.room.Entity
 import androidx.room.Ignore
 import androidx.room.PrimaryKey
+import com.game.dungeon.R
 import java.util.UUID
 
 @Entity(tableName = "heroes")
@@ -64,13 +65,9 @@ data class Hero(
     }
 
     companion object {
-        val FF_NAMES = listOf("Cecil","Terra","Cloud","Lightning","Tidus","Noctis",
-            "Zidane","Squall","Bartz","Firion","Onion","Rosa","Rydia","Aerith","Yuna",
-            "Celes","Tifa","Garnet","Rinoa","Penelo","Vivi","Steiner","Fran","Balthier",
-            "Edge","Kain","Locke","Sabin","Edgar","Cyan","Gau","Mog","Umaro","Gogo")
-
-        fun create(jobClass: JobClass): Hero {
-            val name = FF_NAMES.random()
+        fun create(jobClass: JobClass, context: android.content.Context): Hero {
+            val names = context.resources.getStringArray(R.array.hero_names)
+            val name = names.random()
             return Hero(
                 heroClass = jobClass, name = name,
                 currentHp = jobClass.baseHp,

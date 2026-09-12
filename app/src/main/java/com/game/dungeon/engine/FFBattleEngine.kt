@@ -1,5 +1,6 @@
 package com.game.dungeon.engine
 
+import android.content.Context
 import com.game.dungeon.data.models.*
 import kotlinx.coroutines.delay
 import kotlin.random.Random
@@ -23,7 +24,7 @@ sealed class FFBattleEvent {
     object AllHeroesFell : FFBattleEvent()
 }
 
-class FFBattleEngine {
+class FFBattleEngine(private val context: Context) {
     suspend fun runBattle(
         heroes: List<Hero>,
         dimension: FFDimension,
@@ -41,9 +42,9 @@ class FFBattleEngine {
             // Spawn enemies for this floor
             val bossTemplate = FFDimensionData.getBossForFloor(dimension, currentFloor)
             val enemies = if (bossTemplate != null) {
-                mutableListOf(Enemy.fromTemplate(bossTemplate, currentFloor, relicBonuses = relicBonuses))
+                mutableListOf(Enemy.fromTemplate(bossTemplate, currentFloor, context, relicBonuses = relicBonuses))
             } else {
-                spawnEnemies(dimension, currentFloor, relicBonuses).toMutableList()
+                spawnEnemies(dimension, currentFloor, context, relicBonuses).toMutableList()
             }
             
             onEvent(FFBattleEvent.FloorStart(currentFloor, enemies))
@@ -95,6 +96,7 @@ class FFBattleEngine {
                     itemsFound.add(
                         Item.random(
                             floor = currentFloor, 
+                            context = context,
                             relicBonuses = relicBonuses,
                             minRarity = if (bossTemplate != null) Rarity.RARE else Rarity.COMMON
                         )
@@ -104,6 +106,7 @@ class FFBattleEngine {
                         itemsFound.add(
                             Item.random(
                                 floor = currentFloor, 
+                                context = context,
                                 relicBonuses = relicBonuses,
                                 minRarity = Rarity.RARE
                             )
@@ -115,7 +118,7 @@ class FFBattleEngine {
                 totalMagicite += magiciteEarned
                 
                 if (bossTemplate != null) {
-                    onEvent(FFBattleEvent.BossDefeated(bossTemplate.name, currentFloor >= 100))
+                    onEvent(FFBattleEvent.BossDefeated(context.getString(bossTemplate.nameRes), currentFloor >= 100))
                 }
                 
                 // CRITICAL: Remove dead heroes so they don't reappear on the next floor or in the event
@@ -130,11 +133,11 @@ class FFBattleEngine {
         if (!aliveHeroes.any { it.isAlive }) onEvent(FFBattleEvent.AllHeroesFell)
     }
 
-    private fun spawnEnemies(dimension: FFDimension, floor: Int, relicBonuses: RelicBonuses): List<Enemy> {
+    private fun spawnEnemies(dimension: FFDimension, floor: Int, context: Context, relicBonuses: RelicBonuses): List<Enemy> {
         val templates = FFDimensionData.getEnemiesForFloor(dimension, floor)
         if (templates.isEmpty()) return emptyList()
         val count = Random.nextInt(1, 4)
-        return List(count) { Enemy.fromTemplate(templates.random(), floor, relicBonuses = relicBonuses) }
+        return List(count) { Enemy.fromTemplate(templates.random(), floor, context, relicBonuses = relicBonuses) }
     }
 
     private fun executeHeroTurn(hero: Hero, allies: List<Hero>, enemies: MutableList<Enemy>, relicBonuses: RelicBonuses, onEvent: (FFBattleEvent)->Unit) {

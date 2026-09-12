@@ -1,11 +1,240 @@
 <resources>
-    <string name="app_name">Final dungeon</string>
-    <string name="action_go">Go</string>
-    <string name="baking_title">Baking with Gemini</string>
-    <string name="label_prompt">Prompt</string>
-    <string name="prompt_placeholder">Provide a recipe for the baked goods in the image</string>
-    <string name="image1_description">Cupcake</string>
-    <string name="image2_description">Cookies</string>
-    <string name="image3_description">Cake</string>
-    <string name="results_placeholder">(Results will appear here)</string>
+    <string name="app_name">Final Dungeon</string>
+
+    <!-- Dimensions & Biomes -->
+    <string name="dim1_title">Warriors of Light</string>
+    <string name="dim1_subtitle">Final Fantasy I</string>
+    <string name="dim1_story">Four Warriors of Light arise to restore the crystals stolen by the Forces of Chaos...</string>
+
+    <string name="biome_cornelia">Cornelia Region</string>
+    <string name="biome_chaos_shrine">Chaos Shrine</string>
+    <string name="biome_gurgu">Gurgu Volcano</string>
+    <string name="biome_sea_shrine">Sea Shrine</string>
+    <string name="biome_earth_cave">Earth Cave</string>
+    <string name="biome_crystal_tower">Temple of Fiends</string>
+
+    <string name="enemy_goblin">Goblin</string>
+    <string name="enemy_wolf">Wolf</string>
+    <string name="enemy_pirate">Pirate</string>
+    <string name="enemy_ogre">Ogre</string>
+    <string name="enemy_evil_eye">Evil Eye</string>
+    <string name="enemy_garland">Garland</string>
+    <string name="enemy_red_flan">Red Flan</string>
+    <string name="enemy_bomb">Bomb</string>
+    <string name="enemy_sahagin">Sahagin</string>
+    <string name="enemy_cockatrice">Cockatrice</string>
+    <string name="enemy_lich">Lich</string>
+    <string name="enemy_kraken">Kraken</string>
+    <string name="enemy_tiamat">Tiamat</string>
+    <string name="enemy_chaos">CHAOS</string>
+
+    <string name="dim2_title">Rebellion of Souls</string>
+    <string name="dim2_subtitle">Final Fantasy II</string>
+    <string name="dim2_story">The Palamecian Empire spreads darkness. Firion and his rebel friends fight for freedom...</string>
+
+    <string name="biome_altair">Altair Region</string>
+    <string name="biome_kashuan">Kashuan Keep</string>
+    <string name="biome_tropical_island">Tropical Island</string>
+    <string name="biome_pandaemonium">Pandaemonium</string>
+
+    <string name="enemy_wild_rat">Wild Rat</string>
+    <string name="enemy_black_knight">Black Knight</string>
+    <string name="enemy_sergeant">Sergeant</string>
+    <string name="enemy_lamia">Lamia</string>
+    <string name="enemy_adamantoise">Adamantoise</string>
+    <string name="enemy_dark_knight">Dark Knight</string>
+    <string name="enemy_emperor">Emperor Mateus</string>
+
+    <string name="dim3_title">Light of the Crystals</string>
+    <string name="dim3_subtitle">Final Fantasy III</string>
+    <string name="dim3_story">Orphaned children chosen by the Crystals of Light must restore balance to the world...</string>
+
+    <string name="biome_ur_village">Ur Village</string>
+    <string name="biome_crystal_tower_dim3">Crystal Tower</string>
+    <string name="biome_dark_world">Dark World</string>
+
+    <string name="enemy_djinn">Djinn</string>
+    <string name="enemy_medusa">Medusa</string>
+    <string name="enemy_hein">Hein</string>
+    <string name="enemy_tonberry">Tonberry</string>
+    <string name="enemy_cloud_of_darkness">Cloud of Darkness</string>
+
+    <!-- Town Screen -->
+    <string name="town_name">GRAND CAPITAL</string>
+    <string name="building_inn">THE INN</string>
+    <string name="building_crystal_shop">CRYSTAL SHOP</string>
+    <string name="building_barracks">BARRACKS</string>
+    <string name="building_relics">RELICS</string>
+    <string name="crystal_shop_subtitle">Unlock new job classes</string>
+    <string name="owned_status">✓ OWNED</string>
+    <string name="town_upgrades">TOWN UPGRADES</string>
+    <string name="upgrade_discount">Discount: %1$d%%</string>
+    <string name="max_level">MAX</string>
+    <string name="level_format">LVL %1$d / %2$d</string>
+    <string name="pathfinder_level_format">LVL %1$d / %2$d (Max Floor: %3$d)</string>
+
+    <!-- Inn Screen -->
+    <string name="hire_warriors">HIRE WARRIORS</string>
+    <string name="permadeath_warning">Permanent death active</string>
+    <string name="party_size_format">PARTY (%1$d/%2$d)</string>
+    <string name="empty_slot">EMPTY SLOT</string>
+    <string name="advance_banner_format">⚡ ADVANCE TO %1$s ⚡</string>
+    <string name="floor_label">FLOOR:</string>
+    <string name="rest_at_inn_cost">REST AT INN (%1$dG)</string>
+    <string name="rest_at_inn_free">REST AT INN (0G)</string>
+    <string name="enter_dungeon">⚔ ENTER DUNGEON ⚔</string>
+    <string name="need_warriors">NEED WARRIORS</string>
+    <string name="fully_rested">Party is fully rested</string>
+    <string name="equip_button">EQUIP</string>
+    <string name="dimension_complete">DIMENSION COMPLETE!</string>
+    <string name="hall_of_fame">HALL OF FAME</string>
+    <string name="gil_earned_label">Gil Earned</string>
+    <string name="magicite_found_label">Magicite Found</string>
+    <string name="bosses_slain_label">Bosses Slain</string>
+    <string name="items_found_label">Items Found</string>
+    <string name="ascension_rewards">ASCENSION REWARDS</string>
+    <string name="dimension_reset_warning">Warning: Resets heroes, equipment and current floor.</string>
+    <string name="cancel_button">CANCEL</string>
+    <string name="advance_button">ADVANCE!</string>
+
+    <!-- Relics Screen -->
+    <string name="relics_title">RELICS</string>
+    <string name="magicite_format">💎 %1$d MAGICITE</string>
+    <string name="back_button">◀ BACK</string>
+    <string name="upgrade_cost_format">UPGRADE (%1$d 💎)</string>
+    <string name="relic_level_format">LVL %1$d</string>
+
+    <!-- Equipment Screen -->
+    <string name="equipment_title">EQUIPMENT: %1$s</string>
+    <string name="stats_header">STATS</string>
+    <string name="equipped_header">EQUIPPED</string>
+    <string name="inventory_header">INVENTORY</string>
+    <string name="quick_equip">QUICK EQUIP</string>
+    <string name="empty_inventory">EMPTY</string>
+    <string name="slot_format">%1$s SLOT</string>
+    <string name="item_lvl_rarity_format">Lvl %1$d %2$s</string>
+    <string name="unequip_button">UNEQUIP</string>
+    <string name="sell_button_format">SELL (%1$dG)</string>
+    <string name="close_button">CLOSE</string>
+
+    <!-- Dungeon Screen -->
+    <string name="retreat_button">◀ RETREAT</string>
+    <string name="floor_format">FLOOR %1$d</string>
+    <string name="boss_floor_warning">⚠ BOSS FLOOR</string>
+    <string name="entering_biome_format">Entering %1$s...</string>
+    <string name="floor_cleared_format">Floor %1$d cleared! +%2$dG</string>
+    <string name="floor_cleared_lvlup_format">Floor %1$d cleared! +%2$dG (Level Up!)</string>
+    <string name="party_wiped">⚰ PARTY WIPED</string>
+    <string name="run_complete">⚔ RUN COMPLETE</string>
+    <string name="floor_reached_format">Floor %1$d reached</string>
+    <string name="earned_rewards">EARNED REWARDS</string>
+    <string name="wipe_penalty">WIPE PENALTY</string>
+    <string name="fallen_warriors">FALLEN WARRIORS</string>
+    <string name="loot_collected">LOOT COLLECTED</string>
+
+    <!-- Battle Log & Events -->
+    <string name="log_entering_floor">Entering Floor...</string>
+    <string name="log_attack_format">%1$s attacks %2$s for %3$d</string>
+    <string name="log_hit_format">%1$s hits %2$s for %3$d</string>
+    <string name="log_defeated_format">%1$s defeated %2$s!</string>
+    <string name="log_fallen_format">%1$s has fallen!</string>
+    <string name="log_victory_xp">Victory! %1$s defeated. +%2$d EXP</string>
+    <string name="log_level_up">⭐ %1$s reached Level %2$d!</string>
+    <string name="log_heal_format">%1$s heals %2$s for %3$d</string>
+    <string name="log_group_heal">%1$s heals the party!</string>
+    <string name="log_boss_defeated">⚔️ BOSS DEFEATED: %1$s!</string>
+    <string name="log_summon_format">🌟 %1$s summons %2$s! Total: %3$d damage!</string>
+    <string name="log_magicite_stolen">%1$s stole %2$d Magicite!</string>
+    <string name="log_bard_song">🎵 %1$s: %2$s</string>
+    <string name="log_total_wipe">💀 TOTAL WIPE: Lost 30% of run earnings.</string>
+    <string name="log_physical_attack">%1$s attacks for %2$d!</string>
+    <string name="log_physical_crit">💥 %1$s strikes a VITAL POINT for %2$d! (CRITICAL)</string>
+    <string name="log_magic_attack">%1$s casts spell for %2$d!</string>
+    <string name="log_magic_crit">✨ %1$s\'s spell SURGES for %2$d! (CRITICAL)</string>
+    <string name="log_generic">%1$s</string>
+
+    <!-- Hero Classes -->
+    <string name="class_freelancer">Freelancer</string>
+    <string name="class_freelancer_desc">Jack of all trades. Balanced stats.</string>
+    <string name="class_warrior">Warrior</string>
+    <string name="class_warrior_desc">Frontline fighter. High HP and attack.</string>
+    <string name="class_white_mage">White Mage</string>
+    <string name="class_white_mage_desc">Holy healer. Keeps the party alive.</string>
+    <string name="class_black_mage">Black Mage</string>
+    <string name="class_black_mage_desc">Destruction magic. Hits all enemies.</string>
+    <string name="class_thief">Thief</string>
+    <string name="class_thief_desc">Fast and sneaky. Steals Magicite.</string>
+    <string name="class_monk">Monk</string>
+    <string name="class_monk_desc">Unarmed brawler. Highest raw attack.</string>
+    <string name="class_knight">Knight</string>
+    <string name="class_knight_desc">Protects allies. Can Cover weak party members.</string>
+    <string name="class_paladin">Paladin</string>
+    <string name="class_paladin_desc">Holy protector. Attacks and heals.</string>
+    <string name="class_red_mage">Red Mage</string>
+    <string name="class_red_mage_desc">Can use both white and black magic.</string>
+    <string name="class_summoner">Summoner</string>
+    <string name="class_summoner_desc">Calls forth powerful eidolons.</string>
+    <string name="class_ninja">Ninja</string>
+    <string name="class_ninja_desc">Dual-wielding assassin. Very fast.</string>
+    <string name="class_dragoon">Dragoon</string>
+    <string name="class_dragoon_desc">Spear specialist. Master of the Jump.</string>
+    <string name="class_bard">Bard</string>
+    <string name="class_bard_desc">Support with magical songs.</string>
+    <string name="class_samurai">Samurai</string>
+    <string name="class_samurai_desc">Master of the blade. High crit.</string>
+
+    <!-- Upgrades -->
+    <string name="upgrade_inn_name">Taproom</string>
+    <string name="upgrade_inn_desc">Unlocks advanced job classes</string>
+    <string name="upgrade_barracks_name">Barracks</string>
+    <string name="upgrade_barracks_desc">Increases maximum party size</string>
+    <string name="upgrade_vault_name">Vault</string>
+    <string name="upgrade_vault_desc">Increases maximum Gil storage</string>
+    <string name="upgrade_armory_name">Armory</string>
+    <string name="upgrade_armory_desc">Increases stats of found equipment</string>
+    <string name="upgrade_magic_shop_name">Magic Shop</string>
+    <string name="upgrade_magic_shop_desc">Increases odds of finding rare items</string>
+    <string name="upgrade_training_name">Training</string>
+    <string name="upgrade_training_desc">Increases EXP gained in dungeon</string>
+    <string name="upgrade_planning_name">Planning</string>
+    <string name="upgrade_planning_desc">Decreases cost of town upgrades</string>
+    <string name="upgrade_clinic_name">Clinic</string>
+    <string name="upgrade_clinic_desc">Decreases cost of resting at the Inn</string>
+    <string name="upgrade_pathfinder_name">Pathfinder</string>
+    <string name="upgrade_pathfinder_desc">Unlock higher start floors</string>
+
+    <!-- Relics -->
+    <string name="relic_attack_name">Attack</string>
+    <string name="relic_attack_desc">Phys Dmg</string>
+    <string name="relic_hp_name">Vitality</string>
+    <string name="relic_hp_desc">Max HP</string>
+    <string name="relic_mp_name">Spirit</string>
+    <string name="relic_mp_desc">Max MP</string>
+    <string name="relic_magic_name">Magic</string>
+    <string name="relic_magic_desc">Mag Dmg</string>
+    <string name="relic_gold_name">Fortune</string>
+    <string name="relic_gold_desc">Gil Gain</string>
+    <string name="relic_magicite_name">Essence</string>
+    <string name="relic_magicite_desc">Find Rate</string>
+    <string name="relic_crit_chance_name">Hawk Eye</string>
+    <string name="relic_crit_chance_desc">Crit Rate</string>
+    <string name="relic_crit_damage_name">Hitter</string>
+    <string name="relic_crit_damage_desc">Crit Dmg</string>
+    <string name="relic_magnet_name">Magnet</string>
+    <string name="relic_magnet_desc">Magci Drop</string>
+    <string name="relic_pockets_name">Pockets</string>
+    <string name="relic_pockets_desc">Gold Keep</string>
+    <string name="relic_double_loot_name">Loot</string>
+    <string name="relic_double_loot_desc">Boss Double</string>
+
+    <!-- Items -->
+    <string name="item_sword">Sword</string>
+    <string name="item_plate">Plate</string>
+    <string name="item_shield">Shield</string>
+    <string name="item_ring">Ring</string>
+    <string name="item_rarity_common">Common</string>
+    <string name="item_rarity_rare">Rare</string>
+    <string name="item_rarity_epic">Epic</string>
+    <string name="item_rarity_legendary">Legendary</string>
+    <string name="item_name_template">%1$s %2$s</string>
 </resources>
