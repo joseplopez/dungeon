@@ -10,18 +10,26 @@ android {
     compileSdk = 37
 
     defaultConfig {
-        applicationId = "com.game.dungeon"
+        applicationId = "com.centelles.dungeon"
         minSdk = 26
         targetSdk = 37
         versionCode = 1
-        versionName = "1.0"
-
+        versionName = "0.0.1"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    signingConfigs {
+        create("release") {
+            storeFile = file("dungeon.jks")
+            storePassword = "12345678"
+            keyAlias = "dungeon"
+            keyPassword = "12345678"
+        }
     }
 
     buildTypes {
         release {
-            isMinifyEnabled = false
+            signingConfig = signingConfigs.getByName("release")
             proguardFiles(
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
