@@ -263,7 +263,7 @@ class DungeonViewModel @Inject constructor(
             floorBannerText = if (isBiomeStart && newBiome != null) {
                 context.getString(R.string.entering_biome_format, context.getString(newBiome.nameRes))
             } else {
-                context.getString(R.string.floor_cleared_format, event.floor, event.gilEarned)
+                context.getString(R.string.floor_cleared_format, event.floor, event.gilEarned.toInt())
             }
           )
         }
@@ -318,8 +318,8 @@ class DungeonViewModel @Inject constructor(
           analytics.logRunFinished(floor, grossEarned, magicite, "DEFEAT")
 
           // Death Penalty: Lose 30% of the gold EARNED THIS RUN (Rebalanced from 50%)
-          val penalty = (grossEarned * 0.30f).toLong()
-          val netGil = grossEarned - penalty
+          val penalty = (grossEarned * 0.30f).toInt()
+          val netGil = (grossEarned - penalty).toLong()
           
           repo.addGil(netGil)
           repo.addMagicite(magicite)
@@ -338,7 +338,7 @@ class DungeonViewModel @Inject constructor(
               isRunning = false, 
               runComplete = true, 
               heroes = emptyList(), 
-              gilLostToPenalty = penalty,
+              gilLostToPenalty = penalty.toLong(),
               battleLog = (it.battleLog + FFLogEntry(R.string.log_total_wipe, emptyList(), LogType.HERO_FELL)).takeLast(25)
           ) }
         }
