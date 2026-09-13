@@ -11,7 +11,6 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.unit.dp
 import com.game.dungeon.data.models.HeroClass
-import com.game.dungeon.data.models.ImpactSpark
 import kotlinx.coroutines.delay
 import kotlin.math.cos
 import kotlin.math.sin
@@ -626,37 +625,5 @@ fun DrawScope.drawCockatrice() {
         enemyName.contains("Lich", true) -> drawLich()
         enemyName.contains("Garland", true) || enemyName.contains("Knight", true) -> drawGarland()
         else -> drawSlime()
-    }
-}
-
-@Composable fun ImpactSparkEffect(spark: ImpactSpark, onDone: () -> Unit) {
-    var progress by remember { mutableStateOf(0f) }
-    LaunchedEffect(spark.id) {
-        val start = System.currentTimeMillis()
-        while (progress < 1f) {
-            progress = ((System.currentTimeMillis() - start) / 400f).coerceIn(0f, 1f)
-            delay(16)
-        }
-        onDone()
-    }
-    Canvas(
-        Modifier
-            .size(80.dp)
-            .offset(spark.x.dp - 40.dp, spark.y.dp - 40.dp)
-    ) {
-        val cx = size.width / 2f
-        val cy = size.height / 2f
-        val colors = listOf(Color.White, Color(0xFFFFDD00), Color(0xFFFF8800), Color(0xFFFF4400))
-        repeat(8) { i ->
-            val angle = (i * 45f) * (Math.PI / 180f).toFloat()
-            val dist = progress * size.width * 0.45f
-            val endX = cx + cos(angle) * dist
-            val endY = cy + sin(angle) * dist
-            val sparkAlpha = 1f - progress
-            val sparkColor = colors[i % colors.size].copy(alpha = sparkAlpha)
-            drawLine(sparkColor, Offset(cx, cy), Offset(endX, endY), strokeWidth = 3f)
-            drawCircle(sparkColor, radius = 4f * (1f - progress), center = Offset(endX, endY))
-        }
-        drawCircle(Color.White.copy(alpha = (1f - progress) * 0.8f), radius = 20f * progress, center = Offset(cx, cy))
     }
 }

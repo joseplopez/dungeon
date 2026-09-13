@@ -43,6 +43,8 @@ class DungeonViewModel @Inject constructor(
     val runComplete: Boolean = false,
     val gilEarnedThisRun: Long = 0,
     val magiciteEarnedThisRun: Int = 0,
+    val lastFloorGil: Long = 0,
+    val lastFloorMagicite: Int = 0,
     val gilLostToPenalty: Long = 0,
     val itemsFoundThisRun: List<Item> = emptyList(),
     val bossesKilledThisRun: Int = 0,
@@ -119,11 +121,14 @@ class DungeonViewModel @Inject constructor(
         battleState.update { state ->
           val isHeroAttacking = findIsHero(state, event.attackerId)
           val attackerName = findName(state, event.attackerId)
+          val targetName = findName(state, event.targetId)
+          
           val logRes = if (event.isMagic) {
             if (event.isCritical) R.string.log_magic_crit else R.string.log_magic_attack
           } else {
             if (event.isCritical) R.string.log_physical_crit else R.string.log_physical_attack
           }
+          
           state.copy(
             heroes = state.heroes.map { h -> if (h.id == event.targetId) h.copy(currentHp = (h.currentHp - event.damage).coerceAtLeast(0)) else h },
             enemies = state.enemies.map { e -> if (e.id == event.targetId) e.copy(currentHp = (e.currentHp - event.damage).coerceAtLeast(0)) else e },
@@ -131,7 +136,7 @@ class DungeonViewModel @Inject constructor(
             hitHeroId = if (findIsHero(state, event.targetId)) event.targetId else null,
             attackingHeroId = if (isHeroAttacking) event.attackerId else null,
             isCriticalHit = event.isCritical,
-            battleLog = (state.battleLog + FFLogEntry(logRes, listOf(attackerName, event.damage),
+            battleLog = (state.battleLog + FFLogEntry(logRes, listOf(attackerName, targetName, event.damage),
               if(isHeroAttacking) LogType.HERO_ATTACK else LogType.ENEMY_ATTACK)).takeLast(25)
           )
         }
@@ -241,6 +246,7 @@ class DungeonViewModel @Inject constructor(
       is FFBattleEvent.FloorComplete -> {
         battleState.update { state ->
           val newBiome = state.dimension?.biomes?.find { event.floor + 1 in it.floorRange }
+          val isBiomeStart = newBiome != null && event.floor + 1 == newBiome.floorRange.first
           
           analytics.logFloorReached(event.floor + 1)
 
@@ -250,9 +256,15 @@ class DungeonViewModel @Inject constructor(
             heroes = event.updatedHeroes,
             gilEarnedThisRun = state.gilEarnedThisRun + event.gilEarned,
             magiciteEarnedThisRun = state.magiciteEarnedThisRun + event.magiciteEarned,
+            lastFloorGil = event.gilEarned,
+            lastFloorMagicite = event.magiciteEarned,
             itemsFoundThisRun = state.itemsFoundThisRun + event.itemsFound,
             showFloorBanner = true,
-            floorBannerText = "" // Will be handled in UI with localized string
+            floorBannerText = if (isBiomeStart && newBiome != null) {
+                context.getString(R.string.entering_biome_format, context.getString(newBiome.nameRes))
+            } else {
+                context.getString(R.string.floor_cleared_format, event.floor, event.gilEarned)
+            }
           )
         }
         viewModelScope.launch {
@@ -267,7 +279,7 @@ class DungeonViewModel @Inject constructor(
           analytics.logBossDefeated(event.bossName, state.currentFloor)
           state.copy(
             showBossBanner = true,
-            bossBannerText = event.bossName, // Just name, UI handles rest
+            bossBannerText = event.bossName,
             battleLog = (state.battleLog + FFLogEntry(R.string.log_boss_defeated, listOf(event.bossName), LogType.BOSS)).takeLast(25),
             bossesKilledThisRun = state.bossesKilledThisRun + 1
           )

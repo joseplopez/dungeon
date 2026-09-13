@@ -146,11 +146,11 @@
     <string name="log_summon_format">🌟 %1$s summons %2$s! Total: %3$d damage!</string>
     <string name="log_magicite_stolen">%1$s stole %2$d Magicite!</string>
     <string name="log_bard_song">🎵 %1$s: %2$s</string>
-    <string name="log_total_wipe">💀 TOTAL WIPE: Lost 30% of run earnings.</string>
-    <string name="log_physical_attack">%1$s attacks for %2$d!</string>
-    <string name="log_physical_crit">💥 %1$s strikes a VITAL POINT for %2$d! (CRITICAL)</string>
-    <string name="log_magic_attack">%1$s casts spell for %2$d!</string>
-    <string name="log_magic_crit">✨ %1$s\'s spell SURGES for %2$d! (CRITICAL)</string>
+    <string name="log_total_wipe">💀 TOTAL WIPE: Lost 30%% of run earnings.</string>
+    <string name="log_physical_attack">%1$s attacks %2$s for %3$d!</string>
+    <string name="log_physical_crit">💥 %1$s strikes %2$s\'s VITAL POINT for %3$d! (CRITICAL)</string>
+    <string name="log_magic_attack">%1$s casts spell on %2$s for %3$d!</string>
+    <string name="log_magic_crit">✨ %1$s\'s spell SURGES on %2$s for %3$d! (CRITICAL)</string>
     <string name="log_generic">%1$s</string>
 
     <!-- Hero Classes -->

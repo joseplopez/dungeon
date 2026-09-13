@@ -96,7 +96,6 @@ fun DungeonScreen(
             modifier = Modifier.align(Center)
         ) {
             val biome = state.currentBiome
-            val isBiomeChange = state.currentFloor in (biome?.floorRange?.start ?: 0)..(biome?.floorRange?.start ?: 0) // Simplified logic for example
             Box(
                 Modifier
                     .fillMaxWidth()
@@ -114,12 +113,7 @@ fun DungeonScreen(
                     if (dimension != null) {
                         Text("⚔️ ${stringResource(dimension.subtitleRes)} ⚔️", style = PixelSmall, color = Color.White)
                     }
-                    val bannerText = if (biome != null && state.currentFloor == biome.floorRange.first) {
-                         stringResource(R.string.entering_biome_format, stringResource(biome.nameRes))
-                    } else {
-                        stringResource(R.string.floor_cleared_format, state.currentFloor - 1, state.gilEarnedThisRun) // This is just an example, needs proper state tracking
-                    }
-                    Text(bannerText, style = PixelHeading, color = if (biome != null) GoldBright else BgDarkest)
+                    Text(state.floorBannerText, style = PixelHeading, color = if (biome != null) GoldBright else BgDarkest)
                 }
             }
         }
@@ -370,7 +364,9 @@ fun HeroUnitDisplay(hero: Hero, isAttacking: Boolean, isHit: Boolean, isCritical
                 }
             }
             if (isHit) {
-                UnitHitParticles(isCritical)
+                Box(Modifier.align(Center)) {
+                    UnitHitParticles(isCritical)
+                }
             }
         }
         Text(hero.name, style = PixelSmall, color = Color.White)
@@ -441,7 +437,9 @@ fun EnemyUnitDisplay(enemy: Enemy, isHit: Boolean, isCritical: Boolean, isBoss: 
             )
 
             if (isHit) {
-                UnitHitParticles(isCritical)
+                Box(Modifier.align(Center)) {
+                    UnitHitParticles(isCritical)
+                }
             }
         }
         if (!isBoss) {
@@ -453,17 +451,17 @@ fun EnemyUnitDisplay(enemy: Enemy, isHit: Boolean, isCritical: Boolean, isBoss: 
 @Composable
 fun UnitHitParticles(isCritical: Boolean) {
     val particleColor = if (isCritical) GoldBright else EnemyRed
-    val particleCount = if (isCritical) 20 else 10
+    val particleCount = if (isCritical) 20 else 12
     
     Box(Modifier.fillMaxSize()) {
         // Pixel Particles
         val particles = remember {
             List(particleCount) {
                 val angle = Random.nextFloat() * 2 * Math.PI.toFloat()
-                val speed = Random.nextFloat() * 120f + 60f
+                val speed = Random.nextFloat() * 100f + 50f
                 ParticleState(
-                    x = 40f,
-                    y = 40f,
+                    x = 0f, // Center of parent
+                    y = 0f,
                     vx = cos(angle) * speed,
                     vy = sin(angle) * speed,
                     size = (Random.nextInt(2, 5)).dp

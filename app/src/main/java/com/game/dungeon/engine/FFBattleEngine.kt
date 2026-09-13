@@ -157,10 +157,7 @@ class FFBattleEngine(private val context: Context) {
                 val target = enemies.filter { it.currentHp > 0 }.minByOrNull { it.currentHp } ?: return
                 val (dmg, isCrit) = calcPhysicalDamage(hero, target)
                 target.currentHp -= dmg
-                val logMsg = if (isCrit) "💥 ${hero.name} strikes a VITAL POINT for $dmg! (CRITICAL)"
-                             else "${hero.name} attacks for $dmg."
                 onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, isCrit))
-                onEvent(FFBattleEvent.AbilityUsed(hero.id, if (isCrit) "CRITICAL" else "Attack", logMsg))
                 
                 if (target.currentHp <= 0) {
                     val exp = ((target.floor * 2) * relicBonuses.expMultiplier).toInt()
@@ -172,10 +169,7 @@ class FFBattleEngine(private val context: Context) {
                 val target = enemies.filter { it.currentHp > 0 }.maxByOrNull { it.currentHp } ?: return
                 val (dmg, isCrit) = calcMagicDamage(hero, target)
                 target.currentHp -= dmg
-                val logMsg = if (isCrit) "✨ ${hero.name}'s spell SURGES for $dmg! (CRITICAL)"
-                             else "${hero.name} casts spell for $dmg."
                 onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, true, isCrit))
-                onEvent(FFBattleEvent.AbilityUsed(hero.id, if (isCrit) "SURGE" else "Magic", logMsg))
                 
                 if (target.currentHp <= 0) {
                     val exp = ((target.floor * 2) * relicBonuses.expMultiplier).toInt()
@@ -220,7 +214,6 @@ class FFBattleEngine(private val context: Context) {
                 val (baseDmg, _) = calcPhysicalDamage(hero, target)
                 val dmg = (baseDmg * 2f).toInt()
                 target.currentHp -= dmg
-                onEvent(FFBattleEvent.AbilityUsed(hero.id, "Mighty Strike", "${hero.name} unleashes Mighty Strike!"))
                 onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, true))
                 if (target.currentHp <= 0) {
                     val exp = ((target.floor * 2) * relicBonuses.expMultiplier).toInt()
@@ -239,7 +232,6 @@ class FFBattleEngine(private val context: Context) {
                 onEvent(FFBattleEvent.GroupHeal(hero.id, amounts))
             }
             JobClass.BLACK_MAGE -> {
-                onEvent(FFBattleEvent.AbilityUsed(hero.id, "Flare", "${hero.name} casts FLARE!"))
                 enemies.filter { it.currentHp > 0 }.forEach { enemy ->
                     val (baseDmg, _) = calcMagicDamage(hero, enemy)
                     val dmg = (baseDmg * 1.8f).toInt()
@@ -256,7 +248,6 @@ class FFBattleEngine(private val context: Context) {
                 val target = enemies.filter { it.currentHp > 0 }.firstOrNull() ?: return
                 val (dmg, isCrit) = calcPhysicalDamage(hero, target)
                 target.currentHp -= dmg
-                onEvent(FFBattleEvent.AbilityUsed(hero.id, "Mug", "${hero.name} Mugs the enemy!"))
                 onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, isCrit))
                 if (target.magiciteDropped > 0 && hero.hasRansack) {
                     onEvent(FFBattleEvent.MagiciteStolen(hero.id, target.magiciteDropped))
@@ -275,7 +266,6 @@ class FFBattleEngine(private val context: Context) {
                 val (baseDmg, isCrit) = calcPhysicalDamage(hero, target)
                 val dmg = (baseDmg * 1.5f).toInt()
                 target.currentHp -= dmg
-                onEvent(FFBattleEvent.AbilityUsed(hero.id, "Chakra", "${hero.name} uses Chakra!"))
                 onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, isCrit))
                 if (target.currentHp <= 0) {
                     val exp = ((target.floor * 2) * relicBonuses.expMultiplier).toInt()
@@ -288,7 +278,6 @@ class FFBattleEngine(private val context: Context) {
                 val (baseDmg, _) = calcPhysicalDamage(hero, target)
                 val dmg = (baseDmg * 1.8f).toInt()
                 target.currentHp -= dmg
-                onEvent(FFBattleEvent.AbilityUsed(hero.id, "Holy Sword", "${hero.name} raises Holy Sword!"))
                 onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, true))
                 if (target.currentHp <= 0) {
                     val exp = ((target.floor * 2) * relicBonuses.expMultiplier).toInt()
@@ -297,7 +286,6 @@ class FFBattleEngine(private val context: Context) {
                 }
             }
             JobClass.PALADIN -> {
-                onEvent(FFBattleEvent.AbilityUsed(hero.id, "Saint's Fall", "${hero.name} calls Saint's Fall!"))
                 enemies.filter { it.currentHp > 0 }.forEach { enemy ->
                     val (dmg, isCrit) = calcPhysicalDamage(hero, enemy)
                     enemy.currentHp -= dmg
@@ -312,9 +300,8 @@ class FFBattleEngine(private val context: Context) {
                 allies.filter { it.isAlive }.forEach { it.currentHp = minOf(it.currentHp + healAmt, it.maxHp) }
             }
             JobClass.RED_MAGE -> {
-                onEvent(FFBattleEvent.AbilityUsed(hero.id, "Doublecast", "${hero.name} Doublecasts!"))
                 repeat(2) {
-                    val target = enemies.filter { it.currentHp > 0 }.firstOrNull() ?: return
+                    val target = enemies.filter { it.currentHp > 0 }.firstOrNull() ?: return@repeat
                     val (dmg, isCrit) = calcMagicDamage(hero, target)
                     target.currentHp -= dmg
                     onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, true, isCrit))
@@ -350,7 +337,6 @@ class FFBattleEngine(private val context: Context) {
                 val target = enemies.filter { it.currentHp > 0 }.maxByOrNull { it.currentHp } ?: return
                 val dmg = (hero.attack * 2.2f).toInt()
                 target.currentHp -= dmg
-                onEvent(FFBattleEvent.AbilityUsed(hero.id, "Throw", "${hero.name} throws a shuriken!"))
                 onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, true))
                 if (target.currentHp <= 0) {
                     val exp = ((target.floor * 2) * relicBonuses.expMultiplier).toInt()
