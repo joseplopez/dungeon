@@ -2,8 +2,12 @@ package com.game.dungeon.di
 
 import android.content.Context
 import androidx.room.Room
+import com.game.dungeon.analytics.AnalyticsManager
+import com.game.dungeon.analytics.FirebaseAnalyticsManager
 import com.game.dungeon.data.db.GameDatabase
 import com.game.dungeon.data.repository.GameRepository
+import com.google.firebase.analytics.FirebaseAnalytics
+import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -37,5 +41,17 @@ object AppModule {
     @Singleton
     fun provideGameRepository(database: GameDatabase): GameRepository {
         return GameRepository(database)
+    }
+
+    @Provides
+    @Singleton
+    fun provideFirebaseAnalytics(@ApplicationContext context: Context): FirebaseAnalytics {
+        return FirebaseAnalytics.getInstance(context)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAnalyticsManager(firebaseAnalytics: FirebaseAnalytics): AnalyticsManager {
+        return FirebaseAnalyticsManager(firebaseAnalytics)
     }
 }

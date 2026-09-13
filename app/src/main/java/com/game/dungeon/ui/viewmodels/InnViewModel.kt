@@ -3,6 +3,7 @@ package com.game.dungeon.ui.viewmodels
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.game.dungeon.analytics.AnalyticsManager
 import com.game.dungeon.data.models.*
 import com.game.dungeon.data.repository.GameRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -14,6 +15,7 @@ import javax.inject.Inject
 @HiltViewModel
 class InnViewModel @Inject constructor(
     private val repository: GameRepository,
+    private val analytics: AnalyticsManager,
     @ApplicationContext private val context: Context
 ) : ViewModel() {
 
@@ -73,6 +75,7 @@ class InnViewModel @Inject constructor(
                     isInParty = true,
                     partyPosition = _hiredHeroes.value.size
                 )
+                analytics.logHeroHired(hero.name, jobClass.name)
                 repository.saveHero(hero)
             }
         }
@@ -113,6 +116,7 @@ class InnViewModel @Inject constructor(
     fun fireHero(heroId: String) {
         viewModelScope.launch {
             _hiredHeroes.value.find { it.id == heroId }?.let {
+                analytics.logHeroFired(it.name, it.heroClass.name)
                 repository.removeHero(it)
             }
         }
@@ -154,6 +158,7 @@ class InnViewModel @Inject constructor(
                     bossesKilledThisDim = 0,
                     itemsFoundThisDim = 0
                 )
+                analytics.logDimensionAdvanced(nextGs.currentDimension)
                 repository.saveGameState(nextGs)
                 _startFloor.value = 1
             }

@@ -2,6 +2,7 @@ package com.game.dungeon.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.game.dungeon.analytics.AnalyticsManager
 import com.game.dungeon.data.models.*
 import com.game.dungeon.data.repository.GameRepository
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -11,7 +12,8 @@ import javax.inject.Inject
 
 @HiltViewModel
 class TownViewModel @Inject constructor(
-    private val repository: GameRepository
+    private val repository: GameRepository,
+    private val analytics: AnalyticsManager
 ) : ViewModel() {
 
     val gameState = repository.getGameState().stateIn(viewModelScope, SharingStarted.Eagerly, GameState())
@@ -40,6 +42,7 @@ class TownViewModel @Inject constructor(
             val newUnlockedJobs = gs.unlockedJobs.toMutableSet().apply {
                 addAll(HeroClass.entries.filter { it.crystalColor == color })
             }
+            analytics.logCrystalPurchased(color.displayName, HeroClass.entries.first { it.crystalColor == color }.name)
             viewModelScope.launch {
                 repository.saveGameState(gs.copy(
                     gold = gs.gold - color.baseCost,
@@ -82,6 +85,7 @@ class TownViewModel @Inject constructor(
                 UpgradeType.CLINIC -> gs.copy(clinicLevel = gs.clinicLevel + 1)
                 UpgradeType.PATHFINDER -> gs.copy(pathfinderLevel = gs.pathfinderLevel + 1)
             }
+            analytics.logTownUpgrade(type.name, currentLevel + 1)
             viewModelScope.launch {
                 repository.saveGameState(nextGs.copy(gold = gs.gold - finalCost))
             }

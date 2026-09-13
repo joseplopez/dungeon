@@ -5,6 +5,7 @@ import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.game.dungeon.R
+import com.game.dungeon.analytics.AnalyticsManager
 import com.game.dungeon.data.models.*
 import com.game.dungeon.data.repository.GameRepository
 import com.game.dungeon.engine.*
@@ -19,6 +20,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DungeonViewModel @Inject constructor(
   private val repo: GameRepository,
+  private val analytics: AnalyticsManager,
   @ApplicationContext private val context: Context
 ) : ViewModel() {
 
@@ -94,6 +96,8 @@ class DungeonViewModel @Inject constructor(
             isRunning = true
         )
 
+        analytics.logRunStarted(startFloor.coerceAtLeast(1))
+
         battleJob = launch {
             engine.runBattle(
                 heroes = battleState.value.heroes,
@@ -141,6 +145,11 @@ class DungeonViewModel @Inject constructor(
               val logEntries = mutableListOf<FFLogEntry>()
               if (event.leveledUp) {
                   logEntries.add(FFLogEntry(R.string.log_level_up, listOf(findName(state, event.heroId), event.newLevel), LogType.SYSTEM))
+                  analytics.logHeroLevelUp(
+                      heroName = findName(state, event.heroId),
+                      job = state.heroes.find { it.id == event.heroId }?.heroClass?.name ?: "Unknown",
+                      level = event.newLevel
+                  )
               }
               state.copy(
                   heroes = state.heroes.map { h -> 
@@ -233,6 +242,8 @@ class DungeonViewModel @Inject constructor(
         battleState.update { state ->
           val newBiome = state.dimension?.biomes?.find { event.floor + 1 in it.floorRange }
           
+          analytics.logFloorReached(event.floor + 1)
+
           state.copy(
             currentFloor = event.floor + 1,
             currentBiome = newBiome ?: state.currentBiome,
@@ -253,6 +264,7 @@ class DungeonViewModel @Inject constructor(
       }
       is FFBattleEvent.BossDefeated -> {
         battleState.update { state ->
+          analytics.logBossDefeated(event.bossName, state.currentFloor)
           state.copy(
             showBossBanner = true,
             bossBannerText = event.bossName, // Just name, UI handles rest
@@ -289,7 +301,10 @@ class DungeonViewModel @Inject constructor(
         viewModelScope.launch {
           val grossEarned = battleState.value.gilEarnedThisRun
           val magicite = battleState.value.magiciteEarnedThisRun
+          val floor = battleState.value.currentFloor
           
+          analytics.logRunFinished(floor, grossEarned, magicite, "DEFEAT")
+
           // Death Penalty: Lose 30% of the gold EARNED THIS RUN (Rebalanced from 50%)
           val penalty = (grossEarned * 0.30f).toLong()
           val netGil = grossEarned - penalty
@@ -345,6 +360,10 @@ class DungeonViewModel @Inject constructor(
     viewModelScope.launch {
       val gil = battleState.value.gilEarnedThisRun
       val magicite = battleState.value.magiciteEarnedThisRun
+      val floor = battleState.value.currentFloor
+
+      analytics.logRunFinished(floor, gil, magicite, "RETREAT")
+
       repo.addGil(gil)
       repo.addMagicite(magicite)
       repo.trackDimensionStats(
