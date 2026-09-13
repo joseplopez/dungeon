@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "811669920018",
+    "project_id": "final-dungeon-8e349",
+    "storage_bucket": "final-dungeon-8e349.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:811669920018:android:d7ddbf55ce5f3f4e7cbbcb",
+        "android_client_info": {
+          "package_name": "com.centelles.dungeon"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCHjag6DQm0Giw_fbw4UbbfUAiZgLQ6DAs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
