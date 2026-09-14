@@ -27,9 +27,9 @@ This document outlines potential future features and improvements for Final Dung
     *   **Screen Shake**: Subtle feedback for heavy boss attacks or team wipes.
 
 ## 🎮 Gameplay & Progression
-*   **Support & Feedback System**:
-    *   **In-Game Bug Reporting**: A dedicated menu to send logs and descriptions directly to the developer.
-    *   **Community Links**: Direct buttons to Discord, Reddit, or the game's Wiki.
+*   **[x] Support & Feedback System**:
+    *   **[x] Email Support**: Direct button to email the developer (joseplcatz@gmai.com) for bugs and suggestions.
+    *   **[x] Play Store Rating**: Direct link to rate the app on Google Play.
 *   **Advanced Job Masteries**:
     *   **Job Levels**: Earning EXP for a specific Job to unlock permanent minor stat boosts for all heroes of that class.
     *   **Hidden Jobs**: Ultra-rare jobs (e.g., Onion Knight, Mime) unlocked through secret achievements or specific Relic combinations.
@@ -40,4 +40,4 @@ This document outlines potential future features and improvements for Final Dung
 
 ## 🛠️ Technical Debt & Tools
 *   **Modding Support**: External JSON/XML definitions for Jobs and Items to allow for easier community balancing and content creation.
-*   **Enhanced Analytics**: Tracking which Jobs are underutilized or which floors act as "walls" for most players.
+*   **[x] Enhanced Analytics**: Firebase Analytics integration tracking player progression, town upgrades, and dungeon runs.

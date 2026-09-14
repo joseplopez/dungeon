@@ -1,5 +1,7 @@
 package com.game.dungeon.ui.screens
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.animation.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -16,6 +18,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -46,6 +49,7 @@ fun TownScreen(
 
     var showCrystalShop by remember { mutableStateOf(false) }
     var showUpgrades by remember { mutableStateOf(false) }
+    var showSupportDialog by remember { mutableStateOf(false) }
 
     val scrollState = rememberScrollState()
 
@@ -77,7 +81,16 @@ fun TownScreen(
                                 }
                             }
                             Text(stringResource(R.string.town_name), style = PixelHeading)
-                            MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
+                            Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                PixelButton(
+                                    label = "❓",
+                                    onClick = { showSupportDialog = true },
+                                    modifier = Modifier.size(32.dp),
+                                    horizontalPadding = 0.dp,
+                                    verticalPadding = 0.dp
+                                )
+                                MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
+                            }
                         }
                     }
                 }
@@ -146,6 +159,12 @@ fun TownScreen(
             gs = gs ?: GameState(),
             onUpgrade = { viewModel.upgradeBuilding(it) },
             onDismiss = { showUpgrades = false }
+        )
+    }
+
+    if (showSupportDialog) {
+        SupportDialog(
+            onDismiss = { showSupportDialog = false }
         )
     }
 }
@@ -367,6 +386,91 @@ fun UpgradesDialog(
                         }
                     }
                 }
+            }
+        }
+    }
+}
+
+@Composable
+fun SupportDialog(
+    onDismiss: () -> Unit
+) {
+    val context = LocalContext.current
+
+    Dialog(onDismissRequest = onDismiss) {
+        GoldenBorderBox(
+            Modifier
+                .fillMaxWidth(0.95f)
+                .wrapContentHeight()
+                .background(BgDarkest)
+        ) {
+            Column(Modifier.padding(all = 20.dp)) {
+                Row(
+                    Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = CenterVertically
+                ) {
+                    Text("SUPPORT & FEEDBACK", style = PixelHeading)
+                    PixelButton(
+                        label = "X",
+                        onClick = onDismiss,
+                        modifier = Modifier.size(32.dp),
+                        horizontalPadding = 0.dp,
+                        verticalPadding = 0.dp
+                    )
+                }
+                Spacer(Modifier.height(12.dp))
+                PixelDivider()
+                Spacer(Modifier.height(16.dp))
+                
+                Text("HELP IMPROVE THE GAME!", style = PixelGold, fontSize = 12.sp)
+                Spacer(Modifier.height(8.dp))
+                Text(
+                    "Found a bug or have a suggestion? Send an email directly to the developer.",
+                    style = PixelSmall,
+                    color = Color.White.copy(alpha = 0.8f),
+                    lineHeight = 16.sp
+                )
+                
+                Spacer(Modifier.height(16.dp))
+                PixelButton(
+                    label = "📧 SEND FEEDBACK",
+                    onClick = {
+                        val intent = Intent(Intent.ACTION_SENDTO).apply {
+                            data = Uri.parse("mailto:joseplcatz@gmai.com")
+                            putExtra(Intent.EXTRA_SUBJECT, "Final Dungeon Feedback")
+                        }
+                        context.startActivity(Intent.createChooser(intent, "Send Email"))
+                    },
+                    modifier = Modifier.fillMaxWidth().height(44.dp)
+                )
+                
+                Spacer(Modifier.height(24.dp))
+                Text("LOVE FINAL DUNGEON?", style = PixelGold, fontSize = 12.sp)
+                Spacer(Modifier.height(8.dp))
+                Text(
+                    "Rating the app helps other players discover the dungeon!",
+                    style = PixelSmall,
+                    color = Color.White.copy(alpha = 0.8f),
+                    lineHeight = 16.sp
+                )
+                
+                Spacer(Modifier.height(16.dp))
+                PixelButton(
+                    label = "⭐ RATE ON PLAY STORE",
+                    onClick = {
+                        val packageName = context.packageName
+                        val intent = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$packageName")).apply {
+                            addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY or Intent.FLAG_ACTIVITY_NEW_DOCUMENT or Intent.FLAG_ACTIVITY_MULTIPLE_TASK)
+                        }
+                        try {
+                            context.startActivity(intent)
+                        } catch (e: Exception) {
+                            context.startActivity(Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=$packageName")))
+                        }
+                    },
+                    modifier = Modifier.fillMaxWidth().height(44.dp)
+                )
             }
         }
     }
