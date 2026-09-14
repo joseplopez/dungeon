@@ -30,4 +30,37 @@ class Converters {
         val type = object : TypeToken<Set<JobClass>>() {}.type
         return gson.fromJson(value, type)
     }
+
+    @TypeConverter
+    fun fromHeroClassMap(value: Map<com.game.dungeon.data.models.HeroClass, Int>): String {
+        return gson.toJson(value)
+    }
+
+    @TypeConverter
+    fun toHeroClassMap(value: String): Map<com.game.dungeon.data.models.HeroClass, Int> {
+        val type = object : TypeToken<Map<com.game.dungeon.data.models.HeroClass, Int>>() {}.type
+        return gson.fromJson(value, type)
+    }
+
+    // Reuse same converters for EXP map as it's the same type Map<HeroClass, Int>
+    @TypeConverter
+    fun fromPetTypeSet(value: Set<com.game.dungeon.data.models.PetType>?): String? {
+        return Gson().toJson(value)
+    }
+
+    @TypeConverter
+    fun toPetTypeSet(value: String?): Set<com.game.dungeon.data.models.PetType>? {
+        val type = object : TypeToken<Set<com.game.dungeon.data.models.PetType>>() {}.type
+        return Gson().fromJson(value, type)
+    }
+
+    @TypeConverter
+    fun fromPetType(value: com.game.dungeon.data.models.PetType?): String? {
+        return value?.name
+    }
+
+    @TypeConverter
+    fun toPetType(value: String?): com.game.dungeon.data.models.PetType? {
+        return value?.let { com.game.dungeon.data.models.PetType.valueOf(it) }
+    }
 }

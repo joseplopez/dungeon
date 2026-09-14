@@ -91,8 +91,10 @@ class FFBattleEngine(private val context: Context) {
                 
                 // Loot chance
                 val itemsFound = mutableListOf<Item>()
-                val dropChance = if (bossTemplate != null) 100 else 10
-                if (Random.nextInt(100) < dropChance) { 
+                val baseDropChance = if (bossTemplate != null) 100f else 10f
+                val finalDropChance = baseDropChance * (1f + relicBonuses.petItemFindBonus)
+                
+                if (Random.nextFloat() * 100 < finalDropChance) {
                     itemsFound.add(
                         Item.random(
                             floor = currentFloor, 
@@ -395,7 +397,7 @@ class FFBattleEngine(private val context: Context) {
     private fun calcPhysicalDamage(attacker: Hero, target: Enemy): Pair<Int, Boolean> {
         val isCrit = Random.nextInt(100) < attacker.critChance
         val critMult = 1.0f + (attacker.critDamage / 100f)
-        val totalAtk = attacker.attack + attacker.attackBonus
+        val totalAtk = attacker.attack
         val baseDmg = maxOf(1, totalAtk - target.defense + Random.nextInt(-3, 4))
         val finalDmg = if (isCrit) (baseDmg * critMult).toInt() else baseDmg
         return finalDmg to isCrit
@@ -404,7 +406,7 @@ class FFBattleEngine(private val context: Context) {
     private fun calcMagicDamage(attacker: Hero, target: Enemy): Pair<Int, Boolean> {
         val isCrit = Random.nextInt(100) < (attacker.critChance / 2) // Magic crit is half as likely but possible
         val critMult = 1.0f + (attacker.critDamage / 100f)
-        val totalMag = attacker.magic + attacker.magicBonus
+        val totalMag = attacker.magic
         val baseDmg = maxOf(1, (totalMag * 1.5f - target.magicDefense * 0.5f + Random.nextInt(-2, 3)).toInt())
         val finalDmg = if (isCrit) (baseDmg * critMult).toInt() else baseDmg
         return finalDmg to isCrit
@@ -416,12 +418,12 @@ class FFBattleEngine(private val context: Context) {
 
         // Option 3: Weighted Random (Bias towards highest Defense)
         // We assign weights based on defense. Higher defense = more likely to be hit.
-        val totalDefense = aliveHeroes.sumOf { it.defense + it.defenseBonus }.coerceAtLeast(1)
+        val totalDefense = aliveHeroes.sumOf { it.defense }.coerceAtLeast(1)
         var roll = Random.nextInt(totalDefense)
         
         var target = aliveHeroes.last() // Fallback
         for (hero in aliveHeroes) {
-            val hDef = hero.defense + hero.defenseBonus
+            val hDef = hero.defense
             if (roll < hDef) {
                 target = hero
                 break
@@ -429,7 +431,7 @@ class FFBattleEngine(private val context: Context) {
             roll -= hDef
         }
 
-        val dmg = maxOf(1, enemy.attack - (target.defense + target.defenseBonus) + Random.nextInt(-2, 3))
+        val dmg = maxOf(1, enemy.attack - target.defense + Random.nextInt(-2, 3))
         target.currentHp -= dmg
         onEvent(FFBattleEvent.DamageDealt(enemy.id, target.id, dmg, false, false))
         if (target.currentHp <= 0) {

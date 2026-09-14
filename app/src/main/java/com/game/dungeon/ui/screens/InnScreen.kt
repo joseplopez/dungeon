@@ -32,6 +32,7 @@ import com.game.dungeon.ui.viewmodels.InnViewModel
 fun InnScreen(
     onNavigateToDungeon: (List<Hero>, Int) -> Unit,
     onNavigateToEquipment: (String) -> Unit,
+    onNavigateToMastery: () -> Unit,
     navController: NavController,
     isMuted: Boolean,
     onToggleMusic: () -> Unit,
@@ -97,7 +98,8 @@ fun InnScreen(
                         onSend = {
                             onNavigateToDungeon(hiredHeroes, startFloor)
                             viewModel.resetStartFloor()
-                        }
+                        },
+                        onNavigateToMastery = onNavigateToMastery
                     )
                 }
 
@@ -167,7 +169,8 @@ fun ColumnScope.HubArea(
     canSend: Boolean,
     onSetStartFloor: (Int) -> Unit,
     onRest: () -> Unit,
-    onSend: () -> Unit
+    onSend: () -> Unit,
+    onNavigateToMastery: () -> Unit
 ) {
     // Top: Pathfinder Floor Selector
     if ((pathfinderLevel > 0) && (highestFloor > 1)) {
@@ -224,12 +227,19 @@ fun ColumnScope.HubArea(
         }
         val canAffordRest = restCost in 1..gil
 
-        PixelButton(
-            label = if (restCost > 0) stringResource(R.string.rest_at_inn_cost, restCost) else stringResource(R.string.rest_at_inn_free),
-            onClick = onRest,
-            enabled = canAffordRest || (restCost == 0L && hiredHeroes.isNotEmpty() && woundedHeroes.isNotEmpty()),
-            modifier = Modifier.fillMaxWidth().height(48.dp)
-        )
+        Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+            PixelButton(
+                label = "📈 MASTERIES",
+                onClick = onNavigateToMastery,
+                modifier = Modifier.weight(1f).height(48.dp)
+            )
+            PixelButton(
+                label = if (restCost > 0) stringResource(R.string.rest_at_inn_cost, restCost) else stringResource(R.string.rest_at_inn_free),
+                onClick = onRest,
+                enabled = canAffordRest || (restCost == 0L && hiredHeroes.isNotEmpty() && woundedHeroes.isNotEmpty()),
+                modifier = Modifier.weight(1f).height(48.dp)
+            )
+        }
 
         PixelButton(
             label = if (canSend) stringResource(R.string.enter_dungeon) else stringResource(R.string.need_warriors),

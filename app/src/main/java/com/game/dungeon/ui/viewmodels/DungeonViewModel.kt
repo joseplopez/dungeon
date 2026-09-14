@@ -80,13 +80,16 @@ class DungeonViewModel @Inject constructor(
         // Fetch items for all heroes to bake stats
         val partyWithStats = party.map { hero ->
             val items = repo.getEquippedItems(hero.id).first()
+            val stats = hero.calculateStats(items, relics)
+            
             hero.copy(
-                attackBonus = items.sumOf { it.attackBonus } + relics.attackBonus,
-                defenseBonus = items.sumOf { it.defenseBonus },
-                magicBonus = items.sumOf { it.magicBonus } + relics.magicBonus,
-                hpBonus = items.sumOf { it.hpBonus } + relics.hpBonus,
-                critChance = 5 + items.sumOf { it.critChanceBonus } + relics.critChanceBonus,
-                critDamage = 50 + items.sumOf { it.critDamageBonus } + relics.critDamageBonus
+                attackBonus = (stats["ATK"] ?: hero.baseAttack) - hero.baseAttack,
+                defenseBonus = (stats["DEF"] ?: hero.baseDefense) - hero.baseDefense,
+                magicBonus = (stats["MAG"] ?: hero.baseMagic) - hero.baseMagic,
+                hpBonus = (stats["HP"] ?: hero.baseMaxHp) - hero.baseMaxHp,
+                mpBonus = (stats["MP"] ?: hero.baseMaxMp) - hero.baseMaxMp,
+                critChance = stats["CRIT_CHANCE"] ?: 5,
+                critDamage = stats["CRIT_DAMAGE"] ?: 50
             )
         }
 
@@ -269,8 +272,34 @@ class DungeonViewModel @Inject constructor(
         }
         viewModelScope.launch {
             event.itemsFound.forEach { repo.saveItem(it) }
-            event.updatedHeroes.forEach { repo.saveHero(it) }
+            
+            // CRITICAL: Before saving heroes, we must strip the "baked" run-time bonuses (relics, masteries)
+            // so they don't persist and double-stack in the database.
+            event.updatedHeroes.forEach { hero ->
+                val cleanHero = hero.copy(
+                    attackBonus = 0, // Reset to 0 as they are recalculated every run
+                    defenseBonus = 0,
+                    magicBonus = 0,
+                    hpBonus = 0,
+                    mpBonus = 0,
+                    critChance = 5,
+                    critDamage = 50
+                )
+                repo.saveHero(cleanHero)
+            }
+
             repo.updateHighestFloor(event.floor + 1)
+            
+            // Award Job Mastery EXP
+            val heroClasses = battleState.value.heroes.map { it.heroClass }.distinct()
+            val currentGs = gameState.value ?: GameState()
+            var nextGs = currentGs
+            heroClasses.forEach {
+                nextGs = nextGs.addJobExp(it, 10)
+            }
+            if (nextGs != currentGs) {
+                repo.saveGameState(nextGs)
+            }
         }
         viewModelScope.launch { delay(1500); battleState.update { it.copy(showFloorBanner=false) } }
       }

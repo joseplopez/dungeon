@@ -178,6 +178,25 @@ class InnViewModel @Inject constructor(
         _startFloor.value = floor.coerceIn(1, limit)
     }
 
+    fun selectPet(pet: PetType?) {
+        val gs = gameState.value ?: return
+        viewModelScope.launch {
+            repository.saveGameState(gs.copy(selectedPet = pet))
+        }
+    }
+
+    fun unlockPet(pet: PetType) {
+        val gs = gameState.value ?: return
+        if (gs.gold >= pet.unlockCost && !gs.unlockedPets.contains(pet)) {
+            viewModelScope.launch {
+                repository.saveGameState(gs.copy(
+                    gold = gs.gold - pet.unlockCost,
+                    unlockedPets = gs.unlockedPets + pet
+                ))
+            }
+        }
+    }
+
     fun resetStartFloor() {
         _startFloor.value = 1
     }

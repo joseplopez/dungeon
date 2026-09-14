@@ -33,6 +33,7 @@ fun EquipmentScreen(
     val hero by viewModel.selectedHero.collectAsState()
     val equipped by viewModel.equippedItems.collectAsState()
     val inventory by viewModel.inventory.collectAsState()
+    val relicBonuses by viewModel.relicBonuses.collectAsState()
 
     var selectedItemForDetail by remember { mutableStateOf<Item?>(null) }
 
@@ -56,7 +57,7 @@ fun EquipmentScreen(
                     // Left Column: Hero Stats & Equipped Slots
                     Column(Modifier.weight(0.4f), verticalArrangement = Arrangement.spacedBy(12.dp)) {
                         hero?.let { h ->
-                            StatPanel(h, equipped)
+                            StatPanel(h, equipped, relicBonuses)
                             EquippedPanel(
                                 equipped = equipped,
                                 onQuickEquip = { viewModel.quickEquip() },
@@ -99,17 +100,25 @@ fun EquipmentScreen(
 }
 
 @Composable
-fun StatPanel(hero: Hero, equipped: List<Item>) {
-    val baseStats = hero.calculateStats(emptyList())
-    val currentStats = hero.calculateStats(equipped)
+fun StatPanel(hero: Hero, equipped: List<Item>, relicBonuses: com.game.dungeon.data.models.RelicBonuses?) {
+    // 1. Pure base stats (no items, no relics)
+    val baseOnly = hero.calculateStats(emptyList(), null)
+    // 2. Base + Global bonuses (mastery, pets, relics) - no items
+    val baseWithGlobal = hero.calculateStats(emptyList(), relicBonuses)
+    // 3. Final total (everything)
+    val totalStats = hero.calculateStats(equipped, relicBonuses)
 
     PixelPanel(Modifier.fillMaxWidth(), borderColor = GoldDark) {
         Column(Modifier.padding(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
             Text(stringResource(R.string.stats_header), style = PixelHeading, color = GoldBright)
             listOf("HP", "ATK", "DEF", "MAG", "CRIT_CHANCE", "CRIT_DAMAGE").forEach { stat ->
-                val base = baseStats[stat] ?: 0
-                val curr = currentStats[stat] ?: 0
-                val diff = curr - base
+                val base = baseOnly[stat] ?: 0
+                val withGlobal = baseWithGlobal[stat] ?: 0
+                val total = totalStats[stat] ?: 0
+                
+                val masteryBonus = withGlobal - base
+                val itemBonus = total - withGlobal
+                
                 val label = when(stat) {
                     "CRIT_CHANCE" -> "CRIT %"
                     "CRIT_DAMAGE" -> "CRIT DMG"
@@ -119,10 +128,14 @@ fun StatPanel(hero: Hero, equipped: List<Item>) {
                 
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
                     Text(label, style = PixelBody, color = Color.White)
-                    Row {
-                        Text("$curr$valueSuffix", style = PixelBody, color = GoldBright)
-                        if (diff > 0) {
-                            Text(" (+$diff$valueSuffix)", style = PixelSmall, color = HpGreen)
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text("$total$valueSuffix", style = PixelBody, color = GoldBright)
+                        
+                        if (masteryBonus > 0) {
+                            Text(" +$masteryBonus", style = PixelSmall, color = SystemCyan)
+                        }
+                        if (itemBonus > 0) {
+                            Text(" +$itemBonus", style = PixelSmall, color = HpGreen)
                         }
                     }
                 }

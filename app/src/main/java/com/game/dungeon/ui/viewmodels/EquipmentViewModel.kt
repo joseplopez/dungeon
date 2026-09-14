@@ -39,6 +39,10 @@ class EquipmentViewModel @Inject constructor(
     val inventory: StateFlow<List<Item>> = repository.getInventory()
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
+    val relicBonuses: StateFlow<com.game.dungeon.data.models.RelicBonuses?> = repository.getGameState()
+        .map { it?.let { com.game.dungeon.data.models.RelicBonuses.from(it) } }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
+
     fun selectHero(heroId: String) {
         _selectedHeroId.value = heroId
     }

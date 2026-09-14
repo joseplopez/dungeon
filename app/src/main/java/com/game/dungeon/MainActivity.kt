@@ -37,6 +37,7 @@ import com.game.dungeon.ui.components.MusicToggleButton
 import com.game.dungeon.ui.screens.DungeonScreen
 import com.game.dungeon.ui.screens.EquipmentScreen
 import com.game.dungeon.ui.screens.InnScreen
+import com.game.dungeon.ui.screens.MasteryScreen
 import com.game.dungeon.ui.screens.RelicsScreen
 import com.game.dungeon.ui.screens.TownScreen
 import com.game.dungeon.ui.theme.BgDarkest
@@ -135,6 +136,9 @@ class MainActivity : ComponentActivity() {
                                     onNavigateToEquipment = { heroId ->
                                         navController.navigate("equipment/$heroId")
                                     },
+                                    onNavigateToMastery = {
+                                        navController.navigate("mastery")
+                                    },
                                     navController = navController,
                                     isMuted = isMuted,
                                     onToggleMusic = { isMuted = !isMuted },
@@ -174,6 +178,14 @@ class MainActivity : ComponentActivity() {
                                     isMuted = isMuted,
                                     onToggleMusic = { isMuted = !isMuted },
                                     viewModel = townViewModel
+                                )
+                            }
+                            composable("mastery") {
+                                MasteryScreen(
+                                    navController = navController,
+                                    isMuted = isMuted,
+                                    onToggleMusic = { isMuted = !isMuted },
+                                    viewModel = innViewModel
                                 )
                             }
                         }

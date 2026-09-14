@@ -237,4 +237,25 @@
     <string name="item_rarity_epic">Epic</string>
     <string name="item_rarity_legendary">Legendary</string>
     <string name="item_name_template"><xliff:g id="rarity">%1$s</xliff:g> <xliff:g id="item_type">%2$s</xliff:g></string>
+    <!-- Pets -->
+    <string name="pet_chocobo_name">Chocobo</string>
+    <string name="pet_chocobo_desc">+5% Item Find</string>
+    <string name="pet_moogle_name">Moogle</string>
+    <string name="pet_moogle_desc">+10% EXP Gain</string>
+    <string name="pet_cat_name">Lucky Cat</string>
+    <string name="pet_cat_desc">+5% Gil Gain</string>
+    <string name="pet_cactuar_name">Cactuar</string>
+    <string name="pet_cactuar_desc">+2% Crit Rate</string>
+    <string name="pet_tonberry_name">Tonberry</string>
+    <string name="pet_tonberry_desc">+10% Crit Damage</string>
+    <!-- Mastery & Pets Screen -->
+    <string name="training_grounds_title">TRAINING GROUNDS</string>
+    <string name="tab_job_mastery">JOB MASTERY</string>
+    <string name="tab_pets">PETS</string>
+    <string name="mastery_bonus_label">BONUS</string>
+    <string name="mastery_exp_format"><xliff:g id="current">%1$d</xliff:g> / <xliff:g id="next">%2$d</xliff:g> EXP</string>
+    <string name="mastery_bonus_stat_format">+<xliff:g id="value">%1$d</xliff:g> <xliff:g id="stat">%2$s</xliff:g></string>
+    <string name="select_companion_label">SELECT A COMPANION</string>
+    <string name="pet_none">NONE</string>
+    <string name="unlock_pet_format"><xliff:g id="cost">%1$d</xliff:g>G TO UNLOCK</string>
 </resources>

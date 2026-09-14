@@ -9,7 +9,7 @@ import com.game.dungeon.data.models.GameState
 import com.game.dungeon.data.models.Hero
 import com.game.dungeon.data.models.Item
 
-@Database(entities = [GameState::class, Hero::class, Item::class], version = 13, exportSchema = true)
+@Database(entities = [GameState::class, Hero::class, Item::class], version = 15, exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class GameDatabase : RoomDatabase() {
     abstract val gameStateDao: GameStateDao
@@ -62,6 +62,60 @@ abstract class GameDatabase : RoomDatabase() {
                 db.execSQL("ALTER TABLE items ADD COLUMN critChanceBonus INTEGER NOT NULL DEFAULT 0")
                 db.execSQL("ALTER TABLE items ADD COLUMN critDamageBonus INTEGER NOT NULL DEFAULT 0")
             }
+        }
+
+        val MIGRATION_13_14 = object : Migration(13, 14) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                try {
+                    db.execSQL("ALTER TABLE game_state ADD COLUMN jobMasteryLevels TEXT NOT NULL DEFAULT '{}'")
+                    db.execSQL("ALTER TABLE game_state ADD COLUMN jobMasteryExp TEXT NOT NULL DEFAULT '{}'")
+                    db.execSQL("ALTER TABLE game_state ADD COLUMN unlockedPets TEXT NOT NULL DEFAULT '[]'")
+                    db.execSQL("ALTER TABLE game_state ADD COLUMN selectedPet TEXT")
+                    db.execSQL("ALTER TABLE heroes ADD COLUMN mpBonus INTEGER NOT NULL DEFAULT 0")
+                    db.execSQL("ALTER TABLE items ADD COLUMN mpBonus INTEGER NOT NULL DEFAULT 0")
+                } catch (e: Exception) {
+                    // Safety wipe
+                    db.execSQL("DELETE FROM game_state")
+                    db.execSQL("DELETE FROM heroes")
+                    db.execSQL("DELETE FROM items")
+                }
+            }
+        }
+
+        val MIGRATION_14_15 = object : Migration(14, 15) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                try {
+                    ensureColumn(db, "game_state", "jobMasteryLevels", "TEXT NOT NULL DEFAULT '{}'")
+                    ensureColumn(db, "game_state", "jobMasteryExp", "TEXT NOT NULL DEFAULT '{}'")
+                    ensureColumn(db, "game_state", "unlockedPets", "TEXT NOT NULL DEFAULT '[]'")
+                    ensureColumn(db, "game_state", "selectedPet", "TEXT")
+                    ensureColumn(db, "heroes", "mpBonus", "INTEGER NOT NULL DEFAULT 0")
+                    ensureColumn(db, "items", "mpBonus", "INTEGER NOT NULL DEFAULT 0")
+                } catch (e: Exception) {
+                    wipeDatabase(db)
+                }
+            }
+        }
+
+        private fun ensureColumn(db: SupportSQLiteDatabase, table: String, column: String, type: String) {
+            val cursor = db.query("PRAGMA table_info($table)")
+            var exists = false
+            while (cursor.moveToNext()) {
+                if (cursor.getString(cursor.getColumnIndexOrThrow("name")) == column) {
+                    exists = true
+                    break
+                }
+            }
+            cursor.close()
+            if (!exists) {
+                db.execSQL("ALTER TABLE $table ADD COLUMN $column $type")
+            }
+        }
+
+        private fun wipeDatabase(db: SupportSQLiteDatabase) {
+            db.execSQL("DELETE FROM game_state")
+            db.execSQL("DELETE FROM heroes")
+            db.execSQL("DELETE FROM items")
         }
     }
 }

@@ -46,18 +46,54 @@ data class GameState(
     // Ascended Relics (unlocked by clearing dimensions)
     val magnetRelic: Int = 0,       // +5% base magicite drop rate
     val pocketsRelic: Int = 0,      // keep 10% gil on reset
-    val doubleLootRelic: Int = 0    // +5% boss double drop chance
+    val doubleLootRelic: Int = 0,   // +5% boss double drop chance
+
+    // Global Job Masteries & Pets
+    val jobMasteryLevels: Map<HeroClass, Int> = emptyMap(),
+    val jobMasteryExp: Map<HeroClass, Int> = emptyMap(),
+    val unlockedPets: Set<PetType> = emptySet(),
+    val selectedPet: PetType? = null
 ) {
     val maxGil: Long get() = 10_000L + (vaultLevel * 50_000L)
     val upgradeDiscount: Float get() = planningLevel * 0.05f
     val restDiscount: Float get() = clinicLevel * 0.10f
-    val expMultiplier: Float get() = 1.0f + (trainingLevel * 0.10f)
+    val expMultiplier: Float get() = (1.0f + (trainingLevel * 0.10f)) * (if (selectedPet == PetType.MOOGLE) 1.10f else 1.0f)
     val itemStatBonus: Float get() = armoryLevel * 0.05f
 
     // Bonus getters for ascended relics
     val magnetBonus: Float get() = magnetRelic * 0.05f
     val pocketsBonus: Float get() = pocketsRelic * 0.10f
     val doubleLootChance: Int get() = doubleLootRelic * 5
+
+    // Mastery Helpers
+    fun getMasteryLevel(heroClass: HeroClass): Int = jobMasteryLevels[heroClass] ?: 0
+    fun getMasteryBonus(heroClass: HeroClass): Int = getMasteryLevel(heroClass) * heroClass.masteryBonusPerLevel
+    fun getMasteryExp(heroClass: HeroClass): Int = jobMasteryExp[heroClass] ?: 0
+    fun getMasteryNextLevelExp(heroClass: HeroClass): Int = (getMasteryLevel(heroClass) + 1) * 100
+
+    fun addJobExp(heroClass: HeroClass, amount: Int): GameState {
+        val currentExp = getMasteryExp(heroClass)
+        val currentLevel = getMasteryLevel(heroClass)
+        
+        var newExp = currentExp + amount
+        var newLevel = currentLevel
+        
+        while (newExp >= (newLevel + 1) * 100) {
+            newExp -= (newLevel + 1) * 100
+            newLevel++
+        }
+        
+        return copy(
+            jobMasteryLevels = jobMasteryLevels.toMutableMap().apply { put(heroClass, newLevel) },
+            jobMasteryExp = jobMasteryExp.toMutableMap().apply { put(heroClass, newExp) }
+        )
+    }
+
+    // Pet Helpers
+    val petItemFindBonus: Float get() = if (selectedPet == PetType.CHOCOBO) 0.05f else 0f
+    val petGilFindBonus: Float get() = if (selectedPet == PetType.CAT) 0.05f else 0f
+    val petCritChanceBonus: Int get() = if (selectedPet == PetType.CACTUAR) 2 else 0
+    val petCritDamageBonus: Int get() = if (selectedPet == PetType.TONBERRY) 10 else 0
     
     fun getMaxPartySize(): Int = (3 + barracksLevel).coerceAtMost(5)
 }

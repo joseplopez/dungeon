@@ -26,6 +26,7 @@ data class Item(
     val defenseBonus: Int = 0,
     val magicBonus: Int = 0,
     val hpBonus: Int = 0,
+    val mpBonus: Int = 0,
     val critChanceBonus: Int = 0,
     val critDamageBonus: Int = 0,
     val emoji: String,
@@ -34,7 +35,7 @@ data class Item(
 ) {
     val sellValue: Long get() = (floorFound * 5L + rarity.ordinal * 20L).coerceAtLeast(5L)
 
-    val powerScore: Int get() = attackBonus + defenseBonus + magicBonus + (hpBonus / 5) + (critChanceBonus * 2) + (critDamageBonus / 2)
+    val powerScore: Int get() = attackBonus + defenseBonus + magicBonus + (hpBonus / 5) + (mpBonus / 2) + (critChanceBonus * 2) + (critDamageBonus / 2)
 
     companion object {
         fun random(
@@ -104,6 +105,7 @@ data class Item(
                 defenseBonus = if (slot == ItemSlot.ARMOR || slot == ItemSlot.SHIELD) ((1 + floor / 10) * finalMult).toInt() else 0,
                 magicBonus = if (slot == ItemSlot.ACCESSORY) ((1 + floor / 10) * finalMult).toInt() else 0,
                 hpBonus = ((floor / 2) * finalMult).toInt(),
+                mpBonus = if (slot == ItemSlot.ACCESSORY) ((1 + floor / 15) * finalMult).toInt() else 0,
                 critChanceBonus = critChance,
                 critDamageBonus = critDmg,
                 emoji = emoji,

@@ -30,11 +30,11 @@ This document outlines potential future features and improvements for Final Dung
 *   **[x] Support & Feedback System**:
     *   **[x] Email Support**: Direct button to email the developer (joseplcatz@gmai.com) for bugs and suggestions.
     *   **[x] Play Store Rating**: Direct link to rate the app on Google Play.
-*   **Advanced Job Masteries**:
-    *   **Job Levels**: Earning EXP for a specific Job to unlock permanent minor stat boosts for all heroes of that class.
+*   **[x] Advanced Job Masteries**:
+    *   **[x] Job Levels**: Earning EXP for a specific Job to unlock permanent minor stat boosts for all heroes of that class.
     *   **Hidden Jobs**: Ultra-rare jobs (e.g., Onion Knight, Mime) unlocked through secret achievements or specific Relic combinations.
-*   **Pet System**:
-    *   **Support Familiars**: Non-combat pets that provide passive buffs (e.g., +5% Item Find) or occasionally cast minor support spells.
+*   **[x] Pet System**:
+    *   **[x] Support Familiars**: Non-combat pets that provide passive buffs (e.g., +5% Item Find) or occasionally cast minor support spells.
 *   **Daily Challenges**:
     *   **Cursed Dungeons**: Daily runs with specific negative modifiers (e.g., "Magic Costs 2x") but significantly higher rewards.
 
