@@ -21,6 +21,7 @@ import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.game.dungeon.ui.theme.*
@@ -87,7 +88,11 @@ fun PixelButton(
             .padding(horizontal = horizontalPadding, vertical = verticalPadding),
         contentAlignment = Center
     ) {
-        Text(label, style = PixelBody, color = textColor)
+        Text(
+            label, 
+            style = PixelBody.copy(textAlign = TextAlign.Center),
+            color = textColor
+        )
     }
 }
 

@@ -213,7 +213,13 @@ fun CrystalShopDialog(
                     verticalAlignment = CenterVertically
                 ) {
                     Text(stringResource(R.string.building_crystal_shop), style = PixelHeading)
-                    PixelButton("✕", onClick = onDismiss, modifier = Modifier.size(32.dp))
+                    PixelButton(
+                        label = "X",
+                        onClick = onDismiss,
+                        modifier = Modifier.size(32.dp),
+                        horizontalPadding = 0.dp,
+                        verticalPadding = 0.dp
+                    )
                 }
                 Text(stringResource(R.string.crystal_shop_subtitle), style = PixelSmall, color = GoldDark)
                 Spacer(Modifier.height(8.dp))
@@ -290,7 +296,13 @@ fun UpgradesDialog(
                             Text(stringResource(R.string.upgrade_discount, (gs.upgradeDiscount * 100).toInt()), style = PixelSmall, color = HpGreen)
                         }
                     }
-                    PixelButton("✕", onClick = onDismiss, modifier = Modifier.size(36.dp))
+                    PixelButton(
+                        label = "X",
+                        onClick = onDismiss,
+                        modifier = Modifier.size(36.dp),
+                        horizontalPadding = 0.dp,
+                        verticalPadding = 0.dp
+                    )
                 }
                 PixelDivider()
                 Spacer(Modifier.height(12.dp))

@@ -205,27 +205,27 @@
 
     <!-- Relics -->
     <string name="relic_attack_name">Attack</string>
-    <string name="relic_attack_desc">Phys Dmg</string>
+    <string name="relic_attack_desc">Physical Damage</string>
     <string name="relic_hp_name">Vitality</string>
-    <string name="relic_hp_desc">Max HP</string>
+    <string name="relic_hp_desc">Maximum HP</string>
     <string name="relic_mp_name">Spirit</string>
-    <string name="relic_mp_desc">Max MP</string>
+    <string name="relic_mp_desc">Maximum MP</string>
     <string name="relic_magic_name">Magic</string>
-    <string name="relic_magic_desc">Mag Dmg</string>
+    <string name="relic_magic_desc">Magic Damage</string>
     <string name="relic_gold_name">Fortune</string>
-    <string name="relic_gold_desc">Gil Gain</string>
+    <string name="relic_gold_desc">Gold Gain</string>
     <string name="relic_magicite_name">Essence</string>
-    <string name="relic_magicite_desc">Find Rate</string>
+    <string name="relic_magicite_desc">Magicite Find Rate</string>
     <string name="relic_crit_chance_name">Hawk Eye</string>
-    <string name="relic_crit_chance_desc">Crit Rate</string>
+    <string name="relic_crit_chance_desc">Critical Hit Rate</string>
     <string name="relic_crit_damage_name">Hitter</string>
-    <string name="relic_crit_damage_desc">Crit Dmg</string>
+    <string name="relic_crit_damage_desc">Critical Damage</string>
     <string name="relic_magnet_name">Magnet</string>
-    <string name="relic_magnet_desc">Magci Drop</string>
+    <string name="relic_magnet_desc">Magicite Drop Rate</string>
     <string name="relic_pockets_name">Pockets</string>
-    <string name="relic_pockets_desc">Gold Keep</string>
+    <string name="relic_pockets_desc">Gold Retained</string>
     <string name="relic_double_loot_name">Loot</string>
-    <string name="relic_double_loot_desc">Boss Double</string>
+    <string name="relic_double_loot_desc">Double Boss Loot</string>
 
     <!-- Items -->
     <string name="item_sword">Sword</string>

@@ -390,7 +390,11 @@ fun PartyMemberCard(
                         Modifier.size(26.dp).background(HpRed).clickable { onFire() },
                         contentAlignment = Center
                     ) {
-                        Text("✕", style = PixelSmall, color = Color.White)
+                        Text(
+                            "X", 
+                            style = PixelSmall.copy(textAlign = TextAlign.Center),
+                            color = Color.White
+                        )
                     }
                 }
             }

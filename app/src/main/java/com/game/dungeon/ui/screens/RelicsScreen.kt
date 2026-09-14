@@ -173,7 +173,7 @@ fun RelicCard(
                      relicType == RelicType.DOUBLE_LOOT) "%" else ""
 
     PixelPanel(
-        modifier = Modifier.fillMaxWidth().height(125.dp),
+        modifier = Modifier.fillMaxWidth().height(145.dp),
         borderColor = if (magicite >= cost) GoldDark else EnemyRed
     ) {
         Column(Modifier.fillMaxSize().padding(4.dp)) {
@@ -182,18 +182,18 @@ fun RelicCard(
                 Text(icon, fontSize = 20.sp)
                 Column(horizontalAlignment = Alignment.End) {
                     Text(stringResource(relicType.nameRes).uppercase(), style = PixelGold, fontSize = 11.sp)
-                    Text(stringResource(R.string.relic_level_format, level), style = PixelSmall, color = GoldDark, fontSize = 9.sp)
+                    Text(stringResource(R.string.relic_level_format, level), style = PixelSmall, color = GoldDark, fontSize = 11.sp)
                 }
             }
 
             // Comparison View
             Box(Modifier.fillMaxWidth().weight(1f), contentAlignment = Center) {
                 Column(horizontalAlignment = CenterHorizontally) {
-                    Text(stringResource(relicType.descRes), style = PixelSmall, color = StoneGray, fontSize = 9.sp)
+                    Text(stringResource(relicType.descRes), style = PixelSmall, color = Color.White.copy(alpha = 0.7f), fontSize = 12.sp)
                     Row(verticalAlignment = CenterVertically) {
-                        Text("+$currentVal$suffix", style = PixelBody, color = SystemCyan, fontSize = 11.sp)
-                        Text(" → ", style = PixelBody, color = GoldDark, fontSize = 11.sp)
-                        Text("+$nextVal$suffix", style = PixelBody, color = GoldBright, fontSize = 11.sp)
+                        Text("+$currentVal$suffix", style = PixelBody, color = SystemCyan, fontSize = 12.sp)
+                        Text(" → ", style = PixelBody, color = GoldDark, fontSize = 12.sp)
+                        Text("+$nextVal$suffix", style = PixelBody, color = GoldBright, fontSize = 12.sp)
                     }
                 }
             }
