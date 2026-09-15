@@ -3,10 +3,10 @@
 This document outlines potential future features and improvements for Final Dungeon, aimed at increasing player engagement, monetization, and visual polish.
 
 ## 🏆 Social & Competition
-*   **Player Rankings (Leaderboards)**:
-    *   **Global/Friends Leaderboards**: Ranked by "Max Floor Reached", "Total Magicite Earned", and "Fastest Dimension Clear".
+*   **[x] Player Rankings (Leaderboards)**:
+    *   **[x] Global/Friends Leaderboards**: Ranked by "Max Floor Reached", "Total Magicite Earned", and "Fastest Dimension Clear".
     *   **Dimension-Specific Rankings**: Hall of Fame integration to show how players compare within each Dimension.
-    *   **Ghost Runs**: A feature to view the team composition and gear of top-ranking players.
+    *   **[x] Ghost Runs**: A feature to view the team composition and gear of top-ranking players.
 
 ## 💰 Monetization & Economy
 *   **Interstitial Ads**:

@@ -5,8 +5,12 @@ import androidx.room.Room
 import com.game.dungeon.analytics.AnalyticsManager
 import com.game.dungeon.analytics.FirebaseAnalyticsManager
 import com.game.dungeon.data.db.GameDatabase
+import com.game.dungeon.data.repository.AuthRepository
 import com.game.dungeon.data.repository.GameRepository
+import com.game.dungeon.data.repository.LeaderboardRepository
 import com.google.firebase.analytics.FirebaseAnalytics
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
 import dagger.Binds
 import dagger.Module
 import dagger.Provides
@@ -34,7 +38,10 @@ object AppModule {
             GameDatabase.MIGRATION_12_13,
             GameDatabase.MIGRATION_13_14,
             GameDatabase.MIGRATION_14_15,
-            GameDatabase.MIGRATION_15_16
+            GameDatabase.MIGRATION_15_16,
+            GameDatabase.MIGRATION_16_17,
+            GameDatabase.MIGRATION_17_18,
+            GameDatabase.MIGRATION_18_19
         )
         .fallbackToDestructiveMigration(true) // Keep as safety, but explicit migrations prioritized
         .build()
@@ -42,8 +49,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideGameRepository(database: GameDatabase): GameRepository {
-        return GameRepository(database)
+    fun provideGameRepository(database: GameDatabase, leaderboardRepository: LeaderboardRepository): GameRepository {
+        return GameRepository(database, leaderboardRepository)
     }
 
     @Provides
@@ -57,4 +64,21 @@ object AppModule {
     fun provideAnalyticsManager(firebaseAnalytics: FirebaseAnalytics): AnalyticsManager {
         return FirebaseAnalyticsManager(firebaseAnalytics)
     }
+
+    @Provides
+    @Singleton
+    fun provideFirebaseAuth(): FirebaseAuth = FirebaseAuth.getInstance()
+
+    @Provides
+    @Singleton
+    fun provideFirebaseDatabase(): FirebaseDatabase = 
+        FirebaseDatabase.getInstance("https://final-dungeon-8e349-default-rtdb.europe-west1.firebasedatabase.app/")
+
+    @Provides
+    @Singleton
+    fun provideAuthRepository(auth: FirebaseAuth): AuthRepository = AuthRepository(auth)
+
+    @Provides
+    @Singleton
+    fun provideLeaderboardRepository(database: FirebaseDatabase): LeaderboardRepository = LeaderboardRepository(database)
 }

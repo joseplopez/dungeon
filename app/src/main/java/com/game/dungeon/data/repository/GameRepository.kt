@@ -10,9 +10,11 @@ import javax.inject.Singleton
 
 @Singleton
 class GameRepository @Inject constructor(
-    private val database: GameDatabase
+    private val database: GameDatabase,
+    private val leaderboardRepository: LeaderboardRepository,
 ) {
     fun getGameState(): Flow<GameState?> = database.gameStateDao.getGameState()
+    suspend fun getGameStateOnce(): GameState? = database.gameStateDao.getGameStateOnce()
     suspend fun saveGameState(state: GameState) = database.gameStateDao.upsert(state)
     fun newGame(): GameState = GameState()
 
@@ -32,14 +34,36 @@ class GameRepository @Inject constructor(
         val current = database.gameStateDao.getGameStateOnce() ?: GameState()
         database.gameStateDao.upsert(current.copy(
             magicite = current.magicite + amount,
-            magiciteEarnedThisDim = current.magiciteEarnedThisDim + amount
+            magiciteEarnedThisDim = current.magiciteEarnedThisDim + amount,
+            totalMagiciteEarned = current.totalMagiciteEarned + amount
         ))
     }
 
     suspend fun updateHighestFloor(floor: Int) {
         val current = database.gameStateDao.getGameStateOnce() ?: GameState()
-        if (floor > current.highestFloor) {
-            database.gameStateDao.upsert(current.copy(highestFloor = floor))
+        val isNewDimMax = floor > current.highestFloor
+        val isNewLifetimeMax = floor > current.lifetimeHighestFloor
+
+        if (isNewDimMax || isNewLifetimeMax) {
+            val nextHighestFloor = if (isNewDimMax) floor else current.highestFloor
+            val nextLifetimeHighestFloor = if (isNewLifetimeMax) floor else current.lifetimeHighestFloor
+            val newState = current.copy(
+                highestFloor = nextHighestFloor,
+                lifetimeHighestFloor = nextLifetimeHighestFloor
+            )
+            database.gameStateDao.upsert(newState)
+            
+            // IMMEDIATE Upload to Firebase
+            triggerFirebaseUpload(newState)
+        }
+    }
+
+    suspend fun triggerFirebaseUpload(state: GameState? = null) {
+        val current = state ?: database.gameStateDao.getGameStateOnce() ?: return
+        val playerId = current.playerId
+        if (playerId != null) {
+            val party = database.heroDao.getPartyOnce()
+            leaderboardRepository.uploadScore(playerId, current.playerName, current, party)
         }
     }
 

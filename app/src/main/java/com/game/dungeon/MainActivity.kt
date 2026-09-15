@@ -37,6 +37,7 @@ import com.game.dungeon.ui.components.MusicToggleButton
 import com.game.dungeon.ui.screens.DungeonScreen
 import com.game.dungeon.ui.screens.EquipmentScreen
 import com.game.dungeon.ui.screens.InnScreen
+import com.game.dungeon.ui.screens.LeaderboardScreen
 import com.game.dungeon.ui.screens.MasteryScreen
 import com.game.dungeon.ui.screens.RelicsScreen
 import com.game.dungeon.ui.screens.TownScreen
@@ -186,6 +187,13 @@ class MainActivity : ComponentActivity() {
                                     isMuted = isMuted,
                                     onToggleMusic = { isMuted = !isMuted },
                                     viewModel = innViewModel
+                                )
+                            }
+                            composable("leaderboard") {
+                                LeaderboardScreen(
+                                    navController = navController,
+                                    isMuted = isMuted,
+                                    onToggleMusic = { isMuted = !isMuted }
                                 )
                             }
                         }

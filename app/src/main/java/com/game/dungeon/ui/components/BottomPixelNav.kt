@@ -27,7 +27,8 @@ fun BottomPixelNav(currentRoute: String?, navController: NavController) {
         Row(Modifier.fillMaxSize(), horizontalArrangement = Arrangement.SpaceEvenly) {
             listOf(
                 "inn" to "⚗ INN",
-                "town" to "🏰 TOWN"
+                "town" to "🏰 TOWN",
+                "leaderboard" to "🏆 RANK"
             ).forEach { (route, label) ->
                 val active = currentRoute == route
                 Box(

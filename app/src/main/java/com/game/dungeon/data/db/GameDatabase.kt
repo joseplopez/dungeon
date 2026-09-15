@@ -9,7 +9,7 @@ import com.game.dungeon.data.models.GameState
 import com.game.dungeon.data.models.Hero
 import com.game.dungeon.data.models.Item
 
-@Database(entities = [GameState::class, Hero::class, Item::class], version = 16, exportSchema = true)
+@Database(entities = [GameState::class, Hero::class, Item::class], version = 19, exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class GameDatabase : RoomDatabase() {
     abstract val gameStateDao: GameStateDao
@@ -101,6 +101,39 @@ abstract class GameDatabase : RoomDatabase() {
             override fun migrate(db: SupportSQLiteDatabase) {
                 try {
                     ensureColumn(db, "game_state", "defenseRelic", "INTEGER NOT NULL DEFAULT 0")
+                } catch (e: Exception) {
+                    wipeDatabase(db)
+                }
+            }
+        }
+
+        val MIGRATION_16_17 = object : Migration(16, 17) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                try {
+                    ensureColumn(db, "game_state", "totalMagiciteEarned", "INTEGER NOT NULL DEFAULT 0")
+                    ensureColumn(db, "game_state", "fastestClearTime", "INTEGER NOT NULL DEFAULT 0")
+                    ensureColumn(db, "game_state", "dimStartTime", "INTEGER NOT NULL DEFAULT 0")
+                } catch (e: Exception) {
+                    wipeDatabase(db)
+                }
+            }
+        }
+
+        val MIGRATION_17_18 = object : Migration(17, 18) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                try {
+                    ensureColumn(db, "game_state", "playerId", "TEXT")
+                    ensureColumn(db, "game_state", "playerName", "TEXT NOT NULL DEFAULT 'Stranger'")
+                } catch (e: Exception) {
+                    wipeDatabase(db)
+                }
+            }
+        }
+
+        val MIGRATION_18_19 = object : Migration(18, 19) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                try {
+                    ensureColumn(db, "game_state", "lifetimeHighestFloor", "INTEGER NOT NULL DEFAULT 0")
                 } catch (e: Exception) {
                     wipeDatabase(db)
                 }

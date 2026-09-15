@@ -147,19 +147,30 @@ class InnViewModel @Inject constructor(
                 // Calculate Gold kept (Deep Pockets Relic)
                 val goldKept = (gs.gold * gs.pocketsBonus).toLong()
 
+                val clearTime = System.currentTimeMillis() - gs.dimStartTime
+                val updatedFastestTime = if (gs.fastestClearTime == 0L || clearTime < gs.fastestClearTime) {
+                    clearTime
+                } else {
+                    gs.fastestClearTime
+                }
+
                 // Reset GameState for new dimension
                 val nextGs = gs.copy(
                     gold = goldKept,
                     magicite = gs.magicite + bonusMagicite,
+                    totalMagiciteEarned = gs.totalMagiciteEarned + bonusMagicite,
                     currentDimension = gs.currentDimension + 1,
                     highestFloor = 0,
                     magiciteEarnedThisDim = 0,
                     gilEarnedThisDim = 0,
                     bossesKilledThisDim = 0,
-                    itemsFoundThisDim = 0
+                    itemsFoundThisDim = 0,
+                    dimStartTime = System.currentTimeMillis(),
+                    fastestClearTime = updatedFastestTime
                 )
                 analytics.logDimensionAdvanced(nextGs.currentDimension)
                 repository.saveGameState(nextGs)
+                repository.triggerFirebaseUpload(nextGs)
                 _startFloor.value = 1
             }
         }

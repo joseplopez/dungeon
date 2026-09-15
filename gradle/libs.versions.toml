@@ -11,6 +11,8 @@ kotlin = "2.2.10"
 composeBom = "2026.02.01"
 firebaseAi = "17.16.0"
 firebaseBom = "33.10.0"
+firebaseDatabase = "21.0.0"
+firebaseAuth = "23.2.0"
 googleGmsGoogleServices = "4.4.4"
 room = "2.8.4"
 hilt = "2.60.1"
@@ -40,6 +42,8 @@ androidx-compose-material3 = { group = "androidx.compose.material3", name = "mat
 firebase-ai = { group = "com.google.firebase", name = "firebase-ai", version.ref = "firebaseAi" }
 firebase-bom = { group = "com.google.firebase", name = "firebase-bom", version.ref = "firebaseBom" }
 firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics" }
+firebase-database = { group = "com.google.firebase", name = "firebase-database-ktx" }
+firebase-auth = { group = "com.google.firebase", name = "firebase-auth-ktx" }
 
 # Room
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }

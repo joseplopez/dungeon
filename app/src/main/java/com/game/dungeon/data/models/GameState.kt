@@ -14,10 +14,13 @@ data class GameState(
     val magicite: Int = BuildConfig.INITIAL_MAGICITE,
     val currentDimension: Int = 1,
     val highestFloor: Int = 0,
+    val totalMagiciteEarned: Int = 0,
+    val fastestClearTime: Long = 0, // In milliseconds, 0 means not cleared yet
     val unlockedJobs: Set<JobClass> = setOf(JobClass.FREELANCER),
 
     // Hall of Fame / Achievement tracking (Resets each dimension)
     val magiciteEarnedThisDim: Int = 0,
+    val dimStartTime: Long = System.currentTimeMillis(),
     val gilEarnedThisDim: Long = 0,
     val bossesKilledThisDim: Int = 0,
     val itemsFoundThisDim: Int = 0,
@@ -33,6 +36,9 @@ data class GameState(
     val planningLevel: Int = 0,      // -5% upgrade costs (Max 5)
     val clinicLevel: Int = 0,        // -10% rest cost (Max 10)
     val lastSaveTime: Long = 0,      // Track last activity
+    val playerId: String? = null,    // Firebase UID
+    val playerName: String = "Stranger", // Player display name
+    val lifetimeHighestFloor: Int = 0, // Absolute maximum floor across all dimensions
 
     // Relics (powered by Magicite — persist across dimensions)
     val attackRelic: Int = 0,        // +2 ATK per level

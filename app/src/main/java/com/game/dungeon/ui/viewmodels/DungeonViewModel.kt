@@ -381,6 +381,8 @@ class DungeonViewModel @Inject constructor(
               gilLostToPenalty = penalty.toLong(),
               battleLog = (it.battleLog + FFLogEntry(R.string.log_total_wipe, emptyList(), LogType.HERO_FELL)).takeLast(25)
           ) }
+          
+          repo.triggerFirebaseUpload()
         }
       }
       else -> {}
@@ -446,6 +448,7 @@ class DungeonViewModel @Inject constructor(
       }
 
       battleState.update { it.copy(isRunning=false, runComplete=true) }
+      repo.triggerFirebaseUpload()
     }
   }
 

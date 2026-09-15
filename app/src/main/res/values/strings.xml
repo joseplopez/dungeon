@@ -261,4 +261,34 @@
     <string name="pet_none">NONE</string>
     <string name="unlock_pet_format"><xliff:g id="cost">%1$d</xliff:g>G TO UNLOCK</string>
     <string name="masteries">📈 MASTERIES</string>
+
+    <!-- Leaderboards -->
+    <string name="leaderboard_title">RANKINGS</string>
+    <string name="tab_global">GLOBAL</string>
+    <string name="tab_dimension">DIMENSION</string>
+    <string name="tab_friends">FRIENDS</string>
+    <string name="rank_label">RANK</string>
+    <string name="player_label">PLAYER</string>
+    <string name="floor_reached_short">MAX FLR</string>
+    <string name="magicite_short">MAG</string>
+    <string name="time_short">TIME</string>
+    <string name="ghost_run_team_title"><xliff:g id="player_name">%1$s</xliff:g>\'s Team</string>
+    <string name="no_party_data">No party data available</string>
+    <string name="hero_lvl_class_format">LVL <xliff:g id="level">%1$d</xliff:g> <xliff:g id="class">%2$s</xliff:g></string>
+    <string name="ghost_run_close">CLOSE</string>
+    <string name="empty_time">---</string>
+    <string name="format_m"><xliff:g id="value">%1$.1f</xliff:g>M</string>
+    <string name="format_k"><xliff:g id="value">%1$.1f</xliff:g>K</string>
+    <string name="player_name_you">YOU</string>
+    <string name="my_id_label">YOUR ID: <xliff:g id="id">%1$s</xliff:g></string>
+    <string name="copy_id_hint">Tap to copy your ID</string>
+    <string name="add_friend_label">+ ADD FRIEND</string>
+    <string name="friend_id_hint">Friend\'s ID</string>
+    <string name="add_button">ADD</string>
+    <string name="cancel_button_short">CANCEL</string>
+    <string name="enter_friend_id_title">Enter Friend ID</string>
+    <string name="id_copied">ID copied to clipboard</string>
+    <string name="edit_name_hint">Edit Name</string>
+    <string name="save_button">SAVE</string>
+    <string name="no_friends_desc">No friends added yet. Share your ID to start ranking!</string>
 </resources>
