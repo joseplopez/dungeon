@@ -12,10 +12,6 @@ This document outlines potential future features and improvements for Final Dung
 *   **Interstitial Ads**:
     *   **Gold/Magicite Boost**: Option to watch a short ad for a temporary 2x Gil or Magicite multiplier during a run.
     *   **Revive Team**: Once per run, watch an ad to revive a fallen team at the start of the current floor.
-    *   **Shop Refresh**: Watch an ad to refresh the Crystal Shop or Item Shop stocks instantly.
-*   **IAP (In-App Purchases)**:
-    *   **"Remove Ads" Pack**: One-time purchase to remove mandatory ads and grant all "ad-reward" bonuses permanently.
-    *   **Starter Bundles**: Packages containing early-game Gil, Magicite, and a unique "Founder's Relic".
 
 ## ✨ Visual & UI Enhancements
 *   **Improved Town Visuals**:
@@ -35,6 +31,7 @@ This document outlines potential future features and improvements for Final Dung
     *   **Hidden Jobs**: Ultra-rare jobs (e.g., Onion Knight, Mime) unlocked through secret achievements or specific Relic combinations.
 *   **[x] Pet System**:
     *   **[x] Support Familiars**: Non-combat pets that provide passive buffs (e.g., +5% Item Find) or occasionally cast minor support spells.
+    *   ** Support Familiars level up**: Make pets to level up, think about the way.
 *   **Daily Challenges**:
     *   **Cursed Dungeons**: Daily runs with specific negative modifiers (e.g., "Magic Costs 2x") but significantly higher rewards.
 

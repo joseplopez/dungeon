@@ -29,6 +29,7 @@ class RelicsViewModel @Inject constructor(
             RelicType.HP -> gs.hpRelic
             RelicType.MP -> gs.mpRelic
             RelicType.MAGIC -> gs.magicRelic
+            RelicType.DEFENSE -> gs.defenseRelic
             RelicType.GOLD -> gs.goldRelic
             RelicType.MAGICITE_FIND -> gs.magiciteRelic
             RelicType.CRIT_CHANCE -> gs.critChanceRelic
@@ -45,6 +46,7 @@ class RelicsViewModel @Inject constructor(
                 RelicType.HP -> gs.copy(hpRelic = gs.hpRelic + 1)
                 RelicType.MP -> gs.copy(mpRelic = gs.mpRelic + 1)
                 RelicType.MAGIC -> gs.copy(magicRelic = gs.magicRelic + 1)
+                RelicType.DEFENSE -> gs.copy(defenseRelic = gs.defenseRelic + 1)
                 RelicType.GOLD -> gs.copy(goldRelic = gs.goldRelic + 1)
                 RelicType.MAGICITE_FIND -> gs.copy(magiciteRelic = gs.magiciteRelic + 1)
                 RelicType.CRIT_CHANCE -> gs.copy(critChanceRelic = gs.critChanceRelic + 1)

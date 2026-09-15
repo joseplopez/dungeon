@@ -150,7 +150,9 @@ fun DimensionAdvanceBanner(currentDimension: Int, onClick: () -> Unit) {
             .clickable { onClick() }
     ) {
         Row(
-            Modifier.fillMaxSize().padding(horizontal = 12.dp),
+            Modifier
+                .fillMaxSize()
+                .padding(horizontal = 12.dp),
             verticalAlignment = CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
@@ -174,19 +176,32 @@ fun ColumnScope.HubArea(
 ) {
     // Top: Pathfinder Floor Selector
     if ((pathfinderLevel > 0) && (highestFloor > 1)) {
-        GoldenBorderBox(Modifier.fillMaxWidth().height(64.dp).background(BgDarkest)) {
-            Row(Modifier.fillMaxSize().padding(horizontal = 6.dp), verticalAlignment = CenterVertically) {
+        GoldenBorderBox(Modifier
+            .fillMaxWidth()
+            .height(64.dp)
+            .background(BgDarkest)) {
+            Row(Modifier
+                .fillMaxSize()
+                .padding(horizontal = 6.dp), verticalAlignment = CenterVertically) {
                 Text(stringResource(R.string.floor_label), style = PixelSmall, color = GoldBright)
                 Spacer(Modifier.width(4.dp))
-                PixelButton("- 5", onClick = { onSetStartFloor(startFloor - 5) }, horizontalPadding = 4.dp, modifier = Modifier.width(40.dp).height(32.dp))
+                PixelButton("- 5", onClick = { onSetStartFloor(startFloor - 5) }, horizontalPadding = 4.dp, modifier = Modifier
+                    .width(40.dp)
+                    .height(32.dp))
                 Spacer(Modifier.width(2.dp))
-                PixelButton("- 1", onClick = { onSetStartFloor(startFloor - 1) }, horizontalPadding = 4.dp, modifier = Modifier.width(40.dp).height(32.dp))
+                PixelButton("- 1", onClick = { onSetStartFloor(startFloor - 1) }, horizontalPadding = 4.dp, modifier = Modifier
+                    .width(40.dp)
+                    .height(32.dp))
                 
                 Text(startFloor.toString(), style = PixelHeading, color = Color.White, modifier = Modifier.weight(1f), textAlign = TextAlign.Center)
                 
-                PixelButton("+ 1", onClick = { onSetStartFloor(startFloor + 1) }, horizontalPadding = 4.dp, modifier = Modifier.width(40.dp).height(32.dp))
+                PixelButton("+ 1", onClick = { onSetStartFloor(startFloor + 1) }, horizontalPadding = 4.dp, modifier = Modifier
+                    .width(40.dp)
+                    .height(32.dp))
                 Spacer(Modifier.width(2.dp))
-                PixelButton("+ 5", onClick = { onSetStartFloor(startFloor + 5) }, horizontalPadding = 4.dp, modifier = Modifier.width(40.dp).height(32.dp))
+                PixelButton("+ 5", onClick = { onSetStartFloor(startFloor + 5) }, horizontalPadding = 4.dp, modifier = Modifier
+                    .width(40.dp)
+                    .height(32.dp))
             }
         }
     }
@@ -229,15 +244,19 @@ fun ColumnScope.HubArea(
 
         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
             PixelButton(
-                label = "📈 MASTERIES",
+                label = stringResource(R.string.masteries),
                 onClick = onNavigateToMastery,
-                modifier = Modifier.weight(1f).height(48.dp)
+                modifier = Modifier
+                    .weight(1f)
+                    .height(48.dp)
             )
             PixelButton(
                 label = if (restCost > 0) stringResource(R.string.rest_at_inn_cost, restCost) else stringResource(R.string.rest_at_inn_free),
                 onClick = onRest,
                 enabled = canAffordRest || (restCost == 0L && hiredHeroes.isNotEmpty() && woundedHeroes.isNotEmpty()),
-                modifier = Modifier.weight(1f).height(48.dp)
+                modifier = Modifier
+                    .weight(1f)
+                    .height(48.dp)
             )
         }
 
@@ -246,7 +265,9 @@ fun ColumnScope.HubArea(
             onClick = onSend,
             enabled = canSend,
             active = canSend,
-            modifier = Modifier.fillMaxWidth().height(56.dp)
+            modifier = Modifier
+                .fillMaxWidth()
+                .height(56.dp)
         )
         
         if (woundedHeroes.isEmpty() && hiredHeroes.isNotEmpty()) {
@@ -292,10 +313,14 @@ fun HireJobRow(
 ) {
     val canHire = gil >= job.hireCost && partySize < maxPartySize
     PixelPanel(
-        modifier = Modifier.fillMaxWidth().height(80.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(80.dp),
         borderColor = if (canHire) Color(job.crystalColor.colorHex) else StoneGray
     ) {
-        Row(Modifier.fillMaxSize().padding(4.dp), verticalAlignment = CenterVertically) {
+        Row(Modifier
+            .fillMaxSize()
+            .padding(4.dp), verticalAlignment = CenterVertically) {
             HeroSprite(job, Modifier.size(40.dp))
             Spacer(Modifier.width(8.dp))
             Column(Modifier.weight(1f)) {
@@ -310,7 +335,9 @@ fun HireJobRow(
                 "${job.hireCost}G",
                 onClick = onHire,
                 enabled = canHire,
-                modifier = Modifier.width(60.dp).fillMaxHeight()
+                modifier = Modifier
+                    .width(60.dp)
+                    .fillMaxHeight()
             )
         }
     }
@@ -367,16 +394,28 @@ fun PartyMemberCard(
     onMoveDown: () -> Unit
 ) {
     PixelPanel(
-        modifier = Modifier.fillMaxWidth().height(90.dp),
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(90.dp),
         borderColor = GoldDark
     ) {
-        Row(Modifier.fillMaxSize().padding(4.dp), verticalAlignment = CenterVertically) {
+        Row(Modifier
+            .fillMaxSize()
+            .padding(4.dp), verticalAlignment = CenterVertically) {
             // Reorder Arrows
             Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
-                Box(Modifier.size(24.dp).background(BgMedium).border(1.dp, GoldDark).clickable { onMoveUp() }, contentAlignment = Center) {
+                Box(Modifier
+                    .size(24.dp)
+                    .background(BgMedium)
+                    .border(1.dp, GoldDark)
+                    .clickable { onMoveUp() }, contentAlignment = Center) {
                     Text("▲", fontSize = 12.sp, color = GoldBright)
                 }
-                Box(Modifier.size(24.dp).background(BgMedium).border(1.dp, GoldDark).clickable { onMoveDown() }, contentAlignment = Center) {
+                Box(Modifier
+                    .size(24.dp)
+                    .background(BgMedium)
+                    .border(1.dp, GoldDark)
+                    .clickable { onMoveDown() }, contentAlignment = Center) {
                     Text("▼", fontSize = 12.sp, color = GoldBright)
                 }
             }
@@ -391,13 +430,20 @@ fun PartyMemberCard(
                     Text("LV.${hero.level}", style = PixelSmall, color = SystemCyan)
                 }
                 
-                PixelHpBar(hero.currentHp, hero.maxHp, Modifier.fillMaxWidth().height(6.dp), barHeight = 6.dp)
+                PixelHpBar(hero.currentHp, hero.maxHp, Modifier
+                    .fillMaxWidth()
+                    .height(6.dp), barHeight = 6.dp)
                 Spacer(Modifier.height(4.dp))
                 
                 Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    PixelButton(stringResource(R.string.equip_button), onClick = onEquip, modifier = Modifier.height(30.dp).weight(1f))
+                    PixelButton(stringResource(R.string.equip_button), onClick = onEquip, modifier = Modifier
+                        .height(30.dp)
+                        .weight(1f))
                     Box(
-                        Modifier.size(26.dp).background(HpRed).clickable { onFire() },
+                        Modifier
+                            .size(26.dp)
+                            .background(HpRed)
+                            .clickable { onFire() },
                         contentAlignment = Center
                     ) {
                         Text(
@@ -428,10 +474,16 @@ fun EmptyPartySlot() {
 
 @Composable
 fun InnTopBar(gil: Long, magicite: Int, isMuted: Boolean, onToggleMusic: () -> Unit) {
-    GoldenBorderBox(Modifier.fillMaxWidth().height(56.dp)) {
-        Box(Modifier.fillMaxSize().background(BgDarkest)) {
+    GoldenBorderBox(Modifier
+        .fillMaxWidth()
+        .height(56.dp)) {
+        Box(Modifier
+            .fillMaxSize()
+            .background(BgDarkest)) {
             Row(
-                Modifier.fillMaxSize().padding(horizontal = 12.dp),
+                Modifier
+                    .fillMaxSize()
+                    .padding(horizontal = 12.dp),
                 verticalAlignment = CenterVertically,
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
@@ -464,7 +516,10 @@ fun DimensionResetDialog(gs: GameState, onDismiss: () -> Unit, onConfirm: () -> 
     val goldKept = (gs.gold * gs.pocketsBonus).toLong()
 
     Dialog(onDismissRequest = onDismiss) {
-        GoldenBorderBox(Modifier.fillMaxWidth().background(BgDarkest).padding(16.dp)) {
+        GoldenBorderBox(Modifier
+            .fillMaxWidth()
+            .background(BgDarkest)
+            .padding(16.dp)) {
             Column(horizontalAlignment = CenterHorizontally, verticalArrangement = Arrangement.spacedBy(12.dp)) {
                 Text(stringResource(R.string.dimension_complete), style = PixelHeading, color = GoldBright)
                 Text(stringResource(nextDimension.storyRes), style = PixelSmall, color = Color.White, textAlign = TextAlign.Center)
@@ -472,7 +527,9 @@ fun DimensionResetDialog(gs: GameState, onDismiss: () -> Unit, onConfirm: () -> 
                 PixelDivider()
                 
                 Text(stringResource(R.string.hall_of_fame), style = PixelBody, color = GoldBright)
-                Column(Modifier.fillMaxWidth().padding(horizontal = 24.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                Column(Modifier
+                    .fillMaxWidth()
+                    .padding(horizontal = 24.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     HallOfFameRow(stringResource(R.string.gil_earned_label), formatGold(gs.gilEarnedThisDim))
                     HallOfFameRow(stringResource(R.string.magicite_found_label), gs.magiciteEarnedThisDim.toString())
                     HallOfFameRow(stringResource(R.string.bosses_slain_label), gs.bossesKilledThisDim.toString())

@@ -3,14 +3,15 @@ package com.game.dungeon.data.models
 import androidx.annotation.StringRes
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.game.dungeon.BuildConfig
 import com.game.dungeon.R
 
 @Entity(tableName = "game_state")
 data class GameState(
     @PrimaryKey val id: Int = 1,
-    val gold: Long = 0,
+    val gold: Long = BuildConfig.INITIAL_GIL,
     val crystals: Map<CrystalColor, Boolean> = emptyMap(),  // owned crystals per color
-    val magicite: Int = 0,
+    val magicite: Int = BuildConfig.INITIAL_MAGICITE,
     val currentDimension: Int = 1,
     val highestFloor: Int = 0,
     val unlockedJobs: Set<JobClass> = setOf(JobClass.FREELANCER),
@@ -38,6 +39,7 @@ data class GameState(
     val hpRelic: Int = 0,            // +15 HP per level
     val mpRelic: Int = 0,            // +10 MP per level
     val magicRelic: Int = 0,         // +2 MAG per level
+    val defenseRelic: Int = 0,       // +2 DEF per level
     val critChanceRelic: Int = 0,    // +1% Crit Chance per level
     val critDamageRelic: Int = 0,    // +5% Crit Damage per level
     val goldRelic: Int = 0,          // +5% Gil per level

@@ -117,6 +117,7 @@ fun RelicCard(
         RelicType.HP -> gameState.hpRelic
         RelicType.MP -> gameState.mpRelic
         RelicType.MAGIC -> gameState.magicRelic
+        RelicType.DEFENSE -> gameState.defenseRelic
         RelicType.GOLD -> gameState.goldRelic
         RelicType.MAGICITE_FIND -> gameState.magiciteRelic
         RelicType.CRIT_CHANCE -> gameState.critChanceRelic
@@ -132,6 +133,7 @@ fun RelicCard(
         RelicType.HP -> "❤️"
         RelicType.MP -> "💙"
         RelicType.MAGIC -> "🔮"
+        RelicType.DEFENSE -> "🛡️"
         RelicType.GOLD -> "🪙"
         RelicType.MAGICITE_FIND -> "💎"
         RelicType.CRIT_CHANCE -> "🎯"
@@ -146,6 +148,7 @@ fun RelicCard(
         RelicType.HP -> level * 15
         RelicType.MP -> level * 10
         RelicType.MAGIC -> level * 2
+        RelicType.DEFENSE -> level * 2
         RelicType.GOLD -> level * 5
         RelicType.MAGICITE_FIND -> level
         RelicType.CRIT_CHANCE -> level
@@ -159,6 +162,7 @@ fun RelicCard(
         RelicType.HP -> (level + 1) * 15
         RelicType.MP -> (level + 1) * 10
         RelicType.MAGIC -> (level + 1) * 2
+        RelicType.DEFENSE -> (level + 1) * 2
         RelicType.GOLD -> (level + 1) * 5
         RelicType.MAGICITE_FIND -> (level + 1)
         RelicType.CRIT_CHANCE -> (level + 1)

@@ -11,6 +11,7 @@ enum class RelicType(
     HP(R.string.relic_hp_name, R.string.relic_hp_desc),
     MP(R.string.relic_mp_name, R.string.relic_mp_desc),
     MAGIC(R.string.relic_magic_name, R.string.relic_magic_desc),
+    DEFENSE(R.string.relic_defense_name, R.string.relic_defense_desc),
     CRIT_CHANCE(R.string.relic_crit_chance_name, R.string.relic_crit_chance_desc),
     CRIT_DAMAGE(R.string.relic_crit_damage_name, R.string.relic_crit_damage_desc),
     GOLD(R.string.relic_gold_name, R.string.relic_gold_desc),

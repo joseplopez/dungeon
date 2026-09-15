@@ -14,9 +14,11 @@ android {
         applicationId = "com.centelles.dungeon"
         minSdk = 26
         targetSdk = 37
-        versionCode = 10
+        versionCode = 11
         versionName = "0.0.1"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
+        buildConfigField("long", "INITIAL_GIL", "0L")
+        buildConfigField("int", "INITIAL_MAGICITE", "0")
     }
 
     signingConfigs {
@@ -29,6 +31,10 @@ android {
     }
 
     buildTypes {
+        debug {
+            buildConfigField("long", "INITIAL_GIL", "100000L")
+            buildConfigField("int", "INITIAL_MAGICITE", "100000")
+        }
         release {
             isMinifyEnabled = true
             isShrinkResources = true
@@ -37,6 +43,9 @@ android {
                 getDefaultProguardFile("proguard-android-optimize.txt"),
                 "proguard-rules.pro"
             )
+            ndk {
+                debugSymbolLevel = "FULL"
+            }
         }
     }
     compileOptions {
@@ -45,6 +54,7 @@ android {
     }
     buildFeatures {
         compose = true
+        buildConfig = true
     }
 }
 

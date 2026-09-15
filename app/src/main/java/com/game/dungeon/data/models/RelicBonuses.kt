@@ -5,6 +5,7 @@ data class RelicBonuses(
     val hpBonus: Int,
     val mpBonus: Int,
     val magicBonus: Int,
+    val defenseBonus: Int,
     val goldMultiplier: Float,
     val magiciteChanceBonus: Float,
     // Town upgrade bonuses
@@ -38,6 +39,7 @@ data class RelicBonuses(
             hpBonus = gs.hpRelic * 15,
             mpBonus = gs.mpRelic * 10,
             magicBonus = gs.magicRelic * 2,
+            defenseBonus = gs.defenseRelic * 2,
             goldMultiplier = (1f + gs.goldRelic * 0.05f) + (if (gs.selectedPet == PetType.CAT) 0.05f else 0f),
             magiciteChanceBonus = gs.magiciteRelic * 0.01f,
             expMultiplier = gs.expMultiplier,

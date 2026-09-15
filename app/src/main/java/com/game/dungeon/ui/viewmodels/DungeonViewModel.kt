@@ -82,14 +82,21 @@ class DungeonViewModel @Inject constructor(
             val items = repo.getEquippedItems(hero.id).first()
             val stats = hero.calculateStats(items, relics)
             
+            val newHpBonus = (stats["HP"] ?: hero.baseMaxHp) - hero.baseMaxHp
+            val newMpBonus = (stats["MP"] ?: hero.baseMaxMp) - hero.baseMaxMp
+            val oldMaxHp = hero.maxHp
+            val oldMaxMp = hero.maxMp
+
             hero.copy(
                 attackBonus = (stats["ATK"] ?: hero.baseAttack) - hero.baseAttack,
                 defenseBonus = (stats["DEF"] ?: hero.baseDefense) - hero.baseDefense,
                 magicBonus = (stats["MAG"] ?: hero.baseMagic) - hero.baseMagic,
-                hpBonus = (stats["HP"] ?: hero.baseMaxHp) - hero.baseMaxHp,
-                mpBonus = (stats["MP"] ?: hero.baseMaxMp) - hero.baseMaxMp,
+                hpBonus = newHpBonus,
+                mpBonus = newMpBonus,
                 critChance = stats["CRIT_CHANCE"] ?: 5,
-                critDamage = stats["CRIT_DAMAGE"] ?: 50
+                critDamage = stats["CRIT_DAMAGE"] ?: 50,
+                currentHp = if (hero.currentHp >= oldMaxHp) hero.baseMaxHp + newHpBonus else hero.currentHp,
+                currentMp = if (hero.currentMp >= oldMaxMp) hero.baseMaxMp + newMpBonus else hero.currentMp
             )
         }
 
@@ -284,7 +291,11 @@ class DungeonViewModel @Inject constructor(
                     mpBonus = 0,
                     critChance = 5,
                     critDamage = 50
-                )
+                ).apply {
+                    // Ensure current HP/MP doesn't exceed the newly reset max values
+                    currentHp = currentHp.coerceAtMost(maxHp)
+                    currentMp = currentMp.coerceAtMost(maxMp)
+                }
                 repo.saveHero(cleanHero)
             }
 
@@ -415,8 +426,23 @@ class DungeonViewModel @Inject constructor(
       
       // Save current state of surviving heroes and remove dead ones
       battleState.value.heroes.forEach { hero ->
-          if (hero.currentHp > 0) repo.saveHero(hero)
-          else repo.removeHero(hero)
+          if (hero.currentHp > 0) {
+              val cleanHero = hero.copy(
+                  attackBonus = 0,
+                  defenseBonus = 0,
+                  magicBonus = 0,
+                  hpBonus = 0,
+                  mpBonus = 0,
+                  critChance = 5,
+                  critDamage = 50
+              ).apply {
+                  currentHp = currentHp.coerceAtMost(maxHp)
+                  currentMp = currentMp.coerceAtMost(maxMp)
+              }
+              repo.saveHero(cleanHero)
+          } else {
+              repo.removeHero(hero)
+          }
       }
 
       battleState.update { it.copy(isRunning=false, runComplete=true) }

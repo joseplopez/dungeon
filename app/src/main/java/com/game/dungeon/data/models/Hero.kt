@@ -80,7 +80,7 @@ data class Hero(
             "HP" to baseMaxHp + equippedItems.sumOf { it.hpBonus } + (relicBonuses?.hpBonus ?: 0) + masteryHp,
             "MP" to baseMaxMp + equippedItems.sumOf { it.mpBonus } + (relicBonuses?.mpBonus ?: 0) + masteryMp,
             "ATK" to baseAttack + equippedItems.sumOf { it.attackBonus } + (relicBonuses?.attackBonus ?: 0) + masteryAtk,
-            "DEF" to baseDefense + equippedItems.sumOf { it.defenseBonus } + masteryDef,
+            "DEF" to baseDefense + equippedItems.sumOf { it.defenseBonus } + (relicBonuses?.defenseBonus ?: 0) + masteryDef,
             "MAG" to baseMagic + equippedItems.sumOf { it.magicBonus } + (relicBonuses?.magicBonus ?: 0) + masteryMag,
             "CRIT_CHANCE" to 5 + equippedItems.sumOf { it.critChanceBonus } + (relicBonuses?.critChanceBonus ?: 0) + masteryCritChance + petCritChance,
             "CRIT_DAMAGE" to 50 + equippedItems.sumOf { it.critDamageBonus } + (relicBonuses?.critDamageBonus ?: 0) + masteryCritDmg + petCritDmg

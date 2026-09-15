@@ -11,11 +11,11 @@ enum class PetType(
     val bonusValue: Float,
     val unlockCost: Int
 ) {
-    CHOCOBO(R.string.pet_chocobo_name, R.string.pet_chocobo_desc, "🐤", PetBonusType.ITEM_FIND, 0.05f, 500),
-    MOOGLE(R.string.pet_moogle_name, R.string.pet_moogle_desc, "🦇", PetBonusType.EXP_BOOST, 0.10f, 1000),
-    CAT(R.string.pet_cat_name, R.string.pet_cat_desc, "🐱", PetBonusType.GIL_FIND, 0.05f, 750),
-    CACTUAR(R.string.pet_cactuar_name, R.string.pet_cactuar_desc, "🌵", PetBonusType.CRIT_CHANCE, 2f, 1500),
-    TONBERRY(R.string.pet_tonberry_name, R.string.pet_tonberry_desc, "🔪", PetBonusType.CRIT_DAMAGE, 10f, 2000)
+    CHOCOBO(R.string.pet_chocobo_name, R.string.pet_chocobo_desc, "🐤", PetBonusType.ITEM_FIND, 0.20f, 10000),
+    MOOGLE(R.string.pet_moogle_name, R.string.pet_moogle_desc, "🦇", PetBonusType.EXP_BOOST, 0.50f, 50000),
+    CAT(R.string.pet_cat_name, R.string.pet_cat_desc, "🐱", PetBonusType.GIL_FIND, 0.30f, 25000),
+    CACTUAR(R.string.pet_cactuar_name, R.string.pet_cactuar_desc, "🌵", PetBonusType.CRIT_CHANCE, 15f, 100000),
+    TONBERRY(R.string.pet_tonberry_name, R.string.pet_tonberry_desc, "🔪", PetBonusType.CRIT_DAMAGE, 100f, 250000)
 }
 
 enum class PetBonusType {

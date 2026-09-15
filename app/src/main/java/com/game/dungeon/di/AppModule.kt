@@ -33,7 +33,8 @@ object AppModule {
             GameDatabase.MIGRATION_11_12,
             GameDatabase.MIGRATION_12_13,
             GameDatabase.MIGRATION_13_14,
-            GameDatabase.MIGRATION_14_15
+            GameDatabase.MIGRATION_14_15,
+            GameDatabase.MIGRATION_15_16
         )
         .fallbackToDestructiveMigration(true) // Keep as safety, but explicit migrations prioritized
         .build()

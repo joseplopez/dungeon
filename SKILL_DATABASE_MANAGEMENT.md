@@ -4,9 +4,10 @@ This document defines the mandatory strategy for any modifications to the Room d
 
 ## 🛡️ Migration Protocol
 
-1.  **Incremental Versioning**: Always increment the database version in `GameDatabase.kt` by exactly 1.
+1.  **INCREMENT VERSION FIRST**: The very first thing to do when a model changes is increment the database version in `GameDatabase.kt` by exactly 1. **DO NOT SKIP THIS.**
 2.  **Explicit Migration Object**: Create a new `MIGRATION_X_Y` object in `GameDatabase.kt`.
 3.  **Hilt Integration**: Add the new migration to the `provideGameDatabase` method in `AppModule.kt`.
+4.  **Verification**: Always use `ensureColumn` to check if a column exists before adding it, to avoid errors if a previous failed run left the schema in a partial state.
 
 ## 🆘 Fallback & Crash Prevention
 

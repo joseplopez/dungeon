@@ -382,6 +382,9 @@ class FFBattleEngine(private val context: Context) {
     }
 
     private fun awardExp(hero: Hero, amount: Int, onEvent: (FFBattleEvent) -> Unit): Boolean {
+        val wasFullHp = hero.currentHp >= hero.maxHp
+        val wasFullMp = hero.currentMp >= hero.maxMp
+
         hero.exp += amount
         var leveledUp = false
         while (hero.exp >= hero.expToNextLevel) {
@@ -390,6 +393,12 @@ class FFBattleEngine(private val context: Context) {
             hero.expToNextLevel = (hero.expToNextLevel * 1.5).toInt()
             leveledUp = true
         }
+
+        if (leveledUp) {
+            if (wasFullHp) hero.currentHp = hero.maxHp
+            if (wasFullMp) hero.currentMp = hero.maxMp
+        }
+
         onEvent(FFBattleEvent.ExpGained(hero.id, amount, leveledUp, hero.level))
         return leveledUp
     }

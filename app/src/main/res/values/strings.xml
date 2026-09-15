@@ -212,6 +212,8 @@
     <string name="relic_mp_desc">Maximum MP</string>
     <string name="relic_magic_name">Magic</string>
     <string name="relic_magic_desc">Magic Damage</string>
+    <string name="relic_defense_name">Defense</string>
+    <string name="relic_defense_desc">Damage Reduction</string>
     <string name="relic_gold_name">Fortune</string>
     <string name="relic_gold_desc">Gold Gain</string>
     <string name="relic_magicite_name">Essence</string>
@@ -258,4 +260,5 @@
     <string name="select_companion_label">SELECT A COMPANION</string>
     <string name="pet_none">NONE</string>
     <string name="unlock_pet_format"><xliff:g id="cost">%1$d</xliff:g>G TO UNLOCK</string>
+    <string name="masteries">📈 MASTERIES</string>
 </resources>
