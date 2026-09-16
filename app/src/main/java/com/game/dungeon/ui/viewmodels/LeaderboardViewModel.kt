@@ -49,7 +49,7 @@ class LeaderboardViewModel @Inject constructor(
         _isLoading.value = true
         val entries = when (tab) {
             0 -> leaderboardRepository.getGlobalLeaderboard()
-            1 -> leaderboardRepository.getDimensionLeaderboard(gs.currentDimension)
+            1 -> leaderboardRepository.getDimensionLeaderboard()
             else -> leaderboardRepository.getFriendsLeaderboard(friends.toList(), gs.playerId ?: "")
         }
         

@@ -8,6 +8,7 @@ data class LeaderboardEntry(
     val dimensionMaxFloor: Int = 0,
     val totalMagicite: Int,
     val fastestClearMs: Long,
+    val currentDimTimeMs: Long = 0,
     val isUser: Boolean = false,
     val team: List<Hero> = emptyList()
 )

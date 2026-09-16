@@ -176,7 +176,8 @@ fun LeaderboardScreen(
                 ) {
                     Text(safeStringResource(R.string.rank_label), style = PixelSmall, color = GoldBright, modifier = Modifier.width(40.dp))
                     Text(safeStringResource(R.string.player_label), style = PixelSmall, color = GoldBright, modifier = Modifier.weight(1f))
-                    Text(safeStringResource(R.string.floor_reached_short), style = PixelSmall, color = GoldBright, modifier = Modifier.width(60.dp), textAlign = TextAlign.Center)
+                    val floorHeader = if (selectedTab == 1) "MAX DIM" else safeStringResource(R.string.floor_reached_short)
+                    Text(floorHeader, style = PixelSmall, color = GoldBright, modifier = Modifier.width(60.dp), textAlign = TextAlign.Center)
                     Text(safeStringResource(R.string.magicite_short), style = PixelSmall, color = GoldBright, modifier = Modifier.width(60.dp), textAlign = TextAlign.Center)
                     Text(safeStringResource(R.string.time_short), style = PixelSmall, color = GoldBright, modifier = Modifier.width(60.dp), textAlign = TextAlign.Center)
                 }
@@ -198,7 +199,7 @@ fun LeaderboardScreen(
                 } else {
                     LazyColumn(Modifier.fillMaxSize()) {
                         items(entries) { entry ->
-                            LeaderboardRow(entry, onClick = { selectedEntry = entry })
+                            LeaderboardRow(entry, selectedTab = selectedTab, onClick = { selectedEntry = entry })
                         }
                     }
                 }
@@ -324,7 +325,7 @@ fun EditNameDialog(currentName: String, onDismiss: () -> Unit, onSave: (String) 
 }
 
 @Composable
-fun LeaderboardRow(entry: LeaderboardEntry, onClick: () -> Unit) {
+fun LeaderboardRow(entry: LeaderboardEntry, selectedTab: Int, onClick: () -> Unit) {
     val bgColor = if (entry.isUser) GoldBright.copy(alpha = 0.1f) else Color.Transparent
     val textColor = if (entry.isUser) GoldBright else Color.White
     
@@ -354,7 +355,7 @@ fun LeaderboardRow(entry: LeaderboardEntry, onClick: () -> Unit) {
             modifier = Modifier.weight(1f)
         )
         Text(
-            text = entry.maxFloor.toString(),
+            text = (if (selectedTab == 1) entry.dimension else entry.maxFloor).toString(),
             style = PixelSmall,
             color = textColor,
             modifier = Modifier.width(60.dp),
@@ -368,7 +369,7 @@ fun LeaderboardRow(entry: LeaderboardEntry, onClick: () -> Unit) {
             textAlign = TextAlign.Center
         )
         Text(
-            text = formatTime(entry.fastestClearMs),
+            text = formatTime(entry.fastestClearMs, entry.currentDimTimeMs),
             style = PixelSmall,
             color = textColor,
             modifier = Modifier.width(60.dp),
@@ -430,14 +431,15 @@ fun formatLargeNumber(num: Int): String {
 }
 
 @Composable
-fun formatTime(ms: Long): String {
+fun formatTime(fastest: Long, current: Long): String {
+    val ms = if (fastest > 0L) fastest else current
     if (ms == 0L) return safeStringResource(R.string.empty_time)
     val hours = TimeUnit.MILLISECONDS.toHours(ms)
     val minutes = TimeUnit.MILLISECONDS.toMinutes(ms) % 60
     val seconds = TimeUnit.MILLISECONDS.toSeconds(ms) % 60
     return if (hours > 0) {
-        String.format(java.util.Locale.US, "%dh", hours)
+        String.format(java.util.Locale.US, "%dh %dm", hours, minutes)
     } else {
-        String.format(java.util.Locale.US, "%dm%ds", minutes, seconds)
+        String.format(java.util.Locale.US, "%dm %ds", minutes, seconds)
     }
 }

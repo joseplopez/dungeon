@@ -30,6 +30,7 @@ class LeaderboardRepository @Inject constructor(
             "dimensionMaxFloor" to gameState.highestFloor,
             "totalMagicite" to gameState.totalMagiciteEarned,
             "fastestClearMs" to gameState.fastestClearTime,
+            "currentDimTimeMs" to (System.currentTimeMillis() - gameState.dimStartTime),
             "timestamp" to System.currentTimeMillis()
         )
         
@@ -61,19 +62,19 @@ class LeaderboardRepository @Inject constructor(
         }
     }
 
-    suspend fun getDimensionLeaderboard(dimension: Int, limit: Int = 50): List<LeaderboardEntry> {
-        Log.d("LeaderboardRepo", "Fetching Dimension $dimension Leaderboard...")
+    suspend fun getDimensionLeaderboard(limit: Int = 50): List<LeaderboardEntry> {
+        Log.d("LeaderboardRepo", "Fetching Dimension Leaderboard (Global)...")
         return try {
             val snapshot = rootRef
                 .orderByChild("dimension")
-                .equalTo(dimension.toDouble())
                 .limitToLast(limit)
                 .get()
                 .await()
             
             val entries = snapshot.children.map { doc ->
-                mapToEntry(doc, useDimensionMax = true)
-            }.sortedByDescending { it.maxFloor }
+                mapToEntry(doc, useDimensionMax = false)
+            }.sortedWith(compareByDescending<LeaderboardEntry> { it.dimension }.thenByDescending { it.maxFloor })
+                .mapIndexed { index, entry -> entry.copy(rank = index + 1) }
             Log.d("LeaderboardRepo", "Dimension fetch SUCCESS. Count: ${entries.size}")
             entries
         } catch (e: Exception) {
@@ -119,6 +120,7 @@ class LeaderboardRepository @Inject constructor(
             dimensionMaxFloor = snapshot.child("dimensionMaxFloor").getValue(Long::class.java)?.toInt() ?: 0,
             totalMagicite = snapshot.child("totalMagicite").getValue(Long::class.java)?.toInt() ?: 0,
             fastestClearMs = snapshot.child("fastestClearMs").getValue(Long::class.java) ?: 0L,
+            currentDimTimeMs = snapshot.child("currentDimTimeMs").getValue(Long::class.java) ?: 0L,
             isUser = false,
             team = emptyList()
         )
