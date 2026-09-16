@@ -13,7 +13,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
+import com.game.dungeon.ui.components.safeStringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -66,7 +66,7 @@ fun LeaderboardScreen(
             horizontalArrangement = Arrangement.SpaceBetween,
             verticalAlignment = Alignment.CenterVertically
         ) {
-            Text(stringResource(R.string.leaderboard_title), style = PixelHeading)
+            Text(safeStringResource(R.string.leaderboard_title), style = PixelHeading)
             MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
         }
 
@@ -101,7 +101,7 @@ fun LeaderboardScreen(
                         )
                     } else {
                         Text(
-                            text = stringResource(R.string.my_id_label, gameState?.playerId?.take(8) ?: "...."),
+                            text = safeStringResource(R.string.my_id_label, gameState?.playerId?.take(8) ?: "...."),
                             style = PixelSmall,
                             color = StoneGray
                         )
@@ -129,19 +129,19 @@ fun LeaderboardScreen(
             verticalAlignment = Alignment.CenterVertically
         ) {
             PixelButton(
-                label = stringResource(R.string.tab_global),
+                label = safeStringResource(R.string.tab_global),
                 onClick = { viewModel.selectTab(0) },
                 active = selectedTab == 0,
                 modifier = Modifier.weight(1f)
             )
             PixelButton(
-                label = stringResource(R.string.tab_dimension),
+                label = safeStringResource(R.string.tab_dimension),
                 onClick = { viewModel.selectTab(1) },
                 active = selectedTab == 1,
                 modifier = Modifier.weight(1f)
             )
             PixelButton(
-                label = stringResource(R.string.tab_friends),
+                label = safeStringResource(R.string.tab_friends),
                 onClick = { viewModel.selectTab(2) },
                 active = selectedTab == 2,
                 modifier = Modifier.weight(1f)
@@ -174,11 +174,11 @@ fun LeaderboardScreen(
                         .padding(horizontal = 8.dp, vertical = 4.dp),
                     verticalAlignment = Alignment.CenterVertically
                 ) {
-                    Text(stringResource(R.string.rank_label), style = PixelSmall, color = GoldBright, modifier = Modifier.width(40.dp))
-                    Text(stringResource(R.string.player_label), style = PixelSmall, color = GoldBright, modifier = Modifier.weight(1f))
-                    Text(stringResource(R.string.floor_reached_short), style = PixelSmall, color = GoldBright, modifier = Modifier.width(60.dp), textAlign = TextAlign.Center)
-                    Text(stringResource(R.string.magicite_short), style = PixelSmall, color = GoldBright, modifier = Modifier.width(60.dp), textAlign = TextAlign.Center)
-                    Text(stringResource(R.string.time_short), style = PixelSmall, color = GoldBright, modifier = Modifier.width(60.dp), textAlign = TextAlign.Center)
+                    Text(safeStringResource(R.string.rank_label), style = PixelSmall, color = GoldBright, modifier = Modifier.width(40.dp))
+                    Text(safeStringResource(R.string.player_label), style = PixelSmall, color = GoldBright, modifier = Modifier.weight(1f))
+                    Text(safeStringResource(R.string.floor_reached_short), style = PixelSmall, color = GoldBright, modifier = Modifier.width(60.dp), textAlign = TextAlign.Center)
+                    Text(safeStringResource(R.string.magicite_short), style = PixelSmall, color = GoldBright, modifier = Modifier.width(60.dp), textAlign = TextAlign.Center)
+                    Text(safeStringResource(R.string.time_short), style = PixelSmall, color = GoldBright, modifier = Modifier.width(60.dp), textAlign = TextAlign.Center)
                 }
 
                 if (isLoading) {
@@ -188,7 +188,7 @@ fun LeaderboardScreen(
                 } else if (selectedTab == 2 && entries.isEmpty()) {
                     Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
                         Text(
-                            stringResource(R.string.no_friends_desc),
+                            safeStringResource(R.string.no_friends_desc),
                             style = PixelSmall,
                             color = StoneGray,
                             textAlign = TextAlign.Center,
@@ -248,12 +248,12 @@ fun AddFriendDialog(onDismiss: () -> Unit, onAdd: (String) -> Unit) {
                 .padding(16.dp)
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                Text(stringResource(R.string.enter_friend_id_title), style = PixelHeading)
+                Text(safeStringResource(R.string.enter_friend_id_title), style = PixelHeading)
                 
                 TextField(
                     value = text,
                     onValueChange = { text = it },
-                    placeholder = { Text(stringResource(R.string.friend_id_hint), color = StoneGray) },
+                    placeholder = { Text(safeStringResource(R.string.friend_id_hint), color = StoneGray) },
                     modifier = Modifier.fillMaxWidth(),
                     colors = TextFieldDefaults.colors(
                         focusedContainerColor = BgMedium,
@@ -265,12 +265,12 @@ fun AddFriendDialog(onDismiss: () -> Unit, onAdd: (String) -> Unit) {
                 
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     PixelButton(
-                        label = stringResource(R.string.cancel_button_short),
+                        label = safeStringResource(R.string.cancel_button_short),
                         onClick = onDismiss,
                         modifier = Modifier.weight(1f)
                     )
                     PixelButton(
-                        label = stringResource(R.string.add_button),
+                        label = safeStringResource(R.string.add_button),
                         onClick = { if (text.isNotBlank()) onAdd(text.trim()) },
                         modifier = Modifier.weight(1f)
                     )
@@ -308,12 +308,12 @@ fun EditNameDialog(currentName: String, onDismiss: () -> Unit, onSave: (String) 
                 
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     PixelButton(
-                        label = stringResource(R.string.cancel_button_short),
+                        label = safeStringResource(R.string.cancel_button_short),
                         onClick = onDismiss,
                         modifier = Modifier.weight(1f)
                     )
                     PixelButton(
-                        label = stringResource(R.string.save_button),
+                        label = safeStringResource(R.string.save_button),
                         onClick = { if (text.isNotBlank()) onSave(text.trim()) },
                         modifier = Modifier.weight(1f)
                     )
@@ -348,7 +348,7 @@ fun LeaderboardRow(entry: LeaderboardEntry, onClick: () -> Unit) {
             modifier = Modifier.width(40.dp)
         )
         Text(
-            text = if (entry.isUser) stringResource(R.string.player_name_you) else entry.playerName,
+            text = if (entry.isUser) safeStringResource(R.string.player_name_you) else entry.playerName,
             style = PixelSmall,
             color = textColor,
             modifier = Modifier.weight(1f)
@@ -387,13 +387,13 @@ fun GhostRunDialog(entry: LeaderboardEntry, onDismiss: () -> Unit) {
                 .padding(16.dp)
         ) {
             Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                val displayName = if (entry.isUser) stringResource(R.string.player_name_you) else entry.playerName
-                Text(stringResource(R.string.ghost_run_team_title, displayName), style = PixelHeading)
+                val displayName = if (entry.isUser) safeStringResource(R.string.player_name_you) else entry.playerName
+                Text(safeStringResource(R.string.ghost_run_team_title, displayName), style = PixelHeading)
                 
                 com.game.dungeon.ui.components.PixelDivider()
                 
                 if (entry.team.isEmpty()) {
-                    Text(stringResource(R.string.no_party_data), style = PixelSmall, color = StoneGray)
+                    Text(safeStringResource(R.string.no_party_data), style = PixelSmall, color = StoneGray)
                 } else {
                     entry.team.forEach { hero ->
                         Row(
@@ -404,7 +404,7 @@ fun GhostRunDialog(entry: LeaderboardEntry, onDismiss: () -> Unit) {
                             Text(hero.heroClass.emoji, fontSize = 20.sp)
                             Column(Modifier.weight(1f)) {
                                 Text(hero.name, style = PixelBody)
-                                Text(stringResource(R.string.hero_lvl_class_format, hero.level, stringResource(hero.heroClass.nameRes)), style = PixelSmall, color = StoneGray)
+                                Text(safeStringResource(R.string.hero_lvl_class_format, hero.level, safeStringResource(hero.heroClass.nameRes)), style = PixelSmall, color = StoneGray)
                             }
                         }
                     }
@@ -412,7 +412,7 @@ fun GhostRunDialog(entry: LeaderboardEntry, onDismiss: () -> Unit) {
 
                 com.game.dungeon.ui.components.PixelDivider()
                 
-                PixelButton(label = stringResource(R.string.ghost_run_close), onClick = onDismiss)
+                PixelButton(label = safeStringResource(R.string.ghost_run_close), onClick = onDismiss)
             }
         }
     }
@@ -421,9 +421,9 @@ fun GhostRunDialog(entry: LeaderboardEntry, onDismiss: () -> Unit) {
 @Composable
 fun formatLargeNumber(num: Int): String {
     return if (num >= 1000000) {
-        stringResource(R.string.format_m, num / 1000000f)
+        safeStringResource(R.string.format_m, num / 1000000f)
     } else if (num >= 1000) {
-        stringResource(R.string.format_k, num / 1000f)
+        safeStringResource(R.string.format_k, num / 1000f)
     } else {
         num.toString()
     }
@@ -431,7 +431,7 @@ fun formatLargeNumber(num: Int): String {
 
 @Composable
 fun formatTime(ms: Long): String {
-    if (ms == 0L) return stringResource(R.string.empty_time)
+    if (ms == 0L) return safeStringResource(R.string.empty_time)
     val hours = TimeUnit.MILLISECONDS.toHours(ms)
     val minutes = TimeUnit.MILLISECONDS.toMinutes(ms) % 60
     val seconds = TimeUnit.MILLISECONDS.toSeconds(ms) % 60

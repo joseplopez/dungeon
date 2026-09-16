@@ -26,7 +26,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.CompositingStrategy
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.drawscope.Stroke
-import androidx.compose.ui.res.stringResource
+import com.game.dungeon.ui.components.safeStringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -111,7 +111,7 @@ fun DungeonScreen(
             ) {
                 Column(horizontalAlignment = CenterHorizontally) {
                     if (dimension != null) {
-                        Text("⚔️ ${stringResource(dimension.subtitleRes)} ⚔️", style = PixelSmall, color = Color.White)
+                        Text("⚔️ ${safeStringResource(dimension.subtitleRes)} ⚔️", style = PixelSmall, color = Color.White)
                     }
                     Text(state.floorBannerText, style = PixelHeading, color = if (biome != null) GoldBright else BgDarkest)
                 }
@@ -184,14 +184,14 @@ fun DungeonTopBar(
             verticalAlignment = CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            PixelButton(stringResource(R.string.retreat_button), onClick = onRetreat, modifier = Modifier.height(32.dp))
+            PixelButton(safeStringResource(R.string.retreat_button), onClick = onRetreat, modifier = Modifier.height(32.dp))
             
             Column(horizontalAlignment = CenterHorizontally) {
                 Text(safeStringResource(R.string.floor_format, floor), style = PixelHeading, color = GoldBright)
                 if (dimension != null) {
-                    Text(stringResource(dimension.titleRes), style = PixelSmall, color = Color(dimension.mainColor))
+                    Text(safeStringResource(dimension.titleRes), style = PixelSmall, color = Color(dimension.mainColor))
                 }
-                Text(currentBiome?.let { stringResource(it.nameRes) } ?: "", style = PixelSmall, color = StoneGray)
+                Text(currentBiome?.let { safeStringResource(it.nameRes) } ?: "", style = PixelSmall, color = StoneGray)
             }
 
             if (isBossFloor) {
@@ -199,7 +199,7 @@ fun DungeonTopBar(
                     initialValue = 0.3f, targetValue = 1f,
                     animationSpec = infiniteRepeatable(tween(500), RepeatMode.Reverse), label = ""
                 )
-                Text(stringResource(R.string.boss_floor_warning), style = PixelHeading.copy(color = EnemyRed.copy(alpha = alpha)))
+                Text(safeStringResource(R.string.boss_floor_warning), style = PixelHeading.copy(color = EnemyRed.copy(alpha = alpha)))
             } else {
                 Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                     listOf(BattleSpeed.NORMAL to "1x", BattleSpeed.FAST to "2x", BattleSpeed.ULTRAFAST to "4x").forEach { (s, label) ->
@@ -267,7 +267,7 @@ fun BattleArea(
             enemies.forEach { enemy ->
                 key(enemy.id) {
                     val bossTemplate = dimension?.let { FFDimensionData.getBossForFloor(it, floor) }
-                    val isBoss = bossTemplate != null && stringResource(bossTemplate.nameRes) == enemy.name
+                    val isBoss = bossTemplate != null && safeStringResource(bossTemplate.nameRes) == enemy.name
                     EnemyUnitDisplay(
                         enemy = enemy,
                         isHit = hitEnemyId == enemy.id,
@@ -559,7 +559,7 @@ fun RunCompleteOverlay(
         ) {
             // Header
             Text(
-                if (allDead) stringResource(R.string.party_wiped) else stringResource(R.string.run_complete),
+                if (allDead) safeStringResource(R.string.party_wiped) else safeStringResource(R.string.run_complete),
                 style = PixelTitle,
                 color = if (allDead) EnemyRed else GoldBright
             )
@@ -588,7 +588,7 @@ fun RunCompleteOverlay(
                             horizontalAlignment = CenterHorizontally,
                             verticalArrangement = Arrangement.spacedBy(8.dp)
                         ) {
-                            Text(stringResource(R.string.earned_rewards), style = PixelHeading, color = GoldBright)
+                            Text(safeStringResource(R.string.earned_rewards), style = PixelHeading, color = GoldBright)
                             Spacer(Modifier.height(8.dp))
                             
                             Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -601,7 +601,7 @@ fun RunCompleteOverlay(
                                     Spacer(Modifier.width(8.dp))
                                     Column(horizontalAlignment = CenterHorizontally) {
                                         Text("-${formatGold(gilLostToPenalty)}", style = PixelHeading, color = EnemyRed)
-                                        Text(stringResource(R.string.wipe_penalty), style = PixelSmall, color = EnemyRed)
+                                        Text(safeStringResource(R.string.wipe_penalty), style = PixelSmall, color = EnemyRed)
                                     }
                                 }
                             }
@@ -626,7 +626,7 @@ fun RunCompleteOverlay(
                     verticalArrangement = Arrangement.spacedBy(16.dp)
                 ) {
                     if (fallenHeroes.isNotEmpty()) {
-                        Text(stringResource(R.string.fallen_warriors), style = PixelHeading, color = EnemyRed)
+                        Text(safeStringResource(R.string.fallen_warriors), style = PixelHeading, color = EnemyRed)
                         val rows = fallenHeroes.chunked(4)
                         rows.forEach { rowHeroes ->
                             Row(horizontalArrangement = Arrangement.spacedBy(12.dp)) {
@@ -646,7 +646,7 @@ fun RunCompleteOverlay(
                     }
 
                     if (itemsFoundThisRun.isNotEmpty()) {
-                        Text(stringResource(R.string.loot_collected), style = PixelHeading, color = GoldBright)
+                        Text(safeStringResource(R.string.loot_collected), style = PixelHeading, color = GoldBright)
                         val itemRows = itemsFoundThisRun.chunked(6)
                         itemRows.forEach { rowItems ->
                             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -710,7 +710,7 @@ fun RunCompleteOverlay(
                         
                         Text(safeStringResource(R.string.item_lvl_rarity_format, item.floorFound, item.rarity.name), style = PixelSmall, color = StoneGray)
 
-                        PixelButton(stringResource(R.string.close_button), onClick = { selectedItemForDetail = null }, modifier = Modifier.fillMaxWidth())
+                        PixelButton(safeStringResource(R.string.close_button), onClick = { selectedItemForDetail = null }, modifier = Modifier.fillMaxWidth())
                     }
                 }
             }

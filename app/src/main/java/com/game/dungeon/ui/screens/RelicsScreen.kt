@@ -18,7 +18,7 @@ import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
+import com.game.dungeon.ui.components.safeStringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -67,9 +67,9 @@ fun RelicsScreen(
                     verticalAlignment = CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    PixelButton(stringResource(R.string.back_button), onClick = { navController.popBackStack() }, modifier = Modifier.height(32.dp))
+                    PixelButton(safeStringResource(R.string.back_button), onClick = { navController.popBackStack() }, modifier = Modifier.height(32.dp))
                     Column(horizontalAlignment = CenterHorizontally) {
-                        Text(stringResource(R.string.relics_title), style = PixelHeading)
+                        Text(safeStringResource(R.string.relics_title), style = PixelHeading)
                         Text(safeStringResource(R.string.magicite_format, magicite), style = PixelGold)
                     }
                     MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
@@ -185,7 +185,7 @@ fun RelicCard(
             Row(Modifier.fillMaxWidth(), verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.SpaceBetween) {
                 Text(icon, fontSize = 20.sp)
                 Column(horizontalAlignment = Alignment.End) {
-                    Text(stringResource(relicType.nameRes).uppercase(), style = PixelGold, fontSize = 11.sp)
+                    Text(safeStringResource(relicType.nameRes).uppercase(), style = PixelGold, fontSize = 11.sp)
                     Text(safeStringResource(R.string.relic_level_format, level), style = PixelSmall, color = GoldDark, fontSize = 11.sp)
                 }
             }
@@ -193,7 +193,7 @@ fun RelicCard(
             // Comparison View
             Box(Modifier.fillMaxWidth().weight(1f), contentAlignment = Center) {
                 Column(horizontalAlignment = CenterHorizontally) {
-                    Text(stringResource(relicType.descRes), style = PixelSmall, color = Color.White.copy(alpha = 0.7f), fontSize = 12.sp)
+                    Text(safeStringResource(relicType.descRes), style = PixelSmall, color = Color.White.copy(alpha = 0.7f), fontSize = 12.sp)
                     Row(verticalAlignment = CenterVertically) {
                         Text("+$currentVal$suffix", style = PixelBody, color = SystemCyan, fontSize = 12.sp)
                         Text(" → ", style = PixelBody, color = GoldDark, fontSize = 12.sp)

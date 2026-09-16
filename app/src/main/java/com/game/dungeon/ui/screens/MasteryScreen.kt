@@ -16,7 +16,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -26,6 +25,7 @@ import androidx.navigation.NavController
 import com.game.dungeon.R
 import com.game.dungeon.data.models.*
 import com.game.dungeon.ui.components.*
+import com.game.dungeon.ui.components.safeStringResource
 import com.game.dungeon.ui.theme.*
 import com.game.dungeon.ui.viewmodels.InnViewModel
 
@@ -39,7 +39,7 @@ fun MasteryScreen(
     val gs by viewModel.gameState.collectAsState()
     
     var selectedTab by remember { mutableIntStateOf(0) }
-    val tabs = listOf(stringResource(R.string.tab_job_mastery), stringResource(R.string.tab_pets))
+    val tabs = listOf(safeStringResource(R.string.tab_job_mastery), safeStringResource(R.string.tab_pets))
 
     Box(Modifier.fillMaxSize().background(BgDarkest)) {
         Column(Modifier.fillMaxSize()) {
@@ -50,8 +50,8 @@ fun MasteryScreen(
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
-                    PixelButton(stringResource(R.string.back_button), onClick = { navController.popBackStack() }, modifier = Modifier.height(36.dp))
-                    Text(stringResource(R.string.training_grounds_title), style = PixelHeading)
+                    PixelButton(safeStringResource(R.string.back_button), onClick = { navController.popBackStack() }, modifier = Modifier.height(36.dp))
+                    Text(safeStringResource(R.string.training_grounds_title), style = PixelHeading)
                     MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
                 }
             }
@@ -107,7 +107,7 @@ fun JobMasteryTab(gs: GameState) {
                     Spacer(Modifier.width(12.dp))
                     Column(Modifier.weight(1f)) {
                         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
-                            Text(stringResource(job.nameRes), style = PixelBody, color = GoldBright)
+                            Text(safeStringResource(job.nameRes), style = PixelBody, color = GoldBright)
                             Text("LV.$level", style = PixelBody, color = SystemCyan)
                         }
                         Spacer(Modifier.height(4.dp))
@@ -119,7 +119,7 @@ fun JobMasteryTab(gs: GameState) {
                     }
                     Spacer(Modifier.width(16.dp))
                     Column(horizontalAlignment = Alignment.End) {
-                        Text(stringResource(R.string.mastery_bonus_label), style = PixelSmall, color = StoneGray)
+                        Text(safeStringResource(R.string.mastery_bonus_label), style = PixelSmall, color = StoneGray)
                         Text(safeStringResource(R.string.mastery_bonus_stat_format, bonus, job.masteryStatType.name), style = PixelBody, color = HpGreen)
                     }
                 }
@@ -131,7 +131,7 @@ fun JobMasteryTab(gs: GameState) {
 @Composable
 fun PetsTab(gs: GameState, onSelect: (PetType?) -> Unit, onUnlock: (PetType) -> Unit) {
     Column {
-        Text(stringResource(R.string.select_companion_label), style = PixelBody, color = GoldBright, modifier = Modifier.padding(bottom = 8.dp))
+        Text(safeStringResource(R.string.select_companion_label), style = PixelBody, color = GoldBright, modifier = Modifier.padding(bottom = 8.dp))
         
         LazyVerticalGrid(
             columns = GridCells.Fixed(2),
@@ -176,10 +176,10 @@ fun PetCard(pet: PetType?, isSelected: Boolean, isUnlocked: Boolean, currentGold
             }
             Spacer(Modifier.width(8.dp))
             Column(Modifier.weight(1f)) {
-                Text(if (pet != null) stringResource(pet.nameRes) else stringResource(R.string.pet_none), style = PixelBody, color = if (isUnlocked) Color.White else StoneGray)
+                Text(if (pet != null) safeStringResource(pet.nameRes) else safeStringResource(R.string.pet_none), style = PixelBody, color = if (isUnlocked) Color.White else StoneGray)
                 if (pet != null) {
                     if (isUnlocked) {
-                        Text(stringResource(pet.descRes), style = PixelSmall, color = HpGreen)
+                        Text(safeStringResource(pet.descRes), style = PixelSmall, color = HpGreen)
                     } else {
                         Text(safeStringResource(R.string.unlock_pet_format, pet.unlockCost), style = PixelSmall, color = if (canAfford) GoldBright else EnemyRed)
                     }

@@ -11,7 +11,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.res.stringResource
+import com.game.dungeon.ui.components.safeStringResource
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.game.dungeon.R
@@ -46,7 +46,7 @@ fun EquipmentScreen(
             Column(Modifier.fillMaxSize().padding(16.dp)) {
                 // Top Bar
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                    PixelButton(stringResource(R.string.back_button), onClick = onBack)
+                    PixelButton(safeStringResource(R.string.back_button), onClick = onBack)
                     Text(safeStringResource(R.string.equipment_title, hero?.name ?: ""), style = PixelHeading, color = GoldBright)
                     MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
                 }
@@ -110,7 +110,7 @@ fun StatPanel(hero: Hero, equipped: List<Item>, relicBonuses: com.game.dungeon.d
 
     PixelPanel(Modifier.fillMaxWidth(), borderColor = GoldDark) {
         Column(Modifier.padding(8.dp), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-            Text(stringResource(R.string.stats_header), style = PixelHeading, color = GoldBright)
+            Text(safeStringResource(R.string.stats_header), style = PixelHeading, color = GoldBright)
             listOf("HP", "ATK", "DEF", "MAG", "CRIT_CHANCE", "CRIT_DAMAGE").forEach { stat ->
                 val base = baseOnly[stat] ?: 0
                 val withGlobal = baseWithGlobal[stat] ?: 0
@@ -149,9 +149,9 @@ fun EquippedPanel(equipped: List<Item>, onQuickEquip: () -> Unit, onSelect: (Ite
     PixelPanel(Modifier.fillMaxWidth(), borderColor = GoldDark) {
         Column(Modifier.padding(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
             Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
-                Text(stringResource(R.string.equipped_header), style = PixelHeading, color = GoldBright)
+                Text(safeStringResource(R.string.equipped_header), style = PixelHeading, color = GoldBright)
                 PixelButton(
-                    label = stringResource(R.string.quick_equip),
+                    label = safeStringResource(R.string.quick_equip),
                     onClick = onQuickEquip,
                     modifier = Modifier.height(28.dp),
                     horizontalPadding = 8.dp
@@ -197,11 +197,11 @@ fun InventoryPanel(inventory: List<Item>, onSelect: (Item) -> Unit) {
     PixelPanel(Modifier.fillMaxSize(), borderColor = GoldDark) {
         if (inventory.isEmpty()) {
             Box(Modifier.fillMaxSize(), contentAlignment = Alignment.Center) {
-                Text(stringResource(R.string.empty_inventory), style = PixelBody, color = StoneGray)
+                Text(safeStringResource(R.string.empty_inventory), style = PixelBody, color = StoneGray)
             }
         } else {
             Column(Modifier.fillMaxWidth().padding(8.dp)) {
-                Text(stringResource(R.string.inventory_header), style = PixelHeading, color = GoldBright)
+                Text(safeStringResource(R.string.inventory_header), style = PixelHeading, color = GoldBright)
                 Spacer(Modifier.height(8.dp))
                 LazyColumn(verticalArrangement = Arrangement.spacedBy(4.dp)) {
                     items(inventory) { item ->
@@ -268,14 +268,14 @@ fun ItemDetailOverlay(
 
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     if (isEquipped) {
-                        PixelButton(stringResource(R.string.unequip_button), onClick = onUnequip, modifier = Modifier.weight(1f))
+                        PixelButton(safeStringResource(R.string.unequip_button), onClick = onUnequip, modifier = Modifier.weight(1f))
                     } else {
-                        PixelButton(stringResource(R.string.equip_button), onClick = onEquip, modifier = Modifier.weight(1f))
+                        PixelButton(safeStringResource(R.string.equip_button), onClick = onEquip, modifier = Modifier.weight(1f))
                     }
                     PixelButton(safeStringResource(R.string.sell_button_format, item.sellValue), onClick = onSell, modifier = Modifier.weight(1f), active = true)
                 }
                 
-                PixelButton(stringResource(R.string.close_button), onClick = onClose, modifier = Modifier.fillMaxWidth())
+                PixelButton(safeStringResource(R.string.close_button), onClick = onClose, modifier = Modifier.fillMaxWidth())
             }
         }
     }

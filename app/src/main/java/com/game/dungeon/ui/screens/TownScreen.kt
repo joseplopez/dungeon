@@ -19,7 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalContext
-import androidx.compose.ui.res.stringResource
+import com.game.dungeon.ui.components.safeStringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -80,7 +80,7 @@ fun TownScreen(
                                     Text("$magicite", style = PixelGold)
                                 }
                             }
-                            Text(stringResource(R.string.town_name), style = PixelHeading)
+                            Text(safeStringResource(R.string.town_name), style = PixelHeading)
                             Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                                 PixelButton(
                                     label = "❓",
@@ -108,7 +108,7 @@ fun TownScreen(
                         Spacer(Modifier.width(150.dp)) // Left margin
 
                         // 1. Inn Building
-                        TownBuilding(stringResource(R.string.building_inn), "THE INN") { 
+                        TownBuilding(safeStringResource(R.string.building_inn), "THE INN") { 
                             navController.navigate("inn") {
                                 launchSingleTop = true
                                 popUpTo("inn") { saveState = true }
@@ -117,17 +117,17 @@ fun TownScreen(
                         }
 
                         // 2. Crystal Shop
-                        TownBuilding(stringResource(R.string.building_crystal_shop), "CRYSTAL SHOP") { 
+                        TownBuilding(safeStringResource(R.string.building_crystal_shop), "CRYSTAL SHOP") { 
                             showCrystalShop = true 
                         }
 
                         // 3. Upgrades Building
-                        TownBuilding(stringResource(R.string.building_barracks), "BARRACKS") { 
+                        TownBuilding(safeStringResource(R.string.building_barracks), "BARRACKS") { 
                             showUpgrades = true 
                         }
 
                         // 4. Relics / Portal
-                        TownBuilding(stringResource(R.string.building_relics), "RELICS") {
+                        TownBuilding(safeStringResource(R.string.building_relics), "RELICS") {
                             navController.navigate("relics") {
                                 launchSingleTop = true
                                 restoreState = true
@@ -231,7 +231,7 @@ fun CrystalShopDialog(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = CenterVertically
                 ) {
-                    Text(stringResource(R.string.building_crystal_shop), style = PixelHeading)
+                    Text(safeStringResource(R.string.building_crystal_shop), style = PixelHeading)
                     PixelButton(
                         label = "X",
                         onClick = onDismiss,
@@ -240,7 +240,7 @@ fun CrystalShopDialog(
                         verticalPadding = 0.dp
                     )
                 }
-                Text(stringResource(R.string.crystal_shop_subtitle), style = PixelSmall, color = GoldDark)
+                Text(safeStringResource(R.string.crystal_shop_subtitle), style = PixelSmall, color = GoldDark)
                 Spacer(Modifier.height(8.dp))
                 PixelDivider()
                 Spacer(Modifier.height(12.dp))
@@ -280,10 +280,10 @@ fun CrystalShopRow(
         Spacer(Modifier.width(12.dp))
         Column(Modifier.weight(1f)) {
             Text(crystal.color.displayName, style = PixelBody, color = Color(crystal.color.colorHex))
-            Text(safeStringResource(id = R.string.slot_format, "Unlocks", stringResource(crystal.unlocksJob.nameRes)), style = PixelSmall, color = GoldDark)
+            Text(safeStringResource(id = R.string.slot_format, "Unlocks", safeStringResource(crystal.unlocksJob.nameRes)), style = PixelSmall, color = GoldDark)
         }
         if (isUnlocked) {
-            Text(stringResource(R.string.owned_status), style = PixelSmall, color = HpGreen)
+            Text(safeStringResource(R.string.owned_status), style = PixelSmall, color = HpGreen)
         } else {
             PixelButton(
                 "${crystal.color.baseCost}G",
@@ -310,7 +310,7 @@ fun UpgradesDialog(
                     verticalAlignment = CenterVertically
                 ) {
                     Column {
-                        Text(stringResource(R.string.town_upgrades), style = PixelHeading)
+                        Text(safeStringResource(R.string.town_upgrades), style = PixelHeading)
                         if (gs.planningLevel > 0) {
                             Text(safeStringResource(R.string.upgrade_discount, (gs.upgradeDiscount * 100).toInt()), style = PixelSmall, color = HpGreen)
                         }
@@ -353,7 +353,7 @@ fun UpgradesDialog(
                                     Text(type.emoji, fontSize = 24.sp)
                                     Spacer(Modifier.width(16.dp))
                                     Column(Modifier.weight(1f)) {
-                                        Text(stringResource(type.nameRes), style = PixelBody, color = if(isMax) StoneGray else GoldBright)
+                                        Text(safeStringResource(type.nameRes), style = PixelBody, color = if(isMax) StoneGray else GoldBright)
                                         val levelText = if (type == UpgradeType.PATHFINDER) {
                                             val maxStart = (gs.highestFloor * (currentLevel * 0.25f)).toInt().coerceIn(1, gs.highestFloor.coerceAtLeast(1))
                                             safeStringResource(R.string.pathfinder_level_format, currentLevel, type.maxLevel, maxStart)
@@ -364,7 +364,7 @@ fun UpgradesDialog(
                                     }
                                     Spacer(Modifier.width(12.dp))
                                     if (isMax) {
-                                        Text(stringResource(R.string.max_level), style = PixelBody, color = HpGreen, modifier = Modifier.width(80.dp), textAlign = TextAlign.Center)
+                                        Text(safeStringResource(R.string.max_level), style = PixelBody, color = HpGreen, modifier = Modifier.width(80.dp), textAlign = TextAlign.Center)
                                     } else {
                                         PixelButton(
                                             "${finalCost}G", 
@@ -376,7 +376,7 @@ fun UpgradesDialog(
                                 }
                                 Spacer(Modifier.height(8.dp))
                                 Text(
-                                    stringResource(type.descRes),
+                                    safeStringResource(type.descRes),
                                     style = PixelSmall, 
                                     color = StoneGray,
                                     lineHeight = 16.sp,
