@@ -3,8 +3,6 @@ package com.game.dungeon.data.models
 import androidx.annotation.StringRes
 import com.game.dungeon.R
 
-typealias JobClass = HeroClass
-
 enum class HeroClass(
     @StringRes val nameRes: Int,
     val tier: Int,                    // 1=basic, 2=advanced

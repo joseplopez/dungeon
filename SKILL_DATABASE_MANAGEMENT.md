@@ -20,8 +20,38 @@ To ensure existing users never experience a crash due to a failed migration:
 3.  **Room Fallback**: Maintain `.fallbackToDestructiveMigration(true)` in `AppModule.kt` as a secondary safety net.
 4.  **Schema Check (Identity Hash Fix)**: If a "Room cannot verify data integrity" error occurs (Identity Hash mismatch), immediately increment the version and add a migration that uses `PRAGMA table_info` to safely ensure all columns exist without crashing if they were already added in a "dirty" state.
 
+## ⚠️ Removing or Ignoring Columns
+
+When you mark an existing field with `@Ignore` or delete a variable from an `@Entity`, Room expects the column to be **physically removed** from the SQLite database. SQLite does not support `DROP COLUMN` in older versions (or it's unreliable).
+
+**NEVER use a "no-op" (empty) migration when removing fields.** It will cause an `IllegalStateException: Migration didn't properly handle`.
+
+**The Mandatory "Recreate Table" Pattern:**
+1.  **Create** a new temporary table with the exact *new* schema (omitting the ignored/deleted columns).
+2.  **Copy** data from the old table to the new table using `INSERT INTO ... SELECT ...`.
+3.  **Drop** the old table.
+4.  **Rename** the temporary table to the original name.
+
 ## 📝 Example Template
 
+### Adding a Column
+```kotlin
+db.execSQL("ALTER TABLE heroes ADD COLUMN new_stat INTEGER NOT NULL DEFAULT 0")
+```
+
+### Removing or Ignoring a Column (Recreate Table)
+```kotlin
+// 1. Create new table
+db.execSQL("CREATE TABLE heroes_new (id TEXT NOT NULL PRIMARY KEY, name TEXT NOT NULL)")
+// 2. Copy data (only columns you want to keep)
+db.execSQL("INSERT INTO heroes_new (id, name) SELECT id, name FROM heroes")
+// 3. Drop old
+db.execSQL("DROP TABLE heroes")
+// 4. Rename
+db.execSQL("ALTER TABLE heroes_new RENAME TO heroes")
+```
+
+### Safe Migration Wrapper
 ```kotlin
 val MIGRATION_X_Y = object : Migration(X, Y) {
     override fun migrate(db: SupportSQLiteDatabase) {

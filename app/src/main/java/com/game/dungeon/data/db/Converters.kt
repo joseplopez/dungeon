@@ -2,7 +2,7 @@ package com.game.dungeon.data.db
 
 import androidx.room.TypeConverter
 import com.game.dungeon.data.models.CrystalColor
-import com.game.dungeon.data.models.JobClass
+import com.game.dungeon.data.models.HeroClass
 import com.google.gson.Gson
 import com.google.gson.reflect.TypeToken
 
@@ -21,24 +21,24 @@ class Converters {
     }
 
     @TypeConverter
-    fun fromJobSet(value: Set<JobClass>): String {
+    fun fromHeroSet(value: Set<HeroClass>): String {
         return gson.toJson(value)
     }
 
     @TypeConverter
-    fun toJobSet(value: String): Set<JobClass> {
-        val type = object : TypeToken<Set<JobClass>>() {}.type
+    fun toHeroSet(value: String): Set<HeroClass> {
+        val type = object : TypeToken<Set<HeroClass>>() {}.type
         return gson.fromJson(value, type)
     }
 
     @TypeConverter
-    fun fromHeroClassMap(value: Map<com.game.dungeon.data.models.HeroClass, Int>): String {
+    fun fromHeroClassMap(value: Map<HeroClass, Int>): String {
         return gson.toJson(value)
     }
 
     @TypeConverter
-    fun toHeroClassMap(value: String): Map<com.game.dungeon.data.models.HeroClass, Int> {
-        val type = object : TypeToken<Map<com.game.dungeon.data.models.HeroClass, Int>>() {}.type
+    fun toHeroClassMap(value: String): Map<HeroClass, Int> {
+        val type = object : TypeToken<Map<HeroClass, Int>>() {}.type
         return gson.fromJson(value, type)
     }
 

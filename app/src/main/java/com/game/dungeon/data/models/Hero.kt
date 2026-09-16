@@ -9,7 +9,7 @@ import java.util.UUID
 @Entity(tableName = "heroes")
 data class Hero(
     @PrimaryKey val id: String = UUID.randomUUID().toString(),
-    val heroClass: JobClass,
+    val heroClass: HeroClass,
     val name: String,             // random FF-style name from a list
     var currentHp: Int,
     var currentMp: Int,
@@ -23,28 +23,52 @@ data class Hero(
     var shieldId: String? = null,
     var accessory1Id: String? = null,
     var accessory2Id: String? = null,
-    var attackBonus: Int = 0,
-    var defenseBonus: Int = 0,
-    var magicBonus: Int = 0,
-    var hpBonus: Int = 0,
-    var mpBonus: Int = 0,
-    var critChance: Int = 5,
-    var critDamage: Int = 50,
     val isInParty: Boolean = false,
     val partyPosition: Int = 0 // Position in the party list (0-indexed)
 ) {
+    @Ignore var attackBonus: Int = 0
+    @Ignore var defenseBonus: Int = 0
+    @Ignore var magicBonus: Int = 0
+    @Ignore var hpBonus: Int = 0
+    @Ignore var mpBonus: Int = 0
+    @Ignore var critChance: Int = 5
+    @Ignore var critDamage: Int = 50
+
     @get:Ignore
     val isAlive: Boolean get() = currentHp > 0
 
     @get:Ignore
     val nickname: String get() = name
 
-    val hasSpecialAbility: Boolean get() = heroClass != JobClass.FREELANCER
+    val hasSpecialAbility: Boolean get() = heroClass != HeroClass.FREELANCER
 
     val masteryLevel: Int get() = when { level >= 50 -> 50; level >= 25 -> 25; else -> level }
-    val hasGroupHeal: Boolean get() = heroClass == JobClass.WHITE_MAGE && level >= 10
-    val hasMagicBoost: Boolean get() = heroClass == JobClass.BLACK_MAGE && level >= 10
-    val hasRansack: Boolean get() = heroClass == JobClass.THIEF && level >= 10
+    val hasGroupHeal: Boolean get() = heroClass == HeroClass.WHITE_MAGE && level >= 10
+    val hasMagicBoost: Boolean get() = heroClass == HeroClass.BLACK_MAGE && level >= 10
+    val hasRansack: Boolean get() = heroClass == HeroClass.THIEF && level >= 10
+
+    /**
+     * Centralized experience logic. Returns true if leveled up.
+     */
+    fun addExperience(amount: Int): Boolean {
+        val wasFullHp = currentHp >= maxHp
+        val wasFullMp = currentMp >= maxMp
+
+        exp += amount
+        var leveledUp = false
+        while (exp >= expToNextLevel) {
+            exp -= expToNextLevel
+            level++
+            expToNextLevel = (expToNextLevel * 1.5).toInt()
+            leveledUp = true
+        }
+
+        if (leveledUp) {
+            if (wasFullHp) currentHp = maxHp
+            if (wasFullMp) currentMp = maxMp
+        }
+        return leveledUp
+    }
 
     // Dynamic stats based on level
     val baseMaxHp: Int get() = heroClass.baseHp + (level - 1) * (heroClass.baseHp / 10).coerceAtLeast(5)
@@ -72,10 +96,6 @@ data class Hero(
         val petCritChance = relicBonuses?.petCritChanceBonus ?: 0
         val petCritDmg = relicBonuses?.petCritDamageBonus ?: 0
 
-        // Use base values + passed parameters ONLY to avoid double-counting baked-in bonuses
-        val baseMaxHp = heroClass.baseHp + (level - 1) * (heroClass.baseHp / 10).coerceAtLeast(5)
-        val baseMaxMp = heroClass.baseMp + (level - 1) * (heroClass.baseMp / 10).coerceAtLeast(2)
-        
         return mapOf(
             "HP" to baseMaxHp + equippedItems.sumOf { it.hpBonus } + (relicBonuses?.hpBonus ?: 0) + masteryHp,
             "MP" to baseMaxMp + equippedItems.sumOf { it.mpBonus } + (relicBonuses?.mpBonus ?: 0) + masteryMp,
@@ -88,14 +108,14 @@ data class Hero(
     }
 
     companion object {
-        fun create(jobClass: JobClass, context: android.content.Context): Hero {
+        fun create(heroClass: HeroClass, context: android.content.Context): Hero {
             val names = context.resources.getStringArray(R.array.hero_names)
             val name = names.random()
             return Hero(
-                heroClass = jobClass, name = name,
-                currentHp = jobClass.baseHp,
-                currentMp = jobClass.baseMp,
-                aiPriority = jobClass.defaultPriority
+                heroClass = heroClass, name = name,
+                currentHp = heroClass.baseHp,
+                currentMp = heroClass.baseMp,
+                aiPriority = heroClass.defaultPriority
             )
         }
     }

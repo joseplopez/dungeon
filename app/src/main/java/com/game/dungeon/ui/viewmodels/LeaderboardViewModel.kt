@@ -14,6 +14,8 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
@@ -46,21 +48,19 @@ class LeaderboardViewModel @Inject constructor(
     ) { tab, _, gs, friends ->
         if (gs == null) return@combine emptyList()
         
-        _isLoading.value = true
         val entries = when (tab) {
             0 -> leaderboardRepository.getGlobalLeaderboard()
             1 -> leaderboardRepository.getDimensionLeaderboard()
             else -> leaderboardRepository.getFriendsLeaderboard(friends.toList(), gs.playerId ?: "")
         }
         
-        val mappedEntries = entries.map { entry ->
-            val isUser = gs.playerId != null && entry.playerName == gs.playerName
+        entries.map { entry ->
+            val isUser = gs.playerId != null && entry.playerId == gs.playerId
             entry.copy(isUser = isUser)
         }
-        
-        _isLoading.value = false
-        mappedEntries
-    }.stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
+    }.onStart { _isLoading.value = true }
+     .onEach { _isLoading.value = false }
+     .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
 
     init {
         ensureUserIdentity()

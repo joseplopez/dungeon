@@ -1,6 +1,8 @@
 package com.game.dungeon.engine
 
 import android.content.Context
+import androidx.annotation.StringRes
+import com.game.dungeon.R
 import com.game.dungeon.data.models.*
 import kotlinx.coroutines.delay
 import kotlin.random.Random
@@ -12,13 +14,13 @@ sealed class FFBattleEvent {
                            val damage: Int, val isMagic: Boolean, val isCritical: Boolean) : FFBattleEvent()
     data class HealCast(val casterId: String, val targetId: String, val amount: Int) : FFBattleEvent()
     data class GroupHeal(val casterId: String, val amounts: Map<String, Int>) : FFBattleEvent()
-    data class AbilityUsed(val heroId: String, val abilityName: String, val description: String) : FFBattleEvent()
+    data class AbilityUsed(val heroId: String, @StringRes val nameRes: Int, @StringRes val descRes: Int, val args: List<Any> = emptyList()) : FFBattleEvent()
     data class ExpGained(val heroId: String, val amount: Int, val leveledUp: Boolean, val newLevel: Int) : FFBattleEvent()
     data class EnemyDefeated(val enemyId: String, val gilDropped: Int, val magiciteDropped: Int, val expDropped: Int) : FFBattleEvent()
-    data class HeroFell(val heroId: String, val heroName: String, val jobClass: JobClass) : FFBattleEvent()
+    data class HeroFell(val heroId: String, val heroName: String, val heroClass: HeroClass) : FFBattleEvent()
     data class MagiciteStolen(val heroId: String, val amount: Int) : FFBattleEvent()
     data class SummonUsed(val heroId: String, val summonName: String, val totalDamage: Int) : FFBattleEvent()
-    data class BardSong(val heroId: String, val songName: String, val effect: String) : FFBattleEvent()
+    data class BardSong(val heroId: String, @StringRes val songRes: Int, @StringRes val effectRes: Int) : FFBattleEvent()
     data class FloorComplete(val floor: Int, val gilEarned: Long, val magiciteEarned: Int, val itemsFound: List<Item>, val updatedHeroes: List<Hero>, val leveledUpHeroIds: List<String> = emptyList()) : FFBattleEvent()
     data class BossDefeated(val bossName: String, val dimensionComplete: Boolean) : FFBattleEvent()
     object AllHeroesFell : FFBattleEvent()
@@ -85,8 +87,9 @@ class FFBattleEngine(private val context: Context) {
                 val completionExp = ((5 + (currentFloor / 2)) * relicBonuses.expMultiplier).toInt()
                 val leveledUpHeroIds = mutableListOf<String>()
                 aliveHeroes.filter { it.isAlive }.forEach { hero ->
-                    val result = awardExp(hero, completionExp, onEvent)
+                    val result = hero.addExperience(completionExp)
                     if (result) leveledUpHeroIds.add(hero.id)
+                    onEvent(FFBattleEvent.ExpGained(hero.id, completionExp, result, hero.level))
                 }
                 
                 // Loot chance
@@ -203,7 +206,7 @@ class FFBattleEngine(private val context: Context) {
             AIPriority.DEFEND -> {
                 val target = allies.filter { it.isAlive }.minByOrNull { it.currentHp }
                 if (target != null && target.id != hero.id) {
-                    onEvent(FFBattleEvent.AbilityUsed(hero.id, "Cover", "Protecting ${target.name}!"))
+                    onEvent(FFBattleEvent.AbilityUsed(hero.id, R.string.ability_cover_name, R.string.ability_cover_desc, listOf(target.name)))
                 }
             }
         }
@@ -211,7 +214,7 @@ class FFBattleEngine(private val context: Context) {
 
     private fun executeJobAbility(hero: Hero, allies: List<Hero>, enemies: MutableList<Enemy>, relicBonuses: RelicBonuses, onEvent: (FFBattleEvent)->Unit) {
         when (hero.heroClass) {
-            JobClass.WARRIOR -> {
+            HeroClass.WARRIOR -> {
                 val target = enemies.filter { it.currentHp > 0 }.maxByOrNull { it.currentHp } ?: return
                 val (baseDmg, _) = calcPhysicalDamage(hero, target)
                 val dmg = (baseDmg * 2f).toInt()
@@ -223,17 +226,17 @@ class FFBattleEngine(private val context: Context) {
                     awardExpToParty(allies, exp, onEvent)
                 }
             }
-            JobClass.WHITE_MAGE -> {
+            HeroClass.WHITE_MAGE -> {
                 val amounts = mutableMapOf<String, Int>()
                 allies.filter { it.isAlive }.forEach { ally ->
                     val heal = (hero.magic * 3f + 40).toInt()
                     ally.currentHp = minOf(ally.currentHp + heal, ally.maxHp)
                     amounts[ally.id] = heal
                 }
-                onEvent(FFBattleEvent.AbilityUsed(hero.id, "Curaga", "${hero.name} casts Curaga!"))
+                onEvent(FFBattleEvent.AbilityUsed(hero.id, R.string.ability_curaga_name, R.string.ability_curaga_desc, listOf(hero.name)))
                 onEvent(FFBattleEvent.GroupHeal(hero.id, amounts))
             }
-            JobClass.BLACK_MAGE -> {
+            HeroClass.BLACK_MAGE -> {
                 enemies.filter { it.currentHp > 0 }.forEach { enemy ->
                     val (baseDmg, _) = calcMagicDamage(hero, enemy)
                     val dmg = (baseDmg * 1.8f).toInt()
@@ -246,12 +249,13 @@ class FFBattleEngine(private val context: Context) {
                     }
                 }
             }
-            JobClass.THIEF -> {
+            HeroClass.THIEF -> {
                 val target = enemies.filter { it.currentHp > 0 }.firstOrNull() ?: return
                 val (dmg, isCrit) = calcPhysicalDamage(hero, target)
                 target.currentHp -= dmg
                 onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, isCrit))
                 if (target.magiciteDropped > 0 && hero.hasRansack) {
+                    onEvent(FFBattleEvent.AbilityUsed(hero.id, R.string.ability_ransack_name, R.string.log_magicite_stolen, listOf(hero.name, target.magiciteDropped)))
                     onEvent(FFBattleEvent.MagiciteStolen(hero.id, target.magiciteDropped))
                 }
                 if (target.currentHp <= 0) {
@@ -260,7 +264,7 @@ class FFBattleEngine(private val context: Context) {
                     awardExpToParty(allies, exp, onEvent)
                 }
             }
-            JobClass.MONK -> {
+            HeroClass.MONK -> {
                 val selfHeal = (hero.maxHp * 0.25f).toInt()
                 hero.currentHp = minOf(hero.currentHp + selfHeal, hero.maxHp)
                 onEvent(FFBattleEvent.HealCast(hero.id, hero.id, selfHeal))
@@ -275,7 +279,7 @@ class FFBattleEngine(private val context: Context) {
                     awardExpToParty(allies, exp, onEvent)
                 }
             }
-            JobClass.KNIGHT -> {
+            HeroClass.KNIGHT -> {
                 val target = enemies.filter { it.currentHp > 0 }.maxByOrNull { it.currentHp } ?: return
                 val (baseDmg, _) = calcPhysicalDamage(hero, target)
                 val dmg = (baseDmg * 1.8f).toInt()
@@ -287,7 +291,7 @@ class FFBattleEngine(private val context: Context) {
                     awardExpToParty(allies, exp, onEvent)
                 }
             }
-            JobClass.PALADIN -> {
+            HeroClass.PALADIN -> {
                 enemies.filter { it.currentHp > 0 }.forEach { enemy ->
                     val (dmg, isCrit) = calcPhysicalDamage(hero, enemy)
                     enemy.currentHp -= dmg
@@ -301,7 +305,7 @@ class FFBattleEngine(private val context: Context) {
                 val healAmt = (hero.magic * 1.5f).toInt()
                 allies.filter { it.isAlive }.forEach { it.currentHp = minOf(it.currentHp + healAmt, it.maxHp) }
             }
-            JobClass.RED_MAGE -> {
+            HeroClass.RED_MAGE -> {
                 repeat(2) {
                     val target = enemies.filter { it.currentHp > 0 }.firstOrNull() ?: return@repeat
                     val (dmg, isCrit) = calcMagicDamage(hero, target)
@@ -314,7 +318,7 @@ class FFBattleEngine(private val context: Context) {
                     }
                 }
             }
-            JobClass.SUMMONER -> {
+            HeroClass.SUMMONER -> {
                 val summons = listOf(
                     Triple("Ifrit", "🔥", 1.5f), Triple("Shiva", "❄️", 1.5f),
                     Triple("Ramuh", "⚡", 1.5f), Triple("Bahamut", "🐉", 2.5f)
@@ -335,7 +339,7 @@ class FFBattleEngine(private val context: Context) {
                 }
                 onEvent(FFBattleEvent.SummonUsed(hero.id, name, totalDmg))
             }
-            JobClass.NINJA -> {
+            HeroClass.NINJA -> {
                 val target = enemies.filter { it.currentHp > 0 }.maxByOrNull { it.currentHp } ?: return
                 val dmg = (hero.attack * 2.2f).toInt()
                 target.currentHp -= dmg
@@ -346,21 +350,21 @@ class FFBattleEngine(private val context: Context) {
                     awardExpToParty(allies, exp, onEvent)
                 }
             }
-            JobClass.DRAGOON -> {
-                onEvent(FFBattleEvent.AbilityUsed(hero.id, "Jump", "${hero.name} leaps into the air!"))
+            HeroClass.DRAGOON -> {
+                onEvent(FFBattleEvent.AbilityUsed(hero.id, R.string.ability_jump_name, R.string.ability_jump_desc, listOf(hero.name)))
             }
-            JobClass.BARD -> {
+            HeroClass.BARD -> {
                 val songs = listOf(
-                    "Paeon" to "+HP regen this floor",
-                    "Minne" to "+Defense for all allies",
-                    "Minuet" to "+Attack for all allies",
-                    "Romeo's Ballad" to "All enemies skip next turn"
+                    Triple(R.string.song_paeon, R.string.song_paeon_effect, "Paeon"),
+                    Triple(R.string.song_minne, R.string.song_minne_effect, "Minne"),
+                    Triple(R.string.song_minuet, R.string.song_minuet_effect, "Minuet"),
+                    Triple(R.string.song_ballad, R.string.song_ballad_effect, "Ballad")
                 )
-                val (song, effect) = songs.random()
-                onEvent(FFBattleEvent.BardSong(hero.id, song, effect))
-                onEvent(FFBattleEvent.AbilityUsed(hero.id, song, "${hero.name} sings $song! $effect"))
+                val (songRes, effectRes, songName) = songs.random()
+                onEvent(FFBattleEvent.BardSong(hero.id, songRes, effectRes))
+                onEvent(FFBattleEvent.AbilityUsed(hero.id, songRes, R.string.log_generic, listOf(songName)))
             }
-            JobClass.SAMURAI -> {
+            HeroClass.SAMURAI -> {
                 val dmg = (hero.attack * 2f).toInt()
                 enemies.filter { it.currentHp > 0 }.forEach { enemy ->
                     enemy.currentHp -= dmg
@@ -371,36 +375,17 @@ class FFBattleEngine(private val context: Context) {
                         awardExpToParty(allies, exp, onEvent)
                     }
                 }
-                onEvent(FFBattleEvent.AbilityUsed(hero.id, "Zeninage", "${hero.name} throws Gil — Zeninage!"))
+                onEvent(FFBattleEvent.AbilityUsed(hero.id, R.string.ability_zeninage_name, R.string.ability_zeninage_desc, listOf(hero.name)))
             }
             else -> { /* Freelancer: no special ability */ }
         }
     }
 
     private fun awardExpToParty(heroes: List<Hero>, amount: Int, onEvent: (FFBattleEvent) -> Unit) {
-        heroes.filter { it.isAlive }.forEach { awardExp(it, amount, onEvent) }
-    }
-
-    private fun awardExp(hero: Hero, amount: Int, onEvent: (FFBattleEvent) -> Unit): Boolean {
-        val wasFullHp = hero.currentHp >= hero.maxHp
-        val wasFullMp = hero.currentMp >= hero.maxMp
-
-        hero.exp += amount
-        var leveledUp = false
-        while (hero.exp >= hero.expToNextLevel) {
-            hero.exp -= hero.expToNextLevel
-            hero.level++
-            hero.expToNextLevel = (hero.expToNextLevel * 1.5).toInt()
-            leveledUp = true
+        heroes.filter { it.isAlive }.forEach { hero ->
+            val result = hero.addExperience(amount)
+            onEvent(FFBattleEvent.ExpGained(hero.id, amount, result, hero.level))
         }
-
-        if (leveledUp) {
-            if (wasFullHp) hero.currentHp = hero.maxHp
-            if (wasFullMp) hero.currentMp = hero.maxMp
-        }
-
-        onEvent(FFBattleEvent.ExpGained(hero.id, amount, leveledUp, hero.level))
-        return leveledUp
     }
 
     private fun calcPhysicalDamage(attacker: Hero, target: Enemy): Pair<Int, Boolean> {

@@ -24,12 +24,6 @@ class GameRepository @Inject constructor(
         database.gameStateDao.upsert(current.copy(gold = newGold))
     }
 
-    suspend fun removeGilPercentage(percentage: Float) {
-        val current = database.gameStateDao.getGameStateOnce() ?: return
-        val penalty = (current.gold * percentage).toLong()
-        database.gameStateDao.upsert(current.copy(gold = current.gold - penalty))
-    }
-
     suspend fun addMagicite(amount: Int) {
         val current = database.gameStateDao.getGameStateOnce() ?: GameState()
         database.gameStateDao.upsert(current.copy(

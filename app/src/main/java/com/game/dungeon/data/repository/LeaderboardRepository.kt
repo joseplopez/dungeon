@@ -114,6 +114,7 @@ class LeaderboardRepository @Inject constructor(
 
         return LeaderboardEntry(
             rank = 0,
+            playerId = snapshot.child("playerId").getValue(String::class.java),
             playerName = snapshot.child("playerName").getValue(String::class.java) ?: "Unknown",
             maxFloor = maxFloorVal,
             dimension = snapshot.child("dimension").getValue(Long::class.java)?.toInt() ?: 1,

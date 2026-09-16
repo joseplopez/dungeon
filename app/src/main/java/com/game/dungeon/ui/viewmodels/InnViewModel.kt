@@ -63,19 +63,19 @@ class InnViewModel @Inject constructor(
     val canSendToDungeon: Boolean
         get() = _hiredHeroes.value.isNotEmpty()
 
-    fun hireHero(jobClass: HeroClass) {
+    fun hireHero(heroClass: HeroClass) {
         val gs = gameState.value ?: return
         // Ensure only unlocked jobs can be hired
-        if (!unlockedJobs.contains(jobClass) && jobClass != HeroClass.FREELANCER) return
+        if (!unlockedJobs.contains(heroClass) && heroClass != HeroClass.FREELANCER) return
         
-        if (gs.gold >= jobClass.hireCost && _hiredHeroes.value.size < maxPartySize) {
+        if (gs.gold >= heroClass.hireCost && _hiredHeroes.value.size < maxPartySize) {
             viewModelScope.launch {
-                repository.saveGameState(gs.copy(gold = gs.gold - jobClass.hireCost))
-                val hero = Hero.create(jobClass, context).copy(
+                repository.saveGameState(gs.copy(gold = gs.gold - heroClass.hireCost))
+                val hero = Hero.create(heroClass, context).copy(
                     isInParty = true,
                     partyPosition = _hiredHeroes.value.size
                 )
-                analytics.logHeroHired(hero.name, jobClass.name)
+                analytics.logHeroHired(hero.name, heroClass.name)
                 repository.saveHero(hero)
             }
         }

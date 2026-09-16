@@ -16,7 +16,7 @@ data class GameState(
     val highestFloor: Int = 0,
     val totalMagiciteEarned: Int = 0,
     val fastestClearTime: Long = 0, // In milliseconds, 0 means not cleared yet
-    val unlockedJobs: Set<JobClass> = setOf(JobClass.FREELANCER),
+    val unlockedJobs: Set<HeroClass> = setOf(HeroClass.FREELANCER),
 
     // Hall of Fame / Achievement tracking (Resets each dimension)
     val magiciteEarnedThisDim: Int = 0,
@@ -65,7 +65,7 @@ data class GameState(
     val maxGil: Long get() = 10_000L + (vaultLevel * 50_000L)
     val upgradeDiscount: Float get() = planningLevel * 0.05f
     val restDiscount: Float get() = clinicLevel * 0.10f
-    val expMultiplier: Float get() = (1.0f + (trainingLevel * 0.10f)) * (if (selectedPet == PetType.MOOGLE) 1.10f else 1.0f)
+    val expMultiplier: Float get() = (1.0f + (trainingLevel * 0.10f)) * (if (selectedPet == PetType.MOOGLE) 1.0f + PetType.MOOGLE.bonusValue else 1.0f)
     val itemStatBonus: Float get() = armoryLevel * 0.05f
 
     // Bonus getters for ascended relics
@@ -98,10 +98,10 @@ data class GameState(
     }
 
     // Pet Helpers
-    val petItemFindBonus: Float get() = if (selectedPet == PetType.CHOCOBO) 0.05f else 0f
-    val petGilFindBonus: Float get() = if (selectedPet == PetType.CAT) 0.05f else 0f
-    val petCritChanceBonus: Int get() = if (selectedPet == PetType.CACTUAR) 2 else 0
-    val petCritDamageBonus: Int get() = if (selectedPet == PetType.TONBERRY) 10 else 0
+    val petItemFindBonus: Float get() = if (selectedPet == PetType.CHOCOBO) PetType.CHOCOBO.bonusValue else 0f
+    val petGilFindBonus: Float get() = if (selectedPet == PetType.CAT) PetType.CAT.bonusValue else 0f
+    val petCritChanceBonus: Int get() = if (selectedPet == PetType.CACTUAR) PetType.CACTUAR.bonusValue.toInt() else 0
+    val petCritDamageBonus: Int get() = if (selectedPet == PetType.TONBERRY) PetType.TONBERRY.bonusValue.toInt() else 0
     
     fun getMaxPartySize(): Int = (3 + barracksLevel).coerceAtMost(5)
 }

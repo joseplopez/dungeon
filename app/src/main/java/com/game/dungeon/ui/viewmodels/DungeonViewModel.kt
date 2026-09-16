@@ -88,16 +88,17 @@ class DungeonViewModel @Inject constructor(
             val oldMaxMp = hero.maxMp
 
             hero.copy(
-                attackBonus = (stats["ATK"] ?: hero.baseAttack) - hero.baseAttack,
-                defenseBonus = (stats["DEF"] ?: hero.baseDefense) - hero.baseDefense,
-                magicBonus = (stats["MAG"] ?: hero.baseMagic) - hero.baseMagic,
-                hpBonus = newHpBonus,
-                mpBonus = newMpBonus,
-                critChance = stats["CRIT_CHANCE"] ?: 5,
-                critDamage = stats["CRIT_DAMAGE"] ?: 50,
                 currentHp = if (hero.currentHp >= oldMaxHp) hero.baseMaxHp + newHpBonus else hero.currentHp,
                 currentMp = if (hero.currentMp >= oldMaxMp) hero.baseMaxMp + newMpBonus else hero.currentMp
-            )
+            ).apply {
+                attackBonus = (stats["ATK"] ?: baseAttack) - baseAttack
+                defenseBonus = (stats["DEF"] ?: baseDefense) - baseDefense
+                magicBonus = (stats["MAG"] ?: baseMagic) - baseMagic
+                hpBonus = newHpBonus
+                mpBonus = newMpBonus
+                critChance = stats["CRIT_CHANCE"] ?: 5
+                critDamage = stats["CRIT_DAMAGE"] ?: 50
+            }
         }
 
         battleState.value = FFBattleState(
@@ -169,19 +170,11 @@ class DungeonViewModel @Inject constructor(
               state.copy(
                   heroes = state.heroes.map { h -> 
                       if (h.id == event.heroId) {
-                          // The engine already updated the values in the Hero object in aliveHeroes list,
-                          // but the state.heroes is a separate list of copies.
-                          // We need to apply the logic consistently here or pass the full updated hero.
-                          var newExp = h.exp + event.amount
-                          var newLevel = h.level
-                          var newMaxExp = h.expToNextLevel
-                          
-                          while (newExp >= newMaxExp) {
-                              newExp -= newMaxExp
-                              newLevel++
-                              newMaxExp = (newMaxExp * 1.5).toInt()
-                          }
-                          h.copy(level = newLevel, exp = newExp, expToNextLevel = newMaxExp)
+                          // The values are already updated in the engine's hero objects,
+                          // but state.heroes contains copies.
+                          // We need to keep them in sync for the UI.
+                          val engineHero = state.heroes.find { it.id == event.heroId }
+                          engineHero?.copy(level = event.newLevel) ?: h
                       } else h
                   },
                   battleLog = (state.battleLog + logEntries).takeLast(25)
@@ -225,7 +218,7 @@ class DungeonViewModel @Inject constructor(
       is FFBattleEvent.AbilityUsed -> {
           battleState.update { state ->
               state.copy(
-                  battleLog = (state.battleLog + FFLogEntry(R.string.log_generic, listOf(event.description), LogType.ABILITY)).takeLast(25)
+                  battleLog = (state.battleLog + FFLogEntry(event.descRes, event.args, LogType.ABILITY)).takeLast(25)
               )
           }
       }
@@ -280,23 +273,8 @@ class DungeonViewModel @Inject constructor(
         viewModelScope.launch {
             event.itemsFound.forEach { repo.saveItem(it) }
             
-            // CRITICAL: Before saving heroes, we must strip the "baked" run-time bonuses (relics, masteries)
-            // so they don't persist and double-stack in the database.
             event.updatedHeroes.forEach { hero ->
-                val cleanHero = hero.copy(
-                    attackBonus = 0, // Reset to 0 as they are recalculated every run
-                    defenseBonus = 0,
-                    magicBonus = 0,
-                    hpBonus = 0,
-                    mpBonus = 0,
-                    critChance = 5,
-                    critDamage = 50
-                ).apply {
-                    // Ensure current HP/MP doesn't exceed the newly reset max values
-                    currentHp = currentHp.coerceAtMost(maxHp)
-                    currentMp = currentMp.coerceAtMost(maxMp)
-                }
-                repo.saveHero(cleanHero)
+                repo.saveHero(hero)
             }
 
             repo.updateHighestFloor(event.floor + 1)
@@ -345,7 +323,7 @@ class DungeonViewModel @Inject constructor(
       is FFBattleEvent.BardSong -> {
            battleState.update { state ->
               state.copy(
-                  battleLog = (state.battleLog + FFLogEntry(R.string.log_bard_song, listOf(event.songName, event.effect), LogType.ABILITY)).takeLast(25)
+                  battleLog = (state.battleLog + FFLogEntry(event.effectRes, emptyList(), LogType.ABILITY)).takeLast(25)
               )
           }
       }
@@ -429,19 +407,7 @@ class DungeonViewModel @Inject constructor(
       // Save current state of surviving heroes and remove dead ones
       battleState.value.heroes.forEach { hero ->
           if (hero.currentHp > 0) {
-              val cleanHero = hero.copy(
-                  attackBonus = 0,
-                  defenseBonus = 0,
-                  magicBonus = 0,
-                  hpBonus = 0,
-                  mpBonus = 0,
-                  critChance = 5,
-                  critDamage = 50
-              ).apply {
-                  currentHp = currentHp.coerceAtMost(maxHp)
-                  currentMp = currentMp.coerceAtMost(maxMp)
-              }
-              repo.saveHero(cleanHero)
+              repo.saveHero(hero)
           } else {
               repo.removeHero(hero)
           }

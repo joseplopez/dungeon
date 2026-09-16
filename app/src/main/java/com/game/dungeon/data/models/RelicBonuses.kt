@@ -28,10 +28,10 @@ data class RelicBonuses(
         return if (heroClass.masteryStatType == stat) level * heroClass.masteryBonusPerLevel else 0
     }
 
-    val petItemFindBonus: Float get() = if (selectedPet == PetType.CHOCOBO) 0.05f else 0f
-    val petGilFindBonus: Float get() = if (selectedPet == PetType.CAT) 0.05f else 0f
-    val petCritChanceBonus: Int get() = if (selectedPet == PetType.CACTUAR) 2 else 0
-    val petCritDamageBonus: Int get() = if (selectedPet == PetType.TONBERRY) 10 else 0
+    val petItemFindBonus: Float get() = if (selectedPet == PetType.CHOCOBO) PetType.CHOCOBO.bonusValue else 0f
+    val petGilFindBonus: Float get() = if (selectedPet == PetType.CAT) PetType.CAT.bonusValue else 0f
+    val petCritChanceBonus: Int get() = if (selectedPet == PetType.CACTUAR) PetType.CACTUAR.bonusValue.toInt() else 0
+    val petCritDamageBonus: Int get() = if (selectedPet == PetType.TONBERRY) PetType.TONBERRY.bonusValue.toInt() else 0
 
     companion object {
         fun from(gs: GameState) = RelicBonuses(
@@ -40,7 +40,7 @@ data class RelicBonuses(
             mpBonus = gs.mpRelic * 10,
             magicBonus = gs.magicRelic * 2,
             defenseBonus = gs.defenseRelic * 2,
-            goldMultiplier = (1f + gs.goldRelic * 0.05f) + (if (gs.selectedPet == PetType.CAT) 0.05f else 0f),
+            goldMultiplier = (1f + gs.goldRelic * 0.05f) + (if (gs.selectedPet == PetType.CAT) PetType.CAT.bonusValue else 0f),
             magiciteChanceBonus = gs.magiciteRelic * 0.01f,
             expMultiplier = gs.expMultiplier,
             itemStatBonus = gs.itemStatBonus,

@@ -9,7 +9,7 @@ import com.game.dungeon.data.models.GameState
 import com.game.dungeon.data.models.Hero
 import com.game.dungeon.data.models.Item
 
-@Database(entities = [GameState::class, Hero::class, Item::class], version = 19, exportSchema = true)
+@Database(entities = [GameState::class, Hero::class, Item::class], version = 20, exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class GameDatabase : RoomDatabase() {
     abstract val gameStateDao: GameStateDao
@@ -134,6 +134,42 @@ abstract class GameDatabase : RoomDatabase() {
             override fun migrate(db: SupportSQLiteDatabase) {
                 try {
                     ensureColumn(db, "game_state", "lifetimeHighestFloor", "INTEGER NOT NULL DEFAULT 0")
+                } catch (e: Exception) {
+                    wipeDatabase(db)
+                }
+            }
+        }
+
+        val MIGRATION_19_20 = object : Migration(19, 20) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                // Room expects the columns to be GONE from the schema because they are @Ignore,
+                // but since they already exist in the user's DB from version 19, 
+                // we must physically drop and recreate the table to match the expected TableInfo.
+                try {
+                    db.execSQL("CREATE TABLE heroes_new (" +
+                            "id TEXT NOT NULL PRIMARY KEY, " +
+                            "heroClass TEXT NOT NULL, " +
+                            "name TEXT NOT NULL, " +
+                            "currentHp INTEGER NOT NULL, " +
+                            "currentMp INTEGER NOT NULL, " +
+                            "level INTEGER NOT NULL, " +
+                            "exp INTEGER NOT NULL, " +
+                            "expToNextLevel INTEGER NOT NULL, " +
+                            "abilityCharge INTEGER NOT NULL, " +
+                            "aiPriority TEXT NOT NULL, " +
+                            "weaponId TEXT, " +
+                            "armorId TEXT, " +
+                            "shieldId TEXT, " +
+                            "accessory1Id TEXT, " +
+                            "accessory2Id TEXT, " +
+                            "isInParty INTEGER NOT NULL, " +
+                            "partyPosition INTEGER NOT NULL)")
+                    
+                    db.execSQL("INSERT INTO heroes_new (id, heroClass, name, currentHp, currentMp, level, exp, expToNextLevel, abilityCharge, aiPriority, weaponId, armorId, shieldId, accessory1Id, accessory2Id, isInParty, partyPosition) " +
+                            "SELECT id, heroClass, name, currentHp, currentMp, level, exp, expToNextLevel, abilityCharge, aiPriority, weaponId, armorId, shieldId, accessory1Id, accessory2Id, isInParty, partyPosition FROM heroes")
+                    
+                    db.execSQL("DROP TABLE heroes")
+                    db.execSQL("ALTER TABLE heroes_new RENAME TO heroes")
                 } catch (e: Exception) {
                     wipeDatabase(db)
                 }

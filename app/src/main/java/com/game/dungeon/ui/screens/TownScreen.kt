@@ -147,7 +147,7 @@ fun TownScreen(
     if (showCrystalShop) {
         CrystalShopDialog(
             availableCrystals = availableCrystals,
-            unlockedJobs = gs?.unlockedJobs ?: setOf(JobClass.FREELANCER),
+            unlockedJobs = gs?.unlockedJobs ?: setOf(HeroClass.FREELANCER),
             gil = gil,
             onBuy = { viewModel.buyCrystal(it) },
             onDismiss = { showCrystalShop = false }

@@ -2,6 +2,7 @@ package com.game.dungeon.data.models
 
 data class LeaderboardEntry(
     val rank: Int,
+    val playerId: String? = null,
     val playerName: String,
     val maxFloor: Int,
     val dimension: Int = 1,

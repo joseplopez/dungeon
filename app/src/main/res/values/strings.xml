@@ -242,15 +242,36 @@
     <string name="item_name_template"><xliff:g id="rarity">%1$s</xliff:g> <xliff:g id="item_type">%2$s</xliff:g></string>
     <!-- Pets -->
     <string name="pet_chocobo_name">Chocobo</string>
-    <string name="pet_chocobo_desc">+5% Item Find</string>
+    <string name="pet_chocobo_desc">+<xliff:g id="value">20</xliff:g>%% Item Find</string>
     <string name="pet_moogle_name">Moogle</string>
-    <string name="pet_moogle_desc">+10% EXP Gain</string>
+    <string name="pet_moogle_desc">+<xliff:g id="value">50</xliff:g>%% EXP Gain</string>
     <string name="pet_cat_name">Lucky Cat</string>
-    <string name="pet_cat_desc">+5% Gil Gain</string>
+    <string name="pet_cat_desc">+<xliff:g id="value">30</xliff:g>%% Gil Gain</string>
     <string name="pet_cactuar_name">Cactuar</string>
-    <string name="pet_cactuar_desc">+2% Crit Rate</string>
+    <string name="pet_cactuar_desc">+<xliff:g id="value">15</xliff:g>%% Crit Rate</string>
     <string name="pet_tonberry_name">Tonberry</string>
-    <string name="pet_tonberry_desc">+10% Crit Damage</string>
+    <string name="pet_tonberry_desc">+<xliff:g id="value">100</xliff:g>%% Crit Damage</string>
+
+    <!-- Battle Abilities -->
+    <string name="ability_cover_name">Cover</string>
+    <string name="ability_cover_desc">Protecting <xliff:g id="target">%1$s</xliff:g>!</string>
+    <string name="ability_curaga_name">Curaga</string>
+    <string name="ability_curaga_desc"><xliff:g id="hero">%1$s</xliff:g> casts Curaga!</string>
+    <string name="ability_jump_name">Jump</string>
+    <string name="ability_jump_desc"><xliff:g id="hero">%1$s</xliff:g> leaps into the air!</string>
+    <string name="ability_zeninage_name">Zeninage</string>
+    <string name="ability_zeninage_desc"><xliff:g id="hero">%1$s</xliff:g> throws Gil — Zeninage!</string>
+    <string name="ability_ransack_name">Ransack</string>
+
+    <!-- Songs -->
+    <string name="song_paeon">Paeon</string>
+    <string name="song_paeon_effect">+HP regen this floor</string>
+    <string name="song_minne">Minne</string>
+    <string name="song_minne_effect">+Defense for all allies</string>
+    <string name="song_minuet">Minuet</string>
+    <string name="song_minuet_effect">+Attack for all allies</string>
+    <string name="song_ballad">Romeo\'s Ballad</string>
+    <string name="song_ballad_effect">All enemies skip next turn</string>
     <!-- Mastery & Pets Screen -->
     <string name="training_grounds_title">TRAINING GROUNDS</string>
     <string name="tab_job_mastery">JOB MASTERY</string>

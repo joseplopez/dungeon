@@ -3,8 +3,6 @@ package com.game.dungeon.data.models
 import android.content.Context
 import java.util.UUID
 
-typealias FFEnemy = Enemy
-
 data class Enemy(
     val id: String = UUID.randomUUID().toString(),
     val name: String,
