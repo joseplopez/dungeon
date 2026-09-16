@@ -70,7 +70,7 @@ fun RelicsScreen(
                     PixelButton(stringResource(R.string.back_button), onClick = { navController.popBackStack() }, modifier = Modifier.height(32.dp))
                     Column(horizontalAlignment = CenterHorizontally) {
                         Text(stringResource(R.string.relics_title), style = PixelHeading)
-                        Text(stringResource(R.string.magicite_format, magicite), style = PixelGold)
+                        Text(safeStringResource(R.string.magicite_format, magicite), style = PixelGold)
                     }
                     MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
                 }
@@ -186,7 +186,7 @@ fun RelicCard(
                 Text(icon, fontSize = 20.sp)
                 Column(horizontalAlignment = Alignment.End) {
                     Text(stringResource(relicType.nameRes).uppercase(), style = PixelGold, fontSize = 11.sp)
-                    Text(stringResource(R.string.relic_level_format, level), style = PixelSmall, color = GoldDark, fontSize = 11.sp)
+                    Text(safeStringResource(R.string.relic_level_format, level), style = PixelSmall, color = GoldDark, fontSize = 11.sp)
                 }
             }
 
@@ -214,7 +214,7 @@ fun RelicCard(
 
             // Centered Upgrade Button with Cost
             PixelButton(
-                label = stringResource(R.string.upgrade_cost_format, cost),
+                label = safeStringResource(R.string.upgrade_cost_format, cost),
                 onClick = onUpgrade,
                 enabled = magicite >= cost,
                 modifier = Modifier.fillMaxWidth().height(32.dp),

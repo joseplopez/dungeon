@@ -126,7 +126,7 @@ fun DungeonScreen(
             modifier = Modifier.align(Center)
         ) {
             GoldenBorderBox(Modifier.padding(20.dp).background(EnemyRed.copy(alpha = 0.9f))) {
-                Text(stringResource(R.string.log_boss_defeated, state.bossBannerText), style = PixelTitle, color = Color.White, modifier = Modifier.padding(16.dp))
+                Text(safeStringResource(R.string.log_boss_defeated, state.bossBannerText), style = PixelTitle, color = Color.White, modifier = Modifier.padding(16.dp))
             }
         }
 
@@ -187,7 +187,7 @@ fun DungeonTopBar(
             PixelButton(stringResource(R.string.retreat_button), onClick = onRetreat, modifier = Modifier.height(32.dp))
             
             Column(horizontalAlignment = CenterHorizontally) {
-                Text(stringResource(R.string.floor_format, floor), style = PixelHeading, color = GoldBright)
+                Text(safeStringResource(R.string.floor_format, floor), style = PixelHeading, color = GoldBright)
                 if (dimension != null) {
                     Text(stringResource(dimension.titleRes), style = PixelSmall, color = Color(dimension.mainColor))
                 }
@@ -506,6 +506,8 @@ fun BattleLogPanel(battleLog: List<DungeonViewModel.FFLogEntry>) {
         val listState = rememberLazyListState()
         LaunchedEffect(battleLog.size) { if (battleLog.isNotEmpty()) listState.animateScrollToItem(battleLog.size - 1) }
         
+        val context = androidx.compose.ui.platform.LocalContext.current
+
         LazyColumn(state = listState, modifier = Modifier.fillMaxSize().padding(8.dp)) {
             items(battleLog) { entry ->
                 val color = when (entry.type) {
@@ -517,7 +519,12 @@ fun BattleLogPanel(battleLog: List<DungeonViewModel.FFLogEntry>) {
                     DungeonViewModel.LogType.HERO_FELL -> StoneGray
                     else -> Color.White
                 }
-                Text(stringResource(entry.messageRes, *entry.args.toTypedArray()), style = PixelSmall.copy(color = color))
+                
+                val logText = remember(entry.messageRes, entry.args) {
+                    formatSafeLogEntry(context, entry)
+                }
+
+                Text(logText, style = PixelSmall.copy(color = color))
             }
         }
     }
@@ -556,7 +563,7 @@ fun RunCompleteOverlay(
                 style = PixelTitle,
                 color = if (allDead) EnemyRed else GoldBright
             )
-            Text(stringResource(R.string.floor_reached_format, currentFloor), style = PixelHeading, color = GoldDark)
+            Text(safeStringResource(R.string.floor_reached_format, currentFloor), style = PixelHeading, color = GoldDark)
 
             Spacer(Modifier.height(16.dp))
             PixelDivider()
@@ -631,7 +638,7 @@ fun RunCompleteOverlay(
                                             Text("💀", fontSize = 20.sp, modifier = Modifier.align(Center))
                                         }
                                         Text(hero.name, style = PixelSmall, color = StoneGray, maxLines = 1)
-                                        Text(stringResource(R.string.relic_level_format, hero.level), style = PixelSmall, color = StoneGray, maxLines = 1)
+                                        Text(safeStringResource(R.string.relic_level_format, hero.level), style = PixelSmall, color = StoneGray, maxLines = 1)
                                     }
                                 }
                             }
@@ -701,7 +708,7 @@ fun RunCompleteOverlay(
 
                         Spacer(Modifier.height(8.dp))
                         
-                        Text(stringResource(R.string.item_lvl_rarity_format, item.floorFound, item.rarity.name), style = PixelSmall, color = StoneGray)
+                        Text(safeStringResource(R.string.item_lvl_rarity_format, item.floorFound, item.rarity.name), style = PixelSmall, color = StoneGray)
 
                         PixelButton(stringResource(R.string.close_button), onClick = { selectedItemForDetail = null }, modifier = Modifier.fillMaxWidth())
                     }

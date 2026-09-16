@@ -280,7 +280,7 @@ fun CrystalShopRow(
         Spacer(Modifier.width(12.dp))
         Column(Modifier.weight(1f)) {
             Text(crystal.color.displayName, style = PixelBody, color = Color(crystal.color.colorHex))
-            Text(stringResource(id = R.string.slot_format, "Unlocks", stringResource(crystal.unlocksJob.nameRes)), style = PixelSmall, color = GoldDark)
+            Text(safeStringResource(id = R.string.slot_format, "Unlocks", stringResource(crystal.unlocksJob.nameRes)), style = PixelSmall, color = GoldDark)
         }
         if (isUnlocked) {
             Text(stringResource(R.string.owned_status), style = PixelSmall, color = HpGreen)
@@ -312,7 +312,7 @@ fun UpgradesDialog(
                     Column {
                         Text(stringResource(R.string.town_upgrades), style = PixelHeading)
                         if (gs.planningLevel > 0) {
-                            Text(stringResource(R.string.upgrade_discount, (gs.upgradeDiscount * 100).toInt()), style = PixelSmall, color = HpGreen)
+                            Text(safeStringResource(R.string.upgrade_discount, (gs.upgradeDiscount * 100).toInt()), style = PixelSmall, color = HpGreen)
                         }
                     }
                     PixelButton(
@@ -356,9 +356,9 @@ fun UpgradesDialog(
                                         Text(stringResource(type.nameRes), style = PixelBody, color = if(isMax) StoneGray else GoldBright)
                                         val levelText = if (type == UpgradeType.PATHFINDER) {
                                             val maxStart = (gs.highestFloor * (currentLevel * 0.25f)).toInt().coerceIn(1, gs.highestFloor.coerceAtLeast(1))
-                                            stringResource(R.string.pathfinder_level_format, currentLevel, type.maxLevel, maxStart)
+                                            safeStringResource(R.string.pathfinder_level_format, currentLevel, type.maxLevel, maxStart)
                                         } else {
-                                            stringResource(R.string.level_format, currentLevel, type.maxLevel)
+                                            safeStringResource(R.string.level_format, currentLevel, type.maxLevel)
                                         }
                                         Text(levelText, style = PixelSmall, color = GoldDark)
                                     }

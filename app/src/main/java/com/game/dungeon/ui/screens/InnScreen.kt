@@ -156,7 +156,7 @@ fun DimensionAdvanceBanner(currentDimension: Int, onClick: () -> Unit) {
             verticalAlignment = CenterVertically,
             horizontalArrangement = Arrangement.Center
         ) {
-            Text(stringResource(R.string.advance_banner_format, stringResource(nextDimension.titleRes)), style = PixelSmall, color = GoldBright)
+            Text(safeStringResource(R.string.advance_banner_format, stringResource(nextDimension.titleRes)), style = PixelSmall, color = GoldBright)
         }
     }
 }
@@ -251,7 +251,7 @@ fun ColumnScope.HubArea(
                     .height(48.dp)
             )
             PixelButton(
-                label = if (restCost > 0) stringResource(R.string.rest_at_inn_cost, restCost) else stringResource(R.string.rest_at_inn_free),
+                label = if (restCost > 0) safeStringResource(R.string.rest_at_inn_cost, restCost) else stringResource(R.string.rest_at_inn_free),
                 onClick = onRest,
                 enabled = canAffordRest || (restCost == 0L && hiredHeroes.isNotEmpty() && woundedHeroes.isNotEmpty()),
                 modifier = Modifier
@@ -360,7 +360,7 @@ fun PartyPanel(
                 horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = CenterVertically
             ) {
-                Text(stringResource(R.string.party_size_format, hiredHeroes.size, maxPartySize), style = PixelHeading)
+                Text(safeStringResource(R.string.party_size_format, hiredHeroes.size, maxPartySize), style = PixelHeading)
             }
             PixelDivider()
             Spacer(Modifier.height(4.dp))
