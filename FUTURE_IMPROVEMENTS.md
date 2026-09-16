@@ -31,7 +31,7 @@ This document outlines potential future features and improvements for Final Dung
     *   **Hidden Jobs**: Ultra-rare jobs (e.g., Onion Knight, Mime) unlocked through secret achievements or specific Relic combinations.
 *   **[x] Pet System**:
     *   **[x] Support Familiars**: Non-combat pets that provide passive buffs (e.g., +5% Item Find) or occasionally cast minor support spells.
-    *   ** Support Familiars level up**: Make pets to level up, think about the way.
+    *   **[x] Support Familiars level up**: Make pets to level up, think about the way.
 *   **Daily Challenges**:
     *   **Cursed Dungeons**: Daily runs with specific negative modifiers (e.g., "Magic Costs 2x") but significantly higher rewards.
 

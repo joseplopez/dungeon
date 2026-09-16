@@ -278,6 +278,7 @@
     <string name="tab_pets">PETS</string>
     <string name="mastery_bonus_label">BONUS</string>
     <string name="mastery_exp_format"><xliff:g id="current">%1$d</xliff:g> / <xliff:g id="next">%2$d</xliff:g> EXP</string>
+    <string name="pet_bonus_format">+<xliff:g id="value">%1$.1f</xliff:g>%% <xliff:g id="type">%2$s</xliff:g></string>
     <string name="mastery_bonus_stat_format">+<xliff:g id="value">%1$d</xliff:g> <xliff:g id="stat">%2$s</xliff:g></string>
     <string name="select_companion_label">SELECT A COMPANION</string>
     <string name="pet_none">NONE</string>

@@ -63,4 +63,15 @@ class Converters {
     fun toPetType(value: String?): com.game.dungeon.data.models.PetType? {
         return value?.let { com.game.dungeon.data.models.PetType.valueOf(it) }
     }
+
+    @TypeConverter
+    fun fromPetTypeMap(value: Map<com.game.dungeon.data.models.PetType, Int>?): String? {
+        return Gson().toJson(value)
+    }
+
+    @TypeConverter
+    fun toPetTypeMap(value: String?): Map<com.game.dungeon.data.models.PetType, Int>? {
+        val type = object : TypeToken<Map<com.game.dungeon.data.models.PetType, Int>>() {}.type
+        return Gson().fromJson(value, type)
+    }
 }

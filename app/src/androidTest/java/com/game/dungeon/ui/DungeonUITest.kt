@@ -130,6 +130,14 @@ class DungeonUITest {
         composeTestRule.onNodeWithText("TRAINING GROUNDS").assertIsDisplayed()
         composeTestRule.onNodeWithText("JOB MASTERY").assertIsDisplayed()
         composeTestRule.onNodeWithText("PETS").assertIsDisplayed()
+
+        // Switch to PETS Tab
+        composeTestRule.onNodeWithText("PETS").performClick()
+        composeTestRule.waitForIdle()
+
+        // Verify pets list is active and displays correct headers
+        composeTestRule.onNodeWithText("SELECT A COMPANION").assertIsDisplayed()
+        composeTestRule.onNodeWithText("NONE").assertIsDisplayed()
         
         // Go back via Back button
         composeTestRule.onNodeWithText("◀ BACK").performClick()

@@ -60,12 +60,15 @@ data class GameState(
     val jobMasteryLevels: Map<HeroClass, Int> = emptyMap(),
     val jobMasteryExp: Map<HeroClass, Int> = emptyMap(),
     val unlockedPets: Set<PetType> = emptySet(),
-    val selectedPet: PetType? = null
+    val selectedPet: PetType? = null,
+    val petLevels: Map<PetType, Int> = emptyMap(),
+    val petExp: Map<PetType, Int> = emptyMap()
 ) {
     val maxGil: Long get() = 10_000L + (vaultLevel * 50_000L)
     val upgradeDiscount: Float get() = planningLevel * 0.05f
     val restDiscount: Float get() = clinicLevel * 0.10f
-    val expMultiplier: Float get() = (1.0f + (trainingLevel * 0.10f)) * (if (selectedPet == PetType.MOOGLE) 1.0f + PetType.MOOGLE.bonusValue else 1.0f)
+    val expMultiplier: Float get() = (1.0f + (trainingLevel * 0.10f)) * 
+            (if (selectedPet == PetType.MOOGLE) 1.0f + getPetBonusValue(PetType.MOOGLE) else 1.0f)
     val itemStatBonus: Float get() = armoryLevel * 0.05f
 
     // Bonus getters for ascended relics
@@ -98,10 +101,39 @@ data class GameState(
     }
 
     // Pet Helpers
-    val petItemFindBonus: Float get() = if (selectedPet == PetType.CHOCOBO) PetType.CHOCOBO.bonusValue else 0f
-    val petGilFindBonus: Float get() = if (selectedPet == PetType.CAT) PetType.CAT.bonusValue else 0f
-    val petCritChanceBonus: Int get() = if (selectedPet == PetType.CACTUAR) PetType.CACTUAR.bonusValue.toInt() else 0
-    val petCritDamageBonus: Int get() = if (selectedPet == PetType.TONBERRY) PetType.TONBERRY.bonusValue.toInt() else 0
+    fun getPetLevel(petType: PetType): Int = (petLevels[petType] ?: 0).coerceAtLeast(1)
+    fun getPetExp(petType: PetType): Int = petExp[petType] ?: 0
+    fun getPetNextLevelExp(petType: PetType): Int = getPetLevel(petType) * 200
+
+    fun getPetBonusValue(petType: PetType): Float {
+        val level = getPetLevel(petType)
+        val base = petType.bonusValue
+        // Scale by +10% of base value per level above 1
+        return base * (1f + (level - 1) * 0.10f)
+    }
+
+    val petItemFindBonus: Float get() = if (selectedPet == PetType.CHOCOBO) getPetBonusValue(PetType.CHOCOBO) else 0f
+    val petGilFindBonus: Float get() = if (selectedPet == PetType.CAT) getPetBonusValue(PetType.CAT) else 0f
+    val petCritChanceBonus: Int get() = if (selectedPet == PetType.CACTUAR) getPetBonusValue(PetType.CACTUAR).toInt() else 0
+    val petCritDamageBonus: Int get() = if (selectedPet == PetType.TONBERRY) getPetBonusValue(PetType.TONBERRY).toInt() else 0
+
+    fun addPetExp(petType: PetType, amount: Int): GameState {
+        val currentExp = getPetExp(petType)
+        val currentLevel = getPetLevel(petType)
+        
+        var newExp = currentExp + amount
+        var newLevel = currentLevel
+        
+        while (newExp >= newLevel * 200) {
+            newExp -= newLevel * 200
+            newLevel++
+        }
+        
+        return copy(
+            petLevels = petLevels.toMutableMap().apply { put(petType, newLevel) },
+            petExp = petExp.toMutableMap().apply { put(petType, newExp) }
+        )
+    }
     
     fun getMaxPartySize(): Int = (3 + barracksLevel).coerceAtMost(5)
 }

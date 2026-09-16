@@ -286,6 +286,12 @@ class DungeonViewModel @Inject constructor(
             heroClasses.forEach {
                 nextGs = nextGs.addJobExp(it, 10)
             }
+            
+            // Award Pet EXP to selected active pet
+            currentGs.selectedPet?.let { activePet ->
+                nextGs = nextGs.addPetExp(activePet, 20)
+            }
+
             if (nextGs != currentGs) {
                 repo.saveGameState(nextGs)
             }

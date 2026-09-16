@@ -9,7 +9,7 @@ import com.game.dungeon.data.models.GameState
 import com.game.dungeon.data.models.Hero
 import com.game.dungeon.data.models.Item
 
-@Database(entities = [GameState::class, Hero::class, Item::class], version = 20, exportSchema = true)
+@Database(entities = [GameState::class, Hero::class, Item::class], version = 21, exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class GameDatabase : RoomDatabase() {
     abstract val gameStateDao: GameStateDao
@@ -170,6 +170,17 @@ abstract class GameDatabase : RoomDatabase() {
                     
                     db.execSQL("DROP TABLE heroes")
                     db.execSQL("ALTER TABLE heroes_new RENAME TO heroes")
+                } catch (e: Exception) {
+                    wipeDatabase(db)
+                }
+            }
+        }
+
+        val MIGRATION_20_21 = object : Migration(20, 21) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                try {
+                    ensureColumn(db, "game_state", "petLevels", "TEXT NOT NULL DEFAULT '{}'")
+                    ensureColumn(db, "game_state", "petExp", "TEXT NOT NULL DEFAULT '{}'")
                 } catch (e: Exception) {
                     wipeDatabase(db)
                 }

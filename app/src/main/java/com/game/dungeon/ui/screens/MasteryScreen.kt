@@ -140,25 +140,25 @@ fun PetsTab(gs: GameState, onSelect: (PetType?) -> Unit, onUnlock: (PetType) -> 
             modifier = Modifier.weight(1f)
         ) {
             item {
-                PetCard(null, gs.selectedPet == null, true, gs.gold) { onSelect(null) }
+                PetCard(null, gs.selectedPet == null, true, gs, onSelect = { onSelect(null) })
             }
             items(PetType.entries) { pet ->
                 val isUnlocked = gs.unlockedPets.contains(pet)
-                PetCard(pet, gs.selectedPet == pet, isUnlocked, gs.gold) { 
+                PetCard(pet, gs.selectedPet == pet, isUnlocked, gs, onSelect = {
                     if (isUnlocked) onSelect(pet) else onUnlock(pet)
-                }
+                })
             }
         }
     }
 }
 
 @Composable
-fun PetCard(pet: PetType?, isSelected: Boolean, isUnlocked: Boolean, currentGold: Long, onClick: () -> Unit) {
+fun PetCard(pet: PetType?, isSelected: Boolean, isUnlocked: Boolean, gs: GameState, onSelect: () -> Unit) {
     val color = if (isSelected) GoldBright else if (isUnlocked) GoldDark else StoneGray
-    val canAfford = if (pet != null) currentGold >= pet.unlockCost else true
+    val canAfford = if (pet != null) gs.gold >= pet.unlockCost else true
 
     PixelPanel(
-        modifier = Modifier.fillMaxWidth().height(100.dp).clickable { onClick() },
+        modifier = Modifier.fillMaxWidth().height(105.dp).clickable { onSelect() },
         borderColor = color
     ) {
         Row(Modifier.padding(8.dp), verticalAlignment = Alignment.CenterVertically) {
@@ -176,16 +176,30 @@ fun PetCard(pet: PetType?, isSelected: Boolean, isUnlocked: Boolean, currentGold
             }
             Spacer(Modifier.width(8.dp))
             Column(Modifier.weight(1f)) {
-                Text(if (pet != null) safeStringResource(pet.nameRes) else safeStringResource(R.string.pet_none), style = PixelBody, color = if (isUnlocked) Color.White else StoneGray)
+                Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
+                    Text(if (pet != null) safeStringResource(pet.nameRes) else safeStringResource(R.string.pet_none), style = PixelBody, color = if (isUnlocked) Color.White else StoneGray)
+                    if (pet != null && isUnlocked) {
+                        Text("LV.${gs.getPetLevel(pet)}", style = PixelSmall, color = SystemCyan)
+                    }
+                }
                 if (pet != null) {
                     if (isUnlocked) {
-                        Text(safeStringResource(pet.descRes), style = PixelSmall, color = HpGreen)
+                        val currentExp = gs.getPetExp(pet)
+                        val nextExp = gs.getPetNextLevelExp(pet)
+                        val bonusPct = gs.getPetBonusValue(pet) * 100f
+                        
+                        Text(safeStringResource(R.string.pet_bonus_format, bonusPct, pet.bonusType.name), style = PixelSmall, color = HpGreen)
+                        Spacer(Modifier.height(4.dp))
+                        Box(Modifier.fillMaxWidth().height(6.dp).background(BgDarkest)) {
+                            Box(Modifier.fillMaxWidth(currentExp.toFloat() / nextExp.coerceAtLeast(1).toFloat()).fillMaxHeight().background(SystemCyan))
+                        }
                     } else {
                         Text(safeStringResource(R.string.unlock_pet_format, pet.unlockCost), style = PixelSmall, color = if (canAfford) GoldBright else EnemyRed)
                     }
                 }
             }
             if (isSelected) {
+                Spacer(Modifier.width(4.dp))
                 Text("✅", fontSize = 16.sp)
             }
         }
