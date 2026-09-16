@@ -171,12 +171,16 @@ fun TownScreen(
 
 @Composable
 fun TownBuilding(name: String, tag: String, onClick: () -> Unit) {
-    Column(horizontalAlignment = CenterHorizontally, modifier = Modifier.width(200.dp)) {
+    Column(
+        horizontalAlignment = CenterHorizontally,
+        modifier = Modifier
+            .width(200.dp)
+            .clickable { onClick() }
+    ) {
         // Larger, more detailed programmatic sprites
         Box(
             modifier = Modifier
-                .size(160.dp, 120.dp)
-                .clickable { onClick() },
+                .size(160.dp, 120.dp),
             contentAlignment = Alignment.BottomCenter
         ) {
             Canvas(Modifier.fillMaxSize()) {

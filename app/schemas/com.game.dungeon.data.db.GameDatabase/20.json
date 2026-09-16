@@ -1,0 +1,485 @@
+{
+  "formatVersion": 1,
+  "database": {
+    "version": 20,
+    "identityHash": "dac7428958ea75af0895bb1dab631010",
+    "entities": [
+      {
+        "tableName": "game_state",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER NOT NULL, `gold` INTEGER NOT NULL, `crystals` TEXT NOT NULL, `magicite` INTEGER NOT NULL, `currentDimension` INTEGER NOT NULL, `highestFloor` INTEGER NOT NULL, `totalMagiciteEarned` INTEGER NOT NULL, `fastestClearTime` INTEGER NOT NULL, `unlockedJobs` TEXT NOT NULL, `magiciteEarnedThisDim` INTEGER NOT NULL, `dimStartTime` INTEGER NOT NULL, `gilEarnedThisDim` INTEGER NOT NULL, `bossesKilledThisDim` INTEGER NOT NULL, `itemsFoundThisDim` INTEGER NOT NULL, `innLevel` INTEGER NOT NULL, `armoryLevel` INTEGER NOT NULL, `magicShopLevel` INTEGER NOT NULL, `barracksLevel` INTEGER NOT NULL, `vaultLevel` INTEGER NOT NULL, `pathfinderLevel` INTEGER NOT NULL, `trainingLevel` INTEGER NOT NULL, `planningLevel` INTEGER NOT NULL, `clinicLevel` INTEGER NOT NULL, `lastSaveTime` INTEGER NOT NULL, `playerId` TEXT, `playerName` TEXT NOT NULL, `lifetimeHighestFloor` INTEGER NOT NULL, `attackRelic` INTEGER NOT NULL, `hpRelic` INTEGER NOT NULL, `mpRelic` INTEGER NOT NULL, `magicRelic` INTEGER NOT NULL, `defenseRelic` INTEGER NOT NULL, `critChanceRelic` INTEGER NOT NULL, `critDamageRelic` INTEGER NOT NULL, `goldRelic` INTEGER NOT NULL, `magiciteRelic` INTEGER NOT NULL, `magnetRelic` INTEGER NOT NULL, `pocketsRelic` INTEGER NOT NULL, `doubleLootRelic` INTEGER NOT NULL, `jobMasteryLevels` TEXT NOT NULL, `jobMasteryExp` TEXT NOT NULL, `unlockedPets` TEXT NOT NULL, `selectedPet` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gold",
+            "columnName": "gold",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "crystals",
+            "columnName": "crystals",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "magicite",
+            "columnName": "magicite",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currentDimension",
+            "columnName": "currentDimension",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "highestFloor",
+            "columnName": "highestFloor",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "totalMagiciteEarned",
+            "columnName": "totalMagiciteEarned",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "fastestClearTime",
+            "columnName": "fastestClearTime",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "unlockedJobs",
+            "columnName": "unlockedJobs",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "magiciteEarnedThisDim",
+            "columnName": "magiciteEarnedThisDim",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "dimStartTime",
+            "columnName": "dimStartTime",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "gilEarnedThisDim",
+            "columnName": "gilEarnedThisDim",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "bossesKilledThisDim",
+            "columnName": "bossesKilledThisDim",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "itemsFoundThisDim",
+            "columnName": "itemsFoundThisDim",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "innLevel",
+            "columnName": "innLevel",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "armoryLevel",
+            "columnName": "armoryLevel",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "magicShopLevel",
+            "columnName": "magicShopLevel",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "barracksLevel",
+            "columnName": "barracksLevel",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "vaultLevel",
+            "columnName": "vaultLevel",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pathfinderLevel",
+            "columnName": "pathfinderLevel",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "trainingLevel",
+            "columnName": "trainingLevel",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "planningLevel",
+            "columnName": "planningLevel",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "clinicLevel",
+            "columnName": "clinicLevel",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lastSaveTime",
+            "columnName": "lastSaveTime",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "playerId",
+            "columnName": "playerId",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "playerName",
+            "columnName": "playerName",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "lifetimeHighestFloor",
+            "columnName": "lifetimeHighestFloor",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "attackRelic",
+            "columnName": "attackRelic",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hpRelic",
+            "columnName": "hpRelic",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mpRelic",
+            "columnName": "mpRelic",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "magicRelic",
+            "columnName": "magicRelic",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "defenseRelic",
+            "columnName": "defenseRelic",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "critChanceRelic",
+            "columnName": "critChanceRelic",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "critDamageRelic",
+            "columnName": "critDamageRelic",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "goldRelic",
+            "columnName": "goldRelic",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "magiciteRelic",
+            "columnName": "magiciteRelic",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "magnetRelic",
+            "columnName": "magnetRelic",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "pocketsRelic",
+            "columnName": "pocketsRelic",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "doubleLootRelic",
+            "columnName": "doubleLootRelic",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "jobMasteryLevels",
+            "columnName": "jobMasteryLevels",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "jobMasteryExp",
+            "columnName": "jobMasteryExp",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "unlockedPets",
+            "columnName": "unlockedPets",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "selectedPet",
+            "columnName": "selectedPet",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "heroes",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `heroClass` TEXT NOT NULL, `name` TEXT NOT NULL, `currentHp` INTEGER NOT NULL, `currentMp` INTEGER NOT NULL, `level` INTEGER NOT NULL, `exp` INTEGER NOT NULL, `expToNextLevel` INTEGER NOT NULL, `abilityCharge` INTEGER NOT NULL, `aiPriority` TEXT NOT NULL, `weaponId` TEXT, `armorId` TEXT, `shieldId` TEXT, `accessory1Id` TEXT, `accessory2Id` TEXT, `isInParty` INTEGER NOT NULL, `partyPosition` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "heroClass",
+            "columnName": "heroClass",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currentHp",
+            "columnName": "currentHp",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "currentMp",
+            "columnName": "currentMp",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "level",
+            "columnName": "level",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "exp",
+            "columnName": "exp",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "expToNextLevel",
+            "columnName": "expToNextLevel",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "abilityCharge",
+            "columnName": "abilityCharge",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "aiPriority",
+            "columnName": "aiPriority",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "weaponId",
+            "columnName": "weaponId",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "armorId",
+            "columnName": "armorId",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "shieldId",
+            "columnName": "shieldId",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "accessory1Id",
+            "columnName": "accessory1Id",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "accessory2Id",
+            "columnName": "accessory2Id",
+            "affinity": "TEXT"
+          },
+          {
+            "fieldPath": "isInParty",
+            "columnName": "isInParty",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "partyPosition",
+            "columnName": "partyPosition",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      },
+      {
+        "tableName": "items",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `name` TEXT NOT NULL, `slot` TEXT NOT NULL, `rarity` TEXT NOT NULL, `attackBonus` INTEGER NOT NULL, `defenseBonus` INTEGER NOT NULL, `magicBonus` INTEGER NOT NULL, `hpBonus` INTEGER NOT NULL, `mpBonus` INTEGER NOT NULL, `critChanceBonus` INTEGER NOT NULL, `critDamageBonus` INTEGER NOT NULL, `emoji` TEXT NOT NULL, `floorFound` INTEGER NOT NULL, `ownerId` TEXT, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "slot",
+            "columnName": "slot",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "rarity",
+            "columnName": "rarity",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "attackBonus",
+            "columnName": "attackBonus",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "defenseBonus",
+            "columnName": "defenseBonus",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "magicBonus",
+            "columnName": "magicBonus",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "hpBonus",
+            "columnName": "hpBonus",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "mpBonus",
+            "columnName": "mpBonus",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "critChanceBonus",
+            "columnName": "critChanceBonus",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "critDamageBonus",
+            "columnName": "critDamageBonus",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "emoji",
+            "columnName": "emoji",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "floorFound",
+            "columnName": "floorFound",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ownerId",
+            "columnName": "ownerId",
+            "affinity": "TEXT"
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
+      }
+    ],
+    "setupQueries": [
+      "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, 'dac7428958ea75af0895bb1dab631010')"
+    ]
+  }
+}
