@@ -47,7 +47,7 @@ fun EquipmentScreen(
                 // Top Bar
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween, verticalAlignment = Alignment.CenterVertically) {
                     PixelButton(stringResource(R.string.back_button), onClick = onBack)
-                    Text(stringResource(R.string.equipment_title, hero?.name ?: ""), style = PixelHeading, color = GoldBright)
+                    Text(safeStringResource(R.string.equipment_title, hero?.name ?: ""), style = PixelHeading, color = GoldBright)
                     MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
                 }
 
@@ -180,7 +180,7 @@ fun EquippedPanel(equipped: List<Item>, onQuickEquip: () -> Unit, onSelect: (Ite
                             Text(if (item != null) item.emoji else "➕", fontSize = 18.sp)
                             Spacer(Modifier.width(8.dp))
                             Text(
-                                text = item?.name ?: stringResource(R.string.slot_format, slot.name),
+                                text = item?.name ?: safeStringResource(R.string.slot_format, slot.name),
                                 style = PixelBody,
                                 color = if (item != null) Color.White else StoneGray
                             )
@@ -219,7 +219,7 @@ fun InventoryPanel(inventory: List<Item>, onSelect: (Item) -> Unit) {
                             Spacer(Modifier.width(12.dp))
                             Column {
                                 Text(item.name, style = PixelBody, color = Color.White)
-                                Text(stringResource(R.string.item_lvl_rarity_format, item.floorFound, item.rarity.name), style = PixelSmall, color = StoneGray)
+                                Text(safeStringResource(R.string.item_lvl_rarity_format, item.floorFound, item.rarity.name), style = PixelSmall, color = StoneGray)
                             }
                         }
                     }
@@ -272,7 +272,7 @@ fun ItemDetailOverlay(
                     } else {
                         PixelButton(stringResource(R.string.equip_button), onClick = onEquip, modifier = Modifier.weight(1f))
                     }
-                    PixelButton(stringResource(R.string.sell_button_format, item.sellValue), onClick = onSell, modifier = Modifier.weight(1f), active = true)
+                    PixelButton(safeStringResource(R.string.sell_button_format, item.sellValue), onClick = onSell, modifier = Modifier.weight(1f), active = true)
                 }
                 
                 PixelButton(stringResource(R.string.close_button), onClick = onClose, modifier = Modifier.fillMaxWidth())

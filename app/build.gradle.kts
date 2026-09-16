@@ -14,7 +14,7 @@ android {
         applicationId = "com.centelles.dungeon"
         minSdk = 26
         targetSdk = 37
-        versionCode = 11
+        versionCode = 14
         versionName = "0.0.1"
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         buildConfigField("long", "INITIAL_GIL", "0L")

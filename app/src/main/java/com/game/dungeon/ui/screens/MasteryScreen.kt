@@ -115,12 +115,12 @@ fun JobMasteryTab(gs: GameState) {
                         Box(Modifier.fillMaxWidth().height(8.dp).background(BgDarkest)) {
                             Box(Modifier.fillMaxWidth(exp.toFloat() / nextExp.coerceAtLeast(1).toFloat()).fillMaxHeight().background(SystemCyan))
                         }
-                        Text(stringResource(R.string.mastery_exp_format, exp, nextExp), style = PixelSmall, color = StoneGray)
+                        Text(safeStringResource(R.string.mastery_exp_format, exp, nextExp), style = PixelSmall, color = StoneGray)
                     }
                     Spacer(Modifier.width(16.dp))
                     Column(horizontalAlignment = Alignment.End) {
                         Text(stringResource(R.string.mastery_bonus_label), style = PixelSmall, color = StoneGray)
-                        Text(stringResource(R.string.mastery_bonus_stat_format, bonus, job.masteryStatType.name), style = PixelBody, color = HpGreen)
+                        Text(safeStringResource(R.string.mastery_bonus_stat_format, bonus, job.masteryStatType.name), style = PixelBody, color = HpGreen)
                     }
                 }
             }
@@ -181,7 +181,7 @@ fun PetCard(pet: PetType?, isSelected: Boolean, isUnlocked: Boolean, currentGold
                     if (isUnlocked) {
                         Text(stringResource(pet.descRes), style = PixelSmall, color = HpGreen)
                     } else {
-                        Text(stringResource(R.string.unlock_pet_format, pet.unlockCost), style = PixelSmall, color = if (canAfford) GoldBright else EnemyRed)
+                        Text(safeStringResource(R.string.unlock_pet_format, pet.unlockCost), style = PixelSmall, color = if (canAfford) GoldBright else EnemyRed)
                     }
                 }
             }
