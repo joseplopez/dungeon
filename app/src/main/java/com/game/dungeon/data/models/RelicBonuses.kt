@@ -21,7 +21,8 @@ data class RelicBonuses(
     val doubleLootChance: Int,
     // Masteries & Pets
     val jobMasteryLevels: Map<HeroClass, Int>,
-    val selectedPet: PetType?
+    val selectedPet: PetType?,
+    val bossesDefeatedCount: Int
 ) {
     fun getMasteryBonus(heroClass: HeroClass, stat: StatType): Int {
         val level = jobMasteryLevels[heroClass] ?: 0
@@ -51,7 +52,8 @@ data class RelicBonuses(
             pocketsBonus = gs.pocketsBonus,
             doubleLootChance = gs.doubleLootChance,
             jobMasteryLevels = gs.jobMasteryLevels,
-            selectedPet = gs.selectedPet
+            selectedPet = gs.selectedPet,
+            bossesDefeatedCount = gs.bossesDefeatedNames.size
         )
     }
 }

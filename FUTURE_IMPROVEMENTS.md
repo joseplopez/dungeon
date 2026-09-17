@@ -28,7 +28,7 @@ This document outlines potential future features and improvements for Final Dung
     *   **[x] Play Store Rating**: Direct link to rate the app on Google Play.
 *   **[x] Advanced Job Masteries**:
     *   **[x] Job Levels**: Earning EXP for a specific Job to unlock permanent minor stat boosts for all heroes of that class.
-    *   **Hidden Jobs**: Ultra-rare jobs (e.g., Onion Knight, Mime) unlocked through secret achievements or specific Relic combinations.
+    *   **[x] Hidden Jobs**: Ultra-rare jobs (e.g., Onion Knight, Mime) unlocked through secret achievements or specific Relic combinations.
 *   **[x] Pet System**:
     *   **[x] Support Familiars**: Non-combat pets that provide passive buffs (e.g., +5% Item Find) or occasionally cast minor support spells.
     *   **[x] Support Familiars level up**: Make pets to level up, think about the way.

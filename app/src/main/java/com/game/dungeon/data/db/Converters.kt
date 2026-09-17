@@ -74,4 +74,15 @@ class Converters {
         val type = object : TypeToken<Map<com.game.dungeon.data.models.PetType, Int>>() {}.type
         return Gson().fromJson(value, type)
     }
+
+    @TypeConverter
+    fun fromStringSet(value: Set<String>?): String? {
+        return Gson().toJson(value)
+    }
+
+    @TypeConverter
+    fun toStringSet(value: String?): Set<String>? {
+        val type = object : TypeToken<Set<String>>() {}.type
+        return Gson().fromJson(value, type)
+    }
 }

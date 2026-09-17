@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Alignment.Companion.End
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
@@ -313,6 +314,7 @@ fun HeroUnitDisplay(hero: Hero, isAttacking: Boolean, isHit: Boolean, isCritical
         modifier = Modifier
             .offset(x = (lungeOffset + shakeOffset.value).dp)
             .graphicsLayer(alpha = alphaAnim.value)
+            .testTag("HeroUnit_${hero.heroClass.name}")
     ) {
         if (!isDying) {
             PixelHpBar(hero.currentHp, hero.maxHp, Modifier.width(64.dp).height(10.dp))

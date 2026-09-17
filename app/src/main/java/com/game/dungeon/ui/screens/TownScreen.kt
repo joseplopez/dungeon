@@ -19,6 +19,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import com.game.dungeon.ui.components.safeStringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -150,7 +151,8 @@ fun TownScreen(
             unlockedJobs = gs?.unlockedJobs ?: setOf(HeroClass.FREELANCER),
             gil = gil,
             onBuy = { viewModel.buyCrystal(it) },
-            onDismiss = { showCrystalShop = false }
+            onDismiss = { showCrystalShop = false },
+            gs = gs ?: GameState()
         )
     }
 
@@ -219,7 +221,8 @@ fun CrystalShopDialog(
     unlockedJobs: Set<HeroClass>,
     gil: Long,
     onBuy: (CrystalColor) -> Unit,
-    onDismiss: () -> Unit
+    onDismiss: () -> Unit,
+    gs: GameState
 ) {
     Dialog(onDismissRequest = onDismiss) {
         GoldenBorderBox(
@@ -252,6 +255,30 @@ fun CrystalShopDialog(
                     verticalArrangement = Arrangement.spacedBy(12.dp),
                     modifier = Modifier.weight(1f)
                 ) {
+                    val allStandardUnlocked = HeroClass.entries.filter { it.tier == 1 || it.tier == 2 }.all { unlockedJobs.contains(it) || it == HeroClass.FREELANCER }
+                    val hiddenJobsToDiscover = HeroClass.entries.filter { it.tier == 3 }.any { !gs.isJobDiscovered(it) }
+                    if (allStandardUnlocked && hiddenJobsToDiscover) {
+                        item {
+                            Row(Modifier.fillMaxWidth().padding(4.dp), verticalAlignment = CenterVertically) {
+                                Canvas(Modifier.size(32.dp)) {
+                                    val path = Path().apply {
+                                        moveTo(size.width / 2f, 0f)
+                                        lineTo(size.width, size.height * 0.4f)
+                                        lineTo(size.width / 2f, size.height)
+                                        lineTo(0f, size.height * 0.4f)
+                                        close()
+                                    }
+                                    drawPath(path, color = Color(0xFF000000))
+                                    drawPath(path, color = Color.White.copy(alpha = 0.3f), style = Stroke(2f))
+                                }
+                                Spacer(Modifier.width(12.dp))
+                                Column(Modifier.weight(1f)) {
+                                    Text("???", style = PixelBody, color = GoldBright)
+                                    Text(safeStringResource(R.string.hidden_job_clue_desc), style = PixelSmall, color = StoneGray)
+                                }
+                            }
+                        }
+                    }
                     items(availableCrystals) { crystal ->
                         val isUnlocked = unlockedJobs.contains(crystal.unlocksJob)
                         CrystalShopRow(crystal, isUnlocked, gil, onBuy = { onBuy(crystal.color) })
@@ -269,7 +296,7 @@ fun CrystalShopRow(
     gil: Long,
     onBuy: () -> Unit
 ) {
-    Row(Modifier.fillMaxWidth().padding(4.dp), verticalAlignment = CenterVertically) {
+    Row(Modifier.fillMaxWidth().padding(4.dp).testTag("CrystalRow_${crystal.color.name}"), verticalAlignment = CenterVertically) {
         Canvas(Modifier.size(32.dp)) {
             val path = Path().apply {
                 moveTo(size.width / 2f, 0f)

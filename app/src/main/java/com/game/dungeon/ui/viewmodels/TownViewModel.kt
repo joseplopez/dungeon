@@ -25,6 +25,9 @@ class TownViewModel @Inject constructor(
                 // Advanced crystals (Tier 2+) require Inn Level >= 1
                 if (job.tier >= 2) (gs?.innLevel ?: 0) >= 1 else true
             }
+            .filter { job ->
+                if (job.tier == 3) gs?.isJobDiscovered(job) == true else true
+            }
             .map { it.crystalColor }
             .distinct()
             .map { color ->

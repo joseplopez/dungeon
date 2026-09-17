@@ -45,17 +45,19 @@ class InnViewModel @Inject constructor(
     val unlockedJobs: List<HeroClass>
         get() {
             val state = gameState.value ?: return listOf(HeroClass.FREELANCER)
-            val unlockedFromCrystals = state.unlockedJobs
-            
-            // Filter by Inn Level (tier restriction)
-            // Tier 1 is always visible if unlocked via crystal
-            // Tier 2 requires Inn Level >= 1
             return HeroClass.entries.filter { job ->
-                val isUnlocked = unlockedFromCrystals.contains(job) || job == HeroClass.FREELANCER
+                val isUnlocked = state.isJobUnlocked(job)
                 val tierMet = if (job.tier >= 2) state.innLevel >= 1 else true
                 isUnlocked && tierMet
             }
         }
+
+    fun markHiddenJobNotified(heroClass: HeroClass) {
+        val gs = gameState.value ?: return
+        viewModelScope.launch {
+            repository.saveGameState(gs.copy(notifiedHiddenJobs = gs.notifiedHiddenJobs + heroClass))
+        }
+    }
 
     val maxPartySize: Int
         get() = gameState.value?.getMaxPartySize() ?: 3

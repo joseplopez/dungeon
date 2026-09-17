@@ -62,7 +62,9 @@ data class GameState(
     val unlockedPets: Set<PetType> = emptySet(),
     val selectedPet: PetType? = null,
     val petLevels: Map<PetType, Int> = emptyMap(),
-    val petExp: Map<PetType, Int> = emptyMap()
+    val petExp: Map<PetType, Int> = emptyMap(),
+    val bossesDefeatedNames: Set<String> = emptySet(),
+    val notifiedHiddenJobs: Set<HeroClass> = emptySet()
 ) {
     val maxGil: Long get() = 10_000L + (vaultLevel * 50_000L)
     val upgradeDiscount: Float get() = planningLevel * 0.05f
@@ -133,6 +135,27 @@ data class GameState(
             petLevels = petLevels.toMutableMap().apply { put(petType, newLevel) },
             petExp = petExp.toMutableMap().apply { put(petType, newExp) }
         )
+    }
+
+    val allStandardCrystalsUnlocked: Boolean get() {
+        val standardColors = CrystalColor.entries.filter { it != CrystalColor.CLEAR && it != CrystalColor.HIDDEN }
+        return standardColors.all { crystals[it] == true }
+    }
+
+    fun isJobDiscovered(job: HeroClass): Boolean {
+        if (job.tier < 3) return true
+        return when(job) {
+            HeroClass.ONION_KNIGHT -> jobMasteryLevels.values.sum() >= 100
+            HeroClass.MIME -> currentDimension >= 4
+            HeroClass.NECROMANCER -> lifetimeHighestFloor >= 1000
+            HeroClass.BLUE_MAGE -> bossesDefeatedNames.size >= 10
+            else -> false
+        }
+    }
+
+    fun isJobUnlocked(job: HeroClass): Boolean {
+        if (job == HeroClass.FREELANCER) return true
+        return unlockedJobs.contains(job)
     }
     
     fun getMaxPartySize(): Int = (3 + barracksLevel).coerceAtMost(5)

@@ -71,11 +71,41 @@ data class Hero(
     }
 
     // Dynamic stats based on level
-    val baseMaxHp: Int get() = heroClass.baseHp + (level - 1) * (heroClass.baseHp / 10).coerceAtLeast(5)
-    val baseMaxMp: Int get() = heroClass.baseMp + (level - 1) * (heroClass.baseMp / 10).coerceAtLeast(2)
-    val baseAttack: Int get() = heroClass.baseAttack + (level - 1) * (heroClass.baseAttack / 10).coerceAtLeast(1)
-    val baseMagic: Int get() = heroClass.baseMagic + (level - 1) * (heroClass.baseMagic / 10).coerceAtLeast(1)
-    val baseDefense: Int get() = heroClass.baseDefense + (level - 1) * (heroClass.baseDefense / 10).coerceAtLeast(1)
+    val baseMaxHp: Int get() {
+        if (heroClass == HeroClass.ONION_KNIGHT) {
+            return if (level < 90) heroClass.baseHp + (level - 1) * 2 
+            else 500 + (level - 90) * 150 // Massive spike
+        }
+        return heroClass.baseHp + (level - 1) * (heroClass.baseHp / 10).coerceAtLeast(5)
+    }
+    val baseMaxMp: Int get() {
+        if (heroClass == HeroClass.ONION_KNIGHT) {
+            return if (level < 90) heroClass.baseMp + (level - 1) 
+            else 200 + (level - 90) * 50
+        }
+        return heroClass.baseMp + (level - 1) * (heroClass.baseMp / 10).coerceAtLeast(2)
+    }
+    val baseAttack: Int get() {
+        if (heroClass == HeroClass.ONION_KNIGHT) {
+            return if (level < 90) heroClass.baseAttack + (level - 1) 
+            else 100 + (level - 90) * 30
+        }
+        return heroClass.baseAttack + (level - 1) * (heroClass.baseAttack / 10).coerceAtLeast(1)
+    }
+    val baseMagic: Int get() {
+        if (heroClass == HeroClass.ONION_KNIGHT) {
+            return if (level < 90) heroClass.baseMagic + (level - 1) 
+            else 100 + (level - 90) * 30
+        }
+        return heroClass.baseMagic + (level - 1) * (heroClass.baseMagic / 10).coerceAtLeast(1)
+    }
+    val baseDefense: Int get() {
+        if (heroClass == HeroClass.ONION_KNIGHT) {
+            return if (level < 90) heroClass.baseDefense + (level - 1) 
+            else 100 + (level - 90) * 30
+        }
+        return heroClass.baseDefense + (level - 1) * (heroClass.baseDefense / 10).coerceAtLeast(1)
+    }
 
     val maxHp: Int get() = baseMaxHp + hpBonus
     val maxMp: Int get() = baseMaxMp + mpBonus
@@ -96,12 +126,15 @@ data class Hero(
         val petCritChance = relicBonuses?.petCritChanceBonus ?: 0
         val petCritDmg = relicBonuses?.petCritDamageBonus ?: 0
 
+        // Blue Mage Lore Bonus: +2 to all stats per unique boss defeated
+        val loreBonus = if (heroClass == HeroClass.BLUE_MAGE) (relicBonuses?.bossesDefeatedCount ?: 0) * 2 else 0
+
         return mapOf(
-            "HP" to baseMaxHp + equippedItems.sumOf { it.hpBonus } + (relicBonuses?.hpBonus ?: 0) + masteryHp,
-            "MP" to baseMaxMp + equippedItems.sumOf { it.mpBonus } + (relicBonuses?.mpBonus ?: 0) + masteryMp,
-            "ATK" to baseAttack + equippedItems.sumOf { it.attackBonus } + (relicBonuses?.attackBonus ?: 0) + masteryAtk,
-            "DEF" to baseDefense + equippedItems.sumOf { it.defenseBonus } + (relicBonuses?.defenseBonus ?: 0) + masteryDef,
-            "MAG" to baseMagic + equippedItems.sumOf { it.magicBonus } + (relicBonuses?.magicBonus ?: 0) + masteryMag,
+            "HP" to baseMaxHp + equippedItems.sumOf { it.hpBonus } + (relicBonuses?.hpBonus ?: 0) + masteryHp + (loreBonus * 5),
+            "MP" to baseMaxMp + equippedItems.sumOf { it.mpBonus } + (relicBonuses?.mpBonus ?: 0) + masteryMp + (loreBonus * 2),
+            "ATK" to baseAttack + equippedItems.sumOf { it.attackBonus } + (relicBonuses?.attackBonus ?: 0) + masteryAtk + loreBonus,
+            "DEF" to baseDefense + equippedItems.sumOf { it.defenseBonus } + (relicBonuses?.defenseBonus ?: 0) + masteryDef + loreBonus,
+            "MAG" to baseMagic + equippedItems.sumOf { it.magicBonus } + (relicBonuses?.magicBonus ?: 0) + masteryMag + loreBonus,
             "CRIT_CHANCE" to 5 + equippedItems.sumOf { it.critChanceBonus } + (relicBonuses?.critChanceBonus ?: 0) + masteryCritChance + petCritChance,
             "CRIT_DAMAGE" to 50 + equippedItems.sumOf { it.critDamageBonus } + (relicBonuses?.critDamageBonus ?: 0) + masteryCritDmg + petCritDmg
         )

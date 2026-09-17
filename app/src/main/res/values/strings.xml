@@ -183,6 +183,20 @@
     <string name="class_bard_desc">Support with magical songs.</string>
     <string name="class_samurai">Samurai</string>
     <string name="class_samurai_desc">Master of the blade. High crit.</string>
+    <string name="class_onion_knight">Onion Knight</string>
+    <string name="class_onion_knight_desc">Late bloomer. Weak until Level 90+.</string>
+    <string name="class_mime">Mime</string>
+    <string name="class_mime_desc">Master of imitation. Mimics party abilities.</string>
+    <string name="class_necromancer">Necromancer</string>
+    <string name="class_necromancer_desc">Dark arts. Soul Drain heals the party.</string>
+    <string name="class_blue_mage">Blue Mage</string>
+    <string name="class_blue_mage_desc">Lore student. Grows stronger by slaying bosses.</string>
+
+    <string name="hidden_job_clue">Mystery Job</string>
+    <string name="hidden_job_clue_desc">A mysterious path awaits...</string>
+    <string name="hidden_job_unlock_title">CONGRATULATIONS!</string>
+    <string name="hidden_job_unlock_body">You have discovered a legendary hidden job: <xliff:g id="job_name">%1$s</xliff:g>!</string>
+    <string name="hidden_job_unlock_close">AMAZING!</string>
 
     <!-- Upgrades -->
     <string name="upgrade_inn_name">Taproom</string>
@@ -262,6 +276,10 @@
     <string name="ability_zeninage_name">Zeninage</string>
     <string name="ability_zeninage_desc"><xliff:g id="hero">%1$s</xliff:g> throws Gil — Zeninage!</string>
     <string name="ability_ransack_name">Ransack</string>
+    <string name="ability_mimic_name">Mimic</string>
+    <string name="ability_mimic_desc"><xliff:g id="hero">%1$s</xliff:g> mimics the last ability!</string>
+    <string name="ability_souldrain_name">Soul Drain</string>
+    <string name="ability_souldrain_desc"><xliff:g id="hero">%1$s</xliff:g> casts Soul Drain!</string>
 
     <!-- Songs -->
     <string name="song_paeon">Paeon</string>

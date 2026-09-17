@@ -308,7 +308,13 @@ class DungeonViewModel @Inject constructor(
             bossesKilledThisRun = state.bossesKilledThisRun + 1
           )
         }
-        viewModelScope.launch { delay(3000); battleState.update { it.copy(showBossBanner=false) } }
+        viewModelScope.launch {
+            val currentGs = gameState.value ?: GameState()
+            val nextGs = currentGs.copy(bossesDefeatedNames = currentGs.bossesDefeatedNames + event.bossName)
+            repo.saveGameState(nextGs)
+            delay(3000)
+            battleState.update { it.copy(showBossBanner=false) }
+        }
       }
       is FFBattleEvent.SummonUsed -> {
         battleState.update { state ->

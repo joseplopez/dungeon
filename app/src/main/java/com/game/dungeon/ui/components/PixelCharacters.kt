@@ -605,6 +605,10 @@ fun DrawScope.drawCockatrice() {
         HeroClass.DRAGOON -> drawDragoon()
         HeroClass.BARD -> drawBard()
         HeroClass.SAMURAI -> drawSamurai()
+        HeroClass.ONION_KNIGHT -> drawFreelancer()
+        HeroClass.MIME -> drawBard()
+        HeroClass.NECROMANCER -> drawBlackMage()
+        HeroClass.BLUE_MAGE -> drawRedMage()
     }
 }
 

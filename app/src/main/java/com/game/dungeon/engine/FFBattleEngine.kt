@@ -39,6 +39,7 @@ class FFBattleEngine(private val context: Context) {
         val aliveHeroes = heroes.map { it.copy() }.toMutableList()
         var totalGil = 0L
         var totalMagicite = 0
+        var lastAbilityClass: HeroClass? = null
 
         while (aliveHeroes.any { it.isAlive } && currentFloor <= 100) {
             // Spawn enemies for this floor
@@ -68,7 +69,7 @@ class FFBattleEngine(private val context: Context) {
                     
                     when (actor) {
                         is Hero -> {
-                            if (actor.isAlive) executeHeroTurn(actor, aliveHeroes, enemies, relicBonuses, onEvent)
+                            if (actor.isAlive) executeHeroTurn(actor, aliveHeroes, enemies, relicBonuses, { lastAbilityClass }, { lastAbilityClass = it }, onEvent)
                         }
                         is Enemy -> {
                             if (actor.currentHp > 0) executeEnemyTurn(actor, aliveHeroes, onEvent)
@@ -145,14 +146,14 @@ class FFBattleEngine(private val context: Context) {
         return List(count) { Enemy.fromTemplate(templates.random(), floor, context, relicBonuses = relicBonuses) }
     }
 
-    private fun executeHeroTurn(hero: Hero, allies: List<Hero>, enemies: MutableList<Enemy>, relicBonuses: RelicBonuses, onEvent: (FFBattleEvent)->Unit) {
+    private fun executeHeroTurn(hero: Hero, allies: List<Hero>, enemies: MutableList<Enemy>, relicBonuses: RelicBonuses, getLastAbility: () -> HeroClass?, setLastAbility: (HeroClass) -> Unit, onEvent: (FFBattleEvent)->Unit) {
         onEvent(FFBattleEvent.TurnStart(hero.id, hero.name))
         hero.abilityCharge++
         val useAbility = hero.abilityCharge >= 3
 
         if (useAbility) {
             hero.abilityCharge = 0
-            executeJobAbility(hero, allies, enemies, relicBonuses, onEvent)
+            executeJobAbility(hero, allies, enemies, relicBonuses, getLastAbility, setLastAbility, onEvent)
             return
         }
 
@@ -212,7 +213,10 @@ class FFBattleEngine(private val context: Context) {
         }
     }
 
-    private fun executeJobAbility(hero: Hero, allies: List<Hero>, enemies: MutableList<Enemy>, relicBonuses: RelicBonuses, onEvent: (FFBattleEvent)->Unit) {
+    private fun executeJobAbility(hero: Hero, allies: List<Hero>, enemies: MutableList<Enemy>, relicBonuses: RelicBonuses, getLastAbility: () -> HeroClass?, setLastAbility: (HeroClass) -> Unit, onEvent: (FFBattleEvent)->Unit) {
+        if (hero.heroClass != HeroClass.MIME) {
+            setLastAbility(hero.heroClass)
+        }
         when (hero.heroClass) {
             HeroClass.WARRIOR -> {
                 val target = enemies.filter { it.currentHp > 0 }.maxByOrNull { it.currentHp } ?: return
@@ -376,6 +380,33 @@ class FFBattleEngine(private val context: Context) {
                     }
                 }
                 onEvent(FFBattleEvent.AbilityUsed(hero.id, R.string.ability_zeninage_name, R.string.ability_zeninage_desc, listOf(hero.name)))
+            }
+            HeroClass.MIME -> {
+                onEvent(FFBattleEvent.AbilityUsed(hero.id, R.string.ability_mimic_name, R.string.ability_mimic_desc, listOf(hero.name)))
+                val lastAbility = getLastAbility()
+                if (lastAbility != null) {
+                    executeJobAbility(hero.copy(heroClass = lastAbility), allies, enemies, relicBonuses, getLastAbility, setLastAbility, onEvent)
+                }
+            }
+            HeroClass.NECROMANCER -> {
+                onEvent(FFBattleEvent.AbilityUsed(hero.id, R.string.ability_souldrain_name, R.string.ability_souldrain_desc, listOf(hero.name)))
+                val target = enemies.filter { it.currentHp > 0 }.firstOrNull() ?: return
+                val (baseDmg, isCrit) = calcMagicDamage(hero, target)
+                val dmg = (baseDmg * 2f).toInt()
+                target.currentHp -= dmg
+                onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, true, isCrit))
+                val healAmt = (dmg * 0.5f).toInt()
+                val amounts = mutableMapOf<String, Int>()
+                allies.filter { it.isAlive }.forEach { ally ->
+                    ally.currentHp = minOf(ally.currentHp + healAmt, ally.maxHp)
+                    amounts[ally.id] = healAmt
+                }
+                onEvent(FFBattleEvent.GroupHeal(hero.id, amounts))
+                if (target.currentHp <= 0) {
+                    val exp = ((target.floor * 2) * relicBonuses.expMultiplier).toInt()
+                    onEvent(FFBattleEvent.EnemyDefeated(target.id, target.gilDropped, target.magiciteDropped, exp))
+                    awardExpToParty(allies, exp, onEvent)
+                }
             }
             else -> { /* Freelancer: no special ability */ }
         }

@@ -12,6 +12,7 @@ import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.graphics.Color
 import com.game.dungeon.ui.components.safeStringResource
 import androidx.compose.ui.text.font.FontWeight
@@ -127,6 +128,19 @@ fun InnScreen(
                 viewModel.advanceDimension()
                 showDimensionResetDialog = false 
             }
+        )
+    }
+
+    val unnotifiedJob = remember(gs) {
+        HeroClass.entries.firstOrNull { job ->
+            job.tier == 3 && gs?.isJobDiscovered(job) == true && gs?.notifiedHiddenJobs?.contains(job) == false
+        }
+    }
+
+    if (unnotifiedJob != null) {
+        HiddenJobUnlockDialog(
+            heroClass = unnotifiedJob,
+            onDismiss = { viewModel.markHiddenJobNotified(unnotifiedJob) }
         )
     }
 }
@@ -315,7 +329,8 @@ fun HireJobRow(
     PixelPanel(
         modifier = Modifier
             .fillMaxWidth()
-            .height(80.dp),
+            .height(80.dp)
+            .testTag("HireRow_${job.name}"),
         borderColor = if (canHire) Color(job.crystalColor.colorHex) else StoneGray
     ) {
         Row(Modifier
@@ -569,5 +584,36 @@ fun HallOfFameRow(label: String, value: String) {
     Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
         Text(label, style = PixelSmall, color = StoneGray)
         Text(value, style = PixelSmall, color = Color.White)
+    }
+}
+
+@Composable
+fun HiddenJobUnlockDialog(heroClass: HeroClass, onDismiss: () -> Unit) {
+    Dialog(onDismissRequest = onDismiss) {
+        GoldenBorderBox(Modifier
+            .fillMaxWidth()
+            .background(BgDarkest)
+            .padding(16.dp)) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(12.dp)) {
+                Text(safeStringResource(R.string.hidden_job_unlock_title), style = PixelHeading, color = GoldBright)
+                Spacer(Modifier.height(4.dp))
+                HeroSprite(heroClass, Modifier.size(64.dp))
+                Spacer(Modifier.height(4.dp))
+                Text(
+                    safeStringResource(R.string.hidden_job_unlock_body, safeStringResource(heroClass.nameRes)),
+                    style = PixelBody,
+                    color = Color.White,
+                    textAlign = TextAlign.Center
+                )
+                Text(
+                    safeStringResource(heroClass.descRes),
+                    style = PixelSmall,
+                    color = StoneGray,
+                    textAlign = TextAlign.Center
+                )
+                Spacer(Modifier.height(8.dp))
+                PixelButton(safeStringResource(R.string.hidden_job_unlock_close), onClick = onDismiss, active = true, modifier = Modifier.fillMaxWidth().height(48.dp))
+            }
+        }
     }
 }

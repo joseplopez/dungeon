@@ -62,7 +62,21 @@ enum class HeroClass(
         StatType.MP, 15),
     SAMURAI(R.string.class_samurai, 2, CrystalColor.DARK_RED, 450, "🗾",
         R.string.class_samurai_desc, 115, 30, 26, 14, 14, 10, AIPriority.ATTACK, 0xFF882222,
-        StatType.CRIT_DAMAGE, 10)
+        StatType.CRIT_DAMAGE, 10),
+
+    // TIER 3 — HIDDEN JOBS (Unlockable Secrets)
+    ONION_KNIGHT(R.string.class_onion_knight, 3, CrystalColor.HIDDEN_ONION, 1000, "🧅",
+        R.string.class_onion_knight_desc, 30, 10, 5, 5, 5, 8, AIPriority.ATTACK, 0xFFCCFFCC,
+        StatType.HP, 50),
+    MIME(R.string.class_mime, 3, CrystalColor.HIDDEN_MIME, 1200, "🤡",
+        R.string.class_mime_desc, 90, 40, 12, 12, 12, 15, AIPriority.ATTACK, 0xFFFFFF99,
+        StatType.SPEED, 2),
+    NECROMANCER(R.string.class_necromancer, 3, CrystalColor.HIDDEN_NECRO, 1500, "💀",
+        R.string.class_necromancer_desc, 110, 80, 14, 30, 15, 9, AIPriority.MAGIC, 0xFF330033,
+        StatType.MAGIC, 5),
+    BLUE_MAGE(R.string.class_blue_mage, 3, CrystalColor.HIDDEN_BLUE, 1300, "📘",
+        R.string.class_blue_mage_desc, 100, 60, 18, 22, 14, 12, AIPriority.MAGIC, 0xFF3333FF,
+        StatType.MP, 20)
 }
 
 enum class StatType { HP, MP, ATTACK, MAGIC, DEFENSE, SPEED, CRIT_CHANCE, CRIT_DAMAGE }
@@ -81,7 +95,12 @@ enum class CrystalColor(val displayName: String, val colorHex: Long, val baseCos
     CYAN("Storm Crystal", 0xFF44CCCC, 800),
     PINK("Life Crystal", 0xFFFF88CC, 700),
     DARK_GREEN("Shadow Crystal", 0xFF226622, 850),
-    DARK_RED("Bushido Crystal", 0xFF882222, 850)
+    DARK_RED("Bushido Crystal", 0xFF882222, 850),
+    HIDDEN_ONION("Onion Crystal", 0xFFCCFFCC, 2000),
+    HIDDEN_MIME("Mime Crystal", 0xFFFFFF99, 2500),
+    HIDDEN_NECRO("Death Crystal", 0xFF330033, 3000),
+    HIDDEN_BLUE("Lore Crystal", 0xFF3333FF, 2500),
+    HIDDEN("Hidden Path", 0xFF000000, 0)
 }
 
 enum class AIPriority(val displayName: String, val emoji: String) {
