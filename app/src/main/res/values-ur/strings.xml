@@ -1,0 +1,346 @@
+<resources>
+    <string name="app_name">Final Dungeon</string>
+
+    <!-- Dimensions & Biomes -->
+    <string name="dim1_title">روشنی کے جنگجو</string>
+    <string name="dim1_subtitle">فائنل فینٹسی 1</string>
+    <string name="dim1_story">روشنی کے چار جنگجو افراتفری کی قوتوں کے ہاتھوں چوری شدہ کرسٹل کو بحال کرنے کے لیے اٹھتے ہیں...</string>
+
+    <string name="biome_cornelia">کورنیلیا کا علاقہ</string>
+    <string name="biome_chaos_shrine">افراتفری کی عبادت گاہ</string>
+    <string name="biome_gurgu">گرگو آتش فشاں</string>
+    <string name="biome_sea_shrine">سمندری عبادت گاہ</string>
+    <string name="biome_earth_cave">زمین کی غار</string>
+    <string name="biome_crystal_tower">فینڈز کا مندر</string>
+
+    <string name="enemy_goblin">گوبلن</string>
+    <string name="enemy_wolf">بھیڑیا</string>
+    <string name="enemy_pirate">قزاق</string>
+    <string name="enemy_ogre">اوگر</string>
+    <string name="enemy_evil_eye">بد نظر</string>
+    <string name="enemy_garland">گارلینڈ</string>
+    <string name="enemy_red_flan">سرخ فلان</string>
+    <string name="enemy_bomb">بم</string>
+    <string name="enemy_sahagin">سہاگین</string>
+    <string name="enemy_cockatrice">کوکاٹریس</string>
+    <string name="enemy_lich">لچ</string>
+    <string name="enemy_kraken">کریکن</string>
+    <string name="enemy_tiamat">ٹیامیٹ</string>
+    <string name="enemy_chaos">افراتفری</string>
+
+    <string name="dim2_title">روحوں کی بغاوت</string>
+    <string name="dim2_subtitle">فائنل فینٹسی 2</string>
+    <string name="dim2_story">پالمیشین سلطنت اندھیرا پھیلاتی ہے۔ فیریون اور اس کے باغی دوست آزادی کے لیے لڑتے ہیں...</string>
+
+    <string name="biome_altair">الٹائر ریجن</string>
+    <string name="biome_kashuan">کاشوان کیپ</string>
+    <string name="biome_tropical_island">اشنکٹبندیی جزیرہ</string>
+    <string name="biome_pandaemonium">پینڈیمونیم</string>
+
+    <string name="enemy_wild_rat">جنگلی چوہا</string>
+    <string name="enemy_black_knight">سیاہ نائٹ</string>
+    <string name="enemy_sergeant">سارجنٹ</string>
+    <string name="enemy_child">کھویا ہوا بچہ</string>
+    <string name="enemy_lamia">لیمیا</string>
+    <string name="enemy_adamantoise">ایڈمانٹوائز</string>
+    <string name="enemy_dark_knight">ڈارک نائٹ</string>
+    <string name="enemy_emperor">شہنشاہ میٹیوس</string>
+
+    <string name="dim3_title">کرسٹل کی روشنی</string>
+    <string name="dim3_subtitle">فائنل فینٹسی 3</string>
+    <string name="dim3_story">روشنی کے کرسٹل کے منتخب کردہ یتیم بچوں کو دنیا میں توازن بحال کرنا ہوگا...</string>
+
+    <string name="biome_ur_village">ار گاؤں</string>
+    <string name="biome_crystal_tower_dim3">کرسٹل ٹاور</string>
+    <string name="biome_dark_world">اندھیری دنیا</string>
+
+    <string name="enemy_djinn">جن</string>
+    <string name="enemy_medusa">میڈوسا</string>
+    <string name="enemy_hein">ہین</string>
+    <string name="enemy_tonberry">ٹونبیری</string>
+    <string name="enemy_cloud_of_darkness">اندھیرے کا بادل</string>
+
+    <!-- Town Screen -->
+    <string name="town_name">عظیم دارالحکومت</string>
+    <string name="building_inn">سرائے</string>
+    <string name="building_crystal_shop">کرسٹل کی دکان</string>
+    <string name="building_barracks">بیرکیں</string>
+    <string name="building_relics">نوادرات</string>
+    <string name="crystal_shop_subtitle">نئی جاب کلاسز کھولیں</string>
+    <string name="owned_status">✓ ملکیت</string>
+    <string name="town_upgrades">شہر کی اپ گریڈز</string>
+    <string name="upgrade_discount">رعایت: %1$d%%</string>
+    <string name="max_level">زیادہ سے زیادہ</string>
+    <string name="level_format">لیول %1$d / %2$d</string>
+    <string name="pathfinder_level_format">لیول %1$d / %2$d (زیادہ سے زیادہ فلور: %3$d)</string>
+
+    <!-- Inn Screen -->
+    <string name="hire_warriors">جنگجو بھرتی کریں</string>
+    <string name="permadeath_warning">مستقل موت فعال ہے</string>
+    <string name="party_size_format">پارٹی (%1$d/%2$d)</string>
+    <string name="empty_slot">خالی سلاٹ</string>
+    <string name="advance_banner_format">⚡ %1$s پر آگے بڑھیں ⚡</string>
+    <string name="floor_label">فلور:</string>
+    <string name="rest_at_inn_cost">سرائے میں آرام (%1$dG)</string>
+    <string name="rest_at_inn_free">سرائے میں آرام (0G)</string>
+    <string name="enter_dungeon">⚔ تہہ خانے میں داخل ہوں ⚔</string>
+    <string name="need_warriors">جنگجوؤں کی ضرورت ہے</string>
+    <string name="fully_rested">پارٹی مکمل طور پر آرام کر چکی ہے</string>
+    <string name="equip_button">لیس کریں</string>
+    <string name="dimension_complete">ڈائمینشن مکمل!</string>
+    <string name="hall_of_fame">ہال آف فیم</string>
+    <string name="gil_earned_label">گِل کمائے</string>
+    <string name="magicite_found_label">میجیسائٹ ملا</string>
+    <string name="bosses_slain_label">باس مارے گئے</string>
+    <string name="items_found_label">اشیاء ملیں</string>
+    <string name="ascension_rewards">عروج کے انعامات</string>
+    <string name="dimension_reset_warning">وارننگ: ہیروز، آلات اور موجودہ فلور کو ری سیٹ کرتا ہے۔</string>
+    <string name="cancel_button">منسوخ کریں</string>
+    <string name="advance_button">آگے بڑھیں!</string>
+
+    <!-- Relics Screen -->
+    <string name="relics_title">نوادرات</string>
+    <string name="magicite_format">💎 %1$d میجیسائٹ</string>
+    <string name="back_button">◀ پیچھے</string>
+    <string name="upgrade_cost_format">اپ گریڈ (%1$d 💎)</string>
+    <string name="relic_level_format">لیول %1$d</string>
+
+    <!-- Equipment Screen -->
+    <string name="equipment_title">آلات: %1$s</string>
+    <string name="stats_header">شماریات</string>
+    <string name="equipped_header">لیس شدہ</string>
+    <string name="inventory_header">انوینٹری</string>
+    <string name="quick_equip">فوری لیس کریں</string>
+    <string name="empty_inventory">خالی</string>
+    <string name="slot_format">%1$s سلاٹ</string>
+    <string name="item_lvl_rarity_format">لیول %1$d %2$s</string>
+    <string name="unequip_button">غیر لیس کریں</string>
+    <string name="sell_button_format">فروخت کریں (%1$dG)</string>
+    <string name="close_button">بند کریں</string>
+
+    <!-- Dungeon Screen -->
+    <string name="retreat_button">◀ پسپائی</string>
+    <string name="floor_format">فلور %1$d</string>
+    <string name="boss_floor_warning">⚠ باس فلور</string>
+    <string name="entering_biome_format">%1$s میں داخل ہو رہے ہیں...</string>
+    <string name="floor_cleared_format">فلور %1$d صاف ہو گیا! +%2$dG</string>
+    <string name="floor_cleared_lvlup_format">فلور %1$d صاف ہو گیا! +%2$dG (لیول اپ!)</string>
+    <string name="party_wiped">⚰ پارٹی ختم ہوگئی</string>
+    <string name="run_complete">⚔ رن مکمل ہوا</string>
+    <string name="floor_reached_format">فلور %1$d پر پہنچ گئے</string>
+    <string name="earned_rewards">حاصل کردہ انعامات</string>
+    <string name="wipe_penalty">صفائی کا جرمانہ</string>
+    <string name="fallen_warriors">گرے ہوئے جنگجو</string>
+    <string name="loot_collected">جمع شدہ لوٹ</string>
+
+    <!-- Battle Log & Events -->
+    <string name="log_entering_floor">فلور میں داخل ہو رہے ہیں...</string>
+    <string name="log_attack_format">%1$s نے %2$s پر %3$d کا حملہ کیا</string>
+    <string name="log_hit_format">%1$s نے %2$s کو %3$d کی چوٹ ماری</string>
+    <string name="log_defeated_format">%1$s نے %2$s کو شکست دے دی!</string>
+    <string name="log_fallen_format">%1$s گر گیا!</string>
+    <string name="log_victory_xp">فتح! %1$s شکست خوردہ۔ +%2$d EXP</string>
+    <string name="log_level_up">⭐ %1$s لیول %2$d پر پہنچ گیا!</string>
+    <string name="log_heal_format">%1$s نے %2$s کو %3$d کا علاج کیا</string>
+    <string name="log_group_heal">%1$s نے پارٹی کا علاج کیا!</string>
+    <string name="log_boss_defeated">⚔️ باس کو شکست دی: %1$s!</string>
+    <string name="log_summon_format">🌟 %1$s نے %2$s کو بلایا! کل: %3$d نقصان!</string>
+    <string name="log_magicite_stolen">%1$s نے %2$d میجیسائٹ چرا لیا! </string>
+    <string name="log_bard_song">🎵 %1$s: %2$s</string>
+    <string name="log_total_wipe">💀 مکمل صفائی: رن کی کمائی کا 30%% ضائع ہوگیا۔</string>
+    <string name="log_physical_attack">%1$s نے %2$s پر %3$d کا حملہ کیا!</string>
+    <string name="log_physical_crit">💥 %1$s نے %2$s کے اہم مقام پر %3$d کی چوٹ ماری! (کریٹیکل)</string>
+    <string name="log_magic_attack">%1$s نے %2$s پر %3$d کا جادو کیا!</string>
+    <string name="log_magic_crit">✨ %1$s کا جادو %2$s پر %3$d تک بڑھ گیا! (کریٹیکل)</string>
+    <string name="log_generic">%1$s</string>
+
+    <!-- Hero Classes -->
+    <string name="class_freelancer">فری لانسر</string>
+    <string name="class_freelancer_desc">تمام کاموں کا ماہر۔ متوازن شماریات۔</string>
+    <string name="class_warrior">جنگجو</string>
+    <string name="class_warrior_desc">فرنٹ لائن فائٹر۔ زیادہ HP اور حملہ۔</string>
+    <string name="class_white_mage">وائٹ میج</string>
+    <string name="class_white_mage_desc">مقدس شفا دینے والا۔ پارٹی کو زندہ رکھتا ہے۔</string>
+    <string name="class_black_mage">بلیک میج</string>
+    <string name="class_black_mage_desc">تباہ کن جادو۔ تمام دشمنوں کو مارتا ہے۔</string>
+    <string name="class_thief">چور</string>
+    <string name="class_thief_desc">تیز اور چالاک۔ میجیسائٹ چراتا ہے۔</string>
+    <string name="class_monk">راہب</string>
+    <string name="class_monk_desc">نہتا لڑاکا مکے باز۔ سب سے زیادہ خام حملہ۔</string>
+    <string name="class_knight">نائٹ</string>
+    <string name="class_knight_desc">اتحادیوں کی حفاظت کرتا ہے۔ کمزور پارٹی ارکان کو کور دے سکتا ہے۔</string>
+    <string name="class_paladin">پیلاڈن</string>
+    <string name="class_paladin_desc">مقدس محافظ۔ حملہ اور شفا دیتا ہے۔</string>
+    <string name="class_red_mage">ریڈ میج</string>
+    <string name="class_red_mage_desc">سفید اور کالا دونوں جادو استعمال کر سکتا ہے۔</string>
+    <string name="class_summoner">بلانے والا</string>
+    <string name="class_summoner_desc">طاقتور ایڈولنز کو بلاتا ہے۔</string>
+    <string name="class_ninja">ننجا</string>
+    <string name="class_ninja_desc">دو ہتھیاروں والا قاتل۔ بہت تیز۔</string>
+    <string name="class_dragoon">ڈریگون</string>
+    <string name="class_dragoon_desc">نیزہ ماہر۔ چھلانگ لگانے کا ماہر۔</string>
+    <string name="class_bard">شاعر</string>
+    <string name="class_bard_desc">جادوئی گانوں سے مدد کرتا ہے۔</string>
+    <string name="class_samurai">سامورائی</string>
+    <string name="class_samurai_desc">تلوار کا ماہر۔ زیادہ کریٹ۔</string>
+    <string name="class_onion_knight">اونین نائٹ</string>
+    <string name="class_onion_knight_desc">دیر سے پھلنے والا۔ لیول 90+ تک کمزور۔</string>
+    <string name="class_mime">مائم</string>
+    <string name="class_mime_desc">نقل کرنے کا ماہر۔ پارٹی کی صلاحیتوں کی نقل کرتا ہے۔</string>
+    <string name="class_necromancer">نیکرومینسر</string>
+    <string name="class_necromancer_desc">تاریک فنون۔ روح نکال کر پارٹی کا علاج کرتا ہے۔</string>
+    <string name="class_blue_mage">بلیو میج</string>
+    <string name="class_blue_mage_desc">علم کا طالب علم۔ باسز کو مار کر مضبوط ہوتا ہے۔</string>
+
+    <string name="hidden_job_clue">پراسرار جاب</string>
+    <string name="hidden_job_clue_desc">ایک پراسرار راستہ منتظر ہے...</string>
+    <string name="hidden_job_unlock_title">مبارک ہو!</string>
+    <string name="hidden_job_unlock_body">آپ نے ایک افسانوی پوشیدہ جاب دریافت کر لی ہے: %1$s!</string>
+    <string name="hidden_job_unlock_close">حیرت انگیز!</string>
+
+    <!-- Upgrades -->
+    <string name="upgrade_inn_name">ٹیپروم</string>
+    <string name="upgrade_inn_desc">جدید جاب کلاسز کھولتا ہے</string>
+    <string name="upgrade_barracks_name">بیرکیں</string>
+    <string name="upgrade_barracks_desc">پارٹی کے زیادہ سے زیادہ سائز میں اضافہ کرتا ہے</string>
+    <string name="upgrade_vault_name">والٹ</string>
+    <string name="upgrade_vault_desc">زیادہ سے زیادہ گِل سٹوریج میں اضافہ کرتا ہے</string>
+    <string name="upgrade_armory_name">آرمری</string>
+    <string name="upgrade_armory_desc">ملنے والے آلات کے اعداد و شمار میں اضافہ کرتا ہے</string>
+    <string name="upgrade_magic_shop_name">جادوئی دکان</string>
+    <string name="upgrade_magic_shop_desc">نایاب اشیاء ملنے کے امکانات کو بڑھاتا ہے</string>
+    <string name="upgrade_training_name">تربیت</string>
+    <string name="upgrade_training_desc">تہہ خانے میں حاصل کردہ EXP کو بڑھاتا ہے</string>
+    <string name="upgrade_planning_name">منصوبہ بندی</string>
+    <string name="upgrade_planning_desc">شہر کے اپ گریڈ کی قیمت کو کم کرتا ہے</string>
+    <string name="upgrade_clinic_name">کلینک</string>
+    <string name="upgrade_clinic_desc">سرائے میں آرام کرنے کی قیمت کو کم کرتا ہے</string>
+    <string name="upgrade_pathfinder_name">پاتھ فائڈر</string>
+    <string name="upgrade_pathfinder_desc">زیادہ اونچے آغاز والے فلورز کھولیں</string>
+
+    <!-- Relics -->
+    <string name="relic_attack_name">حملہ</string>
+    <string name="relic_attack_desc">جسمانی نقصان</string>
+    <string name="relic_hp_name">جانداری</string>
+    <string name="relic_hp_desc">زیادہ سے زیادہ HP</string>
+    <string name="relic_mp_name">روح</string>
+    <string name="relic_mp_desc">زیادہ سے زیادہ MP</string>
+    <string name="relic_magic_name">جادو</string>
+    <string name="relic_magic_desc">جادوئی نقصان</string>
+    <string name="relic_defense_name">دفاع</string>
+    <string name="relic_defense_desc">نقصان میں کمی</string>
+    <string name="relic_gold_name">قسمت</string>
+    <string name="relic_gold_desc">سونے کا حصول</string>
+    <string name="relic_magicite_name">جوہر</string>
+    <string name="relic_magicite_desc">میجیسائٹ ملنے کی شرح</string>
+    <string name="relic_crit_chance_name">عقاب کی آنکھ</string>
+    <string name="relic_crit_chance_desc">کریٹیکل ہٹ کی شرح</string>
+    <string name="relic_crit_damage_name">ہٹر</string>
+    <string name="relic_crit_damage_desc">کریٹیکل نقصان</string>
+    <string name="relic_magnet_name">مقناطیس</string>
+    <string name="relic_magnet_desc">میجیسائٹ گرنے کی شرح</string>
+    <string name="relic_pockets_name">جیبیں</string>
+    <string name="relic_pockets_desc">پاس رکھا ہوا سونا</string>
+    <string name="relic_double_loot_name">لوٹ</string>
+    <string name="relic_double_loot_desc">ڈبل باس لوٹ</string>
+
+    <!-- Items -->
+    <string name="item_sword">تلوار</string>
+    <string name="item_plate">پلیٹ</string>
+    <string name="item_shield">ڈھال</string>
+    <string name="item_ring">انگوٹھی</string>
+    <string name="item_rarity_common">عام</string>
+    <string name="item_rarity_rare">نایاب</string>
+    <string name="item_rarity_epic">ایپک</string>
+    <string name="item_rarity_legendary">لیجنڈری</string>
+    <string name="item_name_template">%1$s %2$s</string>
+    <!-- Pets -->
+    <string name="pet_chocobo_name">چوکو بو</string>
+    <string name="pet_chocobo_desc">+20%% اشیاء کی تلاش</string>
+    <string name="pet_moogle_name">موگل</string>
+    <string name="pet_moogle_desc">+50%% EXP حصول</string>
+    <string name="pet_cat_name">خوش قسمت بلی</string>
+    <string name="pet_cat_desc">+30%% گِل حصول</string>
+    <string name="pet_cactuar_name">کیکٹس</string>
+    <string name="pet_cactuar_desc">+15%% کریٹ کی شرح</string>
+    <string name="pet_tonberry_name">ٹونبیری</string>
+    <string name="pet_tonberry_desc">+100%% کریٹ نقصان</string>
+
+    <!-- Battle Abilities -->
+    <string name="ability_cover_name">کور</string>
+    <string name="ability_cover_desc">%1$s کی حفاظت کر رہے ہیں!</string>
+    <string name="ability_curaga_name">کوراگا</string>
+    <string name="ability_curaga_desc">%1$s نے کوراگا جادو کیا!</string>
+    <string name="ability_jump_name">چھلانگ</string>
+    <string name="ability_jump_desc">%1$s ہوا میں چھلانگ لگاتا ہے!</string>
+    <string name="ability_zeninage_name">زینیناگی</string>
+    <string name="ability_zeninage_desc">%1$s گِل پھینکتا ہے — زینیناگی!</string>
+    <string name="ability_ransack_name">لوٹ مار</string>
+    <string name="ability_mimic_name">مائمک</string>
+    <string name="ability_mimic_desc">%1$s آخری صلاحیت کی نقل کرتا ہے!</string>
+    <string name="ability_souldrain_name">روح کشی</string>
+    <string name="ability_souldrain_desc">%1$s نے روح کشی جادو کیا!</string>
+
+    <!-- Songs -->
+    <string name="song_paeon">پیون</string>
+    <string name="song_paeon_effect">+اس فلور پر HP ریجن</string>
+    <string name="song_minne">منی</string>
+    <string name="song_minne_effect">+تمام اتحادیوں کے لیے دفاع</string>
+    <string name="song_minuet">منیوٹ</string>
+    <string name="song_minuet_effect">+تمام اتحادیوں کے لیے حملہ</string>
+    <string name="song_ballad">رومیو کا گیت</string>
+    <string name="song_ballad_effect">تمام دشمن اگلی باری چھوڑ دیں گے</string>
+    <!-- Mastery & Pets Screen -->
+    <string name="training_grounds_title">تربیتی میدان</string>
+    <string name="tab_job_mastery">جاب مہارت</string>
+    <string name="tab_pets">پالتو جانور</string>
+    <string name="mastery_bonus_label">بونس</string>
+    <string name="mastery_exp_format">%1$d / %2$d EXP</string>
+    <string name="pet_bonus_format">+%1$.1f%% %2$s</string>
+    <string name="mastery_bonus_stat_format">+%1$d %2$s</string>
+    <string name="select_companion_label">ساتھی کا انتخاب کریں</string>
+    <string name="pet_none">کوئی نہیں</string>
+    <string name="unlock_pet_format">کھولنے کے لیے %1$dG</string>
+    <string name="masteries">📈 مہارتیں</string>
+
+    <!-- Leaderboards -->
+    <string name="leaderboard_title">درجہ بندی</string>
+    <string name="tab_global">عالمی</string>
+    <string name="tab_dimension">ڈائمینشن</string>
+    <string name="tab_friends">دوست</string>
+    <string name="rank_label">درجہ</string>
+    <string name="player_label">کھلاڑی</string>
+    <string name="floor_reached_short">زیادہ سے زیادہ فلور</string>
+    <string name="magicite_short">میج</string>
+    <string name="time_short">وقت</string>
+    <string name="ghost_run_team_title">%1$s کی ٹیم</string>
+    <string name="no_party_data">پارٹی کا کوئی ڈیٹا دستیاب نہیں ہے</string>
+    <string name="hero_lvl_class_format">لیول %1$d %2$s</string>
+    <string name="ghost_run_close">بند کریں</string>
+    <string name="empty_time">---</string>
+    <string name="format_m">%1$.1fM</string>
+    <string name="format_k">%1$.1fK</string>
+    <string name="player_name_you">آپ</string>
+    <string name="my_id_label">آپ کا ID: %1$s</string>
+    <string name="copy_id_hint">اپنا ID کاپی کرنے کے لیے تھپتھپائیں</string>
+    <string name="add_friend_label">+ دوست شامل کریں</string>
+    <string name="friend_id_hint">دوست کا ID</string>
+    <string name="add_button">شامل کریں</string>
+    <string name="cancel_button_short">منسوخ کریں</string>
+    <string name="enter_friend_id_title">دوست کا ID درج کریں</string>
+    <string name="id_copied">ID کلپ بورڈ پر کاپی ہو گیا</string>
+    <string name="edit_name_hint">نام تبدیل کریں</string>
+    <string name="save_button">محفوظ کریں</string>
+    <string name="no_friends_desc">ابھی تک کوئی دوست شامل نہیں کیا گیا۔ درجہ بندی شروع کرنے کے لیے اپنا ID شیئر کریں!</string>
+    <string name="ad_starting">اشتہار دیکھا جا رہا ہے...</string>
+    <string name="ad_finished">انعام مل گیا!</string>
+    <string name="ad_boost_button">بوسٹ (اشتہار)</string>
+    <string name="ad_boost_active">بوسٹ فعال ہے (%1$d فلورز)</string>
+    <string name="revive_dialog_title">پارٹی ختم ہوگئی!</string>
+    <string name="revive_dialog_desc">اس فلور کے آغاز پر اپنی ٹیم کو دوبارہ زندہ کرنے کے لیے ایک مختصر اشتہار دیکھیں؟ (ہر رن میں ایک بار)</string>
+    <string name="revive_button">دوبارہ زندہ کریں (اشتہار)</string>
+    <string name="give_up_button">ہار مانیں</string>
+    <string name="ad_gil_reward">مفت گِل (اشتہار)</string>
+    <string name="ad_magicite_reward">مفت میجیسائٹ (اشتہار)</string>
+    <string name="ad_not_ready">اشتہار تیار نہیں ہے۔ براہ کرم تھوڑی دیر انتظار کریں۔</string>
+</resources>

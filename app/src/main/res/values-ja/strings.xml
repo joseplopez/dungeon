@@ -1,0 +1,346 @@
+<resources>
+    <string name="app_name">Final Dungeon</string>
+
+    <!-- Dimensions & Biomes -->
+    <string name="dim1_title">光の戦士</string>
+    <string name="dim1_subtitle">ファイナルファンタジーI</string>
+    <string name="dim1_story">カオスの軍勢によって奪われたクリスタルを取り戻すため、4人の光の戦士が立ち上がる...</string>
+
+    <string name="biome_cornelia">コーネリア地方</string>
+    <string name="biome_chaos_shrine">カオスの神殿</string>
+    <string name="biome_gurgu">グルグ火山</string>
+    <string name="biome_sea_shrine">海底神殿</string>
+    <string name="biome_earth_cave">アースの洞窟</string>
+    <string name="biome_crystal_tower">悪魔の神殿</string>
+
+    <string name="enemy_goblin">ゴブリン</string>
+    <string name="enemy_wolf">ウルフ</string>
+    <string name="enemy_pirate">海賊</string>
+    <string name="enemy_ogre">オガ</string>
+    <string name="enemy_evil_eye">イーブルアイ</string>
+    <string name="enemy_garland">ガーランド</string>
+    <string name="enemy_red_flan">レッドフラン</string>
+    <string name="enemy_bomb">ボム</string>
+    <string name="enemy_sahagin">サハギン</string>
+    <string name="enemy_cockatrice">コカトリス</string>
+    <string name="enemy_lich">リッチ</string>
+    <string name="enemy_kraken">クラーケン</string>
+    <string name="enemy_tiamat">ティアマット</string>
+    <string name="enemy_chaos">カオス</string>
+
+    <string name="dim2_title">魂の反乱</string>
+    <string name="dim2_subtitle">ファイナルファンタジーII</string>
+    <string name="dim2_story">パラメキア帝国が闇を広める。フリオニールとその反乱軍の仲間たちは自由のために戦う...</string>
+
+    <string name="biome_altair">アルテア地方</string>
+    <string name="biome_kashuan">カシュオーン城</string>
+    <string name="biome_tropical_island">熱帯の島</string>
+    <string name="biome_pandaemonium">パンデモニウム</string>
+
+    <string name="enemy_wild_rat">ワイルドラット</string>
+    <string name="enemy_black_knight">黒騎士</string>
+    <string name="enemy_sergeant">将軍</string>
+    <string name="enemy_child">迷子</string>
+    <string name="enemy_lamia">ラミア</string>
+    <string name="enemy_adamantoise">アダマンタイマイ</string>
+    <string name="enemy_dark_knight">ダークナイト</string>
+    <string name="enemy_emperor">皇帝マティウス</string>
+
+    <string name="dim3_title">クリスタルの光</string>
+    <string name="dim3_subtitle">ファイナルファンタジーIII</string>
+    <string name="dim3_story">光のクリスタルに選ばれた孤児たちは、世界にバランスを取り戻さなければならない...</string>
+
+    <string name="biome_ur_village">ウルの村</string>
+    <string name="biome_crystal_tower_dim3">クリスタルタワー</string>
+    <string name="biome_dark_world">闇の世界</string>
+
+    <string name="enemy_djinn">ジン</string>
+    <string name="enemy_medusa">メデューサ</string>
+    <string name="enemy_hein">ハイン</string>
+    <string name="enemy_tonberry">トンベリ</string>
+    <string name="enemy_cloud_of_darkness">暗闇の雲</string>
+
+    <!-- Town Screen -->
+    <string name="town_name">グランドキャピタル</string>
+    <string name="building_inn">宿屋</string>
+    <string name="building_crystal_shop">クリスタルショップ</string>
+    <string name="building_barracks">兵舎</string>
+    <string name="building_relics">レリック</string>
+    <string name="crystal_shop_subtitle">新しいジョブを解放</string>
+    <string name="owned_status">✓ 所持</string>
+    <string name="town_upgrades">街の強化</string>
+    <string name="upgrade_discount">割引: %1$d%%</string>
+    <string name="max_level">最大</string>
+    <string name="level_format">LV %1$d / %2$d</string>
+    <string name="pathfinder_level_format">LV %1$d / %2$d (最大階層: %3$d)</string>
+
+    <!-- Inn Screen -->
+    <string name="hire_warriors">戦士を雇う</string>
+    <string name="permadeath_warning">パーマネントデス有効</string>
+    <string name="party_size_format">パーティ (%1$d/%2$d)</string>
+    <string name="empty_slot">空きスロット</string>
+    <string name="advance_banner_format">⚡ %1$s へ進む ⚡</string>
+    <string name="floor_label">階層:</string>
+    <string name="rest_at_inn_cost">宿屋で休む (%1$dG)</string>
+    <string name="rest_at_inn_free">宿屋で休む (0G)</string>
+    <string name="enter_dungeon">⚔ ダンジョンへ入る ⚔</string>
+    <string name="need_warriors">戦士が必要です</string>
+    <string name="fully_rested">全員全快しました</string>
+    <string name="equip_button">装備</string>
+    <string name="dimension_complete">次元完了！</string>
+    <string name="hall_of_fame">栄誉の殿堂</string>
+    <string name="gil_earned_label">獲得ギル</string>
+    <string name="magicite_found_label">発見マジサイト</string>
+    <string name="bosses_slain_label">討伐ボス</string>
+    <string name="items_found_label">獲得アイテム</string>
+    <string name="ascension_rewards">アセンション報酬</string>
+    <string name="dimension_reset_warning">警告: ヒーロー、装備、現在の階層がリセットされます。</string>
+    <string name="cancel_button">キャンセル</string>
+    <string name="advance_button">進む！</string>
+
+    <!-- Relics Screen -->
+    <string name="relics_title">レリック</string>
+    <string name="magicite_format">💎 %1$d マジサイト</string>
+    <string name="back_button">◀ 戻る</string>
+    <string name="upgrade_cost_format">強化 (%1$d 💎)</string>
+    <string name="relic_level_format">LV %1$d</string>
+
+    <!-- Equipment Screen -->
+    <string name="equipment_title">装備: %1$s</string>
+    <string name="stats_header">ステータス</string>
+    <string name="equipped_header">装備中</string>
+    <string name="inventory_header">インベントリ</string>
+    <string name="quick_equip">おまかせ装備</string>
+    <string name="empty_inventory">空</string>
+    <string name="slot_format">%1$s スロット</string>
+    <string name="item_lvl_rarity_format">Lv %1$d %2$s</string>
+    <string name="unequip_button">外す</string>
+    <string name="sell_button_format">売却 (%1$dG)</string>
+    <string name="close_button">閉じる</string>
+
+    <!-- Dungeon Screen -->
+    <string name="retreat_button">◀ 撤退</string>
+    <string name="floor_format">%1$d 階</string>
+    <string name="boss_floor_warning">⚠ ボス階層</string>
+    <string name="entering_biome_format">%1$s に進入中...</string>
+    <string name="floor_cleared_format">%1$d 階をクリア！ +%2$dG</string>
+    <string name="floor_cleared_lvlup_format">%1$d 階をクリア！ +%2$dG (レベルアップ！)</string>
+    <string name="party_wiped">⚰ パーティ全滅</string>
+    <string name="run_complete">⚔ 攻略完了</string>
+    <string name="floor_reached_format">第 %1$d 階に到達</string>
+    <string name="earned_rewards">獲得報酬</string>
+    <string name="wipe_penalty">全滅ペナルティ</string>
+    <string name="fallen_warriors">倒れた戦士</string>
+    <string name="loot_collected">回収した戦利品</string>
+
+    <!-- Battle Log & Events -->
+    <string name="log_entering_floor">階層に進入中...</string>
+    <string name="log_attack_format">%1$s の攻撃、%2$s に %3$d のダメージ</string>
+    <string name="log_hit_format">%1$s のヒット、%2$s に %3$d のダメージ</string>
+    <string name="log_defeated_format">%1$s は %2$s を倒した！</string>
+    <string name="log_fallen_format">%1$s は力尽きた！</string>
+    <string name="log_victory_xp">勝利！ %1$s を倒した。 +%2$d EXP</string>
+    <string name="log_level_up">⭐ %1$s はレベル %2$d に上がった！</string>
+    <string name="log_heal_format">%1$s は %2$s を %3$d 回復した</string>
+    <string name="log_group_heal">%1$s はパーティを回復した！</string>
+    <string name="log_boss_defeated">⚔️ ボス撃破: %1$s！</string>
+    <string name="log_summon_format">🌟 %1$s は %2$s を召喚した！ 合計 %3$d ダメージ！</string>
+    <string name="log_magicite_stolen">%1$s はマジサイトを %2$d 盗んだ！</string>
+    <string name="log_bard_song">🎵 %1$s: %2$s</string>
+    <string name="log_total_wipe">💀 全滅: 獲得報酬の 30%% を失った。</string>
+    <string name="log_physical_attack">%1$s の攻撃！ %2$s に %3$d のダメージ！</string>
+    <string name="log_physical_crit">💥 %1$s は %2$s の急所を突いた！ %3$d のダメージ！ (クリティカル)</string>
+    <string name="log_magic_attack">%1$s は %2$s に魔法を唱えた！ %3$d のダメージ！</string>
+    <string name="log_magic_crit">✨ %1$s の魔法が暴走した！ %2$s に %3$d のダメージ！ (クリティカル)</string>
+    <string name="log_generic">%1$s</string>
+
+    <!-- Hero Classes -->
+    <string name="class_freelancer">すっぴん</string>
+    <string name="class_freelancer_desc">器用貧乏。バランスの取れたステータス。</string>
+    <string name="class_warrior">戦士</string>
+    <string name="class_warrior_desc">前衛のアタッカー。高いHPと攻撃力。</string>
+    <string name="class_white_mage">白魔道士</string>
+    <string name="class_white_mage_desc">神聖なヒーラー。パーティの命を守る。</string>
+    <string name="class_black_mage">黒魔道士</string>
+    <string name="class_black_mage_desc">破壊魔法。敵全体を攻撃する。</string>
+    <string name="class_thief">シーフ</string>
+    <string name="class_thief_desc">素早くて狡猾。マジサイトを盗む。</string>
+    <string name="class_monk">モンク</string>
+    <string name="class_monk_desc">素手の格闘家。最高の素の攻撃力。</string>
+    <string name="class_knight">ナイト</string>
+    <string name="class_knight_desc">味方を守る。「かばう」が使える。</string>
+    <string name="class_paladin">パラディン</string>
+    <string name="class_paladin_desc">聖騎士。攻撃と回復の両立。</string>
+    <string name="class_red_mage">赤魔道士</string>
+    <string name="class_red_mage_desc">白魔法と黒魔法の両方を使える。</string>
+    <string name="class_summoner">召喚士</string>
+    <string name="class_summoner_desc">強力な幻獣を呼び出す。</string>
+    <string name="class_ninja">忍者</string>
+    <string name="class_ninja_desc">二刀流の暗殺者。非常に速い。</string>
+    <string name="class_dragoon">竜騎士</string>
+    <string name="class_dragoon_desc">槍のスペシャリスト。「ジャンプ」の達人。</string>
+    <string name="class_bard">吟遊詩人</string>
+    <string name="class_bard_desc">魔法の歌でサポートする。</string>
+    <string name="class_samurai">侍</string>
+    <string name="class_samurai_desc">刀の達人。高いクリティカル率。</string>
+    <string name="class_onion_knight">たまねぎ剣士</string>
+    <string name="class_onion_knight_desc">大器晩成。レベル90までは最弱。</string>
+    <string name="class_mime">ものまね師</string>
+    <string name="class_mime_desc">真似の達人。味方のアビリティを真似る。</string>
+    <string name="class_necromancer">ネクロマンサー</string>
+    <string name="class_necromancer_desc">暗黒魔法。ソウルドレインでパーティを回復。</string>
+    <string name="class_blue_mage">青魔道士</string>
+    <string name="class_blue_mage_desc">伝承の求道者。ボスを倒すほど強くなる。</string>
+
+    <string name="hidden_job_clue">謎のジョブ</string>
+    <string name="hidden_job_clue_desc">謎めいた道が待っている...</string>
+    <string name="hidden_job_unlock_title">おめでとう！</string>
+    <string name="hidden_job_unlock_body">伝説の隠しジョブを発見しました: %1$s！</string>
+    <string name="hidden_job_unlock_close">すごい！</string>
+
+    <!-- Upgrades -->
+    <string name="upgrade_inn_name">酒場</string>
+    <string name="upgrade_inn_desc">上級ジョブを解放</string>
+    <string name="upgrade_barracks_name">兵舎</string>
+    <string name="upgrade_barracks_desc">最大パーティ人数を増加</string>
+    <string name="upgrade_vault_name">金庫</string>
+    <string name="upgrade_vault_desc">最大ギル所持量を増加</string>
+    <string name="upgrade_armory_name">武器庫</string>
+    <string name="upgrade_armory_desc">獲得装備のステータスを強化</string>
+    <string name="upgrade_magic_shop_name">魔法屋</string>
+    <string name="upgrade_magic_shop_desc">レアアイテム発見率を増加</string>
+    <string name="upgrade_training_name">修行</string>
+    <string name="upgrade_training_desc">ダンジョンの獲得EXPを増加</string>
+    <string name="upgrade_planning_name">計画</string>
+    <string name="upgrade_planning_desc">街の強化コストを削減</string>
+    <string name="upgrade_clinic_name">診療所</string>
+    <string name="upgrade_clinic_desc">宿屋の宿泊費を削減</string>
+    <string name="upgrade_pathfinder_name">パスファインダー</string>
+    <string name="upgrade_pathfinder_desc">開始階層を解放</string>
+
+    <!-- Relics -->
+    <string name="relic_attack_name">攻撃</string>
+    <string name="relic_attack_desc">物理ダメージ</string>
+    <string name="relic_hp_name">生命力</string>
+    <string name="relic_hp_desc">最大HP</string>
+    <string name="relic_mp_name">精神</string>
+    <string name="relic_mp_desc">最大MP</string>
+    <string name="relic_magic_name">魔力</string>
+    <string name="relic_magic_desc">魔法ダメージ</string>
+    <string name="relic_defense_name">防御</string>
+    <string name="relic_defense_desc">被ダメージ軽減</string>
+    <string name="relic_gold_name">幸運</string>
+    <string name="relic_gold_desc">ギル獲得量</string>
+    <string name="relic_magicite_name">真髄</string>
+    <string name="relic_magicite_desc">マジサイト発見率</string>
+    <string name="relic_crit_chance_name">鷹の目</string>
+    <string name="relic_crit_chance_desc">クリティカル率</string>
+    <string name="relic_crit_damage_name">強打</string>
+    <string name="relic_crit_damage_desc">クリティカルダメージ</string>
+    <string name="relic_magnet_name">磁石</string>
+    <string name="relic_magnet_desc">マジサイトドロップ率</string>
+    <string name="relic_pockets_name">ポケット</string>
+    <string name="relic_pockets_desc">ギル保持率</string>
+    <string name="relic_double_loot_name">略奪</string>
+    <string name="relic_double_loot_desc">ボス戦利品2倍</string>
+
+    <!-- Items -->
+    <string name="item_sword">剣</string>
+    <string name="item_plate">鎧</string>
+    <string name="item_shield">盾</string>
+    <string name="item_ring">指輪</string>
+    <string name="item_rarity_common">コモン</string>
+    <string name="item_rarity_rare">レア</string>
+    <string name="item_rarity_epic">エピック</string>
+    <string name="item_rarity_legendary">レジェンダリー</string>
+    <string name="item_name_template">%1$sの%2$s</string>
+    <!-- Pets -->
+    <string name="pet_chocobo_name">チョコボ</string>
+    <string name="pet_chocobo_desc">+20%% アイテム発見</string>
+    <string name="pet_moogle_name">モーグリ</string>
+    <string name="pet_moogle_desc">+50%% EXP獲得</string>
+    <string name="pet_cat_name">まねきねこ</string>
+    <string name="pet_cat_desc">+30%% ギル獲得</string>
+    <string name="pet_cactuar_name">サボテンダー</string>
+    <string name="pet_cactuar_desc">+15%% クリティカル率</string>
+    <string name="pet_tonberry_name">トンベリ</string>
+    <string name="pet_tonberry_desc">+100%% クリティカルダメージ</string>
+
+    <!-- Battle Abilities -->
+    <string name="ability_cover_name">かばう</string>
+    <string name="ability_cover_desc">%1$s を守っている！</string>
+    <string name="ability_curaga_name">ケアルガ</string>
+    <string name="ability_curaga_desc">%1$s はケアルガを唱えた！</string>
+    <string name="ability_jump_name">ジャンプ</string>
+    <string name="ability_jump_desc">%1$s は空高く跳び上がった！</string>
+    <string name="ability_zeninage_name">ぜになげ</string>
+    <string name="ability_zeninage_desc">%1$s はギルを投げた！ ぜになげ！</string>
+    <string name="ability_ransack_name">ぶんどる</string>
+    <string name="ability_mimic_name">ものまね</string>
+    <string name="ability_mimic_desc">%1$s は直前のアビリティを真似た！</string>
+    <string name="ability_souldrain_name">ソウルドレイン</string>
+    <string name="ability_souldrain_desc">%1$s はソウルドレインを放った！</string>
+
+    <!-- Songs -->
+    <string name="song_paeon">癒やしの歌</string>
+    <string name="song_paeon_effect">+この階層でHPリジェネ</string>
+    <string name="song_minne">魔守りの歌</string>
+    <string name="song_minne_effect">+味方全体の魔法防御</string>
+    <string name="song_minuet">勇者の歌</string>
+    <string name="song_minuet_effect">+味方全体の攻撃力</string>
+    <string name="song_ballad">愛の歌</string>
+    <string name="song_ballad_effect">敵全体が次のターン行動不能</string>
+    <!-- Mastery & Pets Screen -->
+    <string name="training_grounds_title">修練場</string>
+    <string name="tab_job_mastery">ジョブマスター</string>
+    <string name="tab_pets">ペット</string>
+    <string name="mastery_bonus_label">ボーナス</string>
+    <string name="mastery_exp_format">%1$d / %2$d EXP</string>
+    <string name="pet_bonus_format">+%1$.1f%% %2$s</string>
+    <string name="mastery_bonus_stat_format">+%1$d %2$s</string>
+    <string name="select_companion_label">相棒を選択してください</string>
+    <string name="pet_none">なし</string>
+    <string name="unlock_pet_format">%1$dG で解放</string>
+    <string name="masteries">📈 マスタリー</string>
+
+    <!-- Leaderboards -->
+    <string name="leaderboard_title">ランキング</string>
+    <string name="tab_global">グローバル</string>
+    <string name="tab_dimension">次元</string>
+    <string name="tab_friends">フレンド</string>
+    <string name="rank_label">順位</string>
+    <string name="player_label">プレイヤー</string>
+    <string name="floor_reached_short">到達階層</string>
+    <string name="magicite_short">マジ</string>
+    <string name="time_short">タイム</string>
+    <string name="ghost_run_team_title">%1$s のチーム</string>
+    <string name="no_party_data">パーティデータがありません</string>
+    <string name="hero_lvl_class_format">Lv %1$d %2$s</string>
+    <string name="ghost_run_close">閉じる</string>
+    <string name="empty_time">---</string>
+    <string name="format_m">%1$.1fM</string>
+    <string name="format_k">%1$.1fK</string>
+    <string name="player_name_you">あなた</string>
+    <string name="my_id_label">ID: %1$s</string>
+    <string name="copy_id_hint">タップでIDをコピー</string>
+    <string name="add_friend_label">+ フレンド追加</string>
+    <string name="friend_id_hint">フレンドID</string>
+    <string name="add_button">追加</string>
+    <string name="cancel_button_short">キャンセル</string>
+    <string name="enter_friend_id_title">フレンドID入力</string>
+    <string name="id_copied">IDをクリップボードにコピーしました</string>
+    <string name="edit_name_hint">名前を変更</string>
+    <string name="save_button">保存</string>
+    <string name="no_friends_desc">フレンドがまだいません。IDを共有して競い合いましょう！</string>
+    <string name="ad_starting">広告再生中...</string>
+    <string name="ad_finished">報酬を獲得しました！</string>
+    <string name="ad_boost_button">ブースト (広告)</string>
+    <string name="ad_boost_active">ブースト中 (%1$d 階層)</string>
+    <string name="revive_dialog_title">パーティ全滅！</string>
+    <string name="revive_dialog_desc">短い広告を見て、この階層の最初から復活しますか？ (1回の挑戦につき1回まで)</string>
+    <string name="revive_button">復活 (広告)</string>
+    <string name="give_up_button">あきらめる</string>
+    <string name="ad_gil_reward">無料ギル (広告)</string>
+    <string name="ad_magicite_reward">無料マジサイト (広告)</string>
+    <string name="ad_not_ready">広告の準備ができていません。しばらくお待ちください。</string>
+</resources>

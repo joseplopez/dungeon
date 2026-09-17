@@ -1,0 +1,347 @@
+<resources>
+    <string name="app_name">Final Dungeon</string>
+
+    <!-- Dimensions & Biomes -->
+    <string name="dim1_title">빛의 전사들</string>
+    <string name="dim1_subtitle">파이널 판타지 I</string>
+    <string name="dim1_story">혼돈의 세력에게 빼앗긴 크리스탈을 되찾기 위해 네 명의 빛의 전사가 일어난다...</string>
+
+    <string name="biome_cornelia">코넬리아 지역</string>
+    <string name="biome_chaos_shrine">카오스의 신전</string>
+    <string name="biome_gurgu">구루구 화산</string>
+    <string name="biome_sea_shrine">해저 신전</string>
+    <string name="biome_earth_cave">흙의 동굴</string>
+    <string name="biome_crystal_tower">마인의 신전</string>
+
+    <string name="enemy_goblin">고블린</string>
+    <string name="enemy_wolf">울프</string>
+    <string name="enemy_pirate">해적</string>
+    <string name="enemy_ogre">오우거</string>
+    <string name="enemy_evil_eye">이블 아이</string>
+    <string name="enemy_garland">가랜드</string>
+    <string name="enemy_red_flan">레드 플란</string>
+    <string name="enemy_bomb">봄</string>
+    <string name="enemy_sahagin">사하긴</string>
+    <string name="enemy_cockatrice">코카트리스</string>
+    <string name="enemy_lich">리치</string>
+    <string name="enemy_kraken">크라켄</string>
+    <string name="enemy_tiamat">티아마트</string>
+    <string name="enemy_chaos">카오스</string>
+
+    <string name="dim2_title">영혼의 반란</string>
+    <string name="dim2_subtitle">파이널 판타지 II</string>
+    <string name="dim2_story">파라메키아 제국이 어둠을 퍼뜨린다. 프리오닐과 그의 반란군 친구들은 자유를 위해 싸운다...</string>
+
+    <string name="biome_altair">알테어 지역</string>
+    <string name="biome_kashuan">카슈온 성</string>
+    <string name="biome_tropical_island">열대 섬</string>
+    <string name="biome_pandaemonium">판데모니움</string>
+
+    <string name="enemy_wild_rat">와일드 랫</string>
+    <string name="enemy_black_knight">흑기사</string>
+    <string name="enemy_sergeant">상사</string>
+    <string name="enemy_child">길 잃은 아이</string>
+    <string name="enemy_lamia">라미아</string>
+    <string name="enemy_adamantoise">아다만타이마이</string>
+    <string name="enemy_dark_knight">다크 나이트</string>
+    <string name="enemy_emperor">황제 마테우스</string>
+
+    <string name="dim3_title">크리스탈의 빛</string>
+    <string name="dim3_subtitle">파이널 판타지 III</string>
+    <string name="dim3_story">빛의 크리스탈에 선택받은 고아들은 세계의 균형을 되찾아야 한다...</string>
+
+    <string name="biome_ur_village">우르 마을</string>
+    <string name="biome_crystal_tower_dim3">크리스탈 타워</string>
+    <string name="biome_dark_world">어둠의 세계</string>
+
+    <string name="enemy_djinn">진</string>
+    <string name="enemy_medusa">메두사</string>
+    <string name="enemy_hein">하인</string>
+    <string name="enemy_tonberry">톤베리</string>
+    <string name="enemy_cloud_of_darkness">어둠의 구름</string>
+
+    <!-- Town Screen -->
+    <string name="town_name">그랜드 캐피탈</string>
+    <string name="building_inn">여관</string>
+    <string name="building_crystal_shop">크리스탈 상점</string>
+    <string name="building_barracks">병영</string>
+    <string name="building_relics">유물</string>
+    <string name="crystal_shop_subtitle">새로운 직업 클래스 해제</string>
+    <string name="owned_status">✓ 보유 중</string>
+    <string name="town_upgrades">마을 업그레이드</string>
+    <string name="upgrade_discount">할인: %1$d%%</string>
+    <string name="max_level">최대</string>
+    <string name="level_format">LV %1$d / %2$d</string>
+    <string name="pathfinder_level_format">LV %1$d / %2$d (최대 층: %3$d)</string>
+
+    <!-- Inn Screen -->
+    <string name="hire_warriors">전사 고용</string>
+    <string name="permadeath_warning">영구 사망 활성화됨</string>
+    <string name="party_size_format">파티 (%1$d/%2$d)</string>
+    <string name="empty_slot">빈 슬롯</string>
+    <string name="advance_banner_format">⚡ %1$s(으)로 전진 ⚡</string>
+    <string name="floor_label">층:</string>
+    <string name="rest_at_inn_cost">여관에서 휴식 (%1$dG)</string>
+    <string name="rest_at_inn_free">여관에서 휴식 (0G)</string>
+    <string name="enter_dungeon">⚔ 던전 입장 ⚔</string>
+    <string name="need_warriors">전사가 필요합니다</string>
+    <string name="fully_rested">파티가 완전히 회복되었습니다</string>
+    <string name="equip_button">장착</string>
+    <string name="dimension_complete">차원 완료!</string>
+    <string name="hall_of_fame">명예의 전당</string>
+    <string name="gil_earned_label">획득 길</string>
+    <string name="magicite_found_label">발견한 마석</string>
+    <string name="bosses_slain_label">처치한 보스</string>
+    <string name="items_found_label">발견한 아이템</string>
+    <string name="ascension_rewards">승천 보상</string>
+    <string name="dimension_reset_warning">경고: 영웅, 장비 및 현재 층이 초기화됩니다.</string>
+    <string name="cancel_button">취소</string>
+    <string name="advance_button">전진!</string>
+
+    <!-- Relics Screen -->
+    <string name="relics_title">유물</string>
+    <string name="magicite_format">💎 %1$d 마석</string>
+    <string name="back_button">◀ 뒤로</string>
+    <string name="upgrade_cost_format">업그레이드 (%1$d 💎)</string>
+    <string name="relic_level_format">LV %1$d</string>
+
+    <!-- Equipment Screen -->
+    <string name="equipment_title">장비: %1$s</string>
+    <string name="stats_header">능력치</string>
+    <string name="equipped_header">장착됨</string>
+    <string name="inventory_header">인벤토리</string>
+    <string name="quick_equip">빠른 장착</string>
+    <string name="empty_inventory">비어 있음</string>
+    <string name="slot_format">%1$s 슬롯</string>
+    <string name="item_lvl_rarity_format">레벨 %1$d %2$s</string>
+    <string name="unequip_button">해제</string>
+    <string name="sell_button_format">판매 (%1$dG)</string>
+    <string name="close_button">닫기</string>
+
+    <!-- Dungeon Screen -->
+    <string name="retreat_button">◀ 후퇴</string>
+    <string name="floor_format">%1$d층</string>
+    <string name="boss_floor_warning">⚠ 보스 층</string>
+    <string name="entering_biome_format">%1$s 입장 중...</string>
+    <string name="floor_cleared_format">%1$d층 클리어! +%2$dG</string>
+    <string name="floor_cleared_lvlup_format">%1$d층 클리어! +%2$dG (레벨 업!)</string>
+    <string name="party_wiped">⚰ 파티 전멸</string>
+    <string name="run_complete">⚔ 탐험 완료</string>
+    <string name="floor_reached_format">%1$d층 도달</string>
+    <string name="earned_rewards">획득 보상</string>
+    <string name="wipe_penalty">전멸 페널티</string>
+    <string name="fallen_warriors">쓰러진 전사들</string>
+    <string name="loot_collected">수집한 전리품</string>
+
+    <!-- Battle Log & Events -->
+    <string name="log_entering_floor">층 입장 중...</string>
+    <string name="log_attack_format">%1$s이(가) %2$s을(를) 공격하여 %3$d 피해</string>
+    <string name="log_hit_format">%1$s이(가) %2$s에게 %3$d 피해를 입힘</string>
+    <string name="log_defeated_format">%1$s이(가) %2$s을(를) 처치했습니다!</string>
+    <string name="log_fallen_format">%1$s이(가) 쓰러졌습니다!</string>
+    <string name="log_victory_xp">승리! %1$s 처치. +%2$d EXP</string>
+    <string name="log_level_up">⭐ %1$s의 레벨이 %2$d이(가) 되었습니다!</string>
+    <string name="log_heal_format">%1$s이(가) %2$s을(를) %3$d만큼 회복시킴</string>
+    <string name="log_group_heal">%1$s이(가) 파티를 회복시킵니다!</string>
+    <string name="log_boss_defeated">⚔️ 보스 처치: %1$s!</string>
+    <string name="log_summon_format">🌟 %1$s이(가) %2$s을(를) 소환! 총 %3$d 피해! </string>
+    <string name="log_magicite_stolen">%1$s이(가) 마석 %2$d개를 훔쳤습니다!</string>
+    <string name="log_bard_song">🎵 %1$s: %2$s</string>
+    <string name="log_total_wipe">💀 파티 전멸: 탐험 수익의 30%%를 잃었습니다.</string>
+    <string name="log_physical_attack">%1$s이(가) %2$s을(를) 공격하여 %3$d 피해!</string>
+    <string name="log_physical_crit">💥 %1$s이(가) %2$s의 급소를 타격하여 %3$d 피해! (크리티컬)</string>
+    <string name="log_magic_attack">%1$s이(가) %2$s에게 마법을 시전하여 %3$d 피해!</string>
+    <string name="log_magic_crit">✨ %1$s의 마법이 폭주하여 %2$s에게 %3$d 피해! (크리티컬)</string>
+    <string name="log_generic">%1$s</string>
+
+    <!-- Hero Classes -->
+    <string name="class_freelancer">프리랜서</string>
+    <string name="class_freelancer_desc">다재다능. 균형 잡힌 능력치.</string>
+    <string name="class_warrior">전사</string>
+    <string name="class_warrior_desc">전방 투사. 높은 체력과 공격력.</string>
+    <string name="class_white_mage">백마도사</string>
+    <string name="class_white_mage_desc">신성한 치유사. 파티를 생존시킴.</string>
+    <string name="class_black_mage">흑마도사</string>
+    <string name="class_black_mage_desc">파괴 마법. 모든 적을 타격함.</string>
+    <string name="class_thief">도적</string>
+    <string name="class_thief_desc">빠르고 민첩함. 마석을 훔침.</string>
+    <string name="class_monk">수도승</string>
+    <string name="class_monk_desc">맨손 격투가. 가장 높은 기본 공격력.</string>
+    <string name="class_knight">기사</string>
+    <string name="class_knight_desc">아군 보호. 약한 파티원을 엄호 가능.</string>
+    <string name="class_paladin">팔라딘</string>
+    <string name="class_paladin_desc">성스러운 수호자. 공격과 치유 병행.
+    </string>
+    <string name="class_red_mage">적마도사</string>
+    <string name="class_red_mage_desc">백마법과 흑마법 모두 사용 가능.</string>
+    <string name="class_summoner">소환사</string>
+    <string name="class_summoner_desc">강력한 환수를 불러냄.</string>
+    <string name="class_ninja">닌자</string>
+    <string name="class_ninja_desc">이도류 암살자. 매우 빠름.</string>
+    <string name="class_dragoon">용기사</string>
+    <string name="class_dragoon_desc">창 전문가. 점프의 달인.</string>
+    <string name="class_bard">바드</string>
+    <string name="class_bard_desc">마법 노래를 통한 지원.</string>
+    <string name="class_samurai">사무라이</string>
+    <string name="class_samurai_desc">검술의 달인. 높은 크리티컬 확률.</string>
+    <string name="class_onion_knight">양파 기사</string>
+    <string name="class_onion_knight_desc">대기만성형. 레벨 90 전까지는 최약체.</string>
+    <string name="class_mime">흉내쟁이</string>
+    <string name="class_mime_desc">모방의 달인. 파티의 능력을 흉내 냄.</string>
+    <string name="class_necromancer">네크로맨서</string>
+    <string name="class_necromancer_desc">암흑술. 영혼 흡수로 파티를 치유.</string>
+    <string name="class_blue_mage">청마도사</string>
+    <string name="class_blue_mage_desc">학구파. 보스를 처치하며 강해짐.</string>
+
+    <string name="hidden_job_clue">의문의 직업</string>
+    <string name="hidden_job_clue_desc">신비로운 길이 기다립니다...</string>
+    <string name="hidden_job_unlock_title">축하합니다!</string>
+    <string name="hidden_job_unlock_body">전설적인 숨겨진 직업을 발견했습니다: %1$s!</string>
+    <string name="hidden_job_unlock_close">놀랍군요!</string>
+
+    <!-- Upgrades -->
+    <string name="upgrade_inn_name">선술집</string>
+    <string name="upgrade_inn_desc">상급 직업 클래스 해제</string>
+    <string name="upgrade_barracks_name">병영</string>
+    <string name="upgrade_barracks_desc">최대 파티 규모 증가</string>
+    <string name="upgrade_vault_name">금고</string>
+    <string name="upgrade_vault_desc">최대 길 저장량 증가</string>
+    <string name="upgrade_armory_name">무기고</string>
+    <string name="upgrade_armory_desc">발견하는 장비의 능력치 증가</string>
+    <string name="upgrade_magic_shop_name">마법 상점</string>
+    <string name="upgrade_magic_shop_desc">희귀 아이템 발견 확률 증가</string>
+    <string name="upgrade_training_name">훈련</string>
+    <string name="upgrade_training_desc">던전 획득 EXP 증가</string>
+    <string name="upgrade_planning_name">계획</string>
+    <string name="upgrade_planning_desc">마을 업그레이드 비용 감소</string>
+    <string name="upgrade_clinic_name">진료소</string>
+    <string name="upgrade_clinic_desc">여관 휴식 비용 감소</string>
+    <string name="upgrade_pathfinder_name">패스파인더</string>
+    <string name="upgrade_pathfinder_desc">더 높은 시작 층 해제</string>
+
+    <!-- Relics -->
+    <string name="relic_attack_name">공격력</string>
+    <string name="relic_attack_desc">물리 피해</string>
+    <string name="relic_hp_name">생명력</string>
+    <string name="relic_hp_desc">최대 HP</string>
+    <string name="relic_mp_name">정신력</string>
+    <string name="relic_mp_desc">최대 MP</string>
+    <string name="relic_magic_name">마력</string>
+    <string name="relic_magic_desc">마법 피해</string>
+    <string name="relic_defense_name">방어력</string>
+    <string name="relic_defense_desc">피해 감소</string>
+    <string name="relic_gold_name">행운</string>
+    <string name="relic_gold_desc">골드 획득</string>
+    <string name="relic_magicite_name">정수</string>
+    <string name="relic_magicite_desc">마석 발견율</string>
+    <string name="relic_crit_chance_name">매의 눈</string>
+    <string name="relic_crit_chance_desc">크리티컬 확률</string>
+    <string name="relic_crit_damage_name">타격가</string>
+    <string name="relic_crit_damage_desc">크리티컬 피해</string>
+    <string name="relic_magnet_name">자석</string>
+    <string name="relic_magnet_desc">마석 드롭률</string>
+    <string name="relic_pockets_name">주머니</string>
+    <string name="relic_pockets_desc">골드 보존</string>
+    <string name="relic_double_loot_name">전리품</string>
+    <string name="relic_double_loot_desc">보스 전리품 2배</string>
+
+    <!-- Items -->
+    <string name="item_sword">검</string>
+    <string name="item_plate">갑옷</string>
+    <string name="item_shield">방패</string>
+    <string name="item_ring">반지</string>
+    <string name="item_rarity_common">일반</string>
+    <string name="item_rarity_rare">희귀</string>
+    <string name="item_rarity_epic">에픽</string>
+    <string name="item_rarity_legendary">전설</string>
+    <string name="item_name_template">%1$s %2$s</string>
+    <!-- Pets -->
+    <string name="pet_chocobo_name">초코보</string>
+    <string name="pet_chocobo_desc">+20%% 아이템 발견</string>
+    <string name="pet_moogle_name">모그리</string>
+    <string name="pet_moogle_desc">+50%% EXP 획득</string>
+    <string name="pet_cat_name">복고양이</string>
+    <string name="pet_cat_desc">+30%% 길 획득</string>
+    <string name="pet_cactuar_name">선인장</string>
+    <string name="pet_cactuar_desc">+15%% 크리티컬 확률</string>
+    <string name="pet_tonberry_name">톤베리</string>
+    <string name="pet_tonberry_desc">+100%% 크리티컬 피해</string>
+
+    <!-- Battle Abilities -->
+    <string name="ability_cover_name">엄호</string>
+    <string name="ability_cover_desc">%1$s을(를) 보호 중!</string>
+    <string name="ability_curaga_name">케알가</string>
+    <string name="ability_curaga_desc">%1$s이(가) 케알가를 시전합니다!</string>
+    <string name="ability_jump_name">점프</string>
+    <string name="ability_jump_desc">%1$s이(가) 공중으로 도약합니다!</string>
+    <string name="ability_zeninage_name">전지전능</string>
+    <string name="ability_zeninage_desc">%1$s이(가) 길을 던집니다 — 전지전능!</string>
+    <string name="ability_ransack_name">약탈</string>
+    <string name="ability_mimic_name">흉내 내기</string>
+    <string name="ability_mimic_desc">%1$s이(가) 마지막 능력을 흉내 냅니다!</string>
+    <string name="ability_souldrain_name">소울 드레인</string>
+    <string name="ability_souldrain_desc">%1$s이(가) 소울 드레인을 시전합니다!</string>
+
+    <!-- Songs -->
+    <string name="song_paeon">파에온</string>
+    <string name="song_paeon_effect">+현재 층 HP 재생</string>
+    <string name="song_minne">민네</string>
+    <string name="song_minne_effect">+모든 아군 방어력</string>
+    <string name="song_minuet">미뉴에트</string>
+    <string name="song_minuet_effect">+모든 아군 공격력</string>
+    <string name="song_ballad">발라드</string>
+    <string name="song_ballad_effect">모든 적 다음 턴 행동 불능</string>
+    <!-- Mastery & Pets Screen -->
+    <string name="training_grounds_title">훈련소</string>
+    <string name="tab_job_mastery">직업 마스터리</string>
+    <string name="tab_pets">펫</string>
+    <string name="mastery_bonus_label">보너스</string>
+    <string name="mastery_exp_format">%1$d / %2$d EXP</string>
+    <string name="pet_bonus_format">+%1$.1f%% %2$s</string>
+    <string name="mastery_bonus_stat_format">+%1$d %2$s</string>
+    <string name="select_companion_label">동료를 선택하세요</string>
+    <string name="pet_none">없음</string>
+    <string name="unlock_pet_format">%1$dG로 해제</string>
+    <string name="masteries">📈 마스터리</string>
+
+    <!-- Leaderboards -->
+    <string name="leaderboard_title">순위</string>
+    <string name="tab_global">전체</string>
+    <string name="tab_dimension">차원</string>
+    <string name="tab_friends">친구</string>
+    <string name="rank_label">순위</string>
+    <string name="player_label">플레이어</string>
+    <string name="floor_reached_short">최대 층</string>
+    <string name="magicite_short">마석</string>
+    <string name="time_short">시간</string>
+    <string name="ghost_run_team_title">%1$s의 팀</string>
+    <string name="no_party_data">파티 데이터 없음</string>
+    <string name="hero_lvl_class_format">레벨 %1$d %2$s</string>
+    <string name="ghost_run_close">닫기</string>
+    <string name="empty_time">---</string>
+    <string name="format_m">%1$.1fM</string>
+    <string name="format_k">%1$.1fK</string>
+    <string name="player_name_you">나</string>
+    <string name="my_id_label">내 ID: %1$s</string>
+    <string name="copy_id_hint">탭하여 ID 복사</string>
+    <string name="add_friend_label">+ 친구 추가</string>
+    <string name="friend_id_hint">친구 ID</string>
+    <string name="add_button">추가</string>
+    <string name="cancel_button_short">취소</string>
+    <string name="enter_friend_id_title">친구 ID 입력</string>
+    <string name="id_copied">ID가 클립보드에 복사되었습니다</string>
+    <string name="edit_name_hint">이름 편집</string>
+    <string name="save_button">저장</string>
+    <string name="no_friends_desc">아직 추가된 친구가 없습니다. ID를 공유하여 경쟁을 시작해보세요!</string>
+    <string name="ad_starting">광고 시청 중...</string>
+    <string name="ad_finished">보상 획득!</string>
+    <string name="ad_boost_button">부스트 (광고)</string>
+    <string name="ad_boost_active">부스트 활성화됨 (%1$d개 층)</string>
+    <string name="revive_dialog_title">파티 전멸!</string>
+    <string name="revive_dialog_desc">짧은 광고를 보고 현재 층 시작 지점에서 부활하시겠습니까? (회당 1회)</string>
+    <string name="revive_button">부활 (광고)</string>
+    <string name="give_up_button">포기하기</string>
+    <string name="ad_gil_reward">무료 길 (광고)</string>
+    <string name="ad_magicite_reward">무료 마석 (광고)</string>
+    <string name="ad_not_ready">광고가 준비되지 않았습니다. 잠시만 기다려주세요.</string>
+</resources>

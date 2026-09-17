@@ -1,0 +1,346 @@
+<resources>
+    <string name="app_name">Final Dungeon</string>
+
+    <!-- Dimensions & Biomes -->
+    <string name="dim1_title">Guerrieri della Luce</string>
+    <string name="dim1_subtitle">Final Fantasy I</string>
+    <string name="dim1_story">Quattro Guerrieri della Luce sorgono per ripristinare i cristalli rubati dalle Forze del Caos...</string>
+
+    <string name="biome_cornelia">Regione di Cornelia</string>
+    <string name="biome_chaos_shrine">Santuario del Caos</string>
+    <string name="biome_gurgu">Vulcano Gurgu</string>
+    <string name="biome_sea_shrine">Santuario del Mare</string>
+    <string name="biome_earth_cave">Caverna della Terra</string>
+    <string name="biome_crystal_tower">Tempio dei Demoni</string>
+
+    <string name="enemy_goblin">Goblin</string>
+    <string name="enemy_wolf">Lupo</string>
+    <string name="enemy_pirate">Pirata</string>
+    <string name="enemy_ogre">Ogre</string>
+    <string name="enemy_evil_eye">Occhio Malvagio</string>
+    <string name="enemy_garland">Garland</string>
+    <string name="enemy_red_flan">Flan Rosso</string>
+    <string name="enemy_bomb">Bomba</string>
+    <string name="enemy_sahagin">Sahagin</string>
+    <string name="enemy_cockatrice">Coccatrice</string>
+    <string name="enemy_lich">Lich</string>
+    <string name="enemy_kraken">Kraken</string>
+    <string name="enemy_tiamat">Tiamat</string>
+    <string name="enemy_chaos">CAOS</string>
+
+    <string name="dim2_title">Ribellione delle Anime</string>
+    <string name="dim2_subtitle">Final Fantasy II</string>
+    <string name="dim2_story">L\'Impero Palameciano diffonde l\'oscurità. Firion e i suoi amici ribelli combattono per la libertà...</string>
+
+    <string name="biome_altair">Regione di Altair</string>
+    <string name="biome_kashuan">Fortezza di Kashuan</string>
+    <string name="biome_tropical_island">Isola Tropicale</string>
+    <string name="biome_pandaemonium">Pandaemonium</string>
+
+    <string name="enemy_wild_rat">Ratto Selvatico</string>
+    <string name="enemy_black_knight">Cavaliere Nero</string>
+    <string name="enemy_sergeant">Sergente</string>
+    <string name="enemy_child">Bambino Perduto</string>
+    <string name="enemy_lamia">Lamia</string>
+    <string name="enemy_adamantoise">Adamantoise</string>
+    <string name="enemy_dark_knight">Cavaliere Oscuro</string>
+    <string name="enemy_emperor">Imperatore Mateus</string>
+
+    <string name="dim3_title">Luce dei Cristalli</string>
+    <string name="dim3_subtitle">Final Fantasy III</string>
+    <string name="dim3_story">Bambini orfani scelti dai Cristalli della Luce devono ripristinare l\'equilibrio nel mondo...</string>
+
+    <string name="biome_ur_village">Villaggio di Ur</string>
+    <string name="biome_crystal_tower_dim3">Torre di Cristallo</string>
+    <string name="biome_dark_world">Mondo dell\'Oscurità</string>
+
+    <string name="enemy_djinn">Djinn</string>
+    <string name="enemy_medusa">Medusa</string>
+    <string name="enemy_hein">Hein</string>
+    <string name="enemy_tonberry">Tonberry</string>
+    <string name="enemy_cloud_of_darkness">Nube di Oscurità</string>
+
+    <!-- Town Screen -->
+    <string name="town_name">GRANDE CAPITALE</string>
+    <string name="building_inn">LA LOCANDA</string>
+    <string name="building_crystal_shop">NEGOZIO DI CRISTALLI</string>
+    <string name="building_barracks">CASERMA</string>
+    <string name="building_relics">RELIQUIE</string>
+    <string name="crystal_shop_subtitle">Sblocca nuove classi di lavoro</string>
+    <string name="owned_status">✓ POSSEDUTO</string>
+    <string name="town_upgrades">POTENZIAMENTI CITTÀ</string>
+    <string name="upgrade_discount">Sconto: %1$d%%</string>
+    <string name="max_level">MAX</string>
+    <string name="level_format">LVL %1$d / %2$d</string>
+    <string name="pathfinder_level_format">LVL %1$d / %2$d (Piano Max: %3$d)</string>
+
+    <!-- Inn Screen -->
+    <string name="hire_warriors">ASSOLDA GUERRIERI</string>
+    <string name="permadeath_warning">Morte permanente attiva</string>
+    <string name="party_size_format">GRUPPO (%1$d/%2$d)</string>
+    <string name="empty_slot">SLOT VUOTO</string>
+    <string name="advance_banner_format">⚡ AVANZA A %1$s ⚡</string>
+    <string name="floor_label">PIANO:</string>
+    <string name="rest_at_inn_cost">RIPOSA ALLA LOCANDA (%1$dG)</string>
+    <string name="rest_at_inn_free">RIPOSA ALLA LOCANDA (0G)</string>
+    <string name="enter_dungeon">⚔ ENTRA NEL DUNGEON ⚔</string>
+    <string name="need_warriors">SERVONO GUERRIERI</string>
+    <string name="fully_rested">Il gruppo è riposato</string>
+    <string name="equip_button">EQUIPAGGIA</string>
+    <string name="dimension_complete">DIMENSIONE COMPLETATA!</string>
+    <string name="hall_of_fame">SALA DELLA FAMA</string>
+    <string name="gil_earned_label">Gil guadagnati</string>
+    <string name="magicite_found_label">Magicite trovata</string>
+    <string name="bosses_slain_label">Boss sconfitti</string>
+    <string name="items_found_label">Oggetti trovati</string>
+    <string name="ascension_rewards">RICOMPENSE ASCENSIONE</string>
+    <string name="dimension_reset_warning">Attenzione: Resetta eroi, equipaggiamento e piano attuale.</string>
+    <string name="cancel_button">ANNULLA</string>
+    <string name="advance_button">AVANZA!</string>
+
+    <!-- Relics Screen -->
+    <string name="relics_title">RELIQUIE</string>
+    <string name="magicite_format">💎 %1$d MAGICITE</string>
+    <string name="back_button">◀ INDIETRO</string>
+    <string name="upgrade_cost_format">POTENZIA (%1$d 💎)</string>
+    <string name="relic_level_format">LVL %1$d</string>
+
+    <!-- Equipment Screen -->
+    <string name="equipment_title">EQUIPAGGIAMENTO: %1$s</string>
+    <string name="stats_header">STATISTICHE</string>
+    <string name="equipped_header">EQUIPAGGIATO</string>
+    <string name="inventory_header">INVENTARIO</string>
+    <string name="quick_equip">EQUIP. RAPIDO</string>
+    <string name="empty_inventory">VUOTO</string>
+    <string name="slot_format">SLOT %1$s</string>
+    <string name="item_lvl_rarity_format">Lvl %1$d %2$s</string>
+    <string name="unequip_button">RIMUOVI</string>
+    <string name="sell_button_format">VENDI (%1$dG)</string>
+    <string name="close_button">CHIUDI</string>
+
+    <!-- Dungeon Screen -->
+    <string name="retreat_button">◀ RITIRATA</string>
+    <string name="floor_format">PIANO %1$d</string>
+    <string name="boss_floor_warning">⚠ PIANO DEL BOSS</string>
+    <string name="entering_biome_format">Ingresso in %1$s...</string>
+    <string name="floor_cleared_format">Piano %1$d superato! +%2$dG</string>
+    <string name="floor_cleared_lvlup_format">Piano %1$d superato! +%2$dG (Aumento Livello!)</string>
+    <string name="party_wiped">⚰ GRUPPO SCONFITTO</string>
+    <string name="run_complete">⚔ INCURSIONE COMPLETATA</string>
+    <string name="floor_reached_format">Piano %1$d raggiunto</string>
+    <string name="earned_rewards">RICOMPENSE GUADAGNATE</string>
+    <string name="wipe_penalty">PENALITÀ SCONFITTA</string>
+    <string name="fallen_warriors">GUERRIERI CADUTI</string>
+    <string name="loot_collected">BOTTINO RACCOLTO</string>
+
+    <!-- Battle Log & Events -->
+    <string name="log_entering_floor">Ingresso nel piano...</string>
+    <string name="log_attack_format">%1$s attacca %2$s per %3$d</string>
+    <string name="log_hit_format">%1$s colpisce %2$s per %3$d</string>
+    <string name="log_defeated_format">%1$s ha sconfitto %2$s!</string>
+    <string name="log_fallen_format">%1$s è caduto!</string>
+    <string name="log_victory_xp">Vittoria! %1$s sconfitto. +%2$d EXP</string>
+    <string name="log_level_up">⭐ %1$s ha raggiunto il Livello %2$d!</string>
+    <string name="log_heal_format">%1$s cura %2$s di %3$d</string>
+    <string name="log_group_heal">%1$s cura il gruppo!</string>
+    <string name="log_boss_defeated">⚔️ BOSS SCONFITTO: %1$s!</string>
+    <string name="log_summon_format">🌟 %1$s evoca %2$s! Totale: %3$d danni!</string>
+    <string name="log_magicite_stolen">%1$s ha rubato %2$d Magicite!</string>
+    <string name="log_bard_song">🎵 %1$s: %2$s</string>
+    <string name="log_total_wipe">💀 DISFATTA TOTALE: Perso il 30%% dei guadagni dell\'incursione.</string>
+    <string name="log_physical_attack">%1$s attacca %2$s per %3$d!</string>
+    <string name="log_physical_crit">💥 %1$s colpisce il PUNTO VITALE di %2$s per %3$d! (CRITICO)</string>
+    <string name="log_magic_attack">%1$s lancia un incantesimo su %2$s per %3$d!</string>
+    <string name="log_magic_crit">✨ L\'incantesimo di %1$s FLUISCE su %2$s per %3$d! (CRITICO)</string>
+    <string name="log_generic">%1$s</string>
+
+    <!-- Hero Classes -->
+    <string name="class_freelancer">Freelancer</string>
+    <string name="class_freelancer_desc">Tuttofare. Statistiche equilibrate.</string>
+    <string name="class_warrior">Guerriero</string>
+    <string name="class_warrior_desc">Combattente di prima linea. HP e attacco elevati.</string>
+    <string name="class_white_mage">Mago Bianco</string>
+    <string name="class_white_mage_desc">Guaritore sacro. Mantiene in vita il gruppo.</string>
+    <string name="class_black_mage">Mago Nero</string>
+    <string name="class_black_mage_desc">Magia distruttiva. Colpisce tutti i nemici.</string>
+    <string name="class_thief">Ladro</string>
+    <string name="class_thief_desc">Veloce e furtivo. Ruba Magicite.</string>
+    <string name="class_monk">Monaco</string>
+    <string name="class_monk_desc">Lottatore a mani nude. Massimo attacco base.</string>
+    <string name="class_knight">Cavaliere</string>
+    <string name="class_knight_desc">Protegge gli alleati. Può coprire i membri deboli.</string>
+    <string name="class_paladin">Paladino</string>
+    <string name="class_paladin_desc">Protettore sacro. Attacca e cura.</string>
+    <string name="class_red_mage">Mago Rosso</string>
+    <string name="class_red_mage_desc">Può usare sia magia bianca che nera.</string>
+    <string name="class_summoner">Invocatore</string>
+    <string name="class_summoner_desc">Evoca potenti eidolons.</string>
+    <string name="class_ninja">Ninja</string>
+    <string name="class_ninja_desc">Assassino con doppia arma. Molto veloce.</string>
+    <string name="class_dragoon">Dragone</string>
+    <string name="class_dragoon_desc">Specialista della lancia. Maestro del Salto.</string>
+    <string name="class_bard">Bardo</string>
+    <string name="class_bard_desc">Supporto con canzoni magiche.</string>
+    <string name="class_samurai">Samurai</string>
+    <string name="class_samurai_desc">Maestro della lama. Alto critico.</string>
+    <string name="class_onion_knight">Cavaliere Cipolla</string>
+    <string name="class_onion_knight_desc">Fioritura tardiva. Debole fino al Livello 90+.</string>
+    <string name="class_mime">Mimo</string>
+    <string name="class_mime_desc">Maestro dell\'imitazione. Imita le abilità del gruppo.</string>
+    <string name="class_necromancer">Negromante</string>
+    <string name="class_necromancer_desc">Arti oscure. Il drenaggio d\'anima cura il gruppo.</string>
+    <string name="class_blue_mage">Mago Blu</string>
+    <string name="class_blue_mage_desc">Studioso delle arti. Cresce sconfiggendo i boss.</string>
+
+    <string name="hidden_job_clue">Lavoro Misterioso</string>
+    <string name="hidden_job_clue_desc">Un sentiero misterioso ti attende...</string>
+    <string name="hidden_job_unlock_title">CONGRATULAZIONI!</string>
+    <string name="hidden_job_unlock_body">Hai scoperto un lavoro nascosto leggendario: %1$s!</string>
+    <string name="hidden_job_unlock_close">FANTASTICO!</string>
+
+    <!-- Upgrades -->
+    <string name="upgrade_inn_name">Taverna</string>
+    <string name="upgrade_inn_desc">Sblocca classi di lavoro avanzate</string>
+    <string name="upgrade_barracks_name">Caserma</string>
+    <string name="upgrade_barracks_desc">Aumenta la dimensione massima del gruppo</string>
+    <string name="upgrade_vault_name">Caveau</string>
+    <string name="upgrade_vault_desc">Aumenta il deposito massimo di Gil</string>
+    <string name="upgrade_armory_name">Armeria</string>
+    <string name="upgrade_armory_desc">Aumenta le statistiche dell\'equipaggiamento trovato</string>
+    <string name="upgrade_magic_shop_name">Negozio di Magia</string>
+    <string name="upgrade_magic_shop_desc">Aumenta le probabilità di trovare oggetti rari</string>
+    <string name="upgrade_training_name">Addestramento</string>
+    <string name="upgrade_training_desc">Aumenta l\'EXP guadagnata nel dungeon</string>
+    <string name="upgrade_planning_name">Pianificazione</string>
+    <string name="upgrade_planning_desc">Diminuisce il costo dei potenziamenti città</string>
+    <string name="upgrade_clinic_name">Clinica</string>
+    <string name="upgrade_clinic_desc">Diminuisce il costo del riposo alla locanda</string>
+    <string name="upgrade_pathfinder_name">Esploratore</string>
+    <string name="upgrade_pathfinder_desc">Sblocca piani di partenza più elevati</string>
+
+    <!-- Relics -->
+    <string name="relic_attack_name">Attacco</string>
+    <string name="relic_attack_desc">Danno Fisico</string>
+    <string name="relic_hp_name">Vitalità</string>
+    <string name="relic_hp_desc">HP Massimi</string>
+    <string name="relic_mp_name">Spirito</string>
+    <string name="relic_mp_desc">MP Massimi</string>
+    <string name="relic_magic_name">Magia</string>
+    <string name="relic_magic_desc">Danno Magico</string>
+    <string name="relic_defense_name">Difesa</string>
+    <string name="relic_defense_desc">Riduzione Danni</string>
+    <string name="relic_gold_name">Fortuna</string>
+    <string name="relic_gold_desc">Guadagno Oro</string>
+    <string name="relic_magicite_name">Essenza</string>
+    <string name="relic_magicite_desc">Tasso Ritrovamento Magicite</string>
+    <string name="relic_crit_chance_name">Occhio di Falco</string>
+    <string name="relic_crit_chance_desc">Tasso Colpi Critici</string>
+    <string name="relic_crit_damage_name">Picchiatore</string>
+    <string name="relic_crit_damage_desc">Danno Critico</string>
+    <string name="relic_magnet_name">Magnete</string>
+    <string name="relic_magnet_desc">Tasso Drop Magicite</string>
+    <string name="relic_pockets_name">Tasche</string>
+    <string name="relic_pockets_desc">Oro Mantenuto</string>
+    <string name="relic_double_loot_name">Bottino</string>
+    <string name="relic_double_loot_desc">Bottino Boss Doppio</string>
+
+    <!-- Items -->
+    <string name="item_sword">Spada</string>
+    <string name="item_plate">Piastra</string>
+    <string name="item_shield">Scudo</string>
+    <string name="item_ring">Anello</string>
+    <string name="item_rarity_common">Comune</string>
+    <string name="item_rarity_rare">Raro</string>
+    <string name="item_rarity_epic">Epico</string>
+    <string name="item_rarity_legendary">Leggendario</string>
+    <string name="item_name_template">%1$s %2$s</string>
+    <!-- Pets -->
+    <string name="pet_chocobo_name">Chocobo</string>
+    <string name="pet_chocobo_desc">+20%% Ritrovamento Oggetti</string>
+    <string name="pet_moogle_name">Moogle</string>
+    <string name="pet_moogle_desc">+50%% Guadagno EXP</string>
+    <string name="pet_cat_name">Gatto della Fortuna</string>
+    <string name="pet_cat_desc">+30%% Guadagno Gil</string>
+    <string name="pet_cactuar_name">Cactuar</string>
+    <string name="pet_cactuar_desc">+15%% Tasso Critico</string>
+    <string name="pet_tonberry_name">Tonberry</string>
+    <string name="pet_tonberry_desc">+100%% Danno Critico</string>
+
+    <!-- Battle Abilities -->
+    <string name="ability_cover_name">Copertura</string>
+    <string name="ability_cover_desc">Proteggendo %1$s!</string>
+    <string name="ability_curaga_name">Curaga</string>
+    <string name="ability_curaga_desc">%1$s lancia Curaga!</string>
+    <string name="ability_jump_name">Salto</string>
+    <string name="ability_jump_desc">%1$s salta in aria!</string>
+    <string name="ability_zeninage_name">Zeninage</string>
+    <string name="ability_zeninage_desc">%1$s lancia Gil — Zeninage!</string>
+    <string name="ability_ransack_name">Saccheggio</string>
+    <string name="ability_mimic_name">Mimo</string>
+    <string name="ability_mimic_desc">%1$s imita l\'ultima abilità!</string>
+    <string name="ability_souldrain_name">Drenaggio d\'Anima</string>
+    <string name="ability_souldrain_desc">%1$s lancia Drenaggio d\'Anima!</string>
+
+    <!-- Songs -->
+    <string name="song_paeon">Peana</string>
+    <string name="song_paeon_effect">+Rigenerazione HP in questo piano</string>
+    <string name="song_minne">Minne</string>
+    <string name="song_minne_effect">+Difesa per tutti gli alleati</string>
+    <string name="song_minuet">Minuetto</string>
+    <string name="song_minuet_effect">+Attacco per tutti gli alleati</string>
+    <string name="song_ballad">Ballata di Romeo</string>
+    <string name="song_ballad_effect">Tutti i nemici saltano il prossimo turno</string>
+    <!-- Mastery & Pets Screen -->
+    <string name="training_grounds_title">CAMPI DI ADDESTRAMENTO</string>
+    <string name="tab_job_mastery">MAESTRIA LAVORO</string>
+    <string name="tab_pets">PET</string>
+    <string name="mastery_bonus_label">BONUS</string>
+    <string name="mastery_exp_format">%1$d / %2$d EXP</string>
+    <string name="pet_bonus_format">+%1$.1f%% %2$s</string>
+    <string name="mastery_bonus_stat_format">+%1$d %2$s</string>
+    <string name="select_companion_label">SELEZIONA UN COMPAGNO</string>
+    <string name="pet_none">NESSUNO</string>
+    <string name="unlock_pet_format">%1$dG PER SBLOCCARE</string>
+    <string name="masteries">📈 MAESTRIE</string>
+
+    <!-- Leaderboards -->
+    <string name="leaderboard_title">CLASSIFICHE</string>
+    <string name="tab_global">GLOBALE</string>
+    <string name="tab_dimension">DIMENSIONE</string>
+    <string name="tab_friends">AMICI</string>
+    <string name="rank_label">POSIZIONE</string>
+    <string name="player_label">GIOCATORE</string>
+    <string name="floor_reached_short">PIANO MAX</string>
+    <string name="magicite_short">MAG</string>
+    <string name="time_short">TEMPO</string>
+    <string name="ghost_run_team_title">Squadra di %1$s</string>
+    <string name="no_party_data">Nessun dato del gruppo disponibile</string>
+    <string name="hero_lvl_class_format">LVL %1$d %2$s</string>
+    <string name="ghost_run_close">CHIUDI</string>
+    <string name="empty_time">---</string>
+    <string name="format_m">%1$.1fM</string>
+    <string name="format_k">%1$.1fK</string>
+    <string name="player_name_you">TU</string>
+    <string name="my_id_label">TUO ID: %1$s</string>
+    <string name="copy_id_hint">Tocca per copiare il tuo ID</string>
+    <string name="add_friend_label">+ AGGIUNGI AMICO</string>
+    <string name="friend_id_hint">ID Amico</string>
+    <string name="add_button">AGGIUNGI</string>
+    <string name="cancel_button_short">ANNULLA</string>
+    <string name="enter_friend_id_title">Inserisci ID Amico</string>
+    <string name="id_copied">ID copiato negli appunti</string>
+    <string name="edit_name_hint">Modifica Nome</string>
+    <string name="save_button">SALVA</string>
+    <string name="no_friends_desc">Nessun amico aggiunto. Condividi il tuo ID per iniziare la classifica!</string>
+    <string name="ad_starting">Caricamento Annuncio...</string>
+    <string name="ad_finished">Ricompensa Guadagnata!</string>
+    <string name="ad_boost_button">POTENZIAMENTO (AD)</string>
+    <string name="ad_boost_active">POTENZIAMENTO ATTIVO (%1$d piani)</string>
+    <string name="revive_dialog_title">GRUPPO SCONFITTO!</string>
+    <string name="revive_dialog_desc">Guardare un breve annuncio per rianimare la tua squadra all\'inizio di questo piano? (Una volta per incursione)</string>
+    <string name="revive_button">RIANIMA (AD)</string>
+    <string name="give_up_button">ARRENDITI</string>
+    <string name="ad_gil_reward">GIL GRATIS (AD)</string>
+    <string name="ad_magicite_reward">MAGICITA GRATIS (AD)</string>
+    <string name="ad_not_ready">Annuncio non pronto. Attendi un momento.</string>
+</resources>

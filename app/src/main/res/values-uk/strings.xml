@@ -1,0 +1,346 @@
+<resources>
+    <string name="app_name">Final Dungeon</string>
+
+    <!-- Dimensions & Biomes -->
+    <string name="dim1_title">Воїни Світла</string>
+    <string name="dim1_subtitle">Final Fantasy I</string>
+    <string name="dim1_story">Чотири Воїни Світла повстають, щоб повернути кристали, викрадені Силами Хаосу...</string>
+
+    <string name="biome_cornelia">Регіон Корнелія</string>
+    <string name="biome_chaos_shrine">Святилище Хаосу</string>
+    <string name="biome_gurgu">Вулкан Гургу</string>
+    <string name="biome_sea_shrine">Морське святилище</string>
+    <string name="biome_earth_cave">Земляна печере</string>
+    <string name="biome_crystal_tower">Храм Породжень</string>
+
+    <string name="enemy_goblin">Гоблін</string>
+    <string name="enemy_wolf">Вовк</string>
+    <string name="enemy_pirate">Пірат</string>
+    <string name="enemy_ogre">Огр</string>
+    <string name="enemy_evil_eye">Зле Око</string>
+    <string name="enemy_garland">Гарланд</string>
+    <string name="enemy_red_flan">Червоний Флан</string>
+    <string name="enemy_bomb">Бомба</string>
+    <string name="enemy_sahagin">Сахагін</string>
+    <string name="enemy_cockatrice">Кокатрис</string>
+    <string name="enemy_lich">Ліч</string>
+    <string name="enemy_kraken">Кракен</string>
+    <string name="enemy_tiamat">Тіамат</string>
+    <string name="enemy_chaos">ХАОС</string>
+
+    <string name="dim2_title">Повстання душ</string>
+    <string name="dim2_subtitle">Final Fantasy II</string>
+    <string name="dim2_story">Паламеційська імперія сіє темряву. Фіріон та його друзі-повстанці борються за свободу...</string>
+
+    <string name="biome_altair">Регион Алтаїр</string>
+    <string name="biome_kashuan">Фортеця Кашуан</string>
+    <string name="biome_tropical_island">Тропічний острів</string>
+    <string name="biome_pandaemonium">Пандемоніум</string>
+
+    <string name="enemy_wild_rat">Дикий щур</string>
+    <string name="enemy_black_knight">Чорний лицар</string>
+    <string name="enemy_sergeant">Сержант</string>
+    <string name="enemy_child">Загублене дитя</string>
+    <string name="enemy_lamia">Ламія</string>
+    <string name="enemy_adamantoise">Адамантуаз</string>
+    <string name="enemy_dark_knight">Темний лицар</string>
+    <string name="enemy_emperor">Імператор Матеус</string>
+
+    <string name="dim3_title">Світло Кристалів</string>
+    <string name="dim3_subtitle">Final Fantasy III</string>
+    <string name="dim3_story">Сироти, обрані Кристалами Світла, мають відновити баланс у світі...</string>
+
+    <string name="biome_ur_village">Село Ур</string>
+    <string name="biome_crystal_tower_dim3">Кришталева вежа</string>
+    <string name="biome_dark_world">Світ Темряви</string>
+
+    <string name="enemy_djinn">Джинн</string>
+    <string name="enemy_medusa">Медуза</string>
+    <string name="enemy_hein">Хейн</string>
+    <string name="enemy_tonberry">Тонберрі</string>
+    <string name="enemy_cloud_of_darkness">Хмара Темряви</string>
+
+    <!-- Town Screen -->
+    <string name="town_name">ВЕЛИКА СТОЛИЦЯ</string>
+    <string name="building_inn">ТРАКТИР</string>
+    <string name="building_crystal_shop">ЛАВКА КРИСТАЛІВ</string>
+    <string name="building_barracks">КАЗАРМИ</string>
+    <string name="building_relics">РЕЛІКВІЇ</string>
+    <string name="crystal_shop_subtitle">Розблокуйте нові класи професій</string>
+    <string name="owned_status">✓ КУПЛЕНО</string>
+    <string name="town_upgrades">ПОКРАЩЕННЯ МІСТА</string>
+    <string name="upgrade_discount">Знижка: %1$d%%</string>
+    <string name="max_level">МАКС</string>
+    <string name="level_format">РІВ %1$d / %2$d</string>
+    <string name="pathfinder_level_format">РІВ %1$d / %2$d (Макс. поверх: %3$d)</string>
+
+    <!-- Inn Screen -->
+    <string name="hire_warriors">НАЙМ ВОЇНІВ</string>
+    <string name="permadeath_warning">Перманентна смерть активна</string>
+    <string name="party_size_format">ЗАГІН (%1$d/%2$d)</string>
+    <string name="empty_slot">ПОРОЖНІЙ СЛОТ</string>
+    <string name="advance_banner_format">⚡ ВПЕРЕД ДО %1$s ⚡</string>
+    <string name="floor_label">ПОВЕРХ:</string>
+    <string name="rest_at_inn_cost">ВІДПОЧИНОК У ТРАКТИРІ (%1$dG)</string>
+    <string name="rest_at_inn_free">ВІДПОЧИНОК У ТРАКТИРІ (0G)</string>
+    <string name="enter_dungeon">⚔ УВІЙТИ В ПІДЗЕМЕЛЛЯ ⚔</string>
+    <string name="need_warriors">ПОТРІБНІ ВОЇНИ</string>
+    <string name="fully_rested">Загін повністю відпочив</string>
+    <string name="equip_button">СПОРЯДИТИ</string>
+    <string name="dimension_complete">ВИМІР ПРОЙДЕНО!</string>
+    <string name="hall_of_fame">ЗАЛ СЛАВИ</string>
+    <string name="gil_earned_label">Зароблено гілей</string>
+    <string name="magicite_found_label">Знайдено магіциту</string>
+    <string name="bosses_slain_label">Убито босів</string>
+    <string name="items_found_label">Знайдено предметів</string>
+    <string name="ascension_rewards">НАГОРОДИ ВОЗНЕСЕННЯ</string>
+    <string name="dimension_reset_warning">Увага: Скидає героїв, спорядження та поточний поверх.</string>
+    <string name="cancel_button">СКАСУВАТИ</string>
+    <string name="advance_button">ВПЕРЕД!</string>
+
+    <!-- Relics Screen -->
+    <string name="relics_title">РЕЛІКВІЇ</string>
+    <string name="magicite_format">💎 %1$d МАГІЦИТУ</string>
+    <string name="back_button">◀ НАЗАД</string>
+    <string name="upgrade_cost_format">ПОКРАЩИТИ (%1$d 💎)</string>
+    <string name="relic_level_format">РІВ %1$d</string>
+
+    <!-- Equipment Screen -->
+    <string name="equipment_title">СПОРЯДЖЕННЯ: %1$s</string>
+    <string name="stats_header">ХАРАКТЕРИСТИКИ</string>
+    <string name="equipped_header">СПОРЯДЖЕНО</string>
+    <string name="inventory_header">ІНВЕНТАР</string>
+    <string name="quick_equip">ШВИДКЕ СПОРЯДЖЕННЯ</string>
+    <string name="empty_inventory">ПОРОЖНЬО</string>
+    <string name="slot_format">СЛОТ %1$s</string>
+    <string name="item_lvl_rarity_format">Рів %1$d %2$s</string>
+    <string name="unequip_button">ЗНЯТИ</string>
+    <string name="sell_button_format">ПРОДАТТИ (%1$dG)</string>
+    <string name="close_button">ЗАКРИТИ</string>
+
+    <!-- Dungeon Screen -->
+    <string name="retreat_button">◀ ВІДСТУП</string>
+    <string name="floor_format">ПОВЕРХ %1$d</string>
+    <string name="boss_floor_warning">⚠ ПОВЕРХ З БОСОМ</string>
+    <string name="entering_biome_format">Вхід до %1$s...</string>
+    <string name="floor_cleared_format">Поверх %1$d зачищено! +%2$dG</string>
+    <string name="floor_cleared_lvlup_format">Поверх %1$d зачищено! +%2$dG (Новий рівень!)</string>
+    <string name="party_wiped">⚰ ЗАГІН ЗАГИНУВ</string>
+    <string name="run_complete">⚔ ЗАБІГ ЗАВЕРШЕНО</string>
+    <string name="floor_reached_format">Досягнуто поверх %1$d</string>
+    <string name="earned_rewards">ЗАРОБЛЕНІ НАГОРОДИ</string>
+    <string name="wipe_penalty">ШТРАФ ЗА ЗАГИБЕЛЬ</string>
+    <string name="fallen_warriors">ПАВЛІ ВОЇНИ</string>
+    <string name="loot_collected">ЗІБРАНА ЗДОБИЧ</string>
+
+    <!-- Battle Log & Events -->
+    <string name="log_entering_floor">Вход на поверх...</string>
+    <string name="log_attack_format">%1$s атакує %2$s на %3$d</string>
+    <string name="log_hit_format">%1$s б\'є %2$s на %3$d</string>
+    <string name="log_defeated_format">%1$s перемагає %2$s!</string>
+    <string name="log_fallen_format">%1$s загинув!</string>
+    <string name="log_victory_xp">Перемога! %1$s повержений. +%2$d EXP</string>
+    <string name="log_level_up">⭐ %1$s підвищує рівень до %2$d!</string>
+    <string name="log_heal_format">%1$s зцілює %2$s на %3$d</string>
+    <string name="log_group_heal">%1$s зцілює загін!</string>
+    <string name="log_boss_defeated">⚔️ БОС ПОВЕРЖЕНИЙ: %1$s!</string>
+    <string name="log_summon_format">🌟 %1$s закликає %2$s! Всього: %3$d шкоди!</string>
+    <string name="log_magicite_stolen">%1$s вкрав %2$d магіциту!</string>
+    <string name="log_bard_song">🎵 %1$s: %2$s</string>
+    <string name="log_total_wipe">💀 ПОВНА ЗАГИБЕЛЬ: Втрачено 30%% заробітку за забіг.</string>
+    <string name="log_physical_attack">%1$s атакує %2$s на %3$d!</string>
+    <string name="log_physical_crit">💥 %1$s вражає КРИТИЧНУ ТОЧКУ %2$s на %3$d! (КРИТ)</string>
+    <string name="log_magic_attack">%1$s застосовує заклинання на %2$s на %3$d!</string>
+    <string name="log_magic_crit">✨ Заклинання %1$s ПОСИЛЮЄТЬСЯ на %2$s на %3$d! (КРИТ)</string>
+    <string name="log_generic">%1$s</string>
+
+    <!-- Hero Classes -->
+    <string name="class_freelancer">Фрілансер</string>
+    <string name="class_freelancer_desc">Майстер на всі руки. Збалансовані характеристики.</string>
+    <string name="class_warrior">Воїн</string>
+    <string name="class_warrior_desc">Боєць першої лінії. Високі ОЗ та атака.</string>
+    <string name="class_white_mage">Білий Маг</string>
+    <string name="class_white_mage_desc">Святой цілитель. Рятує загін від смерті.</string>
+    <string name="class_black_mage">Чорний Маг</string>
+    <string name="class_black_mage_desc">Руйнівна магія. Б\'є по всіх ворогах.</string>
+    <string name="class_thief">Злодюжка</string>
+    <string name="class_thief_desc">Швидкий і прихований. Краде магіцит.</string>
+    <string name="class_monk">Монах</string>
+    <string name="class_monk_desc">Рукопашний боєць. Найвища чиста атака.</string>
+    <string name="class_knight">Лицар</string>
+    <string name="class_knight_desc">Захищає союзників. Може прикривати слабких членів загону.</string>
+    <string name="class_paladin">Паладин</string>
+    <string name="class_paladin_desc">Святой захисник. Атакує та зцілює.</string>
+    <string name="class_red_mage">Червоний Маг</string>
+    <string name="class_red_mage_desc">Може використовувати як білу, так і чорну магію.</string>
+    <string name="class_summoner">Призивач</string>
+    <string name="class_summoner_desc">Закликає могутніх ейдолонів.</string>
+    <string name="class_ninja">Ніндзя</string>
+    <string name="class_ninja_desc">Вбивця з парною зброєю. Дуже швидкий.</string>
+    <string name="class_dragoon">Драгун</string>
+    <string name="class_dragoon_desc">Спеціаліст по списах. Майстер стрибка.</string>
+    <string name="class_bard">Бард</string>
+    <string name="class_bard_desc">Підтримка за допомогою магічних пісень.</string>
+    <string name="class_samurai">Самурай</string>
+    <string name="class_samurai_desc">Майстер клинка. Високий шанс криту.</string>
+    <string name="class_onion_knight">Цибулевий лицар</string>
+    <string name="class_onion_knight_desc">Пізня квітка. Слабкий до рівня 90+.</string>
+    <string name="class_mime">Мім</string>
+    <string name="class_mime_desc">Майстер наслідування. Копіює здібності загону.</string>
+    <string name="class_necromancer">Некромант</string>
+    <string name="class_necromancer_desc">Темні мистецтва. Висушування душі зцілює загін.</string>
+    <string name="class_blue_mage">Синій Маг</string>
+    <string name="class_blue_mage_desc">Дослідник знань. Сильнішає, перемагаючи босів.</string>
+
+    <string name="hidden_job_clue">Загадкова професія</string>
+    <string name="hidden_job_clue_desc">Таємничий шлях чекає на вас...</string>
+    <string name="hidden_job_unlock_title">ВІТАЄМО!</string>
+    <string name="hidden_job_unlock_body">Ви виявили легендарну приховану професію: %1$s!</string>
+    <string name="hidden_job_unlock_close">ПРИГОЛОМШЛИВО!</string>
+
+    <!-- Upgrades -->
+    <string name="upgrade_inn_name">Таверна</string>
+    <string name="upgrade_inn_desc">Відкриває просунуті класи професій</string>
+    <string name="upgrade_barracks_name">Казарми</string>
+    <string name="upgrade_barracks_desc">Збільшує максимальний розмір загону</string>
+    <string name="upgrade_vault_name">Сховище</string>
+    <string name="upgrade_vault_desc">Збільшує максимальний запас гілей</string>
+    <string name="upgrade_armory_name">Збройова</string>
+    <string name="upgrade_armory_desc">Збільшує характеристики знайденого спорядження</string>
+    <string name="upgrade_magic_shop_name">Магічна лавка</string>
+    <string name="upgrade_magic_shop_desc">Збільшує шанси знайти рідкісні предметти</string>
+    <string name="upgrade_training_name">Тренування</string>
+    <string name="upgrade_training_desc">Збільшує кількість отриманого EXP у підземеллі</string>
+    <string name="upgrade_planning_name">Планування</string>
+    <string name="upgrade_planning_desc">Знижує вартість покращень міста</string>
+    <string name="upgrade_clinic_name">Клініка</string>
+    <string name="upgrade_clinic_desc">Знижує вартість відпочинку в трактирі</string>
+    <string name="upgrade_pathfinder_name">Слідопит</string>
+    <string name="upgrade_pathfinder_desc">Розблокує вищі стартові поверхи</string>
+
+    <!-- Relics -->
+    <string name="relic_attack_name">Aтака</string>
+    <string name="relic_attack_desc">Фізична шкода</string>
+    <string name="relic_hp_name">Живучість</string>
+    <string name="relic_hp_desc">Максимальні ОЗ</string>
+    <string name="relic_mp_name">Дух</string>
+    <string name="relic_mp_desc">Максимальні ОМ</string>
+    <string name="relic_magic_name">Магія</string>
+    <string name="relic_magic_desc">Магічна шкода</string>
+    <string name="relic_defense_name">Захист</string>
+    <string name="relic_defense_desc">Зниження шкоди</string>
+    <string name="relic_gold_name">Удача</string>
+    <string name="relic_gold_desc">Приріст золота</string>
+    <string name="relic_magicite_name">Есенція</string>
+    <string name="relic_magicite_desc">Шанс пошуку магіциту</string>
+    <string name="relic_crit_chance_name">Соколине око</string>
+    <string name="relic_crit_chance_desc">Шанс критичного удару</string>
+    <string name="relic_crit_damage_name">Хіттер</string>
+    <string name="relic_crit_damage_desc">Критична шкода</string>
+    <string name="relic_magnet_name">Магніт</string>
+    <string name="relic_magnet_desc">Шанс випадіння магіциту</string>
+    <string name="relic_pockets_name">Кишені</string>
+    <string name="relic_pockets_desc">Золото, що зберігається</string>
+    <string name="relic_double_loot_name">Здобич</string>
+    <string name="relic_double_loot_desc">Подвійна здобич з босів</string>
+
+    <!-- Items -->
+    <string name="item_sword">Меч</string>
+    <string name="item_plate">Обладунок</string>
+    <string name="item_shield">Щит</string>
+    <string name="item_ring">Кільце</string>
+    <string name="item_rarity_common">Звичайний</string>
+    <string name="item_rarity_rare">Рідкісний</string>
+    <string name="item_rarity_epic">Епічний</string>
+    <string name="item_rarity_legendary">Легендарний</string>
+    <string name="item_name_template">%1$s %2$s</string>
+    <!-- Pets -->
+    <string name="pet_chocobo_name">Чокобо</string>
+    <string name="pet_chocobo_desc">+20%% предметів знайдено</string>
+    <string name="pet_moogle_name">Мугл</string>
+    <string name="pet_moogle_desc">+50%% до отримання EXP</string>
+    <string name="pet_cat_name">Кіт удачі</string>
+    <string name="pet_cat_desc">+30%% до отримання гілей</string>
+    <string name="pet_cactuar_name">Кактуар</string>
+    <string name="pet_cactuar_desc">+15%% до шансу криту</string>
+    <string name="pet_tonberry_name">Тонберрі</string>
+    <string name="pet_tonberry_desc">+100%% до критичної шкоди</string>
+
+    <!-- Battle Abilities -->
+    <string name="ability_cover_name">Прикриття</string>
+    <string name="ability_cover_desc">Захист %1$s!</string>
+    <string name="ability_curaga_name">Курага</string>
+    <string name="ability_curaga_desc">%1$s читає заклинання Курага!</string>
+    <string name="ability_jump_name">Стрибок</string>
+    <string name="ability_jump_desc">%1$s злітає в повітря!</string>
+    <string name="ability_zeninage_name">Дзенінаге</string>
+    <string name="ability_zeninage_desc">%1$s кидає гілі — Дзенінаге!</string>
+    <string name="ability_ransack_name">Обшук</string>
+    <string name="ability_mimic_name">Мімікрія</string>
+    <string name="ability_mimic_desc">%1$s імітує останню здібність!</string>
+    <string name="ability_souldrain_name">Висушування душі</string>
+    <string name="ability_souldrain_desc">%1$s застосовує Висушування душі!</string>
+
+    <!-- Songs -->
+    <string name="song_paeon">Пеан</string>
+    <string name="song_paeon_effect">+Регенерація ОЗ на цьому поверсі</string>
+    <string name="song_minne">Мінне</string>
+    <string name="song_minne_effect">+Захист для всіх союзників</string>
+    <string name="song_minuet">Менует</string>
+    <string name="song_minuet_effect">+Атака для всіх союзників</string>
+    <string name="song_ballad">Балада Ромео</string>
+    <string name="song_ballad_effect">Всі вороги пропускають наступний хід</string>
+    <!-- Mastery & Pets Screen -->
+    <string name="training_grounds_title">ТРЕНУВАЛЬНИЙ МАЙДАНЧИК</string>
+    <string name="tab_job_mastery">МАЙСТЕРНІСТЬ КЛАСІВ</string>
+    <string name="tab_pets">ДОМАШНІ ТВАРИНИ</string>
+    <string name="mastery_bonus_label">БОНУС</string>
+    <string name="mastery_exp_format">%1$d / %2$d EXP</string>
+    <string name="pet_bonus_format">+%1$.1f%% %2$s</string>
+    <string name="mastery_bonus_stat_format">+%1$d %2$s</string>
+    <string name="select_companion_label">ВИБЕРІТЬ СУПУТНИКА</string>
+    <string name="pet_none">НЕМАЄ</string>
+    <string name="unlock_pet_format">%1$dG ДЛЯ РОЗБЛОКУВАННЯ</string>
+    <string name="masteries">📈 МАЙСТЕРНІСТЬ</string>
+
+    <!-- Leaderboards -->
+    <string name="leaderboard_title">РЕЙТИНГИ</string>
+    <string name="tab_global">ГЛОБАЛЬНИЙ</string>
+    <string name="tab_dimension">ВИМІР</string>
+    <string name="tab_friends">ДРУЗІ</string>
+    <string name="rank_label">РАНГ</string>
+    <string name="player_label">ГРАВЕЦЬ</string>
+    <string name="floor_reached_short">МАКС. ПОВЕРХ</string>
+    <string name="magicite_short">МАГ</string>
+    <string name="time_short">ЧАС</string>
+    <string name="ghost_run_team_title">Команда %1$s</string>
+    <string name="no_party_data">Немає даних про загін</string>
+    <string name="hero_lvl_class_format">РІВ %1$d %2$s</string>
+    <string name="ghost_run_close">ЗАКРИТИ</string>
+    <string name="empty_time">---</string>
+    <string name="format_m">%1$.1fM</string>
+    <string name="format_k">%1$.1fK</string>
+    <string name="player_name_you">ВИ</string>
+    <string name="my_id_label">ВАШ ID: %1$s</string>
+    <string name="copy_id_hint">Натисніть, щоб скопіювати ID</string>
+    <string name="add_friend_label">+ ДОДАТИ ДРУГА</string>
+    <string name="friend_id_hint">ID друга</string>
+    <string name="add_button">ДОДАТИ</string>
+    <string name="cancel_button_short">СКАСУВАТИ</string>
+    <string name="enter_friend_id_title">Введіть ID друга</string>
+    <string name="id_copied">ID скопійовано в буфер обмену</string>
+    <string name="edit_name_hint">Змінити ім\'я</string>
+    <string name="save_button">ЗБЕРЕГТИ</string>
+    <string name="no_friends_desc">Друзів ще не додано. Поділіться своїм ID, щоб почати змагатися!</string>
+    <string name="ad_starting">Перегляд реклами...</string>
+    <string name="ad_finished">Нагороду отримано!</string>
+    <string name="ad_boost_button">БУСТ (REKLAMA)</string>
+    <string name="ad_boost_active">БУСТ АКТИВНИЙ (%1$d поверхів)</string>
+    <string name="revive_dialog_title">ЗАГІН ЗАГИНУВ!</string>
+    <string name="revive_dialog_desc">Подивитися коротку рекламу, щоб оживити вашу команду на початку цього поверху? (Один раз за забіг)</string>
+    <string name="revive_button">ОЖИВИТИ (РЕКЛАМА)</string>
+    <string name="give_up_button">ЗДАТИСЯ</string>
+    <string name="ad_gil_reward">БЕЗКОШТОВНІ ГІЛІ (РЕКЛАМА)</string>
+    <string name="ad_magicite_reward">БЕЗКОШТОВНИЙ МАГІЦИТ (РЕКЛАМА)</string>
+    <string name="ad_not_ready">Реклама не готова. Будь ласка, зачекайте трохи.</string>
+</resources>

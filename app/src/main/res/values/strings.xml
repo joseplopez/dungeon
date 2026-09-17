@@ -1,4 +1,4 @@
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+<resources>
     <string name="app_name">Final Dungeon</string>
 
     <!-- Dimensions & Biomes -->
@@ -69,19 +69,19 @@
     <string name="crystal_shop_subtitle">Unlock new job classes</string>
     <string name="owned_status">✓ OWNED</string>
     <string name="town_upgrades">TOWN UPGRADES</string>
-    <string name="upgrade_discount">Discount: <xliff:g id="discount">%1$d</xliff:g>%%</string>
+    <string name="upgrade_discount">Discount: %1$d%%</string>
     <string name="max_level">MAX</string>
-    <string name="level_format">LVL <xliff:g id="current_level">%1$d</xliff:g> / <xliff:g id="max_level">%2$d</xliff:g></string>
-    <string name="pathfinder_level_format">LVL <xliff:g id="current_level">%1$d</xliff:g> / <xliff:g id="max_level">%2$d</xliff:g> (Max Floor: <xliff:g id="max_floor">%3$d</xliff:g>)</string>
+    <string name="level_format">LVL %1$d / %2$d</string>
+    <string name="pathfinder_level_format">LVL %1$d / %2$d (Max Floor: %3$d)</string>
 
     <!-- Inn Screen -->
     <string name="hire_warriors">HIRE WARRIORS</string>
     <string name="permadeath_warning">Permanent death active</string>
-    <string name="party_size_format">PARTY (<xliff:g id="current_size">%1$d</xliff:g>/<xliff:g id="max_size">%2$d</xliff:g>)</string>
+    <string name="party_size_format">PARTY (%1$d/%2$d)</string>
     <string name="empty_slot">EMPTY SLOT</string>
-    <string name="advance_banner_format">⚡ ADVANCE TO <xliff:g id="dimension_name">%1$s</xliff:g> ⚡</string>
+    <string name="advance_banner_format">⚡ ADVANCE TO %1$s ⚡</string>
     <string name="floor_label">FLOOR:</string>
-    <string name="rest_at_inn_cost">REST AT INN (<xliff:g id="cost">%1$d</xliff:g>G)</string>
+    <string name="rest_at_inn_cost">REST AT INN (%1$dG)</string>
     <string name="rest_at_inn_free">REST AT INN (0G)</string>
     <string name="enter_dungeon">⚔ ENTER DUNGEON ⚔</string>
     <string name="need_warriors">NEED WARRIORS</string>
@@ -100,34 +100,34 @@
 
     <!-- Relics Screen -->
     <string name="relics_title">RELICS</string>
-    <string name="magicite_format">💎 <xliff:g id="amount">%1$d</xliff:g> MAGICITE</string>
+    <string name="magicite_format">💎 %1$d MAGICITE</string>
     <string name="back_button">◀ BACK</string>
-    <string name="upgrade_cost_format">UPGRADE (<xliff:g id="cost">%1$d</xliff:g> 💎)</string>
-    <string name="relic_level_format">LVL <xliff:g id="level">%1$d</xliff:g></string>
+    <string name="upgrade_cost_format">UPGRADE (%1$d 💎)</string>
+    <string name="relic_level_format">LVL %1$d</string>
 
     <!-- Equipment Screen -->
-    <string name="equipment_title">EQUIPMENT: <xliff:g id="hero_name">%1$s</xliff:g></string>
+    <string name="equipment_title">EQUIPMENT: %1$s</string>
     <string name="stats_header">STATS</string>
     <string name="equipped_header">EQUIPPED</string>
     <string name="inventory_header">INVENTORY</string>
     <string name="quick_equip">QUICK EQUIP</string>
     <string name="empty_inventory">EMPTY</string>
-    <string name="slot_format"><xliff:g id="slot_name">%1$s</xliff:g> SLOT</string>
-    <string name="item_lvl_rarity_format">Lvl <xliff:g id="level">%1$d</xliff:g> <xliff:g id="rarity">%2$s</xliff:g></string>
+    <string name="slot_format">%1$s SLOT</string>
+    <string name="item_lvl_rarity_format">Lvl %1$d %2$s</string>
     <string name="unequip_button">UNEQUIP</string>
-    <string name="sell_button_format">SELL (<xliff:g id="price">%1$d</xliff:g>G)</string>
+    <string name="sell_button_format">SELL (%1$dG)</string>
     <string name="close_button">CLOSE</string>
 
     <!-- Dungeon Screen -->
     <string name="retreat_button">◀ RETREAT</string>
-    <string name="floor_format">FLOOR <xliff:g id="floor_number">%1$d</xliff:g></string>
+    <string name="floor_format">FLOOR %1$d</string>
     <string name="boss_floor_warning">⚠ BOSS FLOOR</string>
-    <string name="entering_biome_format">Entering <xliff:g id="biome_name">%1$s</xliff:g>...</string>
-    <string name="floor_cleared_format">Floor <xliff:g id="floor_number">%1$d</xliff:g> cleared! +<xliff:g id="gil_amount">%2$d</xliff:g>G</string>
-    <string name="floor_cleared_lvlup_format">Floor <xliff:g id="floor_number">%1$d</xliff:g> cleared! +<xliff:g id="gil_amount">%2$d</xliff:g>G (Level Up!)</string>
+    <string name="entering_biome_format">Entering %1$s...</string>
+    <string name="floor_cleared_format">Floor %1$d cleared! +%2$dG</string>
+    <string name="floor_cleared_lvlup_format">Floor %1$d cleared! +%2$dG (Level Up!)</string>
     <string name="party_wiped">⚰ PARTY WIPED</string>
     <string name="run_complete">⚔ RUN COMPLETE</string>
-    <string name="floor_reached_format">Floor <xliff:g id="floor_number">%1$d</xliff:g> reached</string>
+    <string name="floor_reached_format">Floor %1$d reached</string>
     <string name="earned_rewards">EARNED REWARDS</string>
     <string name="wipe_penalty">WIPE PENALTY</string>
     <string name="fallen_warriors">FALLEN WARRIORS</string>
@@ -135,24 +135,24 @@
 
     <!-- Battle Log & Events -->
     <string name="log_entering_floor">Entering Floor...</string>
-    <string name="log_attack_format"><xliff:g id="attacker">%1$s</xliff:g> attacks <xliff:g id="target">%2$s</xliff:g> for <xliff:g id="damage">%3$d</xliff:g></string>
-    <string name="log_hit_format"><xliff:g id="attacker">%1$s</xliff:g> hits <xliff:g id="target">%2$s</xliff:g> for <xliff:g id="damage">%3$d</xliff:g></string>
-    <string name="log_defeated_format"><xliff:g id="winner">%1$s</xliff:g> defeated <xliff:g id="loser">%2$s</xliff:g>!</string>
-    <string name="log_fallen_format"><xliff:g id="hero_name">%1$s</xliff:g> has fallen!</string>
-    <string name="log_victory_xp">Victory! <xliff:g id="enemy_name">%1$s</xliff:g> defeated. +<xliff:g id="exp_amount">%2$d</xliff:g> EXP</string>
-    <string name="log_level_up">⭐ <xliff:g id="hero_name">%1$s</xliff:g> reached Level <xliff:g id="level">%2$d</xliff:g>!</string>
-    <string name="log_heal_format"><xliff:g id="healer">%1$s</xliff:g> heals <xliff:g id="target">%2$s</xliff:g> for <xliff:g id="amount">%3$d</xliff:g></string>
-    <string name="log_group_heal"><xliff:g id="healer">%1$s</xliff:g> heals the party!</string>
-    <string name="log_boss_defeated">⚔️ BOSS DEFEATED: <xliff:g id="boss_name">%1$s</xliff:g>!</string>
-    <string name="log_summon_format">🌟 <xliff:g id="summoner">%1$s</xliff:g> summons <xliff:g id="eidolon">%2$s</xliff:g>! Total: <xliff:g id="damage">%3$d</xliff:g> damage!</string>
-    <string name="log_magicite_stolen"><xliff:g id="thief">%1$s</xliff:g> stole <xliff:g id="amount">%2$d</xliff:g> Magicite!</string>
-    <string name="log_bard_song">🎵 <xliff:g id="bard_name">%1$s</xliff:g>: <xliff:g id="song_line">%2$s</xliff:g></string>
+    <string name="log_attack_format">%1$s attacks %2$s for %3$d</string>
+    <string name="log_hit_format">%1$s hits %2$s for %3$d</string>
+    <string name="log_defeated_format">%1$s defeated %2$s!</string>
+    <string name="log_fallen_format">%1$s has fallen!</string>
+    <string name="log_victory_xp">Victory! %1$s defeated. +%2$d EXP</string>
+    <string name="log_level_up">⭐ %1$s reached Level %2$d!</string>
+    <string name="log_heal_format">%1$s heals %2$s for %3$d</string>
+    <string name="log_group_heal">%1$s heals the party!</string>
+    <string name="log_boss_defeated">⚔️ BOSS DEFEATED: %1$s!</string>
+    <string name="log_summon_format">🌟 %1$s summons %2$s! Total: %3$d damage!</string>
+    <string name="log_magicite_stolen">%1$s stole %2$d Magicite!</string>
+    <string name="log_bard_song">🎵 %1$s: %2$s</string>
     <string name="log_total_wipe">💀 TOTAL WIPE: Lost 30%% of run earnings.</string>
-    <string name="log_physical_attack"><xliff:g id="attacker">%1$s</xliff:g> attacks <xliff:g id="target">%2$s</xliff:g> for <xliff:g id="damage">%3$d</xliff:g>!</string>
-    <string name="log_physical_crit">💥 <xliff:g id="attacker">%1$s</xliff:g> strikes <xliff:g id="target">%2$s</xliff:g>\'s VITAL POINT for <xliff:g id="damage">%3$d</xliff:g>! (CRITICAL)</string>
-    <string name="log_magic_attack"><xliff:g id="attacker">%1$s</xliff:g> casts spell on <xliff:g id="target">%2$s</xliff:g> for <xliff:g id="damage">%3$d</xliff:g>!</string>
-    <string name="log_magic_crit">✨ <xliff:g id="attacker">%1$s</xliff:g>\'s spell SURGES on <xliff:g id="target">%2$s</xliff:g> for <xliff:g id="damage">%3$d</xliff:g>! (CRITICAL)</string>
-    <string name="log_generic"><xliff:g id="message">%1$s</xliff:g></string>
+    <string name="log_physical_attack">%1$s attacks %2$s for %3$d!</string>
+    <string name="log_physical_crit">💥 %1$s strikes %2$s\'s VITAL POINT for %3$d! (CRITICAL)</string>
+    <string name="log_magic_attack">%1$s casts spell on %2$s for %3$d!</string>
+    <string name="log_magic_crit">✨ %1$s\'s spell SURGES on %2$s for %3$d! (CRITICAL)</string>
+    <string name="log_generic">%1$s</string>
 
     <!-- Hero Classes -->
     <string name="class_freelancer">Freelancer</string>
@@ -195,7 +195,7 @@
     <string name="hidden_job_clue">Mystery Job</string>
     <string name="hidden_job_clue_desc">A mysterious path awaits...</string>
     <string name="hidden_job_unlock_title">CONGRATULATIONS!</string>
-    <string name="hidden_job_unlock_body">You have discovered a legendary hidden job: <xliff:g id="job_name">%1$s</xliff:g>!</string>
+    <string name="hidden_job_unlock_body">You have discovered a legendary hidden job: %1$s!</string>
     <string name="hidden_job_unlock_close">AMAZING!</string>
 
     <!-- Upgrades -->
@@ -253,33 +253,33 @@
     <string name="item_rarity_rare">Rare</string>
     <string name="item_rarity_epic">Epic</string>
     <string name="item_rarity_legendary">Legendary</string>
-    <string name="item_name_template"><xliff:g id="rarity">%1$s</xliff:g> <xliff:g id="item_type">%2$s</xliff:g></string>
+    <string name="item_name_template">%1$s %2$s</string>
     <!-- Pets -->
     <string name="pet_chocobo_name">Chocobo</string>
-    <string name="pet_chocobo_desc">+<xliff:g id="value">20</xliff:g>%% Item Find</string>
+    <string name="pet_chocobo_desc">+20%% Item Find</string>
     <string name="pet_moogle_name">Moogle</string>
-    <string name="pet_moogle_desc">+<xliff:g id="value">50</xliff:g>%% EXP Gain</string>
+    <string name="pet_moogle_desc">+50%% EXP Gain</string>
     <string name="pet_cat_name">Lucky Cat</string>
-    <string name="pet_cat_desc">+<xliff:g id="value">30</xliff:g>%% Gil Gain</string>
+    <string name="pet_cat_desc">+30%% Gil Gain</string>
     <string name="pet_cactuar_name">Cactuar</string>
-    <string name="pet_cactuar_desc">+<xliff:g id="value">15</xliff:g>%% Crit Rate</string>
+    <string name="pet_cactuar_desc">+15%% Crit Rate</string>
     <string name="pet_tonberry_name">Tonberry</string>
-    <string name="pet_tonberry_desc">+<xliff:g id="value">100</xliff:g>%% Crit Damage</string>
+    <string name="pet_tonberry_desc">+100%% Crit Damage</string>
 
     <!-- Battle Abilities -->
     <string name="ability_cover_name">Cover</string>
-    <string name="ability_cover_desc">Protecting <xliff:g id="target">%1$s</xliff:g>!</string>
+    <string name="ability_cover_desc">Protecting %1$s!</string>
     <string name="ability_curaga_name">Curaga</string>
-    <string name="ability_curaga_desc"><xliff:g id="hero">%1$s</xliff:g> casts Curaga!</string>
+    <string name="ability_curaga_desc">%1$s casts Curaga!</string>
     <string name="ability_jump_name">Jump</string>
-    <string name="ability_jump_desc"><xliff:g id="hero">%1$s</xliff:g> leaps into the air!</string>
+    <string name="ability_jump_desc">%1$s leaps into the air!</string>
     <string name="ability_zeninage_name">Zeninage</string>
-    <string name="ability_zeninage_desc"><xliff:g id="hero">%1$s</xliff:g> throws Gil — Zeninage!</string>
+    <string name="ability_zeninage_desc">%1$s throws Gil — Zeninage!</string>
     <string name="ability_ransack_name">Ransack</string>
     <string name="ability_mimic_name">Mimic</string>
-    <string name="ability_mimic_desc"><xliff:g id="hero">%1$s</xliff:g> mimics the last ability!</string>
+    <string name="ability_mimic_desc">%1$s mimics the last ability!</string>
     <string name="ability_souldrain_name">Soul Drain</string>
-    <string name="ability_souldrain_desc"><xliff:g id="hero">%1$s</xliff:g> casts Soul Drain!</string>
+    <string name="ability_souldrain_desc">%1$s casts Soul Drain!</string>
 
     <!-- Songs -->
     <string name="song_paeon">Paeon</string>
@@ -295,12 +295,12 @@
     <string name="tab_job_mastery">JOB MASTERY</string>
     <string name="tab_pets">PETS</string>
     <string name="mastery_bonus_label">BONUS</string>
-    <string name="mastery_exp_format"><xliff:g id="current">%1$d</xliff:g> / <xliff:g id="next">%2$d</xliff:g> EXP</string>
-    <string name="pet_bonus_format">+<xliff:g id="value">%1$.1f</xliff:g>%% <xliff:g id="type">%2$s</xliff:g></string>
-    <string name="mastery_bonus_stat_format">+<xliff:g id="value">%1$d</xliff:g> <xliff:g id="stat">%2$s</xliff:g></string>
+    <string name="mastery_exp_format">%1$d / %2$d EXP</string>
+    <string name="pet_bonus_format">+%1$.1f%% %2$s</string>
+    <string name="mastery_bonus_stat_format">+%1$d %2$s</string>
     <string name="select_companion_label">SELECT A COMPANION</string>
     <string name="pet_none">NONE</string>
-    <string name="unlock_pet_format"><xliff:g id="cost">%1$d</xliff:g>G TO UNLOCK</string>
+    <string name="unlock_pet_format">%1$dG TO UNLOCK</string>
     <string name="masteries">📈 MASTERIES</string>
 
     <!-- Leaderboards -->
@@ -313,15 +313,15 @@
     <string name="floor_reached_short">MAX FLR</string>
     <string name="magicite_short">MAG</string>
     <string name="time_short">TIME</string>
-    <string name="ghost_run_team_title"><xliff:g id="player_name">%1$s</xliff:g>\'s Team</string>
+    <string name="ghost_run_team_title">%1$s\'s Team</string>
     <string name="no_party_data">No party data available</string>
-    <string name="hero_lvl_class_format">LVL <xliff:g id="level">%1$d</xliff:g> <xliff:g id="class">%2$s</xliff:g></string>
+    <string name="hero_lvl_class_format">LVL %1$d %2$s</string>
     <string name="ghost_run_close">CLOSE</string>
     <string name="empty_time">---</string>
-    <string name="format_m"><xliff:g id="value">%1$.1f</xliff:g>M</string>
-    <string name="format_k"><xliff:g id="value">%1$.1f</xliff:g>K</string>
+    <string name="format_m">%1$.1fM</string>
+    <string name="format_k">%1$.1fK</string>
     <string name="player_name_you">YOU</string>
-    <string name="my_id_label">YOUR ID: <xliff:g id="id">%1$s</xliff:g></string>
+    <string name="my_id_label">YOUR ID: %1$s</string>
     <string name="copy_id_hint">Tap to copy your ID</string>
     <string name="add_friend_label">+ ADD FRIEND</string>
     <string name="friend_id_hint">Friend\'s ID</string>
@@ -335,7 +335,7 @@
     <string name="ad_starting">Watching Ad...</string>
     <string name="ad_finished">Reward Earned!</string>
     <string name="ad_boost_button">BOOST (AD)</string>
-    <string name="ad_boost_active">BOOST ACTIVE (<xliff:g id="count">%1$d</xliff:g> floors)</string>
+    <string name="ad_boost_active">BOOST ACTIVE (%1$d floors)</string>
     <string name="revive_dialog_title">PARTY WIPED!</string>
     <string name="revive_dialog_desc">Watch a short ad to revive your team at the start of this floor? (Once per run)</string>
     <string name="revive_button">REVIVE (AD)</string>

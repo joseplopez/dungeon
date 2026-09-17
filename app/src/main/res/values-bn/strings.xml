@@ -1,0 +1,346 @@
+<resources>
+    <string name="app_name">Final Dungeon</string>
+
+    <!-- Dimensions & Biomes -->
+    <string name="dim1_title">আলোর যোদ্ধা</string>
+    <string name="dim1_subtitle">ফাইনাল ফ্যান্টাসি ১</string>
+    <string name="dim1_story">বিশৃঙ্খলার শক্তি দ্বারা চুরি করা স্ফটিকগুলি পুনরুদ্ধার করতে আলোর চার যোদ্ধা জেগে উঠেছে...</string>
+
+    <string name="biome_cornelia">কর্নেলিয়া অঞ্চল</string>
+    <string name="biome_chaos_shrine">বিশৃঙ্খলার মাজার</string>
+    <string name="biome_gurgu">গুরগু আগ্নেয়গিরি</string>
+    <string name="biome_sea_shrine">সমুদ্র মাজার</string>
+    <string name="biome_earth_cave">পৃথিবীর গুহা</string>
+    <string name="biome_crystal_tower">ফিয়েন্ডস মন্দির</string>
+
+    <string name="enemy_goblin">গবলিন</string>
+    <string name="enemy_wolf">নেকড়ে</string>
+    <string name="enemy_pirate">জলদস্যু</string>
+    <string name="enemy_ogre">ওগ্রে</string>
+    <string name="enemy_evil_eye">দুষ্ট চোখ</string>
+    <string name="enemy_garland">গারল্যান্ড</string>
+    <string name="enemy_red_flan">লাল ফ্ল্যান</string>
+    <string name="enemy_bomb">বোমা</string>
+    <string name="enemy_sahagin">সাহাগিন</string>
+    <string name="enemy_cockatrice">ককাট্রিস</string>
+    <string name="enemy_lich">লিচ</string>
+    <string name="enemy_kraken">ক্রাকেন</string>
+    <string name="enemy_tiamat">টিয়ামাট</string>
+    <string name="enemy_chaos">বিশৃঙ্খলা</string>
+
+    <string name="dim2_title">আত্মার বিদ্রোহ</string>
+    <string name="dim2_subtitle">ফাইনাল ফ্যান্টাসি ২</string>
+    <string name="dim2_story">পালামেসিয়ান সাম্রাজ্য অন্ধকার ছড়িয়ে দেয়। ফিরিয়ন এবং তার বিদ্রোহী বন্ধুরা স্বাধীনতার জন্য লড়াই করে...</string>
+
+    <string name="biome_altair">আলতাইর অঞ্চল</string>
+    <string name="biome_kashuan">কাশুয়ান কিপ</string>
+    <string name="biome_tropical_island">ক্রান্তীয় দ্বীপ</string>
+    <string name="biome_pandaemonium">প্যান্ডেমোনিয়াম</string>
+
+    <string name="enemy_wild_rat">বন্য ইঁদুর</string>
+    <string name="enemy_black_knight">কালো নাইট</string>
+    <string name="enemy_sergeant">সার্জেন্ট</string>
+    <string name="enemy_child">হারিয়ে যাওয়া শিশু</string>
+    <string name="enemy_lamia">লামিয়া</string>
+    <string name="enemy_adamantoise">আদামান্তোইস</string>
+    <string name="enemy_dark_knight">অন্ধকার নাইট</string>
+    <string name="enemy_emperor">সম্রাট মাতিউস</string>
+
+    <string name="dim3_title">স্ফটিকের আলো</string>
+    <string name="dim3_subtitle">ফাইনাল ফ্যান্টাসি ৩</string>
+    <string name="dim3_story">আলোর স্ফটিক দ্বারা নির্বাচিত এতিম শিশুদের অবশ্যই বিশ্বের ভারসাম্য পুনরুদ্ধার করতে হবে...</string>
+
+    <string name="biome_ur_village">উর গ্রাম</string>
+    <string name="biome_crystal_tower_dim3">ক্রিস্টাল টাওয়ার</string>
+    <string name="biome_dark_world">অন্ধকার বিশ্ব</string>
+
+    <string name="enemy_djinn">জিন্ন</string>
+    <string name="enemy_medusa">মেদুসা</string>
+    <string name="enemy_hein">হেইন</string>
+    <string name="enemy_tonberry">টনবেরি</string>
+    <string name="enemy_cloud_of_darkness">অন্ধকারের মেঘ</string>
+
+    <!-- Town Screen -->
+    <string name="town_name">মহা রাজধানী</string>
+    <string name="building_inn">সরাইখানা</string>
+    <string name="building_crystal_shop">স্ফটিক দোকান</string>
+    <string name="building_barracks">ব্যারাক</string>
+    <string name="building_relics">ধ্বংসাবশেষ</string>
+    <string name="crystal_shop_subtitle">নতুন কাজের ক্লাস আনলক করুন</string>
+    <string name="owned_status">✓ মালিকানাধীন</string>
+    <string name="town_upgrades">শহরের আপগ্রেড</string>
+    <string name="upgrade_discount">ছাড়: %1$d%%</string>
+    <string name="max_level">সর্বোচ্চ</string>
+    <string name="level_format">স্তর %1$d / %2$d</string>
+    <string name="pathfinder_level_format">স্তর %1$d / %2$d (সর্বোচ্চ তলা: %3$d)</string>
+
+    <!-- Inn Screen -->
+    <string name="hire_warriors">যোদ্ধা ভাড়া করুন</string>
+    <string name="permadeath_warning">স্থায়ী মৃত্যু সক্রিয়</string>
+    <string name="party_size_format">দল (%1$d/%2$d)</string>
+    <string name="empty_slot">খালি স্লট</string>
+    <string name="advance_banner_format">⚡ %1$s এ অগ্রসর হন ⚡</string>
+    <string name="floor_label">তলা:</string>
+    <string name="rest_at_inn_cost">সরাইখানায় বিশ্রাম (%1$dG)</string>
+    <string name="rest_at_inn_free">সরাইখানায় বিশ্রাম (0G)</string>
+    <string name="enter_dungeon">⚔ অন্ধকূপে প্রবেশ করুন ⚔</string>
+    <string name="need_warriors">যোদ্ধা প্রয়োজন</string>
+    <string name="fully_rested">দলোপুরি বিশ্রামে আছে</string>
+    <string name="equip_button">সজ্জিত করুন</string>
+    <string name="dimension_complete">মাত্রা সম্পন্ন!</string>
+    <string name="hall_of_fame">হল অফ ফেম</string>
+    <string name="gil_earned_label">গিল অর্জিত</string>
+    <string name="magicite_found_label">ম্যাজিসাইট পাওয়া গেছে</string>
+    <string name="bosses_slain_label">বস নিহত</string>
+    <string name="items_found_label">আইটেম পাওয়া গেছে</string>
+    <string name="ascension_rewards">আরোহন পুরষ্কার</string>
+    <string name="dimension_reset_warning">সতর্কবার্তা: হিরো, সরঞ্জাম এবং বর্তমান তলা রিসেট করে।</string>
+    <string name="cancel_button">বাতিল</string>
+    <string name="advance_button">অগ্রসর হন!</string>
+
+    <!-- Relics Screen -->
+    <string name="relics_title">ধ্বংসাবশেষ</string>
+    <string name="magicite_format">💎 %1$d ম্যাজিসাইট</string>
+    <string name="back_button">◀ পিছনে</string>
+    <string name="upgrade_cost_format">আপগ্রেড (%1$d 💎)</string>
+    <string name="relic_level_format">স্তর %1$d</string>
+
+    <!-- Equipment Screen -->
+    <string name="equipment_title">সরঞ্জাম: %1$s</string>
+    <string name="stats_header">পরিসংখ্যান</string>
+    <string name="equipped_header">সজ্জিত</string>
+    <string name="inventory_header">ইনভেন্টরি</string>
+    <string name="quick_equip">দ্রুত সজ্জিত</string>
+    <string name="empty_inventory">খালি</string>
+    <string name="slot_format">%1$s স্লট</string>
+    <string name="item_lvl_rarity_format">স্তর %1$d %2$s</string>
+    <string name="unequip_button">খুলে ফেলুন</string>
+    <string name="sell_button_format">বিক্রি (%1$dG)</string>
+    <string name="close_button">বন্ধ করুন</string>
+
+    <!-- Dungeon Screen -->
+    <string name="retreat_button">◀ পিছু হটা</string>
+    <string name="floor_format">তলা %1$d</string>
+    <string name="boss_floor_warning">⚠ বসের তলা</string>
+    <string name="entering_biome_format">%1$s এ প্রবেশ করা হচ্ছে...</string>
+    <string name="floor_cleared_format">তলা %1$d পরিষ্কার! +%2$dG</string>
+    <string name="floor_cleared_lvlup_format">তলা %1$d পরিষ্কার! +%2$dG (স্তর বৃদ্ধি!)</string>
+    <string name="party_wiped">⚰ দল নিশ্চিহ্ন</string>
+    <string name="run_complete">⚔ রান সম্পূর্ণ</string>
+    <string name="floor_reached_format">তলা %1$d এ পৌঁছেছে</string>
+    <string name="earned_rewards">অর্জিত পুরষ্কার</string>
+    <string name="wipe_penalty">নিশ্চিহ্ন জরিমানা</string>
+    <string name="fallen_warriors">পতিত যোদ্ধা</string>
+    <string name="loot_collected">লুট সংগ্রহ করা হয়েছে</string>
+
+    <!-- Battle Log & Events -->
+    <string name="log_entering_floor">তলায় প্রবেশ করা হচ্ছে...</string>
+    <string name="log_attack_format">%1$s %2$s কে %3$d এর জন্য আক্রমণ করেছে</string>
+    <string name="log_hit_format">%1$s %2$s কে %3$d এর জন্য আঘাত করেছে</string>
+    <string name="log_defeated_format">%1$s %2$s কে পরাজিত করেছে!</string>
+    <string name="log_fallen_format">%1$s পতিত হয়েছে!</string>
+    <string name="log_victory_xp">জয়! %1$s পরাজিত। +%2$d EXP</string>
+    <string name="log_level_up">⭐ %1$s স্তর %2$d এ পৌঁছেছে!</string>
+    <string name="log_heal_format">%1$s %2$s কে %3$d এর জন্য সুস্থ করেছে</string>
+    <string name="log_group_heal">%1$s দলকে সুস্থ করেছে!</string>
+    <string name="log_boss_defeated">⚔️ বস পরাজিত: %1$s!</string>
+    <string name="log_summon_format">🌟 %1$s %2$s কে ডেকেছে! মোট: %3$d ক্ষতি!</string>
+    <string name="log_magicite_stolen">%1$s %2$d ম্যাজিসাইট চুরি করেছে!</string>
+    <string name="log_bard_song">🎵 %1$s: %2$s</string>
+    <string name="log_total_wipe">💀 সম্পূর্ণ নিশ্চিহ্ন: রানের ৩০%% উপার্জন হারিয়েছে।</string>
+    <string name="log_physical_attack">%1$s %2$s কে %3$d এর জন্য আক্রমণ করেছে!</string>
+    <string name="log_physical_crit">💥 %1$s %2$s এর গুরুত্বপূর্ণ পয়েন্টে %3$d এর জন্য আঘাত করেছে! (গুরুত্বপূর্ণ)</string>
+    <string name="log_magic_attack">%1$s %2$s এর উপর %3$d এর জন্য জাদু কাস্ট করেছে!</string>
+    <string name="log_magic_crit">✨ %1$s এর জাদু %2$s এর উপর %3$d এর জন্য বেড়ে উঠেছে! (গুরুত্বপূর্ণ)</string>
+    <string name="log_generic">%1$s</string>
+
+    <!-- Hero Classes -->
+    <string name="class_freelancer">ফ্রিল্যান্সার</string>
+    <string name="class_freelancer_desc">সব কাজের কাজী। সুষম পরিসংখ্যান।</string>
+    <string name="class_warrior">যোদ্ধা</string>
+    <string name="class_warrior_desc">ফ্রন্টলাইন ফাইটার। উচ্চ এইচপি এবং আক্রমণ।</string>
+    <string name="class_white_mage">হোয়াইট মেজ</string>
+    <string name="class_white_mage_desc">পবিত্র নিরাময়কারী। দলকে বাঁচিয়ে রাখে।</string>
+    <string name="class_black_mage">ব্ল্যাক মেজ</string>
+    <string name="class_black_mage_desc">ধ্বংসের জাদু। সব শত্রুদের আঘাত করে।</string>
+    <string name="class_thief">চোর</string>
+    <string name="class_thief_desc">দ্রুত এবং চতুর। ম্যাজিসাইট চুরি করে।</string>
+    <string name="class_monk">সন্ন্যাসী</string>
+    <string name="class_monk_desc">নি নিরস্ত্র যোদ্ধা। সর্বোচ্চ কাঁচা আক্রমণ।</string>
+    <string name="class_knight">নাইট</string>
+    <string name="class_knight_desc">মিত্রদের রক্ষা করে। দুর্বল দলের সদস্যদের কভার করতে পারে।</string>
+    <string name="class_paladin">প্যালাডিন</string>
+    <string name="class_paladin_desc">পবিত্র রক্ষক। আক্রমণ এবং নিরাময় করে।</string>
+    <string name="class_red_mage">রেড মেজ</string>
+    <string name="class_red_mage_desc">সাদা এবং কালো উভয় জাদু ব্যবহার করতে পারে।</string>
+    <string name="class_summoner">সমনকারী</string>
+    <string name="class_summoner_desc">শক্তিশালী আইডলনদের ডেকে আনে।</string>
+    <string name="class_ninja">নিনজা</string>
+    <string name="class_ninja_desc">দ্বৈত-অস্ত্রধারী ঘাতক। খুব দ্রুত।</string>
+    <string name="class_dragoon">ড্রাগন</string>
+    <string name="class_dragoon_desc">বর্শা বিশেষজ্ঞ। লাফের ওস্তাদ।</string>
+    <string name="class_bard">চারণকবি</string>
+    <string name="class_bard_desc">জাদুকরি গান দিয়ে সহায়তা।</string>
+    <string name="class_samurai">সামুরাই</string>
+    <string name="class_samurai_desc">ব্লেডের ওস্তাদ। উচ্চ ক্রিট।</string>
+    <string name="class_onion_knight">অনিয়ন নাইট</string>
+    <string name="class_onion_knight_desc">দেরিতে প্রস্ফুটিত হয়। স্তর ৯০+ পর্যন্ত দুর্বল।</string>
+    <string name="class_mime">মাইম</string>
+    <string name="class_mime_desc">অনুকরণের ওস্তাদ। দলের ক্ষমতা অনুকরণ করে।</string>
+    <string name="class_necromancer">নেক্রোম্যান্সার</string>
+    <string name="class_necromancer_desc">ডার্ক আর্টস। সোল ড্রেন দলকে সুস্থ করে।</string>
+    <string name="class_blue_mage">ব্লু মেজ</string>
+    <string name="class_blue_mage_desc">বিদ্যার ছাত্র। বসদের হত্যা করে শক্তিশালী হয়।</string>
+
+    <string name="hidden_job_clue">রহস্যময় কাজ</string>
+    <string name="hidden_job_clue_desc">একটি রহস্যময় পথ অপেক্ষা করছে...</string>
+    <string name="hidden_job_unlock_title">অভিনন্দন!</string>
+    <string name="hidden_job_unlock_body">আপনি একটি কিংবদন্তি লুকানো কাজ আবিষ্কার করেছেন: %1$s!</string>
+    <string name="hidden_job_unlock_close">চমৎকার!</string>
+
+    <!-- Upgrades -->
+    <string name="upgrade_inn_name">ট্যাপরুম</string>
+    <string name="upgrade_inn_desc">উন্নত কাজের ক্লাস আনলক করে</string>
+    <string name="upgrade_barracks_name">ব্যারাক</string>
+    <string name="upgrade_barracks_desc">সর্বোচ্চ দলের আকার বৃদ্ধি করে</string>
+    <string name="upgrade_vault_name">ভল্ট</string>
+    <string name="upgrade_vault_desc">সর্বোচ্চ গিল স্টোরেজ বৃদ্ধি করে</string>
+    <string name="upgrade_armory_name">অস্ত্রাগার</string>
+    <string name="upgrade_armory_desc">পাওয়া সরঞ্জামের পরিসংখ্যান বৃদ্ধি করে</string>
+    <string name="upgrade_magic_shop_name">জাদুর দোকান</string>
+    <string name="upgrade_magic_shop_desc">বিরল আইটেম পাওয়ার সম্ভাবনা বৃদ্ধি করে</string>
+    <string name="upgrade_training_name">প্রশিক্ষণ</string>
+    <string name="upgrade_training_desc">অন্ধকূপে অর্জিত EXP বৃদ্ধি করে</string>
+    <string name="upgrade_planning_name">পরিকল্পনা</string>
+    <string name="upgrade_planning_desc">শহরের আপগ্রেডের খরচ কমায়</string>
+    <string name="upgrade_clinic_name">ক্লিনিক</string>
+    <string name="upgrade_clinic_desc">সরাইখানায় বিশ্রামের খরচ কমায়</string>
+    <string name="upgrade_pathfinder_name">পথপ্রদর্শক</string>
+    <string name="upgrade_pathfinder_desc">উচ্চতর শুরুর তলা আনলক করুন</string>
+
+    <!-- Relics -->
+    <string name="relic_attack_name">আক্রমণ</string>
+    <string name="relic_attack_desc">শারীরিক ক্ষতি</string>
+    <string name="relic_hp_name">জীবনীশক্তি</string>
+    <string name="relic_hp_desc">সর্বোচ্চ এইচপি</string>
+    <string name="relic_mp_name">আত্মা</string>
+    <string name="relic_mp_desc">সর্বোচ্চ এমপি</string>
+    <string name="relic_magic_name">জাদু</string>
+    <string name="relic_magic_desc">জাদুর ক্ষতি</string>
+    <string name="relic_defense_name">প্রতিরক্ষা</string>
+    <string name="relic_defense_desc">ক্ষতি হ্রাস</string>
+    <string name="relic_gold_name">ভাগ্য</string>
+    <string name="relic_gold_desc">সোনা লাভ</string>
+    <string name="relic_magicite_name">সারমর্ম</string>
+    <string name="relic_magicite_desc">ম্যাজিসাইট খোঁজার হার</string>
+    <string name="relic_crit_chance_name">বাজপাখির চোখ</string>
+    <string name="relic_crit_chance_desc">ক্রিট আঘাতের হার</string>
+    <string name="relic_crit_damage_name">হিটার</string>
+    <string name="relic_crit_damage_desc">ক্রিট ক্ষতি</string>
+    <string name="relic_magnet_name">চুম্বক</string>
+    <string name="relic_magnet_desc">ম্যাজিসাইট ড্রপ রেট</string>
+    <string name="relic_pockets_name">পকেট</string>
+    <string name="relic_pockets_desc">সোনা ধরে রাখা হয়েছে</string>
+    <string name="relic_double_loot_name">লুট</string>
+    <string name="relic_double_loot_desc">ডাবল বস লুট</string>
+
+    <!-- Items -->
+    <string name="item_sword">তলোয়ার</string>
+    <string name="item_plate">প্লেট</string>
+    <string name="item_shield">ঢাল</string>
+    <string name="item_ring">আংটি</string>
+    <string name="item_rarity_common">সাধারণ</string>
+    <string name="item_rarity_rare">বিরল</string>
+    <string name="item_rarity_epic">মহাকাব্য</string>
+    <string name="item_rarity_legendary">কিংবদন্তি</string>
+    <string name="item_name_template">%1$s %2$s</string>
+    <!-- Pets -->
+    <string name="pet_chocobo_name">চোকোবো</string>
+    <string name="pet_chocobo_desc">+২০%% আইটেম খোঁজ</string>
+    <string name="pet_moogle_name">মুগল</string>
+    <string name="pet_moogle_desc">+৫০%% EXP লাভ</string>
+    <string name="pet_cat_name">ভাগ্যবান বিড়াল</string>
+    <string name="pet_cat_desc">+৩০%% গিল লাভ</string>
+    <string name="pet_cactuar_name">ক্যাকটুয়ার</string>
+    <string name="pet_cactuar_desc">+১৫%% ক্রিট রেট</string>
+    <string name="pet_tonberry_name">টনবেরি</string>
+    <string name="pet_tonberry_desc">+১০০%% ক্রিট ক্ষতি</string>
+
+    <!-- Battle Abilities -->
+    <string name="ability_cover_name">কভার</string>
+    <string name="ability_cover_desc">%1$s কে রক্ষা করা হচ্ছে!</string>
+    <string name="ability_curaga_name">কুরাগা</string>
+    <string name="ability_curaga_desc">%1$s কুরাগা কাস্ট করেছে!</string>
+    <string name="ability_jump_name">লাফ</string>
+    <string name="ability_jump_desc">%1$s বাতাসে লাফিয়েছে!</string>
+    <string name="ability_zeninage_name">জেনিনেজ</string>
+    <string name="ability_zeninage_desc">%1$s গিল ছুড়েছে — জেনিনেজ!</string>
+    <string name="ability_ransack_name">লুণ্ঠন</string>
+    <string name="ability_mimic_name">মাইমিক</string>
+    <string name="ability_mimic_desc">%1$s শেষ ক্ষমতাটি অনুকরণ করেছে!</string>
+    <string name="ability_souldrain_name">সোল ড্রেন</string>
+    <string name="ability_souldrain_desc">%1$s সোল ড্রেন কাস্ট করেছে!</string>
+
+    <!-- Songs -->
+    <string name="song_paeon">পেয়ন</string>
+    <string name="song_paeon_effect">+এই তলায় এইচপি পুনরুত্থান</string>
+    <string name="song_minne">মিনে</string>
+    <string name="song_minne_effect">+সব মিত্রদের জন্য প্রতিরক্ষা</string>
+    <string name="song_minuet">মিনুয়েট</string>
+    <string name="song_minuet_effect">+সব মিত্রদের জন্য আক্রমণ</string>
+    <string name="song_ballad">রোমিওর ব্যালাড</string>
+    <string name="song_ballad_effect">সব শত্রু পরের টার্ন এড়িয়ে যাবে</string>
+    <!-- Mastery & Pets Screen -->
+    <string name="training_grounds_title">প্রশিক্ষণ ক্ষেত্র</string>
+    <string name="tab_job_mastery">কাজের দক্ষতা</string>
+    <string name="tab_pets">পোষা প্রাণী</string>
+    <string name="mastery_bonus_label">বোনাস</string>
+    <string name="mastery_exp_format">%1$d / %2$d EXP</string>
+    <string name="pet_bonus_format">+%1$.1f%% %2$s</string>
+    <string name="mastery_bonus_stat_format">+%1$d %2$s</string>
+    <string name="select_companion_label">একটি সঙ্গী চয়ন করুন</string>
+    <string name="pet_none">কেউ না</string>
+    <string name="unlock_pet_format">আনলক করতে %1$dG</string>
+    <string name="masteries">📈 দক্ষতা</string>
+
+    <!-- Leaderboards -->
+    <string name="leaderboard_title">র্যাঙ্কিং</string>
+    <string name="tab_global">বৈশ্বিক</string>
+    <string name="tab_dimension">মাত্রা</string>
+    <string name="tab_friends">বন্ধুরা</string>
+    <string name="rank_label">র্যাঙ্ক</string>
+    <string name="player_label">খেলোয়াড়</string>
+    <string name="floor_reached_short">সর্বোচ্চ তলা</string>
+    <string name="magicite_short">ম্যাজ</string>
+    <string name="time_short">সময়</string>
+    <string name="ghost_run_team_title">%1$s এর দল</string>
+    <string name="no_party_data">কোন দলের তথ্য উপলব্ধ নেই</string>
+    <string name="hero_lvl_class_format">স্তর %1$d %2$s</string>
+    <string name="ghost_run_close">বন্ধ করুন</string>
+    <string name="empty_time">---</string>
+    <string name="format_m">%1$.1fM</string>
+    <string name="format_k">%1$.1fK</string>
+    <string name="player_name_you">আপনি</string>
+    <string name="my_id_label">আপনার আইডি: %1$s</string>
+    <string name="copy_id_hint">আপনার আইডি কপি করতে আলতো চাপুন</string>
+    <string name="add_friend_label">+ বন্ধু যোগ করুন</string>
+    <string name="friend_id_hint">বন্ধুর আইডি</string>
+    <string name="add_button">যোগ করুন</string>
+    <string name="cancel_button_short">বাতিল</string>
+    <string name="enter_friend_id_title">বন্ধুর আইডি লিখুন</string>
+    <string name="id_copied">আইডি ক্লিপবোর্ডে কপি করা হয়েছে</string>
+    <string name="edit_name_hint">নাম পরিবর্তন করুন</string>
+    <string name="save_button">সংরক্ষণ করুন</string>
+    <string name="no_friends_desc">নাহ এখনো কোনো বন্ধু যোগ করা হয়নি। র্যাঙ্কিং শুরু করতে আপনার আইডি শেয়ার করুন!</string>
+    <string name="ad_starting">বিজ্ঞাপন দেখা হচ্ছে...</string>
+    <string name="ad_finished">পুরষ্কার অর্জিত!</string>
+    <string name="ad_boost_button">বুস্ট (বিজ্ঞাপন)</string>
+    <string name="ad_boost_active">বুস্ট সক্রিয় (%1$d তলা)</string>
+    <string name="revive_dialog_title">দল নিশ্চিহ্ন!</string>
+    <string name="revive_dialog_desc">এই তলার শুরুতে আপনার দলকে পুনরুজ্জীবিত করতে একটি ছোট বিজ্ঞাপন দেখবেন? (প্রতি রানে একবার)</string>
+    <string name="revive_button">পুনরুজ্জীবিত (বিজ্ঞাপন)</string>
+    <string name="give_up_button">ছেড়ে দিন</string>
+    <string name="ad_gil_reward">বিনামূল্যে গিল (বিজ্ঞাপন)</string>
+    <string name="ad_magicite_reward">বিনামূল্যে ম্যাজিসাইট (বিজ্ঞাপন)</string>
+    <string name="ad_not_ready">বিজ্ঞাপন প্রস্তুত নয়। অনুগ্রহ করে একটু অপেক্ষা করুন।</string>
+</resources>

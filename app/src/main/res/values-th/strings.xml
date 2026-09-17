@@ -1,0 +1,346 @@
+<resources>
+    <string name="app_name">Final Dungeon</string>
+
+    <!-- Dimensions & Biomes -->
+    <string name="dim1_title">นักรบแห่งแสง</string>
+    <string name="dim1_subtitle">ไฟนอลแฟนตาซี I</string>
+    <string name="dim1_story">นักรบแห่งแสงสี่คนตื่นขึ้นเพื่อนำคริสตัลที่ถูกกองกำลังแห่งความโกลาหลขโมยไปกลับคืนมา...</string>
+
+    <string name="biome_cornelia">ภูมิภาคคอร์เนเลีย</string>
+    <string name="biome_chaos_shrine">วิหารแห่งความโกลาหล</string>
+    <string name="biome_gurgu">ภูเขาไฟเกอร์กู</string>
+    <string name="biome_sea_shrine">วิหารใต้ทะเล</string>
+    <string name="biome_earth_cave">ถ้ำปฐพี</string>
+    <string name="biome_crystal_tower">วิหารแห่งปีศาจ</string>
+
+    <string name="enemy_goblin">ก็อบลิน</string>
+    <string name="enemy_wolf">หมาป่า</string>
+    <string name="enemy_pirate">โจรสลัด</string>
+    <string name="enemy_ogre">ยักษ์</string>
+    <string name="enemy_evil_eye">นัยน์ตาปีศาจ</string>
+    <string name="enemy_garland">การ์แลนด์</string>
+    <string name="enemy_red_flan">เรดแฟลน</string>
+    <string name="enemy_bomb">บอมบ์</string>
+    <string name="enemy_sahagin">ซาฮากิน</string>
+    <string name="enemy_cockatrice">ค็อกคาทริซ</string>
+    <string name="enemy_lich">ลิช</string>
+    <string name="enemy_kraken">คราเคน</string>
+    <string name="enemy_tiamat">เทียมัต</string>
+    <string name="enemy_chaos">เคออส</string>
+
+    <string name="dim2_title">การกบฏแห่งวิญญาณ</string>
+    <string name="dim2_subtitle">ไฟนอลแฟนตาซี II</string>
+    <string name="dim2_story">จักรวรรดิพาลาเมเซียแพร่กระจายความมืด ฟิริออนและเพื่อนกลุ่มกบฏต่อสู้เพื่ออิสรภาพ...</string>
+
+    <string name="biome_altair">ภูมิภาคอัลแตร์</string>
+    <string name="biome_kashuan">ป้อมปราการคาชูอัน</string>
+    <string name="biome_tropical_island">เกาะเขตร้อน</string>
+    <string name="biome_pandaemonium">แพนเดโมเนียม</string>
+
+    <string name="enemy_wild_rat">หนูพุก</string>
+    <string name="enemy_black_knight">อัศวินดำ</string>
+    <string name="enemy_sergeant">จ่าสิบเอก</string>
+    <string name="enemy_child">เด็กหลงทาง</string>
+    <string name="enemy_lamia">ลาเมีย</string>
+    <string name="enemy_adamantoise">อะดามันตอยส์</string>
+    <string name="enemy_dark_knight">อัศวินแห่งความมืด</string>
+    <string name="enemy_emperor">จักรพรรดิมาเทอุส</string>
+
+    <string name="dim3_title">แสงแห่งคริสตัล</string>
+    <string name="dim3_subtitle">ไฟนอลแฟนตาซี III</string>
+    <string name="dim3_story">เด็กกำพร้าที่ถูกเลือกโดยคริสตัลแห่งแสงต้องคืนสมดุลให้กับโลก...</string>
+
+    <string name="biome_ur_village">หมู่บ้านอูร์</string>
+    <string name="biome_crystal_tower_dim3">หอคอยคริสตัล</string>
+    <string name="biome_dark_world">โลกแห่งความมืด</string>
+
+    <string name="enemy_djinn">จิน</string>
+    <string name="enemy_medusa">เมดูซ่า</string>
+    <string name="enemy_hein">ไฮน์</string>
+    <string name="enemy_tonberry">ทอนเบอร์รี่</string>
+    <string name="enemy_cloud_of_darkness">เมฆาแห่งความมืด</string>
+
+    <!-- Town Screen -->
+    <string name="town_name">มหานคร</string>
+    <string name="building_inn">โรงเตี๊ยม</string>
+    <string name="building_crystal_shop">ร้านคริสตัล</string>
+    <string name="building_barracks">โรงทหาร</string>
+    <string name="building_relics">วัตถุโบราณ</string>
+    <string name="crystal_shop_subtitle">ปลดล็อกอาชีพใหม่</string>
+    <string name="owned_status">✓ ครอบครองแล้ว</string>
+    <string name="town_upgrades">การอัปเกรดเมือง</string>
+    <string name="upgrade_discount">ส่วนลด: %1$d%%</string>
+    <string name="max_level">สูงสุด</string>
+    <string name="level_format">เลเวล %1$d / %2$d</string>
+    <string name="pathfinder_level_format">เลเวล %1$d / %2$d (ชั้นสูงสุด: %3$d)</string>
+
+    <!-- Inn Screen -->
+    <string name="hire_warriors">จ้างนักรบ</string>
+    <string name="permadeath_warning">ระบบความตายถาวรทำงาน</string>
+    <string name="party_size_format">ปาร์ตี้ (%1$d/%2$d)</string>
+    <string name="empty_slot">ช่องว่าง</string>
+    <string name="advance_banner_format">⚡ มุ่งสู่ %1$s ⚡</string>
+    <string name="floor_label">ชั้น:</string>
+    <string name="rest_at_inn_cost">พักผ่อนที่โรงเตี๊ยม (%1$dG)</string>
+    <string name="rest_at_inn_free">พักผ่อนที่โรงเตี๊ยม (0G)</string>
+    <string name="enter_dungeon">⚔ เข้าสู่ดันเจี้ยน ⚔</string>
+    <string name="need_warriors">ต้องการนักรบ</string>
+    <string name="fully_rested">ปาร์ตี้พักผ่อนเต็มที่แล้ว</string>
+    <string name="equip_button">สวมใส่</string>
+    <string name="dimension_complete">มิติสำเร็จ!</string>
+    <string name="hall_of_fame">หอเกียรติยศ</string>
+    <string name="gil_earned_label">กิลที่ได้รับ</string>
+    <string name="magicite_found_label">มาจิไซต์ที่พบ</string>
+    <string name="bosses_slain_label">บอสที่กำจัด</string>
+    <string name="items_found_label">ไอเทมที่พบ</string>
+    <string name="ascension_rewards">รางวัลการเลื่อนขั้น</string>
+    <string name="dimension_reset_warning">คำเตือน: รีเซ็ตฮีโร่ อุปกรณ์ และชั้นปัจจุบัน</string>
+    <string name="cancel_button">ยกเลิก</string>
+    <string name="advance_button">ก้าวไปข้างหน้า!</string>
+
+    <!-- Relics Screen -->
+    <string name="relics_title">วัตถุโบราณ</string>
+    <string name="magicite_format">💎 %1$d มาจิไซต์</string>
+    <string name="back_button">◀ กลับ</string>
+    <string name="upgrade_cost_format">อัปเกรด (%1$d 💎)</string>
+    <string name="relic_level_format">เลเวล %1$d</string>
+
+    <!-- Equipment Screen -->
+    <string name="equipment_title">อุปกรณ์: %1$s</string>
+    <string name="stats_header">ค่าสถานะ</string>
+    <string name="equipped_header">สวมใส่แล้ว</string>
+    <string name="inventory_header">กระเป๋า</string>
+    <string name="quick_equip">สวมใส่ด่วน</string>
+    <string name="empty_inventory">ว่างเปล่า</string>
+    <string name="slot_format">ช่อง %1$s</string>
+    <string name="item_lvl_rarity_format">เลเวล %1$d %2$s</string>
+    <string name="unequip_button">ถอดออก</string>
+    <string name="sell_button_format">ขาย (%1$dG)</string>
+    <string name="close_button">ปิด</string>
+
+    <!-- Dungeon Screen -->
+    <string name="retreat_button">◀ ถอยทัพ</string>
+    <string name="floor_format">ชั้น %1$d</string>
+    <string name="boss_floor_warning">⚠ ชั้นบอส</string>
+    <string name="entering_biome_format">กำลังเข้าสู่ %1$s...</string>
+    <string name="floor_cleared_format">ชั้น %1$d สำเร็จ! +%2$dG</string>
+    <string name="floor_cleared_lvlup_format">ชั้น %1$d สำเร็จ! +%2$dG (เลเวลอัป!)</string>
+    <string name="party_wiped">⚰ ปาร์ตี้พ่ายแพ้</string>
+    <string name="run_complete">⚔ การสำรวจสิ้นสุด</string>
+    <string name="floor_reached_format">ถึงชั้น %1$d</string>
+    <string name="earned_rewards">รางวัลที่ได้รับ</string>
+    <string name="wipe_penalty">บทลงโทษความพ่ายแพ้</string>
+    <string name="fallen_warriors">นักรบที่ล่วงลับ</string>
+    <string name="loot_collected">ของรางวัลที่รวบรวมได้</string>
+
+    <!-- Battle Log & Events -->
+    <string name="log_entering_floor">กำลังเข้าสู่ชั้น...</string>
+    <string name="log_attack_format">%1$s โจมตี %2$s ด้วยพลัง %3$d</string>
+    <string name="log_hit_format">%1$s ตี %2$s เสียพลัง %3$d</string>
+    <string name="log_defeated_format">%1$s กำจัด %2$s แล้ว!</string>
+    <string name="log_fallen_format">%1$s ล้มลงแล้ว!</string>
+    <string name="log_victory_xp">ชัยชนะ! กำจัด %1$s ได้ รับ +%2$d EXP</string>
+    <string name="log_level_up">⭐ %1$s เลเวลอัปเป็น %2$d!</string>
+    <string name="log_heal_format">%1$s ฟื้นพลังให้ %2$s เป็นจำนวน %3$d</string>
+    <string name="log_group_heal">%1$s ฟื้นพลังให้ทั้งปาร์ตี้!</string>
+    <string name="log_boss_defeated">⚔️ กำจัดบอส: %1$s!</string>
+    <string name="log_summon_format">🌟 %1$s อัญเชิญ %2$s! สร้างความเสียหายรวม: %3$d!</string>
+    <string name="log_magicite_stolen">%1$s ขโมยมาจิไซต์ได้ %2$d ชิ้น!</string>
+    <string name="log_bard_song">🎵 %1$s: %2$s</string>
+    <string name="log_total_wipe">💀 พ่ายแพ้ราบคาบ: สูญเสีย 30%% ของกิลที่ได้รับในการสำรวจครั้งนี้</string>
+    <string name="log_physical_attack">%1$s โจมตี %2$s ด้วยพลัง %3$d!</string>
+    <string name="log_physical_crit">💥 %1$s โจมตีจุดตายของ %2$s ด้วยพลัง %3$d! (คริติคอล)</string>
+    <string name="log_magic_attack">%1$s ร่ายมนตร์ใส่ %2$s เสียพลัง %3$d!</string>
+    <string name="log_magic_crit">✨ มนตร์ของ %1$s ระเบิดพลังใส่ %2$s เสียพลัง %3$d! (คริติคอล)</string>
+    <string name="log_generic">%1$s</string>
+
+    <!-- Hero Classes -->
+    <string name="class_freelancer">ผู้พเนจร</string>
+    <string name="class_freelancer_desc">ผู้รอบรู้ ค่าสถานะสมดุล</string>
+    <string name="class_warrior">นักรบ</string>
+    <string name="class_warrior_desc">นักสู้แถวหน้า พลังชีวิตและโจมตีสูง</string>
+    <string name="class_white_mage">จอมเวทย์ขาว</string>
+    <string name="class_white_mage_desc">ผู้รักษาศักดิ์สิทธิ์ ดูแลชีวิตของปาร์ตี้</string>
+    <string name="class_black_mage">จอมเวทย์ดำ</string>
+    <string name="class_black_mage_desc">มนตร์แห่งการทำลายล้าง โจมตีศัตรูทั้งหมด</string>
+    <string name="class_thief">จอมโจร</string>
+    <string name="class_thief_desc">รวดเร็วและว่องไว ขโมยมาจิไซต์ได้</string>
+    <string name="class_monk">นักบวช</string>
+    <string name="class_monk_desc">นักสู้มือเปล่า พลังโจมตีกายภาพสูงสุด</string>
+    <string name="class_knight">อัศวิน</string>
+    <string name="class_knight_desc">ปกป้องพวกพ้อง ช่วยรับการโจมตีแทนเพื่อนที่อ่อนแอ</string>
+    <string name="class_paladin">พาลาดิน</string>
+    <string name="class_paladin_desc">ผู้พิทักษ์ศักดิ์สิทธิ์ โจมตีและรักษาได้</string>
+    <string name="class_red_mage">จอมเวทย์แดง</string>
+    <string name="class_red_mage_desc">ใช้ได้ทั้งมนตร์ขาวและมนตร์ดำ</string>
+    <string name="class_summoner">ผู้อัญเชิญ</string>
+    <string name="class_summoner_desc">เรียกอสูรอัญเชิญอันทรงพลัง</string>
+    <string name="class_ninja">นินจา</string>
+    <string name="class_ninja_desc">นักฆ่าดาบคู่ รวดเร็วอย่างมาก</string>
+    <string name="class_dragoon">ดรากูน</string>
+    <string name="class_dragoon_desc">ผู้เชี่ยวชาญหอก เจ้าแห่งการกระโดด</string>
+    <string name="class_bard">กวี</string>
+    <string name="class_bard_desc">สนับสนุนด้วยบทเพลงเวทมนตร์</string>
+    <string name="class_samurai">ซามูไร</string>
+    <string name="class_samurai_desc">เจ้าแห่งดาบ อัตราคริติคอลสูง</string>
+    <string name="class_onion_knight">อัศวินหัวหอม</string>
+    <string name="class_onion_knight_desc">โตช้า อ่อนแอจนกว่าจะถึงเลเวล 90+</string>
+    <string name="class_mime">นักเลียนแบบ</string>
+    <string name="class_mime_desc">เจ้าแห่งการเลียนแบบ เลียนแบบความสามารถของเพื่อน</string>
+    <string name="class_necromancer">เนโครแมนเซอร์</string>
+    <string name="class_necromancer_desc">ศาสตร์มืด ดูดวิญญาณเพื่อรักษาปาร์ตี้</string>
+    <string name="class_blue_mage">จอมเวทย์น้ำเงิน</string>
+    <string name="class_blue_mage_desc">ผู้ศึกษาตำนาน แข็งแกร่งขึ้นจากการกำจัดบอส</string>
+
+    <string name="hidden_job_clue">อาชีพลึกลับ</string>
+    <string name="hidden_job_clue_desc">เส้นทางลึกลับรออยู่...</string>
+    <string name="hidden_job_unlock_title">ขอแสดงความยินดี!</string>
+    <string name="hidden_job_unlock_body">คุณได้พบอาชีพลับในตำนาน: %1$s!</string>
+    <string name="hidden_job_unlock_close">สุดยอด!</string>
+
+    <!-- Upgrades -->
+    <string name="upgrade_inn_name">โรงเบียร์</string>
+    <string name="upgrade_inn_desc">ปลดล็อกอาชีพขั้นสูง</string>
+    <string name="upgrade_barracks_name">โรงทหาร</string>
+    <string name="upgrade_barracks_desc">เพิ่มขนาดปาร์ตี้สูงสุด</string>
+    <string name="upgrade_vault_name">ห้องเก็บสมบัติ</string>
+    <string name="upgrade_vault_desc">เพิ่มความจุการเก็บกิลสูงสุด</string>
+    <string name="upgrade_armory_name">คลังแสง</string>
+    <string name="upgrade_armory_desc">เพิ่มค่าสถานะของอุปกรณ์ที่พบ</string>
+    <string name="upgrade_magic_shop_name">ร้านมนตรา</string>
+    <string name="upgrade_magic_shop_desc">เพิ่มโอกาสพบไอเทมหายาก</string>
+    <string name="upgrade_training_name">การฝึกฝน</string>
+    <string name="upgrade_training_desc">เพิ่ม EXP ที่ได้รับในดันเจี้ยน</string>
+    <string name="upgrade_planning_name">การวางแผน</string>
+    <string name="upgrade_planning_desc">ลดราคาการอัปเกรดเมือง</string>
+    <string name="upgrade_clinic_name">คลินิก</string>
+    <string name="upgrade_clinic_desc">ลดราคาการพักผ่อนที่โรงเตี๊ยม</string>
+    <string name="upgrade_pathfinder_name">ผู้เบิกทาง</string>
+    <string name="upgrade_pathfinder_desc">ปลดล็อกการเริ่มในชั้นที่สูงขึ้น</string>
+
+    <!-- Relics -->
+    <string name="relic_attack_name">โจมตี</string>
+    <string name="relic_attack_desc">พลังโจมตีกายภาพ</string>
+    <string name="relic_hp_name">พลังชีวิต</string>
+    <string name="relic_hp_desc">พลังชีวิตสูงสุด</string>
+    <string name="relic_mp_name">จิตวิญญาณ</string>
+    <string name="relic_mp_desc">มานาสูงสุด</string>
+    <string name="relic_magic_name">เวทมนตร์</string>
+    <string name="relic_magic_desc">พลังโจมตีเวทมนตร์</string>
+    <string name="relic_defense_name">ป้องกัน</string>
+    <string name="relic_defense_desc">ลดความเสียหาย</string>
+    <string name="relic_gold_name">โชคลาภ</string>
+    <string name="relic_gold_desc">การได้รับกิล</string>
+    <string name="relic_magicite_name">แก่นแท้</string>
+    <string name="relic_magicite_desc">อัตราการพบมาจิไซต์</string>
+    <string name="relic_crit_chance_name">นัยน์ตาเหยี่ยว</string>
+    <string name="relic_crit_chance_desc">อัตราคริติคอล</string>
+    <string name="relic_crit_damage_name">ผู้พิฆาต</string>
+    <string name="relic_crit_damage_desc">ความเสียหายคริติคอล</string>
+    <string name="relic_magnet_name">แม่เหล็ก</string>
+    <string name="relic_magnet_desc">อัตราการดรอปมาจิไซต์</string>
+    <string name="relic_pockets_name">กระเป๋า</string>
+    <string name="relic_pockets_desc">กิลที่รักษาไว้ได้</string>
+    <string name="relic_double_loot_name">ของรางวัล</string>
+    <string name="relic_double_loot_desc">รางวัลจากบอสสองเท่า</string>
+
+    <!-- Items -->
+    <string name="item_sword">ดาบ</string>
+    <string name="item_plate">เกราะ</string>
+    <string name="item_shield">โล่</string>
+    <string name="item_ring">แหวน</string>
+    <string name="item_rarity_common">ทั่วไป</string>
+    <string name="item_rarity_rare">หายาก</string>
+    <string name="item_rarity_epic">มหากาพย์</string>
+    <string name="item_rarity_legendary">ตำนาน</string>
+    <string name="item_name_template">%1$s %2$s</string>
+    <!-- Pets -->
+    <string name="pet_chocobo_name">โจโกโบะ</string>
+    <string name="pet_chocobo_desc">+20%% การพบไอเทม</string>
+    <string name="pet_moogle_name">ม็อกเกิล</string>
+    <string name="pet_moogle_desc">+50%% การได้รับ EXP</string>
+    <string name="pet_cat_name">แมวกวัก</string>
+    <string name="pet_cat_desc">+30%% การได้รับกิล</string>
+    <string name="pet_cactuar_name">แคคตัวร์</string>
+    <string name="pet_cactuar_desc">+15%% อัตราคริติคอล</string>
+    <string name="pet_tonberry_name">ทอนเบอร์รี่</string>
+    <string name="pet_tonberry_desc">+100%% ความเสียหายคริติคอล</string>
+
+    <!-- Battle Abilities -->
+    <string name="ability_cover_name">ป้องกันแทน</string>
+    <string name="ability_cover_desc">กำลังป้องกัน %1$s!</string>
+    <string name="ability_curaga_name">เคอารูก้า</string>
+    <string name="ability_curaga_desc">%1$s ร่ายเคอารูก้า!</string>
+    <string name="ability_jump_name">กระโดด</string>
+    <string name="ability_jump_desc">%1$s กระโดดขึ้นไปในอากาศ!</string>
+    <string name="ability_zeninage_name">เซนินาเงะ</string>
+    <string name="ability_zeninage_desc">%1$s ขว้างกิล — เซนินาเงะ!</string>
+    <string name="ability_ransack_name">ปล้นสะดม</string>
+    <string name="ability_mimic_name">เลียนแบบ</string>
+    <string name="ability_mimic_desc">%1$s เลียนแบบความสามารถล่าสุด!</string>
+    <string name="ability_souldrain_name">ดูดวิญญาณ</string>
+    <string name="ability_souldrain_desc">%1$s ร่ายดูดวิญญาณ!</string>
+
+    <!-- Songs -->
+    <string name="song_paeon">เพลงฟื้นฟู</string>
+    <string name="song_paeon_effect">+ฟื้นฟู HP ในชั้นนี้</string>
+    <string name="song_minne">เพลงป้องกัน</string>
+    <string name="song_minne_effect">+พลังป้องกันให้พวกพ้องทั้งหมด</string>
+    <string name="song_minuet">เพลงนักรบ</string>
+    <string name="song_minuet_effect">+พลังโจมตีให้พวกพ้องทั้งหมด</string>
+    <string name="song_ballad">บทเพลงของโรมิโอ</string>
+    <string name="song_ballad_effect">ศัตรูทั้งหมดข้ามเทิร์นถัดไป</string>
+    <!-- Mastery & Pets Screen -->
+    <string name="training_grounds_title">สนามฝึกซ้อม</string>
+    <string name="tab_job_mastery">ความชำนาญอาชีพ</string>
+    <string name="tab_pets">สัตว์เลี้ยง</string>
+    <string name="mastery_bonus_label">โบนัส</string>
+    <string name="mastery_exp_format">%1$d / %2$d EXP</string>
+    <string name="pet_bonus_format">+%1$.1f%% %2$s</string>
+    <string name="mastery_bonus_stat_format">+%1$d %2$s</string>
+    <string name="select_companion_label">เลือกคู่หู</string>
+    <string name="pet_none">ไม่มี</string>
+    <string name="unlock_pet_format">%1$dG เพื่อปลดล็อก</string>
+    <string name="masteries">📈 ความชำนาญ</string>
+
+    <!-- Leaderboards -->
+    <string name="leaderboard_title">อันดับ</string>
+    <string name="tab_global">ทั่วโลก</string>
+    <string name="tab_dimension">มิติ</string>
+    <string name="tab_friends">เพื่อน</string>
+    <string name="rank_label">อันดับ</string>
+    <string name="player_label">ผู้เล่น</string>
+    <string name="floor_reached_short">ชั้นสูงสุด</string>
+    <string name="magicite_short">มาจิ</string>
+    <string name="time_short">เวลา</string>
+    <string name="ghost_run_team_title">ทีมของ %1$s</string>
+    <string name="no_party_data">ไม่มีข้อมูลปาร์ตี้</string>
+    <string name="hero_lvl_class_format">เลเวล %1$d %2$s</string>
+    <string name="ghost_run_close">ปิด</string>
+    <string name="empty_time">---</string>
+    <string name="format_m">%1$.1fM</string>
+    <string name="format_k">%1$.1fK</string>
+    <string name="player_name_you">คุณ</string>
+    <string name="my_id_label">ID ของคุณ: %1$s</string>
+    <string name="copy_id_hint">แตะเพื่อคัดลอก ID ของคุณ</string>
+    <string name="add_friend_label">+ เพิ่มเพื่อน</string>
+    <string name="friend_id_hint">ID ของเพื่อน</string>
+    <string name="add_button">เพิ่ม</string>
+    <string name="cancel_button_short">ยกเลิก</string>
+    <string name="enter_friend_id_title">ใส่ ID ของเพื่อน</string>
+    <string name="id_copied">คัดลอก ID ลงคลิปบอร์ดแล้ว</string>
+    <string name="edit_name_hint">แก้ไขชื่อ</string>
+    <string name="save_button">บันทึก</string>
+    <string name="no_friends_desc">ยังไม่มีเพื่อน แบ่งปัน ID ของคุณเพื่อเริ่มจัดอันดับ!</string>
+    <string name="ad_starting">กำลังรับชมโฆษณา...</string>
+    <string name="ad_finished">ได้รับรางวัลแล้ว!</string>
+    <string name="ad_boost_button">บูสต์ (โฆษณา)</string>
+    <string name="ad_boost_active">บูสต์ทำงานอยู่ (%1$d ชั้น)</string>
+    <string name="revive_dialog_title">ปาร์ตี้พ่ายแพ้!</string>
+    <string name="revive_dialog_desc">รับชมโฆษณาสั้นเพื่อชุบชีวิตทีมของคุณที่จุดเริ่มของชั้นนี้? (หนึ่งครั้งต่อการสำรวจ)</string>
+    <string name="revive_button">ชุบชีวิต (โฆษณา)</string>
+    <string name="give_up_button">ยอมแพ้</string>
+    <string name="ad_gil_reward">รับกิลฟรี (โฆษณา)</string>
+    <string name="ad_magicite_reward">รับมาจิไซต์ฟรี (โฆษณา)</string>
+    <string name="ad_not_ready">โฆษณายังไม่พร้อม โปรดรอสักครู่</string>
+</resources>

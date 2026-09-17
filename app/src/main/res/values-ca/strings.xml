@@ -1,0 +1,346 @@
+<resources>
+    <string name="app_name">Final Dungeon</string>
+
+    <!-- Dimensions & Biomes -->
+    <string name="dim1_title">Guerrers de la Llum</string>
+    <string name="dim1_subtitle">Final Fantasy I</string>
+    <string name="dim1_story">Quatre Guerrers de la Llum s\'alcen per restaurar els cristalls robats per les Forces del Caos...</string>
+
+    <string name="biome_cornelia">Regió de Cornèlia</string>
+    <string name="biome_chaos_shrine">Santuari del Caos</string>
+    <string name="biome_gurgu">Volcà Gurgu</string>
+    <string name="biome_sea_shrine">Santuari del Mar</string>
+    <string name="biome_earth_cave">Cova de la Terra</string>
+    <string name="biome_crystal_tower">Temple dels Dimonis</string>
+
+    <string name="enemy_goblin">Goblin</string>
+    <string name="enemy_wolf">Llop</string>
+    <string name="enemy_pirate">Pirata</string>
+    <string name="enemy_ogre">Ogre</string>
+    <string name="enemy_evil_eye">Ull Maligne</string>
+    <string name="enemy_garland">Garland</string>
+    <string name="enemy_red_flan">Flams Vermells</string>
+    <string name="enemy_bomb">Bomba</string>
+    <string name="enemy_sahagin">Sahagin</string>
+    <string name="enemy_cockatrice">Cocatriu</string>
+    <string name="enemy_lich">Lich</string>
+    <string name="enemy_kraken">Kraken</string>
+    <string name="enemy_tiamat">Tiamat</string>
+    <string name="enemy_chaos">CAOS</string>
+
+    <string name="dim2_title">Rebel·lió de les Ànimes</string>
+    <string name="dim2_subtitle">Final Fantasy II</string>
+    <string name="dim2_story">L\'Imperi Palamecià escampa la foscor. Firion i els seus amics rebels lluiten per la llibertat...</string>
+
+    <string name="biome_altair">Regió d\'Altair</string>
+    <string name="biome_kashuan">Fortalesa de Kashuan</string>
+    <string name="biome_tropical_island">Illa Tropical</string>
+    <string name="biome_pandaemonium">Pandaemonium</string>
+
+    <string name="enemy_wild_rat">Rata Salvatge</string>
+    <string name="enemy_black_knight">Cavaller Negre</string>
+    <string name="enemy_sergeant">Sergent</string>
+    <string name="enemy_child">Nen Perdut</string>
+    <string name="enemy_lamia">Làmia</string>
+    <string name="enemy_adamantoise">Adamantoise</string>
+    <string name="enemy_dark_knight">Cavaller Fosc</string>
+    <string name="enemy_emperor">Emperador Mateus</string>
+
+    <string name="dim3_title">Llum dels Cristalls</string>
+    <string name="dim3_subtitle">Final Fantasy III</string>
+    <string name="dim3_story">Nens orfes triats pels Cristalls de la Llum han de restaurar l\'equilibri al món...</string>
+
+    <string name="biome_ur_village">Poble d\'Ur</string>
+    <string name="biome_crystal_tower_dim3">Torre de Cristall</string>
+    <string name="biome_dark_world">Món de la Foscor</string>
+
+    <string name="enemy_djinn">Djinn</string>
+    <string name="enemy_medusa">Medusa</string>
+    <string name="enemy_hein">Hein</string>
+    <string name="enemy_tonberry">Tonberry</string>
+    <string name="enemy_cloud_of_darkness">Núvol de Foscor</string>
+
+    <!-- Town Screen -->
+    <string name="town_name">GRAN CAPITAL</string>
+    <string name="building_inn">LA POSADA</string>
+    <string name="building_crystal_shop">BOTIGA DE CRISTALLS</string>
+    <string name="building_barracks">QUARTEL</string>
+    <string name="building_relics">RELÍQUIES</string>
+    <string name="crystal_shop_subtitle">Desbloqueja noves classes de treball</string>
+    <string name="owned_status">✓ PROPIETAT</string>
+    <string name="town_upgrades">MILLORES DE LA CIUTAT</string>
+    <string name="upgrade_discount">Descompte: %1$d%%</string>
+    <string name="max_level">MÀX</string>
+    <string name="level_format">NIVELL %1$d / %2$d</string>
+    <string name="pathfinder_level_format">NIVELL %1$d / %2$d (Pis Màx: %3$d)</string>
+
+    <!-- Inn Screen -->
+    <string name="hire_warriors">CONTRACTAR GUERRERS</string>
+    <string name="permadeath_warning">Mort permanent activa</string>
+    <string name="party_size_format">GRUP (%1$d/%2$d)</string>
+    <string name="empty_slot">RANURA BUIDA</string>
+    <string name="advance_banner_format">⚡ AVANÇAR A %1$s ⚡</string>
+    <string name="floor_label">PIS:</string>
+    <string name="rest_at_inn_cost">DESCANSAR A LA POSADA (%1$dG)</string>
+    <string name="rest_at_inn_free">DESCANSAR A LA POSADA (0G)</string>
+    <string name="enter_dungeon">⚔ ENTRAR A LA MAZMORRA ⚔</string>
+    <string name="need_warriors">ES NECESSITEN GUERRERS</string>
+    <string name="fully_rested">El grup està completament descansat</string>
+    <string name="equip_button">EQUIPAR</string>
+    <string name="dimension_complete">DIMENSIÓ COMPLETADA!</string>
+    <string name="hall_of_fame">SALÓ DE LA FAMA</string>
+    <string name="gil_earned_label">Gils Guanyats</string>
+    <string name="magicite_found_label">Magicita Trobada</string>
+    <string name="bosses_slain_label">Caps Derrotats</string>
+    <string name="items_found_label">Objectes Trobats</string>
+    <string name="ascension_rewards">RECOMPENSES D\'ASCENSIÓ</string>
+    <string name="dimension_reset_warning">Advertiment: Restableix herois, equip i pis actual.</string>
+    <string name="cancel_button">CANCEL·LAR</string>
+    <string name="advance_button">AVANÇAR!</string>
+
+    <!-- Relics Screen -->
+    <string name="relics_title">RELÍQUIES</string>
+    <string name="magicite_format">💎 %1$d MAGICITA</string>
+    <string name="back_button">◀ TORNAR</string>
+    <string name="upgrade_cost_format">MILLORAR (%1$d 💎)</string>
+    <string name="relic_level_format">NIVELL %1$d</string>
+
+    <!-- Equipment Screen -->
+    <string name="equipment_title">EQUIP: %1$s</string>
+    <string name="stats_header">ESTADÍSTIQUES</string>
+    <string name="equipped_header">EQUIPAT</string>
+    <string name="inventory_header">INVENTARI</string>
+    <string name="quick_equip">EQUIP RÀPID</string>
+    <string name="empty_inventory">BUIDA</string>
+    <string name="slot_format">RANURA DE %1$s</string>
+    <string name="item_lvl_rarity_format">Nivell %1$d %2$s</string>
+    <string name="unequip_button">DESEQUIPAR</string>
+    <string name="sell_button_format">VENDRE (%1$dG)</string>
+    <string name="close_button">TANCAR</string>
+
+    <!-- Dungeon Screen -->
+    <string name="retreat_button">◀ RETIRADA</string>
+    <string name="floor_format">PIS %1$d</string>
+    <string name="boss_floor_warning">⚠ PIS DE CAP</string>
+    <string name="entering_biome_format">Entrant a %1$s...</string>
+    <string name="floor_cleared_format">Pis %1$d completat! +%2$dG</string>
+    <string name="floor_cleared_lvlup_format">Pis %1$d completat! +%2$dG (Pujada de nivell!)</string>
+    <string name="party_wiped">⚰ GRUP ELIMINAT</string>
+    <string name="run_complete">⚔ INCURSIÓ COMPLETADA</string>
+    <string name="floor_reached_format">Pis %1$d assolit</string>
+    <string name="earned_rewards">RECOMPENSES GUANYADES</string>
+    <string name="wipe_penalty">PENALITZACIÓ PER ELIMINACIÓ</string>
+    <string name="fallen_warriors">GUERRERS CAIGUTS</string>
+    <string name="loot_collected">BOTÍ RECOLLIT</string>
+
+    <!-- Battle Log & Events -->
+    <string name="log_entering_floor">Entrant al pis...</string>
+    <string name="log_attack_format">%1$s ataca %2$s per %3$d</string>
+    <string name="log_hit_format">%1$s colpeja %2$s per %3$d</string>
+    <string name="log_defeated_format">¡%1$s ha derrotat %2$s!</string>
+    <string name="log_fallen_format">¡%1$s ha caigut!</string>
+    <string name="log_victory_xp">¡Victòria! %1$s derrotat. +%2$d EXP</string>
+    <string name="log_level_up">⭐ ¡%1$s ha assolit el Nivell %2$d! </string>
+    <string name="log_heal_format">%1$s cura %2$s per %3$d</string>
+    <string name="log_group_heal">¡%1$s cura el grup!</string>
+    <string name="log_boss_defeated">⚔️ ¡CAP DERROTAT: %1$s!</string>
+    <string name="log_summon_format">🌟 ¡%1$s invoca %2$s! Total: ¡%3$d de dany!</string>
+    <string name="log_magicite_stolen">¡%1$s ha robat %2$d de Magicita!</string>
+    <string name="log_bard_song">🎵 %1$s: %2$s</string>
+    <string name="log_total_wipe">💀 ELIMINACIÓ TOTAL: S\'ha perdut el 30%% dels guanys de la incursió.</string>
+    <string name="log_physical_attack">¡%1$s ataca %2$s per %3$d!</string>
+    <string name="log_physical_crit">💥 ¡%1$s colpeja el PUNT VITAL de %2$s per %3$d! (CRÍTIC)</string>
+    <string name="log_magic_attack">¡%1$s llança un encanteri a %2$s per %3$d!</string>
+    <string name="log_magic_crit">✨ ¡L\'encanteri de %1$s S\'AUGMENTA en %2$s per %3$d! (CRÍTIC)</string>
+    <string name="log_generic">%1$s</string>
+
+    <!-- Hero Classes -->
+    <string name="class_freelancer">Freelancer</string>
+    <string name="class_freelancer_desc">Aprenent de tot. Estadístiques equilibrades.</string>
+    <string name="class_warrior">Guerrer</string>
+    <string name="class_warrior_desc">Combatent de primera línia. Alta vida i atac.</string>
+    <string name="class_white_mage">Mag Blanc</string>
+    <string name="class_white_mage_desc">Sanador sagrat. Manté viu el grup.</string>
+    <string name="class_black_mage">Mag Negre</string>
+    <string name="class_black_mage_desc">Màgia de destrucció. Colpeja tots els enemics.</string>
+    <string name="class_thief">Lladre</string>
+    <string name="class_thief_desc">Ràpid i silenciós. Roba Magicita.</string>
+    <string name="class_monk">Monjo</string>
+    <string name="class_monk_desc">Lluitador a mans buides. Major atac brut.</string>
+    <string name="class_knight">Cavaller</string>
+    <string name="class_knight_desc">Protegeix els aliats. Pot cobrir els membres febles.</string>
+    <string name="class_paladin">Paladí</string>
+    <string name="class_paladin_desc">Protector sagrat. Ataca i cura.</string>
+    <string name="class_red_mage">Mag Vermell</string>
+    <string name="class_red_mage_desc">Pot usar tant màgia blanca com negra.</string>
+    <string name="class_summoner">Invocador</string>
+    <string name="class_summoner_desc">Invoca eidolons poderosos.</string>
+    <string name="class_ninja">Ninja</string>
+    <string name="class_ninja_desc">Assassí de doble empunyadura. Molt ràpid.</string>
+    <string name="class_dragoon">Dragontí</string>
+    <string name="class_dragoon_desc">Especialista en llances. Mestre del salt.</string>
+    <string name="class_bard">Bard</string>
+    <string name="class_bard_desc">Suport amb cançons màgiques.</string>
+    <string name="class_samurai">Samurái</string>
+    <string name="class_samurai_desc">Mestre de l\'espasa. Alt índex crític.</string>
+    <string name="class_onion_knight">Cavaller Ceba</string>
+    <string name="class_onion_knight_desc">Floreix tard. Feble fins al Nivell 90+.</string>
+    <string name="class_mime">Mim</string>
+    <string name="class_mime_desc">Mestre de la imitació. Imita les habilitats del grup.</string>
+    <string name="class_necromancer">Nigromant</string>
+    <string name="class_necromancer_desc">Arts fosques. El drenatge d\'ànima cura el grup.</string>
+    <string name="class_blue_mage">Mag Blau</string>
+    <string name="class_blue_mage_desc">Estudiant de sabers. Creix en derrotar caps.</string>
+
+    <string name="hidden_job_clue">Treball Misteriós</string>
+    <string name="hidden_job_clue_desc">Un camí misteriós t\'espera...</string>
+    <string name="hidden_job_unlock_title">¡FELICITATS!</string>
+    <string name="hidden_job_unlock_body">¡Has descobert un treball ocult llegendari: %1$s!</string>
+    <string name="hidden_job_unlock_close">¡INCREÏBLE!</string>
+
+    <!-- Upgrades -->
+    <string name="upgrade_inn_name">Taberna</string>
+    <string name="upgrade_inn_desc">Desbloqueja classes de treball avançades</string>
+    <string name="upgrade_barracks_name">Quartel</string>
+    <string name="upgrade_barracks_desc">Augmenta la mida màxima del grup</string>
+    <string name="upgrade_vault_name">Volta</string>
+    <string name="upgrade_vault_desc">Augmenta l\'emmagatzematge màxim de Gils</string>
+    <string name="upgrade_armory_name">Armeria</string>
+    <string name="upgrade_armory_desc">Augmenta les estadístiques de l\'equip trobat</string>
+    <string name="upgrade_magic_shop_name">Botiga de Màgia</string>
+    <string name="upgrade_magic_shop_desc">Augmenta les probabilitats de trobar objectes rars</string>
+    <string name="upgrade_training_name">Entrenament</string>
+    <string name="upgrade_training_desc">Augmenta la EXP guanyada a la masmorra</string>
+    <string name="upgrade_planning_name">Planificació</string>
+    <string name="upgrade_planning_desc">Disminueix el cost de les millores de la ciutat</string>
+    <string name="upgrade_clinic_name">Clínica</string>
+    <string name="upgrade_clinic_desc">Disminueix el cost de descansar a la posada</string>
+    <string name="upgrade_pathfinder_name">Cercador de Camins</string>
+    <string name="upgrade_pathfinder_desc">Desbloqueja pisos inicials més alts</string>
+
+    <!-- Relics -->
+    <string name="relic_attack_name">Atac</string>
+    <string name="relic_attack_desc">Dany Físic</string>
+    <string name="relic_hp_name">Vitalitat</string>
+    <string name="relic_hp_desc">Punts de Vida Màxims</string>
+    <string name="relic_mp_name">Esperit</string>
+    <string name="relic_mp_desc">Puntos de Manà Màxims</string>
+    <string name="relic_magic_name">Màgia</string>
+    <string name="relic_magic_desc">Dany Màgic</string>
+    <string name="relic_defense_name">Defensa</string>
+    <string name="relic_defense_desc">Reducció de Dany</string>
+    <string name="relic_gold_name">Fortuna</string>
+    <string name="relic_gold_desc">Guany d\'Or</string>
+    <string name="relic_magicite_name">Essència</string>
+    <string name="relic_magicite_desc">Taxa de Trobada de Magicita</string>
+    <string name="relic_crit_chance_name">Ull de Falcó</string>
+    <string name="relic_crit_chance_desc">Taxa de Cops Crítics</string>
+    <string name="relic_crit_damage_name">Colpejador</string>
+    <string name="relic_crit_damage_desc">Dany Crític</string>
+    <string name="relic_magnet_name">Imant</string>
+    <string name="relic_magnet_desc">Taxa d\'Aparició de Magicita</string>
+    <string name="relic_pockets_name">Butxaques</string>
+    <string name="relic_pockets_desc">Or Retingut</string>
+    <string name="relic_double_loot_name">Botí</string>
+    <string name="relic_double_loot_desc">Botí de Cap Doble</string>
+
+    <!-- Items -->
+    <string name="item_sword">Espasa</string>
+    <string name="item_plate">Placa</string>
+    <string name="item_shield">Escut</string>
+    <string name="item_ring">Anell</string>
+    <string name="item_rarity_common">Comú</string>
+    <string name="item_rarity_rare">Rar</string>
+    <string name="item_rarity_epic">Èpic</string>
+    <string name="item_rarity_legendary">Llegendari</string>
+    <string name="item_name_template">%1$s %2$s</string>
+    <!-- Pets -->
+    <string name="pet_chocobo_name">Chocobo</string>
+    <string name="pet_chocobo_desc">+20%% Trobada d\'Objectes</string>
+    <string name="pet_moogle_name">Moogle</string>
+    <string name="pet_moogle_desc">+50%% Guany de EXP</string>
+    <string name="pet_cat_name">Gat de la Sort</string>
+    <string name="pet_cat_desc">+30%% Guany de Gils</string>
+    <string name="pet_cactuar_name">Cactili</string>
+    <string name="pet_cactuar_desc">+15%% Taxa Crítica</string>
+    <string name="pet_tonberry_name">Tonberry</string>
+    <string name="pet_tonberry_desc">+100%% Dany Crític</string>
+
+    <!-- Battle Abilities -->
+    <string name="ability_cover_name">Cobertura</string>
+    <string name="ability_cover_desc">¡Protegint %1$s!</string>
+    <string name="ability_curaga_name">Curaga</string>
+    <string name="ability_curaga_desc">¡%1$s llança Curaga!</string>
+    <string name="ability_jump_name">Salt</string>
+    <string name="ability_jump_desc">¡%1$s salta pels aires!</string>
+    <string name="ability_zeninage_name">Zeninage</string>
+    <string name="ability_zeninage_desc">¡%1$s llança Gils — Zeninage!</string>
+    <string name="ability_ransack_name">Saquejar</string>
+    <string name="ability_mimic_name">Mim</string>
+    <string name="ability_mimic_desc">¡%1$s imita l\'última habilitat!</string>
+    <string name="ability_souldrain_name">Drenatge d\'Ànima</string>
+    <string name="ability_souldrain_desc">¡%1$s llança Drenatge d\'Ànima!</string>
+
+    <!-- Songs -->
+    <string name="song_paeon">Peán</string>
+    <string name="song_paeon_effect">+Regeneració de HP en aquest pis</string>
+    <string name="song_minne">Minne</string>
+    <string name="song_minne_effect">+Defensa per a tots els aliats</string>
+    <string name="song_minuet">Minuet</string>
+    <string name="song_minuet_effect">+Atac per a tots els aliats</string>
+    <string name="song_ballad">Balada de Romeu</string>
+    <string name="song_ballad_effect">Tots els enemics perden el següent torn</string>
+    <!-- Mastery & Pets Screen -->
+    <string name="training_grounds_title">CAMPS D\'ENTRENAMENT</string>
+    <string name="tab_job_mastery">MAESTRIA DE TREBALL</string>
+    <string name="tab_pets">MASCOTES</string>
+    <string name="mastery_bonus_label">BONIFICACIÓ</string>
+    <string name="mastery_exp_format">%1$d / %2$d EXP</string>
+    <string name="pet_bonus_format">+%1$.1f%% %2$s</string>
+    <string name="mastery_bonus_stat_format">+%1$d %2$s</string>
+    <string name="select_companion_label">SELECCIONA UN COMPANYS</string>
+    <string name="pet_none">CAP</string>
+    <string name="unlock_pet_format">%1$dG PER DESBLOQUEJAR</string>
+    <string name="masteries">📈 MAESTRIES</string>
+
+    <!-- Leaderboards -->
+    <string name="leaderboard_title">CLASSIFICACIONS</string>
+    <string name="tab_global">GLOBAL</string>
+    <string name="tab_dimension">DIMENSIÓ</string>
+    <string name="tab_friends">AMICS</string>
+    <string name="rank_label">RANG</string>
+    <string name="player_label">JUGADOR</string>
+    <string name="floor_reached_short">PIS MÀX</string>
+    <string name="magicite_short">MAG</string>
+    <string name="time_short">TEMPS</string>
+    <string name="ghost_run_team_title">Equip de %1$s</string>
+    <string name="no_party_data">No hi ha dades de grup disponibles</string>
+    <string name="hero_lvl_class_format">NIVELL %1$d %2$s</string>
+    <string name="ghost_run_close">TANCAR</string>
+    <string name="empty_time">---</string>
+    <string name="format_m">%1$.1fM</string>
+    <string name="format_k">%1$.1fK</string>
+    <string name="player_name_you">TU</string>
+    <string name="my_id_label">EL TEU ID: %1$s</string>
+    <string name="copy_id_hint">Toca per copiar el teu ID</string>
+    <string name="add_friend_label">+ AFEGIR AMIC</string>
+    <string name="friend_id_hint">ID d\'Amic</string>
+    <string name="add_button">AFEGIR</string>
+    <string name="cancel_button_short">CANCEL·LAR</string>
+    <string name="enter_friend_id_title">Introduir ID d\'Amic</string>
+    <string name="id_copied">ID copiat al porta-retalls</string>
+    <string name="edit_name_hint">Editar Nom</string>
+    <string name="save_button">DESAR</string>
+    <string name="no_friends_desc">No has afegit amics encara. ¡Comparteix el teu ID per començar a competir!</string>
+    <string name="ad_starting">Veient Anunci...</string>
+    <string name="ad_finished">¡Recompensa Guanyada!</string>
+    <string name="ad_boost_button">MILLORA (AD)</string>
+    <string name="ad_boost_active">MILLORA ACTIVA (%1$d pisos)</string>
+    <string name="revive_dialog_title">¡GRUPO ELIMINAT!</string>
+    <string name="revive_dialog_desc">¿Veure un anunci curt per revifar el teu equip a l\'inici d\'aquest pis? (Una vegada per incursió)</string>
+    <string name="revive_button">REVIFAR (AD)</string>
+    <string name="give_up_button">RENUNCIAR</string>
+    <string name="ad_gil_reward">GIL GRATIS (AD)</string>
+    <string name="ad_magicite_reward">MAGICITA GRATIS (AD)</string>
+    <string name="ad_not_ready">L\'anunci no està a punt. Si us plau, espera un moment.</string>
+</resources>

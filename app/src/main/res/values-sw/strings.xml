@@ -1,0 +1,346 @@
+<resources>
+    <string name="app_name">Final Dungeon</string>
+
+    <!-- Dimensions & Biomes -->
+    <string name="dim1_title">Mashujaa wa Mwanga</string>
+    <string name="dim1_subtitle">Final Fantasy I</string>
+    <string name="dim1_story">Mashujaa Wanne wa Mwanga wanajitokeza kurejesha fuwele zilizoibiwa na Nguvu za Chaos...</string>
+
+    <string name="biome_cornelia">Eneo la Cornelia</string>
+    <string name="biome_chaos_shrine">Hekalu la Chaos</string>
+    <string name="biome_gurgu">Volcano ya Gurgu</string>
+    <string name="biome_sea_shrine">Hekalu la Bahari</string>
+    <string name="biome_earth_cave">Pango la Dunia</string>
+    <string name="biome_crystal_tower">Hekalu la Maadui</string>
+
+    <string name="enemy_goblin">Goblin</string>
+    <string name="enemy_wolf">Mbwa Mwitu</string>
+    <string name="enemy_pirate">Maharamia</string>
+    <string name="enemy_ogre">Ogre</string>
+    <string name="enemy_evil_eye">Jicho Ovu</string>
+    <string name="enemy_garland">Garland</string>
+    <string name="enemy_red_flan">Red Flan</string>
+    <string name="enemy_bomb">Bomb</string>
+    <string name="enemy_sahagin">Sahagin</string>
+    <string name="enemy_cockatrice">Cockatrice</string>
+    <string name="enemy_lich">Lich</string>
+    <string name="enemy_kraken">Kraken</string>
+    <string name="enemy_tiamat">Tiamat</string>
+    <string name="enemy_chaos">CHAOS</string>
+
+    <string name="dim2_title">Uasi wa Nafsi</string>
+    <string name="dim2_subtitle">Final Fantasy II</string>
+    <string name="dim2_story">Dola ya Palamecia inaeneza giza. Firion na marafiki zake waasi wanapigania uhuru...</string>
+
+    <string name="biome_altair">Eneo la Altair</string>
+    <string name="biome_kashuan">Ngome ya Kashuan</string>
+    <string name="biome_tropical_island">Kisiwa cha Kitropiki</string>
+    <string name="biome_pandaemonium">Pandaemonium</string>
+
+    <string name="enemy_wild_rat">Panya wa Pori</string>
+    <string name="enemy_black_knight">Knight Mweusi</string>
+    <string name="enemy_sergeant">Sajenti</string>
+    <string name="enemy_child">Mtoto Aliyepotea</string>
+    <string name="enemy_lamia">Lamia</string>
+    <string name="enemy_adamantoise">Adamantoise</string>
+    <string name="enemy_dark_knight">Knight wa Giza</string>
+    <string name="enemy_emperor">Mfalme Mateus</string>
+
+    <string name="dim3_title">Mwanga wa Fuwele</string>
+    <string name="dim3_subtitle">Final Fantasy III</string>
+    <string name="dim3_story">Watoto yatima waliochaguliwa na Fuwele za Mwanga lazima warejeshe usawa ulimwenguni...</string>
+
+    <string name="biome_ur_village">Kijiji cha Ur</string>
+    <string name="biome_crystal_tower_dim3">Mnara wa Kioo</string>
+    <string name="biome_dark_world">Ulimwengu wa Giza</string>
+
+    <string name="enemy_djinn">Djinn</string>
+    <string name="enemy_medusa">Medusa</string>
+    <string name="enemy_hein">Hein</string>
+    <string name="enemy_tonberry">Tonberry</string>
+    <string name="enemy_cloud_of_darkness">Wingu la Giza</string>
+
+    <!-- Town Screen -->
+    <string name="town_name">MTEJA MKUU</string>
+    <string name="building_inn">INN</string>
+    <string name="building_crystal_shop">DUKA LA FUWELE</string>
+    <string name="building_barracks">KAMPI YA JESHI</string>
+    <string name="building_relics">RELICS</string>
+    <string name="crystal_shop_subtitle">Fungua madarasa mapya ya kazi</string>
+    <string name="owned_status">✓ INAMILIKIWA</string>
+    <string name="town_upgrades">MABORESHO YA MJI</string>
+    <string name="upgrade_discount">Punguzo: %1$d%%</string>
+    <string name="max_level">MAX</string>
+    <string name="level_format">NGAZI %1$d / %2$d</string>
+    <string name="pathfinder_level_format">NGAZI %1$d / %2$d (Ghorofa ya Max: %3$d)</string>
+
+    <!-- Inn Screen -->
+    <string name="hire_warriors">KUAJIRI MASHUJAA</string>
+    <string name="permadeath_warning">Kifo cha kudumu kiko hai</string>
+    <string name="party_size_format">KUNDI (%1$d/%2$d)</string>
+    <string name="empty_slot">NAFASI WAZI</string>
+    <string name="advance_banner_format">⚡ SENDA KWENYE %1$s ⚡</string>
+    <string name="floor_label">GHOROFA:</string>
+    <string name="rest_at_inn_cost">PUMZIKA KWENYE INN (%1$dG)</string>
+    <string name="rest_at_inn_free">PUMZIKA KWENYE INN (0G)</string>
+    <string name="enter_dungeon">⚔ INGIA DUNGEON ⚔</string>
+    <string name="need_warriors">UNAHITAJI MASHUJAA</string>
+    <string name="fully_rested">Kundi limepumzika kikamilifu</string>
+    <string name="equip_button">WEKA</string>
+    <string name="dimension_complete">DIMENSION IMEMALIZIKA!</string>
+    <string name="hall_of_fame">UKUMBI WA SIFI</string>
+    <string name="gil_earned_label">Gil Zilizopatikana</string>
+    <string name="magicite_found_label">Magicite Zilizopatikana</string>
+    <string name="bosses_slain_label">Bosses Waliouawa</string>
+    <string name="items_found_label">Vitu Vilivyopatikana</string>
+    <string name="ascension_rewards">ZAWADI ZA ASCENSION</string>
+    <string name="dimension_reset_warning">Onyo: Inarudisha nyuma mashujaa, vifaa na ghorofa ya sasa.</string>
+    <string name="cancel_button">GHAIRI</string>
+    <string name="advance_button">LENDA MBELE!</string>
+
+    <!-- Relics Screen -->
+    <string name="relics_title">RELICS</string>
+    <string name="magicite_format">💎 %1$d MAGICITE</string>
+    <string name="back_button">◀ NYUMA</string>
+    <string name="upgrade_cost_format">BORESHA (%1$d 💎)</string>
+    <string name="relic_level_format">NGAZI %1$d</string>
+
+    <!-- Equipment Screen -->
+    <string name="equipment_title">VIFAA: %1$s</string>
+    <string name="stats_header">STATS</string>
+    <string name="equipped_header">VILEVYOWEKWA</string>
+    <string name="inventory_header">HESABU YA VITU</string>
+    <string name="quick_equip">WEKA HARAKA</string>
+    <string name="empty_inventory">WAZI</string>
+    <string name="slot_format">NAFASI YA %1$s</string>
+    <string name="item_lvl_rarity_format">Ngazi %1$d %2$s</string>
+    <string name="unequip_button">OMDOA</string>
+    <string name="sell_button_format">UZA (%1$dG)</string>
+    <string name="close_button">FUNGA</string>
+
+    <!-- Dungeon Screen -->
+    <string name="retreat_button">◀ REJEA NYUMA</string>
+    <string name="floor_format">GHOROFA %1$d</string>
+    <string name="boss_floor_warning">⚠ GHOROFA YA BOSS</string>
+    <string name="entering_biome_format">Kuingia %1$s...</string>
+    <string name="floor_cleared_format">Ghorofa %1$d imesafishwa! +%2$dG</string>
+    <string name="floor_cleared_lvlup_format">Ghorofa %1$d imesafishwa! +%2$dG (Kupanda Ngazi!)</string>
+    <string name="party_wiped">⚰ KUNDI LIMEFUTWA</string>
+    <string name="run_complete">⚔ RUN IMEMALIZIKA</string>
+    <string name="floor_reached_format">Ghorofa %1$d imefikiwa</string>
+    <string name="earned_rewards">ZAWADI ZILIZOPATIKANA</string>
+    <string name="wipe_penalty">ADHABU YA WIPE</string>
+    <string name="fallen_warriors">MASHUJAA WALIANGUKA</string>
+    <string name="loot_collected">LOOT ZILIZOKUSANYWA</string>
+
+    <!-- Battle Log & Events -->
+    <string name="log_entering_floor">Kuingia Ghorofa...</string>
+    <string name="log_attack_format">%1$s anashambulia %2$s kwa %3$d</string>
+    <string name="log_hit_format">%1$s anapiga %2$s kwa %3$d</string>
+    <string name="log_defeated_format">%1$s amemshinda %2$s!</string>
+    <string name="log_fallen_format">%1$s ameanguka!</string>
+    <string name="log_victory_xp">Ushindi! %1$s ameshindwa. +%2$d EXP</string>
+    <string name="log_level_up">⭐ %1$s amefikia Ngazi %2$d!</string>
+    <string name="log_heal_format">%1$s anponya %2$s kwa %3$d</string>
+    <string name="log_group_heal">%1$s anaponya kundi!</string>
+    <string name="log_boss_defeated">⚔️ BOSS AMESHINDWA: %1$s!</string>
+    <string name="log_summon_format">🌟 %1$s anamwita %2$s! Jumla: %3$d uharibifu!</string>
+    <string name="log_magicite_stolen">%1$s ameiba %2$d Magicite!</string>
+    <string name="log_bard_song">🎵 %1$s: %2$s</string>
+    <string name="log_total_wipe">💀 WIPE YA JUMLA: Imepoteza 30%% ya mapato ya run.</string>
+    <string name="log_physical_attack">%1$s anashambulia %2$s kwa %3$d!</string>
+    <string name="log_physical_crit">💥 %1$s anapiga PUNGUZO LA MUHIMU la %2$s kwa %3$d! (CRITICAL)</string>
+    <string name="log_magic_attack">%1$s anatupa uchawi kwa %2$s kwa %3$d!</string>
+    <string name="log_magic_crit">✨ Uchawi wa %1$s UNAPANDA juu ya %2$s kwa %3$d! (CRITICAL)</string>
+    <string name="log_generic">%1$s</string>
+
+    <!-- Hero Classes -->
+    <string name="class_freelancer">Freelancer</string>
+    <string name="class_freelancer_desc">Mtaalamu wa kila kitu. Stats zenye usawa.</string>
+    <string name="class_warrior">Mshujaa</string>
+    <string name="class_warrior_desc">Mpiganaji wa mstari wa mbele. HP ya juu na shambulio.</string>
+    <string name="class_white_mage">White Mage</string>
+    <string name="class_white_mage_desc">Mganga mtakatifu. Anadumisha kundi hai.</string>
+    <string name="class_black_mage">Black Mage</string>
+    <string name="class_black_mage_desc">Uchawi wa uharibifu. Anapiga maadui wote.</string>
+    <string name="class_thief">Mwizi</string>
+    <string name="class_thief_desc">Haraka na mjanja. Anaiba Magicite.</string>
+    <string name="class_monk">Monk</string>
+    <string name="class_monk_desc">Mpiganaji asiye na silaha. Shambulio la juu zaidi kabisa.</string>
+    <string name="class_knight">Knight</string>
+    <string name="class_knight_desc">Analinda washirika. Anaweza kufunika washirika dhaifu.</string>
+    <string name="class_paladin">Paladin</string>
+    <string name="class_paladin_desc">Mlinzi mtakatifu. Anashambulia na kuponya.</string>
+    <string name="class_red_mage">Red Mage</string>
+    <string name="class_red_mage_desc">Anaweza kutumia uchawi mweupe na mweusi.</string>
+    <string name="class_summoner">Summoner</string>
+    <string name="class_summoner_desc">Anaita eidolons wenye nguvu.</string>
+    <string name="class_ninja">Ninja</string>
+    <string name="class_ninja_desc">Muuaji anayetumia silaha mbili. Haraka sana.</string>
+    <string name="class_dragoon">Dragoon</string>
+    <string name="class_dragoon_desc">Mtaalamu wa mkuki. Mwalimu wa Rukia.</string>
+    <string name="class_bard">Bard</string>
+    <string name="class_bard_desc">Msaada kwa kutumia nyimbo za uchawi.</string>
+    <string name="class_samurai">Samurai</string>
+    <string name="class_samurai_desc">Mwalimu wa blade. Kiwango cha juu cha crit.</string>
+    <string name="class_onion_knight">Onion Knight</string>
+    <string name="class_onion_knight_desc">Mchelewaji. Dhaifu hadi Ngazi 90+.</string>
+    <string name="class_mime">Mime</string>
+    <string name="class_mime_desc">Mwalimu wa kuiga. Anaiga uwezo wa kundi.</string>
+    <string name="class_necromancer">Necromancer</string>
+    <string name="class_necromancer_desc">Sanaa ya giza. Soul Drain inaponya kundi.</string>
+    <string name="class_blue_mage">Blue Mage</string>
+    <string name="class_blue_mage_desc">Mwanafunzi wa historia. Anakuwa na nguvu kwa kuua bosses.</string>
+
+    <string name="hidden_job_clue">Kazi ya Siri</string>
+    <string name="hidden_job_clue_desc">Njia ya siri inangojea...</string>
+    <string name="hidden_job_unlock_title">HONGERA!</string>
+    <string name="hidden_job_unlock_body">Umegundua kazi ya siri ya hadithi: %1$s!</string>
+    <string name="hidden_job_unlock_close">AJABU!</string>
+
+    <!-- Upgrades -->
+    <string name="upgrade_inn_name">Taproom</string>
+    <string name="upgrade_inn_desc">Inafungua madarasa ya kazi ya juu</string>
+    <string name="upgrade_barracks_name">Kambi</string>
+    <string name="upgrade_barracks_desc">Inazidisha ukubwa wa kundi</string>
+    <string name="upgrade_vault_name">Vault</string>
+    <string name="upgrade_vault_desc">Inazidisha hifadhi ya juu ya Gil</string>
+    <string name="upgrade_armory_name">Armory</string>
+    <string name="upgrade_armory_desc">Inazidisha stats za vifaa vinavyopatikana</string>
+    <string name="upgrade_magic_shop_name">Duka la Uchawi</string>
+    <string name="upgrade_magic_shop_desc">Inazidisha nafasi ya kupata vitu adimu</string>
+    <string name="upgrade_training_name">Mafunzo</string>
+    <string name="upgrade_training_desc">Inazidisha EXP inayopatikana kwenye dungeon</string>
+    <string name="upgrade_planning_name">Mipango</string>
+    <string name="upgrade_planning_desc">Inapunguza gharama ya maboresho ya mji</string>
+    <string name="upgrade_clinic_name">Kliniki</string>
+    <string name="upgrade_clinic_desc">Inapunguza gharama ya kupumzika kwenye Inn</string>
+    <string name="upgrade_pathfinder_name">Pathfinder</string>
+    <string name="upgrade_pathfinder_desc">Fungua ghorofa za juu za kuanzia</string>
+
+    <!-- Relics -->
+    <string name="relic_attack_name">Shambulio</string>
+    <string name="relic_attack_desc">Uharibifu wa Kimwili</string>
+    <string name="relic_hp_name">Uhai</string>
+    <string name="relic_hp_desc">HP ya Juu Zaidi</string>
+    <string name="relic_mp_name">Roho</string>
+    <string name="relic_mp_desc">MP ya Juu Zaidi</string>
+    <string name="relic_magic_name">Uchawi</string>
+    <string name="relic_magic_desc">Uharibifu wa Uchawi</string>
+    <string name="relic_defense_name">Ulinzi</string>
+    <string name="relic_defense_desc">Kupunguza Uharibifu</string>
+    <string name="relic_gold_name">Bahati</string>
+    <string name="relic_gold_desc">Kupata Dhahabu</string>
+    <string name="relic_magicite_name">Kiini</string>
+    <string name="relic_magicite_desc">Kiwango cha Kupata Magicita</string>
+    <string name="relic_crit_chance_name">Jicho la Kifaranga</string>
+    <string name="relic_crit_chance_desc">Kiwango cha Crit Hit</string>
+    <string name="relic_crit_damage_name">Hitter</string>
+    <string name="relic_crit_damage_desc">Uharibifu wa Crit</string>
+    <string name="relic_magnet_name">Magnet</string>
+    <string name="relic_magnet_desc">Kiwango cha Kuangusha Magicita</string>
+    <string name="relic_pockets_name">Mifuko</string>
+    <string name="relic_pockets_desc">Dhahabu Iliyobaki</string>
+    <string name="relic_double_loot_name">Loot</string>
+    <string name="relic_double_loot_desc">Loot ya Boss Mara Mbili</string>
+
+    <!-- Items -->
+    <string name="item_sword">Upanga</string>
+    <string name="item_plate">Bamba</string>
+    <string name="item_shield">Ngao</string>
+    <string name="item_ring">Pete</string>
+    <string name="item_rarity_common">Kawaida</string>
+    <string name="item_rarity_rare">Adimu</string>
+    <string name="item_rarity_epic">Epic</string>
+    <string name="item_rarity_legendary">Hadithi</string>
+    <string name="item_name_template">%1$s %2$s</string>
+    <!-- Pets -->
+    <string name="pet_chocobo_name">Chocobo</string>
+    <string name="pet_chocobo_desc">+20%% Kupata Vitu</string>
+    <string name="pet_moogle_name">Moogle</string>
+    <string name="pet_moogle_desc">+50%% Kupata EXP</string>
+    <string name="pet_cat_name">Paka wa Bahati</string>
+    <string name="pet_cat_desc">+30%% Kupata Gil</string>
+    <string name="pet_cactuar_name">Cactuar</string>
+    <string name="pet_cactuar_desc">+15%% Kiwango cha Crit</string>
+    <string name="pet_tonberry_name">Tonberry</string>
+    <string name="pet_tonberry_desc">+100%% Uharibifu wa Crit</string>
+
+    <!-- Battle Abilities -->
+    <string name="ability_cover_name">Cover</string>
+    <string name="ability_cover_desc">Kulinda %1$s!</string>
+    <string name="ability_curaga_name">Curaga</string>
+    <string name="ability_curaga_desc">%1$s anatupa Curaga!</string>
+    <string name="ability_jump_name">Rukia</string>
+    <string name="ability_jump_desc">%1$s anaruka hewani!</string>
+    <string name="ability_zeninage_name">Zeninage</string>
+    <string name="ability_zeninage_desc">%1$s anatupa Gil — Zeninage!</string>
+    <string name="ability_ransack_name">Ransack</string>
+    <string name="ability_mimic_name">Mimic</string>
+    <string name="ability_mimic_desc">%1$s anaiga uwezo wa mwisho!</string>
+    <string name="ability_souldrain_name">Soul Drain</string>
+    <string name="ability_souldrain_desc">%1$s anatupa Soul Drain!</string>
+
+    <!-- Songs -->
+    <string name="song_paeon">Paeon</string>
+    <string name="song_paeon_effect">+Urejesho wa HP kwenye ghorofa hii</string>
+    <string name="song_minne">Minne</string>
+    <string name="song_minne_effect">+Ulinzi kwa washirika wote</string>
+    <string name="song_minuet">Minuet</string>
+    <string name="song_minuet_effect">+Shambulio kwa washirika wote</string>
+    <string name="song_ballad">Romeo\'s Ballad</string>
+    <string name="song_ballad_effect">Maadui wote wanaruka zamu inayofuata</string>
+    <!-- Mastery & Pets Screen -->
+    <string name="training_grounds_title">MAENEO YA MAFUNZO</string>
+    <string name="tab_job_mastery">MASTAA WA KAZI</string>
+    <string name="tab_pets">WANYAMA WA KUFUGWA</string>
+    <string name="mastery_bonus_label">BONUS</string>
+    <string name="mastery_exp_format">%1$d / %2$d EXP</string>
+    <string name="pet_bonus_format">+%1$.1f%% %2$s</string>
+    <string name="mastery_bonus_stat_format">+%1$d %2$s</string>
+    <string name="select_companion_label">CHAGUA MWENZAKO</string>
+    <string name="pet_none">HAKUNA</string>
+    <string name="unlock_pet_format">%1$dG FUNGUA</string>
+    <string name="masteries">📈 MASTAA</string>
+
+    <!-- Leaderboards -->
+    <string name="leaderboard_title">NAFASI</string>
+    <string name="tab_global">GLOBAL</string>
+    <string name="tab_dimension">DIMENSION</string>
+    <string name="tab_friends">MARAFIKI</string>
+    <string name="rank_label">NAFASI</string>
+    <string name="player_label">MCHEZAJI</string>
+    <string name="floor_reached_short">MAX FLR</string>
+    <string name="magicite_short">MAG</string>
+    <string name="time_short">MUDA</string>
+    <string name="ghost_run_team_title">Timu ya %1$s</string>
+    <string name="no_party_data">Hakuna data ya kundi inayopatikana</string>
+    <string name="hero_lvl_class_format">NGAZI %1$d %2$s</string>
+    <string name="ghost_run_close">FUNGA</string>
+    <string name="empty_time">---</string>
+    <string name="format_m">%1$.1fM</string>
+    <string name="format_k">%1$.1fK</string>
+    <string name="player_name_you">WEWE</string>
+    <string name="my_id_label">ID YAKO: %1$s</string>
+    <string name="copy_id_hint">Gusa ili kunakili ID yako</string>
+    <string name="add_friend_label">+ ONGEZA RAFIKI</string>
+    <string name="friend_id_hint">ID ya Rafiki</string>
+    <string name="add_button">ONGEZA</string>
+    <string name="cancel_button_short">GHAIRI</string>
+    <string name="enter_friend_id_title">Weka ID ya Rafiki</string>
+    <string name="id_copied">ID imenakiliwa kwenye clipboard</string>
+    <string name="edit_name_hint">Hariri Jina</string>
+    <string name="save_button">HIFADHI</string>
+    <string name="no_friends_desc">Hakuna marafiki walioongezwa bado. Shiriki ID yako ili uanze kuorodheshwa!</string>
+    <string name="ad_starting">Kutazama Tangazo...</string>
+    <string name="ad_finished">Zawadi Imepatikana!</string>
+    <string name="ad_boost_button">BOOST (AD)</string>
+    <string name="ad_boost_active">BOOST INAFANYA KAZI (ghorofa %1$d)</string>
+    <string name="revive_dialog_title">KUNDI LIMEFUTWA!</string>
+    <string name="revive_dialog_desc">Tazama tangazo fupi ili kufufua timu yako mwanzoni mwa ghorofa hii? (Mara uma kwa kila run)</string>
+    <string name="revive_button">REVIVER (AD)</string>
+    <string name="give_up_button">KATA TAMAA</string>
+    <string name="ad_gil_reward">GIL YA BURE (AD)</string>
+    <string name="ad_magicite_reward">MAGICITE YA BURE (AD)</string>
+    <string name="ad_not_ready">Tangazo haliko tayari. Tafadhali subiri kidogo.</string>
+</resources>

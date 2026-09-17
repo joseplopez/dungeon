@@ -1,0 +1,346 @@
+<resources>
+    <string name="app_name">Final Dungeon</string>
+
+    <!-- Dimensions & Biomes -->
+    <string name="dim1_title">Işığın Savaşçıları</string>
+    <string name="dim1_subtitle">Final Fantasy I</string>
+    <string name="dim1_story">Kaos Güçleri tarafından çalınan kristalleri geri getirmek için dört Işık Savaşçısı ayağa kalkıyor...</string>
+
+    <string name="biome_cornelia">Cornelia Bölgesi</string>
+    <string name="biome_chaos_shrine">Kaos Tapınağı</string>
+    <string name="biome_gurgu">Gurgu Yanardağı</string>
+    <string name="biome_sea_shrine">Deniz Tapınağı</string>
+    <string name="biome_earth_cave">Yeryüzü Mağarası</string>
+    <string name="biome_crystal_tower">İblisler Tapınağı</string>
+
+    <string name="enemy_goblin">Goblin</string>
+    <string name="enemy_wolf">Kurt</string>
+    <string name="enemy_pirate">Korsan</string>
+    <string name="enemy_ogre">Ogre</string>
+    <string name="enemy_evil_eye">Kötü Göz</string>
+    <string name="enemy_garland">Garland</string>
+    <string name="enemy_red_flan">Kırmızı Flan</string>
+    <string name="enemy_bomb">Bomba</string>
+    <string name="enemy_sahagin">Sahagin</string>
+    <string name="enemy_cockatrice">Kokaris</string>
+    <string name="enemy_lich">Lich</string>
+    <string name="enemy_kraken">Kraken</string>
+    <string name="enemy_tiamat">Tiamat</string>
+    <string name="enemy_chaos">KAOS</string>
+
+    <string name="dim2_title">Ruhların İsyanı</string>
+    <string name="dim2_subtitle">Final Fantasy II</string>
+    <string name="dim2_story">Palamecia İmparatorluğu karanlığı yayıyor. Firion ve asi arkadaşları özgürlük için savaşıyor...</string>
+
+    <string name="biome_altair">Altair Bölgesi</string>
+    <string name="biome_kashuan">Kashuan Kalesi</string>
+    <string name="biome_tropical_island">Tropikal Ada</string>
+    <string name="biome_pandaemonium">Pandaemonium</string>
+
+    <string name="enemy_wild_rat">Yaban Faresi</string>
+    <string name="enemy_black_knight">Kara Şövalye</string>
+    <string name="enemy_sergeant">Çavuş</string>
+    <string name="enemy_child">Kayıp Çocuk</string>
+    <string name="enemy_lamia">Lamia</string>
+    <string name="enemy_adamantoise">Adamantoise</string>
+    <string name="enemy_dark_knight">Karanlık Şövalye</string>
+    <string name="enemy_emperor">İmparator Mateus</string>
+
+    <string name="dim3_title">Kristallerin Işığı</string>
+    <string name="dim3_subtitle">Final Fantasy III</string>
+    <string name="dim3_story">Işık Kristalleri tarafından seçilen yetim çocuklar dünyaya dengeyi geri getirmeli...</string>
+
+    <string name="biome_ur_village">Ur Köyü</string>
+    <string name="biome_crystal_tower_dim3">Kristal Kule</string>
+    <string name="biome_dark_world">Karanlık Dünya</string>
+
+    <string name="enemy_djinn">Djinn</string>
+    <string name="enemy_medusa">Medusa</string>
+    <string name="enemy_hein">Hein</string>
+    <string name="enemy_tonberry">Tonberry</string>
+    <string name="enemy_cloud_of_darkness">Karanlık Bulutu</string>
+
+    <!-- Town Screen -->
+    <string name="town_name">BÜYÜK BAŞKENT</string>
+    <string name="building_inn">HAN</string>
+    <string name="building_crystal_shop">KRİSTAL DÜKKANI</string>
+    <string name="building_barracks">KIŞLA</string>
+    <string name="building_relics">YADİGARLAR</string>
+    <string name="crystal_shop_subtitle">Yeni iş sınıflarının kilidini açın</string>
+    <string name="owned_status">✓ SAHİP OLUNDU</string>
+    <string name="town_upgrades">KASABA GELİŞTİRMELERİ</string>
+    <string name="upgrade_discount">İndirim: %1$d%%</string>
+    <string name="max_level">MAKS</string>
+    <string name="level_format">SNT %1$d / %2$d</string>
+    <string name="pathfinder_level_format">SNT %1$d / %2$d (Maks Kat: %3$d)</string>
+
+    <!-- Inn Screen -->
+    <string name="hire_warriors">SAVAŞÇI KİRALA</string>
+    <string name="permadeath_warning">Kalıcı ölüm aktif</string>
+    <string name="party_size_format">GRUP (%1$d/%2$d)</string>
+    <string name="empty_slot">BOŞ YUVA</string>
+    <string name="advance_banner_format">⚡ %1$s BOYUTUNA GEÇ ⚡</string>
+    <string name="floor_label">KAT:</string>
+    <string name="rest_at_inn_cost">HANDA DİNLEN (%1$dG)</string>
+    <string name="rest_at_inn_free">HANDA DİNLEN (0G)</string>
+    <string name="enter_dungeon">⚔ ZİNDANA GİR ⚔</string>
+    <string name="need_warriors">SAVAŞÇI LAZIM</string>
+    <string name="fully_rested">Grup tamamen dinlendi</string>
+    <string name="equip_button">KUŞAN</string>
+    <string name="dimension_complete">BOYUT TAMAMLANDI!</string>
+    <string name="hall_of_fame">ŞÖHRETLER SALONU</string>
+    <string name="gil_earned_label">Kazanılan Gil</string>
+    <string name="magicite_found_label">Bulunan Magicite</string>
+    <string name="bosses_slain_label">Kesilen Patronlar</string>
+    <string name="items_found_label">Bulunan Eşyalar</string>
+    <string name="ascension_rewards">YÜKSELİŞ ÖDÜLLERİ</string>
+    <string name="dimension_reset_warning">Uyarı: Kahramanları, ekipmanları ve mevcut katı sıfırlar.</string>
+    <string name="cancel_button">İPTAL</string>
+    <string name="advance_button">İLERLE!</string>
+
+    <!-- Relics Screen -->
+    <string name="relics_title">YADİGARLAR</string>
+    <string name="magicite_format">💎 %1$d MAGİCİTE</string>
+    <string name="back_button">◀ GERİ</string>
+    <string name="upgrade_cost_format">GELİŞTİR (%1$d 💎)</string>
+    <string name="relic_level_format">SNT %1$d</string>
+
+    <!-- Equipment Screen -->
+    <string name="equipment_title">EKİPMAN: %1$s</string>
+    <string name="stats_header">İSTATİSTİKLER</string>
+    <string name="equipped_header">KUŞANILAN</string>
+    <string name="inventory_header">ENVANTER</string>
+    <string name="quick_equip">HIZLI KUŞAN</string>
+    <string name="empty_inventory">BOŞ</string>
+    <string name="slot_format">%1$s YUVASI</string>
+    <string name="item_lvl_rarity_format">Snt %1$d %2$s</string>
+    <string name="unequip_button">ÇIKAR</string>
+    <string name="sell_button_format">SAT (%1$dG)</string>
+    <string name="close_button">KAPAT</string>
+
+    <!-- Dungeon Screen -->
+    <string name="retreat_button">◀ GERİ ÇEKİL</string>
+    <string name="floor_format">KAT %1$d</string>
+    <string name="boss_floor_warning">⚠ PATRON KATI</string>
+    <string name="entering_biome_format">%1$s bölgesine giriliyor...</string>
+    <string name="floor_cleared_format">Kat %1$d temizlendi! +%2$dG</string>
+    <string name="floor_cleared_lvlup_format">Kat %1$d temizlendi! +%2$dG (Seviye Atlandı!)</string>
+    <string name="party_wiped">⚰ GRUP YOK OLDU</string>
+    <string name="run_complete">⚔ MACERA TAMAMLANDI</string>
+    <string name="floor_reached_format">Kat %1$d ulaşıldı</string>
+    <string name="earned_rewards">KAZANILAN ÖDÜLLER</string>
+    <string name="wipe_penalty">YOK OLMA CEZASI</string>
+    <string name="fallen_warriors">DÜŞEN SAVAŞÇILAR</string>
+    <string name="loot_collected">TOPLANAN GANİMET</string>
+
+    <!-- Battle Log & Events -->
+    <string name="log_entering_floor">Kata Giriliyor...</string>
+    <string name="log_attack_format">%1$s, %2$s kişisine %3$d hasar vererek saldırıyor</string>
+    <string name="log_hit_format">%1$s, %2$s kişisine %3$d hasarla vuruyor</string>
+    <string name="log_defeated_format">%1$s, %2$s kişisini yendi!</string>
+    <string name="log_fallen_format">%1$s düştü!</string>
+    <string name="log_victory_xp">Zafer! %1$s yenildi. +%2$d EXP</string>
+    <string name="log_level_up">⭐ %1$s Seviye %2$d oldu!</string>
+    <string name="log_heal_format">%1$s, %2$s kişisini %3$d puan iyileştiriyor</string>
+    <string name="log_group_heal">%1$s grubu iyileştiriyor!</string>
+    <string name="log_boss_defeated">⚔️ PATRON YENİLDİ: %1$s!</string>
+    <string name="log_summon_format">🌟 %1$s, %2$s çağırıyor! Toplam: %3$d hasar!</string>
+    <string name="log_magicite_stolen">%1$s, %2$d Magicite çaldı!</string>
+    <string name="log_bard_song">🎵 %1$s: %2$s</string>
+    <string name="log_total_wipe">💀 TAMAMEN YOK OLMA: Macera kazancının %%30\'u kaybedildi.</string>
+    <string name="log_physical_attack">%1$s, %2$s kişisine %3$d hasar vererek saldırıyor!</string>
+    <string name="log_physical_crit">💥 %1$s, %2$s kişisinin HAYATİ NOKTASINA %3$d hasarla vuruyor! (KRİTİK)</string>
+    <string name="log_magic_attack">%1$s, %2$s üzerine büyü yapıyor ve %3$d hasar veriyor!</string>
+    <string name="log_magic_crit">✨ %1$s büyüsü COŞUYOR ve %2$s kişisine %3$d hasar veriyor! (KRİTİK)</string>
+    <string name="log_generic">%1$s</string>
+
+    <!-- Hero Classes -->
+    <string name="class_freelancer">Serbest Savaşçı</string>
+    <string name="class_freelancer_desc">Her işten anlar. Dengeli istatistikler.</string>
+    <string name="class_warrior">Savaşçı</string>
+    <string name="class_warrior_desc">Ön cephe dövüşçüsü. Yüksek HP ve saldırı.</string>
+    <string name="class_white_mage">Ak Büyücü</string>
+    <string name="class_white_mage_desc">Kutsal şifacı. Grubu hayatta tutar.</string>
+    <string name="class_black_mage">Kara Büyücü</string>
+    <string name="class_black_mage_desc">Yıkım büyüsü. Tüm düşmanları vurur.</string>
+    <string name="class_thief">Hırsız</string>
+    <string name="class_thief_desc">Hızlı ve sinsi. Magicite çalar.</string>
+    <string name="class_monk">Keşiş</string>
+    <string name="class_monk_desc">Silahsız dövüşçü. En yüksek saf saldırı gücü.</string>
+    <string name="class_knight">Şövalye</string>
+    <string name="class_knight_desc">Müttefikleri korur. Zayıf grup üyelerini Siper alabilir.</string>
+    <string name="class_paladin">Paladin</string>
+    <string name="class_paladin_desc">Kutsal koruyucu. Saldırır ve iyileştirir.</string>
+    <string name="class_red_mage">Kızıl Büyücü</string>
+    <string name="class_red_mage_desc">Hem ak hem kara büyü kullanabilir.</string>
+    <string name="class_summoner">Çağrıcı</string>
+    <string name="class_summoner_desc">Güçlü eidoloları çağırır.</string>
+    <string name="class_ninja">Ninja</string>
+    <string name="class_ninja_desc">Çift silahlı suikastçı. Çok hızlı.</string>
+    <string name="class_dragoon">Dragoon</string>
+    <string name="class_dragoon_desc">Mızrak uzmanı. Zıplama ustası.</string>
+    <string name="class_bard">Ozan</string>
+    <string name="class_bard_desc">Sihirli şarkılarla destek sağlar.</string>
+    <string name="class_samurai">Samuray</string>
+    <string name="class_samurai_desc">Kılıç ustası. Yüksek kritik vuruş.</string>
+    <string name="class_onion_knight">Soğan Şövalyesi</string>
+    <string name="class_onion_knight_desc">Geç açılır. Seviye 90+\'a kadar zayıftır.</string>
+    <string name="class_mime">Mime</string>
+    <string name="class_mime_desc">Taklit ustası. Grup yeteneklerini taklit eder.</string>
+    <string name="class_necromancer">Necromancer</string>
+    <string name="class_necromancer_desc">Kara sanatlar. Ruh Emme grubu iyileştirir.</string>
+    <string name="class_blue_mage">Mavi Büyücü</string>
+    <string name="class_blue_mage_desc">Lore öğrencisi. Patronları keserek güçlenir.</string>
+
+    <string name="hidden_job_clue">Gizemli İş</string>
+    <string name="hidden_job_clue_desc">Gizemli bir yol sizi bekliyor...</string>
+    <string name="hidden_job_unlock_title">TEBRİKLER!</string>
+    <string name="hidden_job_unlock_body">Efsanevi bir gizli iş keşfettiniz: %1$s!</string>
+    <string name="hidden_job_unlock_close">HARİKA!</string>
+
+    <!-- Upgrades -->
+    <string name="upgrade_inn_name">Meyhane</string>
+    <string name="upgrade_inn_desc">Gelişmiş iş sınıflarının kilidini açar</string>
+    <string name="upgrade_barracks_name">Kışla</string>
+    <string name="upgrade_barracks_desc">Maksimum grup boyutunu artırır</string>
+    <string name="upgrade_vault_name">Kasa</string>
+    <string name="upgrade_vault_desc">Maksimum Gil depolamasını artırır</string>
+    <string name="upgrade_armory_name">Cephanelik</string>
+    <string name="upgrade_armory_desc">Bulunan ekipmanların istatistiklerini artırır</string>
+    <string name="upgrade_magic_shop_name">Büyü Dükkanı</string>
+    <string name="upgrade_magic_shop_desc">Nadir eşya bulma şansını artırır</string>
+    <string name="upgrade_training_name">Eğitim</string>
+    <string name="upgrade_training_desc">Zindanda kazanılan EXP\'yi artırır</string>
+    <string name="upgrade_planning_name">Planlama</string>
+    <string name="upgrade_planning_desc">Kasaba geliştirme maliyetlerini düşürür</string>
+    <string name="upgrade_clinic_name">Klinik</string>
+    <string name="upgrade_clinic_desc">Handa dinlenme maliyetini düşürür</string>
+    <string name="upgrade_pathfinder_name">Yol Bulucu</string>
+    <string name="upgrade_pathfinder_desc">Daha yüksek başlangıç katlarının kilidini açar</string>
+
+    <!-- Relics -->
+    <string name="relic_attack_name">Saldırı</string>
+    <string name="relic_attack_desc">Fiziksel Hasar</string>
+    <string name="relic_hp_name">Canlılık</string>
+    <string name="relic_hp_desc">Maksimum HP</string>
+    <string name="relic_mp_name">Ruh</string>
+    <string name="relic_mp_desc">Maksimum MP</string>
+    <string name="relic_magic_name">Büyü</string>
+    <string name="relic_magic_desc">Büyü Hasarı</string>
+    <string name="relic_defense_name">Savunma</string>
+    <string name="relic_defense_desc">Hasar Azaltma</string>
+    <string name="relic_gold_name">Servet</string>
+    <string name="relic_gold_desc">Altın Kazancı</string>
+    <string name="relic_magicite_name">Öz</string>
+    <string name="relic_magicite_desc">Magicite Bulma Oranı</string>
+    <string name="relic_crit_chance_name">Şahin Gözü</string>
+    <string name="relic_crit_chance_desc">Kritik Vuruş Oranı</string>
+    <string name="relic_crit_damage_name">Vurucu</string>
+    <string name="relic_crit_damage_desc">Kritik Hasar</string>
+    <string name="relic_magnet_name">Mıknatıs</string>
+    <string name="relic_magnet_desc">Magicite Düşürme Oranı</string>
+    <string name="relic_pockets_name">Cepler</string>
+    <string name="relic_pockets_desc">Korunan Altın</string>
+    <string name="relic_double_loot_name">Ganimet</string>
+    <string name="relic_double_loot_desc">Çift Patron Ganimeti</string>
+
+    <!-- Items -->
+    <string name="item_sword">Kılıç</string>
+    <string name="item_plate">Zırh Plakası</string>
+    <string name="item_shield">Kalkan</string>
+    <string name="item_ring">Yüzük</string>
+    <string name="item_rarity_common">Yaygın</string>
+    <string name="item_rarity_rare">Nadir</string>
+    <string name="item_rarity_epic">Epik</string>
+    <string name="item_rarity_legendary">Efsanevi</string>
+    <string name="item_name_template">%1$s %2$s</string>
+    <!-- Pets -->
+    <string name="pet_chocobo_name">Chocobo</string>
+    <string name="pet_chocobo_desc">+%%20 Eşya Bulma</string>
+    <string name="pet_moogle_name">Moogle</string>
+    <string name="pet_moogle_desc">+%%50 EXP Kazancı</string>
+    <string name="pet_cat_name">Şanslı Kedi</string>
+    <string name="pet_cat_desc">+%%30 Gil Kazancı</string>
+    <string name="pet_cactuar_name">Cactuar</string>
+    <string name="pet_cactuar_desc">+%%15 Kritik Oranı</string>
+    <string name="pet_tonberry_name">Tonberry</string>
+    <string name="pet_tonberry_desc">+%%100 Kritik Hasar</string>
+
+    <!-- Battle Abilities -->
+    <string name="ability_cover_name">Siper</string>
+    <string name="ability_cover_desc">%1$s Siper Alınıyor!</string>
+    <string name="ability_curaga_name">Curaga</string>
+    <string name="ability_curaga_desc">%1$s Curaga yapıyor!</string>
+    <string name="ability_jump_name">Zıpla</string>
+    <string name="ability_jump_desc">%1$s havaya sıçrıyor!</string>
+    <string name="ability_zeninage_name">Zeninage</string>
+    <string name="ability_zeninage_desc">%1$s Gil fırlatıyor — Zeninage!</string>
+    <string name="ability_ransack_name">Yağmala</string>
+    <string name="ability_mimic_name">Taklit</string>
+    <string name="ability_mimic_desc">%1$s son yeteneği taklit ediyor!</string>
+    <string name="ability_souldrain_name">Ruh Emme</string>
+    <string name="ability_souldrain_desc">%1$s Ruh Emme yapıyor!</string>
+
+    <!-- Songs -->
+    <string name="song_paeon">Paeon</string>
+    <string name="song_paeon_effect">+Bu katta HP yenilenmesi</string>
+    <string name="song_minne">Minne</string>
+    <string name="song_minne_effect">+Tüm müttefikler için Savunma</string>
+    <string name="song_minuet">Minuet</string>
+    <string name="song_minuet_effect">+Tüm müttefikler için Saldırı</string>
+    <string name="song_ballad">Romeo\'nun Balladı</string>
+    <string name="song_ballad_effect">Tüm düşmanlar sonraki turu atlar</string>
+    <!-- Mastery & Pets Screen -->
+    <string name="training_grounds_title">EĞİTİM ALANLARI</string>
+    <string name="tab_job_mastery">İŞ USTALIĞI</string>
+    <string name="tab_pets">EVCİL HAYVANLAR</string>
+    <string name="mastery_bonus_label">BONUS</string>
+    <string name="mastery_exp_format">%1$d / %2$d EXP</string>
+    <string name="pet_bonus_format">+%%1$.1f %2$s</string>
+    <string name="mastery_bonus_stat_format">+%1$d %2$s</string>
+    <string name="select_companion_label">BİR YOLDAŞ SEÇİN</string>
+    <string name="pet_none">YOK</string>
+    <string name="unlock_pet_format">KİLİDİ AÇMAK İÇİN %1$dG</string>
+    <string name="masteries">📈 USTALIKLAR</string>
+
+    <!-- Leaderboards -->
+    <string name="leaderboard_title">SIRALAMALAR</string>
+    <string name="tab_global">KÜRESEL</string>
+    <string name="tab_dimension">BOYUT</string>
+    <string name="tab_friends">ARKADAŞLAR</string>
+    <string name="rank_label">SIRA</string>
+    <string name="player_label">OYUNCU</string>
+    <string name="floor_reached_short">MAKS KAT</string>
+    <string name="magicite_short">MAG</string>
+    <string name="time_short">SÜRE</string>
+    <string name="ghost_run_team_title">%1$s Takımı</string>
+    <string name="no_party_data">Grup verisi yok</string>
+    <string name="hero_lvl_class_format">SNT %1$d %2$s</string>
+    <string name="ghost_run_close">KAPAT</string>
+    <string name="empty_time">---</string>
+    <string name="format_m">%1$.1fM</string>
+    <string name="format_k">%1$.1fK</string>
+    <string name="player_name_you">SEN</string>
+    <string name="my_id_label">KİMLİĞİNİZ: %1$s</string>
+    <string name="copy_id_hint">Kimliğinizi kopyalamak için dokunun</string>
+    <string name="add_friend_label">+ ARKADAŞ EKLE</string>
+    <string name="friend_id_hint">Arkadaşın Kimliği</string>
+    <string name="add_button">EKLE</string>
+    <string name="cancel_button_short">İPTAL</string>
+    <string name="enter_friend_id_title">Arkadaş Kimliği Girin</string>
+    <string name="id_copied">Kimlik panoya kopyalandı</string>
+    <string name="edit_name_hint">İsmi Düzenle</string>
+    <string name="save_button">KAYDET</string>
+    <string name="no_friends_desc">Henüz arkadaş eklenmedi. Sıralamaya girmek için kimliğinizi paylaşın!</string>
+    <string name="ad_starting">Reklam İzleniyor...</string>
+    <string name="ad_finished">Ödül Kazanıldı!</string>
+    <string name="ad_boost_button">DESTEK (REKLAM)</string>
+    <string name="ad_boost_active">DESTEK AKTİF (%1$d kat)</string>
+    <string name="revive_dialog_title">GRUP YOK OLDU!</string>
+    <string name="revive_dialog_desc">Takımınızı bu katın başında canlandırmak için kısa bir reklam izlemek ister misiniz? (Macera başına bir kez)</string>
+    <string name="revive_button">CANLANDIR (REKLAM)</string>
+    <string name="give_up_button">PES ET</string>
+    <string name="ad_gil_reward">ÜCRETSİZ GİL (REKLAM)</string>
+    <string name="ad_magicite_reward">ÜCRETSİZ MAGICITE (REKLAM)</string>
+    <string name="ad_not_ready">Reklam hazır değil. Lütfen biraz bekleyin.</string>
+</resources>

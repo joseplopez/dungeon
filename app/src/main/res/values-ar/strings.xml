@@ -1,0 +1,346 @@
+<resources>
+    <string name="app_name">Final Dungeon</string>
+
+    <!-- Dimensions & Biomes -->
+    <string name="dim1_title">محاربو الضوء</string>
+    <string name="dim1_subtitle">فاينل فانتسي 1</string>
+    <string name="dim1_story">ينهض أربعة من محاربي الضوء لاستعادة البلورات التي سرقتها قوات الفوضى...</string>
+
+    <string name="biome_cornelia">منطقة كورنيليا</string>
+    <string name="biome_chaos_shrine">ضريح الفوضى</string>
+    <string name="biome_gurgu">بركان غورغو</string>
+    <string name="biome_sea_shrine">ضريح البحر</string>
+    <string name="biome_earth_cave">كهف الأرض</string>
+    <string name="biome_crystal_tower">معبد الأشرار</string>
+
+    <string name="enemy_goblin">جوبلن</string>
+    <string name="enemy_wolf">ذئب</string>
+    <string name="enemy_pirate">قرصان</string>
+    <string name="enemy_ogre">أوغر</string>
+    <string name="enemy_evil_eye">العين الشريرة</string>
+    <string name="enemy_garland">غارلاند</string>
+    <string name="enemy_red_flan">فلان الأحمر</string>
+    <string name="enemy_bomb">قنبلة</string>
+    <string name="enemy_sahagin">ساهاغين</string>
+    <string name="enemy_cockatrice">كوكاتريس</string>
+    <string name="enemy_lich">ليتش</string>
+    <string name="enemy_kraken">كراكن</string>
+    <string name="enemy_tiamat">تيامات</string>
+    <string name="enemy_chaos">الفوضى</string>
+
+    <string name="dim2_title">تمرد الأرواح</string>
+    <string name="dim2_subtitle">فاينل فانتسي 2</string>
+    <string name="dim2_story">إمبراطورية بالاميسيا تنشر الظلام. فيريون وأصدقاؤه المتمردون يقاتلون من أجل الحرية...</string>
+
+    <string name="biome_altair">منطقة ألتاير</string>
+    <string name="biome_kashuan">حصن كاشوان</string>
+    <string name="biome_tropical_island">جزيرة استوائية</string>
+    <string name="biome_pandaemonium">باندايمونيوم</string>
+
+    <string name="enemy_wild_rat">جرذ بري</string>
+    <string name="enemy_black_knight">الفارس الأسود</string>
+    <string name="enemy_sergeant">رقيب</string>
+    <string name="enemy_child">طفل مفقود</string>
+    <string name="enemy_lamia">لاميا</string>
+    <string name="enemy_adamantoise">أدامانتويس</string>
+    <string name="enemy_dark_knight">فارس الظلام</string>
+    <string name="enemy_emperor">الإمبراطور ماتيوس</string>
+
+    <string name="dim3_title">ضوء البلورات</string>
+    <string name="dim3_subtitle">فاينل فانتسي 3</string>
+    <string name="dim3_story">يجب على الأطفال الأيتام الذين اختارتهم بلورات الضوء إعادة التوازن إلى العالم...</string>
+
+    <string name="biome_ur_village">قرية أور</string>
+    <string name="biome_crystal_tower_dim3">برج الكريستال</string>
+    <string name="biome_dark_world">عالم الظلام</string>
+
+    <string name="enemy_djinn">جني</string>
+    <string name="enemy_medusa">ميدوسا</string>
+    <string name="enemy_hein">هاين</string>
+    <string name="enemy_tonberry">تونبيري</string>
+    <string name="enemy_cloud_of_darkness">سحابة الظلام</string>
+
+    <!-- Town Screen -->
+    <string name="town_name">العاصمة الكبرى</string>
+    <string name="building_inn">النزل</string>
+    <string name="building_crystal_shop">متجر البلورات</string>
+    <string name="building_barracks">الثكنات</string>
+    <string name="building_relics">الآثار</string>
+    <string name="crystal_shop_subtitle">فتح فئات وظائف جديدة</string>
+    <string name="owned_status">✓ مملوك</string>
+    <string name="town_upgrades">ترقيات المدينة</string>
+    <string name="upgrade_discount">الخصم: %1$d%%</string>
+    <string name="max_level">أقصى</string>
+    <string name="level_format">المستوى %1$d / %2$d</string>
+    <string name="pathfinder_level_format">المستوى %1$d / %2$d (أقصى طابق: %3$d)</string>
+
+    <!-- Inn Screen -->
+    <string name="hire_warriors">توظيف المحاربين</string>
+    <string name="permadeath_warning">الموت الدائم نشط</string>
+    <string name="party_size_format">الفريق (%1$d/%2$d)</string>
+    <string name="empty_slot">خانة فارغة</string>
+    <string name="advance_banner_format">⚡ تقدم إلى %1$s ⚡</string>
+    <string name="floor_label">الطابق:</string>
+    <string name="rest_at_inn_cost">الراحة في النزل (%1$dG)</string>
+    <string name="rest_at_inn_free">الراحة في النزل (0G)</string>
+    <string name="enter_dungeon">⚔ دخول الزنزانة ⚔</string>
+    <string name="need_warriors">بحاجة لمحاربين</string>
+    <string name="fully_rested">الفريق مرتاح تمامًا</string>
+    <string name="equip_button">تجهيز</string>
+    <string name="dimension_complete">اكتمل البعد!</string>
+    <string name="hall_of_fame">قاعة المشاهير</string>
+    <string name="gil_earned_label">جيل مكتسب</string>
+    <string name="magicite_found_label">ماجيسيت تم العثور عليه</string>
+    <string name="bosses_slain_label">زعماء قتلوا</string>
+    <string name="items_found_label">عناصر عثر عليها</string>
+    <string name="ascension_rewards">مكافآت الصعود</string>
+    <string name="dimension_reset_warning">تحذير: يعيد ضبط الأبطال والمعدات والطابق الحالي.</string>
+    <string name="cancel_button">إلغاء</string>
+    <string name="advance_button">تقدم!</string>
+
+    <!-- Relics Screen -->
+    <string name="relics_title">الآثار</string>
+    <string name="magicite_format">💎 %1$d ماجيسيت</string>
+    <string name="back_button">◀ عودة</string>
+    <string name="upgrade_cost_format">ترقية (%1$d 💎)</string>
+    <string name="relic_level_format">مستوى %1$d</string>
+
+    <!-- Equipment Screen -->
+    <string name="equipment_title">المعدات: %1$s</string>
+    <string name="stats_header">الإحصائيات</string>
+    <string name="equipped_header">مجهز</string>
+    <string name="inventory_header">الحقيبة</string>
+    <string name="quick_equip">تجهيز سريع</string>
+    <string name="empty_inventory">فارغ</string>
+    <string name="slot_format">خانة %1$s</string>
+    <string name="item_lvl_rarity_format">مستوى %1$d %2$s</string>
+    <string name="unequip_button">إزالة التجهيز</string>
+    <string name="sell_button_format">بيع (%1$dG)</string>
+    <string name="close_button">إغلاق</string>
+
+    <!-- Dungeon Screen -->
+    <string name="retreat_button">◀ تراجع</string>
+    <string name="floor_format">الطابق %1$d</string>
+    <string name="boss_floor_warning">⚠ طابق الزعيم</string>
+    <string name="entering_biome_format">دخول %1$s...</string>
+    <string name="floor_cleared_format">تم تطهير الطابق %1$d! +%2$dG</string>
+    <string name="floor_cleared_lvlup_format">تم تطهير الطابق %1$d! +%2$dG (ارتقاء المستوى!)</string>
+    <string name="party_wiped">⚰ هُزم الفريق بالكامل</string>
+    <string name="run_complete">⚔ اكتملت الجولة</string>
+    <string name="floor_reached_format">تم الوصول للطابق %1$d</string>
+    <string name="earned_rewards">المكافآت المكتسبة</string>
+    <string name="wipe_penalty">عقوبة الهزيمة</string>
+    <string name="fallen_warriors">المحاربون الذين سقطوا</string>
+    <string name="loot_collected">الغنائم التي تم جمعها</string>
+
+    <!-- Battle Log & Events -->
+    <string name="log_entering_floor">دخول الطابق...</string>
+    <string name="log_attack_format">%1$s يهاجم %2$s بقوة %3$d</string>
+    <string name="log_hit_format">%1$s يصيب %2$s بضرر %3$d</string>
+    <string name="log_defeated_format">%1$s هزم %2$s!</string>
+    <string name="log_fallen_format">سقط %1$s!</string>
+    <string name="log_victory_xp">النصر! هُزم %1$s. +%2$d EXP</string>
+    <string name="log_level_up">⭐ وصل %1$s إلى المستوى %2$d!</string>
+    <string name="log_heal_format">%1$s يعالج %2$s بمقدار %3$d</string>
+    <string name="log_group_heal">%1$s يعالج الفريق!</string>
+    <string name="log_boss_defeated">⚔️ تم هزيمة الزعيم: %1$s!</string>
+    <string name="log_summon_format">🌟 %1$s يستدعي %2$s! الإجمالي: %3$d ضرر!</string>
+    <string name="log_magicite_stolen">سرق %1$s %2$d ماجيسيت!</string>
+    <string name="log_bard_song">🎵 %1$s: %2$s</string>
+    <string name="log_total_wipe">💀 هزيمة كاملة: فقدت 30%% من أرباح الجولة.</string>
+    <string name="log_physical_attack">%1$s يهاجم %2$s بقوة %3$d!</string>
+    <string name="log_physical_crit">💥 ضرب %1$s نقطة حيوية لـ %2$s بضرر %3$d! (حرج)</string>
+    <string name="log_magic_attack">%1$s يلقي تعويذة على %2$s بضرر %3$d!</string>
+    <string name="log_magic_crit">✨ تعويذة %1$s تندفع على %2$s بضرر %3$d! (حرج)</string>
+    <string name="log_generic">%1$s</string>
+
+    <!-- Hero Classes -->
+    <string name="class_freelancer">مستقيل</string>
+    <string name="class_freelancer_desc">صاحب كل المهن. إحصائيات متوازنة.</string>
+    <string name="class_warrior">محارب</string>
+    <string name="class_warrior_desc">مقاتل خط المواجهة. نقاط حياة وهجوم عالية.</string>
+    <string name="class_white_mage">الساحر الأبيض</string>
+    <string name="class_white_mage_desc">معالج مقدس. يبقي الفريق على قيد الحياة.</string>
+    <string name="class_black_mage">الساحر الأسود</string>
+    <string name="class_black_mage_desc">سحر التدمير. يصيب جميع الأعداء.</string>
+    <string name="class_thief">لص</string>
+    <string name="class_thief_desc">سريع وماكر. يسرق الماجيسيت.</string>
+    <string name="class_monk">راهب</string>
+    <string name="class_monk_desc">مقاتل أعزل. أعلى هجوم أساسي.</string>
+    <string name="class_knight">فارس</string>
+    <string name="class_knight_desc">يحمي الحلفاء. يمكنه تغطية أعضاء الفريق الضعفاء.</string>
+    <string name="class_paladin">بالادين</string>
+    <string name="class_paladin_desc">حامي مقدس. يهاجم ويعالج.</string>
+    <string name="class_red_mage">الساحر الأحمر</string>
+    <string name="class_red_mage_desc">يمكنه استخدام السحر الأبيض والأسود معاً.</string>
+    <string name="class_summoner">المستدعي</string>
+    <string name="class_summoner_desc">يستدعي أيدولونات قوية.</string>
+    <string name="class_ninja">نينجا</string>
+    <string name="class_ninja_desc">قاتل مزدوج السلاح. سريع جداً.</string>
+    <string name="class_dragoon">دراغون</string>
+    <string name="class_dragoon_desc">متخصص في الرماح. سيد القفز.</string>
+    <string name="class_bard">الشاعر</string>
+    <string name="class_bard_desc">دعم باستخدام الأغاني السحرية.</string>
+    <string name="class_samurai">ساموراي</string>
+    <string name="class_samurai_desc">سيد النصل. ضربات حرجة عالية.</string>
+    <string name="class_onion_knight">فارس البصل</string>
+    <string name="class_onion_knight_desc">يزهر متأخراً. ضعيف حتى المستوى +90.</string>
+    <string name="class_mime">المهرج</string>
+    <string name="class_mime_desc">سيد التقليد. يقلد قدرات الفريق.</string>
+    <string name="class_necromancer">مستحضر الأرواح</string>
+    <string name="class_necromancer_desc">الفنون المظلمة. استنزاف الروح يعالج الفريق.</string>
+    <string name="class_blue_mage">الساحر الأزرق</string>
+    <string name="class_blue_mage_desc">طالب المعرفة. ينمو أقوى بقتل الزعماء.</string>
+
+    <string name="hidden_job_clue">وظيفة غامضة</string>
+    <string name="hidden_job_clue_desc">مسار غامض ينتظرك...</string>
+    <string name="hidden_job_unlock_title">تهانينا!</string>
+    <string name="hidden_job_unlock_body">لقد اكتشفت وظيفة خفية أسطورية: %1$s!</string>
+    <string name="hidden_job_unlock_close">مذهل!</string>
+
+    <!-- Upgrades -->
+    <string name="upgrade_inn_name">الحانة</string>
+    <string name="upgrade_inn_desc">يفتح فئات وظائف متقدمة</string>
+    <string name="upgrade_barracks_name">الثكنات</string>
+    <string name="upgrade_barracks_desc">يزيد من الحجم الأقصى للفريق</string>
+    <string name="upgrade_vault_name">القبو</string>
+    <string name="upgrade_vault_desc">يزيد من الحد الأقصى لتخزين الجيل</string>
+    <string name="upgrade_armory_name">مخزن الأسلحة</string>
+    <string name="upgrade_armory_desc">يزيد من إحصائيات المعدات التي يتم العثور عليها</string>
+    <string name="upgrade_magic_shop_name">متجر السحر</string>
+    <string name="upgrade_magic_shop_desc">يزيد من احتمالات العثور على عناصر نادرة</string>
+    <string name="upgrade_training_name">التدريب</string>
+    <string name="upgrade_training_desc">يزيد من الخبرة المكتسبة في الزنزانة</string>
+    <string name="upgrade_planning_name">التخطيط</string>
+    <string name="upgrade_planning_desc">يقلل من تكلفة ترقيات المدينة</string>
+    <string name="upgrade_clinic_name">العيادة</string>
+    <string name="upgrade_clinic_desc">يقلل من تكلفة الراحة في النزل</string>
+    <string name="upgrade_pathfinder_name">المستكشف</string>
+    <string name="upgrade_pathfinder_desc">فتح طوابق بداية أعلى</string>
+
+    <!-- Relics -->
+    <string name="relic_attack_name">هجوم</string>
+    <string name="relic_attack_desc">ضرر جسدي</string>
+    <string name="relic_hp_name">الحيوية</string>
+    <string name="relic_hp_desc">نقاط الحياة القصوى</string>
+    <string name="relic_mp_name">الروح</string>
+    <string name="relic_mp_desc">نقاط السحر القصوى</string>
+    <string name="relic_magic_name">سحر</string>
+    <string name="relic_magic_desc">ضرر سحري</string>
+    <string name="relic_defense_name">دفاع</string>
+    <string name="relic_defense_desc">تقليل الضرر</string>
+    <string name="relic_gold_name">الثروة</string>
+    <string name="relic_gold_desc">كسب الذهب</string>
+    <string name="relic_magicite_name">الجوهر</string>
+    <string name="relic_magicite_desc">معدل العثور على الماجيسيت</string>
+    <string name="relic_crit_chance_name">عين الصقر</string>
+    <string name="relic_crit_chance_desc">معدل الضربات الحرجة</string>
+    <string name="relic_crit_damage_name">الضارب</string>
+    <string name="relic_crit_damage_desc">الضرر الحرج</string>
+    <string name="relic_magnet_name">المغناطيس</string>
+    <string name="relic_magnet_desc">معدل سقوط الماجيسيت</string>
+    <string name="relic_pockets_name">الجيوب</string>
+    <string name="relic_pockets_desc">الذهب المحتفظ به</string>
+    <string name="relic_double_loot_name">غنائم</string>
+    <string name="relic_double_loot_desc">غنائم زعيم مضاعفة</string>
+
+    <!-- Items -->
+    <string name="item_sword">سيف</string>
+    <string name="item_plate">درع صفيحي</string>
+    <string name="item_shield">ترس</string>
+    <string name="item_ring">خاتم</string>
+    <string name="item_rarity_common">شائع</string>
+    <string name="item_rarity_rare">نادر</string>
+    <string name="item_rarity_epic">ملحمي</string>
+    <string name="item_rarity_legendary">أسطوري</string>
+    <string name="item_name_template">%1$s %2$s</string>
+    <!-- Pets -->
+    <string name="pet_chocobo_name">تشوكوبو</string>
+    <string name="pet_chocobo_desc">+20%% العثور على العناصر</string>
+    <string name="pet_moogle_name">موغل</string>
+    <string name="pet_moogle_desc">+50%% كسب الخبرة</string>
+    <string name="pet_cat_name">قط الحظ</string>
+    <string name="pet_cat_desc">+30%% كسب الجيل</string>
+    <string name="pet_cactuar_name">كاكتوار</string>
+    <string name="pet_cactuar_desc">+15%% معدل الضربات الحرجة</string>
+    <string name="pet_tonberry_name">تونبيري</string>
+    <string name="pet_tonberry_desc">+100%% الضرر الحرج</string>
+
+    <!-- Battle Abilities -->
+    <string name="ability_cover_name">حماية</string>
+    <string name="ability_cover_desc">حماية %1$s!</string>
+    <string name="ability_curaga_name">كوراجا</string>
+    <string name="ability_curaga_desc">%1$s يلقي كوراجا!</string>
+    <string name="ability_jump_name">قفز</string>
+    <string name="ability_jump_desc">%1$s يقفز في الهواء!</string>
+    <string name="ability_zeninage_name">زينينام</string>
+    <string name="ability_zeninage_desc">%1$s يرمي جيل — زينينام!</string>
+    <string name="ability_ransack_name">نهب</string>
+    <string name="ability_mimic_name">تقليد</string>
+    <string name="ability_mimic_desc">%1$s يقلد القدرة الأخيرة!</string>
+    <string name="ability_souldrain_name">استنزاف الروح</string>
+    <string name="ability_souldrain_desc">%1$s يلقي استنزاف الروح!</string>
+
+    <!-- Songs -->
+    <string name="song_paeon">بيون</string>
+    <string name="song_paeon_effect">+تجديد نقاط الحياة في هذا الطابق</string>
+    <string name="song_minne">ميني</string>
+    <string name="song_minne_effect">+دفاع لجميع الحلفاء</string>
+    <string name="song_minuet">مينويت</string>
+    <string name="song_minuet_effect">+هجوم لجميع الحلفاء</string>
+    <string name="song_ballad">أغنية روميو</string>
+    <string name="song_ballad_effect">جميع الأعداء يتخطون الدور التالي</string>
+    <!-- Mastery & Pets Screen -->
+    <string name="training_grounds_title">ساحات التدريب</string>
+    <string name="tab_job_mastery">إتقان الوظيفة</string>
+    <string name="tab_pets">الحيوانات الأليفة</string>
+    <string name="mastery_bonus_label">مكافأة</string>
+    <string name="mastery_exp_format">%1$d / %2$d EXP</string>
+    <string name="pet_bonus_format">+%1$.1f%% %2$s</string>
+    <string name="mastery_bonus_stat_format">+%1$d %2$s</string>
+    <string name="select_companion_label">اختر رفيقاً</string>
+    <string name="pet_none">لا يوجد</string>
+    <string name="unlock_pet_format">%1$dG للفتح</string>
+    <string name="masteries">📈 الإتقان</string>
+
+    <!-- Leaderboards -->
+    <string name="leaderboard_title">الترتيب</string>
+    <string name="tab_global">عالمي</string>
+    <string name="tab_dimension">البعد</string>
+    <string name="tab_friends">الأصدقاء</string>
+    <string name="rank_label">الترتيب</string>
+    <string name="player_label">اللاعب</string>
+    <string name="floor_reached_short">أقصى طابق</string>
+    <string name="magicite_short">ماج</string>
+    <string name="time_short">الوقت</string>
+    <string name="ghost_run_team_title">فريق %1$s</string>
+    <string name="no_party_data">لا توجد بيانات للفريق</string>
+    <string name="hero_lvl_class_format">مستوى %1$d %2$s</string>
+    <string name="ghost_run_close">إغلاق</string>
+    <string name="empty_time">---</string>
+    <string name="format_m">%1$.1fM</string>
+    <string name="format_k">%1$.1fK</string>
+    <string name="player_name_you">أنت</string>
+    <string name="my_id_label">معرفك: %1$s</string>
+    <string name="copy_id_hint">اضغط لنسخ معرفك</string>
+    <string name="add_friend_label">+ إضافة صديق</string>
+    <string name="friend_id_hint">معرف الصديق</string>
+    <string name="add_button">إضافة</string>
+    <string name="cancel_button_short">إلغاء</string>
+    <string name="enter_friend_id_title">أدخل معرف الصديق</string>
+    <string name="id_copied">تم نسخ المعرف إلى الحافظة</string>
+    <string name="edit_name_hint">تعديل الاسم</string>
+    <string name="save_button">حفظ</string>
+    <string name="no_friends_desc">لم يتم إضافة أصدقاء بعد. شارك معرفك لبدء الترتيب!</string>
+    <string name="ad_starting">مشاهدة الإعلان...</string>
+    <string name="ad_finished">تم كسب المكافأة!</string>
+    <string name="ad_boost_button">تعزيز (إعلان)</string>
+    <string name="ad_boost_active">التعزيز نشط (%1$d طوابق)</string>
+    <string name="revive_dialog_title">هُزم الفريق!</string>
+    <string name="revive_dialog_desc">هل تشاهد إعلاناً قصيراً لإحياء فريقك في بداية هذا الطابق؟ (مرة واحدة في الجولة)</string>
+    <string name="revive_button">إحياء (إعلان)</string>
+    <string name="give_up_button">استسلام</string>
+    <string name="ad_gil_reward">جيل مجاني (إعلان)</string>
+    <string name="ad_magicite_reward">ماجيسيت مجاني (إعلان)</string>
+    <string name="ad_not_ready">الإعلان ليس جاهزاً. يرجى الانتظار لحظة.</string>
+</resources>
