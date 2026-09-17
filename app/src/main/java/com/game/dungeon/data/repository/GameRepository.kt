@@ -21,7 +21,8 @@ class GameRepository @Inject constructor(
     suspend fun addGil(amount: Long) {
         val current = database.gameStateDao.getGameStateOnce() ?: GameState()
         val newGold = (current.gold + amount).coerceAtMost(current.maxGil)
-        database.gameStateDao.upsert(current.copy(gold = newGold))
+        val newTotal = if (amount > 0) current.totalGilEarned + amount else current.totalGilEarned
+        database.gameStateDao.upsert(current.copy(gold = newGold, totalGilEarned = newTotal))
     }
 
     suspend fun addMagicite(amount: Int) {

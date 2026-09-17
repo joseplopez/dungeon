@@ -33,6 +33,7 @@ class FFBattleEngine(private val context: Context) {
         startFloor: Int,
         speed: BattleSpeed,
         relicBonuses: RelicBonuses,
+        isPaused: () -> Boolean = { false },
         onEvent: (FFBattleEvent) -> Unit
     ) {
         var currentFloor = startFloor
@@ -42,6 +43,7 @@ class FFBattleEngine(private val context: Context) {
         var lastAbilityClass: HeroClass? = null
 
         while (aliveHeroes.any { it.isAlive } && currentFloor <= 100) {
+            while (isPaused()) { delay(200) }
             // Spawn enemies for this floor
             val bossTemplate = FFDimensionData.getBossForFloor(dimension, currentFloor)
             val enemies = if (bossTemplate != null) {
@@ -65,6 +67,7 @@ class FFBattleEngine(private val context: Context) {
                     }
 
                 for (actor in turnOrder) {
+                    while (isPaused()) { delay(200) }
                     if (!enemies.any { it.currentHp > 0 } || !aliveHeroes.any { it.isAlive }) break
                     
                     when (actor) {

@@ -5,13 +5,13 @@ This document outlines potential future features and improvements for Final Dung
 ## 🏆 Social & Competition
 *   **[x] Player Rankings (Leaderboards)**:
     *   **[x] Global/Friends Leaderboards**: Ranked by "Max Floor Reached", "Total Magicite Earned", and "Fastest Dimension Clear".
-    *   **Dimension-Specific Rankings**: Hall of Fame integration to show how players compare within each Dimension.
+    *   **[x]Dimension-Specific Rankings**: Hall of Fame integration to show how players compare within each Dimension.
     *   **[x] Ghost Runs**: A feature to view the team composition and gear of top-ranking players.
 
 ## 💰 Monetization & Economy
-*   **Interstitial Ads**:
-    *   **Gold/Magicite Boost**: Option to watch a short ad for a temporary 2x Gil or Magicite multiplier during a run.
-    *   **Revive Team**: Once per run, watch an ad to revive a fallen team at the start of the current floor.
+*   **[x]Interstitial Ads**:
+    *   **[x]Gold/Magicite Boost**: Option to watch a short ad for a temporary 2x Gil or Magicite multiplier during a run.
+    *   **[x]Revive Team**: Once per run, watch an ad to revive a fallen team at the start of the current floor.
 
 ## ✨ Visual & UI Enhancements
 *   **Improved Town Visuals**:
@@ -36,5 +36,5 @@ This document outlines potential future features and improvements for Final Dung
     *   **Cursed Dungeons**: Daily runs with specific negative modifiers (e.g., "Magic Costs 2x") but significantly higher rewards.
 
 ## 🛠️ Technical Debt & Tools
-*   **Modding Support**: External JSON/XML definitions for Jobs and Items to allow for easier community balancing and content creation.
+*   **Modding Support**: [ON HOLD - RETHINK]External JSON/XML definitions for Jobs and Items to allow for easier community balancing and content creation.
 *   **[x] Enhanced Analytics**: Firebase Analytics integration tracking player progression, town upgrades, and dungeon runs.

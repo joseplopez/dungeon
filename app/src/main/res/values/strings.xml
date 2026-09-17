@@ -332,4 +332,15 @@
     <string name="edit_name_hint">Edit Name</string>
     <string name="save_button">SAVE</string>
     <string name="no_friends_desc">No friends added yet. Share your ID to start ranking!</string>
+    <string name="ad_starting">Watching Ad...</string>
+    <string name="ad_finished">Reward Earned!</string>
+    <string name="ad_boost_button">BOOST (AD)</string>
+    <string name="ad_boost_active">BOOST ACTIVE (<xliff:g id="count">%1$d</xliff:g> floors)</string>
+    <string name="revive_dialog_title">PARTY WIPED!</string>
+    <string name="revive_dialog_desc">Watch a short ad to revive your team at the start of this floor? (Once per run)</string>
+    <string name="revive_button">REVIVE (AD)</string>
+    <string name="give_up_button">GIVE UP</string>
+    <string name="ad_gil_reward">FREE GIL (AD)</string>
+    <string name="ad_magicite_reward">FREE MAGICITE (AD)</string>
+    <string name="ad_not_ready">Ad not ready. Please wait a moment.</string>
 </resources>

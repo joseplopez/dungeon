@@ -1,5 +1,6 @@
 package com.game.dungeon.ui.screens
 
+import android.app.Activity
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -12,8 +13,9 @@ import androidx.compose.ui.Alignment.Companion.Center
 import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import com.game.dungeon.ui.components.safeStringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -59,7 +61,14 @@ fun InnScreen(
     Box(Modifier.fillMaxSize()) {
         InnBackground()
         Column(Modifier.fillMaxSize()) {
-            InnTopBar(gil, magicite, isMuted, onToggleMusic)
+            InnTopBar(
+                gil = gil, 
+                magicite = magicite, 
+                isMuted = isMuted, 
+                onToggleMusic = onToggleMusic,
+                onWatchGilAd = { viewModel.watchGilAd(it) },
+                onWatchMagiciteAd = { viewModel.watchMagiciteAd(it) }
+            )
             
             // Dimension Advance Banner (Only shows if floor 100 reached)
             if (highestFloor >= 100) {
@@ -488,7 +497,15 @@ fun EmptyPartySlot() {
 }
 
 @Composable
-fun InnTopBar(gil: Long, magicite: Int, isMuted: Boolean, onToggleMusic: () -> Unit) {
+fun InnTopBar(
+    gil: Long,
+    magicite: Int,
+    isMuted: Boolean,
+    onToggleMusic: () -> Unit,
+    onWatchGilAd: (Activity) -> Unit,
+    onWatchMagiciteAd: (Activity) -> Unit
+) {
+    val activity = LocalContext.current as? Activity
     GoldenBorderBox(Modifier
         .fillMaxWidth()
         .height(56.dp)) {
@@ -506,10 +523,24 @@ fun InnTopBar(gil: Long, magicite: Int, isMuted: Boolean, onToggleMusic: () -> U
                     Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                         Text("🪙", fontSize = 18.sp)
                         Text(formatGold(gil), style = PixelGold)
+                        if (activity != null) {
+                            AdRewardIconButton(
+                                isMagicite = false,
+                                onClick = { onWatchGilAd(activity) },
+                                modifier = Modifier.size(24.dp)
+                            )
+                        }
                     }
                     Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                         Text("💎", fontSize = 18.sp)
                         Text(magicite.toString(), style = PixelGold)
+                        if (activity != null) {
+                            AdRewardIconButton(
+                                isMagicite = true,
+                                onClick = { onWatchMagiciteAd(activity) },
+                                modifier = Modifier.size(24.dp)
+                            )
+                        }
                     }
                 }
                 

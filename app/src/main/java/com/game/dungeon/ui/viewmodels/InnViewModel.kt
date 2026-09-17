@@ -1,11 +1,13 @@
 package com.game.dungeon.ui.viewmodels
 
+import android.app.Activity
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.game.dungeon.analytics.AnalyticsManager
 import com.game.dungeon.data.models.*
 import com.game.dungeon.data.repository.GameRepository
+import com.game.dungeon.monetization.AdManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.flow.*
@@ -16,6 +18,7 @@ import javax.inject.Inject
 class InnViewModel @Inject constructor(
     private val repository: GameRepository,
     private val analytics: AnalyticsManager,
+    private val adManager: AdManager,
     @ApplicationContext private val context: Context
 ) : ViewModel() {
 
@@ -239,6 +242,28 @@ class InnViewModel @Inject constructor(
                         repository.saveHero(hero.copy(currentHp = hero.maxHp))
                     }
                 }
+            }
+        }
+    }
+
+    fun watchGilAd(activity: Activity) {
+        adManager.showRewardedAd(activity) {
+            viewModelScope.launch {
+                val currentGs = repository.getGameStateOnce() ?: return@launch
+                val reward = (currentGs.totalGilEarned * 0.01f).toLong().coerceAtLeast(100L)
+                repository.addGil(reward)
+                // analytics.logAdReward("gil", reward.toInt()) // Note: AnalyticsManager might need updating
+            }
+        }
+    }
+
+    fun watchMagiciteAd(activity: Activity) {
+        adManager.showRewardedAd(activity) {
+            viewModelScope.launch {
+                val currentGs = repository.getGameStateOnce() ?: return@launch
+                val reward = (currentGs.totalMagiciteEarned * 0.01f).toInt().coerceAtLeast(5)
+                repository.addMagicite(reward)
+                // analytics.logAdReward("magicite", reward)
             }
         }
     }

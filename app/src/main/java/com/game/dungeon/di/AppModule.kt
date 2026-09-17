@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.room.Room
 import com.game.dungeon.analytics.AnalyticsManager
 import com.game.dungeon.analytics.FirebaseAnalyticsManager
+import com.game.dungeon.monetization.AdManager
+import com.game.dungeon.monetization.AdMobManager
 import com.game.dungeon.data.db.GameDatabase
 import com.game.dungeon.data.repository.AuthRepository
 import com.game.dungeon.data.repository.GameRepository
@@ -44,7 +46,8 @@ object AppModule {
             GameDatabase.MIGRATION_18_19,
             GameDatabase.MIGRATION_19_20,
             GameDatabase.MIGRATION_20_21,
-            GameDatabase.MIGRATION_21_22
+            GameDatabase.MIGRATION_21_22,
+            GameDatabase.MIGRATION_22_23
         )
         .fallbackToDestructiveMigration(true) // Keep as safety, but explicit migrations prioritized
         .build()
@@ -84,4 +87,8 @@ object AppModule {
     @Provides
     @Singleton
     fun provideLeaderboardRepository(database: FirebaseDatabase): LeaderboardRepository = LeaderboardRepository(database)
+
+    @Provides
+    @Singleton
+    fun provideAdManager(): AdManager = AdMobManager()
 }

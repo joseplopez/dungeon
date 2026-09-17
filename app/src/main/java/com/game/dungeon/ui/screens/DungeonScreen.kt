@@ -1,5 +1,6 @@
 package com.game.dungeon.ui.screens
 
+import android.app.Activity
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.*
@@ -17,7 +18,6 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Alignment.Companion.End
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
@@ -25,12 +25,14 @@ import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.CompositingStrategy
-import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.graphics.drawscope.Stroke
-import com.game.dungeon.ui.components.safeStringResource
+import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
 import androidx.navigation.NavController
 import com.game.dungeon.R
 import com.game.dungeon.data.models.*
@@ -54,6 +56,7 @@ fun DungeonScreen(
     val state by viewModel.battleState.collectAsState()
     val dimension = state.dimension
     val isBossFloor = dimension != null && FFDimensionData.getBossForFloor(dimension, state.currentFloor) != null
+    val activity = LocalContext.current as? Activity
 
     Box(Modifier.fillMaxSize()) {
         DungeonBackground()
@@ -70,7 +73,9 @@ fun DungeonScreen(
                 speed = state.speed,
                 onSpeedChange = { viewModel.setSpeed(it) },
                 isMuted = isMuted,
-                onToggleMusic = onToggleMusic
+                onToggleMusic = onToggleMusic,
+                boostFloorsRemaining = state.boostFloorsRemaining,
+                onWatchBoostAd = { activity?.let { viewModel.watchBoostAd(it) } }
             )
             
             BattleArea(
@@ -162,6 +167,55 @@ fun DungeonScreen(
                 }
             )
         }
+
+        // Revive Dialog
+        if (state.showReviveDialog) {
+            ReviveDialog(
+                onRevive = { activity?.let { viewModel.watchReviveAd(it) } },
+                onGiveUp = { viewModel.finalizeRun() }
+            )
+        }
+    }
+}
+
+@Composable
+fun ReviveDialog(onRevive: () -> Unit, onGiveUp: () -> Unit) {
+    Dialog(onDismissRequest = {}) {
+        PixelPanel(
+            Modifier
+                .width(300.dp)
+                .padding(16.dp),
+            borderColor = EnemyRed
+        ) {
+            Column(
+                Modifier.padding(16.dp),
+                horizontalAlignment = CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                Text("💀", fontSize = 48.sp)
+                Text(safeStringResource(R.string.revive_dialog_title), style = PixelTitle, color = EnemyRed)
+                Text(
+                    safeStringResource(R.string.revive_dialog_desc),
+                    style = PixelBody,
+                    color = Color.White,
+                    textAlign = TextAlign.Center
+                )
+                
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    PixelButton(
+                        safeStringResource(R.string.revive_button),
+                        onClick = onRevive,
+                        modifier = Modifier.fillMaxWidth().height(48.dp),
+                        active = true
+                    )
+                    PixelButton(
+                        safeStringResource(R.string.give_up_button),
+                        onClick = onGiveUp,
+                        modifier = Modifier.fillMaxWidth().height(44.dp)
+                    )
+                }
+            }
+        }
     }
 }
 
@@ -177,7 +231,9 @@ fun DungeonTopBar(
     speed: BattleSpeed,
     onSpeedChange: (BattleSpeed) -> Unit,
     isMuted: Boolean,
-    onToggleMusic: () -> Unit
+    onToggleMusic: () -> Unit,
+    boostFloorsRemaining: Int,
+    onWatchBoostAd: () -> Unit
 ) {
     GoldenBorderBox(Modifier.fillMaxWidth().height(54.dp).background(BgDarkest)) {
         Row(
@@ -185,7 +241,22 @@ fun DungeonTopBar(
             verticalAlignment = CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            PixelButton(safeStringResource(R.string.retreat_button), onClick = onRetreat, modifier = Modifier.height(32.dp))
+            Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                PixelButton(safeStringResource(R.string.retreat_button), onClick = onRetreat, modifier = Modifier.height(32.dp))
+                
+                if (boostFloorsRemaining > 0) {
+                    Text(
+                        safeStringResource(R.string.ad_boost_active, boostFloorsRemaining),
+                        style = PixelSmall,
+                        color = GoldBright
+                    )
+                } else {
+                    AdBoostIconButton(
+                        onClick = onWatchBoostAd,
+                        modifier = Modifier.height(32.dp)
+                    )
+                }
+            }
             
             Column(horizontalAlignment = CenterHorizontally) {
                 Text(safeStringResource(R.string.floor_format, floor), style = PixelHeading, color = GoldBright)

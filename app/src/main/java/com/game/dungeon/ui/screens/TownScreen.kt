@@ -69,16 +69,31 @@ fun TownScreen(
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
                             Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                                val activity = androidx.compose.ui.platform.LocalContext.current as? android.app.Activity
                                 Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                                     Text("🪙", fontSize = 14.sp)
                                     Text(formatGold(gil), style = PixelGold)
                                     if (gs != null) {
                                         Text("/${formatGold(gs!!.maxGil)}", style = PixelSmall, color = StoneGray)
                                     }
+                                    if (activity != null) {
+                                        AdRewardIconButton(
+                                            isMagicite = false,
+                                            onClick = { viewModel.watchGilAd(activity) },
+                                            modifier = Modifier.size(20.dp)
+                                        )
+                                    }
                                 }
                                 Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                                     Text("💎", fontSize = 14.sp)
                                     Text("$magicite", style = PixelGold)
+                                    if (activity != null) {
+                                        AdRewardIconButton(
+                                            isMagicite = true,
+                                            onClick = { viewModel.watchMagiciteAd(activity) },
+                                            modifier = Modifier.size(20.dp)
+                                        )
+                                    }
                                 }
                             }
                             Text(safeStringResource(R.string.town_name), style = PixelHeading)

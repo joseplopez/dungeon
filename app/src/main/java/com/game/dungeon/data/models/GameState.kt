@@ -39,6 +39,7 @@ data class GameState(
     val playerId: String? = null,    // Firebase UID
     val playerName: String = "Stranger", // Player display name
     val lifetimeHighestFloor: Int = 0, // Absolute maximum floor across all dimensions
+    val totalGilEarned: Long = 0, // Lifetime gold earned
 
     // Relics (powered by Magicite — persist across dimensions)
     val attackRelic: Int = 0,        // +2 ATK per level

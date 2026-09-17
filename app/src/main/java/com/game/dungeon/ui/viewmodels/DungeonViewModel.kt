@@ -1,5 +1,6 @@
 package com.game.dungeon.ui.viewmodels
 
+import android.app.Activity
 import android.content.Context
 import androidx.annotation.StringRes
 import androidx.lifecycle.ViewModel
@@ -9,6 +10,7 @@ import com.game.dungeon.analytics.AnalyticsManager
 import com.game.dungeon.data.models.*
 import com.game.dungeon.data.repository.GameRepository
 import com.game.dungeon.engine.*
+import com.game.dungeon.monetization.AdManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Job
@@ -19,9 +21,10 @@ import javax.inject.Inject
 
 @HiltViewModel
 class DungeonViewModel @Inject constructor(
-  private val repo: GameRepository,
-  private val analytics: AnalyticsManager,
-  @ApplicationContext private val context: Context
+    private val repo: GameRepository,
+    private val analytics: AnalyticsManager,
+    private val adManager: AdManager,
+    @ApplicationContext private val context: Context
 ) : ViewModel() {
 
   private val engine = FFBattleEngine(context)
@@ -40,6 +43,7 @@ class DungeonViewModel @Inject constructor(
     val battleLog: List<FFLogEntry> = emptyList(),
     val speed: BattleSpeed = BattleSpeed.NORMAL,
     val isRunning: Boolean = false,
+    val isPaused: Boolean = false,
     val runComplete: Boolean = false,
     val gilEarnedThisRun: Long = 0,
     val magiciteEarnedThisRun: Int = 0,
@@ -59,7 +63,11 @@ class DungeonViewModel @Inject constructor(
     val showFloorBanner: Boolean = false,
     val floorBannerText: String = "",
     val showBossBanner: Boolean = false,
-    val bossBannerText: String = ""
+    val bossBannerText: String = "",
+    val boostFloorsRemaining: Int = 0,
+    val reviveUsedThisRun: Boolean = false,
+    val showReviveDialog: Boolean = false,
+    val pendingFallenHeroIds: Set<String> = emptySet()
   )
 
   data class FFLogEntry(
@@ -117,7 +125,8 @@ class DungeonViewModel @Inject constructor(
                 dimension = dimension,
                 startFloor = startFloor.coerceAtLeast(1),
                 speed = battleState.value.speed,
-                relicBonuses = relics
+                relicBonuses = relics,
+                isPaused = { battleState.value.isPaused }
             ) { event -> handleEvent(event) }
         }
     }
@@ -227,6 +236,7 @@ class DungeonViewModel @Inject constructor(
           val fallen = state.heroes.find { it.id == event.heroId } ?: return@update state
           state.copy(
             dyingHeroIds = state.dyingHeroIds + event.heroId,
+            pendingFallenHeroIds = state.pendingFallenHeroIds + event.heroId,
             fallenHeroes = state.fallenHeroes + fallen,
             battleLog = (state.battleLog + FFLogEntry(
               R.string.log_fallen_format,
@@ -241,9 +251,7 @@ class DungeonViewModel @Inject constructor(
                 heroes = it.heroes.filter { h -> h.id != event.heroId },
                 dyingHeroIds = it.dyingHeroIds - event.heroId
             ) }
-            repo.getRoster().first().find { it.id == event.heroId }?.let { hero ->
-                repo.removeHero(hero)
-            }
+            // Removed immediate repo.removeHero(hero) to support Revive
         }
       }
       is FFBattleEvent.FloorComplete -> {
@@ -253,20 +261,25 @@ class DungeonViewModel @Inject constructor(
           
           analytics.logFloorReached(event.floor + 1)
 
+          val boostMultiplier = if (state.boostFloorsRemaining > 0) 2 else 1
+          val actualGil = event.gilEarned * boostMultiplier
+          val actualMagicite = event.magiciteEarned * boostMultiplier
+
           state.copy(
             currentFloor = event.floor + 1,
             currentBiome = newBiome ?: state.currentBiome,
             heroes = event.updatedHeroes,
-            gilEarnedThisRun = state.gilEarnedThisRun + event.gilEarned,
-            magiciteEarnedThisRun = state.magiciteEarnedThisRun + event.magiciteEarned,
-            lastFloorGil = event.gilEarned,
-            lastFloorMagicite = event.magiciteEarned,
+            gilEarnedThisRun = state.gilEarnedThisRun + actualGil,
+            magiciteEarnedThisRun = state.magiciteEarnedThisRun + actualMagicite,
+            lastFloorGil = actualGil,
+            lastFloorMagicite = actualMagicite,
             itemsFoundThisRun = state.itemsFoundThisRun + event.itemsFound,
             showFloorBanner = true,
+            boostFloorsRemaining = (state.boostFloorsRemaining - 1).coerceAtLeast(0),
             floorBannerText = if (isBiomeStart && newBiome != null) {
                 context.getString(R.string.entering_biome_format, context.getString(newBiome.nameRes))
             } else {
-                context.getString(R.string.floor_cleared_format, event.floor, event.gilEarned.toInt())
+                context.getString(R.string.floor_cleared_format, event.floor, actualGil.toInt())
             }
           )
         }
@@ -340,42 +353,86 @@ class DungeonViewModel @Inject constructor(
           }
       }
       is FFBattleEvent.AllHeroesFell -> {
-        viewModelScope.launch {
-          val grossEarned = battleState.value.gilEarnedThisRun
-          val magicite = battleState.value.magiciteEarnedThisRun
-          val floor = battleState.value.currentFloor
-          
-          analytics.logRunFinished(floor, grossEarned, magicite, "DEFEAT")
-
-          // Death Penalty: Lose 30% of the gold EARNED THIS RUN (Rebalanced from 50%)
-          val penalty = (grossEarned * 0.30f).toInt()
-          val netGil = (grossEarned - penalty).toLong()
-          
-          repo.addGil(netGil)
-          repo.addMagicite(magicite)
-          repo.trackDimensionStats(
-              gil = netGil,
-              items = battleState.value.itemsFoundThisRun.size,
-              bosses = battleState.value.bossesKilledThisRun
-          )
-          
-          // Permadeath: Remove all heroes from party/database since they all fell
-          battleState.value.heroes.forEach { hero ->
-              repo.removeHero(hero) 
-          }
-          
-          battleState.update { it.copy(
-              isRunning = false, 
-              runComplete = true, 
-              heroes = emptyList(), 
-              gilLostToPenalty = penalty.toLong(),
-              battleLog = (it.battleLog + FFLogEntry(R.string.log_total_wipe, emptyList(), LogType.HERO_FELL)).takeLast(25)
-          ) }
-          
-          repo.triggerFirebaseUpload()
+        if (!battleState.value.reviveUsedThisRun) {
+            battleState.update { it.copy(showReviveDialog = true) }
+        } else {
+            finalizeRun()
         }
       }
       else -> {}
+    }
+  }
+
+  fun watchBoostAd(activity: Activity) {
+      battleState.update { it.copy(isPaused = true) }
+      adManager.showRewardedAd(
+          activity,
+          { battleState.update { it.copy(boostFloorsRemaining = it.boostFloorsRemaining + 10) } },
+          { battleState.update { it.copy(isPaused = false) } }
+      )
+  }
+
+  fun watchReviveAd(activity: Activity) {
+      adManager.showRewardedAd(activity) {
+          viewModelScope.launch {
+              val currentState = battleState.value
+              val heroes = repo.getParty().first()
+              // Fully heal heroes
+              val healedHeroes = heroes.map { it.copy(currentHp = it.maxHp) }
+              
+              battleState.update { it.copy(
+                  heroes = healedHeroes,
+                  fallenHeroes = emptyList(),
+                  pendingFallenHeroIds = emptySet(),
+                  showReviveDialog = false,
+                  reviveUsedThisRun = true,
+                  isRunning = true,
+                  runComplete = false
+              ) }
+
+              // Restart the battle from the same floor
+              startRun(healedHeroes, currentState.currentFloor)
+          }
+      }
+  }
+
+  fun finalizeRun() {
+    viewModelScope.launch {
+      val currentState = battleState.value
+      val grossEarned = currentState.gilEarnedThisRun
+      val magicite = currentState.magiciteEarnedThisRun
+      val floor = currentState.currentFloor
+      
+      analytics.logRunFinished(floor, grossEarned, magicite, if (currentState.heroes.isEmpty()) "DEFEAT" else "RETREAT")
+
+      // Death Penalty
+      val penalty = if (currentState.heroes.isEmpty()) (grossEarned * 0.30f).toInt() else 0
+      val netGil = (grossEarned - penalty).toLong()
+      
+      repo.addGil(netGil)
+      repo.addMagicite(magicite)
+      repo.trackDimensionStats(
+          gil = netGil,
+          items = currentState.itemsFoundThisRun.size,
+          bosses = currentState.bossesKilledThisRun
+      )
+      
+      // Permadeath for those who really died
+      currentState.pendingFallenHeroIds.forEach { heroId ->
+          repo.getRoster().first().find { it.id == heroId }?.let { hero ->
+              repo.removeHero(hero)
+          }
+      }
+      
+      battleState.update { it.copy(
+          isRunning = false, 
+          runComplete = true, 
+          showReviveDialog = false,
+          gilLostToPenalty = penalty.toLong(),
+          battleLog = (it.battleLog + FFLogEntry(if (penalty > 0) R.string.log_total_wipe else R.string.retreat_button, emptyList(), LogType.HERO_FELL)).takeLast(25)
+      ) }
+      
+      repo.triggerFirebaseUpload()
     }
   }
 
@@ -394,7 +451,8 @@ class DungeonViewModel @Inject constructor(
             dimension = dimension,
             startFloor = currentFloor,
             speed = speed,
-            relicBonuses = relics
+            relicBonuses = relics,
+            isPaused = { battleState.value.isPaused }
         ) { event -> handleEvent(event) }
     }
   }

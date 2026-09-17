@@ -14,8 +14,8 @@ android {
         applicationId = "com.centelles.dungeon"
         minSdk = 26
         targetSdk = 37
-        versionCode = 14
-        versionName = "0.0.1"
+        versionCode = 15
+        versionName = "0.0.2"
         testInstrumentationRunner = "com.game.dungeon.HiltTestRunner"
         buildConfigField("long", "INITIAL_GIL", "0L")
         buildConfigField("int", "INITIAL_MAGICITE", "0")
@@ -34,6 +34,8 @@ android {
         debug {
             buildConfigField("long", "INITIAL_GIL", "100000L")
             buildConfigField("int", "INITIAL_MAGICITE", "100000")
+            manifestPlaceholders["admobAppId"] = "ca-app-pub-3940256099942544~3347511713"
+            buildConfigField("String", "REWARDED_AD_UNIT_ID", "\"ca-app-pub-3940256099942544/5224354917\"")
         }
         release {
             isMinifyEnabled = true
@@ -46,6 +48,8 @@ android {
             ndk {
                 debugSymbolLevel = "FULL"
             }
+            manifestPlaceholders["admobAppId"] = "ca-app-pub-9749336798654274~7431348510"
+            buildConfigField("String", "REWARDED_AD_UNIT_ID", "\"ca-app-pub-9749336798654274/8225555430\"")
         }
     }
     compileOptions {
@@ -97,6 +101,9 @@ dependencies {
 
     // DataStore
     implementation(libs.androidx.datastore.preferences)
+
+    // Ads
+    implementation(libs.play.services.ads)
 
     // Gson
     implementation(libs.gson)
