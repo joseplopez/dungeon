@@ -67,6 +67,7 @@
     <string name="building_barracks">QUARTEL</string>
     <string name="building_relics">RELÍQUIES</string>
     <string name="crystal_shop_subtitle">Desbloqueja noves classes de treball</string>
+    <string name="unlocks_job_format">Desbloqueja %1$s</string>
     <string name="owned_status">✓ PROPIETAT</string>
     <string name="town_upgrades">MILLORES DE LA CIUTAT</string>
     <string name="upgrade_discount">Descompte: %1$d%%</string>
@@ -290,7 +291,7 @@
     <string name="song_minuet_effect">+Atac per a tots els aliats</string>
     <string name="song_ballad">Balada de Romeu</string>
     <string name="song_ballad_effect">Tots els enemics perden el següent torn</string>
-    <!-- Mastery & Pets Screen -->
+    <!-- mastery & pets screen -->
     <string name="training_grounds_title">CAMPS D\'ENTRENAMENT</string>
     <string name="tab_job_mastery">MAESTRIA DE TREBALL</string>
     <string name="tab_pets">MASCOTES</string>
@@ -302,6 +303,19 @@
     <string name="pet_none">CAP</string>
     <string name="unlock_pet_format">%1$dG PER DESBLOQUEJAR</string>
     <string name="masteries">📈 MAESTRIES</string>
+
+    <!-- Stats & Bonuses -->
+    <string name="stat_hp">PV</string>
+    <string name="stat_mp">PM</string>
+    <string name="stat_attack">ATAC</string>
+    <string name="stat_magic">MÀGIA</string>
+    <string name="stat_defense">DEFENSA</string>
+    <string name="stat_speed">VELOCITAT</string>
+    <string name="stat_crit_chance">TAXA CRÍT.</string>
+    <string name="stat_crit_damage">DANY CRÍT.</string>
+    <string name="stat_item_find">TROBALLA OBJ.</string>
+    <string name="stat_exp_boost">GUANY EXP</string>
+    <string name="stat_gil_find">GUANY GIL</string>
 
     <!-- Leaderboards -->
     <string name="leaderboard_title">CLASSIFICACIONS</string>

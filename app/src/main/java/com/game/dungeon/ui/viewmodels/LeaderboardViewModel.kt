@@ -44,8 +44,9 @@ class LeaderboardViewModel @Inject constructor(
         _selectedTab,
         _refreshTrigger,
         gameState,
-        friendRepository.friendIds
-    ) { tab, _, gs, friends ->
+        friendRepository.friendIds,
+        currentParty
+    ) { tab, _, gs, friends, party ->
         if (gs == null) return@combine emptyList()
         
         val entries = when (tab) {
@@ -56,7 +57,11 @@ class LeaderboardViewModel @Inject constructor(
         
         entries.map { entry ->
             val isUser = gs.playerId != null && entry.playerId == gs.playerId
-            entry.copy(isUser = isUser)
+            if (isUser) {
+                entry.copy(isUser = true, team = party)
+            } else {
+                entry.copy(isUser = false)
+            }
         }
     }.onStart { _isLoading.value = true }
      .onEach { _isLoading.value = false }

@@ -482,6 +482,13 @@ class DungeonViewModel @Inject constructor(
               repo.removeHero(hero)
           }
       }
+      
+      // Permadeath for those who died during the run before retreating
+      battleState.value.pendingFallenHeroIds.forEach { heroId ->
+          repo.getRoster().first().find { it.id == heroId }?.let { hero ->
+              repo.removeHero(hero)
+          }
+      }
 
       battleState.update { it.copy(isRunning=false, runComplete=true) }
       repo.triggerFirebaseUpload()

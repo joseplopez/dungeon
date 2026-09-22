@@ -120,7 +120,7 @@ fun JobMasteryTab(gs: GameState) {
                     Spacer(Modifier.width(16.dp))
                     Column(horizontalAlignment = Alignment.End) {
                         Text(safeStringResource(R.string.mastery_bonus_label), style = PixelSmall, color = StoneGray)
-                        Text(safeStringResource(R.string.mastery_bonus_stat_format, bonus, job.masteryStatType.name), style = PixelBody, color = HpGreen)
+                        Text(safeStringResource(R.string.mastery_bonus_stat_format, bonus, safeStringResource(job.masteryStatType.nameRes)), style = PixelBody, color = HpGreen)
                     }
                 }
             }
@@ -188,7 +188,7 @@ fun PetCard(pet: PetType?, isSelected: Boolean, isUnlocked: Boolean, gs: GameSta
                         val nextExp = gs.getPetNextLevelExp(pet)
                         val bonusPct = gs.getPetBonusValue(pet) * 100f
                         
-                        Text(safeStringResource(R.string.pet_bonus_format, bonusPct, pet.bonusType.name), style = PixelSmall, color = HpGreen)
+                        Text(safeStringResource(R.string.pet_bonus_format, bonusPct, safeStringResource(pet.bonusType.nameRes)), style = PixelSmall, color = HpGreen)
                         Spacer(Modifier.height(4.dp))
                         Box(Modifier.fillMaxWidth().height(6.dp).background(BgDarkest)) {
                             Box(Modifier.fillMaxWidth(currentExp.toFloat() / nextExp.coerceAtLeast(1).toFloat()).fillMaxHeight().background(SystemCyan))

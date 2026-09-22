@@ -67,6 +67,7 @@
     <string name="building_barracks">BARRACKS</string>
     <string name="building_relics">RELICS</string>
     <string name="crystal_shop_subtitle">Unlock new job classes</string>
+    <string name="unlocks_job_format">Unlocks %1$s</string>
     <string name="owned_status">✓ OWNED</string>
     <string name="town_upgrades">TOWN UPGRADES</string>
     <string name="upgrade_discount">Discount: %1$d%%</string>
@@ -290,7 +291,7 @@
     <string name="song_minuet_effect">+Attack for all allies</string>
     <string name="song_ballad">Romeo\'s Ballad</string>
     <string name="song_ballad_effect">All enemies skip next turn</string>
-    <!-- Mastery & Pets Screen -->
+    <!-- mastery & pets screen -->
     <string name="training_grounds_title">TRAINING GROUNDS</string>
     <string name="tab_job_mastery">JOB MASTERY</string>
     <string name="tab_pets">PETS</string>
@@ -302,6 +303,19 @@
     <string name="pet_none">NONE</string>
     <string name="unlock_pet_format">%1$dG TO UNLOCK</string>
     <string name="masteries">📈 MASTERIES</string>
+
+    <!-- Stats & Bonuses -->
+    <string name="stat_hp">HP</string>
+    <string name="stat_mp">MP</string>
+    <string name="stat_attack">ATTACK</string>
+    <string name="stat_magic">MAGIC</string>
+    <string name="stat_defense">DEFENSE</string>
+    <string name="stat_speed">SPEED</string>
+    <string name="stat_crit_chance">CRIT RATE</string>
+    <string name="stat_crit_damage">CRIT DMG</string>
+    <string name="stat_item_find">ITEM FIND</string>
+    <string name="stat_exp_boost">EXP GAIN</string>
+    <string name="stat_gil_find">GIL GAIN</string>
 
     <!-- Leaderboards -->
     <string name="leaderboard_title">RANKINGS</string>

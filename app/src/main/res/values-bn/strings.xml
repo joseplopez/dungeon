@@ -67,6 +67,7 @@
     <string name="building_barracks">ব্যারাক</string>
     <string name="building_relics">ধ্বংসাবশেষ</string>
     <string name="crystal_shop_subtitle">নতুন কাজের ক্লাস আনলক করুন</string>
+    <string name="unlocks_job_format">%1$s আনলক করে</string>
     <string name="owned_status">✓ মালিকানাধীন</string>
     <string name="town_upgrades">শহরের আপগ্রেড</string>
     <string name="upgrade_discount">ছাড়: %1$d%%</string>
@@ -290,7 +291,7 @@
     <string name="song_minuet_effect">+সব মিত্রদের জন্য আক্রমণ</string>
     <string name="song_ballad">রোমিওর ব্যালাড</string>
     <string name="song_ballad_effect">সব শত্রু পরের টার্ন এড়িয়ে যাবে</string>
-    <!-- Mastery & Pets Screen -->
+    <!-- mastery & pets screen -->
     <string name="training_grounds_title">প্রশিক্ষণ ক্ষেত্র</string>
     <string name="tab_job_mastery">কাজের দক্ষতা</string>
     <string name="tab_pets">পোষা প্রাণী</string>
@@ -302,6 +303,19 @@
     <string name="pet_none">কেউ না</string>
     <string name="unlock_pet_format">আনলক করতে %1$dG</string>
     <string name="masteries">📈 দক্ষতা</string>
+
+    <!-- Stats & Bonuses -->
+    <string name="stat_hp">HP</string>
+    <string name="stat_mp">MP</string>
+    <string name="stat_attack">আক্রমণ</string>
+    <string name="stat_magic">যাদু</string>
+    <string name="stat_defense">প্রতিরক্ষা</string>
+    <string name="stat_speed">গতি</string>
+    <string name="stat_crit_chance">ক্রিট রেট</string>
+    <string name="stat_crit_damage">ক্রিট ড্যামেজ</string>
+    <string name="stat_item_find">আইটেম সন্ধান</string>
+    <string name="stat_exp_boost">EXP লাভ</string>
+    <string name="stat_gil_find">গিল লাভ</string>
 
     <!-- Leaderboards -->
     <string name="leaderboard_title">র্যাঙ্কিং</string>

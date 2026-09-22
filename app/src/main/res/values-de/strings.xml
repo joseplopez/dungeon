@@ -67,6 +67,7 @@
     <string name="building_barracks">KASERNE</string>
     <string name="building_relics">RELIKTE</string>
     <string name="crystal_shop_subtitle">Neue Jobklassen freischalten</string>
+    <string name="unlocks_job_format">Schaltet %1$s frei</string>
     <string name="owned_status">✓ BESITZT</string>
     <string name="town_upgrades">STADT-VERBESSERUNGEN</string>
     <string name="upgrade_discount">Rabatt: %1$d%%</string>
@@ -290,7 +291,7 @@
     <string name="song_minuet_effect">+Angriff für alle Verbündeten</string>
     <string name="song_ballad">Romeos Ballade</string>
     <string name="song_ballad_effect">Alle Gegner setzen die nächste Runde aus</string>
-    <!-- Mastery & Pets Screen -->
+    <!-- mastery & pets screen -->
     <string name="training_grounds_title">TRAININGSGELÄNDE</string>
     <string name="tab_job_mastery">JOB-MEISTER</string>
     <string name="tab_pets">PETS</string>
@@ -302,6 +303,19 @@
     <string name="pet_none">KEINER</string>
     <string name="unlock_pet_format">%1$dG ZUM FREISCHALTEN</string>
     <string name="masteries">📈 MEISTERSCHAFTEN</string>
+
+    <!-- Stats & Bonuses -->
+    <string name="stat_hp">LP</string>
+    <string name="stat_mp">MP</string>
+    <string name="stat_attack">ANGRIFF</string>
+    <string name="stat_magic">MAGIE</string>
+    <string name="stat_defense">ABWEHR</string>
+    <string name="stat_speed">TEMPO</string>
+    <string name="stat_crit_chance">KRIT-RATE</string>
+    <string name="stat_crit_damage">KRIT-SCHDN</string>
+    <string name="stat_item_find">GEGENST-FUND</string>
+    <string name="stat_exp_boost">EXP-BONUS</string>
+    <string name="stat_gil_find">GIL-BONUS</string>
 
     <!-- Leaderboards -->
     <string name="leaderboard_title">RANGLISTEN</string>

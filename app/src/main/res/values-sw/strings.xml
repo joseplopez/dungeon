@@ -67,6 +67,7 @@
     <string name="building_barracks">KAMPI YA JESHI</string>
     <string name="building_relics">RELICS</string>
     <string name="crystal_shop_subtitle">Fungua madarasa mapya ya kazi</string>
+    <string name="unlocks_job_format">Hufungua %1$s</string>
     <string name="owned_status">✓ INAMILIKIWA</string>
     <string name="town_upgrades">MABORESHO YA MJI</string>
     <string name="upgrade_discount">Punguzo: %1$d%%</string>
@@ -290,7 +291,7 @@
     <string name="song_minuet_effect">+Shambulio kwa washirika wote</string>
     <string name="song_ballad">Romeo\'s Ballad</string>
     <string name="song_ballad_effect">Maadui wote wanaruka zamu inayofuata</string>
-    <!-- Mastery & Pets Screen -->
+    <!-- mastery & pets screen -->
     <string name="training_grounds_title">MAENEO YA MAFUNZO</string>
     <string name="tab_job_mastery">MASTAA WA KAZI</string>
     <string name="tab_pets">WANYAMA WA KUFUGWA</string>
@@ -302,6 +303,19 @@
     <string name="pet_none">HAKUNA</string>
     <string name="unlock_pet_format">%1$dG FUNGUA</string>
     <string name="masteries">📈 MASTAA</string>
+
+    <!-- Stats & Bonuses -->
+    <string name="stat_hp">HP</string>
+    <string name="stat_mp">MP</string>
+    <string name="stat_attack">MASHAMBULIZI</string>
+    <string name="stat_magic">UCHAWI</string>
+    <string name="stat_defense">ULINZI</string>
+    <string name="stat_speed">KASI</string>
+    <string name="stat_crit_chance">KIWANGO KRIT.</string>
+    <string name="stat_crit_damage">DAMEJI KRIT.</string>
+    <string name="stat_item_find">UPATIKANAJI OBJ.</string>
+    <string name="stat_exp_boost">ONGEZEKO LA EXP</string>
+    <string name="stat_gil_find">ONGEZEKO LA GIL</string>
 
     <!-- Leaderboards -->
     <string name="leaderboard_title">NAFASI</string>

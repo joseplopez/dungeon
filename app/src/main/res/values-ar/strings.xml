@@ -67,6 +67,7 @@
     <string name="building_barracks">الثكنات</string>
     <string name="building_relics">الآثار</string>
     <string name="crystal_shop_subtitle">فتح فئات وظائف جديدة</string>
+    <string name="unlocks_job_format">يفتح %1$s</string>
     <string name="owned_status">✓ مملوك</string>
     <string name="town_upgrades">ترقيات المدينة</string>
     <string name="upgrade_discount">الخصم: %1$d%%</string>
@@ -290,7 +291,7 @@
     <string name="song_minuet_effect">+هجوم لجميع الحلفاء</string>
     <string name="song_ballad">أغنية روميو</string>
     <string name="song_ballad_effect">جميع الأعداء يتخطون الدور التالي</string>
-    <!-- Mastery & Pets Screen -->
+    <!-- mastery & pets screen -->
     <string name="training_grounds_title">ساحات التدريب</string>
     <string name="tab_job_mastery">إتقان الوظيفة</string>
     <string name="tab_pets">الحيوانات الأليفة</string>
@@ -302,6 +303,19 @@
     <string name="pet_none">لا يوجد</string>
     <string name="unlock_pet_format">%1$dG للفتح</string>
     <string name="masteries">📈 الإتقان</string>
+
+    <!-- Stats & Bonuses -->
+    <string name="stat_hp">نح</string>
+    <string name="stat_mp">نس</string>
+    <string name="stat_attack">هجوم</string>
+    <string name="stat_magic">سحر</string>
+    <string name="stat_defense">دفاع</string>
+    <string name="stat_speed">سرعة</string>
+    <string name="stat_crit_chance">معدل الحرج</string>
+    <string name="stat_crit_damage">ضرر الحرج</string>
+    <string name="stat_item_find">العثور على العناصر</string>
+    <string name="stat_exp_boost">كسب الخبرة</string>
+    <string name="stat_gil_find">كسب جيل</string>
 
     <!-- Leaderboards -->
     <string name="leaderboard_title">الترتيب</string>

@@ -67,6 +67,7 @@
     <string name="building_barracks">КАЗАРМЫ</string>
     <string name="building_relics">РЕЛИКВИИ</string>
     <string name="crystal_shop_subtitle">Разблокируйте новые классы профессий</string>
+    <string name="unlocks_job_format">Разблокирует %1$s</string>
     <string name="owned_status">✓ КУПЛЕНО</string>
     <string name="town_upgrades">УЛУЧШЕНИЯ ГОРОДА</string>
     <string name="upgrade_discount">Скидка: %1$d%%</string>
@@ -290,7 +291,7 @@
     <string name="song_minuet_effect">+Атака для всех союзников</string>
     <string name="song_ballad">Баллада Ромео</string>
     <string name="song_ballad_effect">Все враги пропускают следующий ход</string>
-    <!-- Mastery & Pets Screen -->
+    <!-- mastery & pets screen -->
     <string name="training_grounds_title">ТРЕНИРОВОЧНАЯ ПЛОЩАДКА</string>
     <string name="tab_job_mastery">МАСТЕРСТВО КЛАССОВ</string>
     <string name="tab_pets">ПИТОМЦЫ</string>
@@ -302,6 +303,19 @@
     <string name="pet_none">НЕТ</string>
     <string name="unlock_pet_format">%1$dG ДЛЯ РАЗБЛОКИРОВКИ</string>
     <string name="masteries">📈 МАСТЕРСТВО</string>
+
+    <!-- Stats & Bonuses -->
+    <string name="stat_hp">ОЗ</string>
+    <string name="stat_mp">ОМ</string>
+    <string name="stat_attack">АТАКА</string>
+    <string name="stat_magic">МАГИЯ</string>
+    <string name="stat_defense">ЗАЩИТА</string>
+    <string name="stat_speed">СКОРОСТЬ</string>
+    <string name="stat_crit_chance">ШАНС КРИТ.</string>
+    <string name="stat_crit_damage">КРИТ. УРОН</string>
+    <string name="stat_item_find">ПОИСК ПРЕДМ.</string>
+    <string name="stat_exp_boost">БОНУС ОПЫТА</string>
+    <string name="stat_gil_find">БОНУС ГИЛЕЙ</string>
 
     <!-- Leaderboards -->
     <string name="leaderboard_title">РЕЙТИНГИ</string>

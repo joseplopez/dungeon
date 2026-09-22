@@ -67,6 +67,7 @@
     <string name="building_barracks">QUARTEL</string>
     <string name="building_relics">RELÍQUIAS</string>
     <string name="crystal_shop_subtitle">Desbloqueie novas classes de trabalho</string>
+    <string name="unlocks_job_format">Desbloqueia %1$s</string>
     <string name="owned_status">✓ ADQUIRIDO</string>
     <string name="town_upgrades">MELHORIAS DA CIDADE</string>
     <string name="upgrade_discount">Desconto: %1$d%%</string>
@@ -290,7 +291,7 @@
     <string name="song_minuet_effect">+Ataque para todos os aliados</string>
     <string name="song_ballad">Balada de Romeu</string>
     <string name="song_ballad_effect">Todos os inimigos pulam o próximo turno</string>
-    <!-- Mastery & Pets Screen -->
+    <!-- mastery & pets screen -->
     <string name="training_grounds_title">CAMPOS DE TREINAMENTO</string>
     <string name="tab_job_mastery">MAESTRIA DE CLASSE</string>
     <string name="tab_pets">MASCOTES</string>
@@ -302,6 +303,19 @@
     <string name="pet_none">NENHUM</string>
     <string name="unlock_pet_format">%1$dG PARA DESBLOQUEAR</string>
     <string name="masteries">📈 MAESTRIAS</string>
+
+    <!-- Stats & Bonuses -->
+    <string name="stat_hp">PV</string>
+    <string name="stat_mp">PM</string>
+    <string name="stat_attack">ATAQUE</string>
+    <string name="stat_magic">MAGIA</string>
+    <string name="stat_defense">DEFESA</string>
+    <string name="stat_speed">VELOCIDADE</string>
+    <string name="stat_crit_chance">TAXA CRÍT.</string>
+    <string name="stat_crit_damage">DANO CRÍT.</string>
+    <string name="stat_item_find">ACHADO OBJ.</string>
+    <string name="stat_exp_boost">GANHO DE EXP</string>
+    <string name="stat_gil_find">GANHO DE GIL</string>
 
     <!-- Leaderboards -->
     <string name="leaderboard_title">CLASSIFICAÇÕES</string>

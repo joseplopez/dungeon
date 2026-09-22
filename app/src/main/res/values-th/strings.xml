@@ -67,6 +67,7 @@
     <string name="building_barracks">โรงทหาร</string>
     <string name="building_relics">วัตถุโบราณ</string>
     <string name="crystal_shop_subtitle">ปลดล็อกอาชีพใหม่</string>
+    <string name="unlocks_job_format">ปลดล็อก %1$s</string>
     <string name="owned_status">✓ ครอบครองแล้ว</string>
     <string name="town_upgrades">การอัปเกรดเมือง</string>
     <string name="upgrade_discount">ส่วนลด: %1$d%%</string>
@@ -290,7 +291,7 @@
     <string name="song_minuet_effect">+พลังโจมตีให้พวกพ้องทั้งหมด</string>
     <string name="song_ballad">บทเพลงของโรมิโอ</string>
     <string name="song_ballad_effect">ศัตรูทั้งหมดข้ามเทิร์นถัดไป</string>
-    <!-- Mastery & Pets Screen -->
+    <!-- mastery & pets screen -->
     <string name="training_grounds_title">สนามฝึกซ้อม</string>
     <string name="tab_job_mastery">ความชำนาญอาชีพ</string>
     <string name="tab_pets">สัตว์เลี้ยง</string>
@@ -302,6 +303,19 @@
     <string name="pet_none">ไม่มี</string>
     <string name="unlock_pet_format">%1$dG เพื่อปลดล็อก</string>
     <string name="masteries">📈 ความชำนาญ</string>
+
+    <!-- Stats & Bonuses -->
+    <string name="stat_hp">HP</string>
+    <string name="stat_mp">MP</string>
+    <string name="stat_attack">โจมตี</string>
+    <string name="stat_magic">เวทมนตร์</string>
+    <string name="stat_defense">ป้องกัน</string>
+    <string name="stat_speed">ความเร็ว</string>
+    <string name="stat_crit_chance">อัตราคริ</string>
+    <string name="stat_crit_damage">ความแรงคริ</string>
+    <string name="stat_item_find">ค้นหาไอเทม</string>
+    <string name="stat_exp_boost">เพิ่ม EXP</string>
+    <string name="stat_gil_find">เพิ่มกิล</string>
 
     <!-- Leaderboards -->
     <string name="leaderboard_title">อันดับ</string>

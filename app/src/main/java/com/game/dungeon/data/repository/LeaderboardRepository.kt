@@ -22,6 +22,17 @@ class LeaderboardRepository @Inject constructor(
 
     suspend fun uploadScore(playerId: String, playerName: String, gameState: GameState, team: List<Hero>) {
         Log.d("LeaderboardRepo", "Uploading score for $playerId ($playerName) - Floor: ${gameState.lifetimeHighestFloor}")
+        
+        val teamData = team.map { hero ->
+            hashMapOf(
+                "name" to hero.name,
+                "heroClass" to hero.heroClass.name,
+                "level" to hero.level
+            )
+        }
+
+        val dimTime = if (gameState.dimStartTime <= 0L) 0L else (System.currentTimeMillis() - gameState.dimStartTime)
+
         val data = hashMapOf(
             "playerId" to playerId,
             "playerName" to playerName,
@@ -30,8 +41,9 @@ class LeaderboardRepository @Inject constructor(
             "dimensionMaxFloor" to gameState.highestFloor,
             "totalMagicite" to gameState.totalMagiciteEarned,
             "fastestClearMs" to gameState.fastestClearTime,
-            "currentDimTimeMs" to (System.currentTimeMillis() - gameState.dimStartTime),
-            "timestamp" to System.currentTimeMillis()
+            "currentDimTimeMs" to dimTime,
+            "timestamp" to System.currentTimeMillis(),
+            "team" to teamData
         )
         
         try {
@@ -112,6 +124,32 @@ class LeaderboardRepository @Inject constructor(
             snapshot.child("maxFloor").getValue(Long::class.java)?.toInt() ?: 0
         }
 
+        val teamList = mutableListOf<Hero>()
+        val teamSnapshot = snapshot.child("team")
+        if (teamSnapshot.exists()) {
+            teamSnapshot.children.forEach { heroDoc ->
+                val name = heroDoc.child("name").getValue(String::class.java) ?: "Hero"
+                val className = heroDoc.child("heroClass").getValue(String::class.java) ?: "FREELANCER"
+                val level = heroDoc.child("level").getValue(Long::class.java)?.toInt() ?: 1
+                
+                try {
+                    val heroClass = com.game.dungeon.data.models.HeroClass.valueOf(className)
+                    teamList.add(
+                        Hero(
+                            name = name,
+                            heroClass = heroClass,
+                            level = level,
+                            currentHp = 0,
+                            currentMp = 0,
+                            aiPriority = com.game.dungeon.data.models.AIPriority.ATTACK
+                        )
+                    )
+                } catch (e: Exception) {
+                    // Ignore invalid classes
+                }
+            }
+        }
+
         return LeaderboardEntry(
             rank = 0,
             playerId = snapshot.child("playerId").getValue(String::class.java),
@@ -123,7 +161,7 @@ class LeaderboardRepository @Inject constructor(
             fastestClearMs = snapshot.child("fastestClearMs").getValue(Long::class.java) ?: 0L,
             currentDimTimeMs = snapshot.child("currentDimTimeMs").getValue(Long::class.java) ?: 0L,
             isUser = false,
-            team = emptyList()
+            team = teamList
         )
     }
 }

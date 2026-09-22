@@ -34,7 +34,10 @@ This document outlines potential future features and improvements for Final Dung
     *   **[x] Support Familiars level up**: Make pets to level up, think about the way.
 *   **Daily Challenges**:
     *   **Cursed Dungeons**: Daily runs with specific negative modifiers (e.g., "Magic Costs 2x") but significantly higher rewards.
-
+*   **Rewards**:
+    * **Advance between dimension give special and powerful jobs, on dimension 1 you earn warrior of light, etc. Each dimension give you the main character of that final fantasy game
+*   **More content**:
+    * **Add more dimensions stories and rewards and dificulty every time a user reaches a new dimension. Keep in mind all the lore be releated to that final fantasy dimension number.
 ## 🛠️ Technical Debt & Tools
 *   **Modding Support**: [ON HOLD - RETHINK]External JSON/XML definitions for Jobs and Items to allow for easier community balancing and content creation.
 *   **[x] Enhanced Analytics**: Firebase Analytics integration tracking player progression, town upgrades, and dungeon runs.

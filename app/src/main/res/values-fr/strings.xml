@@ -67,6 +67,7 @@
     <string name="building_barracks">CASERNE</string>
     <string name="building_relics">RELIQUES</string>
     <string name="crystal_shop_subtitle">Débloquer de nouvelles classes de métiers</string>
+    <string name="unlocks_job_format">Débloque %1$s</string>
     <string name="owned_status">✓ POSSÉDÉ</string>
     <string name="town_upgrades">AMÉLIORATIONS DE LA VILLE</string>
     <string name="upgrade_discount">Remise : %1$d%%</string>
@@ -290,7 +291,7 @@
     <string name="song_minuet_effect">+Attaque pour tous les alliés</string>
     <string name="song_ballad">Ballade de Roméo</string>
     <string name="song_ballad_effect">Tous les ennemis passent le tour suivant</string>
-    <!-- Mastery & Pets Screen -->
+    <!-- mastery & pets screen -->
     <string name="training_grounds_title">TERRAINS D\'ENTRAÎNEMENT</string>
     <string name="tab_job_mastery">MAÎTRISE DES MÉTIERS</string>
     <string name="tab_pets">FAMILIERS</string>
@@ -302,6 +303,19 @@
     <string name="pet_none">AUCUN</string>
     <string name="unlock_pet_format">%1$dG POUR DÉBLOQUER</string>
     <string name="masteries">📈 MAÎTRISES</string>
+
+    <!-- Stats & Bonuses -->
+    <string name="stat_hp">PV</string>
+    <string name="stat_mp">PM</string>
+    <string name="stat_attack">ATTAQUE</string>
+    <string name="stat_magic">MAGIE</string>
+    <string name="stat_defense">DÉFENSE</string>
+    <string name="stat_speed">VITESSE</string>
+    <string name="stat_crit_chance">TAUX CRIT.</string>
+    <string name="stat_crit_damage">DÉGÂTS CRIT.</string>
+    <string name="stat_item_find">TROUVAILLE OBJ.</string>
+    <string name="stat_exp_boost">GAIN D\'EXP</string>
+    <string name="stat_gil_find">GAIN DE GILS</string>
 
     <!-- Leaderboards -->
     <string name="leaderboard_title">CLASSEMENTS</string>

@@ -18,10 +18,10 @@ enum class PetType(
     TONBERRY(R.string.pet_tonberry_name, R.string.pet_tonberry_desc, "🔪", PetBonusType.CRIT_DAMAGE, 100f, 250000)
 }
 
-enum class PetBonusType {
-    ITEM_FIND,
-    EXP_BOOST,
-    GIL_FIND,
-    CRIT_CHANCE,
-    CRIT_DAMAGE
+enum class PetBonusType(@StringRes val nameRes: Int) {
+    ITEM_FIND(R.string.stat_item_find),
+    EXP_BOOST(R.string.stat_exp_boost),
+    GIL_FIND(R.string.stat_gil_find),
+    CRIT_CHANCE(R.string.stat_crit_chance),
+    CRIT_DAMAGE(R.string.stat_crit_damage)
 }

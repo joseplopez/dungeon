@@ -79,7 +79,16 @@ enum class HeroClass(
         StatType.MP, 20)
 }
 
-enum class StatType { HP, MP, ATTACK, MAGIC, DEFENSE, SPEED, CRIT_CHANCE, CRIT_DAMAGE }
+enum class StatType(@StringRes val nameRes: Int) {
+    HP(R.string.stat_hp),
+    MP(R.string.stat_mp),
+    ATTACK(R.string.stat_attack),
+    MAGIC(R.string.stat_magic),
+    DEFENSE(R.string.stat_defense),
+    SPEED(R.string.stat_speed),
+    CRIT_CHANCE(R.string.stat_crit_chance),
+    CRIT_DAMAGE(R.string.stat_crit_damage)
+}
 
 
 enum class CrystalColor(val displayName: String, val colorHex: Long, val baseCost: Int) {

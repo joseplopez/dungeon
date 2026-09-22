@@ -67,6 +67,7 @@
     <string name="building_barracks">CASERMA</string>
     <string name="building_relics">RELIQUIE</string>
     <string name="crystal_shop_subtitle">Sblocca nuove classi di lavoro</string>
+    <string name="unlocks_job_format">Sblocca %1$s</string>
     <string name="owned_status">✓ POSSEDUTO</string>
     <string name="town_upgrades">POTENZIAMENTI CITTÀ</string>
     <string name="upgrade_discount">Sconto: %1$d%%</string>
@@ -290,7 +291,7 @@
     <string name="song_minuet_effect">+Attacco per tutti gli alleati</string>
     <string name="song_ballad">Ballata di Romeo</string>
     <string name="song_ballad_effect">Tutti i nemici saltano il prossimo turno</string>
-    <!-- Mastery & Pets Screen -->
+    <!-- mastery & pets screen -->
     <string name="training_grounds_title">CAMPI DI ADDESTRAMENTO</string>
     <string name="tab_job_mastery">MAESTRIA LAVORO</string>
     <string name="tab_pets">PET</string>
@@ -302,6 +303,19 @@
     <string name="pet_none">NESSUNO</string>
     <string name="unlock_pet_format">%1$dG PER SBLOCCARE</string>
     <string name="masteries">📈 MAESTRIE</string>
+
+    <!-- Stats & Bonuses -->
+    <string name="stat_hp">PV</string>
+    <string name="stat_mp">PM</string>
+    <string name="stat_attack">ATTACCO</string>
+    <string name="stat_magic">MAGIA</string>
+    <string name="stat_defense">DIFESA</string>
+    <string name="stat_speed">VELOCITÀ</string>
+    <string name="stat_crit_chance">TASSO CRIT.</string>
+    <string name="stat_crit_damage">DANNO CRIT.</string>
+    <string name="stat_item_find">TROVA OGGETTI</string>
+    <string name="stat_exp_boost">GUADAGNO EXP</string>
+    <string name="stat_gil_find">GUADAGNO GIL</string>
 
     <!-- Leaderboards -->
     <string name="leaderboard_title">CLASSIFICHE</string>

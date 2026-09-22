@@ -67,6 +67,7 @@
     <string name="building_barracks">CUARTEL</string>
     <string name="building_relics">RELIQUIAS</string>
     <string name="crystal_shop_subtitle">Desbloquea nuevas clases de trabajo</string>
+    <string name="unlocks_job_format">Desbloquea %1$s</string>
     <string name="owned_status">✓ PROPIEDAD</string>
     <string name="town_upgrades">MEJORAS DE LA CIUDAD</string>
     <string name="upgrade_discount">Descuento: %1$d%%</string>
@@ -221,7 +222,7 @@
     <!-- Relics -->
     <string name="relic_attack_name">Ataque</string>
     <string name="relic_attack_desc">Daño Físico</string>
-    <string name="relic_hp_name">Vitality</string>
+    <string name="relic_hp_name">Vitalidad</string>
     <string name="relic_hp_desc">Puntos de Vida Máximos</string>
     <string name="relic_mp_name">Espíritu</string>
     <string name="relic_mp_desc">Puntos de Maná Máximos</string>
@@ -290,7 +291,7 @@
     <string name="song_minuet_effect">+Ataque para todos los aliados</string>
     <string name="song_ballad">Balada de Romeo</string>
     <string name="song_ballad_effect">Todos los enemigos pierden el siguiente turno</string>
-    <!-- Mastery & Pets Screen -->
+    <!-- mastery & pets screen -->
     <string name="training_grounds_title">CAMPOS DE ENTRENAMIENTO</string>
     <string name="tab_job_mastery">MAESTRÍA DE TRABAJO</string>
     <string name="tab_pets">MASCOTAS</string>
@@ -302,6 +303,19 @@
     <string name="pet_none">NINGUNO</string>
     <string name="unlock_pet_format">%1$dG PARA DESBLOQUEAR</string>
     <string name="masteries">📈 MAESTRÍAS</string>
+
+    <!-- Stats & Bonuses -->
+    <string name="stat_hp">PV</string>
+    <string name="stat_mp">PM</string>
+    <string name="stat_attack">ATAQUE</string>
+    <string name="stat_magic">MAGIA</string>
+    <string name="stat_defense">DEFENSA</string>
+    <string name="stat_speed">VELOCIDAD</string>
+    <string name="stat_crit_chance">TASA CRÍT.</string>
+    <string name="stat_crit_damage">DAÑO CRÍT.</string>
+    <string name="stat_item_find">HALLAZGO OBJ.</string>
+    <string name="stat_exp_boost">GANANCIA EXP</string>
+    <string name="stat_gil_find">GANANCIA GIL</string>
 
     <!-- Leaderboards -->
     <string name="leaderboard_title">CLASIFICACIONES</string>

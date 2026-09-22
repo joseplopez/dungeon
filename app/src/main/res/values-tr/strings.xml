@@ -67,6 +67,7 @@
     <string name="building_barracks">KIŞLA</string>
     <string name="building_relics">YADİGARLAR</string>
     <string name="crystal_shop_subtitle">Yeni iş sınıflarının kilidini açın</string>
+    <string name="unlocks_job_format">%1$s kilidini açar</string>
     <string name="owned_status">✓ SAHİP OLUNDU</string>
     <string name="town_upgrades">KASABA GELİŞTİRMELERİ</string>
     <string name="upgrade_discount">İndirim: %1$d%%</string>
@@ -290,7 +291,7 @@
     <string name="song_minuet_effect">+Tüm müttefikler için Saldırı</string>
     <string name="song_ballad">Romeo\'nun Balladı</string>
     <string name="song_ballad_effect">Tüm düşmanlar sonraki turu atlar</string>
-    <!-- Mastery & Pets Screen -->
+    <!-- mastery & pets screen -->
     <string name="training_grounds_title">EĞİTİM ALANLARI</string>
     <string name="tab_job_mastery">İŞ USTALIĞI</string>
     <string name="tab_pets">EVCİL HAYVANLAR</string>
@@ -302,6 +303,19 @@
     <string name="pet_none">YOK</string>
     <string name="unlock_pet_format">KİLİDİ AÇMAK İÇİN %1$dG</string>
     <string name="masteries">📈 USTALIKLAR</string>
+
+    <!-- Stats & Bonuses -->
+    <string name="stat_hp">YP</string>
+    <string name="stat_mp">MP</string>
+    <string name="stat_attack">SALDIRI</string>
+    <string name="stat_magic">BÜYÜ</string>
+    <string name="stat_defense">SAVUNMA</string>
+    <string name="stat_speed">HIZ</string>
+    <string name="stat_crit_chance">KRİTİK ORANI</string>
+    <string name="stat_crit_damage">KRİTİK HASAR</string>
+    <string name="stat_item_find">EŞYA BULMA</string>
+    <string name="stat_exp_boost">TP KAZANIMI</string>
+    <string name="stat_gil_find">GİL KAZANIMI</string>
 
     <!-- Leaderboards -->
     <string name="leaderboard_title">SIRALAMALAR</string>
