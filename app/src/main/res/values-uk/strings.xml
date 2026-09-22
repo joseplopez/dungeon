@@ -357,4 +357,23 @@
     <string name="ad_gil_reward">БЕЗКОШТОВНІ ГІЛІ (РЕКЛАМА)</string>
     <string name="ad_magicite_reward">БЕЗКОШТОВНИЙ МАГІЦИТ (РЕКЛАМА)</string>
     <string name="ad_not_ready">Реклама не готова. Будь ласка, зачекайте трохи.</string>
+
+    <!-- Resource Shop / IAP -->
+    <string name="resource_shop_title">Казначейство та Магазин</string>
+    <string name="tab_gil">Гіл</string>
+    <string name="tab_magicite">Магіцит</string>
+    <string name="free_reward_section">БЕЗКОШТОВНО (РЕКЛАМА)</string>
+    <string name="watch_ad_for_gil">Дивитися рекламу за +%1$s Гіл</string>
+    <string name="watch_ad_for_magicite">Дивитися рекламу за +%1$d Магіциту</string>
+    <string name="iap_packs_section">НАБОРИ КАЗНИ (IAP)</string>
+    <string name="gil_pack_small_title">Мішок Гіл</string>
+    <string name="gil_pack_medium_title">Скриня Гіл</string>
+    <string name="gil_pack_large_title">Сховище Гіл</string>
+    <string name="magicite_pack_small_title">Жменя Магіциту</string>
+    <string name="magicite_pack_medium_title">Сумка Магіциту</string>
+    <string name="magicite_pack_large_title">Кришталева Скриня</string>
+    <string name="purchase_success_gil">Куплено %1$s Гіл!</string>
+    <string name="purchase_success_magicite">Куплено %1$d Магіциту!</string>
+    <string name="purchase_failed">Покупка не вдалася або скасована</string>
+    <string name="store_unavailable">Магазин недоступний</string>
 </resources>

@@ -15,6 +15,7 @@ firebaseDatabase = "21.0.0"
 firebaseAuth = "23.2.0"
 googleGmsGoogleServices = "4.4.4"
 playServicesAds = "23.6.0"
+playBilling = "8.0.0"
 room = "2.8.4"
 hilt = "2.60.1"
 hiltNavigationCompose = "1.2.0"
@@ -46,6 +47,7 @@ firebase-analytics = { group = "com.google.firebase", name = "firebase-analytics
 firebase-database = { group = "com.google.firebase", name = "firebase-database-ktx" }
 firebase-auth = { group = "com.google.firebase", name = "firebase-auth-ktx" }
 play-services-ads = { group = "com.google.android.gms", name = "play-services-ads", version.ref = "playServicesAds" }
+play-billing-ktx = { group = "com.android.billingclient", name = "billing-ktx", version.ref = "playBilling" }
 
 # Room
 androidx-room-runtime = { group = "androidx.room", name = "room-runtime", version.ref = "room" }

@@ -91,4 +91,12 @@ object AppModule {
     @Provides
     @Singleton
     fun provideAdManager(): AdManager = AdMobManager()
+
+    @Provides
+    @Singleton
+    fun provideBillingManager(
+        @ApplicationContext context: Context,
+        repository: GameRepository
+    ): com.game.dungeon.monetization.BillingManager =
+        com.game.dungeon.monetization.PlayBillingManager(context, repository)
 }

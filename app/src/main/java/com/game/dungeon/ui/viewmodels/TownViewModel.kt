@@ -1,12 +1,16 @@
 package com.game.dungeon.ui.viewmodels
 
 import android.app.Activity
+import android.widget.Toast
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.game.dungeon.analytics.AnalyticsManager
 import com.game.dungeon.data.models.*
 import com.game.dungeon.data.repository.GameRepository
 import com.game.dungeon.monetization.AdManager
+import com.game.dungeon.monetization.BillingManager
+import com.game.dungeon.monetization.InAppProduct
+import com.game.dungeon.monetization.ResourceType
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -16,16 +20,53 @@ import javax.inject.Inject
 class TownViewModel @Inject constructor(
     private val repository: GameRepository,
     private val analytics: AnalyticsManager,
-    private val adManager: AdManager
+    private val adManager: AdManager,
+    val billingManager: BillingManager
 ) : ViewModel() {
 
     val gameState = repository.getGameState().stateIn(viewModelScope, SharingStarted.Eagerly, GameState())
 
+    private val _showResourceShop = MutableStateFlow(false)
+    val showResourceShop = _showResourceShop.asStateFlow()
+
+    private val _resourceShopType = MutableStateFlow(ResourceType.GIL)
+    val resourceShopType = _resourceShopType.asStateFlow()
+
+    fun openResourceShop(type: ResourceType) {
+        _resourceShopType.value = type
+        _showResourceShop.value = true
+    }
+
+    fun closeResourceShop() {
+        _showResourceShop.value = false
+    }
+
+    fun buyProduct(activity: Activity, product: InAppProduct) {
+        billingManager.launchBillingFlow(
+            activity = activity,
+            product = product,
+            onSuccess = { boughtProduct ->
+                val message = if (boughtProduct.resourceType == ResourceType.GIL) {
+                    activity.getString(com.game.dungeon.R.string.purchase_success_gil, com.game.dungeon.ui.components.formatGold(boughtProduct.rewardAmount))
+                } else {
+                    activity.getString(com.game.dungeon.R.string.purchase_success_magicite, boughtProduct.rewardAmount.toInt())
+                }
+                Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
+            },
+            onError = { error ->
+                val message = if (error == "Cancelled") {
+                    activity.getString(com.game.dungeon.R.string.purchase_failed)
+                } else {
+                    error
+                }
+                Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
+            }
+        )
+    }
+
     val availableCrystals = gameState.map { gs ->
         HeroClass.entries.filter { it.crystalColor != CrystalColor.CLEAR }
             .filter { job ->
-                // Basic crystals are always available.
-                // Advanced crystals (Tier 2+) require Inn Level >= 1
                 if (job.tier >= 2) (gs?.innLevel ?: 0) >= 1 else true
             }
             .filter { job ->
@@ -102,7 +143,7 @@ class TownViewModel @Inject constructor(
         adManager.showRewardedAd(activity) {
             viewModelScope.launch {
                 val currentGs = repository.getGameStateOnce() ?: return@launch
-                val reward = (currentGs.totalGilEarned * 0.01f).toLong().coerceAtLeast(100L)
+                val reward = (currentGs.totalGilEarned * 0.005f).toLong().coerceAtLeast(50L)
                 repository.addGil(reward)
             }
         }

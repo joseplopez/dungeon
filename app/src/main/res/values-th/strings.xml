@@ -357,4 +357,23 @@
     <string name="ad_gil_reward">รับกิลฟรี (โฆษณา)</string>
     <string name="ad_magicite_reward">รับมาจิไซต์ฟรี (โฆษณา)</string>
     <string name="ad_not_ready">โฆษณายังไม่พร้อม โปรดรอสักครู่</string>
+
+    <!-- Resource Shop / IAP -->
+    <string name="resource_shop_title">คลังสมบัติ &amp; ร้านค้า</string>
+    <string name="tab_gil">กิล</string>
+    <string name="tab_magicite">เมจิไซต์</string>
+    <string name="free_reward_section">รางวัลฟรี (โฆษณา)</string>
+    <string name="watch_ad_for_gil">ดูโฆษณาเพื่อรับ +%1$s กิล</string>
+    <string name="watch_ad_for_magicite">ดูโฆษณาเพื่อรับ +%1$d เมจิไซต์</string>
+    <string name="iap_packs_section">แพ็กคลังสมบัติ (IAP)</string>
+    <string name="gil_pack_small_title">ถุงกิล</string>
+    <string name="gil_pack_medium_title">หีบกิล</string>
+    <string name="gil_pack_large_title">คลังกิล</string>
+    <string name="magicite_pack_small_title">เมจิไซต์หนึ่งกำมือ</string>
+    <string name="magicite_pack_medium_title">กระเป๋าเมจิไซต์</string>
+    <string name="magicite_pack_large_title">หีบคริสตัล</string>
+    <string name="purchase_success_gil">ซื้อ %1$s กิลเรียบร้อย!</string>
+    <string name="purchase_success_magicite">ซื้อ %1$d เมจิไซต์เรียบร้อย!</string>
+    <string name="purchase_failed">การซื้อล้มเหลวหรือถูกยกเลิก</string>
+    <string name="store_unavailable">ร้านค้าไม่พร้อมใช้งาน</string>
 </resources>

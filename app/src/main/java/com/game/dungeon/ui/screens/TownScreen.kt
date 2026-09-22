@@ -48,6 +48,10 @@ fun TownScreen(
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
+    val showResourceShop by viewModel.showResourceShop.collectAsState()
+    val resourceShopType by viewModel.resourceShopType.collectAsState()
+    val productDetailsMap by viewModel.billingManager.productDetailsMap.collectAsState()
+
     var showCrystalShop by remember { mutableStateOf(false) }
     var showUpgrades by remember { mutableStateOf(false) }
     var showSupportDialog by remember { mutableStateOf(false) }
@@ -69,31 +73,34 @@ fun TownScreen(
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
                             Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                                val activity = androidx.compose.ui.platform.LocalContext.current as? android.app.Activity
-                                Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                                Row(
+                                    modifier = Modifier.clickable { viewModel.openResourceShop(com.game.dungeon.monetization.ResourceType.GIL) },
+                                    verticalAlignment = CenterVertically,
+                                    horizontalArrangement = Arrangement.spacedBy(4.dp)
+                                ) {
                                     Text("🪙", fontSize = 14.sp)
                                     Text(formatGold(gil), style = PixelGold)
                                     if (gs != null) {
                                         Text("/${formatGold(gs!!.maxGil)}", style = PixelSmall, color = StoneGray)
                                     }
-                                    if (activity != null) {
-                                        AdRewardIconButton(
-                                            isMagicite = false,
-                                            onClick = { viewModel.watchGilAd(activity) },
-                                            modifier = Modifier.size(20.dp)
-                                        )
-                                    }
+                                    AdRewardIconButton(
+                                        isMagicite = false,
+                                        onClick = { viewModel.openResourceShop(com.game.dungeon.monetization.ResourceType.GIL) },
+                                        modifier = Modifier.size(20.dp)
+                                    )
                                 }
-                                Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                                Row(
+                                    modifier = Modifier.clickable { viewModel.openResourceShop(com.game.dungeon.monetization.ResourceType.MAGICITE) },
+                                    verticalAlignment = CenterVertically,
+                                    horizontalArrangement = Arrangement.spacedBy(4.dp)
+                                ) {
                                     Text("💎", fontSize = 14.sp)
                                     Text("$magicite", style = PixelGold)
-                                    if (activity != null) {
-                                        AdRewardIconButton(
-                                            isMagicite = true,
-                                            onClick = { viewModel.watchMagiciteAd(activity) },
-                                            modifier = Modifier.size(20.dp)
-                                        )
-                                    }
+                                    AdRewardIconButton(
+                                        isMagicite = true,
+                                        onClick = { viewModel.openResourceShop(com.game.dungeon.monetization.ResourceType.MAGICITE) },
+                                        modifier = Modifier.size(20.dp)
+                                    )
                                 }
                             }
                             Text(safeStringResource(R.string.town_name), style = PixelHeading)
@@ -182,6 +189,21 @@ fun TownScreen(
     if (showSupportDialog) {
         SupportDialog(
             onDismiss = { showSupportDialog = false }
+        )
+    }
+
+    if (showResourceShop) {
+        ResourceShopDialog(
+            initialResourceType = resourceShopType,
+            currentGil = gil,
+            currentMagicite = magicite,
+            totalGilEarned = gs?.totalGilEarned ?: 0L,
+            totalMagiciteEarned = gs?.totalMagiciteEarned ?: 0,
+            productDetailsMap = productDetailsMap,
+            onWatchGilAd = { act -> viewModel.watchGilAd(act) },
+            onWatchMagiciteAd = { act -> viewModel.watchMagiciteAd(act) },
+            onBuyProduct = { act, product -> viewModel.buyProduct(act, product) },
+            onDismiss = { viewModel.closeResourceShop() }
         )
     }
 }

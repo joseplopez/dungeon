@@ -357,4 +357,23 @@
     <string name="ad_gil_reward">ÜCRETSİZ GİL (REKLAM)</string>
     <string name="ad_magicite_reward">ÜCRETSİZ MAGICITE (REKLAM)</string>
     <string name="ad_not_ready">Reklam hazır değil. Lütfen biraz bekleyin.</string>
+
+    <!-- Resource Shop / IAP -->
+    <string name="resource_shop_title">Hazine &amp; Mağaza</string>
+    <string name="tab_gil">Gil</string>
+    <string name="tab_magicite">Magisit</string>
+    <string name="free_reward_section">ÜCRETSİZ ÖDÜLLER (REKLAM)</string>
+    <string name="watch_ad_for_gil">+%1$s Gil için reklam izle</string>
+    <string name="watch_ad_for_magicite">+%1$d Magisit için reklam izle</string>
+    <string name="iap_packs_section">HAZİNE PAKETLERİ (IAP)</string>
+    <string name="gil_pack_small_title">Gil Torbası</string>
+    <string name="gil_pack_medium_title">Gil Sandığı</string>
+    <string name="gil_pack_large_title">Gil Kasası</string>
+    <string name="magicite_pack_small_title">Bir Avuç Magisit</string>
+    <string name="magicite_pack_medium_title">Magisit Çantası</string>
+    <string name="magicite_pack_large_title">Kristal Sandık</string>
+    <string name="purchase_success_gil">%1$s Gil satın alındı!</string>
+    <string name="purchase_success_magicite">%1$d Magisit satın alındı!</string>
+    <string name="purchase_failed">Satın alma başarısız veya iptal edildi</string>
+    <string name="store_unavailable">Mağaza kullanılamıyor</string>
 </resources>

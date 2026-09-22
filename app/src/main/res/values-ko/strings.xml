@@ -358,4 +358,23 @@
     <string name="ad_gil_reward">무료 길 (광고)</string>
     <string name="ad_magicite_reward">무료 마석 (광고)</string>
     <string name="ad_not_ready">광고가 준비되지 않았습니다. 잠시만 기다려주세요.</string>
+
+    <!-- Resource Shop / IAP -->
+    <string name="resource_shop_title">보물고 &amp; 상점</string>
+    <string name="tab_gil">길</string>
+    <string name="tab_magicite">마석</string>
+    <string name="free_reward_section">무료 보상 (광고)</string>
+    <string name="watch_ad_for_gil">광고 시청 후 +%1$s 길 획득</string>
+    <string name="watch_ad_for_magicite">광고 시청 후 +%1$d 마석 획득</string>
+    <string name="iap_packs_section">보물고 팩 (IAP)</string>
+    <string name="gil_pack_small_title">길 주머니</string>
+    <string name="gil_pack_medium_title">길 상자</string>
+    <string name="gil_pack_large_title">길 금고</string>
+    <string name="magicite_pack_small_title">마석 한 움큼</string>
+    <string name="magicite_pack_medium_title">마석 가방</string>
+    <string name="magicite_pack_large_title">크리스탈 상자</string>
+    <string name="purchase_success_gil">%1$s 길을 구매했습니다!</string>
+    <string name="purchase_success_magicite">%1$d 마석을 구매했습니다!</string>
+    <string name="purchase_failed">구매 실패 또는 취소됨</string>
+    <string name="store_unavailable">상점을 이용할 수 없음</string>
 </resources>

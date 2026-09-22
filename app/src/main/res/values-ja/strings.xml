@@ -357,4 +357,23 @@
     <string name="ad_gil_reward">無料ギル (広告)</string>
     <string name="ad_magicite_reward">無料マジサイト (広告)</string>
     <string name="ad_not_ready">広告の準備ができていません。しばらくお待ちください。</string>
+
+    <!-- Resource Shop / IAP -->
+    <string name="resource_shop_title">宝物庫＆ショップ</string>
+    <string name="tab_gil">ギル</string>
+    <string name="tab_magicite">魔石</string>
+    <string name="free_reward_section">無料報酬（広告）</string>
+    <string name="watch_ad_for_gil">広告を見て +%1$s ギル獲得</string>
+    <string name="watch_ad_for_magicite">広告を見て +%1$d 魔石獲得</string>
+    <string name="iap_packs_section">宝物庫パック (IAP)</string>
+    <string name="gil_pack_small_title">ギルの袋</string>
+    <string name="gil_pack_medium_title">ギルの宝箱</string>
+    <string name="gil_pack_large_title">ギルの大金庫</string>
+    <string name="magicite_pack_small_title">一握りの魔石</string>
+    <string name="magicite_pack_medium_title">魔石のポーチ</string>
+    <string name="magicite_pack_large_title">クリスタルの宝箱</string>
+    <string name="purchase_success_gil">%1$s ギルを購入しました！</string>
+    <string name="purchase_success_magicite">%1$d 魔石を購入しました！</string>
+    <string name="purchase_failed">購入が失敗したかキャンセルされました</string>
+    <string name="store_unavailable">ショップ利用不可</string>
 </resources>

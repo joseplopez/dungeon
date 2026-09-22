@@ -357,4 +357,23 @@
     <string name="ad_gil_reward">GIL GRÁTIS (AD)</string>
     <string name="ad_magicite_reward">MAGICITA GRÁTIS (AD)</string>
     <string name="ad_not_ready">Anúncio não está pronto. Por favor, aguarde um momento.</string>
+
+    <!-- Resource Shop / IAP -->
+    <string name="resource_shop_title">Tesouraria e Loja</string>
+    <string name="tab_gil">Gil</string>
+    <string name="tab_magicite">Magicite</string>
+    <string name="free_reward_section">RECOMPENSAS GRÁTIS (ANÚNCIOS)</string>
+    <string name="watch_ad_for_gil">Ver anúncio por +%1$s Gil</string>
+    <string name="watch_ad_for_magicite">Ver anúncio por +%1$d Magicite</string>
+    <string name="iap_packs_section">PACOTES DE TESOURARIA (IAP)</string>
+    <string name="gil_pack_small_title">Saco de Gil</string>
+    <string name="gil_pack_medium_title">Baú de Gil</string>
+    <string name="gil_pack_large_title">Cofre de Gil</string>
+    <string name="magicite_pack_small_title">Punhado de Magicite</string>
+    <string name="magicite_pack_medium_title">Bolsa de Magicite</string>
+    <string name="magicite_pack_large_title">Baú de Cristal</string>
+    <string name="purchase_success_gil">Comprado %1$s Gil!</string>
+    <string name="purchase_success_magicite">Comprado %1$d Magicite!</string>
+    <string name="purchase_failed">Compra falhou ou foi cancelada</string>
+    <string name="store_unavailable">Loja indisponível</string>
 </resources>

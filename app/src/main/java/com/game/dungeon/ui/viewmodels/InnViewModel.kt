@@ -14,15 +14,59 @@ import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
+import android.widget.Toast
+import com.game.dungeon.monetization.BillingManager
+import com.game.dungeon.monetization.InAppProduct
+import com.game.dungeon.monetization.ResourceType
+
 @HiltViewModel
 class InnViewModel @Inject constructor(
     private val repository: GameRepository,
     private val analytics: AnalyticsManager,
     private val adManager: AdManager,
+    val billingManager: BillingManager,
     @ApplicationContext private val context: Context
 ) : ViewModel() {
 
     val gameState = repository.getGameState().stateIn(viewModelScope, SharingStarted.Eagerly, GameState())
+
+    private val _showResourceShop = MutableStateFlow(false)
+    val showResourceShop = _showResourceShop.asStateFlow()
+
+    private val _resourceShopType = MutableStateFlow(ResourceType.GIL)
+    val resourceShopType = _resourceShopType.asStateFlow()
+
+    fun openResourceShop(type: ResourceType) {
+        _resourceShopType.value = type
+        _showResourceShop.value = true
+    }
+
+    fun closeResourceShop() {
+        _showResourceShop.value = false
+    }
+
+    fun buyProduct(activity: Activity, product: InAppProduct) {
+        billingManager.launchBillingFlow(
+            activity = activity,
+            product = product,
+            onSuccess = { boughtProduct ->
+                val message = if (boughtProduct.resourceType == ResourceType.GIL) {
+                    activity.getString(com.game.dungeon.R.string.purchase_success_gil, com.game.dungeon.ui.components.formatGold(boughtProduct.rewardAmount))
+                } else {
+                    activity.getString(com.game.dungeon.R.string.purchase_success_magicite, boughtProduct.rewardAmount.toInt())
+                }
+                Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
+            },
+            onError = { error ->
+                val message = if (error == "Cancelled") {
+                    activity.getString(com.game.dungeon.R.string.purchase_failed)
+                } else {
+                    error
+                }
+                Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
+            }
+        )
+    }
     
     private val _hiredHeroes = MutableStateFlow<List<Hero>>(emptyList())
     val hiredHeroes: StateFlow<List<Hero>> = _hiredHeroes.asStateFlow()
@@ -250,9 +294,8 @@ class InnViewModel @Inject constructor(
         adManager.showRewardedAd(activity) {
             viewModelScope.launch {
                 val currentGs = repository.getGameStateOnce() ?: return@launch
-                val reward = (currentGs.totalGilEarned * 0.01f).toLong().coerceAtLeast(100L)
+                val reward = (currentGs.totalGilEarned * 0.0025f).toLong().coerceAtLeast(25L)
                 repository.addGil(reward)
-                // analytics.logAdReward("gil", reward.toInt()) // Note: AnalyticsManager might need updating
             }
         }
     }
@@ -261,9 +304,8 @@ class InnViewModel @Inject constructor(
         adManager.showRewardedAd(activity) {
             viewModelScope.launch {
                 val currentGs = repository.getGameStateOnce() ?: return@launch
-                val reward = (currentGs.totalMagiciteEarned * 0.01f).toInt().coerceAtLeast(5)
+                val reward = (currentGs.totalMagiciteEarned * 0.005f).toInt().coerceAtLeast(2)
                 repository.addMagicite(reward)
-                // analytics.logAdReward("magicite", reward)
             }
         }
     }

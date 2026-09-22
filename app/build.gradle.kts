@@ -14,7 +14,7 @@ android {
         applicationId = "com.centelles.dungeon"
         minSdk = 26
         targetSdk = 37
-        versionCode = 17
+        versionCode = 20
         versionName = "0.0.2"
         testInstrumentationRunner = "com.game.dungeon.HiltTestRunner"
         buildConfigField("long", "INITIAL_GIL", "0L")
@@ -66,6 +66,10 @@ android {
             assets.srcDirs(file("$projectDir/schemas"))
         }
     }
+
+    testOptions {
+        unitTests.isReturnDefaultValues = true
+    }
 }
 
 ksp {
@@ -102,8 +106,9 @@ dependencies {
     // DataStore
     implementation(libs.androidx.datastore.preferences)
 
-    // Ads
+    // Ads & Billing
     implementation(libs.play.services.ads)
+    implementation(libs.play.billing.ktx)
 
     // Gson
     implementation(libs.gson)

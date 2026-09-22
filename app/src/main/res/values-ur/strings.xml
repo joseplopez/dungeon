@@ -357,4 +357,23 @@
     <string name="ad_gil_reward">مفت گِل (اشتہار)</string>
     <string name="ad_magicite_reward">مفت میجیسائٹ (اشتہار)</string>
     <string name="ad_not_ready">اشتہار تیار نہیں ہے۔ براہ کرم تھوڑی دیر انتظار کریں۔</string>
+
+    <!-- Resource Shop / IAP -->
+    <string name="resource_shop_title">خزانہ اور دکان</string>
+    <string name="tab_gil">گِل</string>
+    <string name="tab_magicite">میجیسائٹ</string>
+    <string name="free_reward_section">مفت انعامات (اشتہار)</string>
+    <string name="watch_ad_for_gil">+%1$s گِل کے لیے اشتہار دیکھیں</string>
+    <string name="watch_ad_for_magicite">+%1$d میجیسائٹ کے لیے اشتہار دیکھیں</string>
+    <string name="iap_packs_section">خزانے کے پیک (IAP)</string>
+    <string name="gil_pack_small_title">گِل کا تھیلا</string>
+    <string name="gil_pack_medium_title">گِل کا صندوق</string>
+    <string name="gil_pack_large_title">گِل کا والٹ</string>
+    <string name="magicite_pack_small_title">مٹھی بھر میجیسائٹ</string>
+    <string name="magicite_pack_medium_title">میجیسائٹ کا تھیلا</string>
+    <string name="magicite_pack_large_title">کرسٹل صندوق</string>
+    <string name="purchase_success_gil">%1$s گِل خریدا گیا!</string>
+    <string name="purchase_success_magicite">%1$d میجیسائٹ خریدا گیا!</string>
+    <string name="purchase_failed">خریداری ناکام ہوئی یا منسوخ ہو گئی</string>
+    <string name="store_unavailable">دکان دستیاب نہیں ہے</string>
 </resources>

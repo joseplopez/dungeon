@@ -357,4 +357,23 @@
     <string name="ad_gil_reward">GIL GRATIS (AD)</string>
     <string name="ad_magicite_reward">MAGICITA GRATIS (AD)</string>
     <string name="ad_not_ready">L\'anunci no està a punt. Si us plau, espera un moment.</string>
+
+    <!-- Resource Shop / IAP -->
+    <string name="resource_shop_title">Tresoreria i Botiga</string>
+    <string name="tab_gil">Gil</string>
+    <string name="tab_magicite">Magicita</string>
+    <string name="free_reward_section">RECOMPENSES GRATUÏTES (ANUNCIS)</string>
+    <string name="watch_ad_for_gil">Veure anunci per +%1$s Gil</string>
+    <string name="watch_ad_for_magicite">Veure anunci per +%1$d Magicita</string>
+    <string name="iap_packs_section">PAQUETS DE TRESORERIA (IAP)</string>
+    <string name="gil_pack_small_title">Bossa de Gil</string>
+    <string name="gil_pack_medium_title">Cofre de Gil</string>
+    <string name="gil_pack_large_title">Bòveda de Gil</string>
+    <string name="magicite_pack_small_title">Puñado de Magicita</string>
+    <string name="magicite_pack_medium_title">Bossa de Magicita</string>
+    <string name="magicite_pack_large_title">Cofre de Cristall</string>
+    <string name="purchase_success_gil">¡Comprat %1$s Gil!</string>
+    <string name="purchase_success_magicite">¡Comprat %1$d Magicita!</string>
+    <string name="purchase_failed">Compra fallida o cancel·lada</string>
+    <string name="store_unavailable">Botiga no disponible</string>
 </resources>

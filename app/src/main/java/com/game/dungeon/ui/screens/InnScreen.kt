@@ -1,6 +1,5 @@
 package com.game.dungeon.ui.screens
 
-import android.app.Activity
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
@@ -53,6 +52,10 @@ fun InnScreen(
     val currentDimension = gs?.currentDimension ?: 1
     val pathfinderLevel = gs?.pathfinderLevel ?: 0
 
+    val showResourceShop by viewModel.showResourceShop.collectAsState()
+    val resourceShopType by viewModel.resourceShopType.collectAsState()
+    val productDetailsMap by viewModel.billingManager.productDetailsMap.collectAsState()
+
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
@@ -66,8 +69,7 @@ fun InnScreen(
                 magicite = magicite, 
                 isMuted = isMuted, 
                 onToggleMusic = onToggleMusic,
-                onWatchGilAd = { viewModel.watchGilAd(it) },
-                onWatchMagiciteAd = { viewModel.watchMagiciteAd(it) }
+                onOpenResourceShop = { viewModel.openResourceShop(it) }
             )
             
             // Dimension Advance Banner (Only shows if floor 100 reached)
@@ -150,6 +152,21 @@ fun InnScreen(
         HiddenJobUnlockDialog(
             heroClass = unnotifiedJob,
             onDismiss = { viewModel.markHiddenJobNotified(unnotifiedJob) }
+        )
+    }
+
+    if (showResourceShop) {
+        ResourceShopDialog(
+            initialResourceType = resourceShopType,
+            currentGil = gil,
+            currentMagicite = magicite,
+            totalGilEarned = gs?.totalGilEarned ?: 0L,
+            totalMagiciteEarned = gs?.totalMagiciteEarned ?: 0,
+            productDetailsMap = productDetailsMap,
+            onWatchGilAd = { act -> viewModel.watchGilAd(act) },
+            onWatchMagiciteAd = { act -> viewModel.watchMagiciteAd(act) },
+            onBuyProduct = { act, product -> viewModel.buyProduct(act, product) },
+            onDismiss = { viewModel.closeResourceShop() }
         )
     }
 }
@@ -502,10 +519,8 @@ fun InnTopBar(
     magicite: Int,
     isMuted: Boolean,
     onToggleMusic: () -> Unit,
-    onWatchGilAd: (Activity) -> Unit,
-    onWatchMagiciteAd: (Activity) -> Unit
+    onOpenResourceShop: (com.game.dungeon.monetization.ResourceType) -> Unit
 ) {
-    val activity = LocalContext.current as? Activity
     GoldenBorderBox(Modifier
         .fillMaxWidth()
         .height(56.dp)) {
@@ -520,27 +535,31 @@ fun InnTopBar(
                 horizontalArrangement = Arrangement.SpaceBetween
             ) {
                 Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                    Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    Row(
+                        modifier = Modifier.clickable { onOpenResourceShop(com.game.dungeon.monetization.ResourceType.GIL) },
+                        verticalAlignment = CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(6.dp)
+                    ) {
                         Text("🪙", fontSize = 18.sp)
                         Text(formatGold(gil), style = PixelGold)
-                        if (activity != null) {
-                            AdRewardIconButton(
-                                isMagicite = false,
-                                onClick = { onWatchGilAd(activity) },
-                                modifier = Modifier.size(24.dp)
-                            )
-                        }
+                        AdRewardIconButton(
+                            isMagicite = false,
+                            onClick = { onOpenResourceShop(com.game.dungeon.monetization.ResourceType.GIL) },
+                            modifier = Modifier.size(24.dp)
+                        )
                     }
-                    Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    Row(
+                        modifier = Modifier.clickable { onOpenResourceShop(com.game.dungeon.monetization.ResourceType.MAGICITE) },
+                        verticalAlignment = CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(6.dp)
+                    ) {
                         Text("💎", fontSize = 18.sp)
                         Text(magicite.toString(), style = PixelGold)
-                        if (activity != null) {
-                            AdRewardIconButton(
-                                isMagicite = true,
-                                onClick = { onWatchMagiciteAd(activity) },
-                                modifier = Modifier.size(24.dp)
-                            )
-                        }
+                        AdRewardIconButton(
+                            isMagicite = true,
+                            onClick = { onOpenResourceShop(com.game.dungeon.monetization.ResourceType.MAGICITE) },
+                            modifier = Modifier.size(24.dp)
+                        )
                     }
                 }
                 

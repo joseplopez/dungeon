@@ -357,4 +357,23 @@
     <string name="ad_gil_reward">جيل مجاني (إعلان)</string>
     <string name="ad_magicite_reward">ماجيسيت مجاني (إعلان)</string>
     <string name="ad_not_ready">الإعلان ليس جاهزاً. يرجى الانتظار لحظة.</string>
+
+    <!-- Resource Shop / IAP -->
+    <string name="resource_shop_title">الخزينة والمتجر</string>
+    <string name="tab_gil">جيل</string>
+    <string name="tab_magicite">ماجيسيت</string>
+    <string name="free_reward_section">مكافآت مجانية (إعلانات)</string>
+    <string name="watch_ad_for_gil">شاهد إعلانًا للحصول على +%1$s جيل</string>
+    <string name="watch_ad_for_magicite">شاهد إعلانًا للحصول على +%1$d ماجيسيت</string>
+    <string name="iap_packs_section">حزم الخزينة (IAP)</string>
+    <string name="gil_pack_small_title">كيس جيل</string>
+    <string name="gil_pack_medium_title">صندوق جيل</string>
+    <string name="gil_pack_large_title">خزينة جيل</string>
+    <string name="magicite_pack_small_title">حفنة ماجيسيت</string>
+    <string name="magicite_pack_medium_title">حقيبة ماجيسيت</string>
+    <string name="magicite_pack_large_title">صندوق البلورات</string>
+    <string name="purchase_success_gil">تم شراء %1$s جيل!</string>
+    <string name="purchase_success_magicite">تم شراء %1$d ماجيسيت!</string>
+    <string name="purchase_failed">فشلت عملية الشراء أو أُلغيت</string>
+    <string name="store_unavailable">المتجر غير متاح</string>
 </resources>

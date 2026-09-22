@@ -357,4 +357,23 @@
     <string name="ad_gil_reward">GILS GRATUITS (PUB)</string>
     <string name="ad_magicite_reward">MAGICITE GRATUITE (PUB)</string>
     <string name="ad_not_ready">La publicité n\'est pas prête. Veuillez patienter un instant.</string>
+
+    <!-- Resource Shop / IAP -->
+    <string name="resource_shop_title">Trésorerie &amp; Boutique</string>
+    <string name="tab_gil">Gils</string>
+    <string name="tab_magicite">Magicite</string>
+    <string name="free_reward_section">RÉCOMPENSES GRATUITES (PUB)</string>
+    <string name="watch_ad_for_gil">Regarder une pub pour +%1$s Gils</string>
+    <string name="watch_ad_for_magicite">Regarder une pub pour +%1$d Magicite</string>
+    <string name="iap_packs_section">PACKS DE TRÉSORERIE (IAP)</string>
+    <string name="gil_pack_small_title">Sac de Gils</string>
+    <string name="gil_pack_medium_title">Coffre de Gils</string>
+    <string name="gil_pack_large_title">Chambre forte de Gils</string>
+    <string name="magicite_pack_small_title">Poignée de Magicite</string>
+    <string name="magicite_pack_medium_title">Bourse de Magicite</string>
+    <string name="magicite_pack_large_title">Coffre de cristal</string>
+    <string name="purchase_success_gil">%1$s Gils achetés !</string>
+    <string name="purchase_success_magicite">%1$d Magicite achetée !</string>
+    <string name="purchase_failed">Achat échoué ou annulé</string>
+    <string name="store_unavailable">Boutique indisponible</string>
 </resources>

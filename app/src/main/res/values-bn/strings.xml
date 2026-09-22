@@ -357,4 +357,23 @@
     <string name="ad_gil_reward">বিনামূল্যে গিল (বিজ্ঞাপন)</string>
     <string name="ad_magicite_reward">বিনামূল্যে ম্যাজিসাইট (বিজ্ঞাপন)</string>
     <string name="ad_not_ready">বিজ্ঞাপন প্রস্তুত নয়। অনুগ্রহ করে একটু অপেক্ষা করুন।</string>
+
+    <!-- Resource Shop / IAP -->
+    <string name="resource_shop_title">রাজকোষ এবং দোকান</string>
+    <string name="tab_gil">গিল</string>
+    <string name="tab_magicite">ম্যাজিসাইট</string>
+    <string name="free_reward_section">বিনামূল্যে পুরস্কার (বিজ্ঞাপন)</string>
+    <string name="watch_ad_for_gil">+%1$s গিল-এর জন্য বিজ্ঞাপন দেখুন</string>
+    <string name="watch_ad_for_magicite">+%1$d ম্যাজিসাইট-এর জন্য বিজ্ঞাপন দেখুন</string>
+    <string name="iap_packs_section">রাজকোষ প্যাক (IAP)</string>
+    <string name="gil_pack_small_title">গিলের থলে</string>
+    <string name="gil_pack_medium_title">গিলের সিন্দুক</string>
+    <string name="gil_pack_large_title">গিলের ভল্ট</string>
+    <string name="magicite_pack_small_title">একমুঠো ম্যাজিসাইট</string>
+    <string name="magicite_pack_medium_title">ম্যাজিসাইটের ব্যাগ</string>
+    <string name="magicite_pack_large_title">ক্রিস্টাল সিন্দুক</string>
+    <string name="purchase_success_gil">%1$s গিল কেনা হয়েছে!</string>
+    <string name="purchase_success_magicite">%1$d ম্যাজিসাইট কেনা হয়েছে!</string>
+    <string name="purchase_failed">ক্রয় ব্যর্থ হয়েছে বা বাতিল করা হয়েছে</string>
+    <string name="store_unavailable">দোকান উপলব্ধ নেই</string>
 </resources>
