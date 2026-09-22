@@ -59,7 +59,7 @@ fun DungeonScreen(
     val activity = LocalContext.current as? Activity
 
     Box(Modifier.fillMaxSize()) {
-        DungeonBackground()
+        DungeonBackground(biomeType = state.currentBiome?.backgroundType ?: BiomeType.GENERIC_DUNGEON)
         
         Column(Modifier.fillMaxSize()) {
             DungeonTopBar(
