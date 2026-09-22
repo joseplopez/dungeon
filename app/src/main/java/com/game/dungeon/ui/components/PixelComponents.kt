@@ -45,18 +45,53 @@ fun PixelPanel(
             .background(bgColor, RoundedCornerShape(0.dp))
             .drawWithContent {
                 drawContent()
-                // Outer 2dp stroke
+                val w = size.width
+                val h = size.height
+                val stroke2 = 2.dp.toPx()
+                val stroke1 = 1.dp.toPx()
+                val corner = 4.dp.toPx()
+
+                // Outer border frame
                 drawRect(
                     color = borderColor,
-                    style = Stroke(width = 2.dp.toPx())
+                    style = Stroke(width = stroke2)
                 )
-                // Inner 1dp stroke for depth
-                drawRect(
-                    color = borderColor.copy(alpha = 0.4f),
-                    topLeft = Offset(2.dp.toPx(), 2.dp.toPx()),
-                    size = Size(size.width - 4.dp.toPx(), size.height - 4.dp.toPx()),
-                    style = Stroke(width = 1.dp.toPx())
+                // Inner highlight & shadow lines for retro inset depth
+                // Top-left highlight
+                drawLine(
+                    color = Color.White.copy(alpha = 0.25f),
+                    start = Offset(stroke2, stroke2),
+                    end = Offset(w - stroke2, stroke2),
+                    strokeWidth = stroke1
                 )
+                drawLine(
+                    color = Color.White.copy(alpha = 0.25f),
+                    start = Offset(stroke2, stroke2),
+                    end = Offset(stroke2, h - stroke2),
+                    strokeWidth = stroke1
+                )
+                // Bottom-right shadow
+                drawLine(
+                    color = Color.Black.copy(alpha = 0.5f),
+                    start = Offset(stroke2, h - stroke2),
+                    end = Offset(w - stroke2, h - stroke2),
+                    strokeWidth = stroke1
+                )
+                drawLine(
+                    color = Color.Black.copy(alpha = 0.5f),
+                    start = Offset(w - stroke2, stroke2),
+                    end = Offset(w - stroke2, h - stroke2),
+                    strokeWidth = stroke1
+                )
+                // Corner pixel accent blocks
+                listOf(
+                    Offset(0f, 0f),
+                    Offset(w - corner, 0f),
+                    Offset(0f, h - corner),
+                    Offset(w - corner, h - corner)
+                ).forEach {
+                    drawRect(color = borderColor, topLeft = it, size = Size(corner, corner))
+                }
             }
             .padding(8.dp),
         content = content
@@ -83,13 +118,36 @@ fun PixelButton(
         else -> BgMedium
     }
     val textColor = if (active) BgDarkest else GoldBright
+    val frameBorderColor = if (active) GoldBright else GoldDark
 
     Box(
         modifier = modifier
             .scale(scale)
             .clickable(interactionSource = interactionSource, indication = null, enabled = enabled) { onClick() }
             .background(bgColor)
-            .border(2.dp, if (active) GoldBright else GoldDark)
+            .drawWithContent {
+                drawContent()
+                val w = size.width
+                val h = size.height
+                val borderPx = 2.dp.toPx()
+                val highlightPx = 1.dp.toPx()
+
+                // Outer border
+                drawRect(color = frameBorderColor, style = Stroke(width = borderPx))
+
+                if (enabled) {
+                    // Beveled retro button highlights
+                    val lightColor = if (isPressed) Color.Black.copy(alpha = 0.4f) else Color.White.copy(alpha = 0.35f)
+                    val shadowColor = if (isPressed) Color.White.copy(alpha = 0.35f) else Color.Black.copy(alpha = 0.5f)
+
+                    // Top & Left
+                    drawLine(lightColor, Offset(borderPx, borderPx), Offset(w - borderPx, borderPx), highlightPx)
+                    drawLine(lightColor, Offset(borderPx, borderPx), Offset(borderPx, h - borderPx), highlightPx)
+                    // Bottom & Right
+                    drawLine(shadowColor, Offset(borderPx, h - borderPx), Offset(w - borderPx, h - borderPx), highlightPx)
+                    drawLine(shadowColor, Offset(w - borderPx, borderPx), Offset(w - borderPx, h - borderPx), highlightPx)
+                }
+            }
             .padding(horizontal = horizontalPadding, vertical = verticalPadding),
         contentAlignment = Center
     ) {
@@ -436,26 +494,31 @@ fun GoldenBorderBox(modifier: Modifier = Modifier, content: @Composable BoxScope
     Box(modifier) {
         content()
         Canvas(Modifier.matchParentSize()) {
-            val cornerSize = 8.dp.toPx()
+            val cornerSize = 6.dp.toPx()
             val stroke = 2.dp.toPx()
-            val gold = GoldBright.copy(alpha = 0.8f)
-            // Draw 2px gold border
+            val gold = GoldBright.copy(alpha = 0.9f)
+            val darkGold = GoldDark
+
+            // Outer 2px gold border
             drawRect(color = gold, style = Stroke(width = stroke))
-            // Draw 1px inner border
+
+            // Inner 1px border for double-line JRPG frame effect
             drawRect(
-                color = GoldDark,
-                topLeft = Offset(4f, 4f),
-                size = Size(size.width - 8f, size.height - 8f),
+                color = darkGold,
+                topLeft = Offset(3.dp.toPx(), 3.dp.toPx()),
+                size = Size(size.width - 6.dp.toPx(), size.height - 6.dp.toPx()),
                 style = Stroke(width = 1.dp.toPx())
             )
-            // Corner squares (filled gold)
+
+            // Corner squares with double-beveled gold/dark accent
             listOf(
                 Offset(0f, 0f),
                 Offset(size.width - cornerSize, 0f),
                 Offset(0f, size.height - cornerSize),
                 Offset(size.width - cornerSize, size.height - cornerSize)
-            ).forEach {
-                drawRect(color = GoldBright, topLeft = it, size = Size(cornerSize, cornerSize))
+            ).forEach { cornerOffset ->
+                drawRect(color = GoldBright, topLeft = cornerOffset, size = Size(cornerSize, cornerSize))
+                drawRect(color = GoldDark, topLeft = Offset(cornerOffset.x + 1.dp.toPx(), cornerOffset.y + 1.dp.toPx()), size = Size(cornerSize - 2.dp.toPx(), cornerSize - 2.dp.toPx()))
             }
         }
     }
