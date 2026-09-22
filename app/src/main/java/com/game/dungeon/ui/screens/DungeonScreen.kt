@@ -310,42 +310,49 @@ fun BattleArea(
     dimension: FFDimension?,
     floor: Int
 ) {
-    Box(modifier.fillMaxSize()) {
-        // Heroes
-        Row(
-            Modifier.fillMaxHeight().fillMaxWidth(0.5f).align(Alignment.CenterStart).padding(horizontal = 16.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment = CenterVertically
-        ) {
-            heroes.forEach { hero ->
-                key(hero.id) {
-                    HeroUnitDisplay(
-                        hero = hero,
-                        isAttacking = attackingUnitId == hero.id,
-                        isHit = hitHeroId == hero.id,
-                        isCritical = isCritical && hitHeroId == hero.id,
-                        isDying = dyingHeroIds.contains(hero.id)
-                    )
+    GoldenBorderBox(
+        modifier = modifier
+            .fillMaxSize()
+            .padding(horizontal = 8.dp, vertical = 4.dp)
+            .background(BgDarkest.copy(alpha = 0.6f))
+    ) {
+        Box(Modifier.fillMaxSize().padding(8.dp)) {
+            // Heroes
+            Row(
+                Modifier.fillMaxHeight().fillMaxWidth(0.5f).align(Alignment.CenterStart).padding(horizontal = 8.dp),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = CenterVertically
+            ) {
+                heroes.forEach { hero ->
+                    key(hero.id) {
+                        HeroUnitDisplay(
+                            hero = hero,
+                            isAttacking = attackingUnitId == hero.id,
+                            isHit = hitHeroId == hero.id,
+                            isCritical = isCritical && hitHeroId == hero.id,
+                            isDying = dyingHeroIds.contains(hero.id)
+                        )
+                    }
                 }
             }
-        }
 
-        // Enemies
-        Row(
-            Modifier.fillMaxHeight().fillMaxWidth(0.5f).align(Alignment.CenterEnd).padding(horizontal = 16.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment = CenterVertically
-        ) {
-            enemies.forEach { enemy ->
-                key(enemy.id) {
-                    val bossTemplate = dimension?.let { FFDimensionData.getBossForFloor(it, floor) }
-                    val isBoss = bossTemplate != null && safeStringResource(bossTemplate.nameRes) == enemy.name
-                    EnemyUnitDisplay(
-                        enemy = enemy,
-                        isHit = hitEnemyId == enemy.id,
-                        isCritical = isCritical && hitEnemyId == enemy.id,
-                        isBoss = isBoss
-                    )
+            // Enemies
+            Row(
+                Modifier.fillMaxHeight().fillMaxWidth(0.5f).align(Alignment.CenterEnd).padding(horizontal = 8.dp),
+                horizontalArrangement = Arrangement.SpaceEvenly,
+                verticalAlignment = CenterVertically
+            ) {
+                enemies.forEach { enemy ->
+                    key(enemy.id) {
+                        val bossTemplate = dimension?.let { FFDimensionData.getBossForFloor(it, floor) }
+                        val isBoss = bossTemplate != null && safeStringResource(bossTemplate.nameRes) == enemy.name
+                        EnemyUnitDisplay(
+                            enemy = enemy,
+                            isHit = hitEnemyId == enemy.id,
+                            isCritical = isCritical && hitEnemyId == enemy.id,
+                            isBoss = isBoss
+                        )
+                    }
                 }
             }
         }
@@ -380,74 +387,89 @@ fun HeroUnitDisplay(hero: Hero, isAttacking: Boolean, isHit: Boolean, isCritical
         label = "lunge"
     )
 
-    Column(
-        horizontalAlignment = CenterHorizontally,
+    PixelPanel(
         modifier = Modifier
             .offset(x = (lungeOffset + shakeOffset.value).dp)
             .graphicsLayer(alpha = alphaAnim.value)
-            .testTag("HeroUnit_${hero.heroClass.name}")
+            .testTag("HeroUnit_${hero.heroClass.name}"),
+        borderColor = GoldDark,
+        bgColor = BgPanel.copy(alpha = 0.85f)
     ) {
-        if (!isDying) {
-            PixelHpBar(hero.currentHp, hero.maxHp, Modifier.width(64.dp).height(10.dp))
+        Column(
+            horizontalAlignment = CenterHorizontally,
+            modifier = Modifier.padding(2.dp)
+        ) {
+            Text(hero.name, style = PixelSmall, color = GoldBright, maxLines = 1)
+            Spacer(Modifier.height(2.dp))
+
+            if (!isDying) {
+                PixelHpBar(hero.currentHp, hero.maxHp, Modifier.width(68.dp).height(8.dp))
+                Spacer(Modifier.height(2.dp))
+                PixelExpBar(hero.exp, hero.expToNextLevel, Modifier.width(68.dp).height(4.dp))
+            } else {
+                Text("RIP", style = PixelSmall, color = StoneGray, modifier = Modifier.padding(bottom = 8.dp))
+            }
             Spacer(Modifier.height(4.dp))
-            PixelExpBar(hero.exp, hero.expToNextLevel, Modifier.width(64.dp).height(6.dp))
-        } else {
-            Text("RIP", style = PixelSmall, color = StoneGray, modifier = Modifier.padding(bottom = 12.dp))
-        }
-        
-        Box(Modifier.size(80.dp)) {
-            val flashAlpha = remember { Animatable(0f) }
-            val scope = rememberCoroutineScope()
-            
-            LaunchedEffect(isHit) {
+
+            Box(
+                Modifier
+                    .size(72.dp)
+                    .background(BgDarkest)
+                    .border(1.dp, GoldDark)
+            ) {
+                val flashAlpha = remember { Animatable(0f) }
+                val scope = rememberCoroutineScope()
+
+                LaunchedEffect(isHit) {
+                    if (isHit) {
+                        scope.launch {
+                            flashAlpha.snapTo(1f)
+                            flashAlpha.animateTo(0f, tween(300))
+                        }
+                    }
+                }
+
+                HeroSprite(
+                    hero.heroClass,
+                    Modifier
+                        .fillMaxSize()
+                        .graphicsLayer(compositingStrategy = CompositingStrategy.Offscreen)
+                        .drawWithContent {
+                            drawContent()
+                            if (flashAlpha.value > 0f) {
+                                drawRect(
+                                    color = (if (isCritical) GoldBright else EnemyRed).copy(alpha = flashAlpha.value),
+                                    blendMode = BlendMode.SrcIn
+                                )
+                            }
+                        }
+                )
+
+                if (isDying) {
+                    // Dissolve effect
+                    Canvas(Modifier.fillMaxSize()) {
+                        repeat(20) {
+                            drawRect(
+                                color = Color.Gray.copy(alpha = Random.nextFloat()),
+                                topLeft = Offset(Random.nextFloat() * size.width, Random.nextFloat() * size.height),
+                                size = Size(4f, 4f)
+                            )
+                        }
+                    }
+                }
                 if (isHit) {
-                    scope.launch {
-                        flashAlpha.snapTo(1f)
-                        flashAlpha.animateTo(0f, tween(300))
+                    Box(Modifier.align(Center)) {
+                        UnitHitParticles(isCritical)
                     }
                 }
             }
 
-            HeroSprite(
-                hero.heroClass, 
-                Modifier
-                    .fillMaxSize()
-                    .graphicsLayer(compositingStrategy = CompositingStrategy.Offscreen)
-                    .drawWithContent {
-                        drawContent()
-                        if (flashAlpha.value > 0f) {
-                            drawRect(
-                                color = (if (isCritical) GoldBright else EnemyRed).copy(alpha = flashAlpha.value),
-                                blendMode = BlendMode.SrcIn
-                            )
-                        }
+            if (!isDying && hero.hasSpecialAbility) {
+                Spacer(Modifier.height(4.dp))
+                Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
+                    repeat(3) { i ->
+                        Box(Modifier.size(6.dp).background(if (i < hero.abilityCharge) GoldBright else StoneGray, CircleShape))
                     }
-            )
-            
-            if (isDying) {
-                // Dissolve effect
-                Canvas(Modifier.fillMaxSize()) {
-                    repeat(20) {
-                        drawRect(
-                            color = Color.Gray.copy(alpha = Random.nextFloat()),
-                            topLeft = Offset(Random.nextFloat() * size.width, Random.nextFloat() * size.height),
-                            size = Size(4f, 4f)
-                        )
-                    }
-                }
-            }
-            if (isHit) {
-                Box(Modifier.align(Center)) {
-                    UnitHitParticles(isCritical)
-                }
-            }
-        }
-        Text(hero.name, style = PixelSmall, color = Color.White)
-        
-        if (!isDying && hero.hasSpecialAbility) {
-            Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
-                repeat(3) { i ->
-                    Box(Modifier.size(6.dp).background(if (i < hero.abilityCharge) GoldBright else StoneGray, CircleShape))
                 }
             }
         }
@@ -469,54 +491,71 @@ fun EnemyUnitDisplay(enemy: Enemy, isHit: Boolean, isCritical: Boolean, isBoss: 
         }
     }
 
-    Column(
-        horizontalAlignment = CenterHorizontally,
-        modifier = Modifier.offset(x = shakeOffset.value.dp)
+    PixelPanel(
+        modifier = Modifier.offset(x = shakeOffset.value.dp),
+        borderColor = if (isBoss) EnemyRed else GoldDark,
+        bgColor = BgPanel.copy(alpha = 0.85f)
     ) {
-        if (isBoss) {
-            Text(enemy.name, style = PixelHeading, color = EnemyRed)
-            PixelHpBar(enemy.currentHp, enemy.maxHp, Modifier.width(100.dp))
-        } else {
-            PixelHpBar(enemy.currentHp, enemy.maxHp, Modifier.width(48.dp))
-        }
-        
-        Box(Modifier.size(if (isBoss) 96.dp else 72.dp).graphicsLayer(scaleX = -1f)) {
-            val flashAlpha = remember { Animatable(0f) }
-            val scope = rememberCoroutineScope()
+        Column(
+            horizontalAlignment = CenterHorizontally,
+            modifier = Modifier.padding(2.dp)
+        ) {
+            Text(
+                enemy.name,
+                style = if (isBoss) PixelHeading else PixelSmall,
+                color = EnemyRed,
+                maxLines = 1
+            )
+            Spacer(Modifier.height(2.dp))
 
-            LaunchedEffect(isHit) {
-                if (isHit) {
-                    scope.launch {
-                        flashAlpha.snapTo(1f)
-                        flashAlpha.animateTo(0f, tween(300))
-                    }
-                }
-            }
+            PixelHpBar(
+                enemy.currentHp,
+                enemy.maxHp,
+                Modifier.width(if (isBoss) 96.dp else 56.dp).height(8.dp)
+            )
+            Spacer(Modifier.height(4.dp))
 
-            EnemySprite(
-                enemy.name, 
+            Box(
                 Modifier
-                    .fillMaxSize()
-                    .graphicsLayer(compositingStrategy = CompositingStrategy.Offscreen)
-                    .drawWithContent {
-                        drawContent()
-                        if (flashAlpha.value > 0f) {
-                            drawRect(
-                                color = (if (isCritical) GoldBright else EnemyRed).copy(alpha = flashAlpha.value),
-                                blendMode = BlendMode.SrcIn
-                            )
+                    .size(if (isBoss) 88.dp else 64.dp)
+                    .background(BgDarkest)
+                    .border(1.dp, if (isBoss) EnemyRed else GoldDark)
+                    .graphicsLayer(scaleX = -1f)
+            ) {
+                val flashAlpha = remember { Animatable(0f) }
+                val scope = rememberCoroutineScope()
+
+                LaunchedEffect(isHit) {
+                    if (isHit) {
+                        scope.launch {
+                            flashAlpha.snapTo(1f)
+                            flashAlpha.animateTo(0f, tween(300))
                         }
                     }
-            )
+                }
 
-            if (isHit) {
-                Box(Modifier.align(Center)) {
-                    UnitHitParticles(isCritical)
+                EnemySprite(
+                    enemy.name,
+                    Modifier
+                        .fillMaxSize()
+                        .graphicsLayer(compositingStrategy = CompositingStrategy.Offscreen)
+                        .drawWithContent {
+                            drawContent()
+                            if (flashAlpha.value > 0f) {
+                                drawRect(
+                                    color = (if (isCritical) GoldBright else EnemyRed).copy(alpha = flashAlpha.value),
+                                    blendMode = BlendMode.SrcIn
+                                )
+                            }
+                        }
+                )
+
+                if (isHit) {
+                    Box(Modifier.align(Center)) {
+                        UnitHitParticles(isCritical)
+                    }
                 }
             }
-        }
-        if (!isBoss) {
-            Text(enemy.name, style = PixelSmall, color = EnemyRed)
         }
     }
 }

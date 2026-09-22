@@ -21,7 +21,7 @@ fun BottomPixelNav(currentRoute: String?, navController: NavController) {
     GoldenBorderBox(
         Modifier
             .fillMaxWidth()
-            .height(44.dp)
+            .height(46.dp)
             .background(BgDarkest)
     ) {
         Row(Modifier.fillMaxSize(), horizontalArrangement = Arrangement.SpaceEvenly) {
@@ -35,14 +35,30 @@ fun BottomPixelNav(currentRoute: String?, navController: NavController) {
                     Modifier
                         .weight(1f)
                         .fillMaxHeight()
-                        .background(if (active) GoldBright.copy(alpha = 0.15f) else Color.Transparent)
+                        .background(if (active) BgMedium else Color.Transparent)
                         .drawWithContent {
                             drawContent()
+                            val strokePx = 2.dp.toPx()
                             if (active) {
+                                // Gold top highlight bar and border accent
                                 drawRect(
                                     color = GoldBright,
-                                    topLeft = Offset(0f, size.height - 2.dp.toPx()),
-                                    size = Size(size.width, 2.dp.toPx())
+                                    topLeft = Offset(0f, 0f),
+                                    size = Size(size.width, strokePx)
+                                )
+                                drawRect(
+                                    color = GoldDark,
+                                    topLeft = Offset(0f, strokePx),
+                                    size = Size(size.width, size.height - strokePx),
+                                    style = androidx.compose.ui.graphics.drawscope.Stroke(width = 1.dp.toPx())
+                                )
+                            } else {
+                                // Divider line on right side of inactive tabs
+                                drawLine(
+                                    color = StoneGray.copy(alpha = 0.4f),
+                                    start = Offset(size.width - 1.dp.toPx(), 4.dp.toPx()),
+                                    end = Offset(size.width - 1.dp.toPx(), size.height - 4.dp.toPx()),
+                                    strokeWidth = 1.dp.toPx()
                                 )
                             }
                         }
