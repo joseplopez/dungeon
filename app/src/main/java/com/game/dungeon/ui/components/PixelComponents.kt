@@ -32,6 +32,7 @@ import androidx.compose.ui.unit.sp
 import com.game.dungeon.ui.theme.*
 import kotlinx.coroutines.delay
 import androidx.compose.foundation.Canvas
+import androidx.compose.ui.unit.Dp
 
 @Composable
 fun PixelPanel(
@@ -432,11 +433,11 @@ fun PixelDivider(color: Color = GoldDark) {
 }
 
 @Composable
-fun GoldenBorderBox(modifier: Modifier = Modifier, content: @Composable BoxScope.() -> Unit) {
+fun GoldenBorderBox(modifier: Modifier = Modifier, cornerSize: Dp = 8.dp, content: @Composable BoxScope.() -> Unit) {
     Box(modifier) {
         content()
         Canvas(Modifier.matchParentSize()) {
-            val cornerSize = 8.dp.toPx()
+            val cornerSize = cornerSize.toPx()
             val stroke = 2.dp.toPx()
             val gold = GoldBright.copy(alpha = 0.8f)
             // Draw 2px gold border

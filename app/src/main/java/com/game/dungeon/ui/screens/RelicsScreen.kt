@@ -225,10 +225,10 @@ fun RelicsScreen(
                             GoldenBorderBox(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .height(130.dp)
+                                    .height(110.dp)
                                     .background(BgPanel.copy(alpha = 0.8f))
                             ) {
-                                Canvas(Modifier.fillMaxSize().padding(12.dp)) {
+                                Canvas(Modifier.fillMaxSize().padding(8.dp)) {
                                     drawRelicSprite(selectedRelicType, animTime)
                                 }
                             }
@@ -283,7 +283,7 @@ fun RelicsScreen(
                                 )
 
                                 StatBoostCard(
-                                    icon = "🛡️",
+                                    icon = "⭐",
                                     label = safeStringResource(selectedRelicType.descRes),
                                     currentVal = "LVL $selectedLevel",
                                     nextVal = "LVL ${selectedLevel + 1}"
@@ -328,48 +328,66 @@ fun RelicsScreen(
 
                             Spacer(Modifier.height(6.dp))
 
-                            // Active Perks Summary List
-                            LazyColumn(
-                                modifier = Modifier.weight(1f),
-                                verticalArrangement = Arrangement.spacedBy(4.dp)
-                            ) {
-                                items(allRelics) { relic ->
-                                    val lvl = getRelicLevel(relic, gs)
-                                    val valStr = "+${getRelicBonusValue(relic, lvl)}${getRelicSuffix(relic)}"
-                                    val relicIcon = getRelicIcon(relic)
+                            // Active Perks Summary List / Game Stats List
+                            if (rightTab == 0) {
+                                LazyColumn(
+                                    modifier = Modifier.weight(1f),
+                                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                                ) {
+                                    items(allRelics) { relic ->
+                                        val lvl = getRelicLevel(relic, gs)
+                                        val valStr = "+${getRelicBonusValue(relic, lvl)}${getRelicSuffix(relic)}"
+                                        val relicIcon = getRelicIcon(relic)
 
-                                    GoldenBorderBox(
-                                        modifier = Modifier
-                                            .fillMaxWidth()
-                                            .background(if (lvl > 0) BgPanel.copy(alpha = 0.8f) else BgDarkest)
-                                    ) {
-                                        Row(
+                                        GoldenBorderBox(
                                             modifier = Modifier
                                                 .fillMaxWidth()
-                                                .padding(horizontal = 6.dp, vertical = 4.dp),
-                                            verticalAlignment = CenterVertically,
-                                            horizontalArrangement = Arrangement.SpaceBetween
+                                                .background(if (lvl > 0) BgPanel.copy(alpha = 0.8f) else BgDarkest),
+                                            cornerSize = 0.dp
                                         ) {
                                             Row(
+                                                modifier = Modifier
+                                                    .fillMaxWidth()
+                                                    .padding(horizontal = 6.dp, vertical = 4.dp),
                                                 verticalAlignment = CenterVertically,
-                                                horizontalArrangement = Arrangement.spacedBy(6.dp)
+                                                horizontalArrangement = Arrangement.SpaceBetween
                                             ) {
-                                                Text(relicIcon, fontSize = 12.sp)
+                                                Row(
+                                                    verticalAlignment = CenterVertically,
+                                                    horizontalArrangement = Arrangement.spacedBy(6.dp)
+                                                ) {
+                                                    Text(relicIcon, fontSize = 12.sp)
+                                                    Text(
+                                                        safeStringResource(relic.nameRes),
+                                                        style = PixelSmall,
+                                                        color = if (lvl > 0) GoldBright else StoneGray,
+                                                        maxLines = 1
+                                                    )
+                                                }
                                                 Text(
-                                                    safeStringResource(relic.nameRes),
+                                                    valStr,
                                                     style = PixelSmall,
-                                                    color = if (lvl > 0) GoldBright else StoneGray,
-                                                    maxLines = 1
+                                                    color = if (lvl > 0) HpGreen else StoneGray,
+                                                    fontSize = 10.sp
                                                 )
                                             }
-                                            Text(
-                                                valStr,
-                                                style = PixelSmall,
-                                                color = if (lvl > 0) HpGreen else StoneGray,
-                                                fontSize = 10.sp
-                                            )
                                         }
                                     }
+                                }
+                            } else {
+                                LazyColumn(
+                                    modifier = Modifier.weight(1f),
+                                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                                ) {
+                                    item { StatSummaryRow(icon = "🌌", label = "Dimension", value = "Dim ${gs.currentDimension}") }
+                                    item { StatSummaryRow(icon = "🏰", label = "Highest Floor", value = "F${gs.highestFloor}") }
+                                    item { StatSummaryRow(icon = "👑", label = "Lifetime Floor", value = "F${gs.lifetimeHighestFloor}") }
+                                    item { StatSummaryRow(icon = "💎", label = "Total Magicite", value = "${gs.totalMagiciteEarned}") }
+                                    item { StatSummaryRow(icon = "🪙", label = "Total Gil", value = "${gs.totalGilEarned}") }
+                                    item { StatSummaryRow(icon = "🏦", label = "Gil Vault Cap", value = "${gs.maxGil}") }
+                                    item { StatSummaryRow(icon = "⚡", label = "EXP Boost", value = "+${((gs.expMultiplier - 1.0f) * 100).toInt()}%") }
+                                    item { StatSummaryRow(icon = "🏷️", label = "Upgrade Discount", value = "-${(gs.upgradeDiscount * 100).toInt()}%") }
+                                    item { StatSummaryRow(icon = "💤", label = "Rest Discount", value = "-${(gs.restDiscount * 100).toInt()}%") }
                                 }
                             }
                         }
@@ -378,6 +396,47 @@ fun RelicsScreen(
 
                 BottomPixelNav(currentRoute, navController)
             }
+        }
+    }
+}
+
+@Composable
+fun StatSummaryRow(
+    icon: String,
+    label: String,
+    value: String
+) {
+    GoldenBorderBox(
+        modifier = Modifier
+            .fillMaxWidth()
+            .background(BgPanel.copy(alpha = 0.8f)),
+        cornerSize = 0.dp
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(horizontal = 6.dp, vertical = 4.dp),
+            verticalAlignment = CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            Row(
+                verticalAlignment = CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(6.dp)
+            ) {
+                Text(icon, fontSize = 12.sp)
+                Text(
+                    label,
+                    style = PixelSmall,
+                    color = Color.White,
+                    maxLines = 1
+                )
+            }
+            Text(
+                value,
+                style = PixelSmall,
+                color = GoldBright,
+                fontSize = 10.sp
+            )
         }
     }
 }

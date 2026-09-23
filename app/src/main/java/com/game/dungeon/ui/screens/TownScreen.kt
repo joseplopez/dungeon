@@ -238,8 +238,8 @@ fun TownScreen(
                         listOf(
                             NpcState("guard", "Guard", "💂", startXDp = 480f, walkRangeDp = 160f, speed = 0.0012f, tipRes = R.string.npc_tip_guard),
                             NpcState("scholar", "Scholar", "🧙", startXDp = 200f, walkRangeDp = 120f, speed = 0.001f, tipRes = R.string.npc_tip_scholar),
-                            NpcState("adventurer", "Hero", "🗡️", startXDp = 750f, walkRangeDp = 160f, speed = 0.0015f, tipRes = R.string.npc_tip_adventurer),
-                            NpcState("merchant", "Merchant", "🪙", startXDp = 1020f, walkRangeDp = 120f, speed = 0.0009f, tipRes = R.string.npc_tip_merchant)
+                            NpcState("adventurer", "Hero", "🧚🏽‍♀️", startXDp = 750f, walkRangeDp = 160f, speed = 0.0015f, tipRes = R.string.npc_tip_adventurer),
+                            NpcState("merchant", "Merchant", "🧝🏻", startXDp = 1020f, walkRangeDp = 120f, speed = 0.0009f, tipRes = R.string.npc_tip_merchant)
                         )
                     }
 
