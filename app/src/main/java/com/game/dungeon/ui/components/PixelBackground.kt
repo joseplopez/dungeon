@@ -1939,55 +1939,211 @@ fun TownParallaxBackground(scrollOffset: Float) {
         val W = size.width
         val H = size.height
 
-        drawRect(Color(0xFF050A1A), size = size)
+        // =========================================================================
+        // LAYER 0: STARRY NIGHT SKY & CRESCENT MOON (Parallax 0.02x)
+        // =========================================================================
+        // Gradient Night Sky
+        val skyGradient = Brush.verticalGradient(
+            colors = listOf(Color(0xFF030712), Color(0xFF130924), Color(0xFF28103A))
+        )
+        drawRect(brush = skyGradient, size = size)
+
+        // Twinkling Stars
         val starRng = java.util.Random(42)
-        repeat(60) {
-            val sx = (starRng.nextFloat() * W - (scrollOffset * 0.05f)) % W
-            val drawX = if (sx < 0) sx + W else sx
-            drawCircle(Color.White.copy(alpha = 0.4f), radius = 1.5f, center = Offset(drawX, starRng.nextFloat() * H * 0.4f))
+        repeat(75) { i ->
+            val origX = starRng.nextFloat() * (W * 3f)
+            val starX = (origX - (scrollOffset * 0.02f)) % (W * 3f)
+            val drawX = if (starX < 0) starX + (W * 3f) else starX
+            val starY = starRng.nextFloat() * (H * 0.42f)
+            val starAlpha = 0.3f + (starRng.nextFloat() * 0.6f)
+            val starRadius = if (i % 8 == 0) 2.2f else 1.2f
+
+            if (drawX in 0f..W) {
+                drawCircle(Color.White.copy(alpha = starAlpha), radius = starRadius, center = Offset(drawX, starY))
+            }
         }
 
-        val mountainY = H * 0.5f
-        val mWidth = 500f
-        var mx = -(scrollOffset * 0.15f % mWidth)
+        // Crescent Moon in Upper Right Sky
+        val moonX = W * 0.82f - (scrollOffset * 0.02f % W)
+        val moonY = H * 0.14f
+        val moonRadius = 22f
+
+        // Moon Glow Aura
+        drawCircle(Color(0xFFFFF9E6).copy(alpha = 0.15f), radius = moonRadius * 1.8f, center = Offset(moonX, moonY))
+        drawCircle(Color(0xFFFFF9E6).copy(alpha = 0.35f), radius = moonRadius * 1.3f, center = Offset(moonX, moonY))
+        // Moon Body
+        drawCircle(Color(0xFFFFFDF0), radius = moonRadius, center = Offset(moonX, moonY))
+        // Shadow overlap creating crescent shape
+        drawCircle(Color(0xFF130924), radius = moonRadius * 0.9f, center = Offset(moonX - 8f, moonY - 4f))
+
+        // =========================================================================
+        // LAYER 1: DISTANT CRIMSON MOUNTAINS & CLIFFSIDE GOTHIC CASTLE (Parallax 0.12x)
+        // =========================================================================
+        val mountainY = H * 0.52f
+        val mWidth = 600f
+        var mx = -(scrollOffset * 0.12f % mWidth)
+
         while (mx < W + mWidth) {
-            val path = Path().apply {
+            // Far Mountain Silhouette (Dull Crimson/Purple)
+            val pathFar = Path().apply {
                 moveTo(mx, mountainY)
-                lineTo(mx + mWidth * 0.3f, mountainY - 100f)
-                lineTo(mx + mWidth * 0.6f, mountainY - 180f)
-                lineTo(mx + mWidth * 0.8f, mountainY - 80f)
+                lineTo(mx + mWidth * 0.25f, mountainY - 90f)
+                lineTo(mx + mWidth * 0.55f, mountainY - 170f)
+                lineTo(mx + mWidth * 0.75f, mountainY - 80f)
                 lineTo(mx + mWidth, mountainY)
                 close()
             }
-            drawPath(path, Color(0xFF1B0F2E))
+            drawPath(pathFar, Color(0xFF281232))
+
+            // Nearer Mountain Silhouette (Deep Violet/Crimson)
+            val pathNear = Path().apply {
+                moveTo(mx + 80f, mountainY)
+                lineTo(mx + mWidth * 0.35f, mountainY - 130f)
+                lineTo(mx + mWidth * 0.65f, mountainY - 60f)
+                lineTo(mx + mWidth + 80f, mountainY)
+                close()
+            }
+            drawPath(pathNear, Color(0xFF1D0A26))
+
             mx += mWidth
         }
 
-        val forestY = H * 0.62f
-        val treeW = 140f
-        var tx = -(scrollOffset * 0.4f % treeW)
+        // --- CLIFFSIDE GOTHIC CASTLE KEEP (Right Side Landmark) ---
+        val castleRngX = (W * 1.8f) - (scrollOffset * 0.12f % (W * 3f))
+        val castleX = if (castleRngX < -300f) castleRngX + (W * 3f) else castleRngX
+        val cliffY = H * 0.52f
+
+        if (castleX in -300f..(W + 300f)) {
+            // High Rock Cliff Base
+            val cliffPath = Path().apply {
+                moveTo(castleX - 70f, cliffY + 20f)
+                lineTo(castleX - 40f, cliffY - 60f)
+                lineTo(castleX + 110f, cliffY - 60f)
+                lineTo(castleX + 140f, cliffY + 20f)
+                close()
+            }
+            drawPath(cliffPath, Color(0xFF14071C))
+
+            // Castle Main Spire Keep
+            val castleColor = Color(0xFF0C0314)
+            val windowGlow = Color(0xFFF39C12)
+
+            // Main Central Tower
+            drawRect(castleColor, Offset(castleX, cliffY - 170f), Size(40f, 110f))
+            // Pointed Roof Peak
+            val mainSpire = Path().apply {
+                moveTo(castleX - 4f, cliffY - 170f)
+                lineTo(castleX + 20f, cliffY - 220f)
+                lineTo(castleX + 44f, cliffY - 170f)
+                close()
+            }
+            drawPath(mainSpire, castleColor)
+
+            // Left Side Flank Tower
+            drawRect(castleColor, Offset(castleX - 30f, cliffY - 130f), Size(24f, 70f))
+            val leftSpire = Path().apply {
+                moveTo(castleX - 34f, cliffY - 130f)
+                lineTo(castleX - 18f, cliffY - 165f)
+                lineTo(castleX - 2f, cliffY - 130f)
+                close()
+            }
+            drawPath(leftSpire, castleColor)
+
+            // Right Side Flank Tower
+            drawRect(castleColor, Offset(castleX + 46f, cliffY - 130f), Size(24f, 70f))
+            val rightSpire = Path().apply {
+                moveTo(castleX + 42f, cliffY - 130f)
+                lineTo(castleX + 58f, cliffY - 165f)
+                lineTo(castleX + 74f, cliffY - 130f)
+                close()
+            }
+            drawPath(rightSpire, castleColor)
+
+            // Illuminated Orange Castle Windows
+            drawRect(windowGlow, Offset(castleX + 16f, cliffY - 150f), Size(8f, 14f))
+            drawRect(windowGlow, Offset(castleX + 16f, cliffY - 110f), Size(8f, 14f))
+            drawRect(windowGlow, Offset(castleX - 22f, cliffY - 110f), Size(6f, 10f))
+            drawRect(windowGlow, Offset(castleX + 54f, cliffY - 110f), Size(6f, 10f))
+        }
+
+        // =========================================================================
+        // LAYER 2: DENSE FOREST CANOPY & WOODEN FENCE (Parallax 0.35x)
+        // =========================================================================
+        val forestY = H * 0.64f
+        val treeW = 120f
+        var tx = -(scrollOffset * 0.35f % treeW)
+
         while (tx < W + treeW) {
-            drawRect(Color(0xFF0D1B0D), Offset(tx, forestY - 80f), Size(treeW * 0.7f, 100f))
-            drawCircle(Color(0xFF0D1B0D), radius = treeW * 0.5f, center = Offset(tx + treeW * 0.35f, forestY - 80f))
+            // Dark forest background trunks & shadow canopy
+            drawRect(Color(0xFF061406), Offset(tx + 15f, forestY - 70f), Size(20f, 90f))
+            drawCircle(Color(0xFF092109), radius = 45f, center = Offset(tx + 25f, forestY - 80f))
+            drawCircle(Color(0xFF0F330F), radius = 38f, center = Offset(tx + 65f, forestY - 75f))
+            drawCircle(Color(0xFF0B260B), radius = 42f, center = Offset(tx + 100f, forestY - 80f))
+
             tx += treeW
         }
 
-        val groundY = H * 0.75f
-        drawRect(Color(0xFF2A1A0A), Offset(0f, groundY), Size(W, H - groundY))
+        // Rustic Wooden Post-and-Rail Fence along Forest Line
+        val fenceW = 90f
+        var fx = -(scrollOffset * 0.35f % fenceW)
+        val fenceY = forestY + 5f
+        val fenceColor = Color(0xFF4A321A)
 
-        val pathY = groundY + 10f
-        val cobW = 80f
+        while (fx < W + fenceW) {
+            // Horizontal fence rails
+            drawRect(fenceColor, Offset(fx, fenceY - 18f), Size(fenceW, 4f))
+            drawRect(fenceColor, Offset(fx, fenceY - 8f), Size(fenceW, 4f))
+            // Vertical fence posts
+            drawRect(Color(0xFF38220F), Offset(fx + 10f, fenceY - 26f), Size(6f, 28f))
+            drawRect(Color(0xFF38220F), Offset(fx + 55f, fenceY - 26f), Size(6f, 28f))
+
+            fx += fenceW
+        }
+
+        // =========================================================================
+        // LAYER 3: FOREGROUND DIRT GROUND, COBBLESTONE PATH & GRASS (Scroll 1.0x)
+        // =========================================================================
+        val groundY = H * 0.72f
+        // Warm Rich Dirt Base
+        drawRect(Color(0xFF382212), Offset(0f, groundY), Size(W, H - groundY))
+        drawRect(Color(0xFF28150A), Offset(0f, groundY), Size(W, 6f)) // Ground border shadow
+
+        // Winding Cobblestone Road / Pathways
+        val cobW = 90f
         var cx = -(scrollOffset % cobW)
+        val roadY = groundY + 8f
+
         while (cx < W + cobW) {
-            drawRect(Color(0xFF3A2A1A), Offset(cx + 5f, pathY + 10f), Size(cobW - 10f, 25f))
-            drawRect(Color(0xFF3A2A1A), Offset(cx + 25f, pathY + 45f), Size(cobW - 15f, 20f))
+            // Rounded Cobblestone Pavers
+            drawRect(Color(0xFF626F73), Offset(cx + 4f, roadY), Size(24f, 12f))
+            drawRect(Color(0xFF4D5659), Offset(cx + 32f, roadY + 2f), Size(26f, 11f))
+            drawRect(Color(0xFF626F73), Offset(cx + 62f, roadY), Size(22f, 12f))
+
+            drawRect(Color(0xFF4D5659), Offset(cx + 16f, roadY + 16f), Size(28f, 12f))
+            drawRect(Color(0xFF626F73), Offset(cx + 48f, roadY + 16f), Size(26f, 12f))
+
+            drawRect(Color(0xFF626F73), Offset(cx + 6f, roadY + 32f), Size(26f, 11f))
+            drawRect(Color(0xFF4D5659), Offset(cx + 36f, roadY + 32f), Size(28f, 11f))
+            drawRect(Color(0xFF626F73), Offset(cx + 68f, roadY + 32f), Size(18f, 11f))
+
             cx += cobW
         }
 
-        val grassW = 120f
+        // Foreground Grass Tufts & Stones
+        val grassW = 100f
         var gx = -(scrollOffset % grassW)
+        val grassColor = Color(0xFF1E380C)
+
         while (gx < W + grassW) {
-            drawRect(Color(0xFF142208), Offset(gx + 10f, H - 25f), Size(20f, 15f))
+            // Grass tuft blades
+            drawRect(grassColor, Offset(gx + 12f, H - 22f), Size(4f, 18f))
+            drawRect(grassColor, Offset(gx + 18f, H - 26f), Size(4f, 22f))
+            drawRect(grassColor, Offset(gx + 24f, H - 20f), Size(4f, 16f))
+
+            // Small roadside pebble stones
+            drawCircle(Color(0xFF525E61), radius = 2.5f, center = Offset(gx + 55f, H - 12f))
+            drawCircle(Color(0xFF3B4447), radius = 3.5f, center = Offset(gx + 62f, H - 10f))
+
             gx += grassW
         }
     }

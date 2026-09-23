@@ -202,7 +202,7 @@ fun TownScreen(
                             onClick = { showUpgrades = true }
                         )
 
-                        // 3. Adventurer's Guild & Relics (Center-Right)
+                        // 3. Relics Sanctuary (Center-Right)
                         TownBuilding(
                             name = safeStringResource(R.string.building_relics),
                             tag = "RELICS",
@@ -212,11 +212,10 @@ fun TownScreen(
                                     launchSingleTop = true
                                     restoreState = true
                                 }
-                            },
-                            onBulletinClick = { showBulletinDialog = true }
+                            }
                         )
 
-                        // 4. Inn Building (Right)
+                        // 4. Inn Building & Bulletin Board (Right)
                         TownBuilding(
                             name = safeStringResource(R.string.building_inn),
                             tag = "THE INN",
@@ -227,7 +226,8 @@ fun TownScreen(
                                     popUpTo("inn") { saveState = true }
                                     restoreState = true
                                 }
-                            }
+                            },
+                            onBulletinClick = { showBulletinDialog = true }
                         )
 
                         Spacer(Modifier.width(200.dp)) // Right margin
@@ -369,8 +369,8 @@ fun TownBuilding(
                 }
             }
 
-            // Clickable Bulletin Board Overlay button on Guild building
-            if (tag == "RELICS" && onBulletinClick != null) {
+            // Clickable Bulletin Board Overlay button on Inn building
+            if (tag == "THE INN" && onBulletinClick != null) {
                 Box(
                     Modifier
                         .align(Alignment.BottomEnd)
