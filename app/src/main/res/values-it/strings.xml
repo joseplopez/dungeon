@@ -75,6 +75,16 @@
     <string name="level_format">LVL %1$d / %2$d</string>
     <string name="pathfinder_level_format">LVL %1$d / %2$d (Piano Max: %3$d)</string>
 
+    <!-- Town NPCs & Bulletin -->
+    <string name="npc_tip_guard">Alt! I boss dei piani rilasciano tantissimo Gil e Magicite!</string>
+    <string name="npc_tip_scholar">I cristalli del negozio sbloccano classi potenti!</string>
+    <string name="npc_tip_adventurer">Controlla la bacheca per i potenziamenti della città!</string>
+    <string name="npc_tip_merchant">Guarda i video per ottenere il doppio di Gil e Magicite!</string>
+    <string name="bulletin_title">BACHECA E NOTIZIE</string>
+    <string name="bulletin_record_format">Record piano più alto: Piano %1$d</string>
+    <string name="bulletin_active_perks">POTENZIAMENTI ATTIVI</string>
+    <string name="bulletin_no_upgrades">Nessun potenziamento acquistato. Visita la caserma!</string>
+
     <!-- Inn Screen -->
     <string name="hire_warriors">ASSOLDA GUERRIERI</string>
     <string name="permadeath_warning">Morte permanente attiva</string>

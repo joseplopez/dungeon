@@ -75,6 +75,16 @@
     <string name="level_format">NIV %1$d / %2$d</string>
     <string name="pathfinder_level_format">NIV %1$d / %2$d (Étage Max : %3$d)</string>
 
+    <!-- Town NPCs & Bulletin -->
+    <string name="npc_tip_guard">Halte ! Les boss d\'étage donnent beaucoup de Gil et Magicite !</string>
+    <string name="npc_tip_scholar">Les cristaux du magasin débloquent des classes puissantes !</string>
+    <string name="npc_tip_adventurer">Consultez le panneau d\'affichage pour les améliorations !</string>
+    <string name="npc_tip_merchant">Regardez des vidéos pour doubler vos Gil et Magicite !</string>
+    <string name="bulletin_title">BULLETIN ET NOUVELLES</string>
+    <string name="bulletin_record_format">Record d\'étage le plus élevé : Étage %1$d</string>
+    <string name="bulletin_active_perks">AMÉLIORATIONS ACTIVES</string>
+    <string name="bulletin_no_upgrades">Aucune amélioration achetée. Visitez la caserne !</string>
+
     <!-- Inn Screen -->
     <string name="hire_warriors">RECRUTER DES GUERRIERS</string>
     <string name="permadeath_warning">Mort permanente active</string>

@@ -75,6 +75,16 @@
     <string name="level_format">LV %1$d / %2$d</string>
     <string name="pathfinder_level_format">LV %1$d / %2$d (최대 층: %3$d)</string>
 
+    <!-- Town NPCs & Bulletin -->
+    <string name="npc_tip_guard">정지! 층 보스는 엄청난 길과 마지사이트를 드랍합니다!</string>
+    <string name="npc_tip_scholar">상점의 크리스탈로 강력한 직업을 해금하세요!</string>
+    <string name="npc_tip_adventurer">게시판에서 마을 강화 상태를 확인하세요!</string>
+    <string name="npc_tip_merchant">광고를 시청하고 길과 마지사이트를 2배로 받으세요!</string>
+    <string name="bulletin_title">마을 게시판 및 소식</string>
+    <string name="bulletin_record_format">최고 도달 층수: %1$d층</string>
+    <string name="bulletin_active_perks">활성화된 마을 강화</string>
+    <string name="bulletin_no_upgrades">구매한 마을 강화가 없습니다. 병영을 방문하세요!</string>
+
     <!-- Inn Screen -->
     <string name="hire_warriors">전사 고용</string>
     <string name="permadeath_warning">영구 사망 활성화됨</string>

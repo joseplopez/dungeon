@@ -75,6 +75,16 @@
     <string name="level_format">المستوى %1$d / %2$d</string>
     <string name="pathfinder_level_format">المستوى %1$d / %2$d (أقصى طابق: %3$d)</string>
 
+    <!-- Town NPCs & Bulletin -->
+    <string name="npc_tip_guard">قف! زعماء الطوابق يسقطون الكثير من الجيل والماجيسيت!</string>
+    <string name="npc_tip_scholar">البلورات من المتجر تفتح وظائف قوية!</string>
+    <string name="npc_tip_adventurer">تحقق من لوحة الإعلانات لمعرفة ترقيات المدينة!</string>
+    <string name="npc_tip_merchant">شاهد الفيديوهات للحصول على ضعف الجيل والماجيسيت!</string>
+    <string name="bulletin_title">لوحة الإعلانات والأخبار</string>
+    <string name="bulletin_record_format">أعلى رقم قياسي للطابق: الطابق %1$d</string>
+    <string name="bulletin_active_perks">مزايا المدينة النشطة</string>
+    <string name="bulletin_no_upgrades">لم يتم شراء أي ترقيات للمدينة بعد. زر الثكنات!</string>
+
     <!-- Inn Screen -->
     <string name="hire_warriors">توظيف المحاربين</string>
     <string name="permadeath_warning">الموت الدائم نشط</string>

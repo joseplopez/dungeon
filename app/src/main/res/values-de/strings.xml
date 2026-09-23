@@ -75,6 +75,16 @@
     <string name="level_format">Lvl %1$d / %2$d</string>
     <string name="pathfinder_level_format">Lvl %1$d / %2$d (Max. Ebene: %3$d)</string>
 
+    <!-- Town NPCs & Bulletin -->
+    <string name="npc_tip_guard">Halt! Etagenbosse lassen viel Gil und Magazit fallen!</string>
+    <string name="npc_tip_scholar">Kristalle aus dem Laden schalten mächtige Klassen frei!</string>
+    <string name="npc_tip_adventurer">Schau auf das Schwarze Brett für Stadt-Upgrades!</string>
+    <string name="npc_tip_merchant">Schaue Videos für doppeltes Gil und Magazit!</string>
+    <string name="bulletin_title">STADT-BULLETIN &amp; NEWS</string>
+    <string name="bulletin_record_format">Höchste Etage: Etage %1$d</string>
+    <string name="bulletin_active_perks">AKTIVE STADT-BONI</string>
+    <string name="bulletin_no_upgrades">Noch keine Upgrades gekauft. Besuche die Kaserne!</string>
+
     <!-- Inn Screen -->
     <string name="hire_warriors">KRIEGER ANHEUERN</string>
     <string name="permadeath_warning">Permanenter Tod aktiv</string>

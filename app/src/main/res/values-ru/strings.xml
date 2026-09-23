@@ -75,6 +75,16 @@
     <string name="level_format">УР %1$d / %2$d</string>
     <string name="pathfinder_level_format">УР %1$d / %2$d (Макс. этаж: %3$d)</string>
 
+    <!-- Town NPCs & Bulletin -->
+    <string name="npc_tip_guard">Стой! Боссы этажей дают много Гиля и Магицита!</string>
+    <string name="npc_tip_scholar">Кристаллы из лавки открывают мощные классы!</string>
+    <string name="npc_tip_adventurer">Проверь доску объявлений, чтобы узнать о улучшениях!</string>
+    <string name="npc_tip_merchant">Смотри видео для получения 2x Гиля и Магицита!</string>
+    <string name="bulletin_title">ДОСКА ОБЪЯВЛЕНИЙ И НОВОСТИ</string>
+    <string name="bulletin_record_format">Рекорд этажа: Этаж %1$d</string>
+    <string name="bulletin_active_perks">АКТИВНЫЕ УЛУЧШЕНИЯ ГОРОДА</string>
+    <string name="bulletin_no_upgrades">Улучшения еще не куплены. Посети казармы!</string>
+
     <!-- Inn Screen -->
     <string name="hire_warriors">НАЙМ ВОИНОВ</string>
     <string name="permadeath_warning">Перманентная смерть активна</string>

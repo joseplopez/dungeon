@@ -75,6 +75,16 @@
     <string name="level_format">SNT %1$d / %2$d</string>
     <string name="pathfinder_level_format">SNT %1$d / %2$d (Maks Kat: %3$d)</string>
 
+    <!-- Town NPCs & Bulletin -->
+    <string name="npc_tip_guard">Dur! Kat patronları bolca Gil ve Magicite düşürür!</string>
+    <string name="npc_tip_scholar">Dükkandaki kristaller güçlü sınıfları açar!</string>
+    <string name="npc_tip_adventurer">Şehir geliştirmeleri için duyuru panosuna bak!</string>
+    <string name="npc_tip_merchant">2 kat Gil ve Magicite için videolar izle!</string>
+    <string name="bulletin_title">DUYURU PANOSU VE HABERLER</string>
+    <string name="bulletin_record_format">En Yüksek Kat Rekoru: Kat %1$d</string>
+    <string name="bulletin_active_perks">AKTİF ŞEHİR BONUSLARI</string>
+    <string name="bulletin_no_upgrades">Henüz yükseltme alınmadı. Kışlayı ziyaret et!</string>
+
     <!-- Inn Screen -->
     <string name="hire_warriors">SAVAŞÇI KİRALA</string>
     <string name="permadeath_warning">Kalıcı ölüm aktif</string>

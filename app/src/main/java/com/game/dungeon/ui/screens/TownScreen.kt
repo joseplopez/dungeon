@@ -2,7 +2,9 @@ package com.game.dungeon.ui.screens
 
 import android.content.Intent
 import android.net.Uri
+import androidx.annotation.StringRes
 import androidx.compose.animation.*
+import androidx.compose.animation.core.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -18,9 +20,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
-import com.game.dungeon.ui.components.safeStringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -33,6 +35,19 @@ import com.game.dungeon.data.models.*
 import com.game.dungeon.ui.components.*
 import com.game.dungeon.ui.theme.*
 import com.game.dungeon.ui.viewmodels.TownViewModel
+import kotlinx.coroutines.delay
+import kotlin.math.cos
+import kotlin.math.sin
+
+data class NpcState(
+    val id: String,
+    val name: String,
+    val emoji: String,
+    val startXDp: Float,
+    val walkRangeDp: Float,
+    val speed: Float,
+    @param:StringRes val tipRes: Int
+)
 
 @Composable
 fun TownScreen(
@@ -55,12 +70,48 @@ fun TownScreen(
     var showCrystalShop by remember { mutableStateOf(false) }
     var showUpgrades by remember { mutableStateOf(false) }
     var showSupportDialog by remember { mutableStateOf(false) }
+    var showBulletinDialog by remember { mutableStateOf(false) }
+
+    var activeSpeechNpcId by remember { mutableStateOf<String?>(null) }
+    var activeSpeechText by remember { mutableStateOf<String?>(null) }
 
     val scrollState = rememberScrollState()
+    val context = LocalContext.current
+    val resources = context.resources
+
+    // Infinite animation transition for building animations & smoke
+    val infiniteTransition = rememberInfiniteTransition(label = "town_anim")
+    val animTime by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 100000f,
+        animationSpec = infiniteRepeatable(tween(100000, easing = LinearEasing)),
+        label = "animTime"
+    )
+
+    // Ambient NPC speech timer
+    LaunchedEffect(Unit) {
+        val tips = listOf(
+            "guard" to R.string.npc_tip_guard,
+            "scholar" to R.string.npc_tip_scholar,
+            "adventurer" to R.string.npc_tip_adventurer,
+            "merchant" to R.string.npc_tip_merchant
+        )
+        var index = 0
+        while (true) {
+            delay(8000)
+            val (npcId, tipRes) = tips[index % tips.size]
+            activeSpeechNpcId = npcId
+            activeSpeechText = resources.getString(tipRes)
+            delay(3500)
+            activeSpeechNpcId = null
+            activeSpeechText = null
+            index++
+        }
+    }
 
     PixelTheme {
         Box(Modifier.fillMaxSize()) {
-            // Parallax Background
+            // Parallax Night Background
             TownParallaxBackground(scrollState.value.toFloat())
 
             Column(Modifier.fillMaxSize()) {
@@ -119,45 +170,120 @@ fun TownScreen(
                 }
 
                 // Town View Area (Horizontally Scrollable)
-                Box(Modifier.weight(1f).fillMaxWidth()) {
+                Box(
+                    Modifier
+                        .weight(1f)
+                        .fillMaxWidth()
+                        .horizontalScroll(scrollState)
+                ) {
+                    // Buildings Row
                     Row(
                         modifier = Modifier
-                            .fillMaxSize()
-                            .horizontalScroll(scrollState)
-                            .padding(bottom = 0.dp), // Position buildings on the ground
+                            .padding(bottom = 10.dp)
+                            .align(Alignment.BottomStart),
                         horizontalArrangement = Arrangement.spacedBy(60.dp),
                         verticalAlignment = Alignment.Bottom
                     ) {
-                        Spacer(Modifier.width(150.dp)) // Left margin
+                        Spacer(Modifier.width(120.dp)) // Left margin
 
-                        // 1. Inn Building
-                        TownBuilding(safeStringResource(R.string.building_inn), "THE INN") { 
-                            navController.navigate("inn") {
-                                launchSingleTop = true
-                                popUpTo("inn") { saveState = true }
-                                restoreState = true
+                        // 1. Crystal / Alchemist Shop (Left)
+                        TownBuilding(
+                            name = safeStringResource(R.string.building_crystal_shop),
+                            tag = "CRYSTAL SHOP",
+                            animTime = animTime,
+                            onClick = { showCrystalShop = true }
+                        )
+
+                        // 2. Training Hall / Barracks (Center-Left)
+                        TownBuilding(
+                            name = safeStringResource(R.string.building_barracks),
+                            tag = "BARRACKS",
+                            animTime = animTime,
+                            onClick = { showUpgrades = true }
+                        )
+
+                        // 3. Adventurer's Guild & Relics (Center-Right)
+                        TownBuilding(
+                            name = safeStringResource(R.string.building_relics),
+                            tag = "RELICS",
+                            animTime = animTime,
+                            onClick = {
+                                navController.navigate("relics") {
+                                    launchSingleTop = true
+                                    restoreState = true
+                                }
+                            },
+                            onBulletinClick = { showBulletinDialog = true }
+                        )
+
+                        // 4. Inn Building (Right)
+                        TownBuilding(
+                            name = safeStringResource(R.string.building_inn),
+                            tag = "THE INN",
+                            animTime = animTime,
+                            onClick = { 
+                                navController.navigate("inn") {
+                                    launchSingleTop = true
+                                    popUpTo("inn") { saveState = true }
+                                    restoreState = true
+                                }
+                            }
+                        )
+
+                        Spacer(Modifier.width(200.dp)) // Right margin
+                    }
+
+                    // Walking NPCs inside the SAME scrollable Box
+                    val npcs = remember {
+                        listOf(
+                            NpcState("guard", "Guard", "💂", startXDp = 480f, walkRangeDp = 160f, speed = 0.0012f, tipRes = R.string.npc_tip_guard),
+                            NpcState("scholar", "Scholar", "🧙", startXDp = 200f, walkRangeDp = 120f, speed = 0.001f, tipRes = R.string.npc_tip_scholar),
+                            NpcState("adventurer", "Hero", "🗡️", startXDp = 750f, walkRangeDp = 160f, speed = 0.0015f, tipRes = R.string.npc_tip_adventurer),
+                            NpcState("merchant", "Merchant", "🪙", startXDp = 1020f, walkRangeDp = 120f, speed = 0.0009f, tipRes = R.string.npc_tip_merchant)
+                        )
+                    }
+
+                    npcs.forEach { npc ->
+                        val phase = animTime * npc.speed
+                        val offsetX = npc.startXDp + sin(phase) * (npc.walkRangeDp / 2f)
+                        val isWalkingLeft = cos(phase) < 0f
+                        val walkBounce = kotlin.math.abs(sin(phase * 4f)) * 4f
+
+                        Box(
+                            Modifier
+                                .offset(x = offsetX.dp, y = (-20 - walkBounce).dp)
+                                .align(Alignment.BottomStart)
+                                .clickable {
+                                    activeSpeechNpcId = npc.id
+                                    activeSpeechText = resources.getString(npc.tipRes)
+                                }
+                        ) {
+                            Column(horizontalAlignment = CenterHorizontally) {
+                                // Speech Bubble
+                                if (activeSpeechNpcId == npc.id && activeSpeechText != null) {
+                                    GoldenBorderBox(
+                                        Modifier
+                                            .padding(bottom = 4.dp)
+                                            .background(BgDarkest.copy(alpha = 0.95f), RoundedCornerShape(6.dp))
+                                    ) {
+                                        Text(
+                                            activeSpeechText!!,
+                                            style = PixelSmall,
+                                            color = GoldBright,
+                                            modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp),
+                                            textAlign = TextAlign.Center
+                                        )
+                                    }
+                                }
+
+                                // NPC Pixel Sprite
+                                Text(
+                                    npc.emoji,
+                                    fontSize = 28.sp,
+                                    modifier = Modifier.graphicsLayer(scaleX = if (isWalkingLeft) -1f else 1f)
+                                )
                             }
                         }
-
-                        // 2. Crystal Shop
-                        TownBuilding(safeStringResource(R.string.building_crystal_shop), "CRYSTAL SHOP") { 
-                            showCrystalShop = true 
-                        }
-
-                        // 3. Upgrades Building
-                        TownBuilding(safeStringResource(R.string.building_barracks), "BARRACKS") { 
-                            showUpgrades = true 
-                        }
-
-                        // 4. Relics / Portal
-                        TownBuilding(safeStringResource(R.string.building_relics), "RELICS") {
-                            navController.navigate("relics") {
-                                launchSingleTop = true
-                                restoreState = true
-                            }
-                        }
-
-                        Spacer(Modifier.width(250.dp)) // Right margin
                     }
                 }
 
@@ -166,7 +292,7 @@ fun TownScreen(
         }
     }
 
-    // Dialogs remain the same
+    // Dialogs
     if (showCrystalShop) {
         CrystalShopDialog(
             availableCrystals = availableCrystals,
@@ -192,6 +318,13 @@ fun TownScreen(
         )
     }
 
+    if (showBulletinDialog && gs != null) {
+        BulletinBoardDialog(
+            gs = gs!!,
+            onDismiss = { showBulletinDialog = false }
+        )
+    }
+
     if (showResourceShop) {
         ResourceShopDialog(
             initialResourceType = resourceShopType,
@@ -209,38 +342,55 @@ fun TownScreen(
 }
 
 @Composable
-fun TownBuilding(name: String, tag: String, onClick: () -> Unit) {
+fun TownBuilding(
+    name: String,
+    tag: String,
+    animTime: Float,
+    onClick: () -> Unit,
+    onBulletinClick: (() -> Unit)? = null
+) {
     Column(
         horizontalAlignment = CenterHorizontally,
         modifier = Modifier
-            .width(200.dp)
+            .width(220.dp)
             .clickable { onClick() }
     ) {
-        // Larger, more detailed programmatic sprites
         Box(
             modifier = Modifier
-                .size(160.dp, 120.dp),
+                .size(200.dp, 150.dp),
             contentAlignment = Alignment.BottomCenter
         ) {
             Canvas(Modifier.fillMaxSize()) {
                 when (tag) {
-                    "THE INN" -> drawDetailedInn()
-                    "CRYSTAL SHOP" -> drawDetailedCrystalShop()
-                    "BARRACKS" -> drawDetailedBarracks()
-                    "RELICS" -> drawDetailedPortal()
+                    "THE INN" -> drawDetailedInn(animTime)
+                    "CRYSTAL SHOP" -> drawDetailedCrystalShop(animTime)
+                    "BARRACKS" -> drawDetailedBarracks(animTime)
+                    "RELICS" -> drawDetailedPortal(animTime)
                 }
+            }
+
+            // Clickable Bulletin Board Overlay button on Guild building
+            if (tag == "RELICS" && onBulletinClick != null) {
+                Box(
+                    Modifier
+                        .align(Alignment.BottomEnd)
+                        .padding(end = 12.dp, bottom = 12.dp)
+                        .size(50.dp, 35.dp)
+                        .clickable { onBulletinClick() }
+                )
             }
         }
         
-        Spacer(Modifier.height(40.dp))
+        Spacer(Modifier.height(16.dp))
         
+        // Golden Border Badge Label
         GoldenBorderBox(
             modifier = Modifier
-                .background(BgDarkest.copy(alpha = 0.8f), RoundedCornerShape(4.dp))
+                .background(BgDarkest.copy(alpha = 0.9f), RoundedCornerShape(4.dp))
         ) {
             Text(
                 name,
-                modifier = Modifier.padding(horizontal = 24.dp, vertical = 6.dp),
+                modifier = Modifier.padding(horizontal = 18.dp, vertical = 6.dp),
                 style = PixelBody,
                 color = GoldBright,
                 textAlign = TextAlign.Center,
@@ -250,7 +400,94 @@ fun TownBuilding(name: String, tag: String, onClick: () -> Unit) {
         }
     }
 }
-          
+
+@Composable
+fun BulletinBoardDialog(
+    gs: GameState,
+    onDismiss: () -> Unit
+) {
+    Dialog(onDismissRequest = onDismiss) {
+        GoldenBorderBox(
+            Modifier
+                .fillMaxWidth(0.95f)
+                .wrapContentHeight()
+                .background(BgDarkest)
+                .padding(16.dp)
+        ) {
+            Column(
+                horizontalAlignment = CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                Row(
+                    Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = CenterVertically
+                ) {
+                    Text(safeStringResource(R.string.bulletin_title), style = PixelHeading)
+                    PixelButton(
+                        label = "X",
+                        onClick = onDismiss,
+                        modifier = Modifier.size(32.dp),
+                        horizontalPadding = 0.dp,
+                        verticalPadding = 0.dp
+                    )
+                }
+
+                PixelDivider()
+
+                // Highest Floor Record
+                GoldenBorderBox(Modifier.fillMaxWidth().background(BgPanel.copy(alpha = 0.8f))) {
+                    Row(
+                        Modifier.padding(12.dp),
+                        verticalAlignment = CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(12.dp)
+                    ) {
+                        Text("🏆", fontSize = 28.sp)
+                        Column {
+                            Text(safeStringResource(R.string.bulletin_record_format, gs.highestFloor), style = PixelBody, color = GoldBright)
+                            Text("Dimension ${gs.currentDimension}", style = PixelSmall, color = StoneGray)
+                        }
+                    }
+                }
+
+                // Active Town Perks
+                Text(safeStringResource(R.string.bulletin_active_perks), style = PixelGold, fontSize = 12.sp)
+
+                Column(
+                    Modifier.fillMaxWidth().background(BgPanel.copy(alpha = 0.6f)).padding(8.dp),
+                    verticalArrangement = Arrangement.spacedBy(6.dp)
+                ) {
+                    val perks = mutableListOf<String>()
+                    if (gs.innLevel > 0) perks.add("🏨 Inn Rest HP Heal: +${gs.innLevel * 20}%")
+                    if (gs.barracksLevel > 0) perks.add("🛡️ Barracks Max Party Size: ${3 + gs.barracksLevel}")
+                    if (gs.vaultLevel > 0) perks.add("💰 Vault Gold Interest: +${gs.vaultLevel * 5}%")
+                    if (gs.pathfinderLevel > 0) perks.add("🧭 Pathfinder Start Floor: Floor ${gs.pathfinderLevel * 5}")
+                    if (gs.planningLevel > 0) perks.add("📜 Upgrade Discount: ${(gs.upgradeDiscount * 100).toInt()}%")
+
+                    if (perks.isEmpty()) {
+                        Text(
+                            safeStringResource(R.string.bulletin_no_upgrades),
+                            style = PixelSmall,
+                            color = StoneGray,
+                            textAlign = TextAlign.Center,
+                            modifier = Modifier.fillMaxWidth()
+                        )
+                    } else {
+                        perks.forEach { perk ->
+                            Text(perk, style = PixelSmall, color = GoldBright)
+                        }
+                    }
+                }
+
+                PixelButton(
+                    label = "CLOSE",
+                    onClick = onDismiss,
+                    modifier = Modifier.fillMaxWidth().height(40.dp)
+                )
+            }
+        }
+    }
+}
 
 @Composable
 fun CrystalShopDialog(

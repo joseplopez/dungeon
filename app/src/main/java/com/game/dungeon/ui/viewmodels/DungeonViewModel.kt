@@ -111,6 +111,7 @@ class DungeonViewModel @Inject constructor(
 
         battleState.value = FFBattleState(
             currentFloor = startFloor.coerceAtLeast(1),
+            currentBiome = dimension.biomes.find { startFloor.coerceAtLeast(1) in it.floorRange },
             dimension = dimension,
             heroes = partyWithStats,
             originalPartySize = party.size,
@@ -135,7 +136,8 @@ class DungeonViewModel @Inject constructor(
   private fun handleEvent(event: FFBattleEvent) {
     when (event) {
       is FFBattleEvent.FloorStart -> {
-          battleState.update { it.copy(enemies = event.enemies, currentFloor = event.floor) }
+          val biome = battleState.value.dimension?.biomes?.find { event.floor in it.floorRange }
+          battleState.update { it.copy(enemies = event.enemies, currentFloor = event.floor, currentBiome = biome ?: it.currentBiome) }
       }
       is FFBattleEvent.DamageDealt -> {
         battleState.update { state ->

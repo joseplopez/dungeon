@@ -75,6 +75,16 @@
     <string name="level_format">স্তর %1$d / %2$d</string>
     <string name="pathfinder_level_format">স্তর %1$d / %2$d (সর্বোচ্চ তলা: %3$d)</string>
 
+    <!-- Town NPCs & Bulletin -->
+    <string name="npc_tip_guard">থামুন! ফ্লোর বসরা প্রচুর গিল এবং ম্যাজিসাইট দেয়!</string>
+    <string name="npc_tip_scholar">দোকানের স্ফটিকগুলি শক্তিশালী জব আনলক করে!</string>
+    <string name="npc_tip_adventurer">শহরের আপগ্রেডের জন্য বুলেটিন বোর্ড দেখুন!</string>
+    <string name="npc_tip_merchant">২ গুণ গিল এবং ম্যাজিসাইটের জন্য ভিডিও দেখুন!</string>
+    <string name="bulletin_title">বুলেটিন বোর্ড এবং খবর</string>
+    <string name="bulletin_record_format">সর্বোচ্চ ফ্লোর রেকর্ড: ফ্লোর %1$d</string>
+    <string name="bulletin_active_perks">সক্রিয় সিটি আপগ্রেড</string>
+    <string name="bulletin_no_upgrades">এখনও কোনো আপগ্রেড কেনা হয়নি। ব্যারাক ঘুরে আসুন!</string>
+
     <!-- Inn Screen -->
     <string name="hire_warriors">যোদ্ধা ভাড়া করুন</string>
     <string name="permadeath_warning">স্থায়ী মৃত্যু সক্রিয়</string>

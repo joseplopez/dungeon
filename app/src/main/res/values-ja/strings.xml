@@ -75,6 +75,16 @@
     <string name="level_format">LV %1$d / %2$d</string>
     <string name="pathfinder_level_format">LV %1$d / %2$d (最大階層: %3$d)</string>
 
+    <!-- Town NPCs & Bulletin -->
+    <string name="npc_tip_guard">止まれ！階層ボスは大量のギルとマジサイトを落とすぞ！</string>
+    <string name="npc_tip_scholar">ショップのクリスタルで強力なジョブを解放できるぞ！</string>
+    <string name="npc_tip_adventurer">掲示板で街の強化状況を確認しよう！</string>
+    <string name="npc_tip_merchant">動画視聴でギルとマジサイトが2倍に！</string>
+    <string name="bulletin_title">街の掲示板・お知らせ</string>
+    <string name="bulletin_record_format">最高到達階層: %1$d階</string>
+    <string name="bulletin_active_perks">有効な街の強化</string>
+    <string name="bulletin_no_upgrades">まだ街の強化がありません。兵舎へ行こう！</string>
+
     <!-- Inn Screen -->
     <string name="hire_warriors">戦士を雇う</string>
     <string name="permadeath_warning">パーマネントデス有効</string>

@@ -75,6 +75,16 @@
     <string name="level_format">NIVEL %1$d / %2$d</string>
     <string name="pathfinder_level_format">NIVEL %1$d / %2$d (Piso Máx: %3$d)</string>
 
+    <!-- Town NPCs & Bulletin -->
+    <string name="npc_tip_guard">¡Alto! ¡Los jefes de piso sueltan mucho Gil y Magicita!</string>
+    <string name="npc_tip_scholar">¡Los cristales de la tienda desbloquean trabajos poderosos!</string>
+    <string name="npc_tip_adventurer">¡Consulta el tablón de anuncios para ver las mejoras de la ciudad!</string>
+    <string name="npc_tip_merchant">¡Mira videos para obtener el doble de Gil y Magicita!</string>
+    <string name="bulletin_title">TABLÓN Y NOTICIAS</string>
+    <string name="bulletin_record_format">Récord de piso más alto: Piso %1$d</string>
+    <string name="bulletin_active_perks">MEJORAS ACTIVAS DE LA CIUDAD</string>
+    <string name="bulletin_no_upgrades">Aún no hay mejoras compradas. ¡Visita el cuartel!</string>
+
     <!-- Inn Screen -->
     <string name="hire_warriors">CONTRATAR GUERREROS</string>
     <string name="permadeath_warning">Muerte permanente activa</string>

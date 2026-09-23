@@ -75,6 +75,16 @@
     <string name="level_format">NIVELL %1$d / %2$d</string>
     <string name="pathfinder_level_format">NIVELL %1$d / %2$d (Pis Màx: %3$d)</string>
 
+    <!-- Town NPCs & Bulletin -->
+    <string name="npc_tip_guard">Atura\'t! Els caps de pis deixen molt Gil i Magicita!</string>
+    <string name="npc_tip_scholar">Els cristalls de la botiga desbloquegen feines potents!</string>
+    <string name="npc_tip_adventurer">Consulta el tauler d\'anuncis per veure les millores!</string>
+    <string name="npc_tip_merchant">Mira vídeos per aconseguir el doble de Gil i Magicita!</string>
+    <string name="bulletin_title">TAULER I NOTÍCIES</string>
+    <string name="bulletin_record_format">Rècord de pis més alt: Pis %1$d</string>
+    <string name="bulletin_active_perks">MILLORES ACTIVES DE LA CIUTAT</string>
+    <string name="bulletin_no_upgrades">Encara no hi ha millores comprades. Visita el quartel!</string>
+
     <!-- Inn Screen -->
     <string name="hire_warriors">CONTRACTAR GUERRERS</string>
     <string name="permadeath_warning">Mort permanent activa</string>

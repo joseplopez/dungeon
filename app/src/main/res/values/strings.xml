@@ -75,6 +75,16 @@
     <string name="level_format">LVL %1$d / %2$d</string>
     <string name="pathfinder_level_format">LVL %1$d / %2$d (Max Floor: %3$d)</string>
 
+    <!-- Town NPCs & Bulletin -->
+    <string name="npc_tip_guard">Halt! Floor bosses drop massive Gil and Magicite!</string>
+    <string name="npc_tip_scholar">Crystals from the shop unlock powerful jobs!</string>
+    <string name="npc_tip_adventurer">Check the Bulletin Board for active town upgrades!</string>
+    <string name="npc_tip_merchant">Watch video boosts for 2x Gil and Magicite on runs!</string>
+    <string name="bulletin_title">TOWN BULLETIN &amp; NEWS</string>
+    <string name="bulletin_record_format">Highest Floor Record: Floor %1$d</string>
+    <string name="bulletin_active_perks">ACTIVE TOWN PERKS</string>
+    <string name="bulletin_no_upgrades">No town upgrades purchased yet. Visit the Barracks!</string>
+
     <!-- Inn Screen -->
     <string name="hire_warriors">HIRE WARRIORS</string>
     <string name="permadeath_warning">Permanent death active</string>

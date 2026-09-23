@@ -75,6 +75,16 @@
     <string name="level_format">NV %1$d / %2$d</string>
     <string name="pathfinder_level_format">NV %1$d / %2$d (Andar Máx: %3$d)</string>
 
+    <!-- Town NPCs & Bulletin -->
+    <string name="npc_tip_guard">Alto lá! Chefes de andar soltam muito Gil e Magicite!</string>
+    <string name="npc_tip_scholar">Cristais da loja desbloqueiam classes poderosas!</string>
+    <string name="npc_tip_adventurer">Confira o mural de avisos para ver as melhorias da cidade!</string>
+    <string name="npc_tip_merchant">Assista a vídeos para ganhar 2x mais Gil e Magicite!</string>
+    <string name="bulletin_title">BOLETIM E NOTÍCIAS</string>
+    <string name="bulletin_record_format">Recorde de andar mais alto: Andar %1$d</string>
+    <string name="bulletin_active_perks">MELHORIAS ATIVAS DA CIDADE</string>
+    <string name="bulletin_no_upgrades">Nenhuma melhoria comprada ainda. Visite o quartel!</string>
+
     <!-- Inn Screen -->
     <string name="hire_warriors">CONTRATAR GUERREIROS</string>
     <string name="permadeath_warning">Muerte permanente activa</string>

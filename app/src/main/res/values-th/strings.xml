@@ -75,6 +75,16 @@
     <string name="level_format">เลเวล %1$d / %2$d</string>
     <string name="pathfinder_level_format">เลเวล %1$d / %2$d (ชั้นสูงสุด: %3$d)</string>
 
+    <!-- Town NPCs & Bulletin -->
+    <string name="npc_tip_guard">หยุดก่อน! บอสประจำชั้นดร็อปกิลและเมจิไซต์จำนวนมาก!</string>
+    <string name="npc_tip_scholar">คริสตัลจากร้านค้าช่วยปลดล็อกอาชีพที่แข็งแกร่ง!</string>
+    <string name="npc_tip_adventurer">ตรวจสอบบอร์ดประชาสัมพันธ์เพื่อดูการอัปเกรดเมือง!</string>
+    <string name="npc_tip_merchant">ชมวิดีโอเพื่อรับกิลและเมจิไซต์ 2 เท่า!</string>
+    <string name="bulletin_title">บอร์ดข่าวสารเมือง</string>
+    <string name="bulletin_record_format">สถิติชั้นสูงสุด: ชั้น %1$d</string>
+    <string name="bulletin_active_perks">การอัปเกรดเมืองที่ใช้งานอยู่</string>
+    <string name="bulletin_no_upgrades">ยังไม่ได้ซื้อการอัปเกรดเมือง เยี่ยมชมโรงทหาร!</string>
+
     <!-- Inn Screen -->
     <string name="hire_warriors">จ้างนักรบ</string>
     <string name="permadeath_warning">ระบบความตายถาวรทำงาน</string>

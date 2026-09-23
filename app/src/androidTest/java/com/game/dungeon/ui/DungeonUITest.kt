@@ -215,4 +215,29 @@ class DungeonUITest {
         // 6. Back at Inn
         composeTestRule.onNodeWithText("THE INN").assertIsDisplayed()
     }
+
+    @Test
+    fun testDungeonRun_CorneliaCastleBiome() {
+        composeTestRule.waitForIdle()
+        // 1. Hire a hero
+        composeTestRule.onNodeWithText("0G").performClick()
+        composeTestRule.waitForIdle()
+
+        // 2. Enter Dungeon (Starts at Floor 1 - Cornelia Castle Biome)
+        composeTestRule.onNodeWithText("⚔ ENTER DUNGEON ⚔").performClick()
+        composeTestRule.waitForIdle()
+
+        // 3. Verify Floor 1 and Cornelia Region Biome
+        composeTestRule.onNodeWithText("FLOOR 1", substring = true).assertIsDisplayed()
+        composeTestRule.onNodeWithText("Cornelia Region", substring = true).assertIsDisplayed()
+
+        // 4. Retreat
+        composeTestRule.onNodeWithText("◀ RETREAT").performClick()
+        composeTestRule.waitForIdle()
+
+        // 5. Return to Inn
+        composeTestRule.onNodeWithText("RETURN TO INN").performClick()
+        composeTestRule.waitForIdle()
+        composeTestRule.onNodeWithText("THE INN").assertIsDisplayed()
+    }
 }

@@ -75,6 +75,16 @@
     <string name="level_format">NGAZI %1$d / %2$d</string>
     <string name="pathfinder_level_format">NGAZI %1$d / %2$d (Ghorofa ya Max: %3$d)</string>
 
+    <!-- Town NPCs & Bulletin -->
+    <string name="npc_tip_guard">Simama! Mabosi wa ghorofa hutoa Gil na Magicite nyingi!</string>
+    <string name="npc_tip_scholar">Fuwele za dukani hufungua kazi zenye nguvu!</string>
+    <string name="npc_tip_adventurer">Angalia ubao wa matangazo kwa maboresho ya mji!</string>
+    <string name="npc_tip_merchant">Tazama video upate mara 2 ya Gil na Magicite!</string>
+    <string name="bulletin_title">UBAO WA MATANGAZO NA HABARI</string>
+    <string name="bulletin_record_format">Rekodi ya ghorofa ya juu: Ghorofa %1$d</string>
+    <string name="bulletin_active_perks">MABORESHO YALIYOBORESHWA YA MJI</string>
+    <string name="bulletin_no_upgrades">Bado hakuna maboresho yaliyonunuliwa. Tembelea kambi!</string>
+
     <!-- Inn Screen -->
     <string name="hire_warriors">KUAJIRI MASHUJAA</string>
     <string name="permadeath_warning">Kifo cha kudumu kiko hai</string>

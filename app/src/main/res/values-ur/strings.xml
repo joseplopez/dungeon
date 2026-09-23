@@ -75,6 +75,16 @@
     <string name="level_format">لیول %1$d / %2$d</string>
     <string name="pathfinder_level_format">لیول %1$d / %2$d (زیادہ سے زیادہ فلور: %3$d)</string>
 
+    <!-- Town NPCs & Bulletin -->
+    <string name="npc_tip_guard">روکیں! فلور باسز سے بہت زیادہ گل اور میجیسائٹ ملتا ہے!</string>
+    <string name="npc_tip_scholar">دکان کے کرسٹل طاقتور جابز ان لاک کرتے ہیں!</string>
+    <string name="npc_tip_adventurer">شہر کی اپ گریڈز کے لیے بلیٹن بورڈ چیک کریں!</string>
+    <string name="npc_tip_merchant">دوگنا گل اور میجیسائٹ حاصل کرنے کے لیے ویڈیوز دیکھیں!</string>
+    <string name="bulletin_title">بلیٹن بورڈ اور خبریں</string>
+    <string name="bulletin_record_format">سب سے زیادہ فلور کا ریکارڈ: فلور %1$d</string>
+    <string name="bulletin_active_perks">فعال سٹی اپ گریڈز</string>
+    <string name="bulletin_no_upgrades">ابھی تک کوئی اپ گریڈ نہیں خریدی گئی۔ بیرکوں کا دورہ کریں!</string>
+
     <!-- Inn Screen -->
     <string name="hire_warriors">جنگجو بھرتی کریں</string>
     <string name="permadeath_warning">مستقل موت فعال ہے</string>
