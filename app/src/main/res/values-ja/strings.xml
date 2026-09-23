@@ -66,6 +66,7 @@
     <string name="building_crystal_shop">クリスタルショップ</string>
     <string name="building_barracks">兵舎</string>
     <string name="building_relics">レリック</string>
+    <string name="building_colosseum">コロシアム</string>
     <string name="crystal_shop_subtitle">新しいジョブを解放</string>
     <string name="unlocks_job_format">%1$s をアンロック</string>
     <string name="owned_status">✓ 所持</string>

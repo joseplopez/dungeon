@@ -66,6 +66,7 @@
     <string name="building_crystal_shop">크리스탈 상점</string>
     <string name="building_barracks">병영</string>
     <string name="building_relics">유물</string>
+    <string name="building_colosseum">콜로세움</string>
     <string name="crystal_shop_subtitle">새로운 직업 클래스 해제</string>
     <string name="unlocks_job_format">%1$s 잠금 해제</string>
     <string name="owned_status">✓ 보유 중</string>

@@ -66,6 +66,7 @@
     <string name="building_crystal_shop">MAGASIN DE CRISTAUX</string>
     <string name="building_barracks">CASERNE</string>
     <string name="building_relics">RELIQUES</string>
+    <string name="building_colosseum">COLISÉE</string>
     <string name="crystal_shop_subtitle">Débloquer de nouvelles classes de métiers</string>
     <string name="unlocks_job_format">Débloque %1$s</string>
     <string name="owned_status">✓ POSSÉDÉ</string>

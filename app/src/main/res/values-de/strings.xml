@@ -66,6 +66,7 @@
     <string name="building_crystal_shop">KRISTALL-LADEN</string>
     <string name="building_barracks">KASERNE</string>
     <string name="building_relics">RELIKTE</string>
+    <string name="building_colosseum">KOLOSSEUM</string>
     <string name="crystal_shop_subtitle">Neue Jobklassen freischalten</string>
     <string name="unlocks_job_format">Schaltet %1$s frei</string>
     <string name="owned_status">✓ BESITZT</string>

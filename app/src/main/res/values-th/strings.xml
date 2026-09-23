@@ -66,6 +66,7 @@
     <string name="building_crystal_shop">ร้านคริสตัล</string>
     <string name="building_barracks">โรงทหาร</string>
     <string name="building_relics">วัตถุโบราณ</string>
+    <string name="building_colosseum">โคลอสเซียม</string>
     <string name="crystal_shop_subtitle">ปลดล็อกอาชีพใหม่</string>
     <string name="unlocks_job_format">ปลดล็อก %1$s</string>
     <string name="owned_status">✓ ครอบครองแล้ว</string>

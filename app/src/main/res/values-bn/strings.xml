@@ -66,6 +66,7 @@
     <string name="building_crystal_shop">স্ফটিক দোকান</string>
     <string name="building_barracks">ব্যারাক</string>
     <string name="building_relics">ধ্বংসাবশেষ</string>
+    <string name="building_colosseum">কলোসিয়াম</string>
     <string name="crystal_shop_subtitle">নতুন কাজের ক্লাস আনলক করুন</string>
     <string name="unlocks_job_format">%1$s আনলক করে</string>
     <string name="owned_status">✓ মালিকানাধীন</string>

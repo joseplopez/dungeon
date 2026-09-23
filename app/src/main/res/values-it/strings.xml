@@ -66,6 +66,7 @@
     <string name="building_crystal_shop">NEGOZIO DI CRISTALLI</string>
     <string name="building_barracks">CASERMA</string>
     <string name="building_relics">RELIQUIE</string>
+    <string name="building_colosseum">COLOSSEO</string>
     <string name="crystal_shop_subtitle">Sblocca nuove classi di lavoro</string>
     <string name="unlocks_job_format">Sblocca %1$s</string>
     <string name="owned_status">✓ POSSEDUTO</string>

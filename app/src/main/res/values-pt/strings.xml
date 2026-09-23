@@ -66,6 +66,7 @@
     <string name="building_crystal_shop">LOJA DE CRISTAIS</string>
     <string name="building_barracks">QUARTEL</string>
     <string name="building_relics">RELÍQUIAS</string>
+    <string name="building_colosseum">COLISEU</string>
     <string name="crystal_shop_subtitle">Desbloqueie novas classes de trabalho</string>
     <string name="unlocks_job_format">Desbloqueia %1$s</string>
     <string name="owned_status">✓ ADQUIRIDO</string>

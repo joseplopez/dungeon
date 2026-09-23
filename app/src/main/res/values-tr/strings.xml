@@ -66,6 +66,7 @@
     <string name="building_crystal_shop">KRİSTAL DÜKKANI</string>
     <string name="building_barracks">KIŞLA</string>
     <string name="building_relics">YADİGARLAR</string>
+    <string name="building_colosseum">KOLEZYUM</string>
     <string name="crystal_shop_subtitle">Yeni iş sınıflarının kilidini açın</string>
     <string name="unlocks_job_format">%1$s kilidini açar</string>
     <string name="owned_status">✓ SAHİP OLUNDU</string>

@@ -66,6 +66,7 @@
     <string name="building_crystal_shop">متجر البلورات</string>
     <string name="building_barracks">الثكنات</string>
     <string name="building_relics">الآثار</string>
+    <string name="building_colosseum">الكولوسيوم</string>
     <string name="crystal_shop_subtitle">فتح فئات وظائف جديدة</string>
     <string name="unlocks_job_format">يفتح %1$s</string>
     <string name="owned_status">✓ مملوك</string>

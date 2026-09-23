@@ -230,6 +230,19 @@ fun TownScreen(
                             onBulletinClick = { showBulletinDialog = true }
                         )
 
+                        // 5. Colosseum / Rankings Building (Far Right)
+                        TownBuilding(
+                            name = safeStringResource(R.string.building_colosseum),
+                            tag = "COLOSSEUM",
+                            animTime = animTime,
+                            onClick = {
+                                navController.navigate("leaderboard") {
+                                    launchSingleTop = true
+                                    restoreState = true
+                                }
+                            }
+                        )
+
                         Spacer(Modifier.width(200.dp)) // Right margin
                     }
 
@@ -366,6 +379,7 @@ fun TownBuilding(
                     "CRYSTAL SHOP" -> drawDetailedCrystalShop(animTime)
                     "BARRACKS" -> drawDetailedBarracks(animTime)
                     "RELICS" -> drawDetailedPortal(animTime)
+                    "COLOSSEUM" -> drawDetailedColosseum(animTime)
                 }
             }
 

@@ -764,3 +764,110 @@ fun DrawScope.drawDetailedInn(animTime: Float = 0f) {
     pxRect(68f, 74f, 6f, 5f, Color(0xFFF5EEF8))
     pxRect(76f, 74f, 6f, 5f, Color(0xFFF5EEF8))
 }
+
+/**
+ * 5. FORTIFIED GLADIATOR ARENA / COLOSSEUM (Hall of Fame & Leaderboards)
+ * - Multi-tiered curved slate arena walls with stone arcade arches and iron reinforcement beams.
+ * - Central grand entrance archway with dark arena tunnel & spiked iron portcullis gate.
+ * - Dual flaming braziers on stone pedestals flanking the entrance.
+ * - Crimson & gold warrior banners hanging on arena pillars.
+ * - Mounted golden trophy & laurel wreath crest plate above the entrance arch.
+ */
+fun DrawScope.drawDetailedColosseum(animTime: Float = 0f) {
+    val W = size.width
+    val s = W / 100f
+
+    // === 1. Multi-Tiered Stone Arena Foundation & Base Wall ===
+    pxRect(10f, 38f, 80f, 56f, Color(0xFF2C3E50)) // Slate stone main arena body
+    pxRect(6f, 92f, 88f, 4f, Color(0xFF1B2631))   // Heavy stone foundation ledge
+
+    // Stone block horizontal dividing cornices
+    pxRect(10f, 38f, 80f, 3f, Color(0xFF1B2631))
+    pxRect(10f, 58f, 80f, 3f, Color(0xFF1B2631))
+
+    // === 2. Upper Tier Arcade Arches ===
+    listOf(16f, 32f, 48f, 64f, 80f).forEach { ax ->
+        // Arch cutout
+        val archPath = Path().apply {
+            moveTo(ax * s, 58f * s)
+            lineTo(ax * s, 46f * s)
+            quadraticTo((ax + 4f) * s, 42f * s, (ax + 8f) * s, 46f * s)
+            lineTo((ax + 8f) * s, 58f * s)
+            close()
+        }
+        drawPath(archPath, Color(0xFF111827)) // Dark arch opening
+        drawPath(archPath, Color(0xFF1B2631), style = Stroke(1.5f * s))
+
+        // Torches inside upper arches
+        drawCircle(Color(0xFFF39C12).copy(alpha = 0.5f), radius = 2f * s, center = Offset((ax + 4f) * s, 50f * s))
+    }
+
+    // === 3. Iron Pillar Reinforcements & Rivets ===
+    listOf(12f, 26f, 74f, 88f).forEach { px ->
+        pxRect(px, 38f, 4f, 56f, Color(0xFF1A252F))
+        for (ry in 42..88 step 12) {
+            drawCircle(Color(0xFF7F8C8D), radius = 0.8f * s, center = Offset((px + 2f) * s, ry.toFloat() * s))
+        }
+    }
+
+    // === 4. Crimson & Gold Warrior Banners (Flanking Pillars) ===
+    listOf(18f, 76f).forEach { bx ->
+        pxRect(bx, 48f, 8f, 22f, Color(0xFF78281F)) // Crimson banner
+        pxRect(bx, 48f, 8f, 2f, Color(0xFFF1C40F))  // Gold top bar
+        pxRect(bx, 70f, 8f, 2f, Color(0xFFF1C40F))  // Gold bottom fringe
+        // Crossed swords icon on banner
+        drawLine(Color(0xFFF1C40F), Offset((bx + 2f) * s, 54f * s), Offset((bx + 6f) * s, 64f * s), strokeWidth = 1.2f * s)
+        drawLine(Color(0xFFF1C40F), Offset((bx + 6f) * s, 54f * s), Offset((bx + 2f) * s, 64f * s), strokeWidth = 1.2f * s)
+    }
+
+    // === 5. Central Grand Archway Entrance & Spiked Portcullis ===
+    val mainArch = Path().apply {
+        moveTo(34f * s, 94f * s)
+        lineTo(34f * s, 68f * s)
+        quadraticTo(50f * s, 54f * s, 66f * s, 68f * s)
+        lineTo(66f * s, 94f * s)
+        close()
+    }
+    drawPath(mainArch, Color(0xFF0F172A)) // Dark arena tunnel interior
+    drawPath(mainArch, Color(0xFF1B2631), style = Stroke(3f * s)) // Heavy arch frame
+
+    // Spiked Portcullis Iron Bars
+    for (gx in 38..62 step 6) {
+        drawLine(Color(0xFF5D6D7E), Offset(gx.toFloat() * s, 62f * s), Offset(gx.toFloat() * s, 82f * s), strokeWidth = 1.8f * s)
+        // Spike tip
+        val spike = Path().apply {
+            moveTo(gx.toFloat() * s, 82f * s)
+            lineTo((gx.toFloat() - 1.2f) * s, 86f * s)
+            lineTo((gx.toFloat() + 1.2f) * s, 86f * s)
+            close()
+        }
+        drawPath(spike, Color(0xFFBDC3C7))
+    }
+
+    // === 6. Mounted Golden Trophy & Laurel Crest Plate ===
+    pxRect(40f, 44f, 20f, 9f, Color(0xFFB7950B)) // Gold plate
+    drawRect(Color(0xFF7D6608), Offset(40f * s, 44f * s), Size(20f * s, 9f * s), style = Stroke(1.5f * s))
+
+    // Trophy Icon
+    pxRect(48f, 46f, 4f, 4f, Color(0xFFF1C40F)) // Cup
+    pxRect(49f, 50f, 2f, 2f, Color(0xFFF1C40F)) // Stem
+    pxRect(47f, 52f, 6f, 1f, Color(0xFFF1C40F)) // Pedestal
+
+    // === 7. Dual Flaming Stone Braziers (Flanking Arch) ===
+    listOf(27f, 73f).forEach { bx ->
+        // Stone pedestal
+        pxRect(bx - 3f, 80f, 6f, 14f, Color(0xFF34495E))
+        pxRect(bx - 4f, 78f, 8f, 2.5f, Color(0xFF1B2631)) // Bowl rim
+
+        // Animated Fire Flame
+        val firePulse = sin(animTime * 0.01f + bx) * 0.8f
+        val flameY = 73f + firePulse * 0.5f
+
+        // Outer fire aura
+        drawCircle(Color(0xFFE67E22).copy(alpha = 0.4f), radius = 5.5f * s, center = Offset(bx * s, flameY * s))
+        // Core orange flame
+        drawCircle(Color(0xFFD35400), radius = 3.5f * s, center = Offset(bx * s, flameY * s))
+        // Inner bright yellow core
+        drawCircle(Color(0xFFF1C40F), radius = 2f * s, center = Offset(bx * s, (flameY - 0.8f) * s))
+    }
+}

@@ -66,6 +66,7 @@
     <string name="building_crystal_shop">BOTIGA DE CRISTALLS</string>
     <string name="building_barracks">QUARTEL</string>
     <string name="building_relics">RELÍQUIES</string>
+    <string name="building_colosseum">COLISEU</string>
     <string name="crystal_shop_subtitle">Desbloqueja noves classes de treball</string>
     <string name="unlocks_job_format">Desbloqueja %1$s</string>
     <string name="owned_status">✓ PROPIETAT</string>

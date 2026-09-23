@@ -66,6 +66,7 @@
     <string name="building_crystal_shop">ЛАВКА КРИСТАЛЛОВ</string>
     <string name="building_barracks">КАЗАРМЫ</string>
     <string name="building_relics">РЕЛИКВИИ</string>
+    <string name="building_colosseum">КОЛИЗЕЙ</string>
     <string name="crystal_shop_subtitle">Разблокируйте новые классы профессий</string>
     <string name="unlocks_job_format">Разблокирует %1$s</string>
     <string name="owned_status">✓ КУПЛЕНО</string>
