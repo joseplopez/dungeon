@@ -387,4 +387,14 @@
     <string name="purchase_success_magicite">ซื้อ %1$d เมจิไซต์เรียบร้อย!</string>
     <string name="purchase_failed">การซื้อล้มเหลวหรือถูกยกเลิก</string>
     <string name="store_unavailable">ร้านค้าไม่พร้อมใช้งาน</string>
+
+    <!-- Equipment Screen Redesign -->
+    <string name="equipment_banner">สร้างตำนานของคุณเอง สู่สรวงสวรรค์</string>
+    <string name="slot_weapon">อาวุธ</string>
+    <string name="slot_head">ศีรษะ</string>
+    <string name="slot_body">ลำตัว</string>
+    <string name="slot_accessory_1">เครื่องประดับ 1</string>
+    <string name="slot_accessory_2">เครื่องประดับ 2</string>
+    <string name="inventory_chest_title">หีบสัมภาระ</string>
+    <string name="inventory_count_format">สัมภาระ: %1$d</string>
 </resources>

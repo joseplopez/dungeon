@@ -387,4 +387,14 @@
     <string name="purchase_success_magicite">%1$d Magisit satın alındı!</string>
     <string name="purchase_failed">Satın alma başarısız veya iptal edildi</string>
     <string name="store_unavailable">Mağaza kullanılamıyor</string>
+
+    <!-- Equipment Screen Redesign -->
+    <string name="equipment_banner">KENDİ EFSANENİ YAZ. GÖKLERE YÜKSEL.</string>
+    <string name="slot_weapon">Silah</string>
+    <string name="slot_head">Baş</string>
+    <string name="slot_body">Gövde</string>
+    <string name="slot_accessory_1">Aksesuar 1</string>
+    <string name="slot_accessory_2">Aksesuar 2</string>
+    <string name="inventory_chest_title">ENVANTER SANDIĞI</string>
+    <string name="inventory_count_format">Envanter: %1$d</string>
 </resources>

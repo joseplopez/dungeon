@@ -387,4 +387,14 @@
     <string name="purchase_success_magicite">تم شراء %1$d ماجيسيت!</string>
     <string name="purchase_failed">فشلت عملية الشراء أو أُلغيت</string>
     <string name="store_unavailable">المتجر غير متاح</string>
+
+    <!-- Equipment Screen Redesign -->
+    <string name="equipment_banner">اصنع أسطورتك الخاصة. اصعد إلى السماوات.</string>
+    <string name="slot_weapon">سلاح</string>
+    <string name="slot_head">رأس</string>
+    <string name="slot_body">جسد</string>
+    <string name="slot_accessory_1">ملحق 1</string>
+    <string name="slot_accessory_2">ملحق 2</string>
+    <string name="inventory_chest_title">صندوق المخزون</string>
+    <string name="inventory_count_format">المخزون: %1$d</string>
 </resources>

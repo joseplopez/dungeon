@@ -387,4 +387,14 @@
     <string name="purchase_success_magicite">Umenunua %1$d Majisaiti!</string>
     <string name="purchase_failed">Uharibifu wa ununuzi au umeghairiwa</string>
     <string name="store_unavailable">Duka halipatikani</string>
+
+    <!-- Equipment Screen Redesign -->
+    <string name="equipment_banner">TENGENEZA LEGENDI YAKO. PANDA MBINGUNI.</string>
+    <string name="slot_weapon">Siku</string>
+    <string name="slot_head">Kichwa</string>
+    <string name="slot_body">Mwili</string>
+    <string name="slot_accessory_1">Pambo 1</string>
+    <string name="slot_accessory_2">Pambo 2</string>
+    <string name="inventory_chest_title">KIFU CHA MIKOBA</string>
+    <string name="inventory_count_format">Mikoba: %1$d</string>
 </resources>

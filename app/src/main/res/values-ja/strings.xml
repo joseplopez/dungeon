@@ -387,4 +387,14 @@
     <string name="purchase_success_magicite">%1$d 魔石を購入しました！</string>
     <string name="purchase_failed">購入が失敗したかキャンセルされました</string>
     <string name="store_unavailable">ショップ利用不可</string>
+
+    <!-- Equipment Screen Redesign -->
+    <string name="equipment_banner">自らの伝説を刻め。天へと昇れ。</string>
+    <string name="slot_weapon">武器</string>
+    <string name="slot_head">頭</string>
+    <string name="slot_body">体</string>
+    <string name="slot_accessory_1">装飾品 1</string>
+    <string name="slot_accessory_2">装飾品 2</string>
+    <string name="inventory_chest_title">インベントリチェスト</string>
+    <string name="inventory_count_format">所持数: %1$d</string>
 </resources>

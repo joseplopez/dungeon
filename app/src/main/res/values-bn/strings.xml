@@ -387,4 +387,14 @@
     <string name="purchase_success_magicite">%1$d ম্যাজিসাইট কেনা হয়েছে!</string>
     <string name="purchase_failed">ক্রয় ব্যর্থ হয়েছে বা বাতিল করা হয়েছে</string>
     <string name="store_unavailable">দোকান উপলব্ধ নেই</string>
+
+    <!-- Equipment Screen Redesign -->
+    <string name="equipment_banner">আপনার নিজস্ব কিংবদন্তি তৈরি করুন।</string>
+    <string name="slot_weapon">অস্ত্র</string>
+    <string name="slot_head">মাথা</string>
+    <string name="slot_body">শরীর</string>
+    <string name="slot_accessory_1">অনুষঙ্গ ১</string>
+    <string name="slot_accessory_2">অনুষঙ্গ ২</string>
+    <string name="inventory_chest_title">ইনভেন্টরি চেস্ট</string>
+    <string name="inventory_count_format">ইনভেন্টরি: %1$d</string>
 </resources>

@@ -387,4 +387,14 @@
     <string name="purchase_success_magicite">Purchased %1$d Magicite!</string>
     <string name="purchase_failed">Purchase failed or cancelled</string>
     <string name="store_unavailable">Store unavailable</string>
+
+    <!-- Equipment Screen Redesign -->
+    <string name="equipment_banner">FORGE YOUR OWN LEGEND. ASCEND THE HEAVENS.</string>
+    <string name="slot_weapon">Weapon</string>
+    <string name="slot_head">Head</string>
+    <string name="slot_body">Body</string>
+    <string name="slot_accessory_1">Accessory 1</string>
+    <string name="slot_accessory_2">Accessory 2</string>
+    <string name="inventory_chest_title">INVENTORY CHEST</string>
+    <string name="inventory_count_format">Inventory: %1$d</string>
 </resources>

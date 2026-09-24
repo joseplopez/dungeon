@@ -387,4 +387,14 @@
     <string name="purchase_success_magicite">¡Comprat %1$d Magicita!</string>
     <string name="purchase_failed">Compra fallida o cancel·lada</string>
     <string name="store_unavailable">Botiga no disponible</string>
+
+    <!-- Equipment Screen Redesign -->
+    <string name="equipment_banner">FORJA LA TEVA PRÒPIA LLEGENDA. ASCENDEIX ALS CELS.</string>
+    <string name="slot_weapon">Arma</string>
+    <string name="slot_head">Cap</string>
+    <string name="slot_body">Cos</string>
+    <string name="slot_accessory_1">Accessori 1</string>
+    <string name="slot_accessory_2">Accessori 2</string>
+    <string name="inventory_chest_title">COFRE D\'INVENTARI</string>
+    <string name="inventory_count_format">Inventari: %1$d</string>
 </resources>

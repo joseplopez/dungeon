@@ -387,4 +387,14 @@
     <string name="purchase_success_magicite">Куплено %1$d Магицита!</string>
     <string name="purchase_failed">Покупка не удалась или отменена</string>
     <string name="store_unavailable">Магазин недоступен</string>
+
+    <!-- Equipment Screen Redesign -->
+    <string name="equipment_banner">СОЗДАЙ СВОЮ ЛЕГЕНДУ. ВОЗНЕСИСЬ НА НЕБЕСА.</string>
+    <string name="slot_weapon">Оружие</string>
+    <string name="slot_head">Голова</string>
+    <string name="slot_body">Тело</string>
+    <string name="slot_accessory_1">Аксессуар 1</string>
+    <string name="slot_accessory_2">Аксессуар 2</string>
+    <string name="inventory_chest_title">СУНДУК ИНВЕНТАРЯ</string>
+    <string name="inventory_count_format">Инвентарь: %1$d</string>
 </resources>

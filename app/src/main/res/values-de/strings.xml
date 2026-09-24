@@ -387,4 +387,14 @@
     <string name="purchase_success_magicite">%1$d Magicite gekauft!</string>
     <string name="purchase_failed">Kauf fehlgeschlagen oder abgebrochen</string>
     <string name="store_unavailable">Laden nicht verfügbar</string>
+
+    <!-- Equipment Screen Redesign -->
+    <string name="equipment_banner">SCHMIEDE DEINE EIGENE LEGENDE. STEIGE IN DEN HIMMEL AUF.</string>
+    <string name="slot_weapon">Waffe</string>
+    <string name="slot_head">Kopf</string>
+    <string name="slot_body">Körper</string>
+    <string name="slot_accessory_1">Zubehör 1</string>
+    <string name="slot_accessory_2">Zubehör 2</string>
+    <string name="inventory_chest_title">INVENTARTRUHE</string>
+    <string name="inventory_count_format">Inventar: %1$d</string>
 </resources>

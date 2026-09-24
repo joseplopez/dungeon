@@ -387,4 +387,14 @@
     <string name="purchase_success_magicite">%1$d میجیسائٹ خریدا گیا!</string>
     <string name="purchase_failed">خریداری ناکام ہوئی یا منسوخ ہو گئی</string>
     <string name="store_unavailable">دکان دستیاب نہیں ہے</string>
+
+    <!-- Equipment Screen Redesign -->
+    <string name="equipment_banner">اپنی کہانی خود لکھیں۔</string>
+    <string name="slot_weapon">ہتھیار</string>
+    <string name="slot_head">سر</string>
+    <string name="slot_body">جسم</string>
+    <string name="slot_accessory_1">سنگھار 1</string>
+    <string name="slot_accessory_2">سنگھار 2</string>
+    <string name="inventory_chest_title">سامان کا صندوق</string>
+    <string name="inventory_count_format">سامان: %1$d</string>
 </resources>

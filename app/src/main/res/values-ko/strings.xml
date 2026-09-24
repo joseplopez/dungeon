@@ -388,4 +388,14 @@
     <string name="purchase_success_magicite">%1$d 마석을 구매했습니다!</string>
     <string name="purchase_failed">구매 실패 또는 취소됨</string>
     <string name="store_unavailable">상점을 이용할 수 없음</string>
+
+    <!-- Equipment Screen Redesign -->
+    <string name="equipment_banner">자신만의 전설을 만들어라. 하늘로 비상하라.</string>
+    <string name="slot_weapon">무기</string>
+    <string name="slot_head">머리</string>
+    <string name="slot_body">몸통</string>
+    <string name="slot_accessory_1">장신구 1</string>
+    <string name="slot_accessory_2">장신구 2</string>
+    <string name="inventory_chest_title">인벤토리 상자</string>
+    <string name="inventory_count_format">보유량: %1$d</string>
 </resources>

@@ -387,4 +387,14 @@
     <string name="purchase_success_magicite">Acquistata %1$d Magicite!</string>
     <string name="purchase_failed">Acquisto fallito o annullato</string>
     <string name="store_unavailable">Negozio non disponibile</string>
+
+    <!-- Equipment Screen Redesign -->
+    <string name="equipment_banner">FORGIA LA TUA LEGGENDA. ASCENDI AI CIELI.</string>
+    <string name="slot_weapon">Arma</string>
+    <string name="slot_head">Testa</string>
+    <string name="slot_body">Corpo</string>
+    <string name="slot_accessory_1">Accessorio 1</string>
+    <string name="slot_accessory_2">Accessorio 2</string>
+    <string name="inventory_chest_title">BAULE INVENTARIO</string>
+    <string name="inventory_count_format">Inventario: %1$d</string>
 </resources>
