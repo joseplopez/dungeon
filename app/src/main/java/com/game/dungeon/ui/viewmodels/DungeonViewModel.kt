@@ -292,12 +292,19 @@ class DungeonViewModel @Inject constructor(
                 repo.saveHero(hero)
             }
 
-            repo.updateHighestFloor(event.floor + 1)
+            // Fetch latest GameState from DB to ensure atomic, non-stale updates
+            val currentGs = repo.getGameStateOnce() ?: GameState()
+            val newFloor = event.floor + 1
+            val isNewDimMax = newFloor > currentGs.highestFloor
+            val isNewLifetimeMax = newFloor > currentGs.lifetimeHighestFloor
+
+            var nextGs = currentGs.copy(
+                highestFloor = if (isNewDimMax) newFloor else currentGs.highestFloor,
+                lifetimeHighestFloor = if (isNewLifetimeMax) newFloor else currentGs.lifetimeHighestFloor
+            )
             
             // Award Job Mastery EXP
             val heroClasses = battleState.value.heroes.map { it.heroClass }.distinct()
-            val currentGs = gameState.value ?: GameState()
-            var nextGs = currentGs
             heroClasses.forEach {
                 nextGs = nextGs.addJobExp(it, 10)
             }
@@ -307,8 +314,9 @@ class DungeonViewModel @Inject constructor(
                 nextGs = nextGs.addPetExp(activePet, 20)
             }
 
-            if (nextGs != currentGs) {
-                repo.saveGameState(nextGs)
+            repo.saveGameState(nextGs)
+            if (isNewDimMax || isNewLifetimeMax) {
+                repo.triggerFirebaseUpload(nextGs)
             }
         }
         viewModelScope.launch { delay(1500); battleState.update { it.copy(showFloorBanner=false) } }
@@ -324,7 +332,7 @@ class DungeonViewModel @Inject constructor(
           )
         }
         viewModelScope.launch {
-            val currentGs = gameState.value ?: GameState()
+            val currentGs = repo.getGameStateOnce() ?: GameState()
             val nextGs = currentGs.copy(bossesDefeatedNames = currentGs.bossesDefeatedNames + event.bossName)
             repo.saveGameState(nextGs)
             delay(3000)

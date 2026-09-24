@@ -255,11 +255,11 @@ fun HeroPlatformArea(
                 verticalAlignment = Alignment.CenterVertically
             ) {
                 val slots = listOf(
-                    Pair("Weapon", ItemSlot.WEAPON),
-                    Pair("Head", ItemSlot.ARMOR),
-                    Pair("Body", ItemSlot.SHIELD),
-                    Pair("Accessory 1", ItemSlot.ACCESSORY),
-                    Pair("Accessory 2", ItemSlot.ACCESSORY)
+                    Pair(safeStringResource(R.string.slot_weapon), ItemSlot.WEAPON),
+                    Pair(safeStringResource(R.string.slot_head), ItemSlot.ARMOR),
+                    Pair(safeStringResource(R.string.slot_body), ItemSlot.SHIELD),
+                    Pair(safeStringResource(R.string.slot_accessory_1), ItemSlot.ACCESSORY),
+                    Pair(safeStringResource(R.string.slot_accessory_2), ItemSlot.ACCESSORY)
                 )
 
                 slots.forEachIndexed { index, (label, slotType) ->
@@ -334,7 +334,7 @@ fun InventoryChestPanel(
                     .background(ChestBorderGold, RoundedCornerShape(topStart = 4.dp, topEnd = 4.dp)),
                 contentAlignment = Alignment.Center
             ) {
-                Text("🔒 INVENTORY CHEST", color = ChestWoodDark, fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                Text("🔒 " + safeStringResource(R.string.inventory_chest_title), color = ChestWoodDark, fontSize = 10.sp, fontWeight = FontWeight.Bold)
             }
 
             Spacer(Modifier.height(6.dp))
@@ -362,7 +362,11 @@ fun InventoryChestPanel(
                         Spacer(Modifier.width(8.dp))
                         Column(modifier = Modifier.weight(1f)) {
                             Text(item.name, color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold)
-                            Text("Lvl ${item.floorFound} • ${item.rarity.name}", color = Color.Gray, fontSize = 8.sp)
+                            Text(
+                                text = safeStringResource(R.string.item_lvl_rarity_format, item.floorFound, item.rarity.name),
+                                color = Color.Gray,
+                                fontSize = 8.sp
+                            )
                         }
                         Text("🪙${item.sellValue}", color = OrnateGoldLight, fontSize = 9.sp)
                     }

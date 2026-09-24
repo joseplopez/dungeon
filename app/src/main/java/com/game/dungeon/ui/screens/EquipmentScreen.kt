@@ -1,5 +1,11 @@
 package com.game.dungeon.ui.screens
 
+import androidx.compose.animation.core.LinearEasing
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
@@ -28,8 +34,6 @@ import com.game.dungeon.ui.components.*
 import com.game.dungeon.ui.theme.*
 import com.game.dungeon.ui.viewmodels.EquipmentViewModel
 
-
-
 @Composable
 fun EquipmentScreen(
     heroId: String,
@@ -44,6 +48,17 @@ fun EquipmentScreen(
     val relicBonuses by viewModel.relicBonuses.collectAsState()
 
     var selectedItemForDetail by remember { mutableStateOf<Item?>(null) }
+
+    val infiniteTransition = rememberInfiniteTransition(label = "equipmentAnim")
+    val animTime by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 100000f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(100000, easing = LinearEasing),
+            repeatMode = RepeatMode.Restart
+        ),
+        label = "animTime"
+    )
 
     LaunchedEffect(heroId) {
         viewModel.selectHero(heroId)
@@ -90,6 +105,7 @@ fun EquipmentScreen(
                             equipped = equipped,
                             onQuickEquip = { viewModel.quickEquip() },
                             onSelectSlot = { selectedItemForDetail = it },
+                            animTime = animTime,
                             modifier = Modifier.weight(0.44f)
                         )
                     } ?: Spacer(Modifier.weight(0.44f))
@@ -98,6 +114,7 @@ fun EquipmentScreen(
                     InventoryChestPanel(
                         inventory = inventory,
                         onSelectItem = { selectedItemForDetail = it },
+                        animTime = animTime,
                         modifier = Modifier.weight(0.28f)
                     )
                 }
@@ -108,6 +125,7 @@ fun EquipmentScreen(
                 ItemDetailOverlay(
                     item = item,
                     isEquipped = equipped.any { it.id == item.id },
+                    animTime = animTime,
                     onEquip = {
                         viewModel.equipItem(item)
                         selectedItemForDetail = null
@@ -261,7 +279,8 @@ private fun HeroPlatformArea(
     equipped: List<Item>,
     onQuickEquip: () -> Unit,
     onSelectSlot: (Item) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    animTime: Float = 0f
 ) {
     Box(
         modifier = modifier
@@ -372,7 +391,8 @@ private fun HeroPlatformArea(
                             EquipmentSprite(
                                 item = item,
                                 slot = slotType,
-                                modifier = Modifier.size(28.dp)
+                                modifier = Modifier.size(28.dp),
+                                animTime = animTime
                             )
                         }
                     }
@@ -397,7 +417,8 @@ private fun HeroPlatformArea(
 private fun InventoryChestPanel(
     inventory: List<Item>,
     onSelectItem: (Item) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    animTime: Float = 0f
 ) {
     Box(
         modifier = modifier
@@ -449,7 +470,8 @@ private fun InventoryChestPanel(
                         EquipmentSprite(
                             item = item,
                             slot = item.slot,
-                            modifier = Modifier.size(24.dp)
+                            modifier = Modifier.size(24.dp),
+                            animTime = animTime
                         )
                         Spacer(Modifier.width(8.dp))
                         Column(modifier = Modifier.weight(1f)) {
@@ -525,6 +547,7 @@ private fun getItemStatBonuses(item: Item): List<StatBonusDisplay> = buildList {
 private fun ItemDetailOverlay(
     item: Item,
     isEquipped: Boolean,
+    animTime: Float = 0f,
     onEquip: () -> Unit,
     onUnequip: () -> Unit,
     onSell: () -> Unit,
@@ -551,7 +574,8 @@ private fun ItemDetailOverlay(
                 EquipmentSprite(
                     item = item,
                     slot = item.slot,
-                    modifier = Modifier.size(56.dp)
+                    modifier = Modifier.size(56.dp),
+                    animTime = animTime
                 )
                 Text(item.name, style = PixelHeading, color = Color(item.rarity.color))
 

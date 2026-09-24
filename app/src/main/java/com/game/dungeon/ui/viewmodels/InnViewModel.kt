@@ -100,9 +100,9 @@ class InnViewModel @Inject constructor(
         }
 
     fun markHiddenJobNotified(heroClass: HeroClass) {
-        val gs = gameState.value ?: return
         viewModelScope.launch {
-            repository.saveGameState(gs.copy(notifiedHiddenJobs = gs.notifiedHiddenJobs + heroClass))
+            val currentGs = repository.getGameStateOnce() ?: return@launch
+            repository.saveGameState(currentGs.copy(notifiedHiddenJobs = currentGs.notifiedHiddenJobs + heroClass))
         }
     }
 
@@ -119,13 +119,16 @@ class InnViewModel @Inject constructor(
         
         if (gs.gold >= heroClass.hireCost && _hiredHeroes.value.size < maxPartySize) {
             viewModelScope.launch {
-                repository.saveGameState(gs.copy(gold = gs.gold - heroClass.hireCost))
-                val hero = Hero.create(heroClass, context).copy(
-                    isInParty = true,
-                    partyPosition = _hiredHeroes.value.size
-                )
-                analytics.logHeroHired(hero.name, heroClass.name)
-                repository.saveHero(hero)
+                val currentGs = repository.getGameStateOnce() ?: gs
+                if (currentGs.gold >= heroClass.hireCost) {
+                    repository.saveGameState(currentGs.copy(gold = currentGs.gold - heroClass.hireCost))
+                    val hero = Hero.create(heroClass, context).copy(
+                        isInParty = true,
+                        partyPosition = _hiredHeroes.value.size
+                    )
+                    analytics.logHeroHired(hero.name, heroClass.name)
+                    repository.saveHero(hero)
+                }
             }
         }
     }
@@ -234,24 +237,24 @@ class InnViewModel @Inject constructor(
         }
         val maxFloor = gs.highestFloor
         // Max allowed floor based on level: 25%, 50%, 75%, 100%
-        val limit = (maxFloor * (pathLevel * 0.25f)).toInt().coerceIn(1, maxFloor)
+        val limit = (maxFloor * (pathLevel * 0.25f)).toInt().coerceIn(1, maxFloor.coerceAtLeast(1))
         _startFloor.value = floor.coerceIn(1, limit)
     }
 
     fun selectPet(pet: PetType?) {
-        val gs = gameState.value ?: return
         viewModelScope.launch {
-            repository.saveGameState(gs.copy(selectedPet = pet))
+            val currentGs = repository.getGameStateOnce() ?: return@launch
+            repository.saveGameState(currentGs.copy(selectedPet = pet))
         }
     }
 
     fun unlockPet(pet: PetType) {
-        val gs = gameState.value ?: return
-        if (gs.gold >= pet.unlockCost && !gs.unlockedPets.contains(pet)) {
-            viewModelScope.launch {
-                repository.saveGameState(gs.copy(
-                    gold = gs.gold - pet.unlockCost,
-                    unlockedPets = gs.unlockedPets + pet
+        viewModelScope.launch {
+            val currentGs = repository.getGameStateOnce() ?: return@launch
+            if (currentGs.gold >= pet.unlockCost && !currentGs.unlockedPets.contains(pet)) {
+                repository.saveGameState(currentGs.copy(
+                    gold = currentGs.gold - pet.unlockCost,
+                    unlockedPets = currentGs.unlockedPets + pet
                 ))
             }
         }
@@ -262,7 +265,6 @@ class InnViewModel @Inject constructor(
     }
 
     fun restAtInn() {
-        val gs = gameState.value ?: return
         val heroes = _hiredHeroes.value
         if (heroes.isEmpty()) return
 
@@ -275,12 +277,13 @@ class InnViewModel @Inject constructor(
             } else 0L
         }
         
-        val discount = gs.restDiscount
-        val totalCost = (rawCost * (1f - discount)).toLong().coerceAtLeast(if (rawCost > 0) 1L else 0L)
+        viewModelScope.launch {
+            val currentGs = repository.getGameStateOnce() ?: return@launch
+            val discount = currentGs.restDiscount
+            val totalCost = (rawCost * (1f - discount)).toLong().coerceAtLeast(if (rawCost > 0) 1L else 0L)
 
-        if (totalCost > 0 && gs.gold >= totalCost) {
-            viewModelScope.launch {
-                repository.saveGameState(gs.copy(gold = gs.gold - totalCost))
+            if (totalCost >= 0 && currentGs.gold >= totalCost) {
+                repository.saveGameState(currentGs.copy(gold = currentGs.gold - totalCost))
                 heroes.forEach { hero ->
                     if (hero.currentHp < hero.maxHp) {
                         repository.saveHero(hero.copy(currentHp = hero.maxHp))

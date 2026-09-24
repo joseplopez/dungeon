@@ -215,33 +215,71 @@ fun ColumnScope.HubArea(
     onNavigateToMastery: () -> Unit
 ) {
     // Top: Pathfinder Floor Selector
-    if ((pathfinderLevel > 0) && (highestFloor > 1)) {
-        GoldenBorderBox(Modifier
-            .fillMaxWidth()
-            .height(64.dp)
-            .background(BgDarkest)) {
-            Row(Modifier
-                .fillMaxSize()
-                .padding(horizontal = 6.dp), verticalAlignment = CenterVertically) {
-                Text(safeStringResource(R.string.floor_label), style = PixelSmall, color = GoldBright)
-                Spacer(Modifier.width(4.dp))
-                PixelButton("- 5", onClick = { onSetStartFloor(startFloor - 5) }, horizontalPadding = 4.dp, modifier = Modifier
-                    .width(40.dp)
-                    .height(32.dp))
-                Spacer(Modifier.width(2.dp))
-                PixelButton("- 1", onClick = { onSetStartFloor(startFloor - 1) }, horizontalPadding = 4.dp, modifier = Modifier
-                    .width(40.dp)
-                    .height(32.dp))
-                
-                Text(startFloor.toString(), style = PixelHeading, color = Color.White, modifier = Modifier.weight(1f), textAlign = TextAlign.Center)
-                
-                PixelButton("+ 1", onClick = { onSetStartFloor(startFloor + 1) }, horizontalPadding = 4.dp, modifier = Modifier
-                    .width(40.dp)
-                    .height(32.dp))
-                Spacer(Modifier.width(2.dp))
-                PixelButton("+ 5", onClick = { onSetStartFloor(startFloor + 5) }, horizontalPadding = 4.dp, modifier = Modifier
-                    .width(40.dp)
-                    .height(32.dp))
+    if (pathfinderLevel > 0) {
+        val maxStartFloor = (highestFloor * (pathfinderLevel * 0.25f)).toInt().coerceIn(1, highestFloor.coerceAtLeast(1))
+        GoldenBorderBox(
+            Modifier
+                .fillMaxWidth()
+                .wrapContentHeight()
+                .background(BgDarkest)
+                .testTag("PathfinderFloorSelector")
+        ) {
+            Column(
+                Modifier
+                    .fillMaxWidth()
+                    .padding(4.dp),
+                horizontalAlignment = CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                Text(
+                    text = "🧭 ${safeStringResource(R.string.floor_label)} $startFloor / $maxStartFloor",
+                    style = PixelBody,
+                    color = GoldBright,
+                    fontWeight = FontWeight.Bold,
+                    textAlign = TextAlign.Center
+                )
+                Row(
+                    Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(2.dp),
+                    verticalAlignment = CenterVertically
+                ) {
+                    PixelButton(
+                        "-5",
+                        onClick = { onSetStartFloor(startFloor - 5) },
+                        enabled = startFloor > 1,
+                        horizontalPadding = 2.dp,
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(28.dp)
+                    )
+                    PixelButton(
+                        "-1",
+                        onClick = { onSetStartFloor(startFloor - 1) },
+                        enabled = startFloor > 1,
+                        horizontalPadding = 2.dp,
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(28.dp)
+                    )
+                    PixelButton(
+                        "+1",
+                        onClick = { onSetStartFloor(startFloor + 1) },
+                        enabled = startFloor < maxStartFloor,
+                        horizontalPadding = 2.dp,
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(28.dp)
+                    )
+                    PixelButton(
+                        "+5",
+                        onClick = { onSetStartFloor(startFloor + 5) },
+                        enabled = startFloor < maxStartFloor,
+                        horizontalPadding = 2.dp,
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(28.dp)
+                    )
+                }
             }
         }
     }

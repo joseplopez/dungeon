@@ -91,11 +91,14 @@ class TownViewModel @Inject constructor(
             }
             analytics.logCrystalPurchased(color.displayName, HeroClass.entries.first { it.crystalColor == color }.name)
             viewModelScope.launch {
-                repository.saveGameState(gs.copy(
-                    gold = gs.gold - color.baseCost,
-                    crystals = newCrystals,
-                    unlockedJobs = newUnlockedJobs
-                ))
+                val currentGs = repository.getGameStateOnce() ?: gs
+                if (currentGs.gold >= color.baseCost) {
+                    repository.saveGameState(currentGs.copy(
+                        gold = currentGs.gold - color.baseCost,
+                        crystals = newCrystals,
+                        unlockedJobs = newUnlockedJobs
+                    ))
+                }
             }
         }
     }
@@ -121,20 +124,23 @@ class TownViewModel @Inject constructor(
         val finalCost = (rawCost * (1f - discount)).toLong()
 
         if (gs.gold >= finalCost) {
-            val nextGs = when (type) {
-                UpgradeType.INN -> gs.copy(innLevel = gs.innLevel + 1)
-                UpgradeType.BARRACKS -> gs.copy(barracksLevel = gs.barracksLevel + 1)
-                UpgradeType.VAULT -> gs.copy(vaultLevel = gs.vaultLevel + 1)
-                UpgradeType.ARMORY -> gs.copy(armoryLevel = gs.armoryLevel + 1)
-                UpgradeType.MAGIC_SHOP -> gs.copy(magicShopLevel = gs.magicShopLevel + 1)
-                UpgradeType.TRAINING -> gs.copy(trainingLevel = gs.trainingLevel + 1)
-                UpgradeType.PLANNING -> gs.copy(planningLevel = gs.planningLevel + 1)
-                UpgradeType.CLINIC -> gs.copy(clinicLevel = gs.clinicLevel + 1)
-                UpgradeType.PATHFINDER -> gs.copy(pathfinderLevel = gs.pathfinderLevel + 1)
-            }
-            analytics.logTownUpgrade(type.name, currentLevel + 1)
             viewModelScope.launch {
-                repository.saveGameState(nextGs.copy(gold = gs.gold - finalCost))
+                val currentGs = repository.getGameStateOnce() ?: gs
+                if (currentGs.gold >= finalCost) {
+                    val nextGs = when (type) {
+                        UpgradeType.INN -> currentGs.copy(innLevel = currentGs.innLevel + 1)
+                        UpgradeType.BARRACKS -> currentGs.copy(barracksLevel = currentGs.barracksLevel + 1)
+                        UpgradeType.VAULT -> currentGs.copy(vaultLevel = currentGs.vaultLevel + 1)
+                        UpgradeType.ARMORY -> currentGs.copy(armoryLevel = currentGs.armoryLevel + 1)
+                        UpgradeType.MAGIC_SHOP -> currentGs.copy(magicShopLevel = currentGs.magicShopLevel + 1)
+                        UpgradeType.TRAINING -> currentGs.copy(trainingLevel = currentGs.trainingLevel + 1)
+                        UpgradeType.PLANNING -> currentGs.copy(planningLevel = currentGs.planningLevel + 1)
+                        UpgradeType.CLINIC -> currentGs.copy(clinicLevel = currentGs.clinicLevel + 1)
+                        UpgradeType.PATHFINDER -> currentGs.copy(pathfinderLevel = currentGs.pathfinderLevel + 1)
+                    }
+                    analytics.logTownUpgrade(type.name, currentLevel + 1)
+                    repository.saveGameState(nextGs.copy(gold = currentGs.gold - finalCost))
+                }
             }
         }
     }

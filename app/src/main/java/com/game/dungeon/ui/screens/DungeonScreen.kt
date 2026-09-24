@@ -731,7 +731,13 @@ fun RunCompleteOverlay(
                                             .border(1.dp, Color(item.rarity.color))
                                             .clickable { selectedItemForDetail = item }
                                     ) {
-                                        Text(item.emoji, fontSize = 24.sp, modifier = Modifier.align(Center))
+                                        EquipmentSprite(
+                                            item = item,
+                                            slot = item.slot,
+                                            modifier = Modifier
+                                                .size(36.dp)
+                                                .align(Center)
+                                        )
                                     }
                                 }
                             }
@@ -767,7 +773,11 @@ fun RunCompleteOverlay(
                         horizontalAlignment = CenterHorizontally,
                         verticalArrangement = Arrangement.spacedBy(12.dp)
                     ) {
-                        Text(item.emoji, fontSize = 48.sp)
+                        EquipmentSprite(
+                            item = item,
+                            slot = item.slot,
+                            modifier = Modifier.size(64.dp)
+                        )
                         Text(item.name, style = PixelHeading, color = Color(item.rarity.color))
                         
                         Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(4.dp)) {
