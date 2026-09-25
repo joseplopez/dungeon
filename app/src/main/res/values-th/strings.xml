@@ -81,6 +81,7 @@
     <string name="npc_tip_scholar">คริสตัลจากร้านค้าช่วยปลดล็อกอาชีพที่แข็งแกร่ง!</string>
     <string name="npc_tip_adventurer">ตรวจสอบบอร์ดประชาสัมพันธ์เพื่อดูการอัปเกรดเมือง!</string>
     <string name="npc_tip_merchant">ชมวิดีโอเพื่อรับกิลและเมจิไซต์ 2 เท่า!</string>
+    <string name="npc_tip_gladiator">ต่อสู้ในโคลอสเซียมเพื่อพิสูจน์ความแข็งแกร่งและคว้าเกียรติยศ!</string>
     <string name="bulletin_title">บอร์ดข่าวสารเมือง</string>
     <string name="bulletin_record_format">สถิติชั้นสูงสุด: ชั้น %1$d</string>
     <string name="bulletin_active_perks">การอัปเกรดเมืองที่ใช้งานอยู่</string>
@@ -357,6 +358,11 @@
     <string name="edit_name_hint">แก้ไขชื่อ</string>
     <string name="save_button">บันทึก</string>
     <string name="no_friends_desc">ยังไม่มีเพื่อน แบ่งปัน ID ของคุณเพื่อเริ่มจัดอันดับ!</string>
+    <string name="copy_id_button">คัดลอก ID</string>
+    <string name="podium_gold">แชมเปี้ยนทองคำ</string>
+    <string name="podium_silver">เงิน</string>
+    <string name="podium_bronze">ทองแดง</string>
+    <string name="gladiator_team_header">นักสู้ / ทีม</string>
     <string name="ad_starting">กำลังรับชมโฆษณา...</string>
     <string name="ad_finished">ได้รับรางวัลแล้ว!</string>
     <string name="ad_boost_button">บูสต์ (โฆษณา)</string>

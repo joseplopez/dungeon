@@ -673,3 +673,155 @@ fun DrawScope.drawCockatrice() {
         PetType.TONBERRY -> drawTonberry()
     }
 }
+
+// --- TOWN NPC SPRITES ---
+
+fun DrawScope.drawTownGuard() {
+    val p = px32()
+    // Silver Helmet with Red Crest
+    p(10f, 2f, 12f, 8f, FFSilver)
+    p(13f, 0f, 6f, 3f, FFRed) // Red crest
+    p(10f, 7f, 12f, 1f, FFBlack) // Visor slit
+    // Face peeking
+    p(11f, 8f, 10f, 5f, SkinMid)
+    p(13f, 10f, 1f, 1f, Color.Black)
+    p(18f, 10f, 1f, 1f, Color.Black)
+    // Armor
+    p(10f, 13f, 12f, 10f, FFBlue) // Cobalt tabard
+    p(8f, 13f, 3f, 5f, FFSilver) // Pauldrons
+    p(21f, 13f, 3f, 5f, FFSilver)
+    p(11f, 14f, 10f, 2f, FFGold) // Gold chest emblem
+    // Halberd / Spear
+    p(24f, 0f, 1f, 28f, HairBrown) // Shaft
+    p(23f, 0f, 3f, 4f, FFSilver) // Spearhead
+    p(22f, 2f, 2f, 2f, FFGold) // Axe blade side
+    // Shield on Left Arm
+    p(5f, 14f, 4f, 10f, FFRed)
+    p(6f, 15f, 2f, 8f, FFGold)
+    // Legs
+    p(11f, 23f, 4f, 7f, FFSilverDark)
+    p(17f, 23f, 4f, 7f, FFSilverDark)
+    p(10f, 29f, 5f, 2f, FFBlack)
+    p(17f, 29f, 5f, 2f, FFBlack)
+}
+
+fun DrawScope.drawTownScholar() {
+    val p = px32()
+    // Pointed Wizard Hat
+    p(13f, 0f, 6f, 5f, FFPurple)
+    p(11f, 5f, 10f, 2f, FFPurple)
+    p(9f, 7f, 14f, 2f, FFGold) // Brim
+    // Face & Glasses / Spectacles
+    p(11f, 9f, 10f, 5f, SkinLight)
+    p(12f, 10f, 3f, 2f, FFGold) // Spectacles frame L
+    p(17f, 10f, 3f, 2f, FFGold) // Spectacles frame R
+    p(13f, 11f, 1f, 1f, Color.Black)
+    p(18f, 11f, 1f, 1f, Color.Black)
+    p(12f, 13f, 8f, 2f, HairWhite) // Beard
+    // Robes
+    p(10f, 14f, 12f, 11f, FFPurple)
+    p(14f, 14f, 4f, 11f, FFGold) // Gold inner sash
+    p(9f, 16f, 3f, 7f, FFPurple) // Sleeve L
+    p(20f, 16f, 3f, 7f, FFPurple) // Sleeve R
+    // Glowing Magic Tome held in hands
+    p(19f, 18f, 6f, 6f, HairBrown) // Book cover
+    p(20f, 19f, 4f, 4f, Color.Cyan) // Glowing magic pages
+    // Legs
+    p(12f, 25f, 8f, 5f, FFBlack)
+}
+
+fun DrawScope.drawTownAdventurer() {
+    val p = px32()
+    // Green Cap & Feather
+    p(10f, 3f, 12f, 4f, FFGreen)
+    p(19f, 1f, 2f, 4f, Color.White) // Feather
+    p(11f, 7f, 10f, 2f, HairBrown) // Messy Hair
+    // Face
+    p(11f, 8f, 10f, 5f, SkinMid)
+    p(13f, 10f, 1f, 1f, Color.Black)
+    p(18f, 10f, 1f, 1f, Color.Black)
+    // Tunic & Cloak
+    p(10f, 13f, 12f, 10f, FFGreen)
+    p(8f, 13f, 3f, 10f, Color(0xFF5D4037)) // Brown cape L
+    p(21f, 13f, 3f, 10f, Color(0xFF5D4037)) // Brown cape R
+    p(12f, 13f, 8f, 2f, Color.White) // Collar
+    p(11f, 18f, 10f, 2f, FFGold) // Belt
+    // Sword at hip
+    p(22f, 16f, 1f, 8f, FFSilver)
+    p(21f, 18f, 3f, 1f, FFGold)
+    // Legs & Boots
+    p(12f, 23f, 3f, 6f, Color(0xFF5D4037))
+    p(17f, 23f, 3f, 6f, Color(0xFF5D4037))
+    p(11f, 28f, 4f, 3f, Color(0xFF3E2723))
+    p(17f, 28f, 4f, 3f, Color(0xFF3E2723))
+}
+
+fun DrawScope.drawTownMerchant() {
+    val p = px32()
+    // Turban with Gem
+    p(10f, 2f, 12f, 6f, FFRed)
+    p(12f, 1f, 8f, 2f, FFGold)
+    p(15f, 4f, 2f, 2f, FFGreen) // Emerald in turban
+    // Face with Beard
+    p(11f, 8f, 10f, 6f, SkinMid)
+    p(13f, 10f, 1f, 1f, Color.Black)
+    p(18f, 10f, 1f, 1f, Color.Black)
+    p(12f, 12f, 8f, 2f, HairBrown) // Beard
+    // Rich Vest & Tunic
+    p(10f, 14f, 12f, 10f, FFRed)
+    p(10f, 14f, 3f, 10f, FFGold) // Gold trim L
+    p(19f, 14f, 3f, 10f, FFGold) // Gold trim R
+    p(14f, 18f, 4f, 4f, Color(0xFF7E5109)) // Coin pouch at belt
+    // Held Gold Coin up
+    p(6f, 14f, 3f, 3f, FFGold)
+    p(7f, 15f, 1f, 1f, Color.White)
+    // Legs & Shoes
+    p(12f, 24f, 3f, 6f, FFBlue)
+    p(17f, 24f, 3f, 6f, FFBlue)
+    p(10f, 29f, 5f, 2f, FFGold) // Curl toe shoes
+    p(17f, 29f, 5f, 2f, FFGold)
+}
+
+fun DrawScope.drawTownGladiator() {
+    val p = px32()
+    // Galea Gladiator Helmet with High Red Crest
+    p(13f, 0f, 6f, 4f, FFRed) // High crest
+    p(10f, 4f, 12f, 6f, Color(0xFFB7950B)) // Bronze helmet
+    p(11f, 7f, 10f, 1f, FFBlack) // Visor opening
+    // Face peeking
+    p(11f, 8f, 10f, 5f, SkinMid)
+    p(13f, 9f, 1f, 1f, Color.Black)
+    p(18f, 9f, 1f, 1f, Color.Black)
+    // Muscular Bare Torso & Manica Shoulder Guard
+    p(11f, 13f, 10f, 9f, SkinMid)
+    p(8f, 13f, 4f, 6f, Color(0xFFB7950B)) // Bronze Manica pauldron
+    p(14f, 15f, 4f, 5f, SkinShadow) // Muscle shading
+    // Leather Kilt / Pteryges
+    p(10f, 21f, 12f, 4f, Color(0xFF5D4037))
+    p(11f, 22f, 2f, 3f, Color(0xFFB7950B)) // Bronze studs
+    p(15f, 22f, 2f, 3f, Color(0xFFB7950B))
+    p(19f, 22f, 2f, 3f, Color(0xFFB7950B))
+    // Gladius Sword (Right Hand)
+    p(23f, 12f, 2f, 12f, FFSilver)
+    p(22f, 22f, 4f, 1.5f, Color(0xFFB7950B))
+    // Round Shield (Left Arm)
+    p(5f, 15f, 4f, 8f, Color(0xFFB7950B))
+    p(6f, 16f, 2f, 6f, FFRed)
+    // Legs & Greaves
+    p(12f, 25f, 3f, 5f, SkinMid)
+    p(17f, 25f, 3f, 5f, SkinMid)
+    p(11f, 28f, 4f, 3f, Color(0xFFB7950B)) // Bronze greaves
+    p(17f, 28f, 4f, 3f, Color(0xFFB7950B))
+}
+
+@Composable fun TownNpcSprite(npcId: String, modifier: Modifier = Modifier) = Canvas(modifier) {
+    when (npcId) {
+        "guard" -> drawTownGuard()
+        "scholar" -> drawTownScholar()
+        "adventurer" -> drawTownAdventurer()
+        "merchant" -> drawTownMerchant()
+        "gladiator" -> drawTownGladiator()
+        else -> drawTownGuard()
+    }
+}
+

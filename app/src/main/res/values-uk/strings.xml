@@ -81,6 +81,7 @@
     <string name="npc_tip_scholar">Кристали з лавки відкривають потужні класи!</string>
     <string name="npc_tip_adventurer">Перевір дошку оголошень, щоб дізнатися про покращення!</string>
     <string name="npc_tip_merchant">Дивись відео для отримання 2x Гіля та Магіциту!</string>
+    <string name="npc_tip_gladiator">Боріться на Колізеї, щоб довести свою силу та здобути славу!</string>
     <string name="bulletin_title">ДОШКА ОГОЛОШЕНЬ ТА НОВИНИ</string>
     <string name="bulletin_record_format">Рекорд поверху: Поверх %1$d</string>
     <string name="bulletin_active_perks">АКТИВНІ ПОКРАЩЕННЯ МІСТА</string>
@@ -357,6 +358,11 @@
     <string name="edit_name_hint">Змінити ім\'я</string>
     <string name="save_button">ЗБЕРЕГТИ</string>
     <string name="no_friends_desc">Друзів ще не додано. Поділіться своїм ID, щоб почати змагатися!</string>
+    <string name="copy_id_button">СКОПІЮВАТИ ID</string>
+    <string name="podium_gold">ЗОЛОТИЙ ЧЕМПІОН</string>
+    <string name="podium_silver">СРІБЛО</string>
+    <string name="podium_bronze">БРОНЗА</string>
+    <string name="gladiator_team_header">ГЛАДІАТОР / КОМАНДА</string>
     <string name="ad_starting">Перегляд реклами...</string>
     <string name="ad_finished">Нагороду отримано!</string>
     <string name="ad_boost_button">БУСТ (REKLAMA)</string>

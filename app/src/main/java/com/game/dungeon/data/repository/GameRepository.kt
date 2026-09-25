@@ -59,10 +59,17 @@ class GameRepository @Inject constructor(
 
     suspend fun triggerFirebaseUpload(state: GameState? = null) {
         val current = state ?: database.gameStateDao.getGameStateOnce() ?: return
-        val playerId = current.playerId
+        val sanitized = if (current.dimStartTime <= 0L) {
+            val fixed = current.copy(dimStartTime = System.currentTimeMillis())
+            database.gameStateDao.upsert(fixed)
+            fixed
+        } else {
+            current
+        }
+        val playerId = sanitized.playerId
         if (playerId != null) {
             val party = database.heroDao.getPartyOnce()
-            leaderboardRepository.uploadScore(playerId, current.playerName, current, party)
+            leaderboardRepository.uploadScore(playerId, sanitized.playerName, sanitized, party)
         }
     }
 

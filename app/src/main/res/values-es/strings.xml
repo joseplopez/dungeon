@@ -81,6 +81,7 @@
     <string name="npc_tip_scholar">¡Los cristales de la tienda desbloquean trabajos poderosos!</string>
     <string name="npc_tip_adventurer">¡Consulta el tablón de anuncios para ver las mejoras de la ciudad!</string>
     <string name="npc_tip_merchant">¡Mira videos para obtener el doble de Gil y Magicita!</string>
+    <string name="npc_tip_gladiator">¡Lucha en el Coliseo para demostrar tu fuerza y ganar gloria!</string>
     <string name="bulletin_title">TABLÓN Y NOTICIAS</string>
     <string name="bulletin_record_format">Récord de piso más alto: Piso %1$d</string>
     <string name="bulletin_active_perks">MEJORAS ACTIVAS DE LA CIUDAD</string>
@@ -357,6 +358,11 @@
     <string name="edit_name_hint">Editar Nombre</string>
     <string name="save_button">GUARDAR</string>
     <string name="no_friends_desc">No has añadido amigos todavía. ¡Comparte tu ID para empezar a competir!</string>
+    <string name="copy_id_button">COPIAR ID</string>
+    <string name="podium_gold">CAMPEÓN DE ORO</string>
+    <string name="podium_silver">PLATA</string>
+    <string name="podium_bronze">BRONCE</string>
+    <string name="gladiator_team_header">GLADIADOR / EQUIPO</string>
     <string name="ad_starting">Viendo Anuncio...</string>
     <string name="ad_finished">¡Recompensa Ganada!</string>
     <string name="ad_boost_button">MEJORA (AD)</string>

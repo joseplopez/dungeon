@@ -81,6 +81,7 @@
     <string name="npc_tip_scholar">Fuwele za dukani hufungua kazi zenye nguvu!</string>
     <string name="npc_tip_adventurer">Angalia ubao wa matangazo kwa maboresho ya mji!</string>
     <string name="npc_tip_merchant">Tazama video upate mara 2 ya Gil na Magicite!</string>
+    <string name="npc_tip_gladiator">Pana katika Colosseum ili kuthibitisha nguvu yako na kupata utukufu!</string>
     <string name="bulletin_title">UBAO WA MATANGAZO NA HABARI</string>
     <string name="bulletin_record_format">Rekodi ya ghorofa ya juu: Ghorofa %1$d</string>
     <string name="bulletin_active_perks">MABORESHO YALIYOBORESHWA YA MJI</string>
@@ -357,6 +358,11 @@
     <string name="edit_name_hint">Hariri Jina</string>
     <string name="save_button">HIFADHI</string>
     <string name="no_friends_desc">Hakuna marafiki walioongezwa bado. Shiriki ID yako ili uanze kuorodheshwa!</string>
+    <string name="copy_id_button">NAKILI ID</string>
+    <string name="podium_gold">BINGWA WA DHAHABU</string>
+    <string name="podium_silver">FEDHA</string>
+    <string name="podium_bronze">BRONZI</string>
+    <string name="gladiator_team_header">PIGANA / TIMU</string>
     <string name="ad_starting">Kutazama Tangazo...</string>
     <string name="ad_finished">Zawadi Imepatikana!</string>
     <string name="ad_boost_button">BOOST (AD)</string>

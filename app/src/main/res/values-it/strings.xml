@@ -81,6 +81,7 @@
     <string name="npc_tip_scholar">I cristalli del negozio sbloccano classi potenti!</string>
     <string name="npc_tip_adventurer">Controlla la bacheca per i potenziamenti della città!</string>
     <string name="npc_tip_merchant">Guarda i video per ottenere il doppio di Gil e Magicite!</string>
+    <string name="npc_tip_gladiator">Lotta nel Colosseo per dimostrare la tua forza e conquistare la gloria!</string>
     <string name="bulletin_title">BACHECA E NOTIZIE</string>
     <string name="bulletin_record_format">Record piano più alto: Piano %1$d</string>
     <string name="bulletin_active_perks">POTENZIAMENTI ATTIVI</string>
@@ -357,6 +358,11 @@
     <string name="edit_name_hint">Modifica Nome</string>
     <string name="save_button">SALVA</string>
     <string name="no_friends_desc">Nessun amico aggiunto. Condividi il tuo ID per iniziare la classifica!</string>
+    <string name="copy_id_button">COPIA ID</string>
+    <string name="podium_gold">CAMPIONE D\'ORO</string>
+    <string name="podium_silver">ARGENTO</string>
+    <string name="podium_bronze">BRONZO</string>
+    <string name="gladiator_team_header">GLADIATORE / SQUADRA</string>
     <string name="ad_starting">Caricamento Annuncio...</string>
     <string name="ad_finished">Ricompensa Guadagnata!</string>
     <string name="ad_boost_button">POTENZIAMENTO (AD)</string>

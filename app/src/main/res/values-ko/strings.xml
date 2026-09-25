@@ -81,6 +81,7 @@
     <string name="npc_tip_scholar">상점의 크리스탈로 강력한 직업을 해금하세요!</string>
     <string name="npc_tip_adventurer">게시판에서 마을 강화 상태를 확인하세요!</string>
     <string name="npc_tip_merchant">광고를 시청하고 길과 마지사이트를 2배로 받으세요!</string>
+    <string name="npc_tip_gladiator">콜로세움에서 전투하여 너의 힘을 증명하고 영광을 차지해라!</string>
     <string name="bulletin_title">마을 게시판 및 소식</string>
     <string name="bulletin_record_format">최고 도달 층수: %1$d층</string>
     <string name="bulletin_active_perks">활성화된 마을 강화</string>
@@ -358,6 +359,11 @@
     <string name="edit_name_hint">이름 편집</string>
     <string name="save_button">저장</string>
     <string name="no_friends_desc">아직 추가된 친구가 없습니다. ID를 공유하여 경쟁을 시작해보세요!</string>
+    <string name="copy_id_button">ID 복사</string>
+    <string name="podium_gold">골드 챔피언</string>
+    <string name="podium_silver">실버</string>
+    <string name="podium_bronze">브론즈</string>
+    <string name="gladiator_team_header">검투사 / 팀</string>
     <string name="ad_starting">광고 시청 중...</string>
     <string name="ad_finished">보상 획득!</string>
     <string name="ad_boost_button">부스트 (광고)</string>

@@ -42,7 +42,6 @@ import kotlin.math.sin
 data class NpcState(
     val id: String,
     val name: String,
-    val emoji: String,
     val startXDp: Float,
     val walkRangeDp: Float,
     val speed: Float,
@@ -94,7 +93,8 @@ fun TownScreen(
             "guard" to R.string.npc_tip_guard,
             "scholar" to R.string.npc_tip_scholar,
             "adventurer" to R.string.npc_tip_adventurer,
-            "merchant" to R.string.npc_tip_merchant
+            "merchant" to R.string.npc_tip_merchant,
+            "gladiator" to R.string.npc_tip_gladiator
         )
         var index = 0
         while (true) {
@@ -249,10 +249,11 @@ fun TownScreen(
                     // Walking NPCs inside the SAME scrollable Box
                     val npcs = remember {
                         listOf(
-                            NpcState("guard", "Guard", "💂", startXDp = 480f, walkRangeDp = 160f, speed = 0.0012f, tipRes = R.string.npc_tip_guard),
-                            NpcState("scholar", "Scholar", "🧙", startXDp = 200f, walkRangeDp = 120f, speed = 0.001f, tipRes = R.string.npc_tip_scholar),
-                            NpcState("adventurer", "Hero", "🧚🏽‍♀️", startXDp = 750f, walkRangeDp = 160f, speed = 0.0015f, tipRes = R.string.npc_tip_adventurer),
-                            NpcState("merchant", "Merchant", "🧝🏻", startXDp = 1020f, walkRangeDp = 120f, speed = 0.0009f, tipRes = R.string.npc_tip_merchant)
+                            NpcState("scholar", "Scholar", startXDp = 200f, walkRangeDp = 120f, speed = 0.001f, tipRes = R.string.npc_tip_scholar),
+                            NpcState("guard", "Guard", startXDp = 480f, walkRangeDp = 160f, speed = 0.0012f, tipRes = R.string.npc_tip_guard),
+                            NpcState("adventurer", "Hero", startXDp = 750f, walkRangeDp = 160f, speed = 0.0015f, tipRes = R.string.npc_tip_adventurer),
+                            NpcState("merchant", "Merchant", startXDp = 1020f, walkRangeDp = 120f, speed = 0.0009f, tipRes = R.string.npc_tip_merchant),
+                            NpcState("gladiator", "Gladiator", startXDp = 1320f, walkRangeDp = 140f, speed = 0.0011f, tipRes = R.string.npc_tip_gladiator)
                         )
                     }
 
@@ -290,10 +291,11 @@ fun TownScreen(
                                 }
 
                                 // NPC Pixel Sprite
-                                Text(
-                                    npc.emoji,
-                                    fontSize = 28.sp,
-                                    modifier = Modifier.graphicsLayer(scaleX = if (isWalkingLeft) -1f else 1f)
+                                TownNpcSprite(
+                                    npcId = npc.id,
+                                    modifier = Modifier
+                                        .size(36.dp)
+                                        .graphicsLayer(scaleX = if (isWalkingLeft) -1f else 1f)
                                 )
                             }
                         }

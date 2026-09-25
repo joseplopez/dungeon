@@ -2,7 +2,6 @@ package com.game.dungeon.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.game.dungeon.data.models.HeroClass
 import com.game.dungeon.data.models.LeaderboardEntry
 import com.game.dungeon.data.repository.AuthRepository
 import com.game.dungeon.data.repository.FriendRepository
@@ -29,7 +28,7 @@ class LeaderboardViewModel @Inject constructor(
     private val friendRepository: FriendRepository
 ) : ViewModel() {
 
-    private val _selectedTab = MutableStateFlow(0) // 0: Global, 1: Friends
+    private val _selectedTab = MutableStateFlow(0) // 0: Global, 1: Dimension
     val selectedTab = _selectedTab.asStateFlow()
 
     val gameState = repository.getGameState().stateIn(viewModelScope, SharingStarted.Eagerly, null)
@@ -57,10 +56,12 @@ class LeaderboardViewModel @Inject constructor(
         
         entries.map { entry ->
             val isUser = gs.playerId != null && entry.playerId == gs.playerId
-            if (isUser) {
+            // Preserve the team that actually set the record from Firebase.
+            // Only fallback to active party if no team was saved for the record yet.
+            if (isUser && entry.team.isEmpty()) {
                 entry.copy(isUser = true, team = party)
             } else {
-                entry.copy(isUser = false)
+                entry.copy(isUser = isUser)
             }
         }
     }.onStart { _isLoading.value = true }

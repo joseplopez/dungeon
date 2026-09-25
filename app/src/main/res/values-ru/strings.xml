@@ -81,6 +81,7 @@
     <string name="npc_tip_scholar">Кристаллы из лавки открывают мощные классы!</string>
     <string name="npc_tip_adventurer">Проверь доску объявлений, чтобы узнать о улучшениях!</string>
     <string name="npc_tip_merchant">Смотри видео для получения 2x Гиля и Магицита!</string>
+    <string name="npc_tip_gladiator">Сражайтесь на Колизее, чтобы доказать свою силу и завоевать славу!</string>
     <string name="bulletin_title">ДОСКА ОБЪЯВЛЕНИЙ И НОВОСТИ</string>
     <string name="bulletin_record_format">Рекорд этажа: Этаж %1$d</string>
     <string name="bulletin_active_perks">АКТИВНЫЕ УЛУЧШЕНИЯ ГОРОДА</string>
@@ -357,6 +358,11 @@
     <string name="edit_name_hint">Изменить имя</string>
     <string name="save_button">СОХРАНИТЬ</string>
     <string name="no_friends_desc">Друзья еще не добавлены. Поделитесь своим ID, чтобы начать соревноваться!</string>
+    <string name="copy_id_button">СКОПИРОВАТЬ ID</string>
+    <string name="podium_gold">ЗОЛОТОЙ ЧЕМПИОН</string>
+    <string name="podium_silver">СЕРЕБРО</string>
+    <string name="podium_bronze">БРОНЗА</string>
+    <string name="gladiator_team_header">ГЛАДИАТОР / КОМАНДА</string>
     <string name="ad_starting">Просмотр рекламы...</string>
     <string name="ad_finished">Награда получена!</string>
     <string name="ad_boost_button">БУСТ (РЕКЛАМА)</string>

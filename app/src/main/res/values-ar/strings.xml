@@ -81,6 +81,7 @@
     <string name="npc_tip_scholar">البلورات من المتجر تفتح وظائف قوية!</string>
     <string name="npc_tip_adventurer">تحقق من لوحة الإعلانات لمعرفة ترقيات المدينة!</string>
     <string name="npc_tip_merchant">شاهد الفيديوهات للحصول على ضعف الجيل والماجيسيت!</string>
+    <string name="npc_tip_gladiator">قاتل في الكولوسيوم لتثبت قوتك وتفوز بالمجد!</string>
     <string name="bulletin_title">لوحة الإعلانات والأخبار</string>
     <string name="bulletin_record_format">أعلى رقم قياسي للطابق: الطابق %1$d</string>
     <string name="bulletin_active_perks">مزايا المدينة النشطة</string>
@@ -357,6 +358,11 @@
     <string name="edit_name_hint">تعديل الاسم</string>
     <string name="save_button">حفظ</string>
     <string name="no_friends_desc">لم يتم إضافة أصدقاء بعد. شارك معرفك لبدء الترتيب!</string>
+    <string name="copy_id_button">نسخ المعرف</string>
+    <string name="podium_gold">البطل الذهبي</string>
+    <string name="podium_silver">فضي</string>
+    <string name="podium_bronze">برونزي</string>
+    <string name="gladiator_team_header">المصارع / الفريق</string>
     <string name="ad_starting">مشاهدة الإعلان...</string>
     <string name="ad_finished">تم كسب المكافأة!</string>
     <string name="ad_boost_button">تعزيز (إعلان)</string>

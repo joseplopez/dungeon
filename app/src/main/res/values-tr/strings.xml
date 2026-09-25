@@ -81,6 +81,7 @@
     <string name="npc_tip_scholar">Dükkandaki kristaller güçlü sınıfları açar!</string>
     <string name="npc_tip_adventurer">Şehir geliştirmeleri için duyuru panosuna bak!</string>
     <string name="npc_tip_merchant">2 kat Gil ve Magicite için videolar izle!</string>
+    <string name="npc_tip_gladiator">Gücünü kanıtlamak ve zafer kazanmak için Koloseum\'da savaş!</string>
     <string name="bulletin_title">DUYURU PANOSU VE HABERLER</string>
     <string name="bulletin_record_format">En Yüksek Kat Rekoru: Kat %1$d</string>
     <string name="bulletin_active_perks">AKTİF ŞEHİR BONUSLARI</string>
@@ -357,6 +358,11 @@
     <string name="edit_name_hint">İsmi Düzenle</string>
     <string name="save_button">KAYDET</string>
     <string name="no_friends_desc">Henüz arkadaş eklenmedi. Sıralamaya girmek için kimliğinizi paylaşın!</string>
+    <string name="copy_id_button">ID KOPYALA</string>
+    <string name="podium_gold">ALTIN ŞAMPİYON</string>
+    <string name="podium_silver">GÜMÜŞ</string>
+    <string name="podium_bronze">BRONZ</string>
+    <string name="gladiator_team_header">GLADYATÖR / TAKIM</string>
     <string name="ad_starting">Reklam İzleniyor...</string>
     <string name="ad_finished">Ödül Kazanıldı!</string>
     <string name="ad_boost_button">DESTEK (REKLAM)</string>

@@ -199,11 +199,17 @@ class InnViewModel @Inject constructor(
                 // Calculate Gold kept (Deep Pockets Relic)
                 val goldKept = (gs.gold * gs.pocketsBonus).toLong()
 
-                val clearTime = System.currentTimeMillis() - gs.dimStartTime
-                val updatedFastestTime = if (gs.fastestClearTime == 0L || clearTime < gs.fastestClearTime) {
-                    clearTime
-                } else {
-                    gs.fastestClearTime
+                val MAX_VALID_TIME_MS = 864000000L // 10 days cap to avoid corrupt 55-year timestamps
+                val rawClearTime = if (gs.dimStartTime <= 0L) 0L else (System.currentTimeMillis() - gs.dimStartTime)
+                val clearTime = if (rawClearTime <= 0L || rawClearTime > MAX_VALID_TIME_MS) 0L else rawClearTime
+
+                val currentFastest = if (gs.fastestClearTime > MAX_VALID_TIME_MS) 0L else gs.fastestClearTime
+
+                val updatedFastestTime = when {
+                    clearTime <= 0L -> currentFastest
+                    currentFastest == 0L -> clearTime
+                    clearTime < currentFastest -> clearTime
+                    else -> currentFastest
                 }
 
                 // Reset GameState for new dimension

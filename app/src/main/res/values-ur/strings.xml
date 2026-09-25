@@ -81,6 +81,7 @@
     <string name="npc_tip_scholar">دکان کے کرسٹل طاقتور جابز ان لاک کرتے ہیں!</string>
     <string name="npc_tip_adventurer">شہر کی اپ گریڈز کے لیے بلیٹن بورڈ چیک کریں!</string>
     <string name="npc_tip_merchant">دوگنا گل اور میجیسائٹ حاصل کرنے کے لیے ویڈیوز دیکھیں!</string>
+    <string name="npc_tip_gladiator">اپنی طاقت ثابت کرنے اور شان حاصل کرنے کے لیے کولوزیم میں لڑیں!</string>
     <string name="bulletin_title">بلیٹن بورڈ اور خبریں</string>
     <string name="bulletin_record_format">سب سے زیادہ فلور کا ریکارڈ: فلور %1$d</string>
     <string name="bulletin_active_perks">فعال سٹی اپ گریڈز</string>
@@ -357,6 +358,11 @@
     <string name="edit_name_hint">نام تبدیل کریں</string>
     <string name="save_button">محفوظ کریں</string>
     <string name="no_friends_desc">ابھی تک کوئی دوست شامل نہیں کیا گیا۔ درجہ بندی شروع کرنے کے لیے اپنا ID شیئر کریں!</string>
+    <string name="copy_id_button">آئی ڈی کاپی کریں</string>
+    <string name="podium_gold">گولڈ چیمپئن</string>
+    <string name="podium_silver">سلور</string>
+    <string name="podium_bronze">کانسی</string>
+    <string name="gladiator_team_header">پہلوان / ٹیم</string>
     <string name="ad_starting">اشتہار دیکھا جا رہا ہے...</string>
     <string name="ad_finished">انعام مل گیا!</string>
     <string name="ad_boost_button">بوسٹ (اشتہار)</string>

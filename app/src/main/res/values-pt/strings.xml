@@ -81,6 +81,7 @@
     <string name="npc_tip_scholar">Cristais da loja desbloqueiam classes poderosas!</string>
     <string name="npc_tip_adventurer">Confira o mural de avisos para ver as melhorias da cidade!</string>
     <string name="npc_tip_merchant">Assista a vídeos para ganhar 2x mais Gil e Magicite!</string>
+    <string name="npc_tip_gladiator">Lute no Coliseu para provar sua força e conquistar a glória!</string>
     <string name="bulletin_title">BOLETIM E NOTÍCIAS</string>
     <string name="bulletin_record_format">Recorde de andar mais alto: Andar %1$d</string>
     <string name="bulletin_active_perks">MELHORIAS ATIVAS DA CIDADE</string>
@@ -357,6 +358,11 @@
     <string name="edit_name_hint">Editar Nome</string>
     <string name="save_button">SALVAR</string>
     <string name="no_friends_desc">Nenhum amigo adicionado ainda. Compartilhe seu ID para começar a pontuar!</string>
+    <string name="copy_id_button">COPIAR ID</string>
+    <string name="podium_gold">CAMPEÃO DE OURO</string>
+    <string name="podium_silver">PRATA</string>
+    <string name="podium_bronze">BRONZE</string>
+    <string name="gladiator_team_header">GLADIADOR / EQUIPE</string>
     <string name="ad_starting">Assistindo ao Anúncio...</string>
     <string name="ad_finished">Recompensa Recebida!</string>
     <string name="ad_boost_button">IMPULSO (AD)</string>

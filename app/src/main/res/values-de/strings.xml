@@ -81,6 +81,7 @@
     <string name="npc_tip_scholar">Kristalle aus dem Laden schalten mächtige Klassen frei!</string>
     <string name="npc_tip_adventurer">Schau auf das Schwarze Brett für Stadt-Upgrades!</string>
     <string name="npc_tip_merchant">Schaue Videos für doppeltes Gil und Magazit!</string>
+    <string name="npc_tip_gladiator">Kämpfe im Kolosseum, um deine Stärke zu beweisen und Ruhm zu erlangen!</string>
     <string name="bulletin_title">STADT-BULLETIN &amp; NEWS</string>
     <string name="bulletin_record_format">Höchste Etage: Etage %1$d</string>
     <string name="bulletin_active_perks">AKTIVE STADT-BONI</string>
@@ -357,6 +358,11 @@
     <string name="edit_name_hint">Name bearbeiten</string>
     <string name="save_button">SPEICHERN</string>
     <string name="no_friends_desc">Noch keine Freunde hinzugefügt. Teile deine ID, um die Rangliste zu starten!</string>
+    <string name="copy_id_button">ID KOPIEREN</string>
+    <string name="podium_gold">GOLD-CHAMPION</string>
+    <string name="podium_silver">SILBER</string>
+    <string name="podium_bronze">BRONZE</string>
+    <string name="gladiator_team_header">GLADIATOR / TEAM</string>
     <string name="ad_starting">Werbung wird gestartet...</string>
     <string name="ad_finished">Belohnung verdient!</string>
     <string name="ad_boost_button">BOOST (WERBUNG)</string>

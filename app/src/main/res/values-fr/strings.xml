@@ -81,6 +81,7 @@
     <string name="npc_tip_scholar">Les cristaux du magasin débloquent des classes puissantes !</string>
     <string name="npc_tip_adventurer">Consultez le panneau d\'affichage pour les améliorations !</string>
     <string name="npc_tip_merchant">Regardez des vidéos pour doubler vos Gil et Magicite !</string>
+    <string name="npc_tip_gladiator">Combattez dans le Colisée pour prouver votre force et conquérir la gloire !</string>
     <string name="bulletin_title">BULLETIN ET NOUVELLES</string>
     <string name="bulletin_record_format">Record d\'étage le plus élevé : Étage %1$d</string>
     <string name="bulletin_active_perks">AMÉLIORATIONS ACTIVES</string>
@@ -357,6 +358,11 @@
     <string name="edit_name_hint">Modifier le nom</string>
     <string name="save_button">ENREGISTRER</string>
     <string name="no_friends_desc">Aucun ami ajouté. Partagez votre ID pour commencer le classement !</string>
+    <string name="copy_id_button">COPIER ID</string>
+    <string name="podium_gold">CHAMPION D\'OR</string>
+    <string name="podium_silver">ARGENT</string>
+    <string name="podium_bronze">BRONZE</string>
+    <string name="gladiator_team_header">GLADIATEUR / ÉQUIPE</string>
     <string name="ad_starting">Vidéo en cours...</string>
     <string name="ad_finished">Récompense gagnée !</string>
     <string name="ad_boost_button">BOOST (PUB)</string>

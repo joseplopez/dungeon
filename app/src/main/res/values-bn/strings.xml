@@ -81,6 +81,7 @@
     <string name="npc_tip_scholar">দোকানের স্ফটিকগুলি শক্তিশালী জব আনলক করে!</string>
     <string name="npc_tip_adventurer">শহরের আপগ্রেডের জন্য বুলেটিন বোর্ড দেখুন!</string>
     <string name="npc_tip_merchant">২ গুণ গিল এবং ম্যাজিসাইটের জন্য ভিডিও দেখুন!</string>
+    <string name="npc_tip_gladiator">আপনার শক্তি প্রমাণ করতে এবং মহিমা অর্জন করতে কলোসিয়ামে যুদ্ধ করুন!</string>
     <string name="bulletin_title">বুলেটিন বোর্ড এবং খবর</string>
     <string name="bulletin_record_format">সর্বোচ্চ ফ্লোর রেকর্ড: ফ্লোর %1$d</string>
     <string name="bulletin_active_perks">সক্রিয় সিটি আপগ্রেড</string>
@@ -357,6 +358,11 @@
     <string name="edit_name_hint">নাম পরিবর্তন করুন</string>
     <string name="save_button">সংরক্ষণ করুন</string>
     <string name="no_friends_desc">নাহ এখনো কোনো বন্ধু যোগ করা হয়নি। র্যাঙ্কিং শুরু করতে আপনার আইডি শেয়ার করুন!</string>
+    <string name="copy_id_button">আইডি কপি</string>
+    <string name="podium_gold">স্বর্ণ বিজয়ী</string>
+    <string name="podium_silver">রুপো</string>
+    <string name="podium_bronze">ব্রোঞ্জ</string>
+    <string name="gladiator_team_header">যোদ্ধা / দল</string>
     <string name="ad_starting">বিজ্ঞাপন দেখা হচ্ছে...</string>
     <string name="ad_finished">পুরষ্কার অর্জিত!</string>
     <string name="ad_boost_button">বুস্ট (বিজ্ঞাপন)</string>

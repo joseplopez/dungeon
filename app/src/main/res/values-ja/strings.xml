@@ -81,6 +81,7 @@
     <string name="npc_tip_scholar">ショップのクリスタルで強力なジョブを解放できるぞ！</string>
     <string name="npc_tip_adventurer">掲示板で街の強化状況を確認しよう！</string>
     <string name="npc_tip_merchant">動画視聴でギルとマジサイトが2倍に！</string>
+    <string name="npc_tip_gladiator">コロシアムで戦い、己の強さを証明して栄光を掴み取れ！</string>
     <string name="bulletin_title">街の掲示板・お知らせ</string>
     <string name="bulletin_record_format">最高到達階層: %1$d階</string>
     <string name="bulletin_active_perks">有効な街の強化</string>
@@ -357,6 +358,11 @@
     <string name="edit_name_hint">名前を変更</string>
     <string name="save_button">保存</string>
     <string name="no_friends_desc">フレンドがまだいません。IDを共有して競い合いましょう！</string>
+    <string name="copy_id_button">IDコピー</string>
+    <string name="podium_gold">ゴールドチャンピオン</string>
+    <string name="podium_silver">シルバー</string>
+    <string name="podium_bronze">ブロンズ</string>
+    <string name="gladiator_team_header">グラディエーター / チーム</string>
     <string name="ad_starting">広告再生中...</string>
     <string name="ad_finished">報酬を獲得しました！</string>
     <string name="ad_boost_button">ブースト (広告)</string>

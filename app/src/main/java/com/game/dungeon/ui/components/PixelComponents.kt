@@ -71,8 +71,9 @@ fun PixelButton(
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     active: Boolean = false,
-    horizontalPadding: androidx.compose.ui.unit.Dp = 12.dp,
-    verticalPadding: androidx.compose.ui.unit.Dp = 6.dp
+    horizontalPadding: androidx.compose.ui.unit.Dp = 8.dp,
+    verticalPadding: androidx.compose.ui.unit.Dp = 2.dp,
+    fontSize: androidx.compose.ui.unit.TextUnit = androidx.compose.ui.unit.TextUnit.Unspecified
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
@@ -85,6 +86,12 @@ fun PixelButton(
     }
     val textColor = if (active) BgDarkest else GoldBright
 
+    val textStyle = if (fontSize != androidx.compose.ui.unit.TextUnit.Unspecified) {
+        PixelBody.copy(fontSize = fontSize, textAlign = TextAlign.Center)
+    } else {
+        PixelBody.copy(textAlign = TextAlign.Center)
+    }
+
     Box(
         modifier = modifier
             .scale(scale)
@@ -95,9 +102,10 @@ fun PixelButton(
         contentAlignment = Center
     ) {
         Text(
-            label, 
-            style = PixelBody.copy(textAlign = TextAlign.Center),
-            color = textColor
+            text = label, 
+            style = textStyle,
+            color = textColor,
+            maxLines = 1
         )
     }
 }
