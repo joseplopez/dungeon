@@ -15,7 +15,7 @@ object FFDimensionData {
                 FFBiome(R.string.biome_gurgu, 31..50, BiomeType.GURGU_VOLCANO),
                 FFBiome(R.string.biome_sea_shrine, 51..70, BiomeType.SEA_SHRINE),
                 FFBiome(R.string.biome_earth_cave, 71..90, BiomeType.EARTH_CAVE),
-                FFBiome(R.string.biome_crystal_tower, 91..100, BiomeType.CRYSTAL_TOWER)
+                FFBiome(R.string.biome_crystal_tower, 91..1000, BiomeType.CRYSTAL_TOWER)
             ),
             enemies = listOf(
                 FFEnemyTemplate(R.string.enemy_goblin, "👺", 1, 15, gilReward = 8),

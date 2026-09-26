@@ -7,6 +7,7 @@ Before making ANY changes to the project, the agent MUST read the following "Ski
 1.  **`SKILL_DATABASE_MANAGEMENT.md`**: Mandatory steps for Room database changes (Version increments, explicit migrations, and `ensureColumn` safety).
 2.  **`SKILL_LOCALIZATION_PROTOCOL.md`**: Rules for string management, extraction, and XLIFF placeholder usage.
 3.  **`SKILL_TESTING_PROTOCOL.md`**: Mandatory requirements for UI and database migration testing.
+4.  **`SKILL_BIOME_BACKGROUNDS.md`**: Mandatory 7-layer architecture and quality standards for UI biome backgrounds in `PixelBackground.kt`.
 
 ## 🛡️ Database Safety (Zero-Data-Loss Policy)
 *   **NEVER** change an `@Entity` without incrementing the version in `GameDatabase.kt`.

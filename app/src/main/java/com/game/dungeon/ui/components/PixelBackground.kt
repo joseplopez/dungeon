@@ -74,9 +74,9 @@ fun DungeonBackground(biomeType: BiomeType? = BiomeType.GENERIC_DUNGEON) {
             BiomeType.CORNELIA_CASTLE -> drawCorneliaCastle(scrollOffset, torchFlicker)
             BiomeType.CHAOS_SHRINE -> drawChaosShrine(scrollOffset, slowPulse, medPulse)
             BiomeType.GURGU_VOLCANO -> drawGurguVolcano(scrollOffset, torchFlicker, medPulse)
-            BiomeType.SEA_SHRINE -> drawSeaShrine(scrollOffset, slowPulse)
-            BiomeType.EARTH_CAVE -> drawEarthCave(scrollOffset, torchFlicker)
-            BiomeType.CRYSTAL_TOWER -> drawCrystalTower(scrollOffset, slowPulse)
+            BiomeType.SEA_SHRINE -> drawSeaShrine(scrollOffset, slowPulse, medPulse)
+            BiomeType.EARTH_CAVE -> drawEarthCave(scrollOffset, torchFlicker, slowPulse)
+            BiomeType.CRYSTAL_TOWER -> drawCrystalTower(scrollOffset, slowPulse, medPulse)
             BiomeType.MYSIDIAN_TOWER -> drawMysidianTower(scrollOffset, slowPulse)
             BiomeType.PANDAEMONIUM -> drawPandaemonium(scrollOffset, slowPulse)
             BiomeType.MOUNT_ORDEALS -> drawMountOrdeals(scrollOffset, slowPulse)
@@ -273,473 +273,1644 @@ private fun DrawScope.drawCorneliaCastle(scrollOffset: Float, torchFlicker: Floa
     )
 }
 
+private data class ColumnSpec(
+    val xFrac: Float,
+    val topYFrac: Float,
+    val botYFrac: Float,
+    val widthFrac: Float,
+    val isBroken: Boolean = false
+)
+
 private fun DrawScope.drawChaosShrine(scrollOffset: Float, slowPulse: Float, medPulse: Float) {
     val W = size.width
     val H = size.height
 
-    // L1: Void atmosphere
-    drawRect(Color(0xFF050308), size = size)
-    drawCircle(
-        Brush.radialGradient(
-            listOf(Color(0.4f, 0f, 0.6f, 0.15f + slowPulse * 0.15f), Color.Transparent),
-            center = Offset(W / 2f, H / 2f),
-            radius = W * 0.55f
-        ),
-        radius = W * 0.55f,
-        center = Offset(W / 2f, H / 2f)
-    )
-
-    // L2: Shattered pillars
-    listOf(0.18f to 0.6f, 0.5f to 0.3f, 0.82f to 0.7f).forEach { (xFrac, heightFrac) ->
-        val px = W * xFrac
-        val pw = W * 0.08f
-        val pTop = H * 0.15f
-        val pLen = H * heightFrac
-        drawRect(Color(0xFF0F0A18), Offset(px, pTop), Size(pw, pLen))
-        drawRect(Color(0xFF1A1230), Offset(px, pTop), Size(pw * 0.4f, pLen))
-        val breakPath = Path().apply {
-            moveTo(px, pTop + pLen)
-            lineTo(px + pw * 0.3f, pTop + pLen - 15f)
-            lineTo(px + pw * 0.7f, pTop + pLen + 10f)
-            lineTo(px + pw, pTop + pLen - 20f)
-            lineTo(px + pw, pTop + pLen + 30f)
-            lineTo(px, pTop + pLen + 30f)
-            close()
-        }
-        drawPath(breakPath, Color(0xFF050308))
-    }
-
-    // L3: Cracked stone walls
-    val wallBottom = H * 0.72f
-    val tileW = W / 20f
-    val tileH = H * 0.055f
-    var wy = H * 0.05f
-    var row = 0
-    while (wy < wallBottom) {
-        val shift = if (row % 2 == 0) 0f else tileW / 2f
-        var wx = shift - (scrollOffset * 0.1f % tileW)
-        while (wx < W + tileW) {
-            val c = if ((row + (wx / tileW).toInt()) % 3 == 0) Color(0xFF1A1228) else Color(0xFF140D20)
-            drawRect(c, Offset(wx, wy), Size(tileW - 1f, tileH - 1f))
-            wx += tileW
-        }
-        wy += tileH
-        row++
-    }
-
-    repeat(4) { i ->
-        val cx = W * (0.2f + i * 0.22f)
-        val cy = H * (0.2f + i * 0.1f)
-        val crackPath = Path().apply {
-            moveTo(cx, cy)
-            lineTo(cx + 15f, cy + 25f)
-            lineTo(cx - 10f, cy + 50f)
-            lineTo(cx + 20f, cy + 80f)
-        }
-        drawPath(crackPath, Color(0.4f, 0f, 0.6f, 0.15f), style = Stroke(5f))
-        drawPath(crackPath, Color(0.7f, 0.1f, 0.9f, 0.4f + medPulse * 0.4f), style = Stroke(2f))
-    }
-
-    // L4: Void rifts
-    repeat(3) { i ->
-        val rx = W * (0.25f + i * 0.28f)
-        val ry = H * (0.22f + (i % 2) * 0.2f)
-        val riftPath = Path().apply {
-            moveTo(rx, ry - 30f)
-            quadraticTo(rx + 20f, ry, rx, ry + 30f)
-            quadraticTo(rx - 20f, ry, rx, ry - 30f)
-            close()
-        }
-        drawPath(riftPath, Color(0.2f, 0f, 0.4f, 0.6f))
-        drawPath(riftPath, Color(0.7f, 0.1f, 1f, 0.3f + slowPulse * 0.3f), style = Stroke(3f))
-        drawCircle(Color(0.9f, 0.5f, 1f, medPulse), radius = 4f, center = Offset(rx, ry))
-    }
-
-    // L5: Floating particles
-    val particleRng = java.util.Random(1337)
-    repeat(20) { i ->
-        val px = (particleRng.nextFloat() * W + i * 30f) % W
-        val py = ((particleRng.nextFloat() * H) - (scrollOffset * 0.5f + i * 20f)) % H
-        val drawY = if (py < 0) py + H else py
-        val pAlpha = 0.2f + sin(scrollOffset * 0.05f + i) * 0.2f
-        drawRect(Color(0.6f, 0f, 0.8f, max(0f, pAlpha)), Offset(px, drawY), Size(4f, 4f))
-    }
-
-    // L6: Floor
-    val floorY = H * 0.72f
-    drawRect(Color(0xFF0F081C), Offset(0f, floorY), Size(W, H - floorY))
+    // === LAYER 1: Swirling Magenta/Purple Void Sky ===
     drawRect(
-        Brush.radialGradient(
-            listOf(Color.Transparent, Color(0xEE000000)),
-            center = Offset(W / 2f, H / 2f),
-            radius = W * 0.7f
+        Brush.verticalGradient(
+            listOf(
+                Color(0xFF14081E),
+                Color(0xFF2A0D38),
+                Color(0xFF4A1856),
+                Color(0xFF240A30),
+                Color(0xFF100618)
+            )
         ),
         size = size
     )
+
+    // Animated swirling cloud masses
+    repeat(6) { i ->
+        val cloudY = H * (0.05f + i * 0.08f)
+        val cloudPath = Path().apply {
+            moveTo(-W * 0.2f, cloudY)
+            var x = -W * 0.2f
+            while (x <= W * 1.2f) {
+                val wave = sin((x + scrollOffset * 0.3f) * 0.008f + i) * (H * 0.04f)
+                lineTo(x, cloudY + wave)
+                x += 40f
+            }
+            lineTo(W * 1.2f, cloudY + H * 0.15f)
+            lineTo(-W * 0.2f, cloudY + H * 0.15f)
+            close()
+        }
+        val cloudAlpha = 0.12f + sin(slowPulse * 3.14159f + i) * 0.05f
+        drawPath(
+            cloudPath,
+            Brush.verticalGradient(
+                listOf(Color(0xFF6B2272).copy(alpha = max(0.01f, cloudAlpha)), Color.Transparent)
+            )
+        )
+    }
+
+    val floorY = H * 0.50f
+
+    // === LAYER 2: Distant Horizon Silhouettes (Floating platform edge & distant ruined shrine) ===
+    val horizonPath = Path().apply {
+        moveTo(0f, floorY)
+        lineTo(W * 0.08f, floorY - H * 0.06f)
+        lineTo(W * 0.15f, floorY - H * 0.02f)
+        lineTo(W * 0.22f, floorY - H * 0.08f) // Ruined throne peak
+        lineTo(W * 0.28f, floorY - H * 0.03f)
+        lineTo(W * 0.35f, floorY - H * 0.05f)
+        lineTo(W * 0.45f, floorY - H * 0.02f)
+        lineTo(W * 0.60f, floorY - H * 0.07f)
+        lineTo(W * 0.75f, floorY - H * 0.03f)
+        lineTo(W * 0.88f, floorY - H * 0.06f)
+        lineTo(W, floorY - H * 0.02f)
+        lineTo(W, floorY)
+        close()
+    }
+    drawPath(horizonPath, Color(0xFF120A1C))
+
+    // Broken throne silhouette in far distance (left side)
+    val throneX = W * 0.18f
+    val throneY = floorY - H * 0.08f
+    drawRect(Color(0xFF1A1028), Offset(throneX - 12f, throneY - 18f), Size(24f, 22f))
+    drawRect(Color(0xFF10081C), Offset(throneX - 8f, throneY - 26f), Size(16f, 10f))
+
+    // Far background broken pillar stumps
+    listOf(0.32f to 0.06f, 0.48f to 0.04f, 0.68f to 0.08f, 0.78f to 0.05f).forEach { (xFrac, hFrac) ->
+        val px = W * xFrac
+        val pw = W * 0.025f
+        val ph = H * hFrac
+        drawRect(Color(0xFF1E142B), Offset(px - pw / 2f, floorY - ph), Size(pw, ph))
+        drawRect(Color(0xFF281C38), Offset(px - pw / 2f, floorY - ph), Size(pw * 0.4f, ph))
+    }
+
+    // === LAYER 3: Perspective Tiled Temple Floor ===
+    drawRect(Color(0xFF221830), Offset(0f, floorY), Size(W, H - floorY))
+
+    // Perspective floor tiles (Grid and Motifs)
+    val vpX = W * 0.35f // Vanishing point matching reference image perspective
+    val tileRows = 12
+    repeat(tileRows) { i ->
+        val p1 = i / tileRows.toFloat()
+        val rowY1 = floorY + (H - floorY) * (p1 * p1)
+
+        drawLine(Color(0xFF382A48), Offset(0f, rowY1), Offset(W, rowY1), strokeWidth = 1.2f)
+
+        // Draw tile rosettes/motifs on alternating rows
+        if (i > 1 && i % 2 == 0) {
+            val cols = 6
+            repeat(cols) { c ->
+                val colFrac = (c + 0.5f) / cols
+                val tileX = vpX + (colFrac - 0.5f) * W * (p1 * 2.2f + 0.8f)
+                val motifSize = (10f * p1 + 3f)
+                if (tileX in 0f..W && rowY1 >= floorY) {
+                    drawRect(
+                        Color(0xFF302242),
+                        Offset(tileX - motifSize / 2f, rowY1 - motifSize / 2f),
+                        Size(motifSize, motifSize),
+                        style = Stroke(1.5f)
+                    )
+                    drawCircle(
+                        Color(0xFF44325C),
+                        radius = motifSize * 0.3f,
+                        center = Offset(tileX, rowY1)
+                    )
+                }
+            }
+        }
+    }
+
+    // Perspective longitudinal lines
+    repeat(10) { col ->
+        val startFrac = col / 9f
+        val bottomX = vpX + (startFrac - 0.5f) * W * 3.0f
+        drawLine(
+            Color(0xFF382A48),
+            Offset(vpX + (startFrac - 0.5f) * W * 0.2f, floorY),
+            Offset(bottomX, H),
+            strokeWidth = 1.5f
+        )
+    }
+
+    // Left floating edge of floor platform dropping into void
+    val cliffEdgePath = Path().apply {
+        moveTo(0f, floorY + H * 0.1f)
+        lineTo(W * 0.15f, floorY + H * 0.35f)
+        lineTo(W * 0.08f, H)
+        lineTo(0f, H)
+        close()
+    }
+    drawPath(cliffEdgePath, Color(0xFF140D20))
+
+    // === LAYER 4: Deep Jagged Floor Pits & Low Ruined Wall ===
+    // Pit 1: Large Central Floor Hole
+    val pit1Path = Path().apply {
+        moveTo(W * 0.18f, floorY + H * 0.08f)
+        lineTo(W * 0.38f, floorY + H * 0.06f)
+        lineTo(W * 0.42f, floorY + H * 0.22f)
+        lineTo(W * 0.22f, floorY + H * 0.25f)
+        lineTo(W * 0.15f, floorY + H * 0.15f)
+        close()
+    }
+    drawPath(pit1Path, Color(0xFF0A0512))
+    drawPath(pit1Path, Color(0xFF4A3858), style = Stroke(2.5f))
+
+    // Pit 2: Right Side Floor Hole
+    val pit2Path = Path().apply {
+        moveTo(W * 0.68f, floorY + H * 0.18f)
+        lineTo(W * 0.82f, floorY + H * 0.15f)
+        lineTo(W * 0.85f, floorY + H * 0.30f)
+        lineTo(W * 0.70f, floorY + H * 0.32f)
+        close()
+    }
+    drawPath(pit2Path, Color(0xFF0A0512))
+    drawPath(pit2Path, Color(0xFF4A3858), style = Stroke(2.5f))
+
+    // Low Ruined Stone Wall in Middle/Left
+    val wallPath = Path().apply {
+        moveTo(W * 0.15f, floorY + H * 0.18f)
+        lineTo(W * 0.28f, floorY + H * 0.08f)
+        lineTo(W * 0.30f, floorY + H * 0.12f)
+        lineTo(W * 0.24f, floorY + H * 0.24f)
+        lineTo(W * 0.12f, floorY + H * 0.26f)
+        close()
+    }
+    drawPath(wallPath, Color(0xFF2A1E38))
+    drawPath(wallPath, Color(0xFF483658), style = Stroke(1.5f))
+
+    // === LAYER 5: Majestic Grand Pillars (Fluted Stone Columns) ===
+    val columns = listOf(
+        ColumnSpec(xFrac = 0.92f, topYFrac = 0.10f, botYFrac = 0.95f, widthFrac = 0.08f, isBroken = false),
+        ColumnSpec(xFrac = 0.54f, topYFrac = 0.12f, botYFrac = 0.78f, widthFrac = 0.06f, isBroken = false),
+        ColumnSpec(xFrac = 0.67f, topYFrac = 0.18f, botYFrac = 0.65f, widthFrac = 0.048f, isBroken = false),
+        ColumnSpec(xFrac = 0.73f, topYFrac = 0.20f, botYFrac = 0.58f, widthFrac = 0.04f, isBroken = false),
+        ColumnSpec(xFrac = 0.44f, topYFrac = 0.38f, botYFrac = 0.58f, widthFrac = 0.042f, isBroken = true),
+        ColumnSpec(xFrac = 0.36f, topYFrac = 0.44f, botYFrac = 0.54f, widthFrac = 0.035f, isBroken = true)
+    )
+
+    columns.forEach { col ->
+        drawGrandColumn(col, W, H)
+    }
+
+    // === LAYER 6: Ethereal Void Energy & Floating Particles ===
+    val particleRng = java.util.Random(1337)
+    repeat(25) { i ->
+        val px = (particleRng.nextFloat() * W + sin(scrollOffset * 0.03f + i) * 20f) % W
+        val py = (H - ((scrollOffset * 0.7f + i * 35f) % H))
+        val pAlpha = 0.2f + sin(scrollOffset * 0.06f + i) * 0.25f + medPulse * 0.15f
+        
+        drawCircle(
+            Color(0xFFD050FF).copy(alpha = max(0f, pAlpha)),
+            radius = 2.5f + (i % 3),
+            center = Offset(px, py)
+        )
+    }
+
+    // === LAYER 7: Atmospheric Vignette ===
+    drawRect(
+        Brush.radialGradient(
+            colors = listOf(Color.Transparent, Color(0xCC000000)),
+            center = Offset(W / 2f, H / 2f),
+            radius = W * 0.78f
+        ),
+        size = size
+    )
+}
+
+private fun DrawScope.drawGrandColumn(col: ColumnSpec, canvasWidth: Float, canvasHeight: Float) {
+    val cx = canvasWidth * col.xFrac
+    val cw = canvasWidth * col.widthFrac
+    val topY = canvasHeight * col.topYFrac
+    val botY = canvasHeight * col.botYFrac
+    val ch = botY - topY
+
+    val baseStone = Color(0xFF5C526A)
+    val highlightStone = Color(0xFF8E849E)
+    val shadowStone = Color(0xFF322A40)
+    val detailColor = Color(0xFF221A30)
+
+    val shaftBrush = Brush.horizontalGradient(
+        colors = listOf(highlightStone, baseStone, shadowStone),
+        startX = cx - cw / 2f,
+        endX = cx + cw / 2f
+    )
+
+    if (col.isBroken) {
+        val breakPath = Path().apply {
+            moveTo(cx - cw / 2f, botY)
+            lineTo(cx - cw / 2f, topY + 10f)
+            lineTo(cx - cw * 0.2f, topY)
+            lineTo(cx + cw * 0.1f, topY + 15f)
+            lineTo(cx + cw / 2f, topY - 5f)
+            lineTo(cx + cw / 2f, botY)
+            close()
+        }
+        drawPath(breakPath, shaftBrush)
+        drawPath(breakPath, Color(0xFF1E162B), style = Stroke(1.5f))
+    } else {
+        drawRect(shaftBrush, Offset(cx - cw / 2f, topY), Size(cw, ch))
+        drawRect(Color(0xFF1E162B), Offset(cx - cw / 2f, topY), Size(cw, ch), style = Stroke(1.2f))
+
+        // Capital Top
+        drawRect(highlightStone, Offset(cx - cw * 0.65f, topY - 8f), Size(cw * 1.3f, 8f))
+        drawRect(shadowStone, Offset(cx - cw * 0.6f, topY - 14f), Size(cw * 1.2f, 6f))
+    }
+
+    // Fluting lines along shaft
+    val fluteCount = 4
+    repeat(fluteCount) { i ->
+        val fluteX = cx - cw * 0.35f + i * (cw * 0.7f / (fluteCount - 1))
+        val fTopY = if (col.isBroken) topY + 12f else topY + 10f
+        drawLine(
+            Color(0xFF2B2238).copy(alpha = 0.6f),
+            Offset(fluteX, fTopY),
+            Offset(fluteX, botY - 10f),
+            strokeWidth = max(1f, cw * 0.08f)
+        )
+    }
+
+    // Carved geometric band near the base
+    val bandY = botY - ch * 0.25f
+    val bandH = (ch * 0.12f).coerceAtMost(28f)
+    if (bandY > topY && bandY + bandH < botY) {
+        drawRect(detailColor, Offset(cx - cw / 2f, bandY), Size(cw, bandH))
+        val zigzagPath = Path().apply {
+            moveTo(cx - cw / 2f, bandY + bandH / 2f)
+            var zx = cx - cw / 2f
+            var up = true
+            while (zx <= cx + cw / 2f) {
+                val zy = if (up) bandY + 2f else bandY + bandH - 2f
+                lineTo(zx, zy)
+                zx += cw * 0.25f
+                up = !up
+            }
+        }
+        drawPath(zigzagPath, Color(0xFF9084A4), style = Stroke(1.5f))
+    }
+
+    // Base Bottom Cap
+    drawRect(highlightStone, Offset(cx - cw * 0.6f, botY - 6f), Size(cw * 1.2f, 6f))
+    drawRect(shadowStone, Offset(cx - cw * 0.7f, botY), Size(cw * 1.4f, 8f))
 }
 
 private fun DrawScope.drawGurguVolcano(scrollOffset: Float, torchFlicker: Float, medPulse: Float) {
     val W = size.width
     val H = size.height
 
-    // L1: Heat atmosphere
+    // === LAYER 1: Deep Cavern Fiery Atmosphere & Roof Overhang ===
     drawRect(
-        Brush.verticalGradient(listOf(Color(0xFF0A0400), Color(0xFF1A0800), Color(0xFF2A0E00))),
+        Brush.verticalGradient(
+            listOf(
+                Color(0xFF140500),
+                Color(0xFF280B00),
+                Color(0xFF481200),
+                Color(0xFF320A00),
+                Color(0xFF180400)
+            )
+        ),
         size = size
     )
-    drawRect(Color(1f, 0.3f, 0f, torchFlicker * 0.05f), size = size)
 
-    // L2: Volcanic rock silhouettes
-    val mtnPath = Path().apply {
-        moveTo(0f, H * 0.65f)
-        lineTo(W * 0.2f, H * 0.45f)
-        lineTo(W * 0.35f, H * 0.55f)
-        lineTo(W * 0.55f, H * 0.38f)
-        lineTo(W * 0.75f, H * 0.58f)
-        lineTo(W, H * 0.42f)
-        lineTo(W, H * 0.7f)
-        lineTo(0f, H * 0.7f)
+    // Heat haze ambient pulse
+    drawRect(Color(1f, 0.35f, 0f, 0.06f * torchFlicker + medPulse * 0.03f), size = size)
+
+    // Jagged Cavern Ceiling / Stalactite Roof Overhang
+    val ceilingPath = Path().apply {
+        moveTo(0f, 0f)
+        lineTo(W, 0f)
+        lineTo(W, H * 0.08f)
+        lineTo(W * 0.88f, H * 0.14f)
+        lineTo(W * 0.78f, H * 0.06f)
+        lineTo(W * 0.65f, H * 0.18f)
+        lineTo(W * 0.52f, H * 0.09f)
+        lineTo(W * 0.40f, H * 0.16f)
+        lineTo(W * 0.28f, H * 0.07f)
+        lineTo(W * 0.12f, H * 0.15f)
+        lineTo(0f, H * 0.06f)
         close()
     }
-    drawPath(mtnPath, Color(0xFF1A0C04))
-    drawPath(mtnPath, Color(1f, 0.4f, 0f, 0.2f), style = Stroke(2f))
+    drawPath(ceilingPath, Color(0xFF180A04))
+    drawPath(ceilingPath, Color(0xFF38180A), style = Stroke(2f))
 
-    // L3: Dark obsidian walls with lava cracks
-    val wallBottom = H * 0.68f
-    val tileW = W / 18f
-    val tileH = H * 0.055f
-    var wy = H * 0.05f
-    var row = 0
-    while (wy < wallBottom) {
-        var wx = -(scrollOffset * 0.1f % tileW)
-        while (wx < W + tileW) {
-            val isLavaCrack = (row * 7 + (wx / tileW).toInt() * 3) % 11 == 0
-            val baseC = if ((row + (wx / tileW).toInt()) % 2 == 0) Color(0xFF1A0C04) else Color(0xFF140A02)
-            drawRect(baseC, Offset(wx, wy), Size(tileW - 1f, tileH - 1f))
-            if (isLavaCrack) {
-                drawRect(
-                    Color(1f, 0.4f, 0f, 0.4f + medPulse * 0.4f),
-                    Offset(wx + 2f, wy + tileH / 2f),
-                    Size(tileW - 5f, 2f)
-                )
+    val floorY = H * 0.52f
+
+    // === LAYER 2: Background Basalt Rock Cavern Arches & Lava Waterfalls ===
+    val archPath1 = Path().apply {
+        moveTo(W * 0.45f, floorY)
+        quadraticTo(W * 0.60f, floorY - H * 0.28f, W * 0.75f, floorY - H * 0.05f)
+        lineTo(W * 0.80f, floorY)
+        close()
+    }
+    drawPath(archPath1, Color(0xFF200E06))
+
+    val archPath2 = Path().apply {
+        moveTo(W * 0.65f, floorY)
+        quadraticTo(W * 0.78f, floorY - H * 0.32f, W * 0.92f, floorY - H * 0.08f)
+        lineTo(W, floorY)
+        close()
+    }
+    drawPath(archPath2, Color(0xFF1A0A04))
+
+    // Vertical Cascading Lava Waterfalls
+    listOf(0.58f, 0.76f, 0.88f).forEachIndexed { index, xFrac ->
+        val lavaX = W * xFrac
+        val lavaTop = H * (0.18f + index * 0.04f)
+        val lavaWidth = W * (0.025f - index * 0.004f)
+
+        // Outer Orange/Red Stream
+        val waterfallPath = Path().apply {
+            moveTo(lavaX - lavaWidth / 2f, lavaTop)
+            var curY = lavaTop
+            while (curY <= floorY + H * 0.25f) {
+                val waveX = lavaX + sin(curY * 0.04f + scrollOffset * 0.08f + index) * 6f
+                lineTo(waveX - lavaWidth / 2f, curY)
+                curY += 15f
             }
-            wx += tileW
+            lineTo(lavaX + lavaWidth / 2f, floorY + H * 0.25f)
+            while (curY >= lavaTop) {
+                val waveX = lavaX + sin(curY * 0.04f + scrollOffset * 0.08f + index) * 6f
+                lineTo(waveX + lavaWidth / 2f, curY)
+                curY -= 15f
+            }
+            close()
         }
-        wy += tileH
-        row++
+        drawPath(
+            waterfallPath,
+            Brush.verticalGradient(
+                listOf(Color(0xFFFFDD00), Color(0xFFFF5500), Color(0xFFFF1100))
+            )
+        )
+
+        // Core Yellow Glowing Core
+        drawLine(
+            Color(0xFFFFFF88),
+            Offset(lavaX, lavaTop),
+            Offset(lavaX, floorY + H * 0.25f),
+            strokeWidth = lavaWidth * 0.35f
+        )
     }
 
-    // L4: Magma river at floor
-    val lavaY = H * 0.68f
-    val lavaPath = Path().apply {
-        moveTo(0f, lavaY)
-        var x = 0f
-        while (x <= W + 20f) {
-            val y = lavaY + sin(x * 0.03f + scrollOffset * 0.08f) * 8f
-            lineTo(x, y)
-            x += 10f
-        }
-        lineTo(W, H)
+    // === LAYER 3: Perspective Volcanic Obsidian Ledge & Basalt Flooring ===
+    val ledgePath = Path().apply {
+        moveTo(0f, floorY - H * 0.04f)
+        lineTo(W * 0.58f, floorY)
+        lineTo(W * 0.45f, H)
         lineTo(0f, H)
         close()
     }
+    drawPath(ledgePath, Color(0xFF28180E))
+
+    // Hexagonal / Square Basalt Tile Lines on the Ledge
+    repeat(8) { row ->
+        val progress = (row + 1) / 8f
+        val lineY = floorY - H * 0.04f + (H - (floorY - H * 0.04f)) * progress
+        val rightX = W * 0.58f - (W * 0.13f) * progress
+        drawLine(Color(0xFF3E2818), Offset(0f, lineY), Offset(rightX, lineY), strokeWidth = 1.5f)
+
+        // Glowing lava crack veins running across floor
+        if (row % 2 == 1) {
+            val crackY = lineY - 8f
+            val crackPath = Path().apply {
+                moveTo(10f, crackY)
+                lineTo(rightX * 0.3f, crackY + 4f)
+                lineTo(rightX * 0.6f, crackY - 3f)
+                lineTo(rightX * 0.9f, crackY + 2f)
+            }
+            val crackGlow = 0.5f + sin(medPulse * 3.14159f + row) * 0.3f
+            drawPath(crackPath, Color(1f, 0.4f, 0f, crackGlow), style = Stroke(2f))
+        }
+    }
+
+    // Vertical cliff edge drop on the right side of the obsidian pathway
+    val cliffDropPath = Path().apply {
+        moveTo(W * 0.58f, floorY)
+        lineTo(W * 0.62f, floorY + H * 0.12f)
+        lineTo(W * 0.52f, floorY + H * 0.32f)
+        lineTo(W * 0.58f, floorY + H * 0.55f)
+        lineTo(W * 0.45f, H)
+        lineTo(W * 0.40f, H)
+        lineTo(W * 0.52f, floorY + H * 0.30f)
+        close()
+    }
+    drawPath(cliffDropPath, Color(0xFF140A04))
+
+    // === LAYER 4: Cascading Magma Abyss & Moving Lava Rivers ===
+    val magmaY = floorY + H * 0.08f
+    val magmaPath = Path().apply {
+        moveTo(W * 0.58f, magmaY)
+        var x = W * 0.58f
+        while (x <= W + 20f) {
+            val waveY = magmaY + sin((x + scrollOffset * 0.6f) * 0.03f) * 10f + cos(x * 0.02f) * 6f
+            lineTo(x, waveY)
+            x += 15f
+        }
+        lineTo(W, H)
+        lineTo(W * 0.45f, H)
+        close()
+    }
     drawPath(
-        lavaPath,
-        Brush.verticalGradient(listOf(Color(0xFFFF8800), Color(0xFFFF2200), Color(0xFF880000)))
+        magmaPath,
+        Brush.verticalGradient(
+            listOf(Color(0xFFFFCC00), Color(0xFFFF4400), Color(0xFF880000))
+        )
     )
 
+    // Moving Lava Wave Highlights
+    val wavePath = Path().apply {
+        moveTo(W * 0.62f, magmaY + 20f)
+        var x = W * 0.62f
+        while (x <= W + 20f) {
+            val waveY = magmaY + 20f + sin((x - scrollOffset * 0.8f) * 0.04f) * 8f
+            lineTo(x, waveY)
+            x += 12f
+        }
+        lineTo(W, H)
+        lineTo(W * 0.50f, H)
+        close()
+    }
+    drawPath(wavePath, Color(1f, 0.7f, 0.1f, 0.4f + torchFlicker * 0.2f))
+
+    // Magma reflection glow pools
     drawCircle(
-        Color(1f, 0.5f, 0f, 0.18f * torchFlicker),
-        radius = W * 0.3f,
-        center = Offset(W * 0.3f, lavaY)
-    )
-    drawCircle(
-        Color(1f, 0.5f, 0f, 0.18f * torchFlicker),
-        radius = W * 0.3f,
-        center = Offset(W * 0.7f, lavaY)
+        Color(1f, 0.5f, 0f, 0.22f * torchFlicker),
+        radius = W * 0.35f,
+        center = Offset(W * 0.75f, H * 0.75f)
     )
 
-    // Floating embers
+    // === LAYER 5: Basalt Columns & Cavern Pillars ===
+    listOf(0.06f to 0.12f, 0.18f to 0.10f, 0.32f to 0.08f).forEach { (xFrac, wFrac) ->
+        val px = W * xFrac
+        val pw = W * wFrac
+        val pTop = H * 0.10f
+        val pBot = floorY + H * 0.35f
+
+        drawRect(
+            Brush.horizontalGradient(
+                colors = listOf(Color(0xFF503828), Color(0xFF322218), Color(0xFF180E08)),
+                startX = px - pw / 2f,
+                endX = px + pw / 2f
+            ),
+            Offset(px - pw / 2f, pTop),
+            Size(pw, pBot - pTop)
+        )
+        drawRect(Color(0xFF100804), Offset(px - pw / 2f, pTop), Size(pw, pBot - pTop), style = Stroke(1.2f))
+
+        drawRect(
+            Color(1f, 0.4f, 0f, 0.15f * torchFlicker),
+            Offset(px - pw / 2f, pTop),
+            Size(pw * 0.3f, pBot - pTop)
+        )
+    }
+
+    // === LAYER 6: Floating Fire Embers & Smoke Motes ===
     val emberRng = java.util.Random(999)
-    repeat(25) { i ->
-        val ex = (emberRng.nextFloat() * W + i * 20f) % W
-        val ey = ((lavaY + 50f) - ((scrollOffset * 1.5f + i * 35f) % (lavaY + 50f)))
-        val eAlpha = 0.4f + sin(scrollOffset * 0.1f + i) * 0.4f
+    repeat(35) { i ->
+        val ex = (emberRng.nextFloat() * W + sin(scrollOffset * 0.04f + i) * 25f) % W
+        val ey = (H - ((scrollOffset * 1.2f + i * 30f) % H))
+        val eAlpha = max(0f, 0.3f + sin(scrollOffset * 0.08f + i) * 0.4f)
+        val eRadius = 1.5f + (i % 3) * 1.2f
+
         drawCircle(
-            Color(1f, 0.6f + (i % 4) * 0.1f, 0f, max(0f, eAlpha)),
-            radius = 2.5f,
+            Color(1f, 0.6f + (i % 4) * 0.1f, 0.1f, eAlpha),
+            radius = eRadius,
             center = Offset(ex, ey)
         )
     }
 
+    // === LAYER 7: Atmospheric Heat Vignette ===
     drawRect(
         Brush.radialGradient(
-            listOf(Color.Transparent, Color(0xBB000000)),
+            listOf(Color.Transparent, Color(0xDD000000)),
             center = Offset(W / 2f, H / 2f),
-            radius = W * 0.75f
+            radius = W * 0.78f
         ),
         size = size
     )
 }
 
-private fun DrawScope.drawSeaShrine(scrollOffset: Float, slowPulse: Float) {
-    val W = size.width
-    val H = size.height
+private data class SeaColumnSpec(
+    val xFrac: Float,
+    val topYFrac: Float,
+    val botYFrac: Float,
+    val widthFrac: Float,
+    val isBroken: Boolean = false,
+    val hasGlowAura: Boolean = false
+)
 
-    // L1: Deep ocean atmosphere
-    drawRect(
-        Brush.verticalGradient(listOf(Color(0xFF0D334D), Color(0xFF082033), Color(0xFF030D1A))),
-        size = size
+private fun DrawScope.drawSeaColumn(
+    col: SeaColumnSpec,
+    canvasWidth: Float,
+    canvasHeight: Float,
+    auraPulse: Float
+) {
+    val cx = canvasWidth * col.xFrac
+    val cw = canvasWidth * col.widthFrac
+    val topY = canvasHeight * col.topYFrac
+    val botY = canvasHeight * col.botYFrac
+    val ch = botY - topY
+
+    if (ch <= 0f || cw <= 0f) return
+
+    val highlightStone = Color(0xFF50E6FF)
+    val midtoneStone = Color(0xFF146A94)
+    val shadowStone = Color(0xFF06334D)
+    val deepDark = Color(0xFF021B2A)
+
+    val shaftBrush = Brush.horizontalGradient(
+        colors = listOf(highlightStone, midtoneStone, shadowStone, deepDark),
+        startX = cx - cw / 2f,
+        endX = cx + cw / 2f
     )
-    drawRect(Color(0f, 0.3f, 0.5f, 0.12f), size = size)
 
-    // L2: Submerged ruins & coral
-    listOf(0.15f, 0.45f, 0.8f).forEach { xFrac ->
-        val px = W * xFrac
-        val pw = W * 0.08f
-        drawRect(Color(0xFF0D1E2A), Offset(px, H * 0.25f), Size(pw, H * 0.5f))
-        drawCircle(Color(0.8f, 0.3f, 0.3f, 0.6f), radius = 14f, center = Offset(px + 10f, H * 0.24f))
-        drawCircle(Color(0.9f, 0.6f, 0.2f, 0.5f), radius = 18f, center = Offset(px + pw - 5f, H * 0.23f))
-    }
-
-    // L3: Temple walls with algae streaks
-    val wallBottom = H * 0.72f
-    val tileW = W / 20f
-    val tileH = H * 0.055f
-    var wy = H * 0.05f
-    var row = 0
-    while (wy < wallBottom) {
-        val shift = if (row % 2 == 0) 0f else tileW / 2f
-        var wx = shift - (scrollOffset * 0.1f % tileW)
-        while (wx < W + tileW) {
-            val c = if ((row + (wx / tileW).toInt()) % 2 == 0) Color(0xFF0D1E28) else Color(0xFF0A1820)
-            drawRect(c, Offset(wx, wy), Size(tileW - 1f, tileH - 1f))
-            wx += tileW
+    // Outer Bioluminescent Aura Glow if enabled (e.g. for main left column)
+    if (col.hasGlowAura) {
+        val auraAlpha = 0.25f + auraPulse * 0.15f
+        repeat(3) { pass ->
+            val strokeW = cw * (0.15f + pass * 0.12f)
+            val auraColor = Color(0xFF00E5FF).copy(alpha = max(0.01f, auraAlpha / (pass + 1)))
+            if (col.isBroken) {
+                val auraPath = Path().apply {
+                    moveTo(cx - cw / 2f, botY)
+                    lineTo(cx - cw / 2f, topY + 14f)
+                    lineTo(cx - cw * 0.15f, topY)
+                    lineTo(cx + cw * 0.1f, topY + 18f)
+                    lineTo(cx + cw / 2f, topY - 4f)
+                    lineTo(cx + cw / 2f, botY)
+                    close()
+                }
+                drawPath(auraPath, auraColor, style = Stroke(strokeW))
+            } else {
+                drawRect(
+                    auraColor,
+                    Offset(cx - cw / 2f - strokeW / 2f, topY - strokeW / 2f),
+                    Size(cw + strokeW, ch + strokeW),
+                    style = Stroke(strokeW)
+                )
+            }
         }
-        wy += tileH
-        row++
     }
 
-    repeat(6) { i ->
-        val ax = W * (0.12f + i * 0.16f)
+    // Shaft Body
+    if (col.isBroken) {
+        val breakPath = Path().apply {
+            moveTo(cx - cw / 2f, botY)
+            lineTo(cx - cw / 2f, topY + 14f)
+            lineTo(cx - cw * 0.15f, topY)
+            lineTo(cx + cw * 0.1f, topY + 18f)
+            lineTo(cx + cw / 2f, topY - 4f)
+            lineTo(cx + cw / 2f, botY)
+            close()
+        }
+        drawPath(breakPath, shaftBrush)
+        drawPath(breakPath, Color(0xFF02101C), style = Stroke(1.8f))
+    } else {
+        drawRect(shaftBrush, Offset(cx - cw / 2f, topY), Size(cw, ch))
+        drawRect(Color(0xFF02101C), Offset(cx - cw / 2f, topY), Size(cw, ch), style = Stroke(1.5f))
+
+        // Capital Top
+        drawRect(highlightStone, Offset(cx - cw * 0.65f, topY - 10f), Size(cw * 1.3f, 10f))
+        drawRect(shadowStone, Offset(cx - cw * 0.58f, topY - 18f), Size(cw * 1.16f, 8f))
+        drawRect(Color(0xFF02101C), Offset(cx - cw * 0.65f, topY - 18f), Size(cw * 1.3f, 18f), style = Stroke(1.2f))
+    }
+
+    // Fluting grooves along shaft
+    val fluteCount = 5
+    repeat(fluteCount) { i ->
+        val fluteX = cx - cw * 0.36f + i * (cw * 0.72f / (fluteCount - 1))
+        val fTopY = if (col.isBroken) topY + 14f else topY + 10f
         drawLine(
-            Color(0.1f, 0.5f, 0.2f, 0.25f),
-            Offset(ax, H * 0.1f),
-            Offset(ax + 10f, H * 0.65f),
-            strokeWidth = 6f
+            Color(0xFF021524).copy(alpha = 0.75f),
+            Offset(fluteX, fTopY),
+            Offset(fluteX, botY - 12f),
+            strokeWidth = max(1.2f, cw * 0.07f)
+        )
+        drawLine(
+            Color(0xFF80EEFF).copy(alpha = 0.35f),
+            Offset(fluteX + 1f, fTopY),
+            Offset(fluteX + 1f, botY - 12f),
+            strokeWidth = 1f
         )
     }
 
-    // L4: Caustic light rays
-    repeat(6) { i ->
-        val topX = W * (0.1f + i * 0.16f) + sin(scrollOffset * 0.02f + i) * 15f
-        val rayPath = Path().apply {
-            moveTo(topX, 0f)
-            lineTo(topX + 25f, 0f)
-            lineTo(topX + 80f, H)
-            lineTo(topX - 20f, H)
-            close()
+    // Decorative carved base band
+    val bandH = (ch * 0.08f).coerceIn(10f, 22f)
+    val bandY = botY - 14f - bandH
+    if (bandY > topY + 15f) {
+        drawRect(Color(0xFF042033), Offset(cx - cw / 2f, bandY), Size(cw, bandH))
+        val zigzagPath = Path().apply {
+            moveTo(cx - cw / 2f, bandY + bandH / 2f)
+            var zx = cx - cw / 2f
+            var up = true
+            while (zx <= cx + cw / 2f) {
+                val zy = if (up) bandY + 2f else bandY + bandH - 2f
+                lineTo(zx, zy)
+                zx += cw * 0.25f
+                up = !up
+            }
         }
-        val rayAlpha = 0.04f + sin(scrollOffset * 0.03f + i * 0.7f) * 0.03f
-        drawPath(rayPath, Color(0.4f, 0.8f, 1f, max(0.01f, rayAlpha)))
+        drawPath(zigzagPath, Color(0xFF00E5FF), style = Stroke(1.2f))
     }
 
-    // L5: Rising bubbles
+    // Base Bottom Cap
+    drawRect(highlightStone, Offset(cx - cw * 0.62f, botY - 10f), Size(cw * 1.24f, 10f))
+    drawRect(shadowStone, Offset(cx - cw * 0.58f, botY - 14f), Size(cw * 1.16f, 4f))
+    drawRect(Color(0xFF02101C), Offset(cx - cw * 0.62f, botY - 14f), Size(cw * 1.24f, 14f), style = Stroke(1.2f))
+
+    // Coral / Barnacle accretions on column base and shaft
+    val coralRng = java.util.Random((cx * 1000 + topY).toLong())
+    repeat(4) {
+        val coralX = cx + (coralRng.nextFloat() - 0.5f) * cw
+        val coralY = botY - 10f - coralRng.nextFloat() * (ch * 0.35f)
+        val coralR = 3f + coralRng.nextFloat() * 4f
+        val coralColor = if (coralRng.nextBoolean()) Color(0xFFF05580) else Color(0xFF00E0A0)
+        drawCircle(coralColor, radius = coralR, center = Offset(coralX, coralY))
+        drawCircle(Color.White.copy(alpha = 0.5f), radius = coralR * 0.4f, center = Offset(coralX - 1f, coralY - 1f))
+    }
+}
+
+private fun DrawScope.drawSeaShrine(scrollOffset: Float, slowPulse: Float, medPulse: Float) {
+    val W = size.width
+    val H = size.height
+
+    // === LAYER 1: Deep Ocean Sky & Water Currents ===
+    drawRect(
+        Brush.verticalGradient(
+            listOf(
+                Color(0xFF020818),
+                Color(0xFF051733),
+                Color(0xFF0A2A4E),
+                Color(0xFF061C36),
+                Color(0xFF010A16)
+            )
+        ),
+        size = size
+    )
+
+    repeat(5) { i ->
+        val currentY = H * (0.04f + i * 0.09f)
+        val currentPath = Path().apply {
+            moveTo(-W * 0.2f, currentY)
+            var x = -W * 0.2f
+            while (x <= W * 1.2f) {
+                val wave = sin((x + scrollOffset * 0.4f) * 0.007f + i) * (H * 0.03f)
+                lineTo(x, currentY + wave)
+                x += 35f
+            }
+            lineTo(W * 1.2f, currentY + H * 0.12f)
+            lineTo(-W * 0.2f, currentY + H * 0.12f)
+            close()
+        }
+        val currentAlpha = 0.08f + sin(slowPulse * 3.14159f + i) * 0.04f
+        drawPath(
+            currentPath,
+            Brush.verticalGradient(
+                listOf(Color(0xFF00B0FF).copy(alpha = max(0.01f, currentAlpha)), Color.Transparent)
+            )
+        )
+    }
+
+    val floorY = H * 0.52f
+
+    // === LAYER 2: Distant Horizon Silhouettes & Coral Reef Ridge ===
+    val horizonPath = Path().apply {
+        moveTo(0f, floorY)
+        lineTo(W * 0.06f, floorY - H * 0.08f)
+        lineTo(W * 0.14f, floorY - H * 0.04f)
+        lineTo(W * 0.22f, floorY - H * 0.10f)
+        lineTo(W * 0.30f, floorY - H * 0.03f)
+        lineTo(W * 0.42f, floorY - H * 0.07f)
+        lineTo(W * 0.55f, floorY - H * 0.03f)
+        lineTo(W * 0.68f, floorY - H * 0.09f)
+        lineTo(W * 0.82f, floorY - H * 0.05f)
+        lineTo(W * 0.92f, floorY - H * 0.08f)
+        lineTo(W, floorY - H * 0.03f)
+        lineTo(W, floorY)
+        close()
+    }
+    drawPath(horizonPath, Color(0xFF031424))
+
+    listOf(0.26f to 0.07f, 0.48f to 0.05f, 0.72f to 0.08f).forEach { (xFrac, hFrac) ->
+        val px = W * xFrac
+        val pw = W * 0.022f
+        val ph = H * hFrac
+        drawRect(Color(0xFF062035), Offset(px - pw / 2f, floorY - ph), Size(pw, ph))
+        drawRect(Color(0xFF092A45), Offset(px - pw / 2f, floorY - ph), Size(pw * 0.35f, ph))
+    }
+
+    listOf(0.12f, 0.38f, 0.64f, 0.88f).forEach { coralXFrac ->
+        val cx = W * coralXFrac
+        val cy = floorY - H * 0.03f
+        drawCircle(Color(0xFFE03868).copy(alpha = 0.7f), radius = 8f, center = Offset(cx, cy))
+        drawCircle(Color(0xFF00E0A0).copy(alpha = 0.6f), radius = 6f, center = Offset(cx + 10f, cy + 2f))
+        drawCircle(Color(0xFF00D0FF).copy(alpha = 0.8f), radius = 4f, center = Offset(cx - 8f, cy + 4f))
+    }
+
+    // === LAYER 3: Perspective Tiled Floor & Sunken Temple Roof ===
+    drawRect(Color(0xFF0A2438), Offset(0f, floorY), Size(W, H - floorY))
+
+    val vpX = W * 0.35f
+    val tileRows = 12
+    repeat(tileRows) { i ->
+        val p = i / tileRows.toFloat()
+        val rowY = floorY + (H - floorY) * (p * p)
+
+        drawLine(Color(0xFF144666), Offset(0f, rowY), Offset(W, rowY), strokeWidth = 1.2f)
+
+        if (i > 1 && i % 2 == 0) {
+            val cols = 6
+            repeat(cols) { c ->
+                val colFrac = (c + 0.5f) / cols
+                val tileX = vpX + (colFrac - 0.5f) * W * (p * 2.2f + 0.8f)
+                val motifSize = (9f * p + 3f)
+                if (tileX in 0f..W && rowY >= floorY) {
+                    drawRect(
+                        Color(0xFF1D5A80),
+                        Offset(tileX - motifSize / 2f, rowY - motifSize / 2f),
+                        Size(motifSize, motifSize),
+                        style = Stroke(1.5f)
+                    )
+                    drawCircle(
+                        Color(0xFF00D5FF).copy(alpha = 0.6f),
+                        radius = motifSize * 0.35f,
+                        center = Offset(tileX, rowY)
+                    )
+                }
+            }
+        }
+    }
+
+    repeat(10) { col ->
+        val startFrac = col / 9f
+        val bottomX = vpX + (startFrac - 0.5f) * W * 3.0f
+        drawLine(
+            Color(0xFF144666),
+            Offset(vpX + (startFrac - 0.5f) * W * 0.2f, floorY),
+            Offset(bottomX, H),
+            strokeWidth = 1.5f
+        )
+    }
+
+    // Sunken Temple Roof Structure on Right Side
+    val templeRoofPath = Path().apply {
+        moveTo(W * 0.45f, H)
+        lineTo(W * 1.05f, floorY + H * 0.08f)
+        lineTo(W * 1.05f, H)
+        close()
+    }
+    drawPath(
+        templeRoofPath,
+        Brush.verticalGradient(
+            listOf(Color(0xFF126893), Color(0xFF093954), Color(0xFF031A2B))
+        )
+    )
+    drawPath(templeRoofPath, Color(0xFF4CD8FF), style = Stroke(2.5f))
+
+    val roofSteps = 10
+    repeat(roofSteps) { step ->
+        val frac = step / roofSteps.toFloat()
+        val stepX1 = W * 0.45f + (W * 0.60f) * frac
+        val stepY1 = H - (H - (floorY + H * 0.08f)) * frac
+
+        drawLine(
+            Color(0xFF4CD8FF).copy(alpha = 0.8f),
+            Offset(stepX1, stepY1),
+            Offset(W, stepY1 + (H - stepY1) * 0.2f),
+            strokeWidth = 1.8f
+        )
+
+        val blockCount = 5
+        repeat(blockCount) { b ->
+            val bFrac = b / blockCount.toFloat()
+            val bx = stepX1 + (W - stepX1) * bFrac
+            val by = stepY1 + (H - stepY1) * (bFrac * 0.2f)
+            drawLine(
+                Color(0xFF0088CC).copy(alpha = 0.6f),
+                Offset(bx, by),
+                Offset(bx + 12f, by + (H * 0.05f)),
+                strokeWidth = 1.2f
+            )
+            drawRect(
+                Color(0xFF80EEFF).copy(alpha = 0.7f),
+                Offset(bx - 3f, by - 3f),
+                Size(6f, 6f)
+            )
+        }
+    }
+
+    // === LAYER 4: Hazard Pits & Ruined Barriers ===
+    val pitPath = Path().apply {
+        moveTo(W * 0.15f, floorY + H * 0.12f)
+        lineTo(W * 0.36f, floorY + H * 0.09f)
+        lineTo(W * 0.40f, floorY + H * 0.24f)
+        lineTo(W * 0.18f, floorY + H * 0.28f)
+        close()
+    }
+    drawPath(pitPath, Color(0xFF010610))
+    drawPath(pitPath, Color(0xFF00E5FF).copy(alpha = 0.7f + slowPulse * 0.2f), style = Stroke(2.2f))
+
+    drawPath(
+        pitPath,
+        Brush.radialGradient(
+            listOf(Color(0xFF00E5FF).copy(alpha = 0.35f + medPulse * 0.15f), Color.Transparent),
+            center = Offset(W * 0.27f, floorY + H * 0.18f),
+            radius = W * 0.15f
+        )
+    )
+
+    val wallPath = Path().apply {
+        moveTo(W * 0.08f, floorY + H * 0.20f)
+        lineTo(W * 0.22f, floorY + H * 0.10f)
+        lineTo(W * 0.24f, floorY + H * 0.14f)
+        lineTo(W * 0.10f, floorY + H * 0.26f)
+        close()
+    }
+    drawPath(wallPath, Color(0xFF082C44))
+    drawPath(wallPath, Color(0xFF00A080), style = Stroke(1.5f))
+
+    // === LAYER 5: Architectural Foreground Structures (Grand Fluted Columns) ===
+    val columns = listOf(
+        SeaColumnSpec(xFrac = 0.16f, topYFrac = 0.06f, botYFrac = 0.96f, widthFrac = 0.11f, isBroken = true, hasGlowAura = true),
+        SeaColumnSpec(xFrac = 0.42f, topYFrac = 0.18f, botYFrac = 0.68f, widthFrac = 0.052f, isBroken = true, hasGlowAura = false),
+        SeaColumnSpec(xFrac = 0.65f, topYFrac = 0.12f, botYFrac = 0.60f, widthFrac = 0.045f, isBroken = false, hasGlowAura = false),
+        SeaColumnSpec(xFrac = 0.85f, topYFrac = 0.08f, botYFrac = 0.54f, widthFrac = 0.038f, isBroken = false, hasGlowAura = false)
+    )
+
+    columns.forEach { col ->
+        drawSeaColumn(col, W, H, slowPulse)
+    }
+
+    // === LAYER 6: Dynamic Caustic Light Rays & Particles ===
+    repeat(7) { i ->
+        val topX = W * (0.05f + i * 0.15f) + sin(scrollOffset * 0.02f + i * 1.3f) * 18f
+        val rayWidth = 28f + (i % 3) * 10f
+        val rayOffset = 90f + (i % 4) * 20f
+        val rayPath = Path().apply {
+            moveTo(topX, 0f)
+            lineTo(topX + rayWidth, 0f)
+            lineTo(topX + rayOffset + rayWidth, H)
+            lineTo(topX + rayOffset, H)
+            close()
+        }
+        val rayAlpha = 0.05f + sin(slowPulse * 3.14159f + i * 0.8f) * 0.035f + medPulse * 0.02f
+        drawPath(
+            rayPath,
+            Brush.verticalGradient(
+                listOf(
+                    Color(0xFF40C0FF).copy(alpha = max(0.01f, rayAlpha)),
+                    Color(0xFF00E5FF).copy(alpha = max(0.005f, rayAlpha * 0.5f)),
+                    Color.Transparent
+                )
+            )
+        )
+    }
+
     val bubbleRng = java.util.Random(4242)
-    repeat(30) { i ->
-        val bx = (bubbleRng.nextFloat() * W + sin(scrollOffset * 0.05f + i) * 12f)
-        val by = (H - ((scrollOffset * 0.8f + i * 30f) % H))
+    repeat(35) { i ->
+        val bx = (bubbleRng.nextFloat() * W + sin(scrollOffset * 0.05f + i) * 14f) % W
+        val by = (H - ((scrollOffset * 0.8f + i * 32f) % H))
         val bRadius = 3f + (i % 5) * 1.5f
+        
         drawCircle(
-            Color(0.5f, 0.8f, 1f, 0.4f),
+            Color(0xFF80E0FF).copy(alpha = 0.45f),
             radius = bRadius,
             center = Offset(bx, by),
             style = Stroke(1.5f)
         )
         drawCircle(
-            Color.White.copy(alpha = 0.6f),
-            radius = 1f,
-            center = Offset(bx - bRadius * 0.3f, by - bRadius * 0.3f)
+            Color.White.copy(alpha = 0.7f),
+            radius = 1.2f,
+            center = Offset(bx - bRadius * 0.35f, by - bRadius * 0.35f)
         )
     }
 
-    // L6: Bioluminescent floor
-    val floorY = H * 0.72f
-    drawRect(Color(0xFF06121C), Offset(0f, floorY), Size(W, H - floorY))
-    drawRect(
-        Color(0.1f, 0.6f, 0.7f, 0.15f + slowPulse * 0.1f),
-        Offset(0f, floorY),
-        Size(W, 8f)
-    )
+    val planktonRng = java.util.Random(9999)
+    repeat(25) { i ->
+        val px = (planktonRng.nextFloat() * W + cos(scrollOffset * 0.04f + i) * 22f) % W
+        val py = (H - ((scrollOffset * 0.4f + i * 28f) % H))
+        val pAlpha = 0.3f + sin(slowPulse * 3.14159f + i) * 0.25f
+        
+        drawCircle(
+            Color(0xFF00F0FF).copy(alpha = max(0f, pAlpha)),
+            radius = 2.2f + (i % 3) * 0.8f,
+            center = Offset(px, py)
+        )
+    }
 
+    // === LAYER 7: Atmospheric Vignette ===
     drawRect(
         Brush.radialGradient(
-            listOf(Color.Transparent, Color(0xDD000000)),
+            colors = listOf(Color.Transparent, Color(0xEE020814)),
             center = Offset(W / 2f, H / 2f),
-            radius = W * 0.75f
+            radius = W * 0.78f
         ),
         size = size
     )
 }
 
-private fun DrawScope.drawEarthCave(scrollOffset: Float, torchFlicker: Float) {
+private data class EarthPillarSpec(
+    val xFrac: Float,
+    val topYFrac: Float,
+    val botYFrac: Float,
+    val widthFrac: Float,
+    val isStalactite: Boolean = false
+)
+
+private fun DrawScope.drawEarthPillar(
+    pillar: EarthPillarSpec,
+    canvasWidth: Float,
+    canvasHeight: Float
+) {
+    val cx = canvasWidth * pillar.xFrac
+    val cw = canvasWidth * pillar.widthFrac
+    val topY = canvasHeight * pillar.topYFrac
+    val botY = canvasHeight * pillar.botYFrac
+    val ch = botY - topY
+
+    if (ch <= 0f || cw <= 0f) return
+
+    val highlightStone = Color(0xFF4A3C28)
+    val baseStone = Color(0xFF2C2214)
+    val shadowStone = Color(0xFF140D06)
+
+    val shaftBrush = Brush.horizontalGradient(
+        colors = listOf(highlightStone, baseStone, shadowStone),
+        startX = cx - cw / 2f,
+        endX = cx + cw / 2f
+    )
+
+    if (pillar.isStalactite) {
+        val path = Path().apply {
+            moveTo(cx - cw / 2f, topY)
+            lineTo(cx + cw / 2f, topY)
+            lineTo(cx + cw * 0.15f, botY)
+            lineTo(cx - cw * 0.15f, botY)
+            close()
+        }
+        drawPath(path, shaftBrush)
+        drawPath(path, Color(0xFF0C0703), style = Stroke(1.5f))
+    } else {
+        val path = Path().apply {
+            moveTo(cx - cw * 0.2f, topY)
+            lineTo(cx + cw * 0.2f, topY)
+            lineTo(cx + cw / 2f, botY)
+            lineTo(cx - cw / 2f, botY)
+            close()
+        }
+        drawPath(path, shaftBrush)
+        drawPath(path, Color(0xFF0C0703), style = Stroke(1.5f))
+
+        repeat(3) { i ->
+            drawCircle(
+                Color(0xFF2E3A18).copy(alpha = 0.7f),
+                radius = cw * 0.25f,
+                center = Offset(cx - cw * 0.25f + i * cw * 0.25f, botY - 6f)
+            )
+        }
+    }
+
+    val ridgeCount = 3
+    repeat(ridgeCount) { i ->
+        val rx = cx - cw * 0.25f + i * (cw * 0.5f / max(1, ridgeCount - 1))
+        drawLine(
+            Color(0xFF120B05).copy(alpha = 0.6f),
+            Offset(rx, topY + 8f),
+            Offset(rx, botY - 8f),
+            strokeWidth = max(1f, cw * 0.08f)
+        )
+    }
+}
+
+private fun DrawScope.drawEarthCave(
+    scrollOffset: Float,
+    torchFlicker: Float,
+    slowPulse: Float
+) {
     val W = size.width
     val H = size.height
 
-    // L1: Clay/mud atmosphere
+    // === LAYER 1: Subterranean Cavern Atmosphere & Overhang ===
     drawRect(
-        Brush.verticalGradient(listOf(Color(0xFF0E0A06), Color(0xFF18100A), Color(0xFF0B0704))),
+        Brush.verticalGradient(
+            listOf(
+                Color(0xFF0A0704),
+                Color(0xFF181109),
+                Color(0xFF281C0E),
+                Color(0xFF181008),
+                Color(0xFF0A0604)
+            )
+        ),
         size = size
     )
-    drawRect(Color(0.8f, 0.4f, 0.1f, torchFlicker * 0.02f), size = size)
 
-    // L2: Earthy rock walls
-    val wallBottom = H * 0.7f
-    val tileW = W / 16f
-    val tileH = H * 0.06f
-    var wy = H * 0.1f
-    var row = 0
-    while (wy < wallBottom) {
-        var wx = -(scrollOffset * 0.1f % tileW)
-        while (wx < W + tileW) {
-            val isMoss = (row * 5 + (wx / tileW).toInt()) % 7 == 0
-            val c = if (isMoss) Color(0xFF1E2812) else if ((row + (wx / tileW).toInt()) % 2 == 0) Color(0xFF22160C) else Color(0xFF1A1008)
-            drawRect(c, Offset(wx, wy), Size(tileW - 2f, tileH - 2f))
-            wx += tileW
-        }
-        wy += tileH
-        row++
-    }
-
-    // L3: Jagged stalactites ceiling
     val ceilingPath = Path().apply {
         moveTo(0f, 0f)
-        var x = 0f
-        while (x <= W + 20f) {
-            val len = 30f + sin(x * 0.05f) * 20f + (x.toInt() % 7) * 8f
-            lineTo(x, len)
-            x += 25f
-        }
         lineTo(W, 0f)
+        lineTo(W, H * 0.12f)
+        lineTo(W * 0.88f, H * 0.18f)
+        lineTo(W * 0.74f, H * 0.08f)
+        lineTo(W * 0.62f, H * 0.22f)
+        lineTo(W * 0.50f, H * 0.10f)
+        lineTo(W * 0.38f, H * 0.20f)
+        lineTo(W * 0.24f, H * 0.09f)
+        lineTo(W * 0.12f, H * 0.16f)
+        lineTo(0f, H * 0.08f)
         close()
     }
-    drawPath(ceilingPath, Color(0xFF120B05))
+    drawPath(ceilingPath, Color(0xFF140C06))
+    drawPath(ceilingPath, Color(0xFF28180C), style = Stroke(2f))
 
-    // Jagged stalagmites floor
-    val floorY = H * 0.72f
-    val floorPath = Path().apply {
-        moveTo(0f, H)
-        var x = 0f
-        while (x <= W + 20f) {
-            val height = 20f + cos(x * 0.04f) * 15f + (x.toInt() % 5) * 10f
-            lineTo(x, floorY - height)
-            x += 30f
+    val floorY = H * 0.52f
+
+    // === LAYER 2: Distant Cavern Arch & Dark Tunnel Depth ===
+    val tunnelPath = Path().apply {
+        moveTo(W * 0.25f, floorY)
+        quadraticTo(W * 0.50f, floorY - H * 0.35f, W * 0.75f, floorY)
+        close()
+    }
+    drawPath(
+        tunnelPath,
+        Brush.radialGradient(
+            listOf(Color(0xFF030201), Color(0xFF100B06), Color(0xFF1A120A)),
+            center = Offset(W * 0.50f, floorY - H * 0.12f),
+            radius = W * 0.28f
+        )
+    )
+    drawPath(tunnelPath, Color(0xFF2A1D0E), style = Stroke(2.5f))
+
+    listOf(0.28f to 0.06f, 0.42f to 0.04f, 0.58f to 0.05f, 0.70f to 0.07f).forEach { (xFrac, hFrac) ->
+        val rx = W * xFrac
+        val rw = W * 0.03f
+        val rh = H * hFrac
+        drawRect(Color(0xFF1A1108), Offset(rx - rw / 2f, floorY - rh), Size(rw, rh))
+    }
+
+    // === LAYER 3: Cracked Flagstone Floor & Stone Altar Platform ===
+    drawRect(Color(0xFF22170E), Offset(0f, floorY), Size(W, H - floorY))
+
+    val vpX = W * 0.40f
+    val flagRows = 10
+    repeat(flagRows) { r ->
+        val p = r / flagRows.toFloat()
+        val rowY = floorY + (H - floorY) * (p * p)
+
+        drawLine(
+            Color(0xFF0D0804),
+            Offset(0f, rowY),
+            Offset(W, rowY),
+            strokeWidth = 2f
+        )
+
+        val slabs = 7
+        repeat(slabs) { c ->
+            val cFrac = (c + 0.5f) / slabs
+            val slabX = vpX + (cFrac - 0.5f) * W * (p * 2.2f + 0.8f)
+            val slabW = (28f * p + 8f)
+            val slabH = (14f * p + 4f)
+            if (slabX in 0f..W && rowY >= floorY) {
+                drawRect(
+                    Color(0xFF3B2E1C),
+                    Offset(slabX - slabW / 2f, rowY - slabH / 2f),
+                    Size(slabW, slabH)
+                )
+                drawRect(
+                    Color(0xFF4C3C26),
+                    Offset(slabX - slabW / 2f + 1f, rowY - slabH / 2f + 1f),
+                    Size(slabW - 2f, slabH - 2f)
+                )
+                drawRect(
+                    Color(0xFF120C06),
+                    Offset(slabX - slabW / 2f, rowY - slabH / 2f),
+                    Size(slabW, slabH),
+                    style = Stroke(1.2f)
+                )
+            }
         }
-        lineTo(W, H)
+    }
+
+    repeat(8) { col ->
+        val startFrac = col / 7f
+        val bottomX = vpX + (startFrac - 0.5f) * W * 2.8f
+        drawLine(
+            Color(0xFF0D0804),
+            Offset(vpX + (startFrac - 0.5f) * W * 0.2f, floorY),
+            Offset(bottomX, H),
+            strokeWidth = 1.8f
+        )
+    }
+
+    val ledgePath = Path().apply {
+        moveTo(W * 0.58f, H)
+        lineTo(W * 1.05f, floorY + H * 0.12f)
+        lineTo(W * 1.05f, H)
         close()
     }
-    drawPath(floorPath, Color(0xFF120B05))
+    drawPath(
+        ledgePath,
+        Brush.verticalGradient(
+            listOf(Color(0xFF382A1A), Color(0xFF261B0E), Color(0xFF160E06))
+        )
+    )
+    drawPath(ledgePath, Color(0xFF5A462C), style = Stroke(2.2f))
 
-    // Water drips
+    drawLine(
+        Color(0xFF6E5638),
+        Offset(W * 0.58f, H),
+        Offset(W * 1.05f, floorY + H * 0.12f),
+        strokeWidth = 3f
+    )
+
+    // Central Megalithic Stone Altar Ring
+    val altarX = W * 0.50f
+    val altarY = floorY - H * 0.02f
+    val altarRadiusX = W * 0.14f
+    val altarRadiusY = H * 0.07f
+
+    val stoneCount = 12
+    repeat(stoneCount) { i ->
+        val angle = i * (PI.toFloat() * 2f / stoneCount)
+        val sx = altarX + cos(angle) * altarRadiusX
+        val sy = altarY + sin(angle) * altarRadiusY
+        val sWidth = 16f
+        val sHeight = 24f
+
+        drawRect(
+            Brush.verticalGradient(listOf(Color(0xFF5A4832), Color(0xFF2D2214))),
+            Offset(sx - sWidth / 2f, sy - sHeight),
+            Size(sWidth, sHeight)
+        )
+        drawRect(
+            Color(0xFF140E08),
+            Offset(sx - sWidth / 2f, sy - sHeight),
+            Size(sWidth, sHeight),
+            style = Stroke(1.2f)
+        )
+    }
+
+    val glowFlicker = 0.7f + torchFlicker * 0.3f
+    drawOval(
+        Brush.radialGradient(
+            listOf(
+                Color(0xFFEEFF60).copy(alpha = glowFlicker),
+                Color(0xFFFFB000).copy(alpha = glowFlicker * 0.7f),
+                Color(0xFF885500).copy(alpha = glowFlicker * 0.3f),
+                Color.Transparent
+            ),
+            center = Offset(altarX, altarY - 6f),
+            radius = altarRadiusX * 1.2f
+        ),
+        topLeft = Offset(altarX - altarRadiusX * 0.8f, altarY - altarRadiusY * 0.8f - 6f),
+        size = Size(altarRadiusX * 1.6f, altarRadiusY * 1.6f)
+    )
+
+    // === LAYER 4: Earth Fissures & Subterranean Glowing Light Rifts ===
+    val fissurePath = Path().apply {
+        moveTo(W * 0.22f, floorY + H * 0.18f)
+        lineTo(W * 0.38f, floorY + H * 0.14f)
+        lineTo(W * 0.44f, floorY + H * 0.28f)
+        lineTo(W * 0.30f, floorY + H * 0.32f)
+        close()
+    }
+    drawPath(fissurePath, Color(0xFF0A0603))
+    drawPath(
+        fissurePath,
+        Color(0xFFFFD030).copy(alpha = 0.5f + torchFlicker * 0.3f),
+        style = Stroke(2f)
+    )
+
+    listOf(
+        Offset(W * 0.18f, floorY + H * 0.35f) to 14f,
+        Offset(W * 0.28f, floorY + H * 0.22f) to 10f,
+        Offset(W * 0.72f, floorY + H * 0.38f) to 16f,
+        Offset(W * 0.82f, floorY + H * 0.26f) to 12f
+    ).forEach { (pos, radius) ->
+        drawCircle(Color(0xFF382A1A), radius = radius, center = pos)
+        drawCircle(Color(0xFF5A442A), radius = radius * 0.6f, center = Offset(pos.x - radius * 0.3f, pos.y - radius * 0.3f))
+        drawCircle(Color(0xFF120C06), radius = radius, center = pos, style = Stroke(1.2f))
+    }
+
+    // === LAYER 5: Natural Foreground Cave Pillars ===
+    val pillars = listOf(
+        EarthPillarSpec(xFrac = 0.10f, topYFrac = 0.04f, botYFrac = 0.96f, widthFrac = 0.14f, isStalactite = false),
+        EarthPillarSpec(xFrac = 0.90f, topYFrac = 0.08f, botYFrac = 0.96f, widthFrac = 0.13f, isStalactite = false),
+        EarthPillarSpec(xFrac = 0.32f, topYFrac = 0.00f, botYFrac = 0.32f, widthFrac = 0.06f, isStalactite = true),
+        EarthPillarSpec(xFrac = 0.68f, topYFrac = 0.00f, botYFrac = 0.36f, widthFrac = 0.07f, isStalactite = true)
+    )
+
+    pillars.forEach { pillar ->
+        drawEarthPillar(pillar, W, H)
+    }
+
+    // === LAYER 6: Dynamic Particles & Cavern Water Drips ===
     repeat(4) { i ->
-        val dx = W * (0.2f + i * 0.22f)
-        val dripY = ((scrollOffset * 1.2f + i * 80f) % (floorY - 40f)) + 30f
-        drawCircle(Color(0.4f, 0.7f, 1f, 0.6f), radius = 3f, center = Offset(dx, dripY))
-        if (dripY > floorY - 50f) {
-            drawCircle(Color(0.4f, 0.7f, 1f, 0.3f), radius = 10f, center = Offset(dx, floorY - 10f), style = Stroke(1.5f))
+        val dripX = W * (0.22f + i * 0.18f)
+        val dripCycle = ((scrollOffset * 1.5f + i * 90f) % (floorY - H * 0.05f))
+        val dripY = H * 0.15f + dripCycle
+
+        drawCircle(Color(0xFF80D0FF).copy(alpha = 0.7f), radius = 2.5f, center = Offset(dripX, dripY))
+
+        if (dripY > floorY - 20f) {
+            val rippleR = ((dripY - (floorY - 20f)) * 0.8f).coerceAtMost(18f)
+            val rippleAlpha = (1f - rippleR / 18f).coerceIn(0f, 0.6f)
+            drawOval(
+                Color(0xFF80D0FF).copy(alpha = rippleAlpha),
+                topLeft = Offset(dripX - rippleR, floorY + 10f - rippleR * 0.3f),
+                size = Size(rippleR * 2f, rippleR * 0.6f),
+                style = Stroke(1.2f)
+            )
         }
     }
+
+    val dustRng = java.util.Random(1337)
+    repeat(30) { i ->
+        val dx = (dustRng.nextFloat() * W + sin(scrollOffset * 0.03f + i) * 20f) % W
+        val dy = (H - ((scrollOffset * 0.6f + i * 28f) % H))
+        val dAlpha = 0.2f + sin(slowPulse * 3.14159f + i) * 0.3f + torchFlicker * 0.2f
+
+        drawCircle(
+            Color(0xFFFFE060).copy(alpha = max(0f, dAlpha)),
+            radius = 1.8f + (i % 3) * 0.8f,
+            center = Offset(dx, dy)
+        )
+    }
+
+    // === LAYER 7: Atmospheric Vignette & Warm Spotlight ===
+    drawCircle(
+        Color(0xFFFFD040).copy(alpha = 0.08f * torchFlicker),
+        radius = W * 0.38f,
+        center = Offset(W / 2f, floorY + H * 0.15f)
+    )
 
     drawRect(
         Brush.radialGradient(
-            listOf(Color.Transparent, Color(0xDD000000)),
+            colors = listOf(Color.Transparent, Color(0xF10A0604)),
             center = Offset(W / 2f, H / 2f),
-            radius = W * 0.75f
+            radius = W * 0.76f
         ),
         size = size
     )
 }
 
-private fun DrawScope.drawCrystalTower(scrollOffset: Float, slowPulse: Float) {
+private data class CrystalSpireSpec(
+    val xFrac: Float,
+    val topYFrac: Float,
+    val botYFrac: Float,
+    val widthFrac: Float,
+    val hasLanternTip: Boolean = false
+)
+
+private fun DrawScope.drawCrystalSpire(
+    spire: CrystalSpireSpec,
+    canvasWidth: Float,
+    canvasHeight: Float,
+    pulse: Float
+) {
+    val cx = canvasWidth * spire.xFrac
+    val cw = canvasWidth * spire.widthFrac
+    val topY = canvasHeight * spire.topYFrac
+    val botY = canvasHeight * spire.botYFrac
+    val ch = botY - topY
+
+    if (ch <= 0f || cw <= 0f) return
+
+    val lightFacet = Color(0xFFC0F0FF)
+    val midFacet = Color(0xFF40A0D0)
+    val darkFacet = Color(0xFF184070)
+    val shadowFacet = Color(0xFF0B1A38)
+
+    val leftPath = Path().apply {
+        moveTo(cx, topY)
+        lineTo(cx - cw / 2f, topY + 25f)
+        lineTo(cx - cw / 2f, botY)
+        lineTo(cx, botY)
+        close()
+    }
+    drawPath(
+        leftPath,
+        Brush.horizontalGradient(listOf(lightFacet, midFacet), startX = cx - cw / 2f, endX = cx)
+    )
+    drawPath(leftPath, Color(0xFF0A2045), style = Stroke(1.2f))
+
+    val rightPath = Path().apply {
+        moveTo(cx, topY)
+        lineTo(cx + cw / 2f, topY + 25f)
+        lineTo(cx + cw / 2f, botY)
+        lineTo(cx, botY)
+        close()
+    }
+    drawPath(
+        rightPath,
+        Brush.horizontalGradient(listOf(darkFacet, shadowFacet), startX = cx, endX = cx + cw / 2f)
+    )
+    drawPath(rightPath, Color(0xFF0A2045), style = Stroke(1.2f))
+
+    drawLine(
+        Color(0xFFE0FFFF).copy(alpha = 0.8f),
+        Offset(cx, topY),
+        Offset(cx, botY),
+        strokeWidth = 2f
+    )
+
+    if (spire.hasLanternTip) {
+        val glowR = 12f + pulse * 4f
+        drawCircle(
+            Color(0xFF00E5FF).copy(alpha = 0.5f + pulse * 0.3f),
+            radius = glowR * 1.8f,
+            center = Offset(cx, topY - 10f)
+        )
+        drawCircle(
+            Color(0xFFE0FFFF),
+            radius = 6f,
+            center = Offset(cx, topY - 10f)
+        )
+    }
+}
+
+private fun DrawScope.drawCrystalTower(
+    scrollOffset: Float,
+    slowPulse: Float,
+    medPulse: Float
+) {
     val W = size.width
     val H = size.height
 
-    // L1: Crystal atmosphere
+    // === LAYER 1: Ethereal Aurora Sunset Sky & Swirling Clouds ===
     drawRect(
-        Brush.verticalGradient(listOf(Color(0xFF0D1A33), Color(0xFF1A3359), Color(0xFF0D1A33))),
+        Brush.verticalGradient(
+            listOf(
+                Color(0xFF321040),
+                Color(0xFF6E1858),
+                Color(0xFFC04070),
+                Color(0xFFFF7080),
+                Color(0xFFFFB0A0)
+            )
+        ),
         size = size
     )
+
+    repeat(6) { i ->
+        val cloudY = H * (0.05f + i * 0.08f)
+        val cloudPath = Path().apply {
+            moveTo(-W * 0.2f, cloudY)
+            var x = -W * 0.2f
+            while (x <= W * 1.2f) {
+                val wave = sin((x + scrollOffset * 0.3f) * 0.006f + i) * (H * 0.04f)
+                lineTo(x, cloudY + wave)
+                x += 40f
+            }
+            lineTo(W * 1.2f, cloudY + H * 0.14f)
+            lineTo(-W * 0.2f, cloudY + H * 0.14f)
+            close()
+        }
+        val cloudAlpha = 0.12f + sin(slowPulse * 3.14159f + i) * 0.06f
+        drawPath(
+            cloudPath,
+            Brush.verticalGradient(
+                listOf(
+                    Color(0xFFFFB0E0).copy(alpha = max(0.01f, cloudAlpha)),
+                    Color(0xFF80E0FF).copy(alpha = max(0.005f, cloudAlpha * 0.5f)),
+                    Color.Transparent
+                )
+            )
+        )
+    }
+
+    val haloRadius = W * 0.35f
+    val haloCenter = Offset(W * 0.50f, H * 0.18f)
     drawCircle(
         Brush.radialGradient(
-            listOf(Color(0.6f, 0.9f, 1f, 0.2f), Color.Transparent),
-            center = Offset(W / 2f, H * 0.4f),
-            radius = W * 0.45f
+            listOf(
+                Color(0xFF80EEFF).copy(alpha = 0.25f + slowPulse * 0.15f),
+                Color(0xFFFFB0E0).copy(alpha = 0.15f),
+                Color.Transparent
+            ),
+            center = haloCenter,
+            radius = haloRadius
         ),
-        radius = W * 0.45f,
-        center = Offset(W / 2f, H * 0.4f)
+        radius = haloRadius,
+        center = haloCenter
     )
 
-    // L2: Giant crystal columns
-    listOf(0.1f, 0.3f, 0.5f, 0.7f, 0.9f).forEach { xFrac ->
-        val cx = W * xFrac
-        val cw = W * 0.07f
-        val topY = H * 0.1f
-        val botY = H * 0.72f
-        val leftPath = Path().apply {
-            moveTo(cx, topY + 20f)
-            lineTo(cx + cw * 0.5f, topY)
-            lineTo(cx + cw * 0.5f, botY)
-            lineTo(cx, botY + 20f)
+    val floorY = H * 0.52f
+
+    // === LAYER 2: Majestic Central Crystal Spire / Tower ===
+    val towerW = W * 0.18f
+    val towerTopY = H * 0.02f
+    val towerBotY = floorY + H * 0.05f
+    val towerX = W * 0.50f
+
+    val towerPath = Path().apply {
+        moveTo(towerX, towerTopY)
+        lineTo(towerX - towerW * 0.15f, towerTopY + H * 0.15f)
+        lineTo(towerX - towerW / 2f, towerBotY)
+        lineTo(towerX + towerW / 2f, towerBotY)
+        lineTo(towerX + towerW * 0.15f, towerTopY + H * 0.15f)
+        close()
+    }
+    drawPath(
+        towerPath,
+        Brush.horizontalGradient(
+            listOf(Color(0xFFE8F8FF), Color(0xFF80C0E8), Color(0xFF3070A8), Color(0xFF103058)),
+            startX = towerX - towerW / 2f,
+            endX = towerX + towerW / 2f
+        )
+    )
+    drawPath(towerPath, Color(0xFF0C2448), style = Stroke(1.8f))
+
+    listOf(-0.45f, -0.28f, 0.28f, 0.45f).forEach { frac ->
+        val px = towerX + towerW * frac
+        val py = towerTopY + H * (0.12f + abs(frac) * 0.2f)
+        val pw = towerW * 0.25f
+        val ph = H * 0.25f
+
+        val pinnaclePath = Path().apply {
+            moveTo(px, py)
+            lineTo(px - pw / 2f, py + ph)
+            lineTo(px + pw / 2f, py + ph)
             close()
         }
-        drawPath(leftPath, Color(0xFF0A2030))
-        val rightPath = Path().apply {
-            moveTo(cx + cw * 0.5f, topY)
-            lineTo(cx + cw, topY + 20f)
-            lineTo(cx + cw, botY + 20f)
-            lineTo(cx + cw * 0.5f, botY)
-            close()
+        drawPath(pinnaclePath, Color(0xFF90D0F8).copy(alpha = 0.85f))
+        drawPath(pinnaclePath, Color(0xFF0C2448), style = Stroke(1.2f))
+    }
+
+    drawLine(
+        Color.White,
+        Offset(towerX, 0f),
+        Offset(towerX, towerTopY + H * 0.20f),
+        strokeWidth = 3f
+    )
+    drawCircle(
+        Color(0xFFE0FFFF).copy(alpha = 0.8f + slowPulse * 0.2f),
+        radius = 16f,
+        center = Offset(towerX, towerTopY + 10f)
+    )
+
+    // === LAYER 3: Mirror Tile Floor, Crystal Bridge & Gateway Altar ===
+    drawRect(Color(0xFF102844), Offset(0f, floorY), Size(W, H - floorY))
+
+    val vpX = W * 0.35f
+    val tileRows = 12
+    repeat(tileRows) { i ->
+        val p = i / tileRows.toFloat()
+        val rowY = floorY + (H - floorY) * (p * p)
+
+        drawLine(Color(0xFF245078), Offset(0f, rowY), Offset(W, rowY), strokeWidth = 1.2f)
+
+        if (i > 1 && i % 2 == 0) {
+            val cols = 6
+            repeat(cols) { c ->
+                val colFrac = (c + 0.5f) / cols
+                val tileX = vpX + (colFrac - 0.5f) * W * (p * 2.2f + 0.8f)
+                val motifSize = (10f * p + 3f)
+                if (tileX in 0f..W && rowY >= floorY) {
+                    drawRect(
+                        Color(0xFF3878A8),
+                        Offset(tileX - motifSize / 2f, rowY - motifSize / 2f),
+                        Size(motifSize, motifSize),
+                        style = Stroke(1.5f)
+                    )
+                    drawCircle(
+                        Color(0xFF80EEFF).copy(alpha = 0.7f),
+                        radius = motifSize * 0.35f,
+                        center = Offset(tileX, rowY)
+                    )
+                }
+            }
         }
-        drawPath(rightPath, Color(0xFF1A5080))
-        drawCircle(Color(0.6f, 0.9f, 1f, 0.2f + slowPulse * 0.2f), radius = 15f, center = Offset(cx + cw * 0.5f, topY + 10f))
     }
 
-    // L3: Mirror tile floor
-    val floorY = H * 0.72f
-    drawRect(Color(0xFF081826), Offset(0f, floorY), Size(W, H - floorY))
-    val tileW = W / 16f
-    var fx = -(scrollOffset * 0.2f % tileW)
-    while (fx < W + tileW) {
-        drawLine(Color(0.2f, 0.6f, 0.9f, 0.25f), Offset(fx, floorY), Offset(fx, H), strokeWidth = 1f)
-        fx += tileW
+    repeat(10) { col ->
+        val startFrac = col / 9f
+        val bottomX = vpX + (startFrac - 0.5f) * W * 3.0f
+        drawLine(
+            Color(0xFF245078),
+            Offset(vpX + (startFrac - 0.5f) * W * 0.2f, floorY),
+            Offset(bottomX, H),
+            strokeWidth = 1.5f
+        )
     }
 
-    // L4: Light sweep band
-    val sweepX = ((scrollOffset * 2f) % (W + 400f)) - 200f
+    val bridgePath = Path().apply {
+        moveTo(W * 0.55f, H)
+        lineTo(W * 1.05f, floorY + H * 0.10f)
+        lineTo(W * 1.05f, H)
+        close()
+    }
+    drawPath(
+        bridgePath,
+        Brush.verticalGradient(
+            listOf(Color(0xFF00C0FF), Color(0xFF0060C0), Color(0xFF002060))
+        )
+    )
+    drawPath(bridgePath, Color(0xFF80EEFF), style = Stroke(2.5f))
+
+    val altarX = W * 0.50f
+    val altarY = floorY - H * 0.02f
+    val altarW = W * 0.14f
+    val altarH = H * 0.22f
+
+    drawRect(Color(0xFF183858), Offset(altarX - altarW / 2f, altarY - altarH), Size(18f, altarH))
+    drawRect(Color(0xFF183858), Offset(altarX + altarW / 2f - 18f, altarY - altarH), Size(18f, altarH))
+    drawRect(Color(0xFF80E0FF), Offset(altarX - altarW / 2f, altarY - altarH), Size(altarW, 12f))
+
+    val hexPath = Path().apply {
+        val radius = 18f
+        val cy = altarY - altarH * 0.55f
+        repeat(6) { i ->
+            val angle = i * (PI.toFloat() / 3f)
+            val hx = altarX + cos(angle) * radius
+            val hy = cy + sin(angle) * radius
+            if (i == 0) moveTo(hx, hy) else lineTo(hx, hy)
+        }
+        close()
+    }
+    val pulseAlpha = 0.6f + slowPulse * 0.4f
+    drawPath(hexPath, Color(0xFF00E5FF).copy(alpha = pulseAlpha))
+    drawPath(hexPath, Color.White, style = Stroke(2f))
+
+    // === LAYER 4: Prismatic Crystal Light Beams & Crevices ===
+    val sweepX = ((scrollOffset * 2.2f) % (W + 500f)) - 250f
     val sweepPath = Path().apply {
         moveTo(sweepX, 0f)
-        lineTo(sweepX + 150f, 0f)
-        lineTo(sweepX - 50f, H)
+        lineTo(sweepX + 160f, 0f)
+        lineTo(sweepX - 40f, H)
         lineTo(sweepX - 200f, H)
         close()
     }
-    drawPath(sweepPath, Color(1f, 1f, 1f, 0.05f))
+    drawPath(
+        sweepPath,
+        Brush.horizontalGradient(
+            listOf(
+                Color.Transparent,
+                Color(1f, 1f, 1f, 0.10f + medPulse * 0.05f),
+                Color(0.4f, 0.9f, 1f, 0.12f),
+                Color.Transparent
+            )
+        )
+    )
 
-    // L5: Sparkles
-    val sparkRng = java.util.Random(777)
-    repeat(30) { i ->
-        val sx = sparkRng.nextFloat() * W
-        val sy = sparkRng.nextFloat() * H * 0.7f
-        val sAlpha = max(0f, sin(scrollOffset * 0.08f + i) * 0.8f)
-        drawLine(Color(0.8f, 1f, 1f, sAlpha), Offset(sx - 6f, sy), Offset(sx + 6f, sy), strokeWidth = 2f)
-        drawLine(Color(0.8f, 1f, 1f, sAlpha), Offset(sx, sy - 6f), Offset(sx, sy + 6f), strokeWidth = 2f)
+    val crevicePath = Path().apply {
+        moveTo(W * 0.18f, floorY + H * 0.15f)
+        lineTo(W * 0.36f, floorY + H * 0.12f)
+        lineTo(W * 0.40f, floorY + H * 0.26f)
+        lineTo(W * 0.22f, floorY + H * 0.30f)
+        close()
+    }
+    drawPath(crevicePath, Color(0xFF061428))
+    drawPath(crevicePath, Color(0xFF00E5FF).copy(alpha = 0.7f + slowPulse * 0.2f), style = Stroke(2f))
+
+    // === LAYER 5: Architectural Foreground Structures (Grand Crystal Spire Columns) ===
+    val spires = listOf(
+        CrystalSpireSpec(xFrac = 0.12f, topYFrac = 0.08f, botYFrac = 0.96f, widthFrac = 0.11f, hasLanternTip = false),
+        CrystalSpireSpec(xFrac = 0.88f, topYFrac = 0.10f, botYFrac = 0.96f, widthFrac = 0.11f, hasLanternTip = false),
+        CrystalSpireSpec(xFrac = 0.28f, topYFrac = 0.22f, botYFrac = 0.62f, widthFrac = 0.038f, hasLanternTip = true),
+        CrystalSpireSpec(xFrac = 0.72f, topYFrac = 0.22f, botYFrac = 0.62f, widthFrac = 0.038f, hasLanternTip = true)
+    )
+
+    spires.forEach { spire ->
+        drawCrystalSpire(spire, W, H, slowPulse)
     }
 
+    // === LAYER 6: Dynamic Particles & Prismatic Sparkles / Light Flares ===
+    val sparkRng = java.util.Random(7777)
+    repeat(35) { i ->
+        val sx = (sparkRng.nextFloat() * W + sin(scrollOffset * 0.04f + i) * 16f) % W
+        val sy = (H - ((scrollOffset * 0.7f + i * 32f) % H))
+        val sAlpha = max(0f, 0.3f + sin(scrollOffset * 0.08f + i) * 0.5f)
+
+        drawLine(
+            Color(0xFFE0FFFF).copy(alpha = sAlpha),
+            Offset(sx - 5f, sy),
+            Offset(sx + 5f, sy),
+            strokeWidth = 1.8f
+        )
+        drawLine(
+            Color(0xFFE0FFFF).copy(alpha = sAlpha),
+            Offset(sx, sy - 5f),
+            Offset(sx, sy + 5f),
+            strokeWidth = 1.8f
+        )
+    }
+
+    // === LAYER 7: Atmospheric Vignette ===
     drawRect(
         Brush.radialGradient(
-            listOf(Color.Transparent, Color(0xCC000000)),
+            colors = listOf(Color.Transparent, Color(0xDD120420)),
             center = Offset(W / 2f, H / 2f),
-            radius = W * 0.75f
+            radius = W * 0.78f
         ),
         size = size
     )

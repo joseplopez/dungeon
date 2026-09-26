@@ -28,7 +28,7 @@ class BiomeUITest {
         }
         composeTestRule.waitForIdle()
         composeTestRule.onNodeWithTag(tag).assertIsDisplayed()
-        Thread.sleep(1000)
+        Thread.sleep(5000)
     }
 
     @Test
