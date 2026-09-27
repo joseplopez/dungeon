@@ -31,6 +31,49 @@ private fun DrawScope.px32(): (Float, Float, Float, Float, Color) -> Unit {
     }
 }
 
+/**
+ * Ultra-detail 64x64 pixel grid helper.
+ * Provides 4x higher detail for authentic 16-bit JRPG character sprites.
+ */
+private fun DrawScope.px64(): (Float, Float, Float, Float, Color) -> Unit {
+    val pixelSize = size.width / 64f
+    return { x, y, w, h, color ->
+        drawRect(
+            color = color,
+            topLeft = Offset(x * pixelSize, y * pixelSize),
+            size = Size(w * pixelSize, h * pixelSize)
+        )
+    }
+}
+
+/**
+ * Pixel Matrix Renderer.
+ * Draws a 2D string matrix pixel-by-pixel with exact 1:1 scaling and centering.
+ */
+private fun DrawScope.drawPixelMatrix(
+    matrix: Array<String>,
+    palette: Map<Char, Color>
+) {
+    val rows = matrix.size
+    val cols = matrix.maxOf { it.length }
+    val tileSize = minOf(size.width / cols, size.height / rows)
+    val offsetX = (size.width - cols * tileSize) / 2f
+    val offsetY = (size.height - rows * tileSize) / 2f
+
+    for (r in 0 until rows) {
+        val rowStr = matrix[r]
+        for (c in 0 until rowStr.length) {
+            val char = rowStr[c]
+            val color = palette[char] ?: continue
+            drawRect(
+                color = color,
+                topLeft = Offset(offsetX + c * tileSize, offsetY + r * tileSize),
+                size = Size(tileSize, tileSize)
+            )
+        }
+    }
+}
+
 // --- ICONIC FF1 COLOR PALETTE ---
 private val SkinLight = Color(0xFFFFDBAC)
 private val SkinMid = Color(0xFFF1C27D)
@@ -57,136 +100,249 @@ private val FFOrange = Color(0xFFE67E22)
 // --- HERO SPRITES (TIER 1) ---
 
 fun DrawScope.drawWarrior() {
-    val p = px32()
-    // Helmet
-    p(10f, 2f, 12f, 8f, FFRed)
-    p(12f, 1f, 8f, 1f, FFRedDark) // crest
-    p(16f, 0f, 2f, 2f, Color.White) // plume
-    p(10f, 6f, 12f, 1f, FFBlack) // visor slit
-    // Face
-    p(11f, 8f, 10f, 5f, SkinMid)
-    p(12f, 9f, 1f, 1f, Color.Black)
-    p(18f, 9f, 1f, 1f, Color.Black)
-    // Body Armor
-    p(10f, 13f, 12f, 10f, FFRed)
-    p(9f, 14f, 2f, 5f, FFSilver) // Pauldrons
-    p(21f, 14f, 2f, 5f, FFSilver)
-    p(14f, 13f, 4f, 10f, FFRedDark) // Depth
-    // Shield
-    p(6f, 15f, 4f, 8f, FFSilver)
-    p(7f, 16f, 2f, 6f, FFBlue)
-    // Legs
-    p(11f, 23f, 4f, 6f, FFRedDark)
-    p(17f, 23f, 4f, 6f, FFRedDark)
-    p(10f, 28f, 5f, 2f, FFBlack) // Boots
-    p(17f, 28f, 5f, 2f, FFBlack)
+    val matrix = arrayOf(
+        "...KKKKKKK..K.K.", // 0
+        "..KRRRRRRRKKRRK.", // 1
+        ".KRRRRRRRRRRRRK.", // 2
+        "KRRRRRRRRRRRRRK.", // 3
+        ".KRRRRRRRRRRRRK.", // 4
+        "KRRRRRRRRRRRRRK.", // 5
+        ".KRRRRRRRRRRRRRK", // 6
+        "..KRRRRRRRKKRRKK", // 7
+        "..KRRRRPPKKRRK..", // 8
+        "..KRRRPPPPPPK...", // 9
+        "..KRRKPPPPPK....", // 10
+        ".KRRRKPPPPKRRK..", // 11
+        "KWRRRRKRRRRRK...", // 12
+        "KRRRRKRRRPKRRK..", // 13
+        "KPRRKRRRPPKRK...", // 14
+        "KPPRKRRRPPK.....", // 15
+        ".KRRRRRRRPPK....", // 16
+        ".KKKKKKKKKKK....", // 17
+        "..KWWWWWWK......", // 18
+        "..KRRRRRK.......", // 19
+        "..KRRRRRK.......", // 20
+        "..KRRRRRK.......", // 21
+        "..KRRRRRRK......", // 22
+        "..KKKKKKK......."  // 23
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Black outline / pupil
+        'R' to Color(0xFFD32F2F), // Crimson red hair & armor
+        'P' to Color(0xFFF3C59D), // Peach skin tone
+        'W' to Color(0xFFFFFFFF)  // White belt / shoulder highlight
+    )
+
+    drawPixelMatrix(matrix, palette)
 }
 
 fun DrawScope.drawThief() {
-    val p = px32()
-    // Head / Bandanna
-    p(10f, 3f, 12f, 5f, FFGreen)
-    p(11f, 2f, 10f, 1f, FFGreenDark)
-    p(21f, 4f, 2f, 2f, HairBlue) // hair tuft
-    // Face
-    p(11f, 8f, 10f, 6f, SkinLight)
-    p(12f, 10f, 1f, 1f, Color.Black)
-    p(18f, 10f, 1f, 1f, Color.Black)
-    // Body / Tunic
-    p(11f, 14f, 10f, 9f, FFGreen)
-    p(12f, 14f, 1f, 9f, FFGreenDark) // strap
-    p(18f, 14f, 1f, 9f, FFGreenDark)
-    // Arms/Daggers
-    p(8f, 15f, 3f, 2f, SkinLight)
-    p(7f, 14f, 1f, 6f, FFSilver) // dagger
-    // Legs
-    p(12f, 23f, 3f, 7f, FFGreenDark)
-    p(17f, 23f, 3f, 7f, FFGreenDark)
-    p(11f, 29f, 4f, 2f, Color(0xFF5D4037))
-    p(17f, 29f, 4f, 2f, Color(0xFF5D4037))
+    val matrix = arrayOf(
+        "........KKKKKKKK.KK...", // 0
+        ".......KGGGGGGGGKHHDK.", // 1
+        "......KGGGGGGGGGGHHHDK", // 2
+        ".....KGGGGGGGGGGGHHHHD", // 3
+        "..KK.KGGGGGGGGGHHHHHHD", // 4
+        ".KGGKGGGGGGGGDSEPPPHD.", // 5
+        "KGGGGGGGGGGGGSEPPPPD..", // 6
+        ".KGGGKGGGGGGDPPPPPD...", // 7
+        "..KKK.KGGGGGPPPPPD....", // 8
+        "......KGEEEEEEEGK.....", // 9
+        ".....KGGEEEEEEGGGK....", // 10
+        "....KGGGEEEEEEEGGGK...", // 11
+        "...KOOOGEEEEEEEGPPPK..", // 12
+        "...KPPOGGGEEEGGGGPPPK.", // 13
+        "...KPPPGGYYYYGGGGPPPK.", // 14
+        "....KPGGGGGGGGGGGPPK..", // 15
+        ".....KGGGGGGGGGGGKK...", // 16
+        "......KGGGGGGGGGK.....", // 17
+        "......KGGGGKGGGGK.....", // 18
+        "......KPPPK.KPPPK.....", // 19
+        ".....KGGGGK.KGGGGK....", // 20
+        ".....KOOOK...KOOOK....", // 21
+        ".....KOOOK...KOOOK....", // 22
+        "....KGGGGK...KGGGGK...", // 23
+        "....KKKKKK...KKKKKK..."  // 24
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline / pupil
+        'G' to Color(0xFF27AE60), // Green bandanna & tunic
+        'E' to Color(0xFF1E8449), // Dark green tunic shadow
+        'H' to Color(0xFFD4AC0D), // Tan/brown hair
+        'D' to Color(0xFF9A7D0A), // Dark hair shadow
+        'P' to Color(0xFFF3C59D), // Peach skin
+        'S' to Color(0xFFFFFFFF), // White sclera
+        'O' to Color(0xFFE67E22), // Orange pauldron & boots
+        'Y' to Color(0xFFF1C40F)  // Gold belt
+    )
+
+    drawPixelMatrix(matrix, palette)
 }
 
 fun DrawScope.drawMonk() {
-    val p = px32()
-    // Hair & Headband
-    p(11f, 2f, 10f, 6f, HairBrown)
-    p(10f, 6f, 12f, 2f, FFGold) // gold headband
-    // Face
-    p(11f, 8f, 10f, 6f, SkinMid)
-    p(12f, 10f, 1f, 1f, Color.Black)
-    p(18f, 10f, 1f, 1f, Color.Black)
-    // Gi
-    p(11f, 14f, 10f, 10f, Color(0xFFE67E22))
-    p(14f, 14f, 4f, 10f, Color(0xFFD35400)) // shading
-    p(11f, 20f, 10f, 1f, FFBlack) // belt
-    // Bare Arms
-    p(9f, 15f, 2f, 6f, SkinMid)
-    p(21f, 15f, 2f, 6f, SkinMid)
-    // Legs
-    p(12f, 24f, 3f, 6f, Color(0xFFD35400))
-    p(17f, 24f, 3f, 6f, Color(0xFFD35400))
+    val matrix = arrayOf(
+        ".......KKKKKK.....", // 0
+        "......KHHHHHHK....", // 1
+        ".....KHHHHHHHHK...", // 2
+        "....KHHHHHHHHHHK..", // 3
+        "....KHHCCCCCHHHK..", // 4
+        "....KHHCYYYYCCK...", // 5
+        "....KCCCYYYYYCK...", // 6
+        "....KYYYYYKKKYYK..", // 7
+        "....KYYYYYYKKYK...", // 8
+        "....KYYYYYYYYK....", // 9
+        "...KCCCYYYYYYKK...", // 10
+        "..KYYYCCCYYYYYYYYK", // 11
+        ".KYYYYYCCBCCCYYYYK", // 12
+        ".KYYYYYCCCCCCYYYYK", // 13
+        ".KYYYYGGCCCCCCYYK.", // 14
+        "..KYYGGGGCCCCK....", // 15
+        "...KGGGGGCCCK.....", // 16
+        "....KKKKKCCCK.....", // 17
+        "......KCCCCCK.....", // 18
+        "......KCCCCCK.....", // 19
+        "......KCCCCCK.....", // 20
+        "......KCCCCCK.....", // 21
+        "......KCCCKCK.....", // 22
+        "......KCCCKCK.....", // 23
+        "......KKKKKKK....."  // 24
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline / pupil / belt
+        'H' to Color(0xFFA67C52), // Brown hair
+        'D' to Color(0xFF6B4C28), // Dark hair shadow
+        'Y' to Color(0xFFF7D038), // Yellow skin
+        'G' to Color(0xFFD39818), // Gold/yellow muscle shading
+        'C' to Color(0xFF4FB4E8), // Cyan headband / trousers / gi
+        'B' to Color(0xFF2B72A8)  // Dark cyan shadow
+    )
+
+    drawPixelMatrix(matrix, palette)
 }
 
 fun DrawScope.drawWhiteMage() {
-    val p = px32()
-    // Hood
-    p(10f, 2f, 12f, 12f, Color.White)
-    p(11f, 2f, 10f, 1f, FFRed) // top trim
-    p(10f, 5f, 1f, 4f, FFRed) // side trim
-    p(21f, 5f, 1f, 4f, FFRed)
-    // Face in Shadow
-    p(12f, 6f, 8f, 6f, SkinLight)
-    p(13f, 8f, 1f, 1f, Color.Black)
-    p(18f, 8f, 1f, 1f, Color.Black)
-    // Robes
-    p(10f, 14f, 12f, 10f, Color.White)
-    p(10f, 20f, 12f, 2f, FFRed) // bottom trim
-    // Staff
-    p(7f, 10f, 1f, 18f, HairBrown)
-    p(6f, 8f, 3f, 3f, FFGold)
-    // Legs
-    p(12f, 24f, 8f, 6f, FFSilver)
+    val matrix = arrayOf(
+        "..KKKKKKKKK..", // 0
+        ".KWWWWWWWWWK.", // 1
+        ".KWWWWWWWWWK.", // 2
+        "KWWWWWWWWWWWK", // 3
+        "KWWWWWWWWWWWK", // 4
+        "KWWWWWWWWWWWK", // 5
+        "KWWWWWWWHHHHK", // 6
+        "KWWWWWWKHHHHK", // 7
+        "KWWWWWKHPKKHK", // 8
+        "KWWWWWKPPBKPK", // 9
+        "KWWWWWKPPPPPK", // 10
+        "KWWWWWKPPPPPK", // 11
+        ".KWWWWKKKKKKK", // 12
+        ".KWWWKWWWWWWK", // 13
+        ".KWWWKWWWRWWK", // 14
+        ".KWWWKWRRWWWK", // 15
+        ".KWWWKRRWWRWK", // 16
+        ".KWWWKRWRRRWK", // 17
+        ".KWWWKRRRRRRK", // 18
+        ".KWWWKRRRRRRK", // 19
+        ".KWWWKRRRRRRK", // 20
+        ".KRRRRRRRRRRK", // 21
+        "KRRRRRRRRRRRK", // 22
+        "KKKKKKKKKKKKK", // 23
+        "KKKKKKKKKKKKK"  // 24
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Black outline / pupil / chin line
+        'W' to Color(0xFFFFFFFF), // White hood / robe
+        'H' to Color(0xFF5A3A22), // Brown hair bangs
+        'P' to Color(0xFFF3C59D), // Peach skin face
+        'B' to Color(0xFF2C3E80), // Blue eye pupil
+        'R' to Color(0xFFC02A2A)  // Red saw-tooth trim & cape
+    )
+
+    drawPixelMatrix(matrix, palette)
 }
 
 fun DrawScope.drawBlackMage() {
-    val p = px32()
-    // Tall Hat
-    p(13f, 0f, 6f, 8f, FFGold)
-    p(10f, 8f, 12f, 2f, FFGold) // brim
-    // Shadow Face
-    p(11f, 10f, 10f, 6f, FFBlack)
-    p(13f, 12f, 2f, 1f, Color.Yellow) // glowing eyes
-    p(17f, 12f, 2f, 1f, Color.Yellow)
-    // Blue Robes
-    p(10f, 16f, 12f, 10f, FFBlue)
-    p(14f, 16f, 4f, 10f, FFBlueDark) // shading
-    // Staff
-    p(22f, 10f, 1f, 18f, HairBrown)
-    p(21f, 8f, 3f, 3f, Color.Blue) // orb
-    // Legs
-    p(12f, 26f, 8f, 4f, FFBlack)
+    val matrix = arrayOf(
+        "...KK............", // 0
+        "..KDYK...........", // 1
+        "..KDYK...........", // 2
+        "..KDYYK..........", // 3
+        "...KDYYK.........", // 4
+        "...KDYYYK........", // 5
+        "...KDYYYK........", // 6
+        "..KDDYYYYYK......", // 7
+        ".KDDYYYYYYYKKKKK.", // 8
+        ".KYYYYYYYYYYYYYYK", // 9
+        "KDYYYYYYYYYYYYYYKK", // 10
+        "KDDDYYYYYKKKKKK..", // 11
+        ".KDDYYYYKKKKKKK..", // 12
+        ".KBKKKKKKKEEKKK..", // 13
+        "..KBBKKKKKEEKKK..", // 14
+        "..KBBBKKKKKKKKKK.", // 15
+        "..KBBBKBKKBBBBBK.", // 16
+        "..KBBBKBKKBBBBBK.", // 17
+        "..KBBBBBKBBBYYYK.", // 18
+        "..KBBBBBKBBBYYYK.", // 19
+        "..KBBBBBKBBBBKKB.", // 20
+        "..KBBBBBBBBBBKKB.", // 21
+        "..KBBBBBBBBBKKKB.", // 22
+        ".KBKBBBBBBBBKKKB.", // 23
+        "KBBKBBBBBBBBBBK..", // 24
+        "KKKKKKKKKKKKKKK.."  // 25
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Black outline & shadow face
+        'Y' to Color(0xFFF5C542), // Light yellow hat, glove, patch
+        'D' to Color(0xFFC78C16), // Dark gold hat shadow
+        'E' to Color(0xFFFFDF22), // Glowing yellow eyes
+        'B' to Color(0xFF389CE3)  // Robe cyan blue
+    )
+
+    drawPixelMatrix(matrix, palette)
 }
 
 fun DrawScope.drawRedMage() {
-    val p = px32()
-    // Wide Hat
-    p(8f, 4f, 16f, 3f, FFRed)
-    p(13f, 1f, 6f, 4f, FFRed)
-    p(19f, 2f, 2f, 3f, Color.White) // feather
-    // Face
-    p(12f, 7f, 8f, 7f, SkinMid)
-    p(13f, 9f, 1f, 1f, Color.Black)
-    p(18f, 9f, 1f, 1f, Color.Black)
-    // Cape & Tunic
-    p(10f, 14f, 12f, 10f, FFRed)
-    p(12f, 14f, 8f, 2f, Color.White) // collar
-    p(14f, 16f, 4f, 8f, FFRedDark)
-    // Rapier
-    p(23f, 12f, 1f, 14f, FFSilver)
-    p(22f, 24f, 3f, 2f, FFGold)
-    // Legs
-    p(12f, 24f, 3f, 6f, FFBlack)
-    p(17f, 24f, 3f, 6f, FFBlack)
+    val matrix = arrayOf(
+        "......KWWKRRKK....", // 0
+        "....KWWWKRRRRRK...", // 1
+        "...KWWWWKRRRRRRK..", // 2
+        "..KWWWWKKRRRRRRRK.", // 3
+        ".KWWWWKRRRRRRRRRK.", // 4
+        "KRRRRRRRRRRRRRRRK.", // 5
+        ".KKKKRRRRRRRRKK...", // 6
+        "..KWWWWWWKPPK.....", // 7
+        "..KWWWWWWKPEPK....", // 8
+        ".KWWWWWWKPPPPK....", // 9
+        ".KRRRRRRKKKKKK....", // 10
+        ".KRRRRRKRWWWWK....", // 11
+        "KRRRRRKRRRRPPWK...", // 12
+        "KRRRRRKRRRKWWWWK..", // 13
+        "KRRRRRKRRPKWKWWK..", // 14
+        ".KRRRRKRRKKWWWWK..", // 15
+        ".KRRRRRRRPKWWWWK..", // 16
+        "..KRRRRRRPKKKKK...", // 17
+        "..KWWWWWWK........", // 18
+        "..KRRRRRRK........", // 19
+        "..KRRRRRRK........", // 20
+        "..KRRRRRRK........", // 21
+        "..KRRRRRRRK.......", // 22
+        "..KKKKKKKKK......."  // 23
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline / pupil
+        'R' to Color(0xFFD32F2F), // Crimson red cap, cape, tunic
+        'D' to Color(0xFF8B0000), // Dark red shadow
+        'W' to Color(0xFFFFFFFF), // White feather, collar, belt
+        'P' to Color(0xFFF3C59D), // Peach skin
+        'E' to Color(0xFF17202A)  // Dark pupil
+    )
+
+    drawPixelMatrix(matrix, palette)
 }
 
 // --- ADVANCED JOBS (TIER 2) ---
@@ -210,139 +366,334 @@ fun DrawScope.drawKnight() {
 }
 
 fun DrawScope.drawPaladin() {
-    val p = px32()
-    // Golden Shine
-    p(10f, 2f, 12f, 8f, FFGold)
-    p(11f, 4f, 10f, 10f, SkinMid) // Face peeking
-    p(11f, 2f, 10f, 3f, HairWhite) // Long white hair
-    p(13f, 7f, 1f, 1f, FFBlue)
-    p(18f, 7f, 1f, 1f, FFBlue)
-    // Armor
-    p(10f, 13f, 12f, 11f, Color.White) // White tabard
-    p(10f, 13f, 2f, 11f, FFGold) // Gold trim
-    p(20f, 13f, 2f, 11f, FFGold)
-    p(14f, 15f, 4f, 4f, FFGold) // Cross
-    // Legs
-    p(11f, 24f, 4f, 6f, FFGold)
-    p(17f, 24f, 4f, 6f, FFGold)
+    val matrix = arrayOf(
+        ".........KKK....", // 0
+        ".......KLLLLK...", // 1
+        ".....KLLLLLLLRK.", // 2
+        "...KLLLLLLYYYRK.", // 3
+        "..KLLLLLLYYYYOK.", // 4
+        ".KLLLLLLHYYPPPGK", // 5
+        ".KLLLLLHHPPPSPGK", // 6
+        "..KLLLLHHPPPSPPK", // 7
+        "..KKLLLLHHPPPSKK", // 8
+        ".KYYYLLLHBBBFFFK", // 9
+        "KYYYYYKHHBFFFCCK", // 10
+        "KYYYYYKFFFFCCCCK", // 11
+        "KYYRYYKFFFFFFKKK", // 12
+        ".KYYYYKFFFFFBFFK", // 13
+        "..KYYK.KPFBFFFFK", // 14
+        "..KKK..KPPBFFFFK", // 15
+        ".KYYYK.KPBBBFFFK", // 16
+        "KYYYYK.KBBBBBFK.", // 17
+        "KYYYMK..KBBBBFK.", // 18
+        "KYYYMMK.KBBBBK..", // 19
+        "KYYYYMMK.KBBBK..", // 20
+        "KYYYYRRKK.KBBK..", // 21
+        ".KYYYYRRK..KBK..", // 22
+        "..KKKKKKK...KK.."  // 23
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'L' to Color(0xFFB8A9E8), // Light lavender hair highlight
+        'H' to Color(0xFF8E7CC3), // Medium purple hair base
+        'D' to Color(0xFF5B4A9C), // Dark purple hair shadow
+        'Y' to Color(0xFFF4D03F), // Gold armor / crown
+        'O' to Color(0xFFD4AC0D), // Dark gold shadow
+        'A' to Color(0xFF9A7D0A), // Bronze shadow
+        'P' to Color(0xFFF3C59D), // Peach skin
+        'S' to Color(0xFFD49B72), // Skin shadow
+        'G' to Color(0xFF2ECC71), // Green eye
+        'W' to Color(0xFFFFFFFF), // Eye sclera
+        'F' to Color(0xFFFFFFFF), // White armor / tabard
+        'E' to Color(0xFFD5D8DC), // Silver tabard shadow
+        'B' to Color(0xFF2980B9), // Royal blue collar / sash
+        'C' to Color(0xFF5DADE2), // Cyan chest accent
+        'R' to Color(0xFFC0392B), // Crimson jewel / cape / boot trim
+        'M' to Color(0xFF7B241C)  // Dark red cape shadow
+    )
+
+    drawPixelMatrix(matrix, palette)
 }
 
 fun DrawScope.drawNinja() {
-    val p = px32()
-    // Black Mask
-    p(11f, 4f, 10f, 8f, FFBlack)
-    p(12f, 6f, 8f, 2f, SkinShadow) // eyes area
-    p(13f, 6f, 1f, 1f, Color.Red)
-    p(18f, 6f, 1f, 1f, Color.Red)
-    // Scarf
-    p(9f, 10f, 14f, 2f, FFRed)
-    p(23f, 8f, 4f, 2f, FFRed) // blowing tail
-    // Gi
-    p(11f, 12f, 10f, 11f, FFBlack)
-    p(11f, 13f, 1f, 10f, FFGreenDark) // straps
-    p(20f, 13f, 1f, 10f, FFGreenDark)
-    // Katanas
-    p(8f, 12f, 1f, 10f, FFSilver)
-    p(23f, 12f, 1f, 10f, FFSilver)
-    // Legs
-    p(12f, 23f, 3f, 7f, FFBlack)
-    p(17f, 23f, 3f, 7f, FFBlack)
+    val matrix = arrayOf(
+        "..K.....KKKKKK..", // 0
+        ".KCK...KCCCCCCK.", // 1
+        ".KCK..KCNNNNCCK.", // 2
+        "KKCCKKCNNNNNNNK.", // 3
+        "KCCCCLLLNNNNTSK.", // 4
+        ".KCCCCCNTTTTTSK.", // 5
+        ".KCCCCCCSTTTTSK.", // 6
+        "KCCCCCCCCCNCCKK.", // 7
+        "KCNCCCCCCVKKK...", // 8
+        "KCNCCCCCCLKCK...", // 9
+        "KCNNNNCCCCKCK...", // 10
+        ".KNNNNNCCCKCK...", // 11
+        ".KCNNNNNCC.KKK..", // 12
+        ".KCNLLNNCCCKCK..", // 13
+        ".KCNLLNNCCCKCK..", // 14
+        "..KCNNCCCCCTCK..", // 15
+        "..KCCCCCCCCTCK..", // 16
+        "..KCCCCCCC.KKK..", // 17
+        ".KCKCCCCCCC.....", // 18
+        ".KTTK.KCNNC.....", // 19
+        ".KTTK.KCNLLK....", // 20
+        "..KK..KCCTTK....", // 21
+        "......KCCLLK....", // 22
+        ".....KLLLLLK....", // 23
+        ".....KKKKKKK....", // 24
+        "................"  // 25
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark navy/black outline
+        'C' to Color(0xFF2C302E), // Dark charcoal cowl / Ninja suit base
+        'N' to Color(0xFF3B5968), // Slate blue Ninja armor / garment
+        'L' to Color(0xFF5D9CEC), // Light cyan-blue highlight
+        'V' to Color(0xFF8E44AD), // Dark purple collar accent
+        'S' to Color(0xFFF3C59D), // Peach skin
+        'T' to Color(0xFFB57E3E)  // Tan / golden-brown mask trim, elbow guard, belt & boot accent
+    )
+
+    drawPixelMatrix(matrix, palette)
 }
 
 fun DrawScope.drawDragoon() {
-    val p = px32()
-    // Dragon Helm
-    p(10f, 1f, 12f, 10f, FFPurple)
-    p(15f, 0f, 2f, 4f, FFGold) // spike
-    p(9f, 4f, 2f, 4f, FFPurple) // wing ear
-    p(21f, 4f, 2f, 4f, FFPurple)
-    p(10f, 7f, 12f, 1f, FFBlack) // visor
-    // Scale Armor
-    p(10f, 11f, 12f, 12f, FFPurple)
-    p(12f, 13f, 8f, 8f, FFBlack.copy(alpha = 0.3f)) // scales
-    // Lance
-    p(24f, 2f, 1f, 24f, FFSilver)
-    p(23f, 2f, 3f, 4f, FFBlue) // tip
-    // Legs
-    p(11f, 23f, 4f, 7f, FFPurple)
-    p(17f, 23f, 4f, 7f, FFPurple)
+    val matrix = arrayOf(
+        "..KK...........", // 0
+        ".KLK...KK......", // 1
+        "KLPK..KPBK.....", // 2
+        ".KLPKKLLPPK....", // 3
+        "..KLPLLWPPK....", // 4
+        ".KLPLLLLPPK....", // 5
+        ".KPLLYYPBK.....", // 6
+        "KLPPYYBBK...K..", // 7
+        "KLPKKKKKKKKPLK.", // 8
+        ".KLPKHHHK.KPLK.", // 9
+        ".KPBKSSK.KPLK..", // 10
+        ".KPBKKKK.KK....", // 11
+        "KLPKPPBK.KPPLK.", // 12
+        "KLPKBPBK.KSSK..", // 13
+        "KPPKBPBK.KPSSK.", // 14
+        "KRRKBPSSK.KPPK.", // 15
+        ".KKBBSSKKK.....", // 16
+        "..KKKPBKK......", // 17
+        "...KLPRBK......", // 18
+        "...KLPRBK......", // 19
+        "...KLPBBK......", // 20
+        "...KLLPBKK.....", // 21
+        "...KLLPBPK.....", // 22
+        "...KPPPBYYK....", // 23
+        "...KYYKYYYK....", // 24
+        "...KKKKKKKK...."  // 25
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark navy/black outline
+        'W' to Color(0xFFFFFFFF), // Specular white highlight
+        'L' to Color(0xFF7A7EE2), // Light lavender/purple armor highlight
+        'P' to Color(0xFF504EB9), // Medium purple/indigo armor base
+        'B' to Color(0xFF312E83), // Dark purple/indigo armor shadow
+        'Y' to Color(0xFFF1C40F), // Gold/yellow emblem & boot trim
+        'S' to Color(0xFFF3C59D), // Peach skin
+        'H' to Color(0xFFB86C35), // Visor skin shadow
+        'R' to Color(0xFFD32F2F)  // Red ribbon / belt accent
+    )
+
+    drawPixelMatrix(matrix, palette)
 }
 
 fun DrawScope.drawBard() {
-    val p = px32()
-    // Pink Feathered Cap
-    p(11f, 3f, 10f, 4f, Color(0xFFF06292))
-    p(19f, 1f, 2f, 3f, Color.White)
-    // Blonde Hair
-    p(10f, 7f, 12f, 4f, HairBlonde)
-    // Face
-    p(11f, 9f, 10f, 5f, SkinLight)
-    p(13f, 11f, 1f, 1f, Color.Black)
-    p(18f, 11f, 1f, 1f, Color.Black)
-    // Tunic
-    p(11f, 14f, 10f, 10f, Color(0xFFF06292))
-    p(10f, 15f, 12f, 2f, Color.White.copy(alpha = 0.4f)) // frills
-    // Harp
-    p(7f, 16f, 6f, 6f, FFGold)
-    p(8f, 17f, 4f, 4f, Color.White.copy(alpha = 0.2f))
-    // Legs
-    p(12f, 24f, 3f, 6f, FFGreen)
-    p(17f, 24f, 3f, 6f, FFGreen)
+    val matrix = arrayOf(
+        "...KFFK...............", // 0
+        "..KFEEFK..............", // 1
+        ".KFEEFK..KKKKKK.......", // 2
+        ".KFFK..KLGGGGGGK......", // 3
+        "..KK.KLGGGGGGGGGGK....", // 4
+        "....KLGGGGGGGGGGGGGK..", // 5
+        "...KDDLLGGGGGGGGGGGGK.", // 6
+        "....KAHHHHGGGGGGGGGGGK", // 7
+        "...KAHHHHHHHPPPPPSSK..", // 8
+        "...KAHHHHHHHPPPPPPSK..", // 9
+        "...KAHHHHHHHPPPPPSK...", // 10
+        "...KAHHHHHHPPPPK.KKK..", // 11
+        "..KRKWWWWWPPPPK.KUUNK.", // 12
+        ".KRRMKWWWKKKKK.KUUOONK", // 13
+        "KRRRRMKWWKGK..KUUOONK.", // 14
+        "KRRRRRMKGGGGK.KUUONK..", // 15
+        "KRRRRRRMKGGGKKUONK....", // 16
+        "KRRRRRRRMKKKKONK......", // 17
+        "KRRRRRRRYMKOONK.......", // 18
+        "KRRRRRRRYMKOONK.......", // 19
+        "KYYYRRRRYMKOONK.......", // 20
+        ".KKKYRRRRMKOONK.......", // 21
+        "....KBBBBBBKKOOK......", // 22
+        "....KBBBBBBK...K......", // 23
+        "....KBBK.KBBK.........", // 24
+        "....KKK..KKK.........."  // 25
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'F' to Color(0xFFFFFFFF), // White feather plume
+        'E' to Color(0xFFBDC3C7), // Silver feather shadow
+        'G' to Color(0xFF488A72), // Forest green hat & tunic
+        'L' to Color(0xFF63B395), // Light green hat highlight
+        'D' to Color(0xFF2E5B4B), // Dark green hat shadow
+        'H' to Color(0xFFD7A15C), // Sandy blonde hair base
+        'A' to Color(0xFF996B30), // Blonde hair shadow
+        'P' to Color(0xFFF7D0B5), // Peach skin highlight
+        'S' to Color(0xFFD49B72), // Skin shadow
+        'W' to Color(0xFFFFFFFF), // White collar shirt
+        'R' to Color(0xFF9E2A4B), // Crimson cape base
+        'M' to Color(0xFF6B1D32), // Dark crimson cape shadow
+        'Y' to Color(0xFFE5C158), // Gold trim on cape
+        'U' to Color(0xFFC29B38), // Lute wood highlight
+        'O' to Color(0xFF8C6228), // Lute wood base
+        'N' to Color(0xFF5A3C16), // Lute wood shadow
+        'B' to Color(0xFF512E1B), // Brown boots
+        'C' to Color(0xFF331B0E)  // Dark boot sole
+    )
+
+    drawPixelMatrix(matrix, palette)
 }
 
 fun DrawScope.drawSummoner() {
-    val p = px32()
-    // Green Robe & Horn
-    p(11f, 3f, 10f, 10f, FFGreen)
-    p(15f, 1f, 2f, 4f, Color.White) // Horn
-    // Face
-    p(12f, 7f, 8f, 6f, SkinMid)
-    p(13f, 9f, 1f, 1f, Color.Black)
-    p(18f, 9f, 1f, 1f, Color.Black)
-    // Robes
-    p(10f, 13f, 12f, 12f, FFGreen)
-    p(14f, 13f, 4f, 12f, Color.White) // inner
-    p(14f, 18f, 4f, 2f, FFGold) // belt
-    // Legs
-    p(12f, 25f, 8f, 5f, FFBlack)
+    val matrix = arrayOf(
+        ".....KKKKK......", // 0
+        "...KGGEEEEGK....", // 1
+        "..KGEEYRYEEG....", // 2
+        ".KGEEEYRYEEEGK..", // 3
+        ".KGGEEEEYEEEGGK.", // 4
+        ".KGEEEEPPWBEGK..", // 5
+        "..KGEEEEPPBEEGK.", // 6
+        "..KGEEEPPPPPEDK.", // 7
+        "...KEEPEPPPEEDK.", // 8
+        "...KYEPEPPPEEDK.", // 9
+        "...KEEPYPPPEEDK.", // 10
+        ".KGEEEEPPPEEEDK.", // 11
+        ".KGEEEEPPEEEEDK.", // 12
+        ".KDEEEEPPEEEEDK.", // 13
+        ".KDEEEEPCCEEEDK.", // 14
+        ".KDEEEEPCCEEEDK.", // 15
+        ".KDEEEP.CCEEEDK.", // 16
+        ".KDEEP..CCEEEDK.", // 17
+        ".KDEP...CCEEEK..", // 18
+        ".KDEP...CCEEEK..", // 19
+        ".KDEK...CCEEEK..", // 20
+        ".KYOK...CCEEEK..", // 21
+        ".KYOK...CCEEEDK.", // 22
+        ".KEEEK..KCCCCK..", // 23
+        "..KKKK...KKKK..."  // 24
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark navy/black outline
+        'G' to Color(0xFFA8F080), // Light lime hair highlight
+        'E' to Color(0xFF4CB33D), // Medium emerald green hair & tunic base
+        'D' to Color(0xFF216E1A), // Dark green hair & dress shadow
+        'Y' to Color(0xFFF1C40F), // Gold tiara & belt trim
+        'R' to Color(0xFFE74C3C), // Red tiara jewel
+        'P' to Color(0xFFF3C59D), // Peach skin
+        'W' to Color(0xFFFFFFFF), // White eye sclera
+        'B' to Color(0xFF2C3E80), // Dark blue eye iris
+        'C' to Color(0xFF17202A), // Dark charcoal inner dress folds shadow
+        'O' to Color(0xFFD4AC0D)  // Gold shoe tip
+    )
+
+    drawPixelMatrix(matrix, palette)
 }
 
 fun DrawScope.drawSamurai() {
-    val p = px32()
-    // Kabuto
-    p(9f, 3f, 14f, 8f, FFBlack)
-    p(15f, 2f, 2f, 2f, FFGold) // ornament
-    p(8f, 6f, 2f, 6f, FFRed) // side flaps
-    p(22f, 6f, 2f, 6f, FFRed)
-    // Face
-    p(11f, 10f, 10f, 4f, SkinMid)
-    // Armor
-    p(10f, 12f, 12f, 12f, FFBlack)
-    p(10f, 13f, 12f, 2f, FFRed) // lacing
-    p(10f, 17f, 12f, 2f, FFRed)
-    // Katana
-    p(7f, 14f, 1f, 10f, FFSilver)
-    p(6f, 24f, 3f, 1f, FFBlack)
-    // Legs
-    p(11f, 24f, 4f, 6f, FFBlack)
-    p(17f, 24f, 4f, 6f, FFBlack)
+    val matrix = arrayOf(
+        ".....KKKKK......", // 0
+        "...KKHHHHHKK....", // 1
+        "..KHHHHHHHHHK...", // 2
+        ".KHHHHHSSPPPK...", // 3
+        ".KHHHHHSSPPPWIK.", // 4
+        "KHHHHHHSSSSSSSK.", // 5
+        "KHHOHHHHSSSSSPSK", // 6
+        "KHHOHHHHHSSSSSK.", // 7
+        "..KKHHHHHHSSSSK.", // 8
+        "..KBBBBBBBKKK...", // 9
+        ".KBLBBBBBBBGK..K", // 10
+        "KBBLLBBBBBBGK.KK", // 11
+        "KPPPPBBBBBBGK.KP", // 12
+        "KPPPPPSBBBGKK.KP", // 13
+        "KPPPPPSSBBGK.KKP", // 14
+        ".KPPPS.KBBGK.KP.", // 15
+        "..KKK..KBBGK.KK.", // 16
+        "..KBK..KBOGK....", // 17
+        ".KBBK.KBBBGK....", // 18
+        ".KBBK.KBBBLGK...", // 19
+        ".KBLK.KBBBLGK...", // 20
+        ".KBLK.KBBBBLGK..", // 21
+        "KBBLLK.KBBBLGK..", // 22
+        "KKKKKK.KKKKKKK.."  // 23
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'H' to Color(0xFF2C3E50), // Dark charcoal hair
+        'O' to Color(0xFFD4AC0D), // Gold tie & belt sash
+        'P' to Color(0xFFF3C59D), // Peach skin highlight
+        'S' to Color(0xFFD49B72), // Skin shadow
+        'W' to Color(0xFFFFFFFF), // Eye sclera
+        'I' to Color(0xFF5B4A9C), // Purple eye pupil
+        'B' to Color(0xFF2980B9), // Steel blue samurai armor
+        'L' to Color(0xFF5DADE2), // Light steel blue highlight
+        'G' to Color(0xFFA2D9CE)  // Light cyan/sage trim
+    )
+
+    drawPixelMatrix(matrix, palette)
 }
 
 fun DrawScope.drawFreelancer() {
-    val p = px32()
-    // Brown Hair
-    p(12f, 4f, 8f, 5f, HairBrown)
-    // Face
-    p(12f, 9f, 8f, 5f, SkinMid)
-    p(13f, 11f, 1f, 1f, Color.Black)
-    p(18f, 11f, 1f, 1f, Color.Black)
-    // Grey Tunic
-    p(11f, 14f, 10f, 9f, Color.Gray)
-    p(14f, 14f, 4f, 9f, Color.DarkGray)
-    // Legs
-    p(12f, 23f, 3f, 7f, Color.DarkGray)
-    p(17f, 23f, 3f, 7f, Color.DarkGray)
-    p(11f, 30f, 10f, 1f, FFBlack)
+    val matrix = arrayOf(
+        ".......DH..D......", // 0
+        "......DHHHDH......", // 1
+        ".....DHHHHHHHD....", // 2
+        "..DDHHHHHHHHHHHHD.", // 3
+        "DHHHHHHHHHHHHHHHD.", // 4
+        "..DHHHHHHHHHHHHHD.", // 5
+        "..DHHHHHHDPPPPPPD.", // 6
+        "..DHHHHHHPPPPPPPK.", // 7
+        "..DDHHHHHPPPDSEPK.", // 8
+        "...DDHHHHPPPDSEPPK", // 9
+        "...DDHHHHHPPPPPPK.", // 10
+        "....NBBBGGGGGGGGK.", // 11
+        "...KNBBBNVVVVVVGK.", // 12
+        "...KNBBNNVVVVVVGK.", // 13
+        "...KNBBNNVGGVVVGK.", // 14
+        "...KPPPNGGGGGGGPK.", // 15
+        "...KPPPNGGGGGGGPPK", // 16
+        "...KPPPGGGGGGGPPK.", // 17
+        "...KKKKGGGGGGGKK..", // 18
+        ".....KKTTTTTTTTK..", // 19
+        ".....KTTTMTTTTTK..", // 20
+        ".....KTTTMTTTTTK..", // 21
+        ".....KTTTOOOOOK...", // 22
+        ".....KKKKKKKKKKK.."  // 23
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF281E15), // Dark outline / pupil
+        'D' to Color(0xFF6B2412), // Dark brown hair shadow
+        'H' to Color(0xFF9E4023), // Messy brown hair base
+        'P' to Color(0xFFEE7652), // Peach skin tone
+        'S' to Color(0xFFFFFFFF), // White sclera
+        'E' to Color(0xFF281E15), // Dark pupil
+        'N' to Color(0xFF384A6E), // Dark blue sleeve shadow
+        'B' to Color(0xFF8BA5D2), // Light blue sleeve
+        'G' to Color(0xFF5B5A50), // Dark grey vest shadow
+        'V' to Color(0xFF959385), // Grey vest
+        'M' to Color(0xFF7E7761), // Dark tan trouser shadow
+        'T' to Color(0xFFC0B89C), // Tan trousers
+        'O' to Color(0xFF5A3920)  // Brown boots
+    )
+
+    drawPixelMatrix(matrix, palette)
 }
 
 // --- MONSTER SPRITES (NEW HIGH DETAIL) ---

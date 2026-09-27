@@ -8,6 +8,7 @@ Before making ANY changes to the project, the agent MUST read the following "Ski
 2.  **`SKILL_LOCALIZATION_PROTOCOL.md`**: Rules for string management, extraction, and XLIFF placeholder usage.
 3.  **`SKILL_TESTING_PROTOCOL.md`**: Mandatory requirements for UI and database migration testing.
 4.  **`SKILL_BIOME_BACKGROUNDS.md`**: Mandatory 7-layer architecture and quality standards for UI biome backgrounds in `PixelBackground.kt`.
+5.  **`SKILL_HERO_SPRITES.md`**: Mandatory pixel-by-pixel JRPG architecture, uniform matrix grid mapping, palettes, and quality standards for Hero and Monster sprites in `PixelCharacters.kt`.
 
 ## 🛡️ Database Safety (Zero-Data-Loss Policy)
 *   **NEVER** change an `@Entity` without incrementing the version in `GameDatabase.kt`.
