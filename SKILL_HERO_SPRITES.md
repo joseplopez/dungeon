@@ -12,7 +12,9 @@ This document defines the mandatory visual design, architecture, color palette, 
 >
 > - **DO NOT force a fixed canvas resolution (e.g. 64x64) if the reference sprite grid is smaller** (e.g. 22x26, 16x20, 24x32, 64x32, etc.).
 > - **PRESERVE EXACT GRID DIMENSIONS**: Transcribe the reference image grid with its exact width and height. Every string row in the matrix MUST have the **exact same character length** so that `drawPixelMatrix()` renders every tile as a perfect 1:1 square without stretching, squishing, or distorting aspect ratios.
-> - **MANDATORY ORIENTATION RULE**: ALL Hero sprites MUST ALWAYS face RIGHT (3/4 profile view facing right, looking right).
+> - **MANDATORY ORIENTATION RULES**:
+>   - **ALL Hero Sprites**: MUST ALWAYS face **RIGHT** (3/4 profile view facing right, looking right).
+>   - **ALL Monster Sprites**: MUST ALWAYS face **LEFT** (facing left towards the heroes on the right) via `drawMonsterMatrix()` which mirrors the matrix horizontally.
 
 ---
 
@@ -129,6 +131,36 @@ Each hero class must be refactored using this protocol:
 14. **`ONION_KNIGHT`**: Classic silver helmet with feather plume, blue tunic, small shield.
 15. **`MIME`**: Colorful pink & green doublet, feathered cap, white gloves.
 16. **`FREELANCER`**: Simple brown vest, blue trousers, brown travel boots, messy brown hair.
+
+---
+
+## 👹 Monster Sprite Refactoring Protocol & Roster
+
+All monster sprites MUST be defined 100% pixel-by-pixel using `drawPixelMatrix()` from reference Final Fantasy I and FF Universe sprite sheets:
+
+1. **`Goblin`** *(Completed, 16x18)*: Green goblin with pointed ears, red cap and loincloth, yellow eye, holding scimitar.
+2. **`Wolf`** *(Completed, 20x16)*: Slate blue/grey quadrupede wolf monster with open jaw and red eye.
+3. **`Pirate`** *(Completed, 18x22)*: Bandit/pirate with red bandanna, eye patch, blue tunic/pants, cutlass.
+4. **`Ogre`** *(Completed, 20x22)*: Massive gold/tan muscle ogre holding spiked wooden club.
+5. **`Evil Eye`** *(Completed, 18x20)*: Purple floating orb with large central eyeball and 4 eyestalks.
+6. **`Red Flan / Slime`** *(Completed, 18x16)*: Crimson gelatinous slime creature with glowing yellow eyes.
+7. **`Bomb`** *(Completed, 18x18)*: Fiery red sphere with grinning face and orange flame sparks.
+8. **`Sahagin`** *(Completed, 18x22)*: Cyan aquatic fish-man with fins, red eyes, and trident.
+9. **`Cockatrice`** *(Completed, 18x22)*: Gold/red rooster-lizard hybrid with talons and beak.
+10. **`Garland`** *(Completed, 22x26)*: Dark horned chaos knight boss with red cape, sword, shield.
+11. **`Lich`** *(Completed, 22x26)*: Purple-robed skeletal sorcerer lord boss with glowing red eyes.
+12. **`Kraken`** *(Completed, 24x26)*: Royal blue multi-tentacled sea demon boss with yellow eyes.
+13. **`Tiamat / Dragon`** *(Completed, 24x26)*: Emerald green multi-headed dragon boss.
+14. **`Chaos`** *(Completed, 26x28)*: Ultimate horned demon boss with red wings and gold carapace.
+15. **`Wild Rat`** *(Completed, 16x14)*: Small rodent monster with grey fur and pink tail.
+16. **`Dark Knight`** *(Completed, 20x24)*: Dark charcoal plate knight / sergeant with red visor slit.
+17. **`Lamia`** *(Completed, 20x24)*: Green snake-woman with peach torso, purple bra, gold tiara.
+18. **`Adamantoise`** *(Completed, 24x20)*: Giant spiked land turtle monster.
+19. **`Tonberry`** *(Completed, 18x22)*: Hooded green tonberry with lantern and butcher knife.
+20. **`Djinn`** *(Completed, 20x24)*: Fiery elemental genie with gold arms.
+21. **`Hein`** *(Completed, 20x24)*: Skeletal wizard boss in purple robes and gold hat.
+22. **`Emperor Mateus`** *(Completed, 22x26)*: Golden imperial emperor boss with purple cloak.
+23. **`Cloud of Darkness`** *(Completed, 24x26)*: Shadowy entity boss with tentacles and red eyes.
 
 ---
 

@@ -480,7 +480,7 @@ fun EnemyUnitDisplay(enemy: Enemy, isHit: Boolean, isCritical: Boolean, isBoss: 
             PixelHpBar(enemy.currentHp, enemy.maxHp, Modifier.width(48.dp))
         }
         
-        Box(Modifier.size(if (isBoss) 96.dp else 72.dp).graphicsLayer(scaleX = -1f)) {
+        Box(Modifier.size(if (isBoss) 96.dp else 72.dp)) {
             val flashAlpha = remember { Animatable(0f) }
             val scope = rememberCoroutineScope()
 

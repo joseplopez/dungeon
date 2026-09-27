@@ -696,246 +696,870 @@ fun DrawScope.drawFreelancer() {
     drawPixelMatrix(matrix, palette)
 }
 
-// --- MONSTER SPRITES (NEW HIGH DETAIL) ---
+// --- MONSTER SPRITES (100% PIXEL MATRIX ARCHITECTURE) ---
 
-fun DrawScope.drawSlime() {
-    val p = px32()
-    p(8f, 12f, 16f, 14f, FFPurple)
-    p(10f, 10f, 12f, 3f, Color(0xFFBB8FCE))
-    p(10f, 15f, 3f, 3f, Color.White) // Eye
-    p(19f, 15f, 3f, 3f, Color.White)
-    p(11f, 16f, 1f, 1f, Color.Black)
-    p(20f, 16f, 1f, 1f, Color.Black)
+/**
+ * Monster Pixel Matrix Renderer.
+ * Mirrors the matrix horizontally (facing LEFT) so monsters face the heroes who face RIGHT in combat.
+ */
+private fun DrawScope.drawMonsterMatrix(
+    matrix: Array<String>,
+    palette: Map<Char, Color>
+) {
+    val flippedMatrix = matrix.map { it.reversed() }.toTypedArray()
+    drawPixelMatrix(flippedMatrix, palette)
 }
 
 fun DrawScope.drawGoblin() {
-    val p = px32()
-    // Pointy Ears
-    p(8f, 8f, 3f, 4f, FFGreen)
-    p(21f, 8f, 3f, 4f, FFGreen)
-    // Head
-    p(11f, 6f, 10f, 8f, FFGreen)
-    p(10f, 5f, 12f, 2f, FFRed) // Red Hat Brim
-    p(12f, 2f, 8f, 4f, FFRed) // Top hat
-    // Eyes
-    p(12f, 9f, 2f, 2f, Color.Yellow)
-    p(18f, 9f, 2f, 2f, Color.Yellow)
-    // Body / Gear
-    p(11f, 14f, 10f, 10f, Color(0xFF8B4513)) // Brown clothes
-    p(11f, 16f, 10f, 1f, FFSilverDark) // belt
-    // Legs
-    p(12f, 24f, 3f, 6f, FFGreen)
-    p(17f, 24f, 3f, 6f, FFGreen)
+    val matrix = arrayOf(
+        ".....KKKKK......", // 0
+        "....KRRRRRK.....", // 1
+        "...KRRRRRRRK....", // 2
+        "..KRRRRRRRRRK...", // 3
+        "..KGEEGGGGGGK...", // 4
+        ".KGEEEEEGGGGK...", // 5
+        ".KGEEEEEEGYSK...", // 6
+        ".KGGGEEEEGYSK...", // 7
+        "..KGGGGGGGGK....", // 8
+        "...KGGGGGGK.KK..", // 9
+        "..KGGGRRGGGKKSK.", // 10
+        ".KGGGRRRRGGGKSK.", // 11
+        ".KGGGRRRRGGGKSK.", // 12
+        ".KGGGGRRGGGK.KK.", // 13
+        "..KGGGGGGGGK....", // 14
+        "..KGGGKKGGGK....", // 15
+        "..KGGK..KGGK....", // 16
+        "..KKK....KKK...."  // 17
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'G' to Color(0xFF27AE60), // Green skin base
+        'E' to Color(0xFF196F3D), // Dark green skin shadow
+        'R' to Color(0xFFE74C3C), // Crimson hat & loincloth
+        'Y' to Color(0xFFF1C40F), // Yellow eye
+        'S' to Color(0xFFBDC3C7), // Silver scimitar / white sclera
+        'W' to Color(0xFFFFFFFF)  // White
+    )
+
+    drawMonsterMatrix(matrix, palette)
 }
 
 fun DrawScope.drawWolf() {
-    val p = px32()
-    // Snout and Head
-    p(22f, 12f, 6f, 4f, Color.Gray) // snout
-    p(12f, 8f, 10f, 10f, Color.Gray) // head
-    p(12f, 6f, 3f, 3f, Color.Gray) // ear
-    p(19f, 6f, 3f, 3f, Color.Gray) // ear
-    p(22f, 13f, 2f, 1f, FFBlack) // nose
-    p(14f, 11f, 2f, 2f, Color.Red) // fierce eye
-    // Body
-    p(6f, 14f, 14f, 12f, Color.Gray)
-    p(6f, 18f, 14f, 8f, Color.DarkGray) // shading
-    // Tail
-    p(2f, 15f, 4f, 8f, Color.Gray)
-    // Legs
-    p(8f, 26f, 3f, 5f, Color.DarkGray)
-    p(16f, 26f, 3f, 5f, Color.DarkGray)
-}
+    val matrix = arrayOf(
+        ".......KKKK.........", // 0
+        "......KGGGGK...KK...", // 1
+        ".....KGGGGGGK.KGGK..", // 2
+        "....KGGGGGGGGKGGGK..", // 3
+        "...KGGGGGGGGGGGGGK..", // 4
+        "..KGGGGGGGGGGGRYSK..", // 5
+        ".KDDGGGGGGGGGGWWSK..", // 6
+        "KDDDDGGGGGGGGGGGGK..", // 7
+        "KDDDDDDGGGGGGGGGGK..", // 8
+        ".KDDDDDDGGGGKKKK....", // 9
+        "..KDDDDDDGGK........", // 10
+        "...KDDGGGGGK........", // 11
+        "...KGGK..KGGK.......", // 12
+        "...KGGK..KGGK.......", // 13
+        "...KDDK..KDDK.......", // 14
+        "...KKK....KKK......."  // 15
+    )
 
-fun DrawScope.drawSahagin() {
-    val p = px32()
-    // Scaly body
-    p(10f, 4f, 12f, 20f, FFBlue)
-    p(10f, 2f, 4f, 4f, FFGreen) // head fin
-    p(18f, 2f, 4f, 4f, FFGreen) // head fin
-    p(8f, 10f, 2f, 10f, FFGreen) // arm fins
-    p(22f, 10f, 2f, 10f, FFGreen)
-    // Face
-    p(12f, 8f, 2f, 2f, Color.Red) // eyes
-    p(18f, 8f, 2f, 2f, Color.Red)
-    // Trident
-    p(24f, 6f, 1f, 20f, FFSilver)
-    p(23f, 5f, 3f, 3f, FFSilverDark)
-    // Legs
-    p(12f, 24f, 8f, 6f, FFBlueDark)
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'G' to Color(0xFF5DADE2), // Slate blue/grey fur base
+        'D' to Color(0xFF2874A6), // Dark slate blue shadow
+        'R' to Color(0xFFE74C3C), // Red eye
+        'Y' to Color(0xFFF1C40F), // Yellow iris
+        'S' to Color(0xFFFFFFFF), // White teeth / snout highlight
+        'W' to Color(0xFFF1948A)  // Pink open tongue/mouth
+    )
+
+    drawMonsterMatrix(matrix, palette)
 }
 
 fun DrawScope.drawPirate() {
-    val p = px32()
-    // Bandanna
-    p(11f, 3f, 10f, 4f, FFRed)
-    p(20f, 4f, 3f, 2f, FFRedDark) // knot
-    // Face with Stubble
-    p(11f, 7f, 10f, 7f, SkinMid)
-    p(11f, 12f, 10f, 2f, Color.DarkGray.copy(alpha = 0.5f)) // beard
-    p(12f, 9f, 2f, 2f, FFBlack) // eye patch
-    p(11f, 9f, 4f, 1f, FFBlack) // strap
-    p(18f, 9f, 1f, 1f, Color.Black) // normal eye
-    // Shirt
-    p(10f, 14f, 12f, 9f, Color.White)
-    p(10f, 14f, 3f, 9f, FFBlue) // vest
-    p(19f, 14f, 3f, 9f, FFBlue)
-    // Cutlass
-    p(24f, 10f, 2f, 12f, FFSilver)
-    p(23f, 22f, 4f, 2f, FFGold)
-    // Legs
-    p(12f, 23f, 3f, 7f, Color(0xFF5D4037))
-    p(17f, 23f, 3f, 7f, Color(0xFF5D4037))
+    val matrix = arrayOf(
+        ".....KKKKKK.......", // 0
+        "....KRRRRRRK.KK...", // 1
+        "...KRRRRRRRRKRRK..", // 2
+        "..KRRRRRRRRRRRRK..", // 3
+        "..KRRRRRRRRRRRRK..", // 4
+        "..KRRRRRRRRKKKK...", // 5
+        "..KPPPPPPPSPK.....", // 6
+        "..KPPEPPPSPBK.....", // 7
+        "..KPPPPPPPPPK.....", // 8
+        "..KPPPPPPPEPK.....", // 9
+        "..KPPPPPPPPPK.....", // 10
+        "...KBBBBBBBBK.KK..", // 11
+        "..KBBBBBBBBBBKSK..", // 12
+        ".KBBBBBBBBBBBBKSK.", // 13
+        ".KBBBBBOOBBBBBKSK.", // 14
+        ".KBBBBBOOBBBBBKKK.", // 15
+        "..KBBBBBBBBBBK....", // 16
+        "..KBBBBBBBBBBK....", // 17
+        "...KBBBK.KBBBK....", // 18
+        "...KOOOK.KOOOK....", // 19
+        "...KOOOK.KOOOK....", // 20
+        "...KKKKK.KKKKK...."  // 21
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'R' to Color(0xFFC0392B), // Dark red bandanna
+        'P' to Color(0xFFF3C59D), // Peach skin
+        'E' to Color(0xFF17202A), // Eye patch / pupil
+        'S' to Color(0xFFFFFFFF), // White eye sclera / cutlass blade
+        'B' to Color(0xFF2980B9), // Blue vest & pants
+        'O' to Color(0xFF7E5109)  // Brown belt & boots
+    )
+
+    drawMonsterMatrix(matrix, palette)
 }
 
 fun DrawScope.drawOgre() {
-    val p = px32()
-    p(8f, 8f, 16f, 16f, FFGold) // Massive Body
-    p(11f, 4f, 10f, 8f, FFGold) // Head
-    p(12f, 14f, 8f, 10f, Color(0xFFB7950B)) // shading
-    // Face
-    p(13f, 7f, 2f, 2f, Color.Black)
-    p(17f, 7f, 2f, 2f, Color.Black)
-    p(14f, 10f, 4f, 1f, Color.White) // tooth
-    // Club
-    p(24f, 6f, 4f, 18f, Color(0xFF5D4037))
-    p(24f, 6f, 1f, 18f, FFBlack.copy(alpha = 0.3f))
-    // Legs
-    p(11f, 24f, 4f, 6f, Color(0xFFB7950B))
-    p(17f, 24f, 4f, 6f, Color(0xFFB7950B))
-}
+    val matrix = arrayOf(
+        ".......KKKKKK.......", // 0
+        "......KYYYYYYK......", // 1
+        ".....KYYYYYYYYK.....", // 2
+        "....KYYYYYYYYYYK....", // 3
+        "....KYYEEYYEEYYK....", // 4
+        "....KYYYYYYYYYYK....", // 5
+        "....KYYYYWWYYYYK.KK.", // 6
+        "....KYYYYYYYYYYKKBK.", // 7
+        "...KYYYYYYYYYYYYKBK.", // 8
+        "..KYYYYRRRRRYYYYKBK.", // 9
+        ".KYYYYYRRRRRYYYYKBK.", // 10
+        ".KYYYYYRRRRRYYYYKBK.", // 11
+        ".KYYYYYRRRRRYYYYKBK.", // 12
+        "..KYYYYRRRRRYYYYKBK.", // 13
+        "..KYYYYYYYYYYYYYKBK.", // 14
+        "...KYYYYYYYYYYYYKKK.", // 15
+        "....KYYYYYYYYYYK....", // 16
+        ".....KYYYYYYYYK.....", // 17
+        ".....KYYYK.KYYYK....", // 18
+        ".....KYYYK.KYYYK....", // 19
+        ".....KDDDK.KDDDK....", // 20
+        ".....KKKKK.KKKKK...."  // 21
+    )
 
-fun DrawScope.drawBomb() {
-    val p = px32()
-    drawCircle(FFRed, radius = size.width * 0.45f, center = Offset(size.width/2f, size.height/2f))
-    drawCircle(FFGold, radius = size.width * 0.3f, center = Offset(size.width/2f, size.height/2f))
-    // Cracks/Face
-    p(12f, 12f, 2f, 2f, FFBlack)
-    p(18f, 12f, 2f, 2f, FFBlack)
-    p(14f, 16f, 4f, 2f, FFBlack)
-    // Fire tufts
-    repeat(6) { i ->
-        val angle = i * 60f * (Math.PI / 180f).toFloat()
-        p(16f + cos(angle)*12, 16f + sin(angle)*12, 3f, 3f, FFRedDark)
-    }
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'Y' to Color(0xFFF1C40F), // Gold/tan skin base
+        'D' to Color(0xFFB7950B), // Dark gold skin shadow
+        'R' to Color(0xFFC0392B), // Red loincloth
+        'E' to Color(0xFF17202A), // Dark eyes
+        'W' to Color(0xFFFFFFFF), // White fangs
+        'B' to Color(0xFF6E2C00)  // Brown wooden club
+    )
+
+    drawMonsterMatrix(matrix, palette)
 }
 
 fun DrawScope.drawEye() {
-    val p = px32()
-    drawCircle(FFPurple, radius = size.width * 0.4f, center = Offset(size.width/2f, size.height/2f))
-    drawCircle(Color.White, radius = size.width * 0.25f, center = Offset(size.width/2f, size.height/2f))
-    drawCircle(FFBlack, radius = size.width * 0.12f, center = Offset(size.width/2f, size.height/2f))
-    // Eye Stalks
-    for (i in 0..3) {
-        p(6f + i*6, 2f, 2f, 6f, FFPurple)
-        drawCircle(Color.White, radius = size.width * 0.05f, center = Offset((7f + i*6) * size.width/32f, 2f * size.width/32f))
-    }
+    val matrix = arrayOf(
+        ".KK......KK...KK..", // 0
+        "KWWK....KWWK.KWWK.", // 1
+        "KPPK....KPPK.KPPK.", // 2
+        ".KPPK...KPPK.KPPK.", // 3
+        "..KPPKKKPPPPKKPK..", // 4
+        "...KPPPPPPPPPPK...", // 5
+        "..KPPPPPPPPPPPPK..", // 6
+        ".KPPPPWWWWWWPPPPK.", // 7
+        ".KPPPWWWWWWWWPPPK.", // 8
+        "KPPPWWWWBBWWWWPPPK", // 9
+        "KPPPWWWWBBWWWWPPPK", // 10
+        ".KPPPWWWWWWWWPPPK.", // 11
+        ".KPPPPWWWWWWPPPPK.", // 12
+        "..KPPPPPPPPPPPPK..", // 13
+        "...KPPPPPPPPPPK...", // 14
+        "..KPPKKKPPPPKKPK..", // 15
+        ".KPPK...KPPK.KPPK.", // 16
+        "KWWK....KWWK.KWWK.", // 17
+        ".KK......KK...KK.."  // 18
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'P' to Color(0xFF8E44AD), // Purple orb body
+        'W' to Color(0xFFFFFFFF), // White eye sclera / eyestalk eyes
+        'B' to Color(0xFF2C3E50)  // Dark eye pupil
+    )
+
+    drawMonsterMatrix(matrix, palette)
 }
 
-fun DrawScope.drawTonberry() {
-    val p = px32()
-    p(10f, 6f, 12f, 18f, FFGreen) // Body
-    p(12f, 14f, 8f, 10f, FFGreenDark) // shading
-    p(13f, 10f, 2f, 2f, Color.Yellow) // eyes
-    p(17f, 10f, 2f, 2f, Color.Yellow)
-    // Robe
-    p(9f, 16f, 14f, 12f, Color(0xFF7E5109))
-    // Lantern
-    p(4f, 18f, 4f, 6f, Color.Yellow)
-    p(5f, 17f, 2f, 1f, FFSilver)
-    // Knife
-    p(23f, 20f, 6f, 2f, FFSilver)
-    p(23f, 20f, 1f, 4f, FFBlack)
+fun DrawScope.drawSlime() {
+    val matrix = arrayOf(
+        "......KKKKKK......", // 0
+        "....KRRRRRRRRK....", // 1
+        "...KRRRRRRRRRRRK..", // 2
+        "..KRRRRRRRRRRRRRK.", // 3
+        ".KRRRRRRRRRRRRRRRK", // 4
+        ".KRRRRYYRRRRYYRRRK", // 5
+        "KRRRRRYYRRRRYYRRRK", // 6
+        "KRRRRRKKRRRRKKRRRK", // 7
+        "KRRRRRRRRRRRRRRRRK", // 8
+        "KRRRRRRRRRRRRRRRRK", // 9
+        ".KRRRRRRRRRRRRRRRK", // 10
+        ".KRRRRRRRRRRRRRRRK", // 11
+        "..KRRRRRRRRRRRRRK.", // 12
+        "...KDDDDDDDDDDDK..", // 13
+        "....KKKKKKKKKKK..."  // 14
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline / pupil
+        'R' to Color(0xFFE74C3C), // Crimson red slime base
+        'D' to Color(0xFF922B21), // Dark red slime shadow
+        'Y' to Color(0xFFF1C40F)  // Yellow glowing eyes
+    )
+
+    drawMonsterMatrix(matrix, palette)
 }
 
-fun DrawScope.drawDragon(color: Color) {
-    val p = px32()
-    // Large Body
-    p(6f, 12f, 18f, 12f, color)
-    p(6f, 18f, 18f, 6f, FFBlack.copy(alpha = 0.2f)) // belly
-    // Neck and Head
-    p(22f, 4f, 4f, 10f, color)
-    p(24f, 4f, 6f, 5f, color)
-    p(26f, 6f, 2f, 2f, Color.Yellow) // eye
-    p(28f, 8f, 3f, 2f, color) // snout
-    // Wings
-    p(10f, 4f, 10f, 8f, color.copy(alpha = 0.6f))
-    p(11f, 5f, 8f, 6f, Color.White.copy(alpha = 0.2f)) // wing membrane
-    // Tail
-    p(0f, 20f, 6f, 4f, color)
+fun DrawScope.drawBomb() {
+    val matrix = arrayOf(
+        "...K...KK...K.....", // 0
+        "..KYK.KYYK.KYK....", // 1
+        ".KYYK.KYYK.KYYK...", // 2
+        "..KK.KKKKKK.KK....", // 3
+        "....KRRRRRRK......", // 4
+        "...KRRRRRRRRK.....", // 5
+        "..KRRRRRRRRRRK....", // 6
+        ".KRRRYYRRRRYYRRK..", // 7
+        ".KRRRYYRRRRYYRRK..", // 8
+        ".KRRRKKRRRRKKRRK..", // 9
+        ".KRRRRRRRRRRRRRK..", // 10
+        ".KRRRKWWWWWWKRRK..", // 11
+        "..KRRKWWWWWWKRRK..", // 12
+        "..KRRRKKKKKKRRRK..", // 13
+        "...KRRRRRRRRRRK...", // 14
+        "....KDDDDDDDDK....", // 15
+        ".....KKKKKKKK....."  // 16
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'R' to Color(0xFFE74C3C), // Crimson bomb body
+        'D' to Color(0xFF922B21), // Dark red bomb shadow
+        'Y' to Color(0xFFF39C12), // Orange/yellow flame sparks & eyes
+        'W' to Color(0xFFFFFFFF)  // White teeth grin
+    )
+
+    drawMonsterMatrix(matrix, palette)
 }
 
-fun DrawScope.drawGarland() {
-    val p = px32()
-    // Heavy Chaos Armor
-    p(10f, 2f, 12f, 22f, FFBlack)
-    p(10f, 2f, 2f, 22f, FFSilverDark) // highlight edge
-    p(6f, 3f, 4f, 8f, FFSilver) // Horns
-    p(22f, 3f, 4f, 8f, FFSilver)
-    // Face in helm
-    p(13f, 8f, 6f, 4f, FFBlack)
-    p(14f, 9f, 1f, 1f, Color.Red)
-    p(17f, 9f, 1f, 1f, Color.Red)
-    // Cape
-    p(8f, 11f, 16f, 16f, Color(0xFF7B241C))
-    // Giant Sword
-    p(25f, 6f, 3f, 22f, FFSilver)
-    p(24f, 26f, 5f, 2f, FFGold)
-}
+fun DrawScope.drawSahagin() {
+    val matrix = arrayOf(
+        "......KKKK........", // 0
+        ".....KCCCCK...K...", // 1
+        "....KCCCCCCK.KSK..", // 2
+        "...KCCCCCCCSKSKSK.", // 3
+        "..KCCCCCCCCCSKSKSK", // 4
+        ".KCCCCCRYSCCCSKSK.", // 5
+        ".KCCCCCCWSCCCCKSK.", // 6
+        "..KCCCCCCCCCCCKSK.", // 7
+        "...KCCCCCCCCCCKSK.", // 8
+        "..KCCCCCCBCCCCKSK.", // 9
+        ".KCCCCCCBBBCCCKSK.", // 10
+        ".KCCCCCCBBBCCCKSK.", // 11
+        ".KCCCCCCBBBCCCKSK.", // 12
+        "..KCCCCCCBCCCCKSK.", // 13
+        "...KCCCCCCCCCCKSK.", // 14
+        "....KCCCCCCCCCKKK.", // 15
+        ".....KCCCCKCCCK...", // 16
+        ".....KCCCK.KCCCK..", // 17
+        ".....KCCCK.KCCCK..", // 18
+        "....KCCCCK.KCCCCK.", // 19
+        "....KKKKKK.KKKKKK."  // 20
+    )
 
-fun DrawScope.drawChaos() {
-    val p = px32()
-    // Demonic form
-    p(9f, 8f, 14f, 16f, Color(0xFFD4AC0D))
-    // Massive Wings
-    p(2f, 4f, 10f, 15f, FFBlack)
-    p(20f, 4f, 10f, 15f, FFBlack)
-    // Head & Great Horns
-    p(11f, 2f, 10f, 8f, Color(0xFFD4AC0D))
-    p(8f, 0f, 3f, 8f, Color.White)
-    p(21f, 0f, 3f, 8f, Color.White)
-    // Eyes
-    p(13f, 5f, 2f, 2f, Color.Red)
-    p(17f, 5f, 2f, 2f, Color.Red)
-}
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'C' to Color(0xFF1ABC9C), // Cyan aquatic scales
+        'B' to Color(0xFF16A085), // Dark cyan shading
+        'R' to Color(0xFFE74C3C), // Red eye
+        'Y' to Color(0xFFF1C40F), // Yellow iris
+        'S' to Color(0xFFBDC3C7), // Silver trident
+        'W' to Color(0xFFFFFFFF)  // White fins/sclera
+    )
 
-fun DrawScope.drawLich() {
-    val p = px32()
-    // Skeleton face
-    p(12f, 4f, 8f, 8f, Color.White)
-    p(13f, 6f, 1f, 1f, FFBlack)
-    p(18f, 6f, 1f, 1f, FFBlack)
-    // Ripped Robes
-    p(10f, 12f, 12f, 14f, FFPurple)
-    p(9f, 14f, 14f, 2f, FFBlack.copy(alpha = 0.4f)) // rot
-    p(11f, 20f, 10f, 6f, FFPurple)
-}
-
-fun DrawScope.drawKraken() {
-    val p = px32()
-    p(10f, 4f, 12f, 12f, FFBlueDark)
-    // Eyes
-    p(13f, 8f, 2f, 2f, Color.Yellow)
-    p(17f, 8f, 2f, 2f, Color.Yellow)
-    // Tentacles
-    for (i in 0..5) {
-        p(6f + i*3.5f, 16f, 2f, 10f, Color.Cyan)
-    }
+    drawMonsterMatrix(matrix, palette)
 }
 
 fun DrawScope.drawCockatrice() {
-    val p = px32()
-    // Chicken/Lizard hybrid
-    p(11f, 10f, 10f, 12f, FFGold)
-    p(13f, 5f, 6f, 6f, FFGold) // head
-    p(12f, 4f, 8f, 2f, FFRed) // crest
-    p(19f, 7f, 3f, 2f, Color(0xFFE67E22)) // beak
-    p(14f, 7f, 1f, 1f, FFBlack) // eye
-    // Tail
-    p(6f, 12f, 5f, 8f, FFGreen)
-    // Legs
-    p(12f, 22f, 2f, 6f, Color(0xFFE67E22))
-    p(18f, 22f, 2f, 6f, Color(0xFFE67E22))
+    val matrix = arrayOf(
+        "......KRRK........", // 0
+        ".....KRRRRK.......", // 1
+        "....KYYYYYYK......", // 2
+        "...KYYYYYYYYK.....", // 3
+        "..KYYYYYRYWSK.....", // 4
+        "..KYYYYYYYYWWK....", // 5
+        "..KYYYYYYYYKK.....", // 6
+        "...KYYYYYYK.......", // 7
+        "....KYYYYYK.......", // 8
+        ".KK.KYYYYYYK......", // 9
+        "KGK.KYYYYYYYK.....", // 10
+        "KGGK.KYYYYYYK.....", // 11
+        "KGGGKKYYYYYYK.....", // 12
+        ".KGGGYYYYYYYK.....", // 13
+        "..KGGYYYYYYYK.....", // 14
+        "...KKYYYYYYK......", // 15
+        "....KYYYYYYK......", // 16
+        "....KYYKKYYK......", // 17
+        "....KYYK.KYYK.....", // 18
+        "....KOOK.KOOK.....", // 19
+        "....KKKK.KKKK....."  // 20
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'Y' to Color(0xFFF1C40F), // Gold body feathers
+        'R' to Color(0xFFE74C3C), // Red rooster crest & eye
+        'S' to Color(0xFFFFFFFF), // White eye sclera
+        'W' to Color(0xFFE67E22), // Orange beak
+        'G' to Color(0xFF27AE60), // Green tail feathers
+        'O' to Color(0xFFD35400)  // Dark orange talons
+    )
+
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawGarland() {
+    val matrix = arrayOf(
+        ".KK..............KK...", // 0
+        "KYYK............KYYK..", // 1
+        ".KYYK..........KYYK...", // 2
+        "..KYYKKKKKKKKKKYYK....", // 3
+        "...KBBBBBBBBBBBBK.....", // 4
+        "...KBBBBBBBBBBBBK.....", // 5
+        "...KBBBBERREBBBBK.....", // 6
+        "...KBBBBBBBBBBBBK.....", // 7
+        "...KBBBBBBBBBBBBK.....", // 8
+        "..KSSBBBBBBBBBBSSK....", // 9
+        ".KSSSSBBBBBBBBSSSSK...", // 10
+        "KSSSSSSRRRRRRSSSSSSK..", // 11
+        ".KSSSSSRRRRRRSSSSSK...", // 12
+        "..KSSSSRRRRRRSSSSK....", // 13
+        "...KSSSRRRRRRSSSK.....", // 14
+        "...KSSSRRRRRRSSSK.....", // 15
+        "...KSSSRRRRRRSSSK.....", // 16
+        "...KSSSRRRRRRSSSK.....", // 17
+        "...KSSSRRRRRRSSSK.....", // 18
+        "...KSSSRRRRRRSSSK.....", // 19
+        "...KSSSK....KSSSK.....", // 20
+        "...KSSSK....KSSSK.....", // 21
+        "...KSSSK....KSSSK.....", // 22
+        "...KSSSK....KSSSK.....", // 23
+        "...KKKKK....KKKKK....."  // 24
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'B' to Color(0xFF2C3E50), // Dark charcoal/navy armor
+        'S' to Color(0xFF7F8C8D), // Steel silver plates
+        'Y' to Color(0xFFF1C40F), // Gold horned helm spikes
+        'R' to Color(0xFFC0392B), // Crimson cape & red visor eye glow
+        'E' to Color(0xFFFF2A2A)  // Glowing red eyes
+    )
+
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawLich() {
+    val matrix = arrayOf(
+        ".......KKKKKK.........", // 0
+        "......KPPPPP3K........", // 1
+        ".....KPPPPPPPPK.......", // 2
+        "....KPPPPPPPPPPK......", // 3
+        "....KPPPWWWWPPPK......", // 4
+        "....KPPWERREWPPK......", // 5
+        "....KPPPWWWWPPPK......", // 6
+        "....KPPPWBWBPPPK......", // 7
+        "....KPPPPWWPPPPK......", // 8
+        "...KPPPPPPPPPPPPK.....", // 9
+        "..KPPPPPPPPPPPPPPK....", // 10
+        ".KPPPPPPPDDPPPPPPPK...", // 11
+        ".KPPPPPPPDDPPPPPPPK...", // 12
+        ".KPPPPPPPDDPPPPPPPK...", // 13
+        ".KPPPPPPPDDPPPPPPPK...", // 14
+        ".KPPPPPPPDDPPPPPPPK...", // 15
+        ".KPPPPPPPDDPPPPPPPK...", // 16
+        ".KPPPPPPPDDPPPPPPPK...", // 17
+        ".KPPPPPPPDDPPPPPPPK...", // 18
+        ".KPPPPPPPDDPPPPPPPK...", // 19
+        ".KPPPPPPPDDPPPPPPPK...", // 20
+        "..KPPPPPPDDPPPPPPK....", // 21
+        "...KPPPPPDDPPPPPK.....", // 22
+        "....KKKKKKKKKKKK......"  // 23
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'P' to Color(0xFF6C3483), // Dark purple robe
+        'D' to Color(0xFF4A235A), // Darker purple shadow fold
+        'W' to Color(0xFFECF0F1), // Bone white skull
+        'B' to Color(0xFF17202A), // Dark nasal cavity / teeth
+        'E' to Color(0xFFE74C3C), // Glowing red eyes
+        '3' to Color(0xFF8E44AD)  // Light purple highlight
+    )
+
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawKraken() {
+    val matrix = arrayOf(
+        "........KKKKKK..........", // 0
+        ".......KBBBBBBK.........", // 1
+        "......KBBBBBBBBK........", // 2
+        ".....KBBBBBBBBBBK.......", // 3
+        "....KBBBBBBBBBBBBK......", // 4
+        "...KBBBBBYYBBBYYBBK.....", // 5
+        "...KBBBBBYYBBBYYBBK.....", // 6
+        "...KBBBBBKKBBBKKBBK.....", // 7
+        "...KBBBBBBBBBBBBBBK.....", // 8
+        "....KBBBBBBBBBBBBK......", // 9
+        "....KCCCCCCCCCCCCK......", // 10
+        "...KCC.CC.CC.CC.CCK.....", // 11
+        "..KCC..CC..CC..CC..CK...", // 12
+        ".KCC...CC..CC..CC...CK..", // 13
+        ".KCC...CC..CC..CC...CK..", // 14
+        "KCC....CC..CC..CC....CK.", // 15
+        "KCC....CC..CC..CC....CK.", // 16
+        "KCC....CC..CC..CC....CK.", // 17
+        ".KCC...CC..CC..CC...CK..", // 18
+        "..KCC..CC..CC..CC..CK...", // 19
+        "...KK..KK..KK..KK..KK..."  // 20
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'B' to Color(0xFF1F618D), // Royal blue squid head
+        'C' to Color(0xFF2980B9), // Cyan-blue tentacles
+        'Y' to Color(0xFFF1C40F)  // Glowing yellow eyes
+    )
+
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawTiamat() {
+    val matrix = arrayOf(
+        ".KK......KK......KK.....", // 0
+        "KGGK....KGGK....KGGK....", // 1
+        "KGRK....KGRK....KGRK....", // 2
+        ".KGGK...KGGK...KGGK.....", // 3
+        "..KGGK..KGGK..KGGK......", // 4
+        "...KGGKKKGGKKKGGK.......", // 5
+        "....KGGGGGGGGGGK........", // 6
+        "...KGGGGGGGGGGGGK.......", // 7
+        "..KGGGGGGGGGGGGGGK......", // 8
+        ".KGGGGGGGGGGGGGGGGK.....", // 9
+        "KGGGGGGGGGGGGGGGGGGK....", // 10
+        "KGGGGGGGGGGGGGGGGGGK....", // 11
+        ".KGGGGGGGGGGGGGGGGK.....", // 12
+        "..KGGGGGGGGGGGGGGK......", // 13
+        "...KGGGGGGGGGGGGK.......", // 14
+        "....KGGGGGGGGGGK........", // 15
+        ".....KGGK....KGGK.......", // 16
+        ".....KGGK....KGGK.......", // 17
+        ".....KGGK....KGGK.......", // 18
+        "....KGGGK...KGGGK.......", // 19
+        "....KKKKK...KKKKK......."  // 20
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'G' to Color(0xFF27AE60), // Emerald green dragon body
+        'R' to Color(0xFFE74C3C)  // Red glowing eyes on each head
+    )
+
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawDragon(color: Color) {
+    val matrix = arrayOf(
+        "..........KKKK..........", // 0
+        ".........KCCCCK...KK....", // 1
+        "........KCCCCCRK.KCCK...", // 2
+        ".......KCCCCCCCCKCCCK...", // 3
+        "......KCCCCCCCCCCCCCK...", // 4
+        ".....KCCCCCCCCCCCCCCK...", // 5
+        "....KCCCCCCCCCCCCCCCK...", // 6
+        "...KCCCCCCCCCCCCCCCCK...", // 7
+        "..KCCCCCCCCCCCCCCCCCK...", // 8
+        ".KCCCCCCCCCCCCCCCCCK....", // 9
+        ".KCCCCCCCCCCCCCCCCK.....", // 10
+        "..KCCCCCCCCCCCCCCK......", // 11
+        "...KCCCCCCCCCCCCK.......", // 12
+        "....KCCCCK..KCCCCK......", // 13
+        "....KCCCCK..KCCCCK......", // 14
+        "....KCCCCK..KCCCCK......", // 15
+        "...KCCCCCK.KCCCCCK......", // 16
+        "...KKKKKKK.KKKKKKK......"  // 17
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'C' to color,              // Dragon color
+        'R' to Color(0xFFF1C40F)  // Yellow eye
+    )
+
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawChaos() {
+    val matrix = arrayOf(
+        "KK....................KK..", // 0
+        "KYYK................KYYK..", // 1
+        ".KYYK..............KYYK...", // 2
+        "..KYYKKKKKKKKKKKKKKYYK....", // 3
+        "...KYYYYYYYYYYYYYYYYK.....", // 4
+        "...KYYYYYWWWWYYYYYYYK.....", // 5
+        "...KYYYYWERREWYYYYYYK.....", // 6
+        "...KYYYYYWWWWYYYYYYYK.....", // 7
+        "..KRRRRRYYYYYYYYRRRRRK....", // 8
+        ".KRRRRRRRRRRRRRRRRRRRRK...", // 9
+        "KRRRRRRRRRRRRRRRRRRRRRRK..", // 10
+        "KRRRRRRRRRRRRRRRRRRRRRRK..", // 11
+        ".KRRRRRRRRRRRRRRRRRRRRK...", // 12
+        "..KRRRRRRRRRRRRRRRRRRK....", // 13
+        "...KRRRRRRRRRRRRRRRRK.....", // 14
+        "...KRRRRRRRRRRRRRRRRK.....", // 15
+        "...KRRRRRRRRRRRRRRRRK.....", // 16
+        "...KRRRRRRRRRRRRRRRRK.....", // 17
+        "...KRRRRK......KRRRRK.....", // 18
+        "...KRRRRK......KRRRRK.....", // 19
+        "...KRRRRK......KRRRRK.....", // 20
+        "..KRRRRRK.....KRRRRRK.....", // 21
+        "..KKKKKKK.....KKKKKKK....."  // 22
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'Y' to Color(0xFFF1C40F), // Golden demon horns & chest armor
+        'R' to Color(0xFFC0392B), // Crimson demonic body & wings
+        'W' to Color(0xFFFFFFFF), // White demonic face
+        'E' to Color(0xFFFF0000)  // Glowing evil red eyes
+    )
+
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawWildRat() {
+    val matrix = arrayOf(
+        "........KKKK....", // 0
+        ".......KBBBBK...", // 1
+        "......KBBBBBBK..", // 2
+        ".....KBBBBBBBBK.", // 3
+        "....KBBBBBBBRSK.", // 4
+        "PP.KBBBBBBBBWWK.", // 5
+        "PKKBBBBBBBBBBKK.", // 6
+        ".KBBBBBBBBBBBKK.", // 7
+        "..KBBBBBBBBBBBKK", // 8
+        "...KBBBBBBBBK...", // 9
+        "....KBBK.KBBK...", // 10
+        "....KBBK.KBBK...", // 11
+        "....KKKK.KKKK..."  // 12
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'B' to Color(0xFF7F8C8D), // Grey fur
+        'P' to Color(0xFFF1948A), // Pink tail
+        'R' to Color(0xFFE74C3C), // Red eye
+        'S' to Color(0xFFFFFFFF), // White sclera
+        'W' to Color(0xFFF5B7B1)  // Pink snout
+    )
+
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawDarkKnight() {
+    val matrix = arrayOf(
+        ".......KKKKKK.......", // 0
+        "......KCCCCCCK......", // 1
+        ".....KCCCCCCCCK.....", // 2
+        "....KCCCCCCCCCCK....", // 3
+        "....KCCCCEERCCCK....", // 4
+        "....KCCCCCCCCCCK....", // 5
+        "....KCCCCCCCCCCK....", // 6
+        "...KSSCCCCCCCCSSK...", // 7
+        "..KSSSCCCCCCSSSSK...", // 8
+        ".KSSSSCCCCCCSSSSSK..", // 9
+        "KSSSSSRRRRRRSSSSSSK.", // 10
+        ".KSSSSRRRRRRSSSSSK..", // 11
+        "..KSSSSRRRRSSSSSK...", // 12
+        "...KSSSSRRRSSSSK....", // 13
+        "....KSSSSSSSSSSK....", // 14
+        ".....KCCCCCCCCK.....", // 15
+        ".....KCCCCCCCCK.....", // 16
+        ".....KCCCCKCCCK.....", // 17
+        ".....KCCCK.KCCCK....", // 18
+        ".....KCCCK.KCCCK....", // 19
+        "....KCCCCK.KCCCCK...", // 20
+        "....KKKKKK.KKKKKK..."  // 21
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'C' to Color(0xFF2C3E50), // Charcoal dark plate
+        'S' to Color(0xFF5D6D7E), // Steel grey pauldron/trim
+        'R' to Color(0xFF922B21), // Dark red tabard/cape
+        'E' to Color(0xFFE74C3C)  // Red visor slit
+    )
+
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawLamia() {
+    val matrix = arrayOf(
+        ".......KKKKKK.......", // 0
+        "......KGGGGGGK......", // 1
+        ".....KGGGGGGGGK.....", // 2
+        "....KGGGGGGGGGGK....", // 3
+        "....KPPPPRSYPPGK....", // 4
+        "....KPPPPPPPPPGK....", // 5
+        "....KPPPPPPPPPGK....", // 6
+        "...KGGPPPPPPPPPGK...", // 7
+        "..KGGGVVVVVVVGGGK...", // 8
+        ".KGGGGVVVVVVVGGGGK..", // 9
+        ".KGGGGGGGGGGGGGGGK..", // 10
+        "..KGGGGGGGGGGGGGK...", // 11
+        "...KGGGGGGGGGGGK....", // 12
+        "....KGGGGGGGGGK.....", // 13
+        ".....KGGGGGGGK......", // 14
+        "......KGGGGGK.......", // 15
+        ".......KGGGK........", // 16
+        "......KGGGGGK.......", // 17
+        ".....KGGGGGGGK......", // 18
+        "....KGGGGGGGGGK.....", // 19
+        "....KKKKKKKKKKK....."  // 20
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'G' to Color(0xFF27AE60), // Green snake tail & hair
+        'P' to Color(0xFFF3C59D), // Peach skin
+        'R' to Color(0xFFE74C3C), // Red eye
+        'S' to Color(0xFFFFFFFF), // White sclera
+        'Y' to Color(0xFFF1C40F), // Gold tiara
+        'V' to Color(0xFF8E44AD)  // Purple bra/accent
+    )
+
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawAdamantoise() {
+    val matrix = arrayOf(
+        ".........KKKKKK.........", // 0
+        "........KGGGGGGK........", // 1
+        ".......KGGGGGGGGK.......", // 2
+        "......KGGGGGGGGGGK......", // 3
+        ".....KGGGGGGGGGGGGK.....", // 4
+        "....KGGGGGGGGGGGGGGK....", // 5
+        "...KGGGGGGGGGGGGGGGGK...", // 6
+        "..KGGGGGGGGGGGGGGGGGGK..", // 7
+        ".KGGGGGGGGGGGGGGGGGGGGK.", // 8
+        "KGGGGGGGGGGGGGGGGGGGGGGK", // 9
+        "KTTTTTTTTTTTTTTTTTTTTTTK", // 10
+        "KTTTTTTTTTTTTTTTTTTTTTTK", // 11
+        ".KTTTTTTTTTTTTTTTTTTTTK.", // 12
+        "..KTTTTTTTTTTTTTTTTTTK..", // 13
+        "...KTTK.KTTTTK.KTTK.....", // 14
+        "...KTTK.KTTTTK.KTTK.....", // 15
+        "...KKKK.KKKKKK.KKKK....."  // 16
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'G' to Color(0xFF1E8449), // Dark green spiked shell
+        'T' to Color(0xFFD4AC0D)  // Tan/gold underside
+    )
+
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawTonberry() {
+    val matrix = arrayOf(
+        "......KKKKKK......", // 0
+        ".....KGGGGGGK.....", // 1
+        "....KGGGGGGGGK....", // 2
+        "...KGGGGGGGGGGK...", // 3
+        "..KGGGGYYSYYGGGK..", // 4
+        "..KGGGGGGGGGGGGK..", // 5
+        "..KGGGGGGGGGGGGK..", // 6
+        "...KGGGGGGGGGGK...", // 7
+        "...KBBBBBBBBBBK...", // 8
+        "..KBBBBBBBBBBBBK..", // 9
+        ".KBBBBBBBBBBBBBBK.", // 10
+        "KBBBBBBBBBBBBBBBBK", // 11
+        "KBBBBBBBBBBBBBBBBK", // 12
+        "KLLKBBBBBBBBBBKSSK", // 13
+        "KLLKBBBBBBBBBBKSSK", // 14
+        ".KKKBBBBBBBBBBKKKK", // 15
+        "...KBBBBBBBBBBK...", // 16
+        "...KBBBBBBBBBBK...", // 17
+        "...KBBBKKKKBBBK...", // 18
+        "...KBBK....KBBK...", // 19
+        "...KKKK....KKKK..."  // 20
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'G' to Color(0xFF2ECC71), // Bright green skin
+        'B' to Color(0xFF7E5109), // Brown robe
+        'Y' to Color(0xFFF1C40F), // Yellow glowing eyes
+        'S' to Color(0xFFBDC3C7), // Silver butcher knife / sclera
+        'L' to Color(0xFFF39C12)  // Glowing yellow/orange lantern
+    )
+
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawDjinn() {
+    val matrix = arrayOf(
+        ".......KKKKKK.......", // 0
+        "......KRRRRRRK......", // 1
+        ".....KRRRRRRRRK.....", // 2
+        "....KRRRRRRRRRRK....", // 3
+        "....KRRRRRSYRRRK....", // 4
+        "....KRRRRRRRRRRK....", // 5
+        "....KRRRRRRRRRRK....", // 6
+        "...KYYYYRRRRRYYYYK..", // 7
+        "..KYYYYYRRRRRYYYYYK.", // 8
+        ".KYYYYYYRRRRRYYYYYYK", // 9
+        ".KYYYYYYRRRRRYYYYYYK", // 10
+        "..KYYYYYYYYYYYYYYYK.", // 11
+        "...KRRRRRRRRRRRRRK..", // 12
+        "....KRRRRRRRRRRRK...", // 13
+        ".....KRRRRRRRRRK....", // 14
+        "......KRRRRRRRK.....", // 15
+        ".......KRRRRRK......", // 16
+        "......KRRRRRRRK.....", // 17
+        ".....KRRRRRRRRRK....", // 18
+        "....KKKKKKKKKKKKK..."  // 19
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'R' to Color(0xFFE74C3C), // Red elemental flame
+        'Y' to Color(0xFFF1C40F), // Gold wristbands/body
+        'S' to Color(0xFFFFFFFF)  // White eye sclera
+    )
+
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawHein() {
+    val matrix = arrayOf(
+        ".......KKKKKK.......", // 0
+        "......KYYYYYYK......", // 1
+        ".....KYYYYYYYYK.....", // 2
+        "....KYYYYYYYYYYK....", // 3
+        "....KPPWWWWWWPPK....", // 4
+        "....KPPWERREWP3K....", // 5
+        "....KPPWWWWWWPPK....", // 6
+        "....KPPWBWBWBPPK....", // 7
+        "....KPPPPWWPP3PK....", // 8
+        "...KPPPPPPPPPPPPK...", // 9
+        "..KPPPPPPPPPPPPPPK..", // 10
+        ".KPPPPPPPDDPPPPPPPK.", // 11
+        ".KPPPPPPPDDPPPPPPPK.", // 12
+        ".KPPPPPPPDDPPPPPPPK.", // 13
+        ".KPPPPPPPDDPPPPPPPK.", // 14
+        ".KPPPPPPPDDPPPPPPPK.", // 15
+        ".KPPPPPPPDDPPPPPPPK.", // 16
+        ".KPPPPPPPDDPPPPPPPK.", // 17
+        ".KPPPPPPPDDPPPPPPPK.", // 18
+        "..KPPPPPPDDPPPPPPK..", // 19
+        "...KKKKKKKKKKKKKK..."  // 20
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'Y' to Color(0xFFF1C40F), // Gold hat
+        'P' to Color(0xFF8E44AD), // Purple robe
+        'D' to Color(0xFF5B2C6F), // Dark purple shadow
+        'W' to Color(0xFFECF0F1), // Bone white
+        'B' to Color(0xFF17202A), // Skull details
+        'E' to Color(0xFFE74C3C), // Red eyes
+        '3' to Color(0xFFA569BD)  // Light purple
+    )
+
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawEmperor() {
+    val matrix = arrayOf(
+        ".......KKYYYYKK.......", // 0
+        "......KYYYYYYYYK......", // 1
+        ".....KYYYYRRYYYYK.....", // 2
+        "....KYYYYWWWWYYYYK....", // 3
+        "....KYYYYWERREYYYK....", // 4
+        "....KYYYYWWWWYYYYK....", // 5
+        "....KYYYYYYYYYYYYK....", // 6
+        "...KPPPPYYYYYYYYPPK...", // 7
+        "..KPPPPPYYYYYYYYPPPK..", // 8
+        ".KPPPPPPYYYYYYYYPPPPK.", // 9
+        ".KPPPPPPYYYYYYYYPPPPK.", // 10
+        ".KPPPPPPYYYYYYYYPPPPK.", // 11
+        "..KPPPPPYYYYYYYYPPPK..", // 12
+        "...KPPPPYYYYYYYYPPK...", // 13
+        "....KPPPYYYYYYYYPK....", // 14
+        ".....KPPYYYYYYYYK.....", // 15
+        "......KPYYYYYYPK......", // 16
+        "......KYYYYYYYYK......", // 17
+        "......KYYYYYYYYK......", // 18
+        ".....KYYYYYYYYYYK.....", // 19
+        ".....KKKKKKKKKKKK....."  // 20
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'Y' to Color(0xFFF1C40F), // Gold imperial plate
+        'P' to Color(0xFF8E44AD), // Royal purple robe
+        'R' to Color(0xFFC0392B), // Ruby jewel
+        'W' to Color(0xFFFFFFFF), // White face/sclera
+        'E' to Color(0xFF2C3E50)  // Dark eye pupil
+    )
+
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawCloudOfDarkness() {
+    val matrix = arrayOf(
+        "........KKKKKK..........", // 0
+        ".......KCCCCCCK.........", // 1
+        "......KCCCCCCCCK........", // 2
+        ".....KCCCCCCCCCCK.......", // 3
+        "....KCCCCWERRECCCK......", // 4
+        "....KCCCCCCCCCCCCK......", // 5
+        "....KCCCCCCCCCCCCK......", // 6
+        "...KPPPPCCCCCCPPPPK.....", // 7
+        "..KPPPPPPCCCCPPPPPPK....", // 8
+        ".KPPPPPPPCCCCPPPPPPPK...", // 9
+        ".KPPPPPPPCCCCPPPPPPPK...", // 10
+        ".KPPPPPPPCCCCPPPPPPPK...", // 11
+        "..KPPPPPPCCCCPPPPPPK....", // 12
+        "...KPPPPCCCCCCPPPPK.....", // 13
+        "....KCCC.CCCC.CCCK......", // 14
+        "...KCCC..CCCC..CCCK.....", // 15
+        "..KCCC...CCCC...CCCK....", // 16
+        ".KCCC....CCCC....CCCK...", // 17
+        "KKKK.....KKKK.....KKKK.."  // 18
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'C' to Color(0xFF34495E), // Dark slate cloud
+        'P' to Color(0xFF8E44AD), // Dark purple tentacles
+        'W' to Color(0xFFECF0F1), // Pale face
+        'E' to Color(0xFFE74C3C), // Red eyes
+        'R' to Color(0xFFFF0000)  // Glowing center
+    )
+
+    drawMonsterMatrix(matrix, palette)
 }
 
 // --- COMPOSABLE WRAPPERS ---
@@ -968,8 +1592,10 @@ fun DrawScope.drawCockatrice() {
         enemyName.contains("Slime", true) || enemyName.contains("Flan", true) -> drawSlime()
         enemyName.contains("Goblin", true) -> drawGoblin()
         enemyName.contains("Orc", true) || enemyName.contains("Ogre", true) -> drawOgre()
-        enemyName.contains("Demon", true) || enemyName.contains("Chaos", true) -> drawChaos()
-        enemyName.contains("Dragon", true) || enemyName.contains("Tiamat", true) -> drawDragon(Color.Red)
+        enemyName.contains("Chaos", true) || enemyName.contains("Demon", true) -> drawChaos()
+        enemyName.contains("Tiamat", true) -> drawTiamat()
+        enemyName.contains("Dragon", true) -> drawDragon(Color.Red)
+        enemyName.contains("Rat", true) -> drawWildRat()
         enemyName.contains("Wolf", true) -> drawWolf()
         enemyName.contains("Sahagin", true) || enemyName.contains("Merman", true) -> drawSahagin()
         enemyName.contains("Pirate", true) -> drawPirate()
@@ -979,7 +1605,14 @@ fun DrawScope.drawCockatrice() {
         enemyName.contains("Eye", true) -> drawEye()
         enemyName.contains("Tonberry", true) -> drawTonberry()
         enemyName.contains("Lich", true) -> drawLich()
-        enemyName.contains("Garland", true) || enemyName.contains("Knight", true) -> drawGarland()
+        enemyName.contains("Garland", true) -> drawGarland()
+        enemyName.contains("Dark Knight", true) || enemyName.contains("Black Knight", true) || enemyName.contains("Sergeant", true) -> drawDarkKnight()
+        enemyName.contains("Lamia", true) || enemyName.contains("Medusa", true) -> drawLamia()
+        enemyName.contains("Adamantoise", true) -> drawAdamantoise()
+        enemyName.contains("Djinn", true) -> drawDjinn()
+        enemyName.contains("Hein", true) -> drawHein()
+        enemyName.contains("Emperor", true) -> drawEmperor()
+        enemyName.contains("Cloud", true) -> drawCloudOfDarkness()
         else -> drawSlime()
     }
 }
