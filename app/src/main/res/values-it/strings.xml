@@ -197,7 +197,7 @@
     <string name="class_samurai">Samurai</string>
     <string name="class_samurai_desc">Maestro della lama. Alto critico.</string>
     <string name="class_onion_knight">Cavaliere Cipolla</string>
-    <string name="class_onion_knight_desc">Fioritura tardiva. Debole fino al Livello 90+.</string>
+    <string name="class_onion_knight_desc">Fioritura tardiva. Debole fino al Livello 30+.</string>
     <string name="class_mime">Mimo</string>
     <string name="class_mime_desc">Maestro dell\'imitazione. Imita le abilità del gruppo.</string>
     <string name="class_necromancer">Negromante</string>

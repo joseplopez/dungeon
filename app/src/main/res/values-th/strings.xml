@@ -197,7 +197,7 @@
     <string name="class_samurai">ซามูไร</string>
     <string name="class_samurai_desc">เจ้าแห่งดาบ อัตราคริติคอลสูง</string>
     <string name="class_onion_knight">อัศวินหัวหอม</string>
-    <string name="class_onion_knight_desc">โตช้า อ่อนแอจนกว่าจะถึงเลเวล 90+</string>
+    <string name="class_onion_knight_desc">โตช้า อ่อนแอจนกว่าจะถึงเลเวล 30+</string>
     <string name="class_mime">นักเลียนแบบ</string>
     <string name="class_mime_desc">เจ้าแห่งการเลียนแบบ เลียนแบบความสามารถของเพื่อน</string>
     <string name="class_necromancer">เนโครแมนเซอร์</string>

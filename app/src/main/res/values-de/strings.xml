@@ -197,7 +197,7 @@
     <string name="class_samurai">Samurai</string>
     <string name="class_samurai_desc">Meister der Klinge. Hohe Crit-Rate.</string>
     <string name="class_onion_knight">Zwiebelritter</string>
-    <string name="class_onion_knight_desc">Spätentwickler. Schwach bis Level 90+.</string>
+    <string name="class_onion_knight_desc">Spätentwickler. Schwach bis Level 30+.</string>
     <string name="class_mime">Mime</string>
     <string name="class_mime_desc">Meister der Imitation. Ahmt Fähigkeiten nach.</string>
     <string name="class_necromancer">Nekromant</string>

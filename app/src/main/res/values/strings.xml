@@ -197,7 +197,7 @@
     <string name="class_samurai">Samurai</string>
     <string name="class_samurai_desc">Master of the blade. High crit.</string>
     <string name="class_onion_knight">Onion Knight</string>
-    <string name="class_onion_knight_desc">Late bloomer. Weak until Level 90+.</string>
+    <string name="class_onion_knight_desc">Late bloomer. Weak until Level 30+.</string>
     <string name="class_mime">Mime</string>
     <string name="class_mime_desc">Master of imitation. Mimics party abilities.</string>
     <string name="class_necromancer">Necromancer</string>

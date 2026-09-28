@@ -198,7 +198,7 @@
     <string name="class_samurai">사무라이</string>
     <string name="class_samurai_desc">검술의 달인. 높은 크리티컬 확률.</string>
     <string name="class_onion_knight">양파 기사</string>
-    <string name="class_onion_knight_desc">대기만성형. 레벨 90 전까지는 최약체.</string>
+    <string name="class_onion_knight_desc">대기만성형. 레벨 30 전까지는 최약체.</string>
     <string name="class_mime">흉내쟁이</string>
     <string name="class_mime_desc">모방의 달인. 파티의 능력을 흉내 냄.</string>
     <string name="class_necromancer">네크로맨서</string>

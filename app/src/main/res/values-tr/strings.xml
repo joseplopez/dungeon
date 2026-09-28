@@ -197,7 +197,7 @@
     <string name="class_samurai">Samuray</string>
     <string name="class_samurai_desc">Kılıç ustası. Yüksek kritik vuruş.</string>
     <string name="class_onion_knight">Soğan Şövalyesi</string>
-    <string name="class_onion_knight_desc">Geç açılır. Seviye 90+\'a kadar zayıftır.</string>
+    <string name="class_onion_knight_desc">Geç açılır. Seviye 30+\'a kadar zayıftır.</string>
     <string name="class_mime">Mime</string>
     <string name="class_mime_desc">Taklit ustası. Grup yeteneklerini taklit eder.</string>
     <string name="class_necromancer">Necromancer</string>

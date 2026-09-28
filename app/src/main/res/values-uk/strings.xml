@@ -197,7 +197,7 @@
     <string name="class_samurai">Самурай</string>
     <string name="class_samurai_desc">Майстер клинка. Високий шанс криту.</string>
     <string name="class_onion_knight">Цибулевий лицар</string>
-    <string name="class_onion_knight_desc">Пізня квітка. Слабкий до рівня 90+.</string>
+    <string name="class_onion_knight_desc">Пізня квітка. Слабкий до рівня 30+.</string>
     <string name="class_mime">Мім</string>
     <string name="class_mime_desc">Майстер наслідування. Копіює здібності загону.</string>
     <string name="class_necromancer">Некромант</string>

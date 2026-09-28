@@ -197,7 +197,7 @@
     <string name="class_samurai">ساموراي</string>
     <string name="class_samurai_desc">سيد النصل. ضربات حرجة عالية.</string>
     <string name="class_onion_knight">فارس البصل</string>
-    <string name="class_onion_knight_desc">يزهر متأخراً. ضعيف حتى المستوى +90.</string>
+    <string name="class_onion_knight_desc">يزهر متأخراً. ضعيف حتى المستوى +30.</string>
     <string name="class_mime">المهرج</string>
     <string name="class_mime_desc">سيد التقليد. يقلد قدرات الفريق.</string>
     <string name="class_necromancer">مستحضر الأرواح</string>

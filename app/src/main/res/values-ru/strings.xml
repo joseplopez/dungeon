@@ -197,7 +197,7 @@
     <string name="class_samurai">Самурай</string>
     <string name="class_samurai_desc">Мастер клинка. Высокий шанс крита.</string>
     <string name="class_onion_knight">Луковый рыцарь</string>
-    <string name="class_onion_knight_desc">Поздний цветок. Слаб до уровня 90+.</string>
+    <string name="class_onion_knight_desc">Поздний цветок. Слаб до уровня 30+.</string>
     <string name="class_mime">Мим</string>
     <string name="class_mime_desc">Мастер подражания. Копирует способности отряда.</string>
     <string name="class_necromancer">Некромант</string>

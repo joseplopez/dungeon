@@ -197,7 +197,7 @@
     <string name="class_samurai">Samurai</string>
     <string name="class_samurai_desc">Mestre da lâmina. Alta taxa de crítico.</string>
     <string name="class_onion_knight">Cavaleiro Cebola</string>
-    <string name="class_onion_knight_desc">Floresce tarde. Fraco até o Nível 90+.</string>
+    <string name="class_onion_knight_desc">Floresce tarde. Fraco até o Nível 30+.</string>
     <string name="class_mime">Mimo</string>
     <string name="class_mime_desc">Mestre da imitação. Imita habilidades do grupo.</string>
     <string name="class_necromancer">Necromante</string>

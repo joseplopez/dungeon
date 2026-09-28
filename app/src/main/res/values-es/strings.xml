@@ -197,7 +197,7 @@
     <string name="class_samurai">Samurái</string>
     <string name="class_samurai_desc">Maestro de la espada. Alto índice crítico.</string>
     <string name="class_onion_knight">Caballero Cebolla</string>
-    <string name="class_onion_knight_desc">Florece tarde. Débil hasta el Nivel 90+.</string>
+    <string name="class_onion_knight_desc">Florece tarde. Débil hasta el Nivel 30+.</string>
     <string name="class_mime">Mimo</string>
     <string name="class_mime_desc">Maestro de la imitación. Imita las habilidades del grupo.</string>
     <string name="class_necromancer">Nigromante</string>

@@ -197,7 +197,7 @@
     <string name="class_samurai">Samouraï</string>
     <string name="class_samurai_desc">Maître de la lame. Critiques élevés.</string>
     <string name="class_onion_knight">Chevalier Oignon</string>
-    <string name="class_onion_knight_desc">Tardif. Faible jusqu\'au niveau 90+.</string>
+    <string name="class_onion_knight_desc">Tardif. Faible jusqu\'au niveau 30+.</string>
     <string name="class_mime">Mime</string>
     <string name="class_mime_desc">Maître de l\'imitation. Copie les capacités du groupe.</string>
     <string name="class_necromancer">Nécromancien</string>

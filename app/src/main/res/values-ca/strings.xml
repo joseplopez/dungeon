@@ -197,7 +197,7 @@
     <string name="class_samurai">Samurái</string>
     <string name="class_samurai_desc">Mestre de l\'espasa. Alt índex crític.</string>
     <string name="class_onion_knight">Cavaller Ceba</string>
-    <string name="class_onion_knight_desc">Floreix tard. Feble fins al Nivell 90+.</string>
+    <string name="class_onion_knight_desc">Floreix tard. Feble fins al Nivell 30+.</string>
     <string name="class_mime">Mim</string>
     <string name="class_mime_desc">Mestre de la imitació. Imita les habilitats del grup.</string>
     <string name="class_necromancer">Nigromant</string>

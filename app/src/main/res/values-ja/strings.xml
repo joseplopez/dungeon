@@ -197,7 +197,7 @@
     <string name="class_samurai">侍</string>
     <string name="class_samurai_desc">刀の達人。高いクリティカル率。</string>
     <string name="class_onion_knight">たまねぎ剣士</string>
-    <string name="class_onion_knight_desc">大器晩成。レベル90までは最弱。</string>
+    <string name="class_onion_knight_desc">大器晩成。レベル30までは最弱。</string>
     <string name="class_mime">ものまね師</string>
     <string name="class_mime_desc">真似の達人。味方のアビリティを真似る。</string>
     <string name="class_necromancer">ネクロマンサー</string>

@@ -182,36 +182,36 @@ class Hero(
     // Dynamic stats based on level
     val baseMaxHp: Int get() {
         if (heroClass == HeroClass.ONION_KNIGHT) {
-            return if (level < 90) heroClass.baseHp + (level - 1) * 2 
-            else 500 + (level - 90) * 150 // Massive spike
+            return if (level < 30) heroClass.baseHp + (level - 1) * 2
+            else 500 + (level - 30) * 150 // Massive spike
         }
         return heroClass.baseHp + (level - 1) * (heroClass.baseHp / 4).coerceAtLeast(12) + ((level - 1) * (level - 1) / 10)
     }
     val baseMaxMp: Int get() {
         if (heroClass == HeroClass.ONION_KNIGHT) {
-            return if (level < 90) heroClass.baseMp + (level - 1) 
-            else 200 + (level - 90) * 50
+            return if (level < 30) heroClass.baseMp + (level - 1)
+            else 200 + (level - 30) * 50
         }
         return heroClass.baseMp + (level - 1) * (heroClass.baseMp / 10).coerceAtLeast(2)
     }
     val baseAttack: Int get() {
         if (heroClass == HeroClass.ONION_KNIGHT) {
-            return if (level < 90) heroClass.baseAttack + (level - 1) 
-            else 100 + (level - 90) * 30
+            return if (level < 30) heroClass.baseAttack + (level - 1)
+            else 100 + (level - 30) * 30
         }
         return heroClass.baseAttack + (level - 1) * (heroClass.baseAttack / 10).coerceAtLeast(1)
     }
     val baseMagic: Int get() {
         if (heroClass == HeroClass.ONION_KNIGHT) {
-            return if (level < 90) heroClass.baseMagic + (level - 1) 
-            else 100 + (level - 90) * 30
+            return if (level < 30) heroClass.baseMagic + (level - 1)
+            else 100 + (level - 30) * 30
         }
         return heroClass.baseMagic + (level - 1) * (heroClass.baseMagic / 10).coerceAtLeast(1)
     }
     val baseDefense: Int get() {
         if (heroClass == HeroClass.ONION_KNIGHT) {
-            return if (level < 90) heroClass.baseDefense + (level - 1) 
-            else 100 + (level - 90) * 30
+            return if (level < 30) heroClass.baseDefense + (level - 1)
+            else 100 + (level - 30) * 30
         }
         return heroClass.baseDefense + (level - 1) * (heroClass.baseDefense / 8).coerceAtLeast(2)
     }
