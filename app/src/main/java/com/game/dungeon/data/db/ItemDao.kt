@@ -18,8 +18,14 @@ interface ItemDao {
     @Query("UPDATE items SET ownerId = NULL WHERE ownerId = :heroId")
     suspend fun unequipAllFromHero(heroId: String)
 
+    @Query("SELECT * FROM items")
+    suspend fun getAllItemsOnce(): List<Item>
+
     @Upsert
     suspend fun upsert(item: Item)
+
+    @Upsert
+    suspend fun upsertAll(items: List<Item>)
 
     @Delete
     suspend fun delete(item: Item)

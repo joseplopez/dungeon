@@ -403,4 +403,9 @@
     <string name="slot_accessory_2">Accessory 2</string>
     <string name="inventory_chest_title">INVENTORY CHEST</string>
     <string name="inventory_count_format">Inventory: %1$d</string>
+
+    <!-- Inn QoL Buttons -->
+    <string name="btn_auto_equip">AUTO EQUIP</string>
+    <string name="btn_rehire_party">REHIRE TEAM (%1$dG)</string>
+    <string name="btn_rehire_no_run">DO ONE RUN!</string>
 </resources>

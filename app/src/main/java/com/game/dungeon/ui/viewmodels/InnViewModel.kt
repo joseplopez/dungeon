@@ -184,7 +184,8 @@ class InnViewModel @Inject constructor(
 
     fun advanceDimension() {
         val gs = gameState.value ?: return
-        if (gs.highestFloor >= 100) {
+        val requiredFloor = gs.currentDimension * 100
+        if (gs.highestFloor >= requiredFloor) {
             viewModelScope.launch {
                 // Remove all heroes from party
                 _hiredHeroes.value.forEach { repository.removeHero(it) }
@@ -192,9 +193,10 @@ class InnViewModel @Inject constructor(
                 // Clear inventory
                 repository.clearInventory()
 
-                // Calculate Magicite Bonus (50% + 10% per dimension above 1)
+                // Calculate Magicite Bonus: Guaranteed base lump sum + % bonus of earnings
+                val baseDescendReward = gs.currentDimension * 250
                 val multiplier = 0.50f + (gs.currentDimension - 1) * 0.10f
-                val bonusMagicite = (gs.magiciteEarnedThisDim * multiplier).toInt()
+                val bonusMagicite = baseDescendReward + (gs.magiciteEarnedThisDim * multiplier).toInt()
                 
                 // Calculate Gold kept (Deep Pockets Relic)
                 val goldKept = (gs.gold * gs.pocketsBonus).toLong()
@@ -315,6 +317,127 @@ class InnViewModel @Inject constructor(
                 val currentGs = repository.getGameStateOnce() ?: return@launch
                 val reward = (currentGs.totalMagiciteEarned * 0.005f).toInt().coerceAtLeast(2)
                 repository.addMagicite(reward)
+            }
+        }
+    }
+
+    // --- QoL Features ---
+
+    fun quickEquipAllHeroes() {
+        val heroes = _hiredHeroes.value
+        if (heroes.isEmpty()) return
+
+        viewModelScope.launch {
+            val allItems = repository.getAllItemsOnce()
+            val availablePool = allItems.toMutableList()
+            val updatedItems = mutableListOf<Item>()
+
+            val sortedHeroes = heroes.sortedBy { it.partyPosition }
+
+            sortedHeroes.forEach { hero ->
+                val bestWeapon = availablePool.filter { it.slot == ItemSlot.WEAPON }.maxByOrNull { it.powerScore }
+                if (bestWeapon != null) {
+                    availablePool.remove(bestWeapon)
+                    updatedItems.add(bestWeapon.copy(ownerId = hero.id))
+                }
+
+                val bestArmor = availablePool.filter { it.slot == ItemSlot.ARMOR }.maxByOrNull { it.powerScore }
+                if (bestArmor != null) {
+                    availablePool.remove(bestArmor)
+                    updatedItems.add(bestArmor.copy(ownerId = hero.id))
+                }
+
+                val bestShield = availablePool.filter { it.slot == ItemSlot.SHIELD }.maxByOrNull { it.powerScore }
+                if (bestShield != null) {
+                    availablePool.remove(bestShield)
+                    updatedItems.add(bestShield.copy(ownerId = hero.id))
+                }
+
+                val bestAccessories = availablePool.filter { it.slot == ItemSlot.ACCESSORY }
+                    .sortedByDescending { it.powerScore }
+                    .take(2)
+                bestAccessories.forEach { acc ->
+                    availablePool.remove(acc)
+                    updatedItems.add(acc.copy(ownerId = hero.id))
+                }
+            }
+
+            // Un-equip any items remaining in availablePool that were previously equipped
+            availablePool.forEach { remainingItem ->
+                if (remainingItem.ownerId != null) {
+                    updatedItems.add(remainingItem.copy(ownerId = null))
+                }
+            }
+
+            if (updatedItems.isNotEmpty()) {
+                repository.saveItems(updatedItems)
+            }
+        }
+    }
+
+    fun saveLastParty(party: List<Hero>) {
+        if (party.isEmpty()) return
+        viewModelScope.launch {
+            val currentGs = repository.getGameStateOnce() ?: return@launch
+            repository.saveGameState(currentGs.copy(lastPartyClasses = party.map { it.heroClass }))
+        }
+    }
+
+    val missingLastPartyClasses: List<HeroClass>
+        get() {
+            val lastParty = gameState.value?.lastPartyClasses ?: emptyList()
+            if (lastParty.isEmpty()) return emptyList()
+
+            val currentHiredClasses = _hiredHeroes.value.map { it.heroClass }.toMutableList()
+            val missing = mutableListOf<HeroClass>()
+            for (job in lastParty) {
+                if (currentHiredClasses.contains(job)) {
+                    currentHiredClasses.remove(job)
+                } else {
+                    missing.add(job)
+                }
+            }
+            return missing
+        }
+
+    val rehireLastPartyCost: Long
+        get() = missingLastPartyClasses.sumOf { it.hireCost.toLong() }
+
+    val canRehireLastParty: Boolean
+        get() {
+            val gs = gameState.value ?: return false
+            val lastParty = gs.lastPartyClasses
+            if (lastParty.isEmpty()) return false
+            val missing = missingLastPartyClasses
+            if (missing.isEmpty()) return false
+            if (_hiredHeroes.value.size + missing.size > maxPartySize) return false
+            if (gs.gold < rehireLastPartyCost) return false
+            val available = unlockedJobs
+            if (!available.containsAll(missing)) return false
+            return true
+        }
+
+    fun rehireLastParty() {
+        val gs = gameState.value ?: return
+        val missing = missingLastPartyClasses
+        if (!canRehireLastParty) return
+
+        val cost = rehireLastPartyCost
+        viewModelScope.launch {
+            val currentGs = repository.getGameStateOnce() ?: gs
+            if (currentGs.gold >= cost && _hiredHeroes.value.size + missing.size <= maxPartySize) {
+                repository.saveGameState(currentGs.copy(gold = currentGs.gold - cost))
+                val currentPartySize = _hiredHeroes.value.size
+                val newHeroes = missing.mapIndexed { index, job ->
+                    Hero.create(job, context).copy(
+                        isInParty = true,
+                        partyPosition = currentPartySize + index
+                    )
+                }
+                newHeroes.forEach { hero ->
+                    analytics.logHeroHired(hero.name, hero.heroClass.name)
+                }
+                repository.saveHeroes(newHeroes)
             }
         }
     }

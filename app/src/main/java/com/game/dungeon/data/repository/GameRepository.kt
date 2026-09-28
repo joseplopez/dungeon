@@ -95,8 +95,10 @@ class GameRepository @Inject constructor(
     // Items
     fun getInventory(): Flow<List<Item>> = database.itemDao.getInventory()
     fun getEquippedItems(heroId: String): Flow<List<Item>> = database.itemDao.getItemsForHeroFlow(heroId)
+    suspend fun getAllItemsOnce(): List<Item> = database.itemDao.getAllItemsOnce()
     suspend fun unequipAll(heroId: String) = database.itemDao.unequipAllFromHero(heroId)
     suspend fun saveItem(item: Item) = database.itemDao.upsert(item)
+    suspend fun saveItems(items: List<Item>) = database.itemDao.upsertAll(items)
     suspend fun sellItem(item: Item) {
         val current = database.gameStateDao.getGameStateOnce() ?: GameState()
         val newGold = (current.gold + item.sellValue).coerceAtMost(current.maxGil)

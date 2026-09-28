@@ -2986,10 +2986,415 @@ private fun DrawScope.drawGenericDungeon(scrollOffset: Float, torchFlicker: Floa
 
     // === LAYER 8: Vignette ===
     drawRect(
-        Brush.radialGradient(
+        brush = Brush.radialGradient(
             colors = listOf(Color.Transparent, Color(0xAA000000)),
             center = Offset(W / 2f, H / 2f),
             radius = W * 0.7f
+        ),
+        size = size
+    )
+}
+
+fun DrawScope.drawTavernInterior(
+    fireFlicker: Float = 1f,
+    fireFlicker2: Float = 1f,
+    animTime: Float = 0f
+) {
+    val W = size.width
+    val H = size.height
+    val s = W / 1000f
+
+    val floorY = H * 0.50f
+
+    // =========================================================================
+    // LAYER 1: MASONRY BACK WALL & TIMBER FRAMEWORK
+    // =========================================================================
+    drawRect(Color(0xFF161214), size = size)
+
+    val stoneW = W / 18f
+    val stoneH = H * 0.045f
+    var wy = 0f
+    var wrow = 0
+    while (wy < floorY) {
+        val offX = if (wrow % 2 == 0) 0f else stoneW / 2f
+        var wx = offX
+        while (wx < W + stoneW) {
+            val brickColor = when ((wrow * 5 + (wx / stoneW).toInt()) % 4) {
+                0 -> Color(0xFF282224)
+                1 -> Color(0xFF1E1A1B)
+                2 -> Color(0xFF322A2D)
+                else -> Color(0xFF231D1F)
+            }
+            drawRect(
+                brickColor,
+                Offset(wx, wy),
+                Size(stoneW - 2.5f * s, stoneH - 2.5f * s)
+            )
+            wx += stoneW
+        }
+        wy += stoneH
+        wrow++
+    }
+
+    val topBeamH = H * 0.08f
+    drawRect(Color(0xFF3E2314), Offset(0f, 0f), Size(W, topBeamH))
+    drawRect(Color(0xFF5E3720), Offset(0f, topBeamH - 4f * s), Size(W, 4f * s))
+    drawRect(Color(0xFF1F1008), Offset(0f, topBeamH), Size(W, 3f * s))
+
+    val postWidth = W * 0.032f
+    val postXs = listOf(0f, W * 0.25f, W * 0.72f, W - postWidth)
+    postXs.forEach { px ->
+        drawRect(Color(0xFF381F12), Offset(px, 0f), Size(postWidth, floorY))
+        drawRect(Color(0xFF58331E), Offset(px, 0f), Size(3f * s, floorY))
+        drawRect(Color(0xFF1F1008), Offset(px + postWidth - 3f * s, 0f), Size(3f * s, floorY))
+    }
+
+    drawRect(Color(0xFF301B0E), Offset(0f, H * 0.16f), Size(W, H * 0.035f))
+    drawRect(Color(0xFF4D2B17), Offset(0f, H * 0.16f), Size(W, 2.5f * s))
+
+    // =========================================================================
+    // LAYER 2: STONE ARCH FIREPLACE & GRIMOIRE (Far Left)
+    // =========================================================================
+    val fpX = W * 0.02f
+    val fpW = W * 0.21f
+    val fpH = H * 0.38f
+    val fpY = floorY - fpH
+
+    drawRect(Color(0xFF3D3335), Offset(fpX, fpY), Size(fpW, fpH + H * 0.02f))
+    drawRect(Color(0xFF261F20), Offset(fpX + 4f * s, fpY + 4f * s), Size(fpW - 8f * s, fpH))
+
+    val cavityX = fpX + fpW * 0.18f
+    val cavityW = fpW * 0.64f
+    val cavityY = fpY + fpH * 0.35f
+    val cavityH = fpH * 0.65f
+    drawRect(Color(0xFF0C090A), Offset(cavityX, cavityY), Size(cavityW, cavityH))
+
+    val archPath = Path().apply {
+        moveTo(cavityX, cavityY + cavityH)
+        lineTo(cavityX, cavityY + cavityH * 0.3f)
+        quadraticTo(cavityX + cavityW / 2f, cavityY - cavityH * 0.2f, cavityX + cavityW, cavityY + cavityH * 0.3f)
+        lineTo(cavityX + cavityW, cavityY + cavityH)
+        close()
+    }
+    drawPath(archPath, Color(0xFF161011))
+
+    val logY = cavityY + cavityH - 12f * s
+    drawRect(Color(0xFF2B1D14), Offset(cavityX + 6f * s, logY), Size(cavityW - 12f * s, 8f * s))
+    drawRect(Color(0xFF1A120B), Offset(cavityX + 10f * s, logY + 2f * s), Size(cavityW - 20f * s, 5f * s))
+
+    val fireCenterX = cavityX + cavityW / 2f
+    val fireBaseY = logY + 2f * s
+
+    drawCircle(
+        Color(1f, 0.35f, 0f, fireFlicker * 0.35f),
+        radius = cavityW * 1.3f,
+        center = Offset(fireCenterX, fireBaseY - 15f * s)
+    )
+    drawCircle(
+        Color(1f, 0.65f, 0.1f, fireFlicker2 * 0.25f),
+        radius = cavityW * 0.85f,
+        center = Offset(fireCenterX, fireBaseY - 10f * s)
+    )
+
+    val flameHW = cavityW * 0.35f
+    drawRect(
+        Color(1f, 0.3f, 0f, fireFlicker),
+        Offset(fireCenterX - flameHW, fireBaseY - 38f * s * fireFlicker),
+        Size(flameHW * 2f, 38f * s * fireFlicker)
+    )
+    drawRect(
+        Color(1f, 0.65f, 0f, fireFlicker2),
+        Offset(fireCenterX - flameHW * 0.65f, fireBaseY - 50f * s * fireFlicker2),
+        Size(flameHW * 1.3f, 50f * s * fireFlicker2)
+    )
+    drawRect(
+        Color(1f, 0.88f, 0.15f, fireFlicker),
+        Offset(fireCenterX - flameHW * 0.35f, fireBaseY - 58f * s * fireFlicker),
+        Size(flameHW * 0.7f, 58f * s * fireFlicker)
+    )
+    drawRect(
+        Color(1f, 1f, 0.6f, fireFlicker2 * 0.9f),
+        Offset(fireCenterX - flameHW * 0.15f, fireBaseY - 65f * s * fireFlicker2),
+        Size(flameHW * 0.3f, 65f * s * fireFlicker2)
+    )
+
+    repeat(6) { i ->
+        val embX = cavityX + (i * 17f * s + sin(animTime * 0.005f + i) * 8f * s) % cavityW
+        val embY = cavityY + cavityH * 0.8f - ((animTime * 0.08f + i * 25f) % (cavityH * 0.9f))
+        drawCircle(
+            Color(1f, 0.6f + i * 0.05f, 0.1f, (1f - (cavityY + cavityH - embY) / cavityH).coerceIn(0f, 1f)),
+            radius = (2f + i % 2) * s,
+            center = Offset(embX, embY)
+        )
+    }
+
+    val mantleY = fpY + fpH * 0.28f
+    drawRect(Color(0xFF4E2D1A), Offset(fpX - 6f * s, mantleY), Size(fpW + 12f * s, 10f * s))
+    drawRect(Color(0xFF704327), Offset(fpX - 6f * s, mantleY), Size(fpW + 12f * s, 3f * s))
+
+    val bookX = fpX + fpW * 0.25f
+    val bookY = mantleY - 14f * s
+    drawRect(Color(0xFF1E2B45), Offset(bookX, bookY), Size(18f * s, 14f * s))
+    drawRect(Color(0xFFD4AC0D), Offset(bookX + 2f * s, bookY + 2f * s), Size(14f * s, 10f * s), style = Stroke(1.5f * s))
+    drawRect(Color(0xFFF1C40F), Offset(bookX + 14f * s, bookY + 12f * s), Size(3f * s, 8f * s))
+
+    val panX = fpX - 4f * s
+    val panY = fpY + fpH * 0.45f
+    drawCircle(Color(0xFF2C3E50), radius = 6f * s, center = Offset(panX, panY))
+    drawLine(Color(0xFF1A252F), Offset(panX, panY), Offset(panX - 8f * s, panY - 6f * s), strokeWidth = 2f * s)
+
+    // =========================================================================
+    // LAYER 3: BAR COUNTER, BACK BAR STORAGE & CUCKOO CLOCK
+    // =========================================================================
+    val barX1 = W * 0.28f
+    val barX2 = W * 0.72f
+    val barW = barX2 - barX1
+
+    drawRect(Color(0xFF2A170C), Offset(barX1, H * 0.12f), Size(barW, floorY - H * 0.12f))
+
+    val caskX = barX1 + barW * 0.38f
+    val caskY = H * 0.16f
+    val caskW = barW * 0.24f
+    val caskH = H * 0.18f
+    drawOval(Color(0xFF5C361D), Offset(caskX, caskY), Size(caskW, caskH))
+    drawOval(Color(0xFF3B2110), Offset(caskX + 3f * s, caskY + 3f * s), Size(caskW - 6f * s, caskH - 6f * s))
+    drawOval(Color(0xFF2C3E50), Offset(caskX + caskW * 0.2f, caskY + 2f * s), Size(caskW * 0.6f, caskH - 4f * s), style = Stroke(3f * s))
+    drawRect(Color(0xFFF1C40F), Offset(caskX + caskW * 0.45f, caskY + caskH - 4f * s), Size(8f * s, 10f * s))
+
+    val shelfY1 = H * 0.18f
+    val shelfY2 = H * 0.27f
+
+    drawRect(Color(0xFF4A2A16), Offset(barX1 + 10f * s, shelfY1), Size(barW * 0.30f, 4f * s))
+    drawRect(Color(0xFF4A2A16), Offset(barX1 + 10f * s, shelfY2), Size(barW * 0.30f, 4f * s))
+    drawRect(Color(0xFF4A2A16), Offset(barX1 + barW * 0.65f, shelfY1), Size(barW * 0.30f, 4f * s))
+    drawRect(Color(0xFF4A2A16), Offset(barX1 + barW * 0.65f, shelfY2), Size(barW * 0.30f, 4f * s))
+
+    val bottleColors = listOf(
+        Color(0xFF27AE60), Color(0xFFE67E22), Color(0xFFC0392B), Color(0xFF2980B9),
+        Color(0xFF8E44AD), Color(0xFFF39C12), Color(0xFF1ABC9C), Color(0xFFD35400)
+    )
+    repeat(6) { i ->
+        val bxL = barX1 + 14f * s + i * 11f * s
+        val bColL = bottleColors[i % bottleColors.size]
+        drawRect(bColL, Offset(bxL, shelfY1 - 12f * s), Size(6f * s, 12f * s))
+        drawRect(Color.White.copy(alpha = 0.4f), Offset(bxL + 1f * s, shelfY1 - 11f * s), Size(1.5f * s, 10f * s))
+
+        val bxR = barX1 + barW * 0.67f + i * 11f * s
+        val bColR = bottleColors[(i + 3) % bottleColors.size]
+        drawRect(bColR, Offset(bxR, shelfY2 - 12f * s), Size(6f * s, 12f * s))
+        drawRect(Color.White.copy(alpha = 0.4f), Offset(bxR + 1f * s, shelfY2 - 11f * s), Size(1.5f * s, 10f * s))
+    }
+
+    val rackY = H * 0.085f
+    drawLine(Color(0xFF2C3E50), Offset(barX1 + 20f * s, rackY), Offset(barX2 - 20f * s, rackY), strokeWidth = 3f * s)
+
+    val meatXs = listOf(barX1 + barW * 0.12f, barX1 + barW * 0.22f, barX1 + barW * 0.78f, barX1 + barW * 0.88f)
+    meatXs.forEachIndexed { idx, mx ->
+        val meatH = (16f + (idx % 2) * 6f) * s
+        drawOval(Color(0xFF801515), Offset(mx - 5f * s, rackY + 3f * s), Size(10f * s, meatH))
+        drawRect(Color(0xFFF5EE38), Offset(mx - 1.5f * s, rackY), Size(3f * s, 4f * s))
+    }
+
+    val potionColors = listOf(
+        Color(0xFFFF007F),
+        Color(0xFF00FFFF),
+        Color(0xFF00FF66),
+        Color(0xFFFFDD00),
+        Color(0xFF0088FF)
+    )
+    potionColors.forEachIndexed { idx, pCol ->
+        val px = barX1 + barW * 0.35f + idx * 10f * s
+        val py = rackY + 2f * s
+        drawLine(Color.Gray, Offset(px + 2f * s, rackY), Offset(px + 2f * s, py), strokeWidth = 1f * s)
+        drawCircle(pCol, radius = 3.5f * s, center = Offset(px + 2f * s, py + 7f * s))
+        drawCircle(pCol.copy(alpha = 0.5f), radius = 6f * s, center = Offset(px + 2f * s, py + 7f * s))
+    }
+
+    val clockX = barX1 + barW * 0.5f
+    val clockY = H * 0.05f
+    val clockPath = Path().apply {
+        moveTo(clockX, clockY)
+        lineTo(clockX - 12f * s, clockY + 10f * s)
+        lineTo(clockX - 12f * s, clockY + 28f * s)
+        lineTo(clockX + 12f * s, clockY + 28f * s)
+        lineTo(clockX + 12f * s, clockY + 10f * s)
+        close()
+    }
+    drawPath(clockPath, Color(0xFF4A2812))
+    drawPath(clockPath, Color(0xFF2C1608), style = Stroke(2f * s))
+    drawCircle(Color(0xFFFFF9E6), radius = 7f * s, center = Offset(clockX, clockY + 18f * s))
+    drawCircle(Color(0xFF2C1608), radius = 1f * s, center = Offset(clockX, clockY + 18f * s))
+    val pendAngle = sin(animTime * 0.003f) * 6f * s
+    drawLine(Color(0xFFF1C40F), Offset(clockX, clockY + 28f * s), Offset(clockX + pendAngle, clockY + 38f * s), strokeWidth = 1.5f * s)
+    drawCircle(Color(0xFFF1C40F), radius = 2.5f * s, center = Offset(clockX + pendAngle, clockY + 38f * s))
+
+    val counterTopY = floorY - H * 0.16f
+    val counterH = H * 0.16f
+
+    drawRect(Color(0xFF42230E), Offset(barX1, counterTopY), Size(barW, counterH))
+    val panelW = barW / 5f
+    repeat(5) { pIdx ->
+        val px = barX1 + pIdx * panelW + 4f * s
+        drawRect(Color(0xFF2B1507), Offset(px, counterTopY + 8f * s), Size(panelW - 8f * s, counterH - 12f * s))
+        drawRect(Color(0xFF5A3319), Offset(px, counterTopY + 8f * s), Size(panelW - 8f * s, counterH - 12f * s), style = Stroke(1.5f * s))
+    }
+
+    drawRect(Color(0xFF6E3C1B), Offset(barX1 - 8f * s, counterTopY - 4f * s), Size(barW + 16f * s, 8f * s))
+    drawRect(Color(0xFF9E5B2B), Offset(barX1 - 8f * s, counterTopY - 4f * s), Size(barW + 16f * s, 2f * s))
+
+    val tapTypes = listOf("SWORD", "SKULL", "CHERRY", "COIN", "MOON", "CROSS", "HAMMER")
+    tapTypes.forEachIndexed { tIdx, tType ->
+        val tx = barX1 + 18f * s + tIdx * (barW - 36f * s) / (tapTypes.size - 1)
+        val ty = counterTopY - 4f * s
+
+        drawRect(Color(0xFFD4AC0D), Offset(tx - 3f * s, ty - 4f * s), Size(6f * s, 4f * s))
+        when (tType) {
+            "SWORD" -> drawLine(Color(0xFFBDC3C7), Offset(tx, ty - 4f * s), Offset(tx, ty - 18f * s), strokeWidth = 2.5f * s)
+            "SKULL" -> drawCircle(Color.White, radius = 4f * s, center = Offset(tx, ty - 14f * s))
+            "CHERRY" -> drawCircle(Color(0xFFE74C3C), radius = 4f * s, center = Offset(tx, ty - 14f * s))
+            "COIN" -> drawCircle(Color(0xFFF1C40F), radius = 4f * s, center = Offset(tx, ty - 14f * s))
+            "MOON" -> drawCircle(Color(0xFFF39C12), radius = 4f * s, center = Offset(tx, ty - 14f * s))
+            "CROSS" -> {
+                drawRect(Color(0xFFE74C3C), Offset(tx - 1.5f * s, ty - 18f * s), Size(3f * s, 10f * s))
+                drawRect(Color(0xFFE74C3C), Offset(tx - 4f * s, ty - 15f * s), Size(8f * s, 3f * s))
+            }
+            "HAMMER" -> drawRect(Color(0xFF7F8C8D), Offset(tx - 4f * s, ty - 18f * s), Size(8f * s, 5f * s))
+        }
+    }
+
+    val stoolY = counterTopY + counterH * 0.45f
+    val stoolCount = 8
+    repeat(stoolCount) { sIdx ->
+        val sx = barX1 + 12f * s + sIdx * (barW - 24f * s) / (stoolCount - 1)
+        drawLine(Color(0xFF231207), Offset(sx - 5f * s, stoolY), Offset(sx - 7f * s, stoolY + 16f * s), strokeWidth = 2f * s)
+        drawLine(Color(0xFF231207), Offset(sx + 5f * s, stoolY), Offset(sx + 7f * s, stoolY + 16f * s), strokeWidth = 2f * s)
+        drawOval(Color(0xFF6E2310), Offset(sx - 7f * s, stoolY - 4f * s), Size(14f * s, 7f * s))
+        drawOval(Color(0xFF9E361B), Offset(sx - 6f * s, stoolY - 4f * s), Size(12f * s, 4f * s))
+    }
+
+    // =========================================================================
+    // LAYER 4: RIGHT STAIRCASE & LOFT
+    // =========================================================================
+    val stairX1 = W * 0.76f
+    val stairX2 = W * 0.98f
+    val stairY1 = H * 0.08f
+    val stairY2 = floorY
+
+    val stairPath = Path().apply {
+        moveTo(stairX1, stairY1)
+        lineTo(stairX2, stairY2)
+        lineTo(stairX2 + 10f * s, stairY2)
+        lineTo(stairX1 + 10f * s, stairY1)
+        close()
+    }
+    drawPath(stairPath, Color(0xFF381F12))
+
+    val stepCount = 10
+    repeat(stepCount) { stIdx ->
+        val frac = stIdx.toFloat() / stepCount
+        val sx = stairX1 + frac * (stairX2 - stairX1)
+        val sy = stairY1 + frac * (stairY2 - stairY1)
+        drawRect(Color(0xFF5E3720), Offset(sx, sy), Size(20f * s, 3f * s))
+        drawRect(Color(0xFF21110A), Offset(sx, sy + 3f * s), Size(20f * s, 4f * s))
+    }
+
+    drawLine(Color(0xFF5E3720), Offset(stairX1, stairY1 - 12f * s), Offset(stairX2, stairY2 - 12f * s), strokeWidth = 3f * s)
+    repeat(5) { pIdx ->
+        val frac = pIdx.toFloat() / 4f
+        val px = stairX1 + frac * (stairX2 - stairX1)
+        val py = stairY1 + frac * (stairY2 - stairY1)
+        drawLine(Color(0xFF381F12), Offset(px, py), Offset(px, py - 12f * s), strokeWidth = 2f * s)
+    }
+
+    drawRect(Color(0xFF140B06), Offset(stairX1 + 20f * s, floorY - H * 0.14f), Size(W * 0.16f, H * 0.14f))
+    drawOval(Color(0xFF4A2A16), Offset(stairX1 + 25f * s, floorY - H * 0.12f), Size(18f * s, 22f * s))
+    drawOval(Color(0xFF381F12), Offset(stairX1 + 45f * s, floorY - H * 0.10f), Size(16f * s, 18f * s))
+
+    // =========================================================================
+    // LAYER 5: WOOD PLANK FLOORING & FEAST TABLES
+    // =========================================================================
+    var py = floorY
+    var plankRow = 0
+    val plankH = H * 0.052f
+    while (py < H) {
+        val pc = if (plankRow % 2 == 0) Color(0xFF422817) else Color(0xFF382011)
+        drawRect(pc, Offset(0f, py), Size(W, plankH))
+        drawRect(Color(0xFF1F1008), Offset(0f, py + plankH - 2f * s), Size(W, 2f * s))
+
+        var gx = (80f * s + plankRow * 140f * s) % W
+        while (gx < W) {
+            drawRect(Color(0xFF1F1008), Offset(gx, py), Size(2f * s, plankH))
+            drawCircle(Color(0xFF120A04), radius = 1.2f * s, center = Offset(gx - 3f * s, py + 4f * s))
+            drawCircle(Color(0xFF120A04), radius = 1.2f * s, center = Offset(gx + 5f * s, py + 4f * s))
+            gx += W / 5f
+        }
+        py += plankH
+        plankRow++
+    }
+
+    drawRect(
+        Brush.horizontalGradient(
+            colors = listOf(Color.Transparent, Color.White.copy(alpha = 0.05f), Color.Transparent)
+        ),
+        Offset(0f, floorY),
+        Size(W, H - floorY)
+    )
+
+    val tableY1 = H * 0.62f
+    val tableW1 = W * 0.18f
+    val tableH1 = H * 0.10f
+    val t1Xs = listOf(W * 0.08f, W * 0.32f, W * 0.56f, W * 0.78f)
+
+    t1Xs.forEach { tx ->
+        drawRect(Color(0xFF8B0000), Offset(tx, tableY1), Size(tableW1, tableH1 * 0.5f))
+        drawRect(Color(0xFFB22222), Offset(tx + 2f * s, tableY1 + 2f * s), Size(tableW1 - 4f * s, tableH1 * 0.5f - 4f * s))
+        drawRect(Color(0xFFF1C40F), Offset(tx, tableY1 + tableH1 * 0.5f - 2f * s), Size(tableW1, 2f * s))
+
+        drawRect(Color(0xFF2C1608), Offset(tx + 4f * s, tableY1 + tableH1 * 0.5f), Size(6f * s, tableH1 * 0.5f))
+        drawRect(Color(0xFF2C1608), Offset(tx + tableW1 - 10f * s, tableY1 + tableH1 * 0.5f), Size(6f * s, tableH1 * 0.5f))
+    }
+
+    val tableY2 = H * 0.80f
+    val tableW2 = W * 0.22f
+    val tableH2 = H * 0.12f
+    val t2Xs = listOf(W * 0.18f, W * 0.52f)
+
+    t2Xs.forEachIndexed { tIdx, tx ->
+        drawRect(Color(0xFF8B0000), Offset(tx, tableY2), Size(tableW2, tableH2 * 0.45f))
+        drawRect(Color(0xFFF1C40F), Offset(tx, tableY2 + tableH2 * 0.45f - 2f * s), Size(tableW2, 2f * s))
+        drawRect(Color(0xFF2C1608), Offset(tx + 6f * s, tableY2 + tableH2 * 0.45f), Size(8f * s, tableH2 * 0.55f))
+        drawRect(Color(0xFF2C1608), Offset(tx + tableW2 - 14f * s, tableY2 + tableH2 * 0.45f), Size(8f * s, tableH2 * 0.55f))
+
+        val surfaceY = tableY2 - 4f * s
+        if (tIdx == 0) {
+            drawOval(Color(0xFFC0392B), Offset(tx + 8f * s, surfaceY - 8f * s), Size(18f * s, 10f * s))
+            drawOval(Color(0xFFB87333), Offset(tx + 10f * s, surfaceY - 12f * s), Size(14f * s, 10f * s))
+            drawCircle(Color(0xFF8E44AD), radius = 3f * s, center = Offset(tx + 32f * s, surfaceY - 4f * s))
+            drawCircle(Color(0xFF8E44AD), radius = 2.5f * s, center = Offset(tx + 36f * s, surfaceY - 5f * s))
+            drawRect(Color(0xFFF1C40F), Offset(tx + 45f * s, surfaceY - 10f * s), Size(5f * s, 10f * s))
+        } else {
+            drawOval(Color(0xFF7F8C8D), Offset(tx + 8f * s, surfaceY - 6f * s), Size(22f * s, 8f * s))
+            drawCircle(Color(0xFFF1C40F), radius = 2.5f * s, center = Offset(tx + 14f * s, surfaceY - 4f * s))
+            drawOval(Color(0xFFD35400), Offset(tx + 34f * s, surfaceY - 8f * s), Size(12f * s, 7f * s))
+            drawRect(Color(0xFFF39C12), Offset(tx + 50f * s, surfaceY - 10f * s), Size(6f * s, 10f * s))
+            drawCircle(Color.White, radius = 3.5f * s, center = Offset(tx + 53f * s, surfaceY - 11f * s))
+        }
+    }
+
+    // =========================================================================
+    // LAYER 6: ATMOSPHERIC LIGHTING & VIGNETTE
+    // =========================================================================
+    drawCircle(
+        Color(1f, 0.45f, 0f, fireFlicker * 0.08f),
+        radius = W * 0.45f,
+        center = Offset(fpX + fpW / 2f, floorY)
+    )
+
+    drawRect(
+        Brush.radialGradient(
+            colors = listOf(Color.Transparent, Color(0x99000000)),
+            center = Offset(W / 2f, H / 2f),
+            radius = W * 0.72f
         ),
         size = size
     )
@@ -3012,95 +3417,7 @@ fun InnBackground() {
     )
 
     Canvas(Modifier.fillMaxSize()) {
-        val W = size.width
-        val H = size.height
-
-        drawRect(Color(0xFF120A04), size = size)
-
-        val beamColor = Color(0xFF1A0E06)
-        val beamHighlight = Color(0xFF2A1A0A)
-        listOf(0.0f, 0.18f, 0.36f).forEach { yFrac ->
-            drawRect(beamColor, Offset(0f, H * yFrac), Size(W, H * 0.045f))
-            drawRect(beamHighlight, Offset(0f, H * yFrac), Size(W, H * 0.008f))
-        }
-
-        val wallH = H * 0.62f
-        val stoneW = W / 18f
-        val stoneH = H * 0.048f
-        var wy = H * 0.05f
-        var wrow = 0
-        while (wy < wallH) {
-            val offX = if (wrow % 2 == 0) 0f else stoneW / 2f
-            var wx = offX
-            while (wx < W) {
-                val c = if ((wrow + wx.toInt()) % 3 == 0) Color(0xFF1E1208) else Color(0xFF180E06)
-                drawRect(c, Offset(wx, wy), Size(stoneW - 2f, stoneH - 2f))
-                wx += stoneW
-            }
-            wy += stoneH
-            wrow++
-        }
-
-        val floorY = H * 0.62f
-        var py = floorY
-        var plankRow = 0
-        while (py < H) {
-            val pc = if (plankRow % 2 == 0) Color(0xFF2A1A08) else Color(0xFF241608)
-            drawRect(pc, Offset(0f, py), Size(W, H * 0.058f))
-            drawRect(Color(0xFF0A0604), Offset(0f, py + H * 0.055f), Size(W, H * 0.003f))
-            var gx = 80f + (plankRow * 120f) % W
-            while (gx < W) {
-                drawRect(Color(0xFF1A0E04), Offset(gx, py), Size(2f, H * 0.055f))
-                gx += W / 6f
-            }
-            py += H * 0.058f
-            plankRow++
-        }
-
-        val fpX = W * 0.04f
-        val fpY = H * 0.3f
-        val fpW = W * 0.12f
-        val fpH = H * 0.35f
-        drawRect(Color(0xFF2A2018), Offset(fpX - 10f, fpY - 10f), Size(fpW + 20f, fpH + 10f))
-        drawRect(Color(0xFF1A1410), Offset(fpX, fpY), Size(fpW, fpH))
-        drawCircle(
-            Color(1f, 0.35f, 0f, fireFlicker * 0.35f),
-            radius = W * 0.22f, center = Offset(fpX + fpW / 2f, fpY + fpH * 0.5f)
-        )
-        drawCircle(
-            Color(1f, 0.6f, 0f, fireFlicker * 0.25f),
-            radius = W * 0.14f, center = Offset(fpX + fpW / 2f, fpY + fpH * 0.5f)
-        )
-        val fc = fpX + fpW / 2f
-        val fb = fpY + fpH * 0.85f
-        drawRect(Color(1f, 0.4f, 0f, fireFlicker), Offset(fc - 20f, fb - 50f), Size(40f, 50f))
-        drawRect(Color(1f, 0.6f, 0f, fireFlicker2), Offset(fc - 14f, fb - 70f), Size(28f, 55f))
-        drawRect(Color(1f, 0.85f, 0.1f, fireFlicker), Offset(fc - 8f, fb - 85f), Size(16f, 50f))
-        drawRect(Color(1f, 1f, 0.5f, fireFlicker2 * 0.8f), Offset(fc - 4f, fb - 95f), Size(8f, 30f))
-        repeat(5) { i ->
-            drawCircle(
-                Color(1f, 0.5f, 0f, fireFlicker * 0.9f),
-                radius = 3f, center = Offset(fpX + fpW * 0.2f + i * fpW * 0.15f, fpY + fpH * 0.92f)
-            )
-        }
-        drawRect(Color(0xFF3A2810), Offset(fpX - 15f, fpY - 20f), Size(fpW + 30f, 15f))
-        drawRect(Color(0xFF4A3418), Offset(fpX - 15f, fpY - 25f), Size(fpW + 30f, 8f))
-
-        drawRect(Color(1f, 0.35f, 0f, fireFlicker * 0.06f), size = size)
-
-        val lx = W * 0.88f
-        val ly = H * 0.28f
-        drawRect(Color(0xFF444422), Offset(lx - 6f, ly - 20f), Size(12f, 4f))
-        drawRect(Color(0xFF333311), Offset(lx - 4f, ly - 16f), Size(8f, 24f))
-        drawRect(Color(1f, 0.8f, 0.2f, fireFlicker * 0.5f), Offset(lx - 2f, ly - 12f), Size(4f, 16f))
-        drawCircle(Color(1f, 0.7f, 0f, fireFlicker * 0.3f), radius = 50f, center = Offset(lx, ly))
-
-        drawRect(
-            Brush.radialGradient(
-                listOf(Color.Transparent, Color(0xBB000000)),
-                Offset(W / 2f, H / 2f), W * 0.72f
-            ), size = size
-        )
+        drawTavernInterior(fireFlicker = fireFlicker, fireFlicker2 = fireFlicker2)
     }
 }
 

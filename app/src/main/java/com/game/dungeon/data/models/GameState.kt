@@ -65,7 +65,8 @@ data class GameState(
     val petLevels: Map<PetType, Int> = emptyMap(),
     val petExp: Map<PetType, Int> = emptyMap(),
     val bossesDefeatedNames: Set<String> = emptySet(),
-    val notifiedHiddenJobs: Set<HeroClass> = emptySet()
+    val notifiedHiddenJobs: Set<HeroClass> = emptySet(),
+    val lastPartyClasses: List<HeroClass> = emptyList()
 ) {
     val maxGil: Long get() = 10_000L + (vaultLevel * 50_000L)
     val upgradeDiscount: Float get() = planningLevel * 0.05f

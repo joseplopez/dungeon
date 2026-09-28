@@ -34,13 +34,18 @@ data class RelicBonuses(
     val petCritChanceBonus: Int get() = if (selectedPet == PetType.CACTUAR) PetType.CACTUAR.bonusValue.toInt() else 0
     val petCritDamageBonus: Int get() = if (selectedPet == PetType.TONBERRY) PetType.TONBERRY.bonusValue.toInt() else 0
 
+    val effectiveDoubleLootChance: Float get() {
+        val raw = doubleLootChance.toFloat()
+        return if (raw > 0f) (100f * raw / (raw + 40f)).coerceAtMost(75f) else 0f
+    }
+
     companion object {
         fun from(gs: GameState) = RelicBonuses(
             attackBonus = gs.attackRelic * 2,
-            hpBonus = gs.hpRelic * 15,
+            hpBonus = gs.hpRelic * 60 + (gs.hpRelic * gs.hpRelic * 2),
             mpBonus = gs.mpRelic * 10,
             magicBonus = gs.magicRelic * 2,
-            defenseBonus = gs.defenseRelic * 2,
+            defenseBonus = gs.defenseRelic * 8 + (gs.defenseRelic * gs.defenseRelic),
             goldMultiplier = (1f + gs.goldRelic * 0.05f) + (if (gs.selectedPet == PetType.CAT) PetType.CAT.bonusValue else 0f),
             magiciteChanceBonus = gs.magiciteRelic * 0.01f,
             expMultiplier = gs.expMultiplier,

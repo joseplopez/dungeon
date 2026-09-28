@@ -286,7 +286,7 @@ fun DragoonSpritePreview() {
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
-                text = "Refactored Dragoon (15x26 Exact Grid)",
+                text = "Refactored Dragoon (18x26 Exact Grid)",
                 color = Color(0xFFFFD700),
                 fontSize = 18.sp,
                 modifier = Modifier.padding(bottom = 12.dp)
@@ -350,7 +350,7 @@ fun SummonerSpritePreview() {
     ) {
         Column(horizontalAlignment = Alignment.CenterHorizontally) {
             Text(
-                text = "Refactored Summoner (16x25 Grid)",
+                text = "Refactored Summoner (32x32 High-Detail Grid)",
                 color = Color(0xFFFFD700),
                 fontSize = 18.sp,
                 modifier = Modifier.padding(bottom = 12.dp)

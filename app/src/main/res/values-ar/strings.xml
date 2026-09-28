@@ -403,4 +403,9 @@
     <string name="slot_accessory_2">ملحق 2</string>
     <string name="inventory_chest_title">صندوق المخزون</string>
     <string name="inventory_count_format">المخزون: %1$d</string>
+
+    <!-- Inn QoL Buttons -->
+    <string name="btn_auto_equip">تجهيز تلقائي</string>
+    <string name="btn_rehire_party">إعادة توظيف (%1$dG)</string>
+    <string name="btn_rehire_no_run">قم بجولة واحدة!</string>
 </resources>

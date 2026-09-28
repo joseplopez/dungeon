@@ -110,18 +110,29 @@ fun RefinedOption3GuildStage(
                                 .border(1.dp, GuildGoldAccent.copy(alpha = 0.4f)),
                             contentAlignment = Center
                         ) {
-                            Canvas(Modifier.fillMaxSize()) {
-                                drawDetailedInn()
-                            }
-
-                            // Moving candidate sprites animation
                             val infiniteTransition = rememberInfiniteTransition(label = "patrol")
+                            val fireFlicker by infiniteTransition.animateFloat(
+                                initialValue = 0.75f,
+                                targetValue = 1.0f,
+                                animationSpec = infiniteRepeatable(tween(120, easing = LinearEasing), RepeatMode.Reverse),
+                                label = "fire_flicker"
+                            )
+                            val fireFlicker2 by infiniteTransition.animateFloat(
+                                initialValue = 0.8f,
+                                targetValue = 1.0f,
+                                animationSpec = infiniteRepeatable(tween(80, easing = LinearEasing), RepeatMode.Reverse),
+                                label = "fire_flicker2"
+                            )
                             val walkTime by infiniteTransition.animateFloat(
                                 initialValue = 0f,
                                 targetValue = 6.28f,
                                 animationSpec = infiniteRepeatable(tween(4500, easing = LinearEasing)),
                                 label = "walk"
                             )
+
+                            Canvas(Modifier.fillMaxSize()) {
+                                drawTavernInterior(fireFlicker = fireFlicker, fireFlicker2 = fireFlicker2)
+                            }
 
                             val scrollState = rememberScrollState()
 

@@ -44,6 +44,16 @@ data class Item(
             relicBonuses: RelicBonuses? = null,
             minRarity: Rarity = Rarity.COMMON
         ): Item {
+            return random(floor, context, relicBonuses, minRarity, dimension = 1)
+        }
+
+        fun random(
+            floor: Int,
+            context: Context,
+            relicBonuses: RelicBonuses? = null,
+            minRarity: Rarity = Rarity.COMMON,
+            dimension: Int = 1
+        ): Item {
             // Magic Shop influence: Increase higher rarity odds by 1% per level
             val msLevel = relicBonuses?.magicShopLevel ?: 0
             val roll = (1..100).random()
@@ -61,13 +71,37 @@ data class Item(
             
             val slot = ItemSlot.entries.random()
             val id = UUID.randomUUID().toString()
-            
-            val (nameRes, emoji) = when (slot) {
-                ItemSlot.WEAPON -> R.string.item_sword to "⚔️"
-                ItemSlot.ARMOR -> R.string.item_plate to "🛡️"
-                ItemSlot.SHIELD -> R.string.item_shield to "🛡️"
-                ItemSlot.ACCESSORY -> R.string.item_ring to "💍"
+
+            // Equipment category sub-types based on unlocked Dimension
+            val gearCategory = when (slot) {
+                ItemSlot.WEAPON -> when {
+                    dimension >= 4 -> listOf("Dimensional Blade" to "⚔️", "Void Scythe" to "🌌", "Astral Wand" to "🌟").random()
+                    dimension == 3 -> listOf("Katana" to "⚔️", "Greatsword" to "🗡️", "Scythe" to "🌾", "Starlight Wand" to "🪄").random()
+                    dimension == 2 -> listOf("Battle Axe" to "🪓", "Hunting Bow" to "🏹", "Knight Lance" to "🗡️").random()
+                    else -> listOf("Sword" to "⚔️", "Dagger" to "🗡️", "Staff" to "🪄").random()
+                }
+                ItemSlot.ARMOR -> when {
+                    dimension >= 4 -> listOf("Dimensional Cuirass" to "🌌", "Astral Vestment" to "🌟").random()
+                    dimension == 3 -> listOf("Dragon Scale Armor" to "🐉", "Archmage Robes" to "🔮").random()
+                    dimension == 2 -> listOf("Scale Mail" to "🦺", "Heavy Cuirass" to "🛡️").random()
+                    else -> listOf("Plate Armor" to "🛡️", "Leather Helm" to "🪖", "Cloth Robe" to "👘").random()
+                }
+                ItemSlot.SHIELD -> when {
+                    dimension >= 4 -> listOf("Dimensional Barrier" to "🌀", "Void Aegis" to "🛡️").random()
+                    dimension == 3 -> listOf("Force Shield" to "🛡️", "Mirror Shield" to "🪞").random()
+                    dimension == 2 -> listOf("Aegis Shield" to "🛡️", "Tower Shield" to "🛡️").random()
+                    else -> listOf("Round Shield" to "🛡️", "Guard Shield" to "🔰").random()
+                }
+                ItemSlot.ACCESSORY -> when {
+                    dimension >= 4 -> listOf("Dimensional Core" to "🌌", "Cosmic Crest" to "👑").random()
+                    dimension == 3 -> listOf("Relic Amulet" to "🧿", "Cosmic Charm" to "🔮").random()
+                    dimension == 2 -> listOf("Ruby Bracelet" to "📿", "Jade Earring" to "💎").random()
+                    else -> listOf("Copper Ring" to "💍", "Silver Pendant" to "📿").random()
+                }
             }
+
+            val categoryName = gearCategory.first
+            val emoji = gearCategory.second
 
             val rarityRes = when (rarity) {
                 Rarity.COMMON -> R.string.item_rarity_common
@@ -76,7 +110,8 @@ data class Item(
                 Rarity.LEGENDARY -> R.string.item_rarity_legendary
             }
             
-            val fullName = context.getString(R.string.item_name_template, context.getString(rarityRes), context.getString(nameRes))
+            val rarityStr = try { context.getString(rarityRes) } catch (_: Exception) { null } ?: rarity.name
+            val fullName = try { context.getString(R.string.item_name_template, rarityStr, categoryName) } catch (_: Exception) { null } ?: "$rarityStr $categoryName"
             
             val bonusMult = when (rarity) {
                 Rarity.COMMON -> 1f
@@ -85,9 +120,10 @@ data class Item(
                 Rarity.LEGENDARY -> 8f
             }
             
-            // Armory influence: Increase base stats by %
+            // Armory & Dimension influence: Increase base stats
             val statBonus = 1f + (relicBonuses?.itemStatBonus ?: 0f)
-            val finalMult = bonusMult * statBonus
+            val dimBonus = 1f + (dimension - 1) * 0.4f
+            val finalMult = bonusMult * statBonus * dimBonus
 
             var critChance = 0
             var critDmg = 0
@@ -101,11 +137,11 @@ data class Item(
                 name = fullName,
                 slot = slot,
                 rarity = rarity,
-                attackBonus = if (slot == ItemSlot.WEAPON) ((1 + floor / 5) * finalMult).toInt() else 0,
-                defenseBonus = if (slot == ItemSlot.ARMOR || slot == ItemSlot.SHIELD) ((1 + floor / 10) * finalMult).toInt() else 0,
-                magicBonus = if (slot == ItemSlot.ACCESSORY) ((1 + floor / 10) * finalMult).toInt() else 0,
-                hpBonus = ((floor / 2) * finalMult).toInt(),
-                mpBonus = if (slot == ItemSlot.ACCESSORY) ((1 + floor / 15) * finalMult).toInt() else 0,
+                attackBonus = if (slot == ItemSlot.WEAPON) ((1 + floor / 4) * finalMult).toInt() else 0,
+                defenseBonus = if (slot == ItemSlot.ARMOR || slot == ItemSlot.SHIELD) ((2 + floor / 3) * finalMult).toInt() else 0,
+                magicBonus = if (slot == ItemSlot.ACCESSORY) ((1 + floor / 8) * finalMult).toInt() else 0,
+                hpBonus = ((5 + floor * 1.2f) * finalMult).toInt(),
+                mpBonus = if (slot == ItemSlot.ACCESSORY) ((1 + floor / 10) * finalMult).toInt() else 0,
                 critChanceBonus = critChance,
                 critDamageBonus = critDmg,
                 emoji = emoji,

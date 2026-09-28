@@ -13,7 +13,6 @@ import com.game.dungeon.data.repository.LeaderboardRepository
 import com.google.firebase.analytics.FirebaseAnalytics
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -48,7 +47,8 @@ object AppModule {
             GameDatabase.MIGRATION_20_21,
             GameDatabase.MIGRATION_21_22,
             GameDatabase.MIGRATION_22_23,
-            GameDatabase.MIGRATION_23_24
+            GameDatabase.MIGRATION_23_24,
+            GameDatabase.MIGRATION_24_25
         )
         .fallbackToDestructiveMigration(true) // Keep as safety, but explicit migrations prioritized
         .build()

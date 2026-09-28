@@ -382,15 +382,15 @@ fun DrawScope.drawPaladin() {
         "KYYRYYKFFFFFFKKK", // 12
         ".KYYYYKFFFFFBFFK", // 13
         "..KYYK.KPFBFFFFK", // 14
-        "..KKK..KPPBFFFFK", // 15
-        ".KYYYK.KPBBBFFFK", // 16
-        "KYYYYK.KBBBBBFK.", // 17
-        "KYYYMK..KBBBBFK.", // 18
-        "KYYYMMK.KBBBBK..", // 19
-        "KYYYYMMK.KBBBK..", // 20
-        "KYYYYRRKK.KBBK..", // 21
-        ".KYYYYRRK..KBK..", // 22
-        "..KKKKKKK...KK.."  // 23
+        "..KKKKPPBFFFFK", // 15
+        ".KYYYKKPBBBFFFK", // 16
+        ".KYYYYKKBBBBBFK.", // 17
+        "..KYYYMKKBBBBFK.", // 18
+        "..KYYYMMKKBBBBK..", // 19
+        "..KYYYYMMKKBBBK..", // 20
+        "..KYYYYRRKKKBBK..", // 21
+        "..KYYYYRRKKBK..", // 22
+        "...KKKKKKKKK.."  // 23
     )
 
     val palette = mapOf(
@@ -420,13 +420,13 @@ fun DrawScope.drawNinja() {
     val matrix = arrayOf(
         "..K.....KKKKKK..", // 0
         ".KCK...KCCCCCCK.", // 1
-        ".KCK..KCNNNNCCK.", // 2
-        "KKCCKKCNNNNNNNK.", // 3
-        "KCCCCLLLNNNNTSK.", // 4
-        ".KCCCCCNTTTTTSK.", // 5
-        ".KCCCCCCSTTTTSK.", // 6
-        "KCCCCCCCCCNCCKK.", // 7
-        "KCNCCCCCCVKKK...", // 8
+        "..CK..KCNNNNCCK.", // 2
+        "...CKKCNNNNNNNK.", // 3
+        "....CLLLNNNNTSK.", // 4
+        "....CCCNTTTTTSK.", // 5
+        "...KCCCCSTTTTSK.", // 6
+        "..KKKCCCCCNCCKK.", // 7
+        ".KCNCCCCCVKKK...", // 8
         "KCNCCCCCCLKCK...", // 9
         "KCNNNNCCCCKCK...", // 10
         ".KNNNNNCCCKCK...", // 11
@@ -461,32 +461,32 @@ fun DrawScope.drawNinja() {
 
 fun DrawScope.drawDragoon() {
     val matrix = arrayOf(
-        "..KK...........", // 0
-        ".KLK...KK......", // 1
-        "KLPK..KPBK.....", // 2
-        ".KLPKKLLPPK....", // 3
-        "..KLPLLWPPK....", // 4
-        ".KLPLLLLPPK....", // 5
-        ".KPLLYYPBK.....", // 6
-        "KLPPYYBBK...K..", // 7
-        "KLPKKKKKKKKPLK.", // 8
-        ".KLPKHHHK.KPLK.", // 9
-        ".KPBKSSK.KPLK..", // 10
-        ".KPBKKKK.KK....", // 11
-        "KLPKPPBK.KPPLK.", // 12
-        "KLPKBPBK.KSSK..", // 13
-        "KPPKBPBK.KPSSK.", // 14
-        "KRRKBPSSK.KPPK.", // 15
-        ".KKBBSSKKK.....", // 16
-        "..KKKPBKK......", // 17
-        "...KLPRBK......", // 18
-        "...KLPRBK......", // 19
-        "...KLPBBK......", // 20
-        "...KLLPBKK.....", // 21
-        "...KLLPBPK.....", // 22
-        "...KPPPBYYK....", // 23
-        "...KYYKYYYK....", // 24
-        "...KKKKKKKK...."  // 25
+        "...KK.............", // 0
+        "..KLLPK...KK......", // 1
+        ".KLLPPK..KPPK.....", // 2
+        "..KLLPPKKLLPPK....", // 3
+        "..KLLPLLWPPPPK....", // 4
+        ".KLLPLLLLPPPPK....", // 5
+        ".KPLLYYYYPPBK.....", // 6
+        "KLLPPYYYYBBK..KPLK", // 7
+        "KLLPKKKKKKKKK.KPLK", // 8
+        "..KLLPKHHSSK..KPLK", // 9
+        "...KLPKPKSSSK.KPLK", // 10
+        "...KLPKKKKKK..KPLK", // 11
+        "KLLPKLPPWBBK.KPPLK", // 12
+        "KLLPKBLLPPPBBKKSSK", // 13
+        "KPLLKYYPPYYBKKPSSK", // 14
+        "KRRKKBPPYYSSBKKPPK", // 15
+        ".KRRKLLPPBBSSBKKK.", // 16
+        "..KLLPBK..KLLPBBK.", // 17
+        "..KLLPBK..KLLPBBK.", // 18
+        "...KLLPBK..KLLPBK.", // 19
+        "...KLPBK...KLLPBK.", // 20
+        "...KLLPBK..KLLPBBK", // 21
+        "..KYLPBK..KYYPBBK.", // 22
+        "..KYYPBK..KYYPBBK.", // 23
+        "..KYYPBK..KYYPBBK.", // 24
+        "..KKKKKK..KKKKKKK."  // 25
     )
 
     val palette = mapOf(
@@ -575,17 +575,17 @@ fun DrawScope.drawSummoner() {
         ".KGEEEEPPPEEEDK.", // 11
         ".KGEEEEPPEEEEDK.", // 12
         ".KDEEEEPPEEEEDK.", // 13
-        ".KDEEEEPCCEEEDK.", // 14
-        ".KDEEEEPCCEEEDK.", // 15
-        ".KDEEEP.CCEEEDK.", // 16
-        ".KDEEP..CCEEEDK.", // 17
-        ".KDEP...CCEEEK..", // 18
-        ".KDEP...CCEEEK..", // 19
-        ".KDEK...CCEEEK..", // 20
-        ".KYOK...CCEEEK..", // 21
-        ".KYOK...CCEEEDK.", // 22
-        ".KEEEK..KCCCCK..", // 23
-        "..KKKK...KKKK..."  // 24
+        ".KDEEEEPPEEEEDK.", // 14
+        ".KDEEEEEEEEEEDK.", // 15
+        ".KDEEEDEEEEEEK..", // 16
+        ".KDE.EDPPEEPPK..", // 17
+        ".KDE.EKPPDDPPK..", // 18
+        ".KDE..KYYKKYYK..", // 19
+        ".KDE..KYOKKYOK..", // 20
+        ".KDK..KYOKKYOK..", // 21
+        "..KK..KYYKKYYK..", // 22
+        ".....KKKK.KKKKK.", // 23
+        "................"  // 24
     )
 
     val palette = mapOf(

@@ -7,7 +7,7 @@ import com.game.dungeon.R
 import java.util.UUID
 
 @Entity(tableName = "heroes")
-data class Hero(
+class Hero(
     @PrimaryKey val id: String = UUID.randomUUID().toString(),
     val heroClass: HeroClass,
     val name: String,             // random FF-style name from a list
@@ -33,6 +33,115 @@ data class Hero(
     @Ignore var mpBonus: Int = 0
     @Ignore var critChance: Int = 5
     @Ignore var critDamage: Int = 50
+
+    fun copy(
+        id: String = this.id,
+        heroClass: HeroClass = this.heroClass,
+        name: String = this.name,
+        currentHp: Int = this.currentHp,
+        currentMp: Int = this.currentMp,
+        level: Int = this.level,
+        exp: Int = this.exp,
+        expToNextLevel: Int = this.expToNextLevel,
+        abilityCharge: Int = this.abilityCharge,
+        aiPriority: AIPriority = this.aiPriority,
+        weaponId: String? = this.weaponId,
+        armorId: String? = this.armorId,
+        shieldId: String? = this.shieldId,
+        accessory1Id: String? = this.accessory1Id,
+        accessory2Id: String? = this.accessory2Id,
+        isInParty: Boolean = this.isInParty,
+        partyPosition: Int = this.partyPosition
+    ): Hero {
+        val newHero = Hero(
+            id = id,
+            heroClass = heroClass,
+            name = name,
+            currentHp = currentHp,
+            currentMp = currentMp,
+            level = level,
+            exp = exp,
+            expToNextLevel = expToNextLevel,
+            abilityCharge = abilityCharge,
+            aiPriority = aiPriority,
+            weaponId = weaponId,
+            armorId = armorId,
+            shieldId = shieldId,
+            accessory1Id = accessory1Id,
+            accessory2Id = accessory2Id,
+            isInParty = isInParty,
+            partyPosition = partyPosition
+        )
+        newHero.attackBonus = this.attackBonus
+        newHero.defenseBonus = this.defenseBonus
+        newHero.magicBonus = this.magicBonus
+        newHero.hpBonus = this.hpBonus
+        newHero.mpBonus = this.mpBonus
+        newHero.critChance = this.critChance
+        newHero.critDamage = this.critDamage
+        return newHero
+    }
+
+    override fun equals(other: Any?): Boolean {
+        if (this === other) return true
+        if (other !is Hero) return false
+        return id == other.id &&
+                heroClass == other.heroClass &&
+                name == other.name &&
+                currentHp == other.currentHp &&
+                currentMp == other.currentMp &&
+                level == other.level &&
+                exp == other.exp &&
+                expToNextLevel == other.expToNextLevel &&
+                abilityCharge == other.abilityCharge &&
+                aiPriority == other.aiPriority &&
+                weaponId == other.weaponId &&
+                armorId == other.armorId &&
+                shieldId == other.shieldId &&
+                accessory1Id == other.accessory1Id &&
+                accessory2Id == other.accessory2Id &&
+                isInParty == other.isInParty &&
+                partyPosition == other.partyPosition &&
+                attackBonus == other.attackBonus &&
+                defenseBonus == other.defenseBonus &&
+                magicBonus == other.magicBonus &&
+                hpBonus == other.hpBonus &&
+                mpBonus == other.mpBonus &&
+                critChance == other.critChance &&
+                critDamage == other.critDamage
+    }
+
+    override fun hashCode(): Int {
+        var result = id.hashCode()
+        result = 31 * result + heroClass.hashCode()
+        result = 31 * result + name.hashCode()
+        result = 31 * result + currentHp
+        result = 31 * result + currentMp
+        result = 31 * result + level
+        result = 31 * result + exp
+        result = 31 * result + expToNextLevel
+        result = 31 * result + abilityCharge
+        result = 31 * result + aiPriority.hashCode()
+        result = 31 * result + (weaponId?.hashCode() ?: 0)
+        result = 31 * result + (armorId?.hashCode() ?: 0)
+        result = 31 * result + (shieldId?.hashCode() ?: 0)
+        result = 31 * result + (accessory1Id?.hashCode() ?: 0)
+        result = 31 * result + (accessory2Id?.hashCode() ?: 0)
+        result = 31 * result + isInParty.hashCode()
+        result = 31 * result + partyPosition
+        result = 31 * result + attackBonus
+        result = 31 * result + defenseBonus
+        result = 31 * result + magicBonus
+        result = 31 * result + hpBonus
+        result = 31 * result + mpBonus
+        result = 31 * result + critChance
+        result = 31 * result + critDamage
+        return result
+    }
+
+    override fun toString(): String {
+        return "Hero(id='$id', heroClass=$heroClass, name='$name', currentHp=$currentHp, currentMp=$currentMp, level=$level, exp=$exp, expToNextLevel=$expToNextLevel, abilityCharge=$abilityCharge, aiPriority=$aiPriority, weaponId=$weaponId, armorId=$armorId, shieldId=$shieldId, accessory1Id=$accessory1Id, accessory2Id=$accessory2Id, isInParty=$isInParty, partyPosition=$partyPosition, attackBonus=$attackBonus, defenseBonus=$defenseBonus, magicBonus=$magicBonus, hpBonus=$hpBonus, mpBonus=$mpBonus, critChance=$critChance, critDamage=$critDamage)"
+    }
 
     @get:Ignore
     val isAlive: Boolean get() = currentHp > 0
@@ -76,7 +185,7 @@ data class Hero(
             return if (level < 90) heroClass.baseHp + (level - 1) * 2 
             else 500 + (level - 90) * 150 // Massive spike
         }
-        return heroClass.baseHp + (level - 1) * (heroClass.baseHp / 10).coerceAtLeast(5)
+        return heroClass.baseHp + (level - 1) * (heroClass.baseHp / 4).coerceAtLeast(12) + ((level - 1) * (level - 1) / 10)
     }
     val baseMaxMp: Int get() {
         if (heroClass == HeroClass.ONION_KNIGHT) {
@@ -104,7 +213,7 @@ data class Hero(
             return if (level < 90) heroClass.baseDefense + (level - 1) 
             else 100 + (level - 90) * 30
         }
-        return heroClass.baseDefense + (level - 1) * (heroClass.baseDefense / 10).coerceAtLeast(1)
+        return heroClass.baseDefense + (level - 1) * (heroClass.baseDefense / 8).coerceAtLeast(2)
     }
 
     val maxHp: Int get() = baseMaxHp + hpBonus
@@ -129,13 +238,16 @@ data class Hero(
         // Blue Mage Lore Bonus: +2 to all stats per unique boss defeated
         val loreBonus = if (heroClass == HeroClass.BLUE_MAGE) (relicBonuses?.bossesDefeatedCount ?: 0) * 2 else 0
 
+        val rawCrit = 5 + equippedItems.sumOf { it.critChanceBonus } + (relicBonuses?.critChanceBonus ?: 0) + masteryCritChance + petCritChance
+        val finalCrit = (100f * rawCrit / (rawCrit + 50f)).toInt().coerceAtMost(85)
+
         return mapOf(
             "HP" to baseMaxHp + equippedItems.sumOf { it.hpBonus } + (relicBonuses?.hpBonus ?: 0) + masteryHp + (loreBonus * 5),
             "MP" to baseMaxMp + equippedItems.sumOf { it.mpBonus } + (relicBonuses?.mpBonus ?: 0) + masteryMp + (loreBonus * 2),
             "ATK" to baseAttack + equippedItems.sumOf { it.attackBonus } + (relicBonuses?.attackBonus ?: 0) + masteryAtk + loreBonus,
             "DEF" to baseDefense + equippedItems.sumOf { it.defenseBonus } + (relicBonuses?.defenseBonus ?: 0) + masteryDef + loreBonus,
             "MAG" to baseMagic + equippedItems.sumOf { it.magicBonus } + (relicBonuses?.magicBonus ?: 0) + masteryMag + loreBonus,
-            "CRIT_CHANCE" to 5 + equippedItems.sumOf { it.critChanceBonus } + (relicBonuses?.critChanceBonus ?: 0) + masteryCritChance + petCritChance,
+            "CRIT_CHANCE" to finalCrit,
             "CRIT_DAMAGE" to 50 + equippedItems.sumOf { it.critDamageBonus } + (relicBonuses?.critDamageBonus ?: 0) + masteryCritDmg + petCritDmg
         )
     }

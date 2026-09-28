@@ -403,4 +403,9 @@
     <string name="slot_accessory_2">Accesorio 2</string>
     <string name="inventory_chest_title">COFRE DE INVENTARIO</string>
     <string name="inventory_count_format">Inventario: %1$d</string>
+
+    <!-- Inn QoL Buttons -->
+    <string name="btn_auto_equip">AUTOEQUIPAR</string>
+    <string name="btn_rehire_party">RECONTRATAR (%1$dG)</string>
+    <string name="btn_rehire_no_run">¡HAZ UNA RUN!</string>
 </resources>

@@ -30,7 +30,9 @@ class MigrationTest {
                 GameDatabase.MIGRATION_19_20,
                 GameDatabase.MIGRATION_20_21,
                 GameDatabase.MIGRATION_21_22,
-                GameDatabase.MIGRATION_22_23
+                GameDatabase.MIGRATION_22_23,
+                GameDatabase.MIGRATION_23_24,
+                GameDatabase.MIGRATION_24_25,
             )
             .build()
             

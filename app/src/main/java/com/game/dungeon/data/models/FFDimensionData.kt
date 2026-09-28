@@ -18,19 +18,19 @@ object FFDimensionData {
                 FFBiome(R.string.biome_crystal_tower, 91..1000, BiomeType.CRYSTAL_TOWER)
             ),
             enemies = listOf(
-                FFEnemyTemplate(R.string.enemy_goblin, "👺", 1, 15, gilReward = 8),
-                FFEnemyTemplate(R.string.enemy_wolf, "🐺", 1, 20, gilReward = 10),
-                FFEnemyTemplate(R.string.enemy_pirate, "🏴‍☠️", 5, 25, gilReward = 15),
-                FFEnemyTemplate(R.string.enemy_ogre, "👹", 15, 40, hpMult=1.5f, gilReward = 25),
-                FFEnemyTemplate(R.string.enemy_evil_eye, "👁️", 20, 50, atkMult=1.3f, gilReward = 20),
+                FFEnemyTemplate(R.string.enemy_goblin, "👺", 1, 20, gilReward = 8),
+                FFEnemyTemplate(R.string.enemy_wolf, "🐺", 1, 25, gilReward = 10),
+                FFEnemyTemplate(R.string.enemy_pirate, "🏴‍☠️", 5, 35, gilReward = 15),
+                FFEnemyTemplate(R.string.enemy_ogre, "👹", 15, 50, hpMult=1.5f, gilReward = 25),
+                FFEnemyTemplate(R.string.enemy_evil_eye, "👁️", 20, 60, atkMult=1.3f, gilReward = 20),
                 FFEnemyTemplate(R.string.enemy_garland, "⚔️", 30, 30, hpMult=3f, atkMult=2f, gilReward=200, isBoss=true),
-                FFEnemyTemplate(R.string.enemy_red_flan, "🍮", 31, 55, gilReward = 22),
-                FFEnemyTemplate(R.string.enemy_bomb, "💣", 40, 70, atkMult=1.5f, gilReward = 30),
-                FFEnemyTemplate(R.string.enemy_sahagin, "🐟", 51, 80, gilReward = 32),
-                FFEnemyTemplate(R.string.enemy_cockatrice, "🐓", 60, 85, gilReward = 35),
-                FFEnemyTemplate(R.string.enemy_lich, "💀", 90, 90, hpMult=4f, atkMult=2.5f, gilReward=500, isBoss=true),
-                FFEnemyTemplate(R.string.enemy_kraken, "🐙", 91, 91, hpMult=4f, atkMult=2.5f, gilReward=500, isBoss=true),
-                FFEnemyTemplate(R.string.enemy_tiamat, "🐲", 92, 92, hpMult=4f, atkMult=2.5f, gilReward=500, isBoss=true),
+                FFEnemyTemplate(R.string.enemy_red_flan, "🍮", 31, 70, gilReward = 22),
+                FFEnemyTemplate(R.string.enemy_bomb, "💣", 40, 85, atkMult=1.5f, gilReward = 30),
+                FFEnemyTemplate(R.string.enemy_lich, "💀", 60, 60, hpMult=4f, atkMult=2.5f, gilReward=500, isBoss=true),
+                FFEnemyTemplate(R.string.enemy_sahagin, "🐟", 51, 99, gilReward = 32),
+                FFEnemyTemplate(R.string.enemy_cockatrice, "🐓", 60, 99, gilReward = 35),
+                FFEnemyTemplate(R.string.enemy_kraken, "🐙", 80, 80, hpMult=4.5f, atkMult=2.5f, gilReward=600, isBoss=true),
+                FFEnemyTemplate(R.string.enemy_tiamat, "🐲", 90, 90, hpMult=5f, atkMult=2.8f, gilReward=800, isBoss=true),
                 FFEnemyTemplate(R.string.enemy_chaos, "😱", 100, 100, hpMult=8f, atkMult=3f, gilReward=2000, isBoss=true)
             )
         ),
@@ -40,19 +40,19 @@ object FFDimensionData {
             mainColor = 0xFF6B1A1A, accentColor = 0xFFCC4444,
             storyRes = R.string.dim2_story,
             biomes = listOf(
-                FFBiome(R.string.biome_altair, 1..20, BiomeType.CORNELIA_CASTLE),
-                FFBiome(R.string.biome_kashuan, 21..50, BiomeType.CHAOS_SHRINE),
-                FFBiome(R.string.biome_tropical_island, 51..70, BiomeType.SEA_SHRINE),
-                FFBiome(R.string.biome_pandaemonium, 71..100, BiomeType.PANDAEMONIUM)
+                FFBiome(R.string.biome_altair, 1..30, BiomeType.CORNELIA_CASTLE),
+                FFBiome(R.string.biome_kashuan, 31..80, BiomeType.CHAOS_SHRINE),
+                FFBiome(R.string.biome_tropical_island, 81..130, BiomeType.SEA_SHRINE),
+                FFBiome(R.string.biome_pandaemonium, 131..1000, BiomeType.PANDAEMONIUM)
             ),
             enemies = listOf(
-                FFEnemyTemplate(R.string.enemy_wild_rat, "🐀", 1, 15, gilReward = 10),
-                FFEnemyTemplate(R.string.enemy_black_knight, "♟️", 5, 30, hpMult=1.3f, gilReward = 20),
-                FFEnemyTemplate(R.string.enemy_sergeant, "💂", 10, 40, gilReward = 25),
-                FFEnemyTemplate(R.string.enemy_lamia, "🐍", 20, 55, atkMult=1.4f, gilReward = 35),
-                FFEnemyTemplate(R.string.enemy_adamantoise, "🐢", 40, 70, hpMult=3f, defMult=2f, gilReward = 60),
-                FFEnemyTemplate(R.string.enemy_dark_knight, "🦹", 50, 80, hpMult=2f, atkMult=1.8f, gilReward = 55),
-                FFEnemyTemplate(R.string.enemy_emperor, "👑", 100, 100, hpMult=10f, atkMult=4f, gilReward=3000, isBoss=true)
+                FFEnemyTemplate(R.string.enemy_wild_rat, "🐀", 1, 40, gilReward = 10),
+                FFEnemyTemplate(R.string.enemy_black_knight, "♟️", 5, 70, hpMult=1.3f, gilReward = 20),
+                FFEnemyTemplate(R.string.enemy_sergeant, "💂", 10, 100, gilReward = 25),
+                FFEnemyTemplate(R.string.enemy_lamia, "🐍", 20, 140, atkMult=1.4f, gilReward = 35),
+                FFEnemyTemplate(R.string.enemy_adamantoise, "🐢", 40, 180, hpMult=3f, defMult=2f, gilReward = 60),
+                FFEnemyTemplate(R.string.enemy_dark_knight, "🦹", 50, 199, hpMult=2f, atkMult=1.8f, gilReward = 55),
+                FFEnemyTemplate(R.string.enemy_emperor, "👑", 200, 200, hpMult=10f, atkMult=4f, gilReward=3000, isBoss=true)
             )
         ),
         FFDimension(
@@ -61,25 +61,62 @@ object FFDimensionData {
             mainColor = 0xFF1A4A1A, accentColor = 0xFF4488CC,
             storyRes = R.string.dim3_story,
             biomes = listOf(
-                FFBiome(R.string.biome_ur_village, 1..20, BiomeType.GENERIC_DUNGEON),
-                FFBiome(R.string.biome_crystal_tower_dim3, 21..60, BiomeType.CRYSTAL_TOWER),
-                FFBiome(R.string.biome_dark_world, 61..100, BiomeType.CHAOS_SHRINE)
+                FFBiome(R.string.biome_ur_village, 1..50, BiomeType.GENERIC_DUNGEON),
+                FFBiome(R.string.biome_crystal_tower_dim3, 51..150, BiomeType.CRYSTAL_TOWER),
+                FFBiome(R.string.biome_dark_world, 151..1000, BiomeType.CHAOS_SHRINE)
             ),
             enemies = listOf(
-                FFEnemyTemplate(R.string.enemy_goblin, "👺", 1, 20, gilReward = 12),
-                FFEnemyTemplate(R.string.enemy_djinn, "🧞", 15, 40, atkMult=1.3f, gilReward = 30),
-                FFEnemyTemplate(R.string.enemy_medusa, "🐍", 30, 60, atkMult=1.5f, gilReward = 45),
-                FFEnemyTemplate(R.string.enemy_hein, "🧙", 40, 40, hpMult=3f, gilReward=400, isBoss=true),
-                FFEnemyTemplate(R.string.enemy_tonberry, "🔪", 50, 80, hpMult=2f, atkMult=2f, gilReward = 80),
-                FFEnemyTemplate(R.string.enemy_cloud_of_darkness, "🌑", 100, 100, hpMult=12f, atkMult=4f, gilReward=4000, isBoss=true)
+                FFEnemyTemplate(R.string.enemy_goblin, "👺", 1, 60, gilReward = 12),
+                FFEnemyTemplate(R.string.enemy_djinn, "🧞", 15, 120, atkMult=1.3f, gilReward = 30),
+                FFEnemyTemplate(R.string.enemy_medusa, "🐍", 30, 180, atkMult=1.5f, gilReward = 45),
+                FFEnemyTemplate(R.string.enemy_hein, "🧙", 100, 100, hpMult=5f, gilReward=800, isBoss=true),
+                FFEnemyTemplate(R.string.enemy_tonberry, "🔪", 50, 299, hpMult=2f, atkMult=2f, gilReward = 80),
+                FFEnemyTemplate(R.string.enemy_cloud_of_darkness, "🌑", 300, 300, hpMult=12f, atkMult=4f, gilReward=4000, isBoss=true)
             )
         )
     )
 
-    fun getDimension(number: Int) = dimensions.getOrElse(number - 1) { dimensions.last() }
-    fun getEnemiesForFloor(dimension: FFDimension, floor: Int): List<FFEnemyTemplate> =
-        dimension.enemies.filter { !it.isBoss && floor in it.minFloor..it.maxFloor }
-    fun getBossForFloor(dimension: FFDimension, floor: Int): FFEnemyTemplate? =
-        dimension.bosses().find { floor == it.minFloor }
+    fun getDimension(number: Int): FFDimension {
+        val base = dimensions.getOrElse((number - 1).coerceAtLeast(0)) { dimensions.last() }
+        if (number <= dimensions.size) return base
+        // Dynamic dimension above 3: scale biomes and enemies to number * 100 max floor
+        val maxFloor = number * 100
+        return base.copy(
+            number = number,
+            biomes = base.biomes.map { it.copy(floorRange = it.floorRange.first..(if (it.floorRange.last >= 100) maxFloor else it.floorRange.last)) },
+            enemies = base.enemies.map { enemy ->
+                if (enemy.isBoss) {
+                    if (enemy.minFloor == 100 || enemy.minFloor == 200 || enemy.minFloor == 300) enemy.copy(minFloor = maxFloor, maxFloor = maxFloor)
+                    else enemy
+                } else {
+                    enemy.copy(maxFloor = (maxFloor - 1).coerceAtLeast(enemy.minFloor))
+                }
+            }
+        )
+    }
+
+    fun getEnemiesForFloor(dimension: FFDimension, floor: Int): List<FFEnemyTemplate> {
+        val matches = dimension.enemies.filter { !it.isBoss && floor in it.minFloor..it.maxFloor }
+        if (matches.isNotEmpty()) return matches
+        // Fallback: return non-boss enemies sorted by maxFloor descending so we never return empty list
+        val nonBosses = dimension.enemies.filter { !it.isBoss }
+        if (nonBosses.isNotEmpty()) {
+            val highestAvailable = nonBosses.maxByOrNull { it.maxFloor }
+            if (highestAvailable != null) return listOf(highestAvailable)
+        }
+        return listOf(FFEnemyTemplate(R.string.enemy_goblin, "👺", 1, 9999, gilReward = 15))
+    }
+
+    fun getBossForFloor(dimension: FFDimension, floor: Int): FFEnemyTemplate? {
+        val maxFloor = dimension.number * 100
+        val explicitBoss = dimension.bosses().find { floor == it.minFloor }
+        if (explicitBoss != null) return explicitBoss
+        if (floor == maxFloor || (floor % 100 == 0 && floor <= maxFloor)) {
+            return dimension.bosses().maxByOrNull { it.minFloor } ?: explicitBoss
+        }
+        return null
+    }
+
     private fun FFDimension.bosses() = enemies.filter { it.isBoss }
 }
+

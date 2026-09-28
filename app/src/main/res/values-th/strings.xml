@@ -403,4 +403,9 @@
     <string name="slot_accessory_2">เครื่องประดับ 2</string>
     <string name="inventory_chest_title">หีบสัมภาระ</string>
     <string name="inventory_count_format">สัมภาระ: %1$d</string>
+
+    <!-- Inn QoL Buttons -->
+    <string name="btn_auto_equip">สวมใส่อัตโนมัติ</string>
+    <string name="btn_rehire_party">จ้างใหม่อีกครั้ง (%1$dG)</string>
+    <string name="btn_rehire_no_run">ลุยสัก 1 รอบ!</string>
 </resources>

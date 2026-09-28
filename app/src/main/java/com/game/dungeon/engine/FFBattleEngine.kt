@@ -37,17 +37,18 @@ class FFBattleEngine(private val context: Context) {
         onEvent: (FFBattleEvent) -> Unit
     ) {
         var currentFloor = startFloor
+        val maxFloor = dimension.number * 100
         val aliveHeroes = heroes.map { it.copy() }.toMutableList()
         var totalGil = 0L
         var totalMagicite = 0
         var lastAbilityClass: HeroClass? = null
 
-        while (aliveHeroes.any { it.isAlive } && currentFloor <= 100) {
+        while (aliveHeroes.any { it.isAlive } && currentFloor <= maxFloor) {
             while (isPaused()) { delay(200) }
             // Spawn enemies for this floor
             val bossTemplate = FFDimensionData.getBossForFloor(dimension, currentFloor)
             val enemies = if (bossTemplate != null) {
-                mutableListOf(Enemy.fromTemplate(bossTemplate, currentFloor, context, relicBonuses = relicBonuses))
+                mutableListOf(Enemy.fromTemplate(bossTemplate, currentFloor, context, relicBonuses = relicBonuses,  dimension = dimension))
             } else {
                 spawnEnemies(dimension, currentFloor, context, relicBonuses).toMutableList()
             }
@@ -98,8 +99,8 @@ class FFBattleEngine(private val context: Context) {
                 
                 // Loot chance
                 val itemsFound = mutableListOf<Item>()
-                val baseDropChance = if (bossTemplate != null) 100f else 10f
-                val finalDropChance = baseDropChance * (1f + relicBonuses.petItemFindBonus)
+                val rawDropChance = if (bossTemplate != null) 100f else 10f * (1f + relicBonuses.petItemFindBonus)
+                val finalDropChance = if (bossTemplate != null) 100f else (100f * (rawDropChance / (rawDropChance + 85f))).coerceAtMost(85f)
                 
                 if (Random.nextFloat() * 100 < finalDropChance) {
                     itemsFound.add(
@@ -107,17 +108,19 @@ class FFBattleEngine(private val context: Context) {
                             floor = currentFloor, 
                             context = context,
                             relicBonuses = relicBonuses,
-                            minRarity = if (bossTemplate != null) Rarity.RARE else Rarity.COMMON
+                            minRarity = if (bossTemplate != null) Rarity.RARE else Rarity.COMMON,
+                            dimension = dimension.number
                         )
                     )
-                    // Double Loot Relic: +5% boss double drop chance per level
-                    if (bossTemplate != null && Random.nextInt(100) < relicBonuses.doubleLootChance) {
+                    // Double Loot Relic: +5% boss double drop chance per level (logarithmic curve capped at 75%)
+                    if (bossTemplate != null && Random.nextFloat() * 100f < relicBonuses.effectiveDoubleLootChance) {
                         itemsFound.add(
                             Item.random(
                                 floor = currentFloor, 
                                 context = context,
                                 relicBonuses = relicBonuses,
-                                minRarity = Rarity.RARE
+                                minRarity = Rarity.RARE,
+                                dimension = dimension.number
                             )
                         )
                     }
@@ -127,7 +130,7 @@ class FFBattleEngine(private val context: Context) {
                 totalMagicite += magiciteEarned
                 
                 if (bossTemplate != null) {
-                    onEvent(FFBattleEvent.BossDefeated(context.getString(bossTemplate.nameRes), currentFloor >= 100))
+                    onEvent(FFBattleEvent.BossDefeated(context.getString(bossTemplate.nameRes), currentFloor >= maxFloor))
                 }
                 
                 // CRITICAL: Remove dead heroes so they don't reappear on the next floor or in the event
@@ -146,7 +149,7 @@ class FFBattleEngine(private val context: Context) {
         val templates = FFDimensionData.getEnemiesForFloor(dimension, floor)
         if (templates.isEmpty()) return emptyList()
         val count = Random.nextInt(1, 4)
-        return List(count) { Enemy.fromTemplate(templates.random(), floor, context, relicBonuses = relicBonuses) }
+        return List(count) { Enemy.fromTemplate(templates.random(), floor, context, relicBonuses = relicBonuses, dimension = dimension) }
     }
 
     private fun executeHeroTurn(hero: Hero, allies: List<Hero>, enemies: MutableList<Enemy>, relicBonuses: RelicBonuses, getLastAbility: () -> HeroClass?, setLastAbility: (HeroClass) -> Unit, onEvent: (FFBattleEvent)->Unit) {
@@ -190,7 +193,7 @@ class FFBattleEngine(private val context: Context) {
                 val wounded = allies.filter { it.isAlive && it.currentHp < it.maxHp * 0.6f }
                     .minByOrNull { it.currentHp }
                 if (wounded != null && hero.currentMp >= 10) {
-                    val healAmt = (hero.magic * 2.5f + 20).toInt()
+                    val healAmt = (hero.magic * 2.5f + wounded.maxHp * 0.20f + 20).toInt()
                     wounded.currentHp = minOf(wounded.currentHp + healAmt, wounded.maxHp)
                     hero.currentMp -= 10
                     onEvent(FFBattleEvent.HealCast(hero.id, wounded.id, healAmt))
@@ -236,7 +239,7 @@ class FFBattleEngine(private val context: Context) {
             HeroClass.WHITE_MAGE -> {
                 val amounts = mutableMapOf<String, Int>()
                 allies.filter { it.isAlive }.forEach { ally ->
-                    val heal = (hero.magic * 3f + 40).toInt()
+                    val heal = (hero.magic * 3f + ally.maxHp * 0.35f + 40).toInt()
                     ally.currentHp = minOf(ally.currentHp + heal, ally.maxHp)
                     amounts[ally.id] = heal
                 }
@@ -272,7 +275,7 @@ class FFBattleEngine(private val context: Context) {
                 }
             }
             HeroClass.MONK -> {
-                val selfHeal = (hero.maxHp * 0.25f).toInt()
+                val selfHeal = (hero.maxHp * 0.35f + hero.magic * 1.5f).toInt()
                 hero.currentHp = minOf(hero.currentHp + selfHeal, hero.maxHp)
                 onEvent(FFBattleEvent.HealCast(hero.id, hero.id, selfHeal))
                 val target = enemies.filter { it.currentHp > 0 }.firstOrNull() ?: return
@@ -309,8 +312,10 @@ class FFBattleEngine(private val context: Context) {
                         awardExpToParty(allies, exp, onEvent)
                     }
                 }
-                val healAmt = (hero.magic * 1.5f).toInt()
-                allies.filter { it.isAlive }.forEach { it.currentHp = minOf(it.currentHp + healAmt, it.maxHp) }
+                allies.filter { it.isAlive }.forEach { ally ->
+                    val healAmt = (hero.magic * 1.5f + ally.maxHp * 0.20f).toInt()
+                    ally.currentHp = minOf(ally.currentHp + healAmt, ally.maxHp)
+                }
             }
             HeroClass.RED_MAGE -> {
                 repeat(2) {
@@ -459,7 +464,10 @@ class FFBattleEngine(private val context: Context) {
             roll -= hDef
         }
 
-        val dmg = maxOf(1, enemy.attack - target.defense + Random.nextInt(-2, 3))
+        val k = 150f + enemy.floor * 0.8f
+        val mitigation = (target.defense / (target.defense + k)).coerceAtMost(0.85f)
+        val rawDmg = maxOf(1f, enemy.attack.toFloat() + Random.nextInt(-2, 3))
+        val dmg = maxOf(1, (rawDmg * (1f - mitigation)).toInt())
         target.currentHp -= dmg
         onEvent(FFBattleEvent.DamageDealt(enemy.id, target.id, dmg, false, false))
         if (target.currentHp <= 0) {

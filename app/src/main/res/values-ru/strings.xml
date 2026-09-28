@@ -403,4 +403,9 @@
     <string name="slot_accessory_2">Аксессуар 2</string>
     <string name="inventory_chest_title">СУНДУК ИНВЕНТАРЯ</string>
     <string name="inventory_count_format">Инвентарь: %1$d</string>
+
+    <!-- Inn QoL Buttons -->
+    <string name="btn_auto_equip">АВТОЭКИПИРОВКА</string>
+    <string name="btn_rehire_party">НАНЯТЬ СНОВА (%1$dG)</string>
+    <string name="btn_rehire_no_run">ПРОЙДИ 1 РАЗ!</string>
 </resources>

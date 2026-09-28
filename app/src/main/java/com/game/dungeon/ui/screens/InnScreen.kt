@@ -79,8 +79,8 @@ fun InnScreen(
                 onOpenResourceShop = { viewModel.openResourceShop(it) }
             )
             
-            // Dimension Advance Banner (Only shows if floor 100 reached)
-            if (highestFloor >= 100) {
+            // Dimension Advance Banner (Only shows if dimension max floor reached)
+            if (highestFloor >= currentDimension * 100) {
                 DimensionAdvanceBanner(currentDimension) { showDimensionResetDialog = true }
             }
 
@@ -101,6 +101,7 @@ fun InnScreen(
                     onSelectJobToHire = { job -> selectedHireJob = job },
                     onRest = { viewModel.restAtInn() },
                     onDepartClick = {
+                        viewModel.saveLastParty(hiredHeroes)
                         if (pathfinderLevel > 0) {
                             showPathfinderDialog = true
                         } else {
@@ -111,15 +112,24 @@ fun InnScreen(
                     onNavigateToMastery = onNavigateToMastery
                 )
 
+                val hasNoLastParty = gs?.lastPartyClasses.isNullOrEmpty()
+                val rehireCost = viewModel.rehireLastPartyCost
+                val canRehire = viewModel.canRehireLastParty
+
                 // RIGHT (30% width): Party Roster Panel
                 PartyPanel(
                     modifier = Modifier.weight(0.30f),
                     hiredHeroes = hiredHeroes,
                     maxPartySize = maxPartySize,
+                    hasNoLastParty = hasNoLastParty,
+                    rehireCost = rehireCost,
+                    canRehire = canRehire,
                     onFire = { viewModel.fireHero(it) },
                     onEquip = onNavigateToEquipment,
                     onMoveUp = { viewModel.moveHeroUp(it) },
-                    onMoveDown = { viewModel.moveHeroDown(it) }
+                    onMoveDown = { viewModel.moveHeroDown(it) },
+                    onQuickEquipAll = { viewModel.quickEquipAllHeroes() },
+                    onRehireLastParty = { viewModel.rehireLastParty() }
                 )
             }
 
@@ -251,17 +261,29 @@ fun GuildStageArea(
                     .border(1.dp, GuildGoldAccent.copy(alpha = 0.4f)),
                 contentAlignment = Center
             ) {
-                Canvas(Modifier.fillMaxSize()) {
-                    drawDetailedInn()
-                }
-
                 val infiniteTransition = rememberInfiniteTransition(label = "patrol")
+                val fireFlicker by infiniteTransition.animateFloat(
+                    initialValue = 0.75f,
+                    targetValue = 1.0f,
+                    animationSpec = infiniteRepeatable(tween(120, easing = LinearEasing), RepeatMode.Reverse),
+                    label = "fire_flicker"
+                )
+                val fireFlicker2 by infiniteTransition.animateFloat(
+                    initialValue = 0.8f,
+                    targetValue = 1.0f,
+                    animationSpec = infiniteRepeatable(tween(80, easing = LinearEasing), RepeatMode.Reverse),
+                    label = "fire_flicker2"
+                )
                 val walkTime by infiniteTransition.animateFloat(
                     initialValue = 0f,
                     targetValue = 6.28f,
                     animationSpec = infiniteRepeatable(tween(4500, easing = LinearEasing)),
                     label = "walk"
                 )
+
+                Canvas(Modifier.fillMaxSize()) {
+                    drawTavernInterior(fireFlicker = fireFlicker, fireFlicker2 = fireFlicker2)
+                }
 
                 val scrollState = rememberScrollState()
 
@@ -531,10 +553,15 @@ fun PartyPanel(
     modifier: Modifier,
     hiredHeroes: List<Hero>,
     maxPartySize: Int,
+    hasNoLastParty: Boolean,
+    rehireCost: Long,
+    canRehire: Boolean,
     onFire: (String) -> Unit,
     onEquip: (String) -> Unit,
     onMoveUp: (String) -> Unit,
-    onMoveDown: (String) -> Unit
+    onMoveDown: (String) -> Unit,
+    onQuickEquipAll: () -> Unit,
+    onRehireLastParty: () -> Unit
 ) {
     Box(
         modifier = modifier
@@ -555,6 +582,37 @@ fun PartyPanel(
                     color = GoldBright
                 )
             }
+            Spacer(Modifier.height(4.dp))
+            Row(
+                Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                PixelButton(
+                    label = "⚡ " + safeStringResource(R.string.btn_auto_equip),
+                    onClick = onQuickEquipAll,
+                    enabled = hiredHeroes.isNotEmpty(),
+                    horizontalPadding = 2.dp,
+                    verticalPadding = 1.dp,
+                    fontSize = 8.sp,
+                    modifier = Modifier.weight(1f).height(28.dp)
+                )
+                val rehireLabel = if (hasNoLastParty) {
+                    "🔄 " + safeStringResource(R.string.btn_rehire_no_run)
+                } else {
+                    "🔄 " + safeStringResource(R.string.btn_rehire_party, rehireCost)
+                }
+                PixelButton(
+                    label = rehireLabel,
+                    onClick = onRehireLastParty,
+                    enabled = canRehire,
+                    active = canRehire,
+                    horizontalPadding = 2.dp,
+                    verticalPadding = 1.dp,
+                    fontSize = 8.sp,
+                    modifier = Modifier.weight(1f).height(28.dp)
+                )
+            }
+            Spacer(Modifier.height(4.dp))
             PixelDivider()
             Spacer(Modifier.height(4.dp))
 
@@ -777,8 +835,9 @@ fun DimensionResetDialog(gs: GameState, onDismiss: () -> Unit, onConfirm: () -> 
     val currentDimension = gs.currentDimension
     val nextDimension = FFDimensionData.getDimension(currentDimension + 1)
     
+    val baseDescendReward = currentDimension * 250
     val multiplier = 0.50f + (currentDimension - 1) * 0.10f
-    val bonusMagicite = (gs.magiciteEarnedThisDim * multiplier).toInt()
+    val bonusMagicite = baseDescendReward + (gs.magiciteEarnedThisDim * multiplier).toInt()
     val goldKept = (gs.gold * gs.pocketsBonus).toLong()
 
     Dialog(onDismissRequest = onDismiss) {

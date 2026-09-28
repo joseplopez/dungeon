@@ -126,7 +126,7 @@ Each hero class must be refactored using this protocol:
 9. **`NINJA`**: Dark cowl mask with glowing red eyes, red flowing scarf, dual katanas, dark ninja shozoku outfit.
 10. **`DRAGOON`**: Purple/dragon scale armor, horned dragon helm, long polearm spear, wing pauldrons.
 11. **`BARD`**: Feathered cap, lute/harp instrument, green & pink tunic with silver trim.
-12. **`SUMMONER`**: Green robe with white horn headband, gold waist ornament, summoner horn.
+12. **`SUMMONER`** *(Completed)*: Yuna (FFX JRPG style) with chestnut brown hair, bright blue eye profile, blue neck ribbon, white kimono top, gold obi sash tied at waist, hands held together in prayer, magenta side sash, and indigo/purple hakama skirt.
 13. **`SAMURAI`**: Full Kabuto helmet with gold crescent moon crest, red/black banded armor (Laminar), katana at hip.
 14. **`ONION_KNIGHT`**: Classic silver helmet with feather plume, blue tunic, small shield.
 15. **`MIME`**: Colorful pink & green doublet, feathered cap, white gloves.

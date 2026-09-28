@@ -32,6 +32,18 @@ class Converters {
     }
 
     @TypeConverter
+    fun fromHeroClassList(value: List<HeroClass>?): String? {
+        return gson.toJson(value)
+    }
+
+    @TypeConverter
+    fun toHeroClassList(value: String?): List<HeroClass>? {
+        if (value.isNullOrEmpty()) return emptyList()
+        val type = object : TypeToken<List<HeroClass>>() {}.type
+        return gson.fromJson(value, type)
+    }
+
+    @TypeConverter
     fun fromHeroClassMap(value: Map<HeroClass, Int>): String {
         return gson.toJson(value)
     }

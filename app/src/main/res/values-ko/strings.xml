@@ -404,4 +404,9 @@
     <string name="slot_accessory_2">장신구 2</string>
     <string name="inventory_chest_title">인벤토리 상자</string>
     <string name="inventory_count_format">보유량: %1$d</string>
+
+    <!-- Inn QoL Buttons -->
+    <string name="btn_auto_equip">자동 장착</string>
+    <string name="btn_rehire_party">재고용 (%1$dG)</string>
+    <string name="btn_rehire_no_run">1회 도전!</string>
 </resources>
