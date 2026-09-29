@@ -77,7 +77,16 @@ class EquipmentViewModel @Inject constructor(
     fun sellItem(item: Item) {
         viewModelScope.launch {
             repository.sellItem(item)
-            repository.deleteItem(item)
+        }
+    }
+
+    fun sellAllUnequipped() {
+        viewModelScope.launch {
+            val itemsToSell = inventory.value.filter { it.ownerId == null }
+            if (itemsToSell.isEmpty()) return@launch
+            itemsToSell.forEach { item ->
+                repository.sellItem(item)
+            }
         }
     }
 

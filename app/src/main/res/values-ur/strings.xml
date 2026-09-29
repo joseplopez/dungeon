@@ -129,6 +129,10 @@
     <string name="item_lvl_rarity_format">لیول %1$d %2$s</string>
     <string name="unequip_button">غیر لیس کریں</string>
     <string name="sell_button_format">فروخت کریں (%1$dG)</string>
+    <string name="sell_all_button">سب فروخت کریں</string>
+    <string name="sell_all_confirm_title">تمام سامان فروخت کریں؟</string>
+    <string name="sell_all_confirm_message">کیا آپ واقعی %1$d بغیر لیس اشیاء %2$d سونا کے عوض فروخت کرنا چاہتے ہیں؟</string>
+    <string name="sell_all_confirm_action">سب فروخت کریں</string>
     <string name="close_button">بند کریں</string>
 
     <!-- Dungeon Screen -->

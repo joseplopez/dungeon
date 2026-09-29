@@ -388,7 +388,37 @@ fun InventoryChestPanel(
 
             Spacer(Modifier.height(4.dp))
 
+            // Chest Footer Inventory Count & Sell All Button
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(24.dp)
+                        .background(Color(0xFF100804), RoundedCornerShape(2.dp)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = safeStringResource(R.string.inventory_count_format, inventory.size),
+                        color = Color(0xFFCCAA88),
+                        fontSize = 9.sp
+                    )
+                }
 
+                if (inventory.isNotEmpty()) {
+                    PixelButton(
+                        label = safeStringResource(R.string.sell_all_button),
+                        onClick = {},
+                        modifier = Modifier.height(24.dp),
+                        active = true,
+                        horizontalPadding = 6.dp,
+                        fontSize = 9.sp
+                    )
+                }
+            }
         }
     }
 }

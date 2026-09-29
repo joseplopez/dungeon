@@ -129,6 +129,10 @@
     <string name="item_lvl_rarity_format">Lvl %1$d %2$s</string>
     <string name="unequip_button">UNEQUIP</string>
     <string name="sell_button_format">SELL (%1$dG)</string>
+    <string name="sell_all_button">SELL ALL</string>
+    <string name="sell_all_confirm_title">SELL ALL GEAR?</string>
+    <string name="sell_all_confirm_message">Are you sure you want to sell %1$d unequipped items for %2$d gold?</string>
+    <string name="sell_all_confirm_action">SELL ALL</string>
     <string name="close_button">CLOSE</string>
 
     <!-- Dungeon Screen -->

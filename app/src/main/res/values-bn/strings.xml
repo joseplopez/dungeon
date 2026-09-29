@@ -129,6 +129,10 @@
     <string name="item_lvl_rarity_format">স্তর %1$d %2$s</string>
     <string name="unequip_button">খুলে ফেলুন</string>
     <string name="sell_button_format">বিক্রি (%1$dG)</string>
+    <string name="sell_all_button">সব বিক্রি করুন</string>
+    <string name="sell_all_confirm_title">সব সরঞ্জাম বিক্রি করবেন?</string>
+    <string name="sell_all_confirm_message">আপনি কি নিশ্চিত যে %1$dটি অসজ্জিত আইটেম %2$d সোনায় বিক্রি করবেন?</string>
+    <string name="sell_all_confirm_action">সব বিক্রি করুন</string>
     <string name="close_button">বন্ধ করুন</string>
 
     <!-- Dungeon Screen -->

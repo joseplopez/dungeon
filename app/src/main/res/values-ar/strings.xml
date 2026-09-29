@@ -129,6 +129,10 @@
     <string name="item_lvl_rarity_format">مستوى %1$d %2$s</string>
     <string name="unequip_button">إزالة التجهيز</string>
     <string name="sell_button_format">بيع (%1$dG)</string>
+    <string name="sell_all_button">بيع الكل</string>
+    <string name="sell_all_confirm_title">بيع كل العتاد؟</string>
+    <string name="sell_all_confirm_message">هل أنت تأكد من بيع %1$d عناصر غير مجهزة مقابل %2$d ذهب؟</string>
+    <string name="sell_all_confirm_action">بيع الكل</string>
     <string name="close_button">إغلاق</string>
 
     <!-- Dungeon Screen -->

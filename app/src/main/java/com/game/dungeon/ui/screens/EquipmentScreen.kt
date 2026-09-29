@@ -48,6 +48,7 @@ fun EquipmentScreen(
     val relicBonuses by viewModel.relicBonuses.collectAsState()
 
     var selectedItemForDetail by remember { mutableStateOf<Item?>(null) }
+    var showSellAllConfirmation by remember { mutableStateOf(false) }
 
     val infiniteTransition = rememberInfiniteTransition(label = "equipmentAnim")
     val animTime by infiniteTransition.animateFloat(
@@ -114,10 +115,25 @@ fun EquipmentScreen(
                     InventoryChestPanel(
                         inventory = inventory,
                         onSelectItem = { selectedItemForDetail = it },
+                        onSellAllClick = { showSellAllConfirmation = true },
                         animTime = animTime,
                         modifier = Modifier.weight(0.28f)
                     )
                 }
+            }
+
+            // Sell All Confirmation Dialog Overlay
+            if (showSellAllConfirmation && inventory.isNotEmpty()) {
+                val totalValue = inventory.sumOf { it.sellValue }
+                SellAllConfirmationOverlay(
+                    itemCount = inventory.size,
+                    totalGold = totalValue,
+                    onConfirm = {
+                        viewModel.sellAllUnequipped()
+                        showSellAllConfirmation = false
+                    },
+                    onDismiss = { showSellAllConfirmation = false }
+                )
             }
 
             // Item Detail Modal Overlay
@@ -414,10 +430,11 @@ private fun HeroPlatformArea(
 }
 
 @Composable
-private fun InventoryChestPanel(
+fun InventoryChestPanel(
     inventory: List<Item>,
     onSelectItem: (Item) -> Unit,
     modifier: Modifier = Modifier,
+    onSellAllClick: () -> Unit = {},
     animTime: Float = 0f
 ) {
     Box(
@@ -501,19 +518,94 @@ private fun InventoryChestPanel(
 
             Spacer(Modifier.height(4.dp))
 
-            // Chest Footer Inventory Count
-            Box(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(18.dp)
-                    .background(Color(0xFF100804), RoundedCornerShape(2.dp)),
-                contentAlignment = Alignment.Center
+            // Chest Footer Inventory Count & Sell All Button
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                Box(
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(24.dp)
+                        .background(Color(0xFF100804), RoundedCornerShape(2.dp)),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(
+                        text = safeStringResource(R.string.inventory_count_format, inventory.size),
+                        color = Color(0xFFCCAA88),
+                        fontSize = 9.sp
+                    )
+                }
+
+                if (inventory.isNotEmpty()) {
+                    PixelButton(
+                        label = safeStringResource(R.string.sell_all_button),
+                        onClick = onSellAllClick,
+                        modifier = Modifier.height(24.dp),
+                        active = true,
+                        horizontalPadding = 6.dp,
+                        fontSize = 9.sp
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun SellAllConfirmationOverlay(
+    itemCount: Int,
+    totalGold: Long,
+    onConfirm: () -> Unit,
+    onDismiss: () -> Unit
+) {
+    Box(
+        Modifier
+            .fillMaxSize()
+            .background(Color.Black.copy(alpha = 0.8f))
+            .clickable { onDismiss() },
+        contentAlignment = Alignment.Center
+    ) {
+        PixelPanel(
+            Modifier
+                .width(320.dp)
+                .clickable(enabled = false) {},
+            borderColor = OrnateGoldLight
+        ) {
+            Column(
+                Modifier.padding(16.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 Text(
-                    text = safeStringResource(R.string.inventory_count_format, inventory.size),
-                    color = Color(0xFFCCAA88),
-                    fontSize = 9.sp
+                    text = safeStringResource(R.string.sell_all_confirm_title),
+                    style = PixelHeading,
+                    color = OrnateGoldLight
                 )
+
+                Text(
+                    text = safeStringResource(R.string.sell_all_confirm_message, itemCount, totalGold),
+                    style = PixelBody,
+                    color = Color.White
+                )
+
+                Row(
+                    Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    PixelButton(
+                        label = safeStringResource(R.string.cancel_button),
+                        onClick = onDismiss,
+                        modifier = Modifier.weight(1f)
+                    )
+                    PixelButton(
+                        label = safeStringResource(R.string.sell_all_confirm_action),
+                        onClick = onConfirm,
+                        modifier = Modifier.weight(1f),
+                        active = true
+                    )
+                }
             }
         }
     }

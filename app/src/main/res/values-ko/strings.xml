@@ -129,6 +129,10 @@
     <string name="item_lvl_rarity_format">레벨 %1$d %2$s</string>
     <string name="unequip_button">해제</string>
     <string name="sell_button_format">판매 (%1$dG)</string>
+    <string name="sell_all_button">모두 판매</string>
+    <string name="sell_all_confirm_title">미장착 장비 모두 판매?</string>
+    <string name="sell_all_confirm_message">미장착 아이템 %1$d개를 %2$d 골드에 판매하시겠습니까?</string>
+    <string name="sell_all_confirm_action">모두 판매</string>
     <string name="close_button">닫기</string>
 
     <!-- Dungeon Screen -->

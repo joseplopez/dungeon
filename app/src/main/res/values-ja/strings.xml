@@ -129,6 +129,10 @@
     <string name="item_lvl_rarity_format">Lv %1$d %2$s</string>
     <string name="unequip_button">外す</string>
     <string name="sell_button_format">売却 (%1$dG)</string>
+    <string name="sell_all_button">一括売却</string>
+    <string name="sell_all_confirm_title">未装備アイテムをすべて売却？</string>
+    <string name="sell_all_confirm_message">未装備のアイテム%1$d個を%2$dゴールドで売却しますか？</string>
+    <string name="sell_all_confirm_action">一括売却</string>
     <string name="close_button">閉じる</string>
 
     <!-- Dungeon Screen -->

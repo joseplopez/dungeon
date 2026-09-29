@@ -129,6 +129,10 @@
     <string name="item_lvl_rarity_format">Snt %1$d %2$s</string>
     <string name="unequip_button">ÇIKAR</string>
     <string name="sell_button_format">SAT (%1$dG)</string>
+    <string name="sell_all_button">TÜMÜNÜ SAT</string>
+    <string name="sell_all_confirm_title">TÜM EKİPMANLARI SAT?</string>
+    <string name="sell_all_confirm_message">%1$d kuşanılmamış eşyayı %2$d altın karşılığında satmak istediğinizden emin misiniz?</string>
+    <string name="sell_all_confirm_action">TÜMÜNÜ SAT</string>
     <string name="close_button">KAPAT</string>
 
     <!-- Dungeon Screen -->

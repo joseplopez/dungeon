@@ -129,6 +129,10 @@
     <string name="item_lvl_rarity_format">Nivell %1$d %2$s</string>
     <string name="unequip_button">DESEQUIPAR</string>
     <string name="sell_button_format">VENDRE (%1$dG)</string>
+    <string name="sell_all_button">VENDRE TOT</string>
+    <string name="sell_all_confirm_title">VENDRE TOT EL MATERIAL?</string>
+    <string name="sell_all_confirm_message">Esteu segur que voleu vendre %1$d objectes no equipats per %2$d d\'or?</string>
+    <string name="sell_all_confirm_action">VENDRE TOT</string>
     <string name="close_button">TANCAR</string>
 
     <!-- Dungeon Screen -->

@@ -129,6 +129,10 @@
     <string name="item_lvl_rarity_format">Ngazi %1$d %2$s</string>
     <string name="unequip_button">OMDOA</string>
     <string name="sell_button_format">UZA (%1$dG)</string>
+    <string name="sell_all_button">UZA YOTE</string>
+    <string name="sell_all_confirm_title">UZA VIFAA VYOTE?</string>
+    <string name="sell_all_confirm_message">Je, una uhakika unataka kuuza vitu %1$d visivyovaliwa kwa dhahabu %2$d?</string>
+    <string name="sell_all_confirm_action">UZA YOTE</string>
     <string name="close_button">FUNGA</string>
 
     <!-- Dungeon Screen -->

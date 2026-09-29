@@ -129,6 +129,10 @@
     <string name="item_lvl_rarity_format">Ур %1$d %2$s</string>
     <string name="unequip_button">СНЯТЬ</string>
     <string name="sell_button_format">ПРОДАТЬ (%1$dG)</string>
+    <string name="sell_all_button">ПРОДАТЬ ВСЁ</string>
+    <string name="sell_all_confirm_title">ПРОДАТЬ ВСЁ СНАРЯЖЕНИЕ?</string>
+    <string name="sell_all_confirm_message">Вы уверены, что хотите продать %1$d неэкипированных предметов за %2$d золота?</string>
+    <string name="sell_all_confirm_action">ПРОДАТЬ ВСЁ</string>
     <string name="close_button">ЗАКРЫТЬ</string>
 
     <!-- Dungeon Screen -->

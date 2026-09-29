@@ -129,6 +129,10 @@
     <string name="item_lvl_rarity_format">Lvl %1$d %2$s</string>
     <string name="unequip_button">RIMUOVI</string>
     <string name="sell_button_format">VENDI (%1$dG)</string>
+    <string name="sell_all_button">VENDI TUTTO</string>
+    <string name="sell_all_confirm_title">VENDERE TUTTE LE EQUIPAGGIAMENTI?</string>
+    <string name="sell_all_confirm_message">Sei sicuro di voler vendere %1$d oggetti non equipaggiati per %2$d d\'oro?</string>
+    <string name="sell_all_confirm_action">VENDI TUTTO</string>
     <string name="close_button">CHIUDI</string>
 
     <!-- Dungeon Screen -->
