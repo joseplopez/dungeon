@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Final Dungeon</string>
 
-    <!-- Dimensions & Biomes -->
+    <!-- Fantasies & Biomes -->
     <string name="dim1_title">روشنی کے جنگجو</string>
     <string name="dim1_subtitle">فائنل فینٹسی 1</string>
     <string name="dim1_story">روشنی کے چار جنگجو افراتفری کی قوتوں کے ہاتھوں چوری شدہ کرسٹل کو بحال کرنے کے لیے اٹھتے ہیں...</string>
@@ -100,7 +100,7 @@
     <string name="need_warriors">جنگجوؤں کی ضرورت ہے</string>
     <string name="fully_rested">پارٹی مکمل طور پر آرام کر چکی ہے</string>
     <string name="equip_button">لیس کریں</string>
-    <string name="dimension_complete">ڈائمینشن مکمل!</string>
+    <string name="dimension_complete">Fantasy مکمل!</string>
     <string name="hall_of_fame">ہال آف فیم</string>
     <string name="gil_earned_label">گِل کمائے</string>
     <string name="magicite_found_label">میجیسائٹ ملا</string>
@@ -332,7 +332,6 @@
     <!-- Leaderboards -->
     <string name="leaderboard_title">درجہ بندی</string>
     <string name="tab_global">عالمی</string>
-    <string name="tab_dimension">ڈائمینشن</string>
     <string name="tab_friends">دوست</string>
     <string name="rank_label">درجہ</string>
     <string name="player_label">کھلاڑی</string>
@@ -408,4 +407,53 @@
     <string name="btn_auto_equip">خودکار سامان</string>
     <string name="btn_rehire_party">دوبارہ بھرتی (%1$dG)</string>
     <string name="btn_rehire_no_run">ایک راؤنڈ کھیلیں!</string>
+
+    <!-- Extracted Screen Strings -->
+    <string name="return_to_inn">سرائے میں واپس جائیں</string>
+    <string name="stat_bonus_atk">حملہ: +%1$d</string>
+    <string name="stat_bonus_def">دفاع: +%1$d</string>
+    <string name="stat_bonus_mag">جادو: +%1$d</string>
+    <string name="stat_bonus_hp">صحت: +%1$d</string>
+    <string name="stat_bonus_crit_chance">نازک %%: +%1$d%%</string>
+    <string name="stat_bonus_crit_damage">نازک نقصان: +%1$d%%</string>
+    <string name="hero_status_rip">وفات</string>
+    <string name="jobs_count_format">%1$d نوکریاں</string>
+    <string name="party_full">مکمل</string>
+    <string name="hire_cost_format">%1$dG بھرتی</string>
+    <string name="pathfinder_title">🧭 راہنما مہم</string>
+    <string name="pathfinder_select_floor_desc">اپنے ابتدائی خندق کی منزل کا انتخاب کریں:</string>
+    <string name="pathfinder_floor_range_format">منزل %1$d / %2$d</string>
+    <string name="depart_button">روانہ ⚔️</string>
+    <string name="hall_of_fame_title">🏆 ہال آف فیم</string>
+    <string name="top_champions_title">بہترین چیمپئن</string>
+    <string name="no_champions_yet">ابھی کوئی چیمپئن نہیں</string>
+    <string name="loading_text">لوڈ ہو رہا ہے...</string>
+    <string name="no_rankings_yet">ابھی کوئی درجہ بندی نہیں</string>
+    <string name="flr_short_format">منزل %1$d</string>
+    <string name="tab_available">دستیاب</string>
+    <string name="legendary_artifact">لاجواب فن پارہ</string>
+    <string name="perk_upgrades_title">مراعات کے ترقیاں</string>
+    <string name="btn_upgrade_magicite">ترقی (💎 %1$d)</string>
+    <string name="btn_need_magicite">میجیسائٹ درکار (💎 %1$d)</string>
+    <string name="tab_stats">شماریات</string>
+    <string name="stat_label_highest_floor">بلند ترین منزل</string>
+    <string name="stat_label_lifetime_floor">کل ریکارڈ منزل</string>
+    <string name="stat_label_total_magicite">کل میجیسائٹ</string>
+    <string name="stat_label_total_gil">کل گل</string>
+    <string name="stat_label_vault_cap">گل خزانے کی حد</string>
+    <string name="stat_label_exp_boost">تجربہ اضافہ</string>
+    <string name="stat_label_upgrade_discount">ترقی کی رعایت</string>
+    <string name="stat_label_rest_discount">آرام کی رعایت</string>
+    <string name="support_feedback_title">مدد اور تبصرے</string>
+    <string name="help_improve_game">کھیل کو بہتر بنانے میں مدد کریں!</string>
+    <string name="support_email_desc">کوئی خرابی ملی یا کوئی تجاویز ہیں؟ ڈویلپر کو ای میل بھیجیں۔</string>
+    <string name="btn_send_feedback">📧 تبصرہ بھیجیں</string>
+    <string name="love_final_dungeon">کیا فائنل ڈنجن پسند آیا؟</string>
+    <string name="rate_app_desc">ایپ کی درجہ بندی کرنے سے دوسرے کھلاڑیوں کو کھیل کی دریافت میں مدد ملتی ہے!</string>
+    <string name="btn_rate_store">⭐ پلے اسٹور پر درجہ بندی کریں</string>
+    <string name="bulletin_perk_inn">🏨 سرائے میں صحت کی بحالی: +%1$d%%</string>
+    <string name="bulletin_perk_barracks">🛡️ بارک میں گروپ کا سائز: %1$d</string>
+    <string name="bulletin_perk_vault">💰 خزانے کا گل سود: +%1$d%%</string>
+    <string name="bulletin_perk_pathfinder">🧭 راہنما کی شروعاتی منزل: منزل %1$d</string>
+    <string name="bulletin_perk_planning">📜 ترقی کی رعایت: %1$d%%</string>
 </resources>

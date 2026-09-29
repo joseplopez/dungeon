@@ -157,7 +157,7 @@ class DungeonUITest {
         
         // Verify Tabs
         composeTestRule.onNodeWithText("GLOBAL").assertIsDisplayed()
-        composeTestRule.onNodeWithText("DIMENSION").assertIsDisplayed()
+        composeTestRule.onNodeWithText("FANTASY").assertIsDisplayed()
 
         // Go back to Inn
         composeTestRule.onNodeWithText("⚗ INN").performClick()

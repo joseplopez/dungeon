@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Final Dungeon</string>
 
-    <!-- Dimensions & Biomes -->
+    <!-- Fantasies & Biomes -->
     <string name="dim1_title">Воїни Світла</string>
     <string name="dim1_subtitle">Final Fantasy I</string>
     <string name="dim1_story">Чотири Воїни Світла повстають, щоб повернути кристали, викрадені Силами Хаосу...</string>
@@ -100,7 +100,7 @@
     <string name="need_warriors">ПОТРІБНІ ВОЇНИ</string>
     <string name="fully_rested">Загін повністю відпочив</string>
     <string name="equip_button">СПОРЯДИТИ</string>
-    <string name="dimension_complete">ВИМІР ПРОЙДЕНО!</string>
+    <string name="dimension_complete">FANTASY ПРОЙДЕНО!</string>
     <string name="hall_of_fame">ЗАЛ СЛАВИ</string>
     <string name="gil_earned_label">Зароблено гілей</string>
     <string name="magicite_found_label">Знайдено магіциту</string>
@@ -332,7 +332,6 @@
     <!-- Leaderboards -->
     <string name="leaderboard_title">РЕЙТИНГИ</string>
     <string name="tab_global">ГЛОБАЛЬНИЙ</string>
-    <string name="tab_dimension">ВИМІР</string>
     <string name="tab_friends">ДРУЗІ</string>
     <string name="rank_label">РАНГ</string>
     <string name="player_label">ГРАВЕЦЬ</string>
@@ -408,4 +407,53 @@
     <string name="btn_auto_equip">АВТОЕКІПІРУВАННЯ</string>
     <string name="btn_rehire_party">НАЙНЯТИ ЗНОВУ (%1$dG)</string>
     <string name="btn_rehire_no_run">ЗРОБИ 1 РАУНД!</string>
+
+    <!-- Extracted Screen Strings -->
+    <string name="return_to_inn">ПОВЕРНУТИСЯ ДО ТАВЕРНИ</string>
+    <string name="stat_bonus_atk">АТК: +%1$d</string>
+    <string name="stat_bonus_def">ЗАХ: +%1$d</string>
+    <string name="stat_bonus_mag">МАГ: +%1$d</string>
+    <string name="stat_bonus_hp">ОЗ: +%1$d</string>
+    <string name="stat_bonus_crit_chance">КРИТ %%: +%1$d%%</string>
+    <string name="stat_bonus_crit_damage">ШКОДА КРИТ: +%1$d%%</string>
+    <string name="hero_status_rip">ПОГИБ</string>
+    <string name="jobs_count_format">%1$d КЛАСІВ</string>
+    <string name="party_full">ПОВНО</string>
+    <string name="hire_cost_format">НАЙМ %1$dG</string>
+    <string name="pathfinder_title">🧭 ЕКСПЕДИЦІЯ СЛІДОПИТА</string>
+    <string name="pathfinder_select_floor_desc">Оберіть початковий поверх підземелля:</string>
+    <string name="pathfinder_floor_range_format">ПОВЕРХ %1$d / %2$d</string>
+    <string name="depart_button">В ПУТЬ ⚔️</string>
+    <string name="hall_of_fame_title">🏆 ЗАЛ СЛАВИ</string>
+    <string name="top_champions_title">КРАЩІ ЧЕМПІОНИ</string>
+    <string name="no_champions_yet">ПОКИ НЕМАЄ ЧЕМПІОНІВ</string>
+    <string name="loading_text">ЗАВАНТАЖЕННЯ...</string>
+    <string name="no_rankings_yet">ПОКИ НЕМАЄ РЕЙТИНГУ</string>
+    <string name="flr_short_format">ПОВЕРХ %1$d</string>
+    <string name="tab_available">ДОСТУПНІ</string>
+    <string name="legendary_artifact">Легендарний артефакт</string>
+    <string name="perk_upgrades_title">ПОКРАЩЕННЯ БОНУСІВ</string>
+    <string name="btn_upgrade_magicite">ПОКРАЩИТИ (💎 %1$d)</string>
+    <string name="btn_need_magicite">ПОТРІБЕН МАДЖИСИТ (💎 %1$d)</string>
+    <string name="tab_stats">ХАРАКТЕРИСТИКИ</string>
+    <string name="stat_label_highest_floor">Найвищий поверх</string>
+    <string name="stat_label_lifetime_floor">Рекордний поверх</string>
+    <string name="stat_label_total_magicite">Усього маджиситу</string>
+    <string name="stat_label_total_gil">Усього ґілей</string>
+    <string name="stat_label_vault_cap">Ліміт сховища ґілей</string>
+    <string name="stat_label_exp_boost">Бонус ДОСВІДУ</string>
+    <string name="stat_label_upgrade_discount">Знижка на покращення</string>
+    <string name="stat_label_rest_discount">Знижка на відпочинок</string>
+    <string name="support_feedback_title">ПІДТРИМКА ТА ВІДГУКИ</string>
+    <string name="help_improve_game">ДОПОМОЖІТЬ ПОКРАЩИТИ ГРУ!</string>
+    <string name="support_email_desc">Знайшли помилку чи є пропозиція? Напишіть розробнику.</string>
+    <string name="btn_send_feedback">📧 НАДІСЛАТИ ВІДГУК</string>
+    <string name="love_final_dungeon">ПОДОБАЄТЬСЯ FINAL DUNGEON?</string>
+    <string name="rate_app_desc">Оцінка додатка допомагає іншим гравцям дізнатися про гру!</string>
+    <string name="btn_rate_store">⭐ ОЦІНИТИ В PLAY STORE</string>
+    <string name="bulletin_perk_inn">🏨 Лікування ОЗ Таверна: +%1$d%%</string>
+    <string name="bulletin_perk_barracks">🛡️ Макс. загін Казарма: %1$d</string>
+    <string name="bulletin_perk_vault">💰 Відсотки Сховище: +%1$d%%</string>
+    <string name="bulletin_perk_pathfinder">🧭 Старт Слідопита: Поверх %1$d</string>
+    <string name="bulletin_perk_planning">📜 Знижка на покращення: %1$d%%</string>
 </resources>

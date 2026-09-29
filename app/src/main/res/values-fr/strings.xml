@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Final Dungeon</string>
 
-    <!-- Dimensions & Biomes -->
+    <!-- Fantasies & Biomes -->
     <string name="dim1_title">Guerriers de la Lumière</string>
     <string name="dim1_subtitle">Final Fantasy I</string>
     <string name="dim1_story">Quatre Guerriers de la Lumière s\'élèvent pour restaurer les cristaux volés par les Forces du Chaos...</string>
@@ -100,7 +100,7 @@
     <string name="need_warriors">BESOIN DE GUERRIERS</string>
     <string name="fully_rested">Le groupe est bien reposé</string>
     <string name="equip_button">ÉQUIPER</string>
-    <string name="dimension_complete">DIMENSION TERMINÉE !</string>
+    <string name="dimension_complete">FANTASY TERMINÉE !</string>
     <string name="hall_of_fame">PANTHÉON</string>
     <string name="gil_earned_label">Gils gagnés</string>
     <string name="magicite_found_label">Magicite trouvée</string>
@@ -332,7 +332,6 @@
     <!-- Leaderboards -->
     <string name="leaderboard_title">CLASSEMENTS</string>
     <string name="tab_global">MONDIAL</string>
-    <string name="tab_dimension">DIMENSION</string>
     <string name="tab_friends">AMIS</string>
     <string name="rank_label">RANG</string>
     <string name="player_label">JOUEUR</string>
@@ -408,4 +407,53 @@
     <string name="btn_auto_equip">AUTO-ÉQUIPER</string>
     <string name="btn_rehire_party">RÉENGAGER (%1$dG)</string>
     <string name="btn_rehire_no_run">FAIS UN RUN!</string>
+
+    <!-- Extracted Screen Strings -->
+    <string name="return_to_inn">RETOURNER À L\'AUBERGE</string>
+    <string name="stat_bonus_atk">ATQ: +%1$d</string>
+    <string name="stat_bonus_def">DÉF: +%1$d</string>
+    <string name="stat_bonus_mag">MAG: +%1$d</string>
+    <string name="stat_bonus_hp">PV: +%1$d</string>
+    <string name="stat_bonus_crit_chance">CRIT %%: +%1$d%%</string>
+    <string name="stat_bonus_crit_damage">DÉGÂTS CRIT: +%1$d%%</string>
+    <string name="hero_status_rip">RIP</string>
+    <string name="jobs_count_format">%1$d CLASSES</string>
+    <string name="party_full">PLEIN</string>
+    <string name="hire_cost_format">RECRUTER %1$dG</string>
+    <string name="pathfinder_title">🧭 EXPÉDITION ÉCLAIREUR</string>
+    <string name="pathfinder_select_floor_desc">Séléctionnez votre étage de départ :</string>
+    <string name="pathfinder_floor_range_format">ÉTAGE %1$d / %2$d</string>
+    <string name="depart_button">PARTIR ⚔️</string>
+    <string name="hall_of_fame_title">🏆 PANTHÉON</string>
+    <string name="top_champions_title">MEILLEURS CHAMPIONS</string>
+    <string name="no_champions_yet">AUCUN CHAMPION</string>
+    <string name="loading_text">CHARGEMENT...</string>
+    <string name="no_rankings_yet">AUCUN CLASSEMENT</string>
+    <string name="flr_short_format">ÉTAGE %1$d</string>
+    <string name="tab_available">DISPONIBLES</string>
+    <string name="legendary_artifact">Artefact Légendaire</string>
+    <string name="perk_upgrades_title">AMÉLIORATION DE BONUS</string>
+    <string name="btn_upgrade_magicite">AMÉLIORER (💎 %1$d)</string>
+    <string name="btn_need_magicite">MAGICITE REQUISE (💎 %1$d)</string>
+    <string name="tab_stats">STATISTIQUES</string>
+    <string name="stat_label_highest_floor">Plus haut étage</string>
+    <string name="stat_label_lifetime_floor">Étage record total</string>
+    <string name="stat_label_total_magicite">Magicite totale</string>
+    <string name="stat_label_total_gil">Gils totaux</string>
+    <string name="stat_label_vault_cap">Limite de la réserve de gils</string>
+    <string name="stat_label_exp_boost">Bonus d\'EXP</string>
+    <string name="stat_label_upgrade_discount">Réduction d\'amélioration</string>
+    <string name="stat_label_rest_discount">Réduction de repos</string>
+    <string name="support_feedback_title">SUPPORT ET AVIS</string>
+    <string name="help_improve_game">AIDEZ À AMÉLIORER LE JEU !</string>
+    <string name="support_email_desc">Un bug ou une suggestion ? Envoyez un e-mail au développeur.</string>
+    <string name="btn_send_feedback">📧 ENVOYER UN AVIS</string>
+    <string name="love_final_dungeon">VOUS AIMEZ FINAL DUNGEON ?</string>
+    <string name="rate_app_desc">Évaluer l\'application aide les autres joueurs à découvrir le donjon !</string>
+    <string name="btn_rate_store">⭐ NOTER SUR LE PLAY STORE</string>
+    <string name="bulletin_perk_inn">🏨 Soin PV Auberge : +%1$d%%</string>
+    <string name="bulletin_perk_barracks">🛡️ Taille max équipe Caserne : %1$d</string>
+    <string name="bulletin_perk_vault">💰 Intérêts en Gils Réserve : +%1$d%%</string>
+    <string name="bulletin_perk_pathfinder">🧭 Étage départ Éclaireur : Étage %1$d</string>
+    <string name="bulletin_perk_planning">📜 Réduction d\'amélioration : %1$d%%</string>
 </resources>

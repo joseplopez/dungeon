@@ -108,7 +108,7 @@ fun JobMasteryTab(gs: GameState) {
                     Column(Modifier.weight(1f)) {
                         Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
                             Text(safeStringResource(job.nameRes), style = PixelBody, color = GoldBright)
-                            Text("LV.$level", style = PixelBody, color = SystemCyan)
+                            Text(safeStringResource(R.string.relic_level_format, level), style = PixelBody, color = SystemCyan)
                         }
                         Spacer(Modifier.height(4.dp))
                         // EXP Bar

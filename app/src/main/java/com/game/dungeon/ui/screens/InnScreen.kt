@@ -244,7 +244,7 @@ fun GuildStageArea(
                     color = GuildGoldAccent
                 )
                 Text(
-                    text = "${unlockedJobs.size} JOBS",
+                    text = safeStringResource(R.string.jobs_count_format, unlockedJobs.size),
                     style = PixelSmall,
                     color = StoneGray
                 )
@@ -467,7 +467,7 @@ fun HireHeroClassDialog(
                     )
 
                     PixelButton(
-                        label = if (partySize >= maxPartySize) "FULL" else "${job.hireCost}G HIRE",
+                        label = if (partySize >= maxPartySize) safeStringResource(R.string.party_full) else safeStringResource(R.string.hire_cost_format, job.hireCost),
                         onClick = onHire,
                         enabled = canHire,
                         active = canHire,
@@ -506,8 +506,8 @@ fun PathfinderFloorSelectDialog(
                 horizontalAlignment = CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {
-                Text("🧭 PATHFINDER EXPEDITION", style = PixelHeading, color = GoldBright)
-                Text("Select your starting dungeon floor:", style = PixelSmall, color = StoneGray)
+                Text(safeStringResource(R.string.pathfinder_title), style = PixelHeading, color = GoldBright)
+                Text(safeStringResource(R.string.pathfinder_select_floor_desc), style = PixelSmall, color = StoneGray)
 
                 Box(
                     Modifier
@@ -517,7 +517,7 @@ fun PathfinderFloorSelectDialog(
                         .padding(12.dp),
                     contentAlignment = Center
                 ) {
-                    Text("FLOOR $selectedFloor / $maxStartFloor", style = PixelHeading, color = GoldBright, fontSize = 16.sp)
+                    Text(safeStringResource(R.string.pathfinder_floor_range_format, selectedFloor, maxStartFloor), style = PixelHeading, color = GoldBright, fontSize = 16.sp)
                 }
 
                 Row(
@@ -536,8 +536,8 @@ fun PathfinderFloorSelectDialog(
                     Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    PixelButton("CANCEL", onClick = onDismiss, modifier = Modifier.weight(1f).height(40.dp))
-                    PixelButton("DEPART ⚔️", onClick = { onConfirm(selectedFloor) }, active = true, modifier = Modifier.weight(1f).height(40.dp))
+                    PixelButton(safeStringResource(R.string.cancel_button_short), onClick = onDismiss, modifier = Modifier.weight(1f).height(40.dp))
+                    PixelButton(safeStringResource(R.string.depart_button), onClick = { onConfirm(selectedFloor) }, active = true, modifier = Modifier.weight(1f).height(40.dp))
                 }
             }
         }

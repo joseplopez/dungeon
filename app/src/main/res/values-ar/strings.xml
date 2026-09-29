@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Final Dungeon</string>
 
-    <!-- Dimensions & Biomes -->
+    <!-- Fantasies & Biomes -->
     <string name="dim1_title">محاربو الضوء</string>
     <string name="dim1_subtitle">فاينل فانتسي 1</string>
     <string name="dim1_story">ينهض أربعة من محاربي الضوء لاستعادة البلورات التي سرقتها قوات الفوضى...</string>
@@ -100,7 +100,7 @@
     <string name="need_warriors">بحاجة لمحاربين</string>
     <string name="fully_rested">الفريق مرتاح تمامًا</string>
     <string name="equip_button">تجهيز</string>
-    <string name="dimension_complete">اكتمل البعد!</string>
+    <string name="dimension_complete">اكتمل Fantasy!</string>
     <string name="hall_of_fame">قاعة المشاهير</string>
     <string name="gil_earned_label">جيل مكتسب</string>
     <string name="magicite_found_label">ماجيسيت تم العثور عليه</string>
@@ -332,7 +332,6 @@
     <!-- Leaderboards -->
     <string name="leaderboard_title">الترتيب</string>
     <string name="tab_global">عالمي</string>
-    <string name="tab_dimension">البعد</string>
     <string name="tab_friends">الأصدقاء</string>
     <string name="rank_label">الترتيب</string>
     <string name="player_label">اللاعب</string>
@@ -408,4 +407,53 @@
     <string name="btn_auto_equip">تجهيز تلقائي</string>
     <string name="btn_rehire_party">إعادة توظيف (%1$dG)</string>
     <string name="btn_rehire_no_run">قم بجولة واحدة!</string>
+
+    <!-- Extracted Screen Strings -->
+    <string name="return_to_inn">العودة إلى النزل</string>
+    <string name="stat_bonus_atk">هجوم: +%1$d</string>
+    <string name="stat_bonus_def">دفاع: +%1$d</string>
+    <string name="stat_bonus_mag">سحر: +%1$d</string>
+    <string name="stat_bonus_hp">صحة: +%1$d</string>
+    <string name="stat_bonus_crit_chance">حرج %%: +%1$d%%</string>
+    <string name="stat_bonus_crit_damage">ضرر حرج: +%1$d%%</string>
+    <string name="hero_status_rip">توفي</string>
+    <string name="jobs_count_format">%1$d وظائف</string>
+    <string name="party_full">ممتلئ</string>
+    <string name="hire_cost_format">توظيف %1$dG</string>
+    <string name="pathfinder_title">🧭 حملة المستكشف</string>
+    <string name="pathfinder_select_floor_desc">اختر طابق الزنزانة الابتدائي:</string>
+    <string name="pathfinder_floor_range_format">الطابق %1$d / %2$d</string>
+    <string name="depart_button">انطلاق ⚔️</string>
+    <string name="hall_of_fame_title">🏆 قاعة المشاهير</string>
+    <string name="top_champions_title">أفضل الأبطال</string>
+    <string name="no_champions_yet">لا يوجد أبطال بعد</string>
+    <string name="loading_text">جاري التحميل...</string>
+    <string name="no_rankings_yet">لا يوجد تصنيف بعد</string>
+    <string name="flr_short_format">طابق %1$d</string>
+    <string name="tab_available">متاح</string>
+    <string name="legendary_artifact">أثر أسطوري</string>
+    <string name="perk_upgrades_title">ترقيات الميزات</string>
+    <string name="btn_upgrade_magicite">ترقية (💎 %1$d)</string>
+    <string name="btn_need_magicite">يتطلب ماجيسيت (💎 %1$d)</string>
+    <string name="tab_stats">الإحصائيات</string>
+    <string name="stat_label_highest_floor">أعلى طابق</string>
+    <string name="stat_label_lifetime_floor">رقم قياسي للطوابق</string>
+    <string name="stat_label_total_magicite">إجمالي الماجيسيت</string>
+    <string name="stat_label_total_gil">إجمالي الجيل</string>
+    <string name="stat_label_vault_cap">حد خزينة الجيل</string>
+    <string name="stat_label_exp_boost">زيادة الخبرة</string>
+    <string name="stat_label_upgrade_discount">خصم الترقية</string>
+    <string name="stat_label_rest_discount">خصم الراحة</string>
+    <string name="support_feedback_title">الدعم والملاحظات</string>
+    <string name="help_improve_game">ساعد في تحسين اللعبة!</string>
+    <string name="support_email_desc">هل وجدت خطأً أو لديك اقتراح؟ أرسل بريدًا إلكترونيًا للمطور.</string>
+    <string name="btn_send_feedback">📧 إرسال ملاحظات</string>
+    <string name="love_final_dungeon">هل تحب FINAL DUNGEON؟</string>
+    <string name="rate_app_desc">تقييم التطبيق يساعد اللاعبين الآخرين في اكتشاف الزنزانة!</string>
+    <string name="btn_rate_store">⭐ تقييم في متجر PLAY</string>
+    <string name="bulletin_perk_inn">🏨 شفاء صحة النزل: +%1$d%%</string>
+    <string name="bulletin_perk_barracks">🛡️ أقصى حجم للفريق الثكنة: %1$d</string>
+    <string name="bulletin_perk_vault">💰 فائدة جيل الخزينة: +%1$d%%</string>
+    <string name="bulletin_perk_pathfinder">🧭 طابق بداية المستكشف: طابق %1$d</string>
+    <string name="bulletin_perk_planning">📜 خصم الترقيات: %1$d%%</string>
 </resources>

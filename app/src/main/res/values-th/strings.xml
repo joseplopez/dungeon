@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Final Dungeon</string>
 
-    <!-- Dimensions & Biomes -->
+    <!-- Fantasies & Biomes -->
     <string name="dim1_title">นักรบแห่งแสง</string>
     <string name="dim1_subtitle">ไฟนอลแฟนตาซี I</string>
     <string name="dim1_story">นักรบแห่งแสงสี่คนตื่นขึ้นเพื่อนำคริสตัลที่ถูกกองกำลังแห่งความโกลาหลขโมยไปกลับคืนมา...</string>
@@ -100,7 +100,7 @@
     <string name="need_warriors">ต้องการนักรบ</string>
     <string name="fully_rested">ปาร์ตี้พักผ่อนเต็มที่แล้ว</string>
     <string name="equip_button">สวมใส่</string>
-    <string name="dimension_complete">มิติสำเร็จ!</string>
+    <string name="dimension_complete">Fantasy สำเร็จ!</string>
     <string name="hall_of_fame">หอเกียรติยศ</string>
     <string name="gil_earned_label">กิลที่ได้รับ</string>
     <string name="magicite_found_label">มาจิไซต์ที่พบ</string>
@@ -332,7 +332,6 @@
     <!-- Leaderboards -->
     <string name="leaderboard_title">อันดับ</string>
     <string name="tab_global">ทั่วโลก</string>
-    <string name="tab_dimension">มิติ</string>
     <string name="tab_friends">เพื่อน</string>
     <string name="rank_label">อันดับ</string>
     <string name="player_label">ผู้เล่น</string>
@@ -408,4 +407,53 @@
     <string name="btn_auto_equip">สวมใส่อัตโนมัติ</string>
     <string name="btn_rehire_party">จ้างใหม่อีกครั้ง (%1$dG)</string>
     <string name="btn_rehire_no_run">ลุยสัก 1 รอบ!</string>
+
+    <!-- Extracted Screen Strings -->
+    <string name="return_to_inn">กลับสู่โรงเตี๊ยม</string>
+    <string name="stat_bonus_atk">โจมตี: +%1$d</string>
+    <string name="stat_bonus_def">ป้องกัน: +%1$d</string>
+    <string name="stat_bonus_mag">เวทมนตร์: +%1$d</string>
+    <string name="stat_bonus_hp">พลังชีวิต: +%1$d</string>
+    <string name="stat_bonus_crit_chance">อัตราคริติคอล %%: +%1$d%%</string>
+    <string name="stat_bonus_crit_damage">ความเสียหายคริติคอล: +%1$d%%</string>
+    <string name="hero_status_rip">เสียชีวิต</string>
+    <string name="jobs_count_format">%1$d อาชีพ</string>
+    <string name="party_full">เต็ม</string>
+    <string name="hire_cost_format">จ้าง %1$dG</string>
+    <string name="pathfinder_title">🧭 การสำรวจของคนเบิกทาง</string>
+    <string name="pathfinder_select_floor_desc">เลือกชั้นเริ่มต้นในดันเจี้ยน:</string>
+    <string name="pathfinder_floor_range_format">ชั้น %1$d / %2$d</string>
+    <string name="depart_button">ออกเดินทาง ⚔️</string>
+    <string name="hall_of_fame_title">🏆 หอเกียรติยศ</string>
+    <string name="top_champions_title">ยอดแชมเปี้ยน</string>
+    <string name="no_champions_yet">ยังไม่มีแชมเปี้ยน</string>
+    <string name="loading_text">กำลังโหลด...</string>
+    <string name="no_rankings_yet">ยังไม่มีการจัดอันดับ</string>
+    <string name="flr_short_format">ชั้น %1$d</string>
+    <string name="tab_available">ที่มีอยู่</string>
+    <string name="legendary_artifact">โบราณวัตถุระดับตำนาน</string>
+    <string name="perk_upgrades_title">อัปเกรดโบนัส</string>
+    <string name="btn_upgrade_magicite">อัปเกรด (💎 %1$d)</string>
+    <string name="btn_need_magicite">ต้องการเมจิไซต์ (💎 %1$d)</string>
+    <string name="tab_stats">สถิติ</string>
+    <string name="stat_label_highest_floor">ชั้นสูงสุด</string>
+    <string name="stat_label_lifetime_floor">สถิติชั้นสูงสุดรวม</string>
+    <string name="stat_label_total_magicite">เมจิไซต์ทั้งหมด</string>
+    <string name="stat_label_total_gil">กิลทั้งหมด</string>
+    <string name="stat_label_vault_cap">ขีดจำกัดคลังกิล</string>
+    <string name="stat_label_exp_boost">โบนัส EXP</string>
+    <string name="stat_label_upgrade_discount">ส่วนลดการอัปเกรด</string>
+    <string name="stat_label_rest_discount">ส่วนลดการพักผ่อน</string>
+    <string name="support_feedback_title">ช่วยเหลือและข้อเสนอแนะ</string>
+    <string name="help_improve_game">ช่วยเราปรับปรุงเกม!</string>
+    <string name="support_email_desc">พบบั๊กหรือมีข้อเสนอแนะ? ส่งอีเมลถึงผู้พัฒนาโดยตรง</string>
+    <string name="btn_send_feedback">📧 ส่งข้อเสนอแนะ</string>
+    <string name="love_final_dungeon">ชอบ FINAL DUNGEON ไหม?</string>
+    <string name="rate_app_desc">การให้คะแนนแอปช่วยให้ผู้เล่นคนอื่นค้นพบดันเจี้ยนได้มากขึ้น!</string>
+    <string name="btn_rate_store">⭐ ให้คะแนนบน PLAY STORE</string>
+    <string name="bulletin_perk_inn">🏨 ฟื้นฟูพลังชีวิตโรงเตี๊ยม: +%1$d%%</string>
+    <string name="bulletin_perk_barracks">🛡️ ขนาดปาร์ตี้สูงสุดค่ายทหาร: %1$d</string>
+    <string name="bulletin_perk_vault">💰 ดอกเบี้ยกิลคลัง: +%1$d%%</string>
+    <string name="bulletin_perk_pathfinder">🧭 ชั้นเริ่มต้นคนเบิกทาง: ชั้น %1$d</string>
+    <string name="bulletin_perk_planning">📜 ส่วนลดการอัปเกรด: %1$d%%</string>
 </resources>

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Final Dungeon</string>
 
-    <!-- Dimensions & Biomes -->
+    <!-- Fantasies & Biomes -->
     <string name="dim1_title">Guerrieri della Luce</string>
     <string name="dim1_subtitle">Final Fantasy I</string>
     <string name="dim1_story">Quattro Guerrieri della Luce sorgono per ripristinare i cristalli rubati dalle Forze del Caos...</string>
@@ -100,7 +100,7 @@
     <string name="need_warriors">SERVONO GUERRIERI</string>
     <string name="fully_rested">Il gruppo è riposato</string>
     <string name="equip_button">EQUIPAGGIA</string>
-    <string name="dimension_complete">DIMENSIONE COMPLETATA!</string>
+    <string name="dimension_complete">FANTASY COMPLETATA!</string>
     <string name="hall_of_fame">SALA DELLA FAMA</string>
     <string name="gil_earned_label">Gil guadagnati</string>
     <string name="magicite_found_label">Magicite trovata</string>
@@ -332,7 +332,6 @@
     <!-- Leaderboards -->
     <string name="leaderboard_title">CLASSIFICHE</string>
     <string name="tab_global">GLOBALE</string>
-    <string name="tab_dimension">DIMENSIONE</string>
     <string name="tab_friends">AMICI</string>
     <string name="rank_label">POSIZIONE</string>
     <string name="player_label">GIOCATORE</string>
@@ -408,4 +407,53 @@
     <string name="btn_auto_equip">AUTO-EQUIPA</string>
     <string name="btn_rehire_party">RIRAGGIUNGI (%1$dG)</string>
     <string name="btn_rehire_no_run">FA BASTA UN RUN!</string>
+
+    <!-- Extracted Screen Strings -->
+    <string name="return_to_inn">TORNA ALLA LOCANDA</string>
+    <string name="stat_bonus_atk">ATC: +%1$d</string>
+    <string name="stat_bonus_def">DIF: +%1$d</string>
+    <string name="stat_bonus_mag">MAG: +%1$d</string>
+    <string name="stat_bonus_hp">PV: +%1$d</string>
+    <string name="stat_bonus_crit_chance">CRIT %%: +%1$d%%</string>
+    <string name="stat_bonus_crit_damage">DANNO CRIT: +%1$d%%</string>
+    <string name="hero_status_rip">RIP</string>
+    <string name="jobs_count_format">%1$d CLASSI</string>
+    <string name="party_full">PIENO</string>
+    <string name="hire_cost_format">RECLUTA %1$dG</string>
+    <string name="pathfinder_title">🧭 SPEDIZIONE APRIPISTA</string>
+    <string name="pathfinder_select_floor_desc">Seleziona il piano iniziale del dungeon:</string>
+    <string name="pathfinder_floor_range_format">PIANO %1$d / %2$d</string>
+    <string name="depart_button">PARTI ⚔️</string>
+    <string name="hall_of_fame_title">🏆 HALL OF FAME</string>
+    <string name="top_champions_title">MIGLIORI CAMPIONI</string>
+    <string name="no_champions_yet">NESSUN CAMPIONE</string>
+    <string name="loading_text">CARICAMENTO...</string>
+    <string name="no_rankings_yet">NESSUNA CLASSIFICA</string>
+    <string name="flr_short_format">PIANO %1$d</string>
+    <string name="tab_available">DISPONIBILI</string>
+    <string name="legendary_artifact">Artefatto Leggendario</string>
+    <string name="perk_upgrades_title">POTENZIAMENTO BONUS</string>
+    <string name="btn_upgrade_magicite">POTENZIA (💎 %1$d)</string>
+    <string name="btn_need_magicite">SERVE MAGICITE (💎 %1$d)</string>
+    <string name="tab_stats">STATISTICHE</string>
+    <string name="stat_label_highest_floor">Piano più alto</string>
+    <string name="stat_label_lifetime_floor">Piano record totale</string>
+    <string name="stat_label_total_magicite">Magicite totale</string>
+    <string name="stat_label_total_gil">Gil totali</string>
+    <string name="stat_label_vault_cap">Limite cassaforte Gil</string>
+    <string name="stat_label_exp_boost">Bonus EXP</string>
+    <string name="stat_label_upgrade_discount">Sconto potenziamento</string>
+    <string name="stat_label_rest_discount">Sconto riposo</string>
+    <string name="support_feedback_title">SUPPORTO E FEEDBACK</string>
+    <string name="help_improve_game">AIUTA A MIGLIORARE IL GIOCO!</string>
+    <string name="support_email_desc">Hai trovato un bug o hai un suggerimento? Invia un e-mail allo sviluppatore.</string>
+    <string name="btn_send_feedback">📧 INVIA FEEDBACK</string>
+    <string name="love_final_dungeon">TI PIACE FINAL DUNGEON?</string>
+    <string name="rate_app_desc">Valutare l\'app aiuta altri giocatori a scoprire il dungeon!</string>
+    <string name="btn_rate_store">⭐ VALUTA SU PLAY STORE</string>
+    <string name="bulletin_perk_inn">🏨 Cura PV Locanda: +%1$d%%</string>
+    <string name="bulletin_perk_barracks">🛡️ Dim. max gruppo Caserma: %1$d</string>
+    <string name="bulletin_perk_vault">💰 Interessi Gil Cassaforte: +%1$d%%</string>
+    <string name="bulletin_perk_pathfinder">🧭 Piano partenza Apripista: Piano %1$d</string>
+    <string name="bulletin_perk_planning">📜 Sconto potenziamenti: %1$d%%</string>
 </resources>

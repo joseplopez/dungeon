@@ -392,7 +392,7 @@ fun HeroUnitDisplay(hero: Hero, isAttacking: Boolean, isHit: Boolean, isCritical
             Spacer(Modifier.height(4.dp))
             PixelExpBar(hero.exp, hero.expToNextLevel, Modifier.width(64.dp).height(6.dp))
         } else {
-            Text("RIP", style = PixelSmall, color = StoneGray, modifier = Modifier.padding(bottom = 12.dp))
+            Text(safeStringResource(R.string.hero_status_rip), style = PixelSmall, color = StoneGray, modifier = Modifier.padding(bottom = 12.dp))
         }
         
         Box(Modifier.size(80.dp)) {
@@ -748,7 +748,7 @@ fun RunCompleteOverlay(
 
             Spacer(Modifier.height(16.dp))
             PixelButton(
-                "RETURN TO INN",
+                safeStringResource(R.string.return_to_inn),
                 onClick = onReturn,
                 modifier = Modifier.fillMaxWidth().height(44.dp)
             )
@@ -781,12 +781,12 @@ fun RunCompleteOverlay(
                         Text(item.name, style = PixelHeading, color = Color(item.rarity.color))
                         
                         Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                            if (item.attackBonus > 0) Text("ATK: +${item.attackBonus}", style = PixelBody, color = GoldBright)
-                            if (item.defenseBonus > 0) Text("DEF: +${item.defenseBonus}", style = PixelBody, color = GoldBright)
-                            if (item.magicBonus > 0) Text("MAG: +${item.magicBonus}", style = PixelBody, color = GoldBright)
-                            if (item.hpBonus > 0) Text("HP: +${item.hpBonus}", style = PixelBody, color = GoldBright)
-                            if (item.critChanceBonus > 0) Text("CRIT %: +${item.critChanceBonus}%", style = PixelBody, color = HpGreen)
-                            if (item.critDamageBonus > 0) Text("CRIT DMG: +${item.critDamageBonus}%", style = PixelBody, color = HpGreen)
+                            if (item.attackBonus > 0) Text(safeStringResource(R.string.stat_bonus_atk, item.attackBonus), style = PixelBody, color = GoldBright)
+                            if (item.defenseBonus > 0) Text(safeStringResource(R.string.stat_bonus_def, item.defenseBonus), style = PixelBody, color = GoldBright)
+                            if (item.magicBonus > 0) Text(safeStringResource(R.string.stat_bonus_mag, item.magicBonus), style = PixelBody, color = GoldBright)
+                            if (item.hpBonus > 0) Text(safeStringResource(R.string.stat_bonus_hp, item.hpBonus), style = PixelBody, color = GoldBright)
+                            if (item.critChanceBonus > 0) Text(safeStringResource(R.string.stat_bonus_crit_chance, item.critChanceBonus), style = PixelBody, color = HpGreen)
+                            if (item.critDamageBonus > 0) Text(safeStringResource(R.string.stat_bonus_crit_damage, item.critDamageBonus), style = PixelBody, color = HpGreen)
                         }
 
                         Spacer(Modifier.height(8.dp))

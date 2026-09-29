@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Final Dungeon</string>
 
-    <!-- Dimensions & Biomes -->
+    <!-- Fantasies & Biomes -->
     <string name="dim1_title">光の戦士</string>
     <string name="dim1_subtitle">ファイナルファンタジーI</string>
     <string name="dim1_story">カオスの軍勢によって奪われたクリスタルを取り戻すため、4人の光の戦士が立ち上がる...</string>
@@ -100,7 +100,7 @@
     <string name="need_warriors">戦士が必要です</string>
     <string name="fully_rested">全員全快しました</string>
     <string name="equip_button">装備</string>
-    <string name="dimension_complete">次元完了！</string>
+    <string name="dimension_complete">Fantasy完了！</string>
     <string name="hall_of_fame">栄誉の殿堂</string>
     <string name="gil_earned_label">獲得ギル</string>
     <string name="magicite_found_label">発見マジサイト</string>
@@ -332,7 +332,6 @@
     <!-- Leaderboards -->
     <string name="leaderboard_title">ランキング</string>
     <string name="tab_global">グローバル</string>
-    <string name="tab_dimension">次元</string>
     <string name="tab_friends">フレンド</string>
     <string name="rank_label">順位</string>
     <string name="player_label">プレイヤー</string>
@@ -408,4 +407,53 @@
     <string name="btn_auto_equip">自動装備</string>
     <string name="btn_rehire_party">再雇用 (%1$dG)</string>
     <string name="btn_rehire_no_run">1回挑戦！</string>
+
+    <!-- Extracted Screen Strings -->
+    <string name="return_to_inn">宿屋に戻る</string>
+    <string name="stat_bonus_atk">攻撃: +%1$d</string>
+    <string name="stat_bonus_def">防御: +%1$d</string>
+    <string name="stat_bonus_mag">魔力: +%1$d</string>
+    <string name="stat_bonus_hp">HP: +%1$d</string>
+    <string name="stat_bonus_crit_chance">会心率 %%: +%1$d%%</string>
+    <string name="stat_bonus_crit_damage">会心威力: +%1$d%%</string>
+    <string name="hero_status_rip">死亡</string>
+    <string name="jobs_count_format">%1$d ジョブ</string>
+    <string name="party_full">満員</string>
+    <string name="hire_cost_format">%1$dGで雇う</string>
+    <string name="pathfinder_title">🧭 先導者の遠征</string>
+    <string name="pathfinder_select_floor_desc">開始するダンジョン階層を選択:</string>
+    <string name="pathfinder_floor_range_format">%1$d / %2$d 階</string>
+    <string name="depart_button">出発 ⚔️</string>
+    <string name="hall_of_fame_title">🏆 殿堂入り</string>
+    <string name="top_champions_title">トップチャンピオン</string>
+    <string name="no_champions_yet">チャンピオンはいません</string>
+    <string name="loading_text">読み込み中...</string>
+    <string name="no_rankings_yet">ランキングはまだありません</string>
+    <string name="flr_short_format">%1$d 階</string>
+    <string name="tab_available">利用可能</string>
+    <string name="legendary_artifact">伝説のアーティファクト</string>
+    <string name="perk_upgrades_title">特典強化</string>
+    <string name="btn_upgrade_magicite">強化 (💎 %1$d)</string>
+    <string name="btn_need_magicite">魔石不足 (💎 %1$d)</string>
+    <string name="tab_stats">ステータス</string>
+    <string name="stat_label_highest_floor">最高到達階</string>
+    <string name="stat_label_lifetime_floor">通算最高階</string>
+    <string name="stat_label_total_magicite">累計魔石</string>
+    <string name="stat_label_total_gil">累計ギル</string>
+    <string name="stat_label_vault_cap">金庫上限</string>
+    <string name="stat_label_exp_boost">経験値ボーナス</string>
+    <string name="stat_label_upgrade_discount">強化割引</string>
+    <string name="stat_label_rest_discount">休憩割引</string>
+    <string name="support_feedback_title">サポート＆ご意見</string>
+    <string name="help_improve_game">ゲーム改善にご協力ください！</string>
+    <string name="support_email_desc">バグやご提案は開発者にメールでお送りください。</string>
+    <string name="btn_send_feedback">📧 ご意見を送る</string>
+    <string name="love_final_dungeon">FINAL DUNGEONをお楽しみですか？</string>
+    <string name="rate_app_desc">評価をしていただくと他プレイヤーの発見に繋がります！</string>
+    <string name="btn_rate_store">⭐ PLAY STOREで評価する</string>
+    <string name="bulletin_perk_inn">🏨 宿屋HP回復: +%1$d%%</string>
+    <string name="bulletin_perk_barracks">🛡️ 兵舎最大パーティ人数: %1$d</string>
+    <string name="bulletin_perk_vault">💰 金庫ギル利息: +%1$d%%</string>
+    <string name="bulletin_perk_pathfinder">🧭 先導者開始階: %1$d 階</string>
+    <string name="bulletin_perk_planning">📜 強化割引: %1$d%%</string>
 </resources>

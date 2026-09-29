@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Final Dungeon</string>
 
-    <!-- Dimensions & Biomes -->
+    <!-- Fantasies & Biomes -->
     <string name="dim1_title">আলোর যোদ্ধা</string>
     <string name="dim1_subtitle">ফাইনাল ফ্যান্টাসি ১</string>
     <string name="dim1_story">বিশৃঙ্খলার শক্তি দ্বারা চুরি করা স্ফটিকগুলি পুনরুদ্ধার করতে আলোর চার যোদ্ধা জেগে উঠেছে...</string>
@@ -100,7 +100,7 @@
     <string name="need_warriors">যোদ্ধা প্রয়োজন</string>
     <string name="fully_rested">দলোপুরি বিশ্রামে আছে</string>
     <string name="equip_button">সজ্জিত করুন</string>
-    <string name="dimension_complete">মাত্রা সম্পন্ন!</string>
+    <string name="dimension_complete">Fantasy সম্পন্ন!</string>
     <string name="hall_of_fame">হল অফ ফেম</string>
     <string name="gil_earned_label">গিল অর্জিত</string>
     <string name="magicite_found_label">ম্যাজিসাইট পাওয়া গেছে</string>
@@ -332,7 +332,6 @@
     <!-- Leaderboards -->
     <string name="leaderboard_title">র্যাঙ্কিং</string>
     <string name="tab_global">বৈশ্বিক</string>
-    <string name="tab_dimension">মাত্রা</string>
     <string name="tab_friends">বন্ধুরা</string>
     <string name="rank_label">র্যাঙ্ক</string>
     <string name="player_label">খেলোয়াড়</string>
@@ -408,4 +407,53 @@
     <string name="btn_auto_equip">অটো ইকুইপ</string>
     <string name="btn_rehire_party">পুনরায় নিয়োগ (%1$dG)</string>
     <string name="btn_rehire_no_run">একবার চেষ্টা করুন!</string>
+
+    <!-- Extracted Screen Strings -->
+    <string name="return_to_inn">পান্থশালায় ফিরুন</string>
+    <string name="stat_bonus_atk">আক্রমণ: +%1$d</string>
+    <string name="stat_bonus_def">প্রতিরোধ: +%1$d</string>
+    <string name="stat_bonus_mag">জাদু: +%1$d</string>
+    <string name="stat_bonus_hp">এইচপি: +%1$d</string>
+    <string name="stat_bonus_crit_chance">ক্রিটিক্যাল %%: +%1$d%%</string>
+    <string name="stat_bonus_crit_damage">ক্রিটিক্যাল ক্ষতি: +%1$d%%</string>
+    <string name="hero_status_rip">প্রয়াত</string>
+    <string name="jobs_count_format">%1$dটি পেশা</string>
+    <string name="party_full">পূর্ণ</string>
+    <string name="hire_cost_format">%1$dG নিয়োগ</string>
+    <string name="pathfinder_title">🧭 পথপ্রদর্শক অভিযান</string>
+    <string name="pathfinder_select_floor_desc">আপনার শুরুর বন্দিঘরের তলা নির্বাচন করুন:</string>
+    <string name="pathfinder_floor_range_format">তলা %1$d / %2$d</string>
+    <string name="depart_button">রওনা হন ⚔️</string>
+    <string name="hall_of_fame_title">🏆 সম্মাননা কক্ষ</string>
+    <string name="top_champions_title">সেরা চ্যাম্পিয়নগণ</string>
+    <string name="no_champions_yet">এখনও কোনো চ্যাম্পিয়ন নেই</string>
+    <string name="loading_text">লোড হচ্ছে...</string>
+    <string name="no_rankings_yet">এখনও কোনো র্যাঙ্কিং নেই</string>
+    <string name="flr_short_format">তলা %1$d</string>
+    <string name="tab_available">উপলব্ধ</string>
+    <string name="legendary_artifact">কিংবদন্তি স্মারক</string>
+    <string name="perk_upgrades_title">সুবিধা আপগ্রেড</string>
+    <string name="btn_upgrade_magicite">আপগ্রেড (💎 %1$d)</string>
+    <string name="btn_need_magicite">ম্যাজিসাইট প্রয়োজন (💎 %1$d)</string>
+    <string name="tab_stats">পরিসংখ্যান</string>
+    <string name="stat_label_highest_floor">সর্বোচ্চ তলা</string>
+    <string name="stat_label_lifetime_floor">সর্বমোট রেকর্ড তলা</string>
+    <string name="stat_label_total_magicite">মোট ম্যাজিসাইট</string>
+    <string name="stat_label_total_gil">মোট গিল</string>
+    <string name="stat_label_vault_cap">গিল ভল্ট সীমা</string>
+    <string name="stat_label_exp_boost">অভিজ্ঞতা বৃদ্ধি</string>
+    <string name="stat_label_upgrade_discount">আপগ্রেড ছাড়</string>
+    <string name="stat_label_rest_discount">বিশ্রাম ছাড়</string>
+    <string name="support_feedback_title">সহায়তা ও মতামত</string>
+    <string name="help_improve_game">গেমটি উন্নত করতে সাহায্য করুন!</string>
+    <string name="support_email_desc">কোনো বাগ পেয়েছেন বা পরামর্শ আছে? ডেভেলপারকে সরাসরি ইমেল পাঠান।</string>
+    <string name="btn_send_feedback">📧 মতামত পাঠান</string>
+    <string name="love_final_dungeon">FINAL DUNGEON পছন্দ হয়েছে?</string>
+    <string name="rate_app_desc">অ্যাপটির মূল্যায়ন অন্যান্য খেলোয়াড়দের গেমটি খুঁজে পেতে সহায়তা করে!</string>
+    <string name="btn_rate_store">⭐ প্লে স্টোরে রেট দিন</string>
+    <string name="bulletin_perk_inn">🏨 পান্থশালা এইচপি আরোগ্য: +%1$d%%</string>
+    <string name="bulletin_perk_barracks">🛡️ ব্যারাকে দলের সর্বোচ্চ আকার: %1$d</string>
+    <string name="bulletin_perk_vault">💰 ভল্ট গিল সুদ: +%1$d%%</string>
+    <string name="bulletin_perk_pathfinder">🧭 পথপ্রদর্শকের শুরুর তলা: তলা %1$d</string>
+    <string name="bulletin_perk_planning">📜 আপগ্রেড ছাড়: %1$d%%</string>
 </resources>

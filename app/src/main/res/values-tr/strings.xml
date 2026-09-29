@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Final Dungeon</string>
 
-    <!-- Dimensions & Biomes -->
+    <!-- Fantasies & Biomes -->
     <string name="dim1_title">Işığın Savaşçıları</string>
     <string name="dim1_subtitle">Final Fantasy I</string>
     <string name="dim1_story">Kaos Güçleri tarafından çalınan kristalleri geri getirmek için dört Işık Savaşçısı ayağa kalkıyor...</string>
@@ -100,7 +100,7 @@
     <string name="need_warriors">SAVAŞÇI LAZIM</string>
     <string name="fully_rested">Grup tamamen dinlendi</string>
     <string name="equip_button">KUŞAN</string>
-    <string name="dimension_complete">BOYUT TAMAMLANDI!</string>
+    <string name="dimension_complete">FANTASY TAMAMLANDI!</string>
     <string name="hall_of_fame">ŞÖHRETLER SALONU</string>
     <string name="gil_earned_label">Kazanılan Gil</string>
     <string name="magicite_found_label">Bulunan Magicite</string>
@@ -332,7 +332,6 @@
     <!-- Leaderboards -->
     <string name="leaderboard_title">SIRALAMALAR</string>
     <string name="tab_global">KÜRESEL</string>
-    <string name="tab_dimension">BOYUT</string>
     <string name="tab_friends">ARKADAŞLAR</string>
     <string name="rank_label">SIRA</string>
     <string name="player_label">OYUNCU</string>
@@ -408,4 +407,53 @@
     <string name="btn_auto_equip">OTOMATİK DONAT</string>
     <string name="btn_rehire_party">YENİDEN KİRALA (%1$dG)</string>
     <string name="btn_rehire_no_run">BİR TUR YAP!</string>
+
+    <!-- Extracted Screen Strings -->
+    <string name="return_to_inn">HAN\'A DÖN</string>
+    <string name="stat_bonus_atk">SDR: +%1$d</string>
+    <string name="stat_bonus_def">SAV: +%1$d</string>
+    <string name="stat_bonus_mag">BÜY: +%1$d</string>
+    <string name="stat_bonus_hp">CAN: +%1$d</string>
+    <string name="stat_bonus_crit_chance">KRİT %%: +%1$d%%</string>
+    <string name="stat_bonus_crit_damage">KRİT HASAR: +%1$d%%</string>
+    <string name="hero_status_rip">ÖLDÜ</string>
+    <string name="jobs_count_format">%1$d MESLEK</string>
+    <string name="party_full">DOLU</string>
+    <string name="hire_cost_format">%1$dG KİRALA</string>
+    <string name="pathfinder_title">🧭 İZCİ SEFERİ</string>
+    <string name="pathfinder_select_floor_desc">Başlangıç zindan katını seçin:</string>
+    <string name="pathfinder_floor_range_format">KAT %1$d / %2$d</string>
+    <string name="depart_button">YOLA ÇIK ⚔️</string>
+    <string name="hall_of_fame_title">🏆 SHÖRET SALONU</string>
+    <string name="top_champions_title">EN İYİ ŞAMPİYONLAR</string>
+    <string name="no_champions_yet">HENÜZ ŞAMPİYON YOK</string>
+    <string name="loading_text">YÜKLENİYOR...</string>
+    <string name="no_rankings_yet">HENÜZ SIRALAMA YOK</string>
+    <string name="flr_short_format">KAT %1$d</string>
+    <string name="tab_available">KULLANILABİLİR</string>
+    <string name="legendary_artifact">Efsanevi Eser</string>
+    <string name="perk_upgrades_title">AVANTAJ YÜKSELTMELERİ</string>
+    <string name="btn_upgrade_magicite">YÜKSELT (💎 %1$d)</string>
+    <string name="btn_need_magicite">MAGİSİT GEREKLİ (💎 %1$d)</string>
+    <string name="tab_stats">İSTATİSTİKLER</string>
+    <string name="stat_label_highest_floor">En Yüksek Kat</string>
+    <string name="stat_label_lifetime_floor">Toplam Rekor Kat</string>
+    <string name="stat_label_total_magicite">Toplam Magisit</string>
+    <string name="stat_label_total_gil">Toplam Gil</string>
+    <string name="stat_label_vault_cap">Kasa Limiti</string>
+    <string name="stat_label_exp_boost">EXP Bonusu</string>
+    <string name="stat_label_upgrade_discount">Yükseltme İndirimi</string>
+    <string name="stat_label_rest_discount">Dinlenme İndirimi</string>
+    <string name="support_feedback_title">DESTEK VE GERİ BİLDİRİM</string>
+    <string name="help_improve_game">OYUNU GELİŞTİRMEYE YARDIM EDİN!</string>
+    <string name="support_email_desc">Bir hata mı buldunuz yoksa bir öneriniz mi var? Geliştiriciye e-posta gönderin.</string>
+    <string name="btn_send_feedback">📧 GERİ BİLDİRİM GÖNDER</string>
+    <string name="love_final_dungeon">FINAL DUNGEON\'U SEVDİNİZ Mİ?</string>
+    <string name="rate_app_desc">Uygulamayı derecelendirmek diğer oyuncuların zindanı keşfetmesine yardımcı olur!</string>
+    <string name="btn_rate_store">⭐ PLAY STORE\'DA DEĞERLENDİR</string>
+    <string name="bulletin_perk_inn">🏨 Han Can İyileşmesi: +%1$d%%</string>
+    <string name="bulletin_perk_barracks">🛡️ Kışla Maks Grup Boyutu: %1$d</string>
+    <string name="bulletin_perk_vault">💰 Kasa Gil Faizi: +%1$d%%</string>
+    <string name="bulletin_perk_pathfinder">🧭 İzci Başlangıç Katı: Kat %1$d</string>
+    <string name="bulletin_perk_planning">📜 Yükseltme İndirimi: %1$d%%</string>
 </resources>

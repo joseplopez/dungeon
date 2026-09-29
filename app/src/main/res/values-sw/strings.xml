@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Final Dungeon</string>
 
-    <!-- Dimensions & Biomes -->
+    <!-- Fantasies & Biomes -->
     <string name="dim1_title">Mashujaa wa Mwanga</string>
     <string name="dim1_subtitle">Final Fantasy I</string>
     <string name="dim1_story">Mashujaa Wanne wa Mwanga wanajitokeza kurejesha fuwele zilizoibiwa na Nguvu za Chaos...</string>
@@ -100,7 +100,7 @@
     <string name="need_warriors">UNAHITAJI MASHUJAA</string>
     <string name="fully_rested">Kundi limepumzika kikamilifu</string>
     <string name="equip_button">WEKA</string>
-    <string name="dimension_complete">DIMENSION IMEMALIZIKA!</string>
+    <string name="dimension_complete">FANTASY IMEMALIZIKA!</string>
     <string name="hall_of_fame">UKUMBI WA SIFI</string>
     <string name="gil_earned_label">Gil Zilizopatikana</string>
     <string name="magicite_found_label">Magicite Zilizopatikana</string>
@@ -332,7 +332,6 @@
     <!-- Leaderboards -->
     <string name="leaderboard_title">NAFASI</string>
     <string name="tab_global">GLOBAL</string>
-    <string name="tab_dimension">DIMENSION</string>
     <string name="tab_friends">MARAFIKI</string>
     <string name="rank_label">NAFASI</string>
     <string name="player_label">MCHEZAJI</string>
@@ -408,4 +407,53 @@
     <string name="btn_auto_equip">EKEA AUTOMATIKI</string>
     <string name="btn_rehire_party">AJIRI TENA (%1$dG)</string>
     <string name="btn_rehire_no_run">FANYA ZIARA MOJA!</string>
+
+    <!-- Extracted Screen Strings -->
+    <string name="return_to_inn">RUDI NYUMBA YA WAGENI</string>
+    <string name="stat_bonus_atk">SHAMBULIO: +%1$d</string>
+    <string name="stat_bonus_def">ULINZI: +%1$d</string>
+    <string name="stat_bonus_mag">UCHAWI: +%1$d</string>
+    <string name="stat_bonus_hp">AFYA: +%1$d</string>
+    <string name="stat_bonus_crit_chance">KRITIKALI %%: +%1$d%%</string>
+    <string name="stat_bonus_crit_damage">MADHARA KRITIKALI: +%1$d%%</string>
+    <string name="hero_status_rip">FARIKI</string>
+    <string name="jobs_count_format">%1$d KAZI</string>
+    <string name="party_full">IMEJAA</string>
+    <string name="hire_cost_format">AJIRI %1$dG</string>
+    <string name="pathfinder_title">🧭 SAFARI YA MSACAMBIA</string>
+    <string name="pathfinder_select_floor_desc">Chagua ghorofa ya kuanzia mji:</string>
+    <string name="pathfinder_floor_range_format">GHOROFA %1$d / %2$d</string>
+    <string name="depart_button">ONDOKA ⚔️</string>
+    <string name="hall_of_fame_title">🏆 UKUMBI WA SIFA</string>
+    <string name="top_champions_title">MABINGWA WAKUBWA</string>
+    <string name="no_champions_yet">HAKUNA MABINGWA BADO</string>
+    <string name="loading_text">INAPAKIA...</string>
+    <string name="no_rankings_yet">HAKUNA NAFASI BADO</string>
+    <string name="flr_short_format">GHOROFA %1$d</string>
+    <string name="tab_available">INAPATIKANA</string>
+    <string name="legendary_artifact">Sanaa ya Kipekee</string>
+    <string name="perk_upgrades_title">MABORESHO YA FAIDA</string>
+    <string name="btn_upgrade_magicite">BORESHA (💎 %1$d)</string>
+    <string name="btn_need_magicite">UNAHITAJI MAGICITE (💎 %1$d)</string>
+    <string name="tab_stats">TAKWIMU</string>
+    <string name="stat_label_highest_floor">Ghorofa ya Juu Zaidi</string>
+    <string name="stat_label_lifetime_floor">Rekodi ya Ghorofa</string>
+    <string name="stat_label_total_magicite">Jumla ya Magicite</string>
+    <string name="stat_label_total_gil">Jumla ya Gil</string>
+    <string name="stat_label_vault_cap">Kikomo cha Akiba ya Gil</string>
+    <string name="stat_label_exp_boost">Ongezeko la EXP</string>
+    <string name="stat_label_upgrade_discount">Punguzo la Maboresho</string>
+    <string name="stat_label_rest_discount">Punguzo la Pumziko</string>
+    <string name="support_feedback_title">MSAADA NA MAONI</string>
+    <string name="help_improve_game">SAIDIA KUBORESHA MCHEZO!</string>
+    <string name="support_email_desc">Umepata hitilafu au una ushauri? Tuma barua pepe kwa mwendelezaji.</string>
+    <string name="btn_send_feedback">📧 TUMA MAONI</string>
+    <string name="love_final_dungeon">UNAPENDA FINAL DUNGEON?</string>
+    <string name="rate_app_desc">Kutathmini programu husaidia wachezaji wengine kugundua mchezo!</string>
+    <string name="btn_rate_store">⭐ TATHMINI KWENYE PLAY STORE</string>
+    <string name="bulletin_perk_inn">🏨 Tiba ya Afya Nyumba ya Wageni: +%1$d%%</string>
+    <string name="bulletin_perk_barracks">🛡️ Ukubwa wa Kikosi Kambi: %1$d</string>
+    <string name="bulletin_perk_vault">💰 Faida ya Gil Akiba: +%1$d%%</string>
+    <string name="bulletin_perk_pathfinder">🧭 Ghorofa ya Kuanzia Msacambia: Ghorofa %1$d</string>
+    <string name="bulletin_perk_planning">📜 Punguzo la Maboresho: %1$d%%</string>
 </resources>

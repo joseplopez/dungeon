@@ -166,7 +166,7 @@ fun LeaderboardScreen(
                         }
 
                         Text(
-                            text = "DIM ${gameState?.currentDimension ?: 1} • FLR ${gameState?.lifetimeHighestFloor ?: 0}",
+                            text = "FAN ${gameState?.currentDimension ?: 1} • FLR ${gameState?.lifetimeHighestFloor ?: 0}",
                             style = PixelSmall,
                             color = StoneGray
                         )
@@ -203,13 +203,13 @@ fun LeaderboardScreen(
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Text(
-                            text = "🏆 HALL OF FAME",
+                            text = safeStringResource(R.string.hall_of_fame_title),
                             style = PixelHeading,
                             color = GoldBright,
                             fontSize = 11.sp
                         )
                         Text(
-                            text = "TOP CHAMPIONS",
+                            text = safeStringResource(R.string.top_champions_title),
                             style = PixelSmall,
                             color = StoneGray,
                             fontSize = 8.sp
@@ -255,7 +255,7 @@ fun LeaderboardScreen(
                             }
                         } else {
                             Text(
-                                text = "NO CHAMPIONS YET",
+                                text = safeStringResource(R.string.no_champions_yet),
                                 style = PixelSmall,
                                 color = StoneGray,
                                 fontSize = 9.sp,
@@ -370,7 +370,7 @@ fun LeaderboardScreen(
                                 color = GoldBright,
                                 modifier = Modifier.weight(1f)
                             )
-                            val floorHeader = if (selectedTab == 1) "MAX DIM" else safeStringResource(R.string.floor_reached_short)
+                            val floorHeader = if (selectedTab == 1) safeStringResource(R.string.header_max_dim) else safeStringResource(R.string.floor_reached_short)
                             Text(
                                 text = floorHeader,
                                 style = PixelSmall,
@@ -396,12 +396,12 @@ fun LeaderboardScreen(
 
                         if (isLoading) {
                             Box(Modifier.fillMaxSize(), contentAlignment = Center) {
-                                Text("LOADING...", style = PixelBody, color = StoneGray)
+                                Text(safeStringResource(R.string.loading_text), style = PixelBody, color = StoneGray)
                             }
                         } else if (entries.isEmpty()) {
                             Box(Modifier.fillMaxSize(), contentAlignment = Center) {
                                 Text(
-                                    text = "NO RANKINGS YET",
+                                    text = safeStringResource(R.string.no_rankings_yet),
                                     style = PixelSmall,
                                     color = StoneGray,
                                     textAlign = TextAlign.Center,
@@ -496,7 +496,7 @@ private fun PodiumPedestal(
                     textAlign = TextAlign.Center
                 )
                 Text(
-                    text = "FLR ${entry.maxFloor}",
+                    text = safeStringResource(R.string.flr_short_format, entry.maxFloor),
                     style = PixelHeading,
                     color = GoldBright,
                     fontSize = 9.sp

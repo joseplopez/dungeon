@@ -461,7 +461,7 @@ fun BulletinBoardDialog(
                         Text("🏆", fontSize = 28.sp)
                         Column {
                             Text(safeStringResource(R.string.bulletin_record_format, gs.highestFloor), style = PixelBody, color = GoldBright)
-                            Text("Dimension ${gs.currentDimension}", style = PixelSmall, color = StoneGray)
+                            Text(safeStringResource(R.string.dimension_label_format, gs.currentDimension), style = PixelSmall, color = StoneGray)
                         }
                     }
                 }
@@ -474,11 +474,11 @@ fun BulletinBoardDialog(
                     verticalArrangement = Arrangement.spacedBy(6.dp)
                 ) {
                     val perks = mutableListOf<String>()
-                    if (gs.innLevel > 0) perks.add("🏨 Inn Rest HP Heal: +${gs.innLevel * 20}%")
-                    if (gs.barracksLevel > 0) perks.add("🛡️ Barracks Max Party Size: ${3 + gs.barracksLevel}")
-                    if (gs.vaultLevel > 0) perks.add("💰 Vault Gold Interest: +${gs.vaultLevel * 5}%")
-                    if (gs.pathfinderLevel > 0) perks.add("🧭 Pathfinder Start Floor: Floor ${gs.pathfinderLevel * 5}")
-                    if (gs.planningLevel > 0) perks.add("📜 Upgrade Discount: ${(gs.upgradeDiscount * 100).toInt()}%")
+                    if (gs.innLevel > 0) perks.add(safeStringResource(R.string.bulletin_perk_inn, gs.innLevel * 20))
+                    if (gs.barracksLevel > 0) perks.add(safeStringResource(R.string.bulletin_perk_barracks, 3 + gs.barracksLevel))
+                    if (gs.vaultLevel > 0) perks.add(safeStringResource(R.string.bulletin_perk_vault, gs.vaultLevel * 5))
+                    if (gs.pathfinderLevel > 0) perks.add(safeStringResource(R.string.bulletin_perk_pathfinder, gs.pathfinderLevel * 5))
+                    if (gs.planningLevel > 0) perks.add(safeStringResource(R.string.bulletin_perk_planning, (gs.upgradeDiscount * 100).toInt()))
 
                     if (perks.isEmpty()) {
                         Text(
@@ -496,7 +496,7 @@ fun BulletinBoardDialog(
                 }
 
                 PixelButton(
-                    label = "CLOSE",
+                    label = safeStringResource(R.string.close_button),
                     onClick = onDismiss,
                     modifier = Modifier.fillMaxWidth().height(40.dp)
                 )
@@ -731,7 +731,7 @@ fun SupportDialog(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = CenterVertically
                 ) {
-                    Text("SUPPORT & FEEDBACK", style = PixelHeading)
+                    Text(safeStringResource(R.string.support_feedback_title), style = PixelHeading)
                     PixelButton(
                         label = "X",
                         onClick = onDismiss,
@@ -744,10 +744,10 @@ fun SupportDialog(
                 PixelDivider()
                 Spacer(Modifier.height(16.dp))
                 
-                Text("HELP IMPROVE THE GAME!", style = PixelGold, fontSize = 12.sp)
+                Text(safeStringResource(R.string.help_improve_game), style = PixelGold, fontSize = 12.sp)
                 Spacer(Modifier.height(8.dp))
                 Text(
-                    "Found a bug or have a suggestion? Send an email directly to the developer.",
+                    safeStringResource(R.string.support_email_desc),
                     style = PixelSmall,
                     color = Color.White.copy(alpha = 0.8f),
                     lineHeight = 16.sp
@@ -755,7 +755,7 @@ fun SupportDialog(
                 
                 Spacer(Modifier.height(16.dp))
                 PixelButton(
-                    label = "📧 SEND FEEDBACK",
+                    label = safeStringResource(R.string.btn_send_feedback),
                     onClick = {
                         val intent = Intent(Intent.ACTION_SENDTO).apply {
                             data = Uri.parse("mailto:joseplcatz@gmai.com")
@@ -767,10 +767,10 @@ fun SupportDialog(
                 )
                 
                 Spacer(Modifier.height(24.dp))
-                Text("LOVE FINAL DUNGEON?", style = PixelGold, fontSize = 12.sp)
+                Text(safeStringResource(R.string.love_final_dungeon), style = PixelGold, fontSize = 12.sp)
                 Spacer(Modifier.height(8.dp))
                 Text(
-                    "Rating the app helps other players discover the dungeon!",
+                    safeStringResource(R.string.rate_app_desc),
                     style = PixelSmall,
                     color = Color.White.copy(alpha = 0.8f),
                     lineHeight = 16.sp
@@ -778,7 +778,7 @@ fun SupportDialog(
                 
                 Spacer(Modifier.height(16.dp))
                 PixelButton(
-                    label = "⭐ RATE ON PLAY STORE",
+                    label = safeStringResource(R.string.btn_rate_store),
                     onClick = {
                         val packageName = context.packageName
                         val intent = Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=$packageName")).apply {

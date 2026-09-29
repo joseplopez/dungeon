@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Final Dungeon</string>
 
-    <!-- Dimensions & Biomes -->
+    <!-- Fantasies & Biomes -->
     <string name="dim1_title">Krieger des Lichts</string>
     <string name="dim1_subtitle">Final Fantasy I</string>
     <string name="dim1_story">Vier Krieger des Lichts erheben sich, um die von den Mächten des Chaos gestohlenen Kristalle zurückzuholen...</string>
@@ -100,7 +100,7 @@
     <string name="need_warriors">KRIEGER BENÖTIGT</string>
     <string name="fully_rested">Gruppe ist voll ausgeruht</string>
     <string name="equip_button">AUSRÜSTEN</string>
-    <string name="dimension_complete">DIMENSION ABGESCHLOSSEN!</string>
+    <string name="dimension_complete">FANTASY ABGESCHLOSSEN!</string>
     <string name="hall_of_fame">RUHMESHALLE</string>
     <string name="gil_earned_label">Gil verdient</string>
     <string name="magicite_found_label">Magicite gefunden</string>
@@ -332,7 +332,6 @@
     <!-- Leaderboards -->
     <string name="leaderboard_title">RANGLISTEN</string>
     <string name="tab_global">GLOBAL</string>
-    <string name="tab_dimension">DIMENSION</string>
     <string name="tab_friends">FREUNDE</string>
     <string name="rank_label">RANG</string>
     <string name="player_label">SPIELER</string>
@@ -408,4 +407,53 @@
     <string name="btn_auto_equip">AUTO-AUSRÜSTEN</string>
     <string name="btn_rehire_party">REKRUTIEREN (%1$dG)</string>
     <string name="btn_rehire_no_run">MACH EINEN RUN!</string>
+
+    <!-- Extracted Screen Strings -->
+    <string name="return_to_inn">ZURÜCK ZUR TAVERNE</string>
+    <string name="stat_bonus_atk">ANG: +%1$d</string>
+    <string name="stat_bonus_def">ABW: +%1$d</string>
+    <string name="stat_bonus_mag">MAG: +%1$d</string>
+    <string name="stat_bonus_hp">TP: +%1$d</string>
+    <string name="stat_bonus_crit_chance">KRIT %%: +%1$d%%</string>
+    <string name="stat_bonus_crit_damage">KRIT-SCHADEN: +%1$d%%</string>
+    <string name="hero_status_rip">RIP</string>
+    <string name="jobs_count_format">%1$d KLASSEN</string>
+    <string name="party_full">VOLL</string>
+    <string name="hire_cost_format">ANWERBEN %1$dG</string>
+    <string name="pathfinder_title">🧭 PFADFINDER-EXPEDITION</string>
+    <string name="pathfinder_select_floor_desc">Wähle deine Start-Ebene im Dungeon:</string>
+    <string name="pathfinder_floor_range_format">EBENE %1$d / %2$d</string>
+    <string name="depart_button">AUFBRECHEN ⚔️</string>
+    <string name="hall_of_fame_title">🏆 RUHMESHALLE</string>
+    <string name="top_champions_title">TOP-CHAMPIONS</string>
+    <string name="no_champions_yet">NOCH KEINE CHAMPIONS</string>
+    <string name="loading_text">LÄDT...</string>
+    <string name="no_rankings_yet">NOCH KEINE RANGLISTE</string>
+    <string name="flr_short_format">EBENE %1$d</string>
+    <string name="tab_available">VERFÜGBAR</string>
+    <string name="legendary_artifact">Legendäres Artefakt</string>
+    <string name="perk_upgrades_title">BONUS-UPGRADES</string>
+    <string name="btn_upgrade_magicite">VERBESSERN (💎 %1$d)</string>
+    <string name="btn_need_magicite">BENÖTIGT MAGIZIT (💎 %1$d)</string>
+    <string name="tab_stats">STATISTIKEN</string>
+    <string name="stat_label_highest_floor">Höchste Ebene</string>
+    <string name="stat_label_lifetime_floor">Rekord-Ebene gesamt</string>
+    <string name="stat_label_total_magicite">Gesamtes Magizit</string>
+    <string name="stat_label_total_gil">Gesamtes Gil</string>
+    <string name="stat_label_vault_cap">Tresor-Limit für Gil</string>
+    <string name="stat_label_exp_boost">EXP-Bonus</string>
+    <string name="stat_label_upgrade_discount">Upgrade-Rabatt</string>
+    <string name="stat_label_rest_discount">Rast-Rabatt</string>
+    <string name="support_feedback_title">SUPPORT &amp; FEEDBACK</string>
+    <string name="help_improve_game">HILF DAS SPIEL ZU VERBESSERN!</string>
+    <string name="support_email_desc">Fehler gefunden oder einen Vorschlag? Sende eine E-Mail an den Entwickler.</string>
+    <string name="btn_send_feedback">📧 FEEDBACK SENDEN</string>
+    <string name="love_final_dungeon">GEFÄLLT DIR FINAL DUNGEON?</string>
+    <string name="rate_app_desc">Eine Bewertung hilft anderen Spielern, den Dungeon zu entdecken!</string>
+    <string name="btn_rate_store">⭐ IM PLAY STORE BEWERTEN</string>
+    <string name="bulletin_perk_inn">🏨 Taverne TP-Heilung: +%1$d%%</string>
+    <string name="bulletin_perk_barracks">🛡️ Kaserne Max. Gruppe: %1$d</string>
+    <string name="bulletin_perk_vault">💰 Tresor Gil-Zinsen: +%1$d%%</string>
+    <string name="bulletin_perk_pathfinder">🧭 Pfadfinder Start-Ebene: Ebene %1$d</string>
+    <string name="bulletin_perk_planning">📜 Upgrade-Rabatt: %1$d%%</string>
 </resources>

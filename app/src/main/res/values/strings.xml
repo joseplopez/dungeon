@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Final Dungeon</string>
 
-    <!-- Dimensions & Biomes -->
+    <!-- Fantasies & Biomes -->
     <string name="dim1_title">Warriors of Light</string>
     <string name="dim1_subtitle">Final Fantasy I</string>
     <string name="dim1_story">Four Warriors of Light arise to restore the crystals stolen by the Forces of Chaos...</string>
@@ -100,7 +100,7 @@
     <string name="need_warriors">NEED WARRIORS</string>
     <string name="fully_rested">Party is fully rested</string>
     <string name="equip_button">EQUIP</string>
-    <string name="dimension_complete">DIMENSION COMPLETE!</string>
+    <string name="dimension_complete">FANTASY COMPLETE!</string>
     <string name="hall_of_fame">HALL OF FAME</string>
     <string name="gil_earned_label">Gil Earned</string>
     <string name="magicite_found_label">Magicite Found</string>
@@ -332,7 +332,7 @@
     <!-- Leaderboards -->
     <string name="leaderboard_title">RANKINGS</string>
     <string name="tab_global">GLOBAL</string>
-    <string name="tab_dimension">DIMENSION</string>
+    <string name="tab_dimension" translatable="false">FANTASY</string>
     <string name="tab_friends">FRIENDS</string>
     <string name="rank_label">RANK</string>
     <string name="player_label">PLAYER</string>
@@ -408,4 +408,56 @@
     <string name="btn_auto_equip">AUTO EQUIP</string>
     <string name="btn_rehire_party">REHIRE TEAM (%1$dG)</string>
     <string name="btn_rehire_no_run">DO ONE RUN!</string>
+
+    <!-- Extracted Screen Strings -->
+    <string name="return_to_inn">RETURN TO INN</string>
+    <string name="stat_bonus_atk">ATK: +%1$d</string>
+    <string name="stat_bonus_def">DEF: +%1$d</string>
+    <string name="stat_bonus_mag">MAG: +%1$d</string>
+    <string name="stat_bonus_hp">HP: +%1$d</string>
+    <string name="stat_bonus_crit_chance">CRIT %%: +%1$d%%</string>
+    <string name="stat_bonus_crit_damage">CRIT DMG: +%1$d%%</string>
+    <string name="hero_status_rip">RIP</string>
+    <string name="jobs_count_format">%1$d JOBS</string>
+    <string name="party_full">FULL</string>
+    <string name="hire_cost_format">%1$dG HIRE</string>
+    <string name="pathfinder_title">🧭 PATHFINDER EXPEDITION</string>
+    <string name="pathfinder_select_floor_desc">Select your starting dungeon floor:</string>
+    <string name="pathfinder_floor_range_format">FLOOR %1$d / %2$d</string>
+    <string name="depart_button">DEPART ⚔️</string>
+    <string name="hall_of_fame_title">🏆 HALL OF FAME</string>
+    <string name="top_champions_title">TOP CHAMPIONS</string>
+    <string name="no_champions_yet">NO CHAMPIONS YET</string>
+    <string name="header_max_dim" translatable="false">MAX FANTASY</string>
+    <string name="loading_text">LOADING...</string>
+    <string name="no_rankings_yet">NO RANKINGS YET</string>
+    <string name="flr_short_format">FLR %1$d</string>
+    <string name="tab_available">AVAILABLE</string>
+    <string name="legendary_artifact">Legendary Artifact</string>
+    <string name="perk_upgrades_title">PERK UPGRADES</string>
+    <string name="btn_upgrade_magicite">UPGRADE (💎 %1$d)</string>
+    <string name="btn_need_magicite">NEED MAGICITE (💎 %1$d)</string>
+    <string name="tab_stats">STATS</string>
+    <string name="stat_label_dimension" translatable="false">Fantasy</string>
+    <string name="stat_label_highest_floor">Highest Floor</string>
+    <string name="stat_label_lifetime_floor">Lifetime Floor</string>
+    <string name="stat_label_total_magicite">Total Magicite</string>
+    <string name="stat_label_total_gil">Total Gil</string>
+    <string name="stat_label_vault_cap">Gil Vault Cap</string>
+    <string name="stat_label_exp_boost">EXP Boost</string>
+    <string name="stat_label_upgrade_discount">Upgrade Discount</string>
+    <string name="stat_label_rest_discount">Rest Discount</string>
+    <string name="support_feedback_title">SUPPORT &amp; FEEDBACK</string>
+    <string name="help_improve_game">HELP IMPROVE THE GAME!</string>
+    <string name="support_email_desc">Found a bug or have a suggestion? Send an email directly to the developer.</string>
+    <string name="btn_send_feedback">📧 SEND FEEDBACK</string>
+    <string name="love_final_dungeon">LOVE FINAL DUNGEON?</string>
+    <string name="rate_app_desc">Rating the app helps other players discover the dungeon!</string>
+    <string name="btn_rate_store">⭐ RATE ON PLAY STORE</string>
+    <string name="bulletin_perk_inn">🏨 Inn Rest HP Heal: +%1$d%%</string>
+    <string name="bulletin_perk_barracks">🛡️ Barracks Max Party Size: %1$d</string>
+    <string name="bulletin_perk_vault">💰 Vault Gold Interest: +%1$d%%</string>
+    <string name="bulletin_perk_pathfinder">🧭 Pathfinder Start Floor: Floor %1$d</string>
+    <string name="bulletin_perk_planning">📜 Upgrade Discount: %1$d%%</string>
+    <string name="dimension_label_format" translatable="false">Fantasy %1$d</string>
 </resources>

@@ -140,13 +140,13 @@ fun RelicsScreen(
                             // Sub-Tabs Header
                             Row(Modifier.fillMaxWidth().height(32.dp), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                                 PixelButton(
-                                    label = "RELICS",
+                                    label = safeStringResource(R.string.relics_title),
                                     onClick = { leftTab = 0 },
                                     active = (leftTab == 0),
                                     modifier = Modifier.weight(1f).fillMaxHeight()
                                 )
                                 PixelButton(
-                                    label = "AVAILABLE",
+                                    label = safeStringResource(R.string.tab_available),
                                     onClick = { leftTab = 1 },
                                     active = (leftTab == 1),
                                     modifier = Modifier.weight(1f).fillMaxHeight()
@@ -192,7 +192,7 @@ fun RelicsScreen(
                                                     .background(BgDarkest.copy(alpha = 0.9f), RoundedCornerShape(2.dp))
                                                     .padding(horizontal = 3.dp, vertical = 1.dp)
                                             ) {
-                                                Text("L$level", style = PixelSmall, color = GoldBright, fontSize = 9.sp)
+                                                Text(safeStringResource(R.string.relic_level_format, level), style = PixelSmall, color = GoldBright, fontSize = 9.sp)
                                             }
                                         }
                                     }
@@ -244,7 +244,7 @@ fun RelicsScreen(
                                     verticalAlignment = CenterVertically,
                                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                                 ) {
-                                    Text("Legendary Artifact", style = PixelSmall, color = StoneGray)
+                                    Text(safeStringResource(R.string.legendary_artifact), style = PixelSmall, color = StoneGray)
                                     Text("•", style = PixelSmall, color = StoneGray)
                                     Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(2.dp)) {
                                         Text("💎", fontSize = 11.sp)
@@ -263,7 +263,7 @@ fun RelicsScreen(
                                 )
                             }
 
-                            Text("PERK UPGRADES", style = PixelGold, fontSize = 10.sp)
+                            Text(safeStringResource(R.string.perk_upgrades_title), style = PixelGold, fontSize = 10.sp)
 
                             // Stat Boost Cards
                             val currentVal = getRelicBonusValue(selectedRelicType, selectedLevel)
@@ -292,7 +292,7 @@ fun RelicsScreen(
 
                             // Action Upgrade Button
                             PixelButton(
-                                label = if (canAfford) "UPGRADE (💎 $upgradeCost)" else "NEED MAGICITE (💎 $upgradeCost)",
+                                label = if (canAfford) safeStringResource(R.string.btn_upgrade_magicite, upgradeCost) else safeStringResource(R.string.btn_need_magicite, upgradeCost),
                                 onClick = { viewModel.upgradeRelic(selectedRelicType) },
                                 enabled = canAfford,
                                 modifier = Modifier.fillMaxWidth().height(38.dp)
@@ -313,13 +313,13 @@ fun RelicsScreen(
                             // Sub-Tabs Header
                             Row(Modifier.fillMaxWidth().height(32.dp), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                                 PixelButton(
-                                    label = "RELICS",
+                                    label = safeStringResource(R.string.relics_title),
                                     onClick = { rightTab = 0 },
                                     active = (rightTab == 0),
                                     modifier = Modifier.weight(1f).fillMaxHeight()
                                 )
                                 PixelButton(
-                                    label = "STATS",
+                                    label = safeStringResource(R.string.tab_stats),
                                     onClick = { rightTab = 1 },
                                     active = (rightTab == 1),
                                     modifier = Modifier.weight(1f).fillMaxHeight()
@@ -379,15 +379,15 @@ fun RelicsScreen(
                                     modifier = Modifier.weight(1f),
                                     verticalArrangement = Arrangement.spacedBy(4.dp)
                                 ) {
-                                    item { StatSummaryRow(icon = "🌌", label = "Dimension", value = "Dim ${gs.currentDimension}") }
-                                    item { StatSummaryRow(icon = "🏰", label = "Highest Floor", value = "F${gs.highestFloor}") }
-                                    item { StatSummaryRow(icon = "👑", label = "Lifetime Floor", value = "F${gs.lifetimeHighestFloor}") }
-                                    item { StatSummaryRow(icon = "💎", label = "Total Magicite", value = "${gs.totalMagiciteEarned}") }
-                                    item { StatSummaryRow(icon = "🪙", label = "Total Gil", value = "${gs.totalGilEarned}") }
-                                    item { StatSummaryRow(icon = "🏦", label = "Gil Vault Cap", value = "${gs.maxGil}") }
-                                    item { StatSummaryRow(icon = "⚡", label = "EXP Boost", value = "+${((gs.expMultiplier - 1.0f) * 100).toInt()}%") }
-                                    item { StatSummaryRow(icon = "🏷️", label = "Upgrade Discount", value = "-${(gs.upgradeDiscount * 100).toInt()}%") }
-                                    item { StatSummaryRow(icon = "💤", label = "Rest Discount", value = "-${(gs.restDiscount * 100).toInt()}%") }
+                                    item { StatSummaryRow(icon = "🌌", label = safeStringResource(R.string.stat_label_dimension), value = "Dim ${gs.currentDimension}") }
+                                    item { StatSummaryRow(icon = "🏰", label = safeStringResource(R.string.stat_label_highest_floor), value = "F${gs.highestFloor}") }
+                                    item { StatSummaryRow(icon = "👑", label = safeStringResource(R.string.stat_label_lifetime_floor), value = "F${gs.lifetimeHighestFloor}") }
+                                    item { StatSummaryRow(icon = "💎", label = safeStringResource(R.string.stat_label_total_magicite), value = "${gs.totalMagiciteEarned}") }
+                                    item { StatSummaryRow(icon = "🪙", label = safeStringResource(R.string.stat_label_total_gil), value = "${gs.totalGilEarned}") }
+                                    item { StatSummaryRow(icon = "🏦", label = safeStringResource(R.string.stat_label_vault_cap), value = "${gs.maxGil}") }
+                                    item { StatSummaryRow(icon = "⚡", label = safeStringResource(R.string.stat_label_exp_boost), value = "+${((gs.expMultiplier - 1.0f) * 100).toInt()}%") }
+                                    item { StatSummaryRow(icon = "🏷️", label = safeStringResource(R.string.stat_label_upgrade_discount), value = "-${(gs.upgradeDiscount * 100).toInt()}%") }
+                                    item { StatSummaryRow(icon = "💤", label = safeStringResource(R.string.stat_label_rest_discount), value = "-${(gs.restDiscount * 100).toInt()}%") }
                                 }
                             }
                         }

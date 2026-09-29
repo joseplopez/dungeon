@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Final Dungeon</string>
 
-    <!-- Dimensions & Biomes -->
+    <!-- Fantasies & Biomes -->
     <string name="dim1_title">Guerrers de la Llum</string>
     <string name="dim1_subtitle">Final Fantasy I</string>
     <string name="dim1_story">Quatre Guerrers de la Llum s\'alcen per restaurar els cristalls robats per les Forces del Caos...</string>
@@ -100,7 +100,7 @@
     <string name="need_warriors">ES NECESSITEN GUERRERS</string>
     <string name="fully_rested">El grup està completament descansat</string>
     <string name="equip_button">EQUIPAR</string>
-    <string name="dimension_complete">DIMENSIÓ COMPLETADA!</string>
+    <string name="dimension_complete">FANTASY COMPLETADA!</string>
     <string name="hall_of_fame">SALÓ DE LA FAMA</string>
     <string name="gil_earned_label">Gils Guanyats</string>
     <string name="magicite_found_label">Magicita Trobada</string>
@@ -332,7 +332,6 @@
     <!-- Leaderboards -->
     <string name="leaderboard_title">CLASSIFICACIONS</string>
     <string name="tab_global">GLOBAL</string>
-    <string name="tab_dimension">DIMENSIÓ</string>
     <string name="tab_friends">AMICS</string>
     <string name="rank_label">RANG</string>
     <string name="player_label">JUGADOR</string>
@@ -408,4 +407,53 @@
     <string name="btn_auto_equip">AUTOEQUIPAR</string>
     <string name="btn_rehire_party">RECONTRACTAR (%1$dG)</string>
     <string name="btn_rehire_no_run">FES UNA RUN!</string>
+
+    <!-- Extracted Screen Strings -->
+    <string name="return_to_inn">TORNAR A L\'HOSTAL</string>
+    <string name="stat_bonus_atk">ATQ: +%1$d</string>
+    <string name="stat_bonus_def">DEF: +%1$d</string>
+    <string name="stat_bonus_mag">MAG: +%1$d</string>
+    <string name="stat_bonus_hp">PV: +%1$d</string>
+    <string name="stat_bonus_crit_chance">CRÍT %%: +%1$d%%</string>
+    <string name="stat_bonus_crit_damage">DANY CRÍT: +%1$d%%</string>
+    <string name="hero_status_rip">DEP</string>
+    <string name="jobs_count_format">%1$d OFICIS</string>
+    <string name="party_full">PLE</string>
+    <string name="hire_cost_format">CONTRACTAR %1$dG</string>
+    <string name="pathfinder_title">🧭 EXPEDICIÓ PIONERA</string>
+    <string name="pathfinder_select_floor_desc">Tria la teva planta inicial de la mazmorra:</string>
+    <string name="pathfinder_floor_range_format">PLANTA %1$d / %2$d</string>
+    <string name="depart_button">MARCHAR ⚔️</string>
+    <string name="hall_of_fame_title">🏆 SALÓ DE LA FAMA</string>
+    <string name="top_champions_title">MILLORS CAMPIONS</string>
+    <string name="no_champions_yet">SENSE CAMPIONS ENCARA</string>
+    <string name="loading_text">CARREGANT...</string>
+    <string name="no_rankings_yet">SENSE CLASSIFICACIÓ ENCARA</string>
+    <string name="flr_short_format">PLANTA %1$d</string>
+    <string name="tab_available">DISPONIBLES</string>
+    <string name="legendary_artifact">Artefacte Legendari</string>
+    <string name="perk_upgrades_title">MILLORES DE AVANTATGES</string>
+    <string name="btn_upgrade_magicite">MILLORAR (💎 %1$d)</string>
+    <string name="btn_need_magicite">REQUEREIX MAGICITA (💎 %1$d)</string>
+    <string name="tab_stats">ESTADÍSTIQUES</string>
+    <string name="stat_label_highest_floor">Planta més alta</string>
+    <string name="stat_label_lifetime_floor">Planta rècord total</string>
+    <string name="stat_label_total_magicite">Magicita total</string>
+    <string name="stat_label_total_gil">Gil total</string>
+    <string name="stat_label_vault_cap">Límit de la càmera de Gil</string>
+    <string name="stat_label_exp_boost">Augment de EXP</string>
+    <string name="stat_label_upgrade_discount">Descompte de millores</string>
+    <string name="stat_label_rest_discount">Descompte de descans</string>
+    <string name="support_feedback_title">SUPORT I COMENTARIS</string>
+    <string name="help_improve_game">AJUDA A MILLORAR EL JOC!</string>
+    <string name="support_email_desc">Heu trobat un error o teniu un suggeriment? Envieu un correu al desenvolupador.</string>
+    <string name="btn_send_feedback">📧 ENVIAR COMENTARIS</string>
+    <string name="love_final_dungeon">T\'AGRADA FINAL DUNGEON?</string>
+    <string name="rate_app_desc">Valorar l\'aplicació ajuda altres jugadors a descobrir la mazmorra!</string>
+    <string name="btn_rate_store">⭐ VALORAR A LA PLAY STORE</string>
+    <string name="bulletin_perk_inn">🏨 Curació PV Hostal: +%1$d%%</string>
+    <string name="bulletin_perk_barracks">🛡️ Mida màx. grup Caserna: %1$d</string>
+    <string name="bulletin_perk_vault">💰 Interès de Gil Càmera: +%1$d%%</string>
+    <string name="bulletin_perk_pathfinder">🧭 Planta inicial Pioner: Planta %1$d</string>
+    <string name="bulletin_perk_planning">📜 Descompte de millores: %1$d%%</string>
 </resources>

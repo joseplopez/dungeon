@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Final Dungeon</string>
 
-    <!-- Dimensions & Biomes -->
+    <!-- Fantasies & Biomes -->
     <string name="dim1_title">빛의 전사들</string>
     <string name="dim1_subtitle">파이널 판타지 I</string>
     <string name="dim1_story">혼돈의 세력에게 빼앗긴 크리스탈을 되찾기 위해 네 명의 빛의 전사가 일어난다...</string>
@@ -100,7 +100,7 @@
     <string name="need_warriors">전사가 필요합니다</string>
     <string name="fully_rested">파티가 완전히 회복되었습니다</string>
     <string name="equip_button">장착</string>
-    <string name="dimension_complete">차원 완료!</string>
+    <string name="dimension_complete">Fantasy 완료!</string>
     <string name="hall_of_fame">명예의 전당</string>
     <string name="gil_earned_label">획득 길</string>
     <string name="magicite_found_label">발견한 마석</string>
@@ -333,7 +333,6 @@
     <!-- Leaderboards -->
     <string name="leaderboard_title">순위</string>
     <string name="tab_global">전체</string>
-    <string name="tab_dimension">차원</string>
     <string name="tab_friends">친구</string>
     <string name="rank_label">순위</string>
     <string name="player_label">플레이어</string>
@@ -409,4 +408,53 @@
     <string name="btn_auto_equip">자동 장착</string>
     <string name="btn_rehire_party">재고용 (%1$dG)</string>
     <string name="btn_rehire_no_run">1회 도전!</string>
+
+    <!-- Extracted Screen Strings -->
+    <string name="return_to_inn">여관으로 돌아가기</string>
+    <string name="stat_bonus_atk">공격: +%1$d</string>
+    <string name="stat_bonus_def">방어: +%1$d</string>
+    <string name="stat_bonus_mag">마력: +%1$d</string>
+    <string name="stat_bonus_hp">HP: +%1$d</string>
+    <string name="stat_bonus_crit_chance">치명타율 %%: +%1$d%%</string>
+    <string name="stat_bonus_crit_damage">치명타 피해: +%1$d%%</string>
+    <string name="hero_status_rip">전사</string>
+    <string name="jobs_count_format">%1$d개 직업</string>
+    <string name="party_full">가득 차다</string>
+    <string name="hire_cost_format">%1$dG 고용</string>
+    <string name="pathfinder_title">🧭 개척자 원정대</string>
+    <string name="pathfinder_select_floor_desc">시작할 던전 층을 선택하세요:</string>
+    <string name="pathfinder_floor_range_format">%1$d / %2$d 층</string>
+    <string name="depart_button">출발 ⚔️</string>
+    <string name="hall_of_fame_title">🏆 명예의 전당</string>
+    <string name="top_champions_title">최고의 챔피언</string>
+    <string name="no_champions_yet">아직 챔피언이 없습니다</string>
+    <string name="loading_text">로딩 중...</string>
+    <string name="no_rankings_yet">아직 순위가 없습니다</string>
+    <string name="flr_short_format">%1$d 층</string>
+    <string name="tab_available">사용 가능</string>
+    <string name="legendary_artifact">전설의 아티팩트</string>
+    <string name="perk_upgrades_title">특성 강화</string>
+    <string name="btn_upgrade_magicite">강화 (💎 %1$d)</string>
+    <string name="btn_need_magicite">마석 필요 (💎 %1$d)</string>
+    <string name="tab_stats">능력치</string>
+    <string name="stat_label_highest_floor">최고 도달 층</string>
+    <string name="stat_label_lifetime_floor">통산 최고 층</string>
+    <string name="stat_label_total_magicite">총 획득 마석</string>
+    <string name="stat_label_total_gil">총 획득 길</string>
+    <string name="stat_label_vault_cap">금고 최대치</string>
+    <string name="stat_label_exp_boost">경험치 보너스</string>
+    <string name="stat_label_upgrade_discount">강화 할인</string>
+    <string name="stat_label_rest_discount">휴식 할인</string>
+    <string name="support_feedback_title">지원 및 피드백</string>
+    <string name="help_improve_game">게임 개선에 도움을 주세요!</string>
+    <string name="support_email_desc">버그를 발견했거나 제안이 있으신가요? 개발자에게 이메일을 보내주세요.</string>
+    <string name="btn_send_feedback">📧 피드백 보내기</string>
+    <string name="love_final_dungeon">FINAL DUNGEON이 마음에 드시나요?</string>
+    <string name="rate_app_desc">평가를 남겨주시면 다른 플레이어가 게임을 찾는 데 도움이 됩니다!</string>
+    <string name="btn_rate_store">⭐ PLAY STORE에서 평가하기</string>
+    <string name="bulletin_perk_inn">🏨 여관 HP 회복: +%1$d%%</string>
+    <string name="bulletin_perk_barracks">🛡️ 병영 최대 파티원: %1$d</string>
+    <string name="bulletin_perk_vault">💰 금고 길 이자: +%1$d%%</string>
+    <string name="bulletin_perk_pathfinder">🧭 개척자 시작 층: %1$d 층</string>
+    <string name="bulletin_perk_planning">📜 강화 할인: %1$d%%</string>
 </resources>
