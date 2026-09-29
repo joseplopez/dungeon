@@ -450,8 +450,8 @@
     <string name="stat_label_rest_discount">Dinlenme İndirimi</string>
     <string name="support_feedback_title">DESTEK VE GERİ BİLDİRİM</string>
     <string name="help_improve_game">OYUNU GELİŞTİRMEYE YARDIM EDİN!</string>
-    <string name="support_email_desc">Bir hata mı buldunuz yoksa bir öneriniz mi var? Geliştiriciye e-posta gönderin.</string>
-    <string name="btn_send_feedback">📧 GERİ BİLDİRİM GÖNDER</string>
+    <string name="support_email_desc">Bir hata mı buldunuz yoksa bir öneriniz mi var? Discord topluluğumuza katılın!</string>
+    <string name="btn_send_feedback">💬 DISCORD SUNUCUSU</string>
     <string name="love_final_dungeon">FINAL DUNGEON\'U SEVDİNİZ Mİ?</string>
     <string name="rate_app_desc">Uygulamayı derecelendirmek diğer oyuncuların zindanı keşfetmesine yardımcı olur!</string>
     <string name="btn_rate_store">⭐ PLAY STORE\'DA DEĞERLENDİR</string>

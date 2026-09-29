@@ -450,8 +450,8 @@
     <string name="stat_label_rest_discount">Descompte de descans</string>
     <string name="support_feedback_title">SUPORT I COMENTARIS</string>
     <string name="help_improve_game">AJUDA A MILLORAR EL JOC!</string>
-    <string name="support_email_desc">Heu trobat un error o teniu un suggeriment? Envieu un correu al desenvolupador.</string>
-    <string name="btn_send_feedback">📧 ENVIAR COMENTARIS</string>
+    <string name="support_email_desc">Heu trobat un error o teniu un suggeriment? Uniu-vos a la nostra comunitat de Discord!</string>
+    <string name="btn_send_feedback">💬 SERVIDOR DE DISCORD</string>
     <string name="love_final_dungeon">T\'AGRADA FINAL DUNGEON?</string>
     <string name="rate_app_desc">Valorar l\'aplicació ajuda altres jugadors a descobrir la mazmorra!</string>
     <string name="btn_rate_store">⭐ VALORAR A LA PLAY STORE</string>

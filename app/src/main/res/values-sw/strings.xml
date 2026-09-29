@@ -450,8 +450,8 @@
     <string name="stat_label_rest_discount">Punguzo la Pumziko</string>
     <string name="support_feedback_title">MSAADA NA MAONI</string>
     <string name="help_improve_game">SAIDIA KUBORESHA MCHEZO!</string>
-    <string name="support_email_desc">Umepata hitilafu au una ushauri? Tuma barua pepe kwa mwendelezaji.</string>
-    <string name="btn_send_feedback">📧 TUMA MAONI</string>
+    <string name="support_email_desc">Umepata hitilafu au una ushauri? Jiunge na jamii yetu ya Discord!</string>
+    <string name="btn_send_feedback">💬 SEVA YA DISCORD</string>
     <string name="love_final_dungeon">UNAPENDA FINAL DUNGEON?</string>
     <string name="rate_app_desc">Kutathmini programu husaidia wachezaji wengine kugundua mchezo!</string>
     <string name="btn_rate_store">⭐ TATHMINI KWENYE PLAY STORE</string>

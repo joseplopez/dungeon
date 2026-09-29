@@ -450,8 +450,8 @@
     <string name="stat_label_rest_discount">休憩割引</string>
     <string name="support_feedback_title">サポート＆ご意見</string>
     <string name="help_improve_game">ゲーム改善にご協力ください！</string>
-    <string name="support_email_desc">バグやご提案は開発者にメールでお送りください。</string>
-    <string name="btn_send_feedback">📧 ご意見を送る</string>
+    <string name="support_email_desc">バグの報告やご提案がありますか？ Discordコミュニティに参加しましょう！</string>
+    <string name="btn_send_feedback">💬 DISCORD サーバー</string>
     <string name="love_final_dungeon">FINAL DUNGEONをお楽しみですか？</string>
     <string name="rate_app_desc">評価をしていただくと他プレイヤーの発見に繋がります！</string>
     <string name="btn_rate_store">⭐ PLAY STOREで評価する</string>

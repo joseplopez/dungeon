@@ -26,13 +26,7 @@ import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.game.dungeon.R
 import com.game.dungeon.data.models.LeaderboardEntry
-import com.game.dungeon.ui.components.BottomPixelNav
-import com.game.dungeon.ui.components.GoldenBorderBox
-import com.game.dungeon.ui.components.HeroSprite
-import com.game.dungeon.ui.components.MusicToggleButton
-import com.game.dungeon.ui.components.PixelButton
-import com.game.dungeon.ui.components.PixelDivider
-import com.game.dungeon.ui.components.safeStringResource
+import com.game.dungeon.ui.components.*
 import com.game.dungeon.ui.theme.*
 import com.game.dungeon.ui.viewmodels.LeaderboardViewModel
 import java.util.concurrent.TimeUnit
@@ -51,6 +45,7 @@ fun LeaderboardScreen(
 
     var selectedEntry by remember { mutableStateOf<LeaderboardEntry?>(null) }
     var showEditNameDialog by remember { mutableStateOf(false) }
+    var showSupportDialog by remember { mutableStateOf(false) }
 
     val userEntry = entries.find { it.isUser }
     val userRankText = userEntry?.let { "#${it.rank}" } ?: "#-"
@@ -99,6 +94,7 @@ fun LeaderboardScreen(
                 ) {
                     Text("🪙 ${gameState?.gold ?: 0}G", style = PixelGold)
                     Text("💎 ${gameState?.magicite ?: 0}", style = PixelGold)
+                    SupportIconButton(onClick = { showSupportDialog = true })
                     MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
                 }
             }
@@ -443,6 +439,10 @@ fun LeaderboardScreen(
 
     selectedEntry?.let { entry ->
         GhostRunDialog(entry, onDismiss = { selectedEntry = null })
+    }
+
+    if (showSupportDialog) {
+        SupportDialog(onDismiss = { showSupportDialog = false })
     }
 }
 

@@ -450,8 +450,8 @@
     <string name="stat_label_rest_discount">Réduction de repos</string>
     <string name="support_feedback_title">SUPPORT ET AVIS</string>
     <string name="help_improve_game">AIDEZ À AMÉLIORER LE JEU !</string>
-    <string name="support_email_desc">Un bug ou une suggestion ? Envoyez un e-mail au développeur.</string>
-    <string name="btn_send_feedback">📧 ENVOYER UN AVIS</string>
+    <string name="support_email_desc">Un bug ou une suggestion ? Rejoignez notre communauté Discord !</string>
+    <string name="btn_send_feedback">💬 SERVEUR DISCORD</string>
     <string name="love_final_dungeon">VOUS AIMEZ FINAL DUNGEON ?</string>
     <string name="rate_app_desc">Évaluer l\'application aide les autres joueurs à découvrir le donjon !</string>
     <string name="btn_rate_store">⭐ NOTER SUR LE PLAY STORE</string>

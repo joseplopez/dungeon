@@ -49,6 +49,7 @@ fun EquipmentScreen(
 
     var selectedItemForDetail by remember { mutableStateOf<Item?>(null) }
     var showSellAllConfirmation by remember { mutableStateOf(false) }
+    var showSupportDialog by remember { mutableStateOf(false) }
 
     val infiniteTransition = rememberInfiniteTransition(label = "equipmentAnim")
     val animTime by infiniteTransition.animateFloat(
@@ -78,6 +79,7 @@ fun EquipmentScreen(
                     heroName = hero?.name ?: "",
                     isMuted = isMuted,
                     onToggleMusic = onToggleMusic,
+                    onOpenSupport = { showSupportDialog = true },
                     onBack = onBack
                 )
 
@@ -157,6 +159,10 @@ fun EquipmentScreen(
                     onClose = { selectedItemForDetail = null }
                 )
             }
+
+            if (showSupportDialog) {
+                SupportDialog(onDismiss = { showSupportDialog = false })
+            }
         }
     }
 }
@@ -166,6 +172,7 @@ private fun TopBannerHeader(
     heroName: String,
     isMuted: Boolean,
     onToggleMusic: () -> Unit,
+    onOpenSupport: () -> Unit,
     onBack: () -> Unit
 ) {
     GoldenBorderBox(
@@ -192,7 +199,13 @@ private fun TopBannerHeader(
                 style = PixelHeading
             )
 
-            MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                SupportIconButton(onClick = onOpenSupport)
+                MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
+            }
         }
     }
 }

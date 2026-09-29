@@ -450,8 +450,8 @@
     <string name="stat_label_rest_discount">Скидка на отдых</string>
     <string name="support_feedback_title">ПОДДЕРЖКА И ОТЗЫВЫ</string>
     <string name="help_improve_game">ПОМОГИТЕ УЛУЧШИТЬ ИГРУ!</string>
-    <string name="support_email_desc">Нашли ошибку или есть предложение? Напишите разработчику.</string>
-    <string name="btn_send_feedback">📧 ОТПРАВИТЬ ОТЗЫВ</string>
+    <string name="support_email_desc">Нашли ошибку или есть предложение? Присоединяйтесь к нашему сообществу в Discord!</string>
+    <string name="btn_send_feedback">💬 СЕРВЕР DISCORD</string>
     <string name="love_final_dungeon">НРАВИТСЯ FINAL DUNGEON?</string>
     <string name="rate_app_desc">Оценка приложения помогает другим игрокам узнать об игре!</string>
     <string name="btn_rate_store">⭐ ОЦЕНИТЬ В PLAY STORE</string>

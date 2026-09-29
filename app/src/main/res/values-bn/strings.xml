@@ -450,8 +450,8 @@
     <string name="stat_label_rest_discount">বিশ্রাম ছাড়</string>
     <string name="support_feedback_title">সহায়তা ও মতামত</string>
     <string name="help_improve_game">গেমটি উন্নত করতে সাহায্য করুন!</string>
-    <string name="support_email_desc">কোনো বাগ পেয়েছেন বা পরামর্শ আছে? ডেভেলপারকে সরাসরি ইমেল পাঠান।</string>
-    <string name="btn_send_feedback">📧 মতামত পাঠান</string>
+    <string name="support_email_desc">কোনো বাগ পেয়েছেন বা পরামর্শ আছে? আমাদের ডিসকর্ড কমিউনিটিতে যোগ দিন!</string>
+    <string name="btn_send_feedback">💬 ডিসকর্ড সার্ভার</string>
     <string name="love_final_dungeon">FINAL DUNGEON পছন্দ হয়েছে?</string>
     <string name="rate_app_desc">অ্যাপটির মূল্যায়ন অন্যান্য খেলোয়াড়দের গেমটি খুঁজে পেতে সহায়তা করে!</string>
     <string name="btn_rate_store">⭐ প্লে স্টোরে রেট দিন</string>

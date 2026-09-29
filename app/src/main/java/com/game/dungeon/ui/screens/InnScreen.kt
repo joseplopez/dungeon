@@ -67,6 +67,7 @@ fun InnScreen(
     var showDimensionResetDialog by remember { mutableStateOf(false) }
     var selectedHireJob by remember { mutableStateOf<HeroClass?>(null) }
     var showPathfinderDialog by remember { mutableStateOf(false) }
+    var showSupportDialog by remember { mutableStateOf(false) }
 
     Box(Modifier.fillMaxSize().background(GuildRoyalBlue)) {
         InnBackground()
@@ -76,7 +77,8 @@ fun InnScreen(
                 magicite = magicite, 
                 isMuted = isMuted, 
                 onToggleMusic = onToggleMusic,
-                onOpenResourceShop = { viewModel.openResourceShop(it) }
+                onOpenResourceShop = { viewModel.openResourceShop(it) },
+                onOpenSupport = { showSupportDialog = true }
             )
             
             // Dimension Advance Banner (Only shows if dimension max floor reached)
@@ -204,6 +206,12 @@ fun InnScreen(
             onWatchMagiciteAd = { act -> viewModel.watchMagiciteAd(act) },
             onBuyProduct = { act, product -> viewModel.buyProduct(act, product) },
             onDismiss = { viewModel.closeResourceShop() }
+        )
+    }
+
+    if (showSupportDialog) {
+        SupportDialog(
+            onDismiss = { showSupportDialog = false }
         )
     }
 }
@@ -740,7 +748,8 @@ fun InnTopBar(
     magicite: Int,
     isMuted: Boolean,
     onToggleMusic: () -> Unit,
-    onOpenResourceShop: (com.game.dungeon.monetization.ResourceType) -> Unit
+    onOpenResourceShop: (com.game.dungeon.monetization.ResourceType) -> Unit,
+    onOpenSupport: () -> Unit
 ) {
     GoldenBorderBox(
         Modifier
@@ -790,7 +799,10 @@ fun InnTopBar(
 
                 Text("🍺 " + safeStringResource(R.string.building_inn), style = PixelHeading, color = GoldBright)
 
-                MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
+                Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    SupportIconButton(onClick = onOpenSupport)
+                    MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
+                }
             }
         }
     }

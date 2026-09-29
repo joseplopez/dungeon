@@ -39,6 +39,7 @@ fun MasteryScreen(
     val gs by viewModel.gameState.collectAsState()
     
     var selectedTab by remember { mutableIntStateOf(0) }
+    var showSupportDialog by remember { mutableStateOf(false) }
     val tabs = listOf(safeStringResource(R.string.tab_job_mastery), safeStringResource(R.string.tab_pets))
 
     Box(Modifier.fillMaxSize().background(BgDarkest)) {
@@ -52,7 +53,10 @@ fun MasteryScreen(
                 ) {
                     PixelButton(safeStringResource(R.string.back_button), onClick = { navController.popBackStack() }, modifier = Modifier.height(36.dp))
                     Text(safeStringResource(R.string.training_grounds_title), style = PixelHeading)
-                    MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                        SupportIconButton(onClick = { showSupportDialog = true })
+                        MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
+                    }
                 }
             }
 
@@ -82,6 +86,10 @@ fun MasteryScreen(
             }
             
             BottomPixelNav(navController.currentBackStackEntry?.destination?.route, navController)
+        }
+
+        if (showSupportDialog) {
+            SupportDialog(onDismiss = { showSupportDialog = false })
         }
     }
 }

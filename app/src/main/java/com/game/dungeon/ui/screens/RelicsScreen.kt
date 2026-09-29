@@ -49,6 +49,7 @@ fun RelicsScreen(
     var selectedRelicType by remember { mutableStateOf(RelicType.MAGIC) }
     var leftTab by remember { mutableIntStateOf(0) } // 0: RELICS, 1: AVAILABLE
     var rightTab by remember { mutableIntStateOf(0) } // 0: RELICS, 1: STATS
+    var showSupportDialog by remember { mutableStateOf(false) }
 
     val infiniteTransition = rememberInfiniteTransition(label = "relic_anim")
     val animTime by infiniteTransition.animateFloat(
@@ -99,6 +100,7 @@ fun RelicsScreen(
                                 Text("💎", fontSize = 14.sp)
                                 Text("$magicite", style = PixelGold)
                             }
+                            SupportIconButton(onClick = { showSupportDialog = true })
                             MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
                         }
                     }
@@ -395,6 +397,10 @@ fun RelicsScreen(
                 }
 
                 BottomPixelNav(currentRoute, navController)
+            }
+
+            if (showSupportDialog) {
+                SupportDialog(onDismiss = { showSupportDialog = false })
             }
         }
     }

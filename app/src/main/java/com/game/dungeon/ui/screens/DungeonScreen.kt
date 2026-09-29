@@ -57,6 +57,7 @@ fun DungeonScreen(
     val dimension = state.dimension
     val isBossFloor = dimension != null && FFDimensionData.getBossForFloor(dimension, state.currentFloor) != null
     val activity = LocalContext.current as? Activity
+    var showSupportDialog by remember { mutableStateOf(false) }
 
     Box(Modifier.fillMaxSize()) {
         DungeonBackground(biomeType = state.currentBiome?.backgroundType ?: BiomeType.GENERIC_DUNGEON)
@@ -75,7 +76,8 @@ fun DungeonScreen(
                 isMuted = isMuted,
                 onToggleMusic = onToggleMusic,
                 boostFloorsRemaining = state.boostFloorsRemaining,
-                onWatchBoostAd = { activity?.let { viewModel.watchBoostAd(it) } }
+                onWatchBoostAd = { activity?.let { viewModel.watchBoostAd(it) } },
+                onOpenSupport = { showSupportDialog = true }
             )
             
             BattleArea(
@@ -233,7 +235,8 @@ fun DungeonTopBar(
     isMuted: Boolean,
     onToggleMusic: () -> Unit,
     boostFloorsRemaining: Int,
-    onWatchBoostAd: () -> Unit
+    onWatchBoostAd: () -> Unit,
+    onOpenSupport: () -> Unit
 ) {
     GoldenBorderBox(Modifier.fillMaxWidth().height(54.dp).background(BgDarkest)) {
         Row(
@@ -291,6 +294,7 @@ fun DungeonTopBar(
                         Text("$magiciteTotal", style = PixelGold)
                     }
                 }
+                SupportIconButton(onClick = onOpenSupport)
                 MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
             }
         }

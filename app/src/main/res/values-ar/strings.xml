@@ -450,8 +450,8 @@
     <string name="stat_label_rest_discount">خصم الراحة</string>
     <string name="support_feedback_title">الدعم والملاحظات</string>
     <string name="help_improve_game">ساعد في تحسين اللعبة!</string>
-    <string name="support_email_desc">هل وجدت خطأً أو لديك اقتراح؟ أرسل بريدًا إلكترونيًا للمطور.</string>
-    <string name="btn_send_feedback">📧 إرسال ملاحظات</string>
+    <string name="support_email_desc">هل وجدت خطأً أو لديك اقتراح؟ انضم إلى مجتمعنا على ديسكورد!</string>
+    <string name="btn_send_feedback">💬 خادم ديسكورد</string>
     <string name="love_final_dungeon">هل تحب FINAL DUNGEON؟</string>
     <string name="rate_app_desc">تقييم التطبيق يساعد اللاعبين الآخرين في اكتشاف الزنزانة!</string>
     <string name="btn_rate_store">⭐ تقييم في متجر PLAY</string>

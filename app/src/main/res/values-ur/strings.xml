@@ -450,8 +450,8 @@
     <string name="stat_label_rest_discount">آرام کی رعایت</string>
     <string name="support_feedback_title">مدد اور تبصرے</string>
     <string name="help_improve_game">کھیل کو بہتر بنانے میں مدد کریں!</string>
-    <string name="support_email_desc">کوئی خرابی ملی یا کوئی تجاویز ہیں؟ ڈویلپر کو ای میل بھیجیں۔</string>
-    <string name="btn_send_feedback">📧 تبصرہ بھیجیں</string>
+    <string name="support_email_desc">کوئی خرابی ملی یا کوئی تجاویز ہیں؟ ہماری ڈسکارڈ کمیونٹی میں شامل ہوں!</string>
+    <string name="btn_send_feedback">💬 ڈسکارڈ سرور</string>
     <string name="love_final_dungeon">کیا فائنل ڈنجن پسند آیا؟</string>
     <string name="rate_app_desc">ایپ کی درجہ بندی کرنے سے دوسرے کھلاڑیوں کو کھیل کی دریافت میں مدد ملتی ہے!</string>
     <string name="btn_rate_store">⭐ پلے اسٹور پر درجہ بندی کریں</string>

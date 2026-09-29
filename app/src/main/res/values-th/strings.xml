@@ -450,8 +450,8 @@
     <string name="stat_label_rest_discount">ส่วนลดการพักผ่อน</string>
     <string name="support_feedback_title">ช่วยเหลือและข้อเสนอแนะ</string>
     <string name="help_improve_game">ช่วยเราปรับปรุงเกม!</string>
-    <string name="support_email_desc">พบบั๊กหรือมีข้อเสนอแนะ? ส่งอีเมลถึงผู้พัฒนาโดยตรง</string>
-    <string name="btn_send_feedback">📧 ส่งข้อเสนอแนะ</string>
+    <string name="support_email_desc">พบบั๊กหรือมีข้อเสนอแนะ? เข้าร่วมชุมชน Discord ของเรา!</string>
+    <string name="btn_send_feedback">💬 เซิร์ฟเวอร์ DISCORD</string>
     <string name="love_final_dungeon">ชอบ FINAL DUNGEON ไหม?</string>
     <string name="rate_app_desc">การให้คะแนนแอปช่วยให้ผู้เล่นคนอื่นค้นพบดันเจี้ยนได้มากขึ้น!</string>
     <string name="btn_rate_store">⭐ ให้คะแนนบน PLAY STORE</string>
