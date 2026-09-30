@@ -45,12 +45,26 @@
     <string name="enemy_adamantoise">Adamantoise</string>
     <string name="enemy_dark_knight">Dunkler Ritter</string>
     <string name="enemy_emperor">Kaiser Mateus</string>
+    <string name="enemy_sea_snake">Seeschlange</string>
+    <string name="enemy_behemoth">Behemoth</string>
+    <string name="enemy_toad">Kröte</string>
+    <string name="enemy_leon">Leon</string>
+    <string name="enemy_borghen">Borghen</string>
+    <string name="enemy_gottos">Gottos</string>
+    <string name="enemy_roundworm">Riesenwurm</string>
+    <string name="enemy_cyclone">Zyklon</string>
+
+    <string name="enemy_zombie">Zombie</string>
+    <string name="enemy_wyvern">Wyvern</string>
+    <string name="enemy_astos">Astos</string>
+    <string name="enemy_marilith">Marilith</string>
 
     <string name="dim3_title">Licht der Kristalle</string>
     <string name="dim3_subtitle">Final Fantasy III</string>
     <string name="dim3_story">Waisenkinder, die von den Kristallen des Lichts auserwählt wurden, müssen das Gleichgewicht der Welt wiederherstellen...</string>
 
     <string name="biome_ur_village">Ur-Dorf</string>
+    <string name="biome_nepto_shrine">Nepto-Schrein</string>
     <string name="biome_crystal_tower_dim3">Kristallturm</string>
     <string name="biome_dark_world">Dunkle Welt</string>
 
@@ -59,6 +73,187 @@
     <string name="enemy_hein">Hein</string>
     <string name="enemy_tonberry">Tonberry</string>
     <string name="enemy_cloud_of_darkness">Wolke der Dunkelheit</string>
+    <string name="enemy_giant">Riese</string>
+    <string name="enemy_iron_giant">Eisenriese</string>
+    <string name="enemy_malboro">Morbol</string>
+    <string name="enemy_djinn_boss">Großer Djinn</string>
+    <string name="enemy_nepto_dragon">Nepto-Drache</string>
+    <string name="enemy_garuda">Garuda</string>
+    <string name="enemy_goldor">Goldor</string>
+    <string name="enemy_xande">Xande</string>
+
+    <!-- Dimension 4 Strings -->
+    <string name="dim4_title">Der Zweite Mond</string>
+    <string name="dim4_subtitle">Final Fantasy IV</string>
+    <string name="dim4_story">Cecil der Dunkelritter sucht Läuterung auf dem Berg der Prüfungen und kämpft gegen die vier Elementarfürsten...</string>
+    <string name="biome_baron_castle">Burg Baron</string>
+    <string name="biome_mount_ordeals">Berg der Prüfungen</string>
+    <string name="biome_dwarven_castle">Zwergenburg</string>
+    <string name="biome_lunar_subterrane">Monduntergrund</string>
+    <string name="biome_moon_core">Mondkern</string>
+    <string name="enemy_captain">Hauptmann</string>
+    <string name="enemy_antlion">Ameisenlöwe</string>
+    <string name="enemy_mist_dragon">Nebeldrache</string>
+    <string name="enemy_dark_imp">Dunkler Imp</string>
+    <string name="enemy_lunar_dragon">Monddrache</string>
+    <string name="enemy_mindflayer">Gedankenschinder</string>
+    <string name="enemy_mist_dragon_boss">Uralter Nebeldrache</string>
+    <string name="enemy_antlion_boss">Königlicher Ameisenlöwe</string>
+    <string name="enemy_golbez">Golbez</string>
+    <string name="enemy_cagnazzo">Cagnazzo</string>
+    <string name="enemy_barbariccia">Barbariccia</string>
+    <string name="enemy_scarmiglione">Scarmiglione</string>
+    <string name="enemy_rubicante">Rubicante</string>
+    <string name="enemy_dark_bahamut">Dunkler Bahamut</string>
+    <string name="enemy_zeromus">Zeromus</string>
+
+    <!-- Dimension 5 Strings -->
+    <string name="dim5_title">Die Reise des Kriegers</string>
+    <string name="dim5_subtitle">Final Fantasy V</string>
+    <string name="dim5_story">Bartz und seine Gefährten reisen durch zerbrochene Welten, um Exdeath zu versiegeln...</string>
+    <string name="biome_tule_wind_shrine">Windschrein</string>
+    <string name="biome_karnak_castle">Burg Karnak</string>
+    <string name="biome_library_ancients">Bibliothek der Alten</string>
+    <string name="biome_exdeath_castle">Exdeaths Schloss</string>
+    <string name="biome_void">Interdimensionaler Riss</string>
+    <string name="enemy_fariis">Waldfee</string>
+    <string name="enemy_skull_eater">Schädelfresser</string>
+    <string name="enemy_gargoyle">Gargoyle</string>
+    <string name="enemy_stoker">Schürer</string>
+    <string name="enemy_omega_proto">Proto-Omega</string>
+    <string name="enemy_shinryu">Shinryu</string>
+    <string name="enemy_wing_raptor">Flügelraptor</string>
+    <string name="enemy_karlabos">Karlabos</string>
+    <string name="enemy_ifrit_boss">Ifrit</string>
+    <string name="enemy_gilgamesh">Gilgamesch</string>
+    <string name="enemy_atomos">Atomos</string>
+    <string name="enemy_gilgamesh_2">Enkidu &amp; Gilgamesch</string>
+    <string name="enemy_exdeath">Exdeath</string>
+    <string name="enemy_omega">Omega</string>
+    <string name="enemy_neo_exdeath">Neo Exdeath</string>
+
+    <!-- Dimension 6 Strings -->
+    <string name="dim6_title">Welt der Ruinen</string>
+    <string name="dim6_subtitle">Final Fantasy VI</string>
+    <string name="dim6_story">Terra, Locke und die Rückkehrer kämpfen gegen das Gestahl-Imperium und den verrückten Hofnarr Kefka...</string>
+    <string name="biome_narshe_mines">Mienen von Narshe</string>
+    <string name="biome_magitek_factory">Magitek-Forschungsanstalt</string>
+    <string name="biome_floating_continent">Schwimmender Kontinent</string>
+    <string name="biome_kefka_tower">Kefkas Turm</string>
+    <string name="biome_world_of_ruin">Welt der Ruinen</string>
+    <string name="enemy_mp">Magitek-Soldat</string>
+    <string name="enemy_brawler">Raufer</string>
+    <string name="enemy_magitek_armor">Magitek-Rüstung</string>
+    <string name="enemy_ninja">Ninja</string>
+    <string name="enemy_dragon">Drache</string>
+    <string name="enemy_dark_force">Dunkle Macht</string>
+    <string name="enemy_magic_master">Magiemeister</string>
+    <string name="enemy_whelk">Schnecke</string>
+    <string name="enemy_vargas">Vargas</string>
+    <string name="enemy_number_024">Nummer 024</string>
+    <string name="enemy_ultros">Ultros</string>
+    <string name="enemy_typhon">Typhon</string>
+    <string name="enemy_air_force">Luftwaffe</string>
+    <string name="enemy_guardian">Wächter</string>
+    <string name="enemy_ultima_weapon">Ultima-Waffe</string>
+    <string name="enemy_kefka">Kefka Palazzo</string>
+
+    <!-- Dimension 7 Strings -->
+    <string name="dim7_title">Jenovas Vermächtnis</string>
+    <string name="dim7_subtitle">Final Fantasy VII</string>
+    <string name="dim7_story">Cloud Strife und AVALANCHE kämpfen gegen die Shinra Electric Power Company und Sephiroth...</string>
+    <string name="biome_midgar_slums">Slums von Midgar</string>
+    <string name="biome_shinra_building">Shinra-Hauptquartier</string>
+    <string name="biome_junon_underwater">Unterwasser-Reaktor von Junon</string>
+    <string name="biome_northern_crater">Nordkrater</string>
+    <string name="biome_sephiroth_realm">Planetenkern</string>
+    <string name="enemy_grunt">Shinra-Gefreiter</string>
+    <string name="enemy_sweeper">Auslöscher</string>
+    <string name="enemy_hellhound">Höllenhund</string>
+    <string name="enemy_jenova_cell">Jenova-Probe</string>
+    <string name="enemy_dragon_rider">Drachenreiter</string>
+    <string name="enemy_weapon">Smaragd-Waffe</string>
+    <string name="enemy_guard_scorpion">Wachskorpion</string>
+    <string name="enemy_airbuster">Airbuster</string>
+    <string name="enemy_jenova_birth">Jenova-GEBURT</string>
+    <string name="enemy_rufus">Rufus Shinra</string>
+    <string name="enemy_jenova_life">Jenova-LEBEN</string>
+    <string name="enemy_hojo">Professor Hojo</string>
+    <string name="enemy_jenova_synthesis">Jenova-SYNTHESE</string>
+    <string name="enemy_bizarro_seph">Bizzaro-Sephiroth</string>
+    <string name="enemy_sephiroth">Retter-Sephiroth</string>
+
+    <!-- Dimension 8 Strings -->
+    <string name="dim8_title">Kompression der Zeit</string>
+    <string name="dim8_subtitle">Final Fantasy VIII</string>
+    <string name="dim8_story">Squall Leonhart und SeeD-Söldner reisen durch die Zeit, um Hexe Ultimecia aufzuhalten...</string>
+    <string name="biome_balamb_garden">Balamb-Garden</string>
+    <string name="biome_galbadia_missile">Galbadia-Raketenbasis</string>
+    <string name="biome_deep_sea_deposit">Tiefsee-Forschungszentrum</string>
+    <string name="biome_lunatic_pandora">Lunatic Pandora</string>
+    <string name="biome_ultimecia_castle">Ultimecias Schloss</string>
+    <string name="enemy_galbadian_soldier">Galbadia-Soldat</string>
+    <string name="enemy_bite_bug">Beißkäfer</string>
+    <string name="enemy_geezard">Geezard</string>
+    <string name="enemy_wendigo">Wendigo</string>
+    <string name="enemy_elnoyle">Elnoyle</string>
+    <string name="enemy_ruby_dragon">Rubindrache</string>
+    <string name="enemy_norg">NORG</string>
+    <string name="enemy_edea">Hexe Edea</string>
+    <string name="enemy_fujin_raijin">Fujin &amp; Raijin</string>
+    <string name="enemy_seifer">Cifer Almasy</string>
+    <string name="enemy_adel">Hexe Adel</string>
+    <string name="enemy_trauma">Trauma</string>
+    <string name="enemy_omega_weapon">Omega-Waffe</string>
+    <string name="enemy_ultimecia">Ultimecia</string>
+
+    <!-- Dimension 9 Strings -->
+    <string name="dim9_title">Das Gedächtnis des Kristalls</string>
+    <string name="dim9_subtitle">Final Fantasy IX</string>
+    <string name="dim9_story">Zidane Tribal und die Tantalus-Truppe entführen Prinzessin Garnet und decken Kujas Plan auf...</string>
+    <string name="biome_lindblum">Schloss Lindblum</string>
+    <string name="biome_conde_petie">Conde-Petie-Bergweg</string>
+    <string name="biome_oeilvert">Oeil Vert</string>
+    <string name="biome_pandemonium_ix">Pandämonium</string>
+    <string name="biome_memoria">Ort der Erinnerung</string>
+    <string name="enemy_black_mage_unit">Schwarzmagier Nr. 1</string>
+    <string name="enemy_zaghnol">Zaghnol</string>
+    <string name="enemy_mistodon">Mistodon</string>
+    <string name="enemy_silver_dragon">Silberdrache</string>
+    <string name="enemy_plant_brain">Pflanzenhirn</string>
+    <string name="enemy_black_waltz">Schwarzer Walzer</string>
+    <string name="enemy_zorn_thorn">Zorn &amp; Thorn</string>
+    <string name="enemy_ralvurahva">Ralvurahva</string>
+    <string name="enemy_maliris">Maliris</string>
+    <string name="enemy_kuja">Kuja</string>
+    <string name="enemy_trance_kuja">Trance-Kuja</string>
+    <string name="enemy_necron">Ewiges Dunkel</string>
+
+    <!-- Dimension 10 Strings -->
+    <string name="dim10_title">Spiras Traum</string>
+    <string name="dim10_subtitle">Final Fantasy X</string>
+    <string name="dim10_story">Tidus, Yuna und ihre Leibwächter begeben sich auf unausweichliche Pilgerreise gegen Sin...</string>
+    <string name="biome_besaid_island">Insel Besaid</string>
+    <string name="biome_mi_ihen_highroad">Mi\'ihen-Straße</string>
+    <string name="biome_bevelle_temple">Tempel von Bevelle</string>
+    <string name="biome_omega_ruins">Omega-Ruinen</string>
+    <string name="biome_sin_interior">In Sins Innerem</string>
+    <string name="biome_dream_zanarkand">Traum-Zanarkand</string>
+    <string name="enemy_dingo">Dingo</string>
+    <string name="enemy_water_flan">Wasser-Pudding</string>
+    <string name="enemy_klikk">Klick</string>
+    <string name="enemy_guado_guardian">Guado-Wache</string>
+    <string name="enemy_great_malboro">Großer Morbol</string>
+    <string name="enemy_dark_aeon">Dunkles Bestia</string>
+    <string name="enemy_klikk_boss">Obergigant Klick</string>
+    <string name="enemy_oblitzerator">Oblitzerator</string>
+    <string name="enemy_evrae">Evrae</string>
+    <string name="enemy_seymour">Seymor Guado</string>
+    <string name="enemy_omega_weapon_x">Omega-Waffe</string>
+    <string name="enemy_jecht">Braskas Ultimate Bestia</string>
+    <string name="enemy_penance">Richter</string>
+    <string name="enemy_yu_yevon">Yu Yevon</string>
+    <string name="enemy_sin">Sin</string>
 
     <!-- Town Screen -->
     <string name="town_name">HAUPTSTADT</string>

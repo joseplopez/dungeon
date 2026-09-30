@@ -45,12 +45,26 @@
     <string name="enemy_adamantoise">Adamantoise</string>
     <string name="enemy_dark_knight">Karanlık Şövalye</string>
     <string name="enemy_emperor">İmparator Mateus</string>
+    <string name="enemy_sea_snake">Deniz Yılanı</string>
+    <string name="enemy_behemoth">Behemoth</string>
+    <string name="enemy_toad">Kurbağa</string>
+    <string name="enemy_leon">Leon</string>
+    <string name="enemy_borghen">Borghen</string>
+    <string name="enemy_gottos">Gottos</string>
+    <string name="enemy_roundworm">Dev Solucan</string>
+    <string name="enemy_cyclone">Kasırga</string>
+
+    <string name="enemy_zombie">Zombi</string>
+    <string name="enemy_wyvern">Wyvern</string>
+    <string name="enemy_astos">Astos</string>
+    <string name="enemy_marilith">Marilith</string>
 
     <string name="dim3_title">Kristallerin Işığı</string>
     <string name="dim3_subtitle">Final Fantasy III</string>
     <string name="dim3_story">Işık Kristalleri tarafından seçilen yetim çocuklar dünyaya dengeyi geri getirmeli...</string>
 
     <string name="biome_ur_village">Ur Köyü</string>
+    <string name="biome_nepto_shrine">Nepto Tapınağı</string>
     <string name="biome_crystal_tower_dim3">Kristal Kule</string>
     <string name="biome_dark_world">Karanlık Dünya</string>
 
@@ -59,6 +73,111 @@
     <string name="enemy_hein">Hein</string>
     <string name="enemy_tonberry">Tonberry</string>
     <string name="enemy_cloud_of_darkness">Karanlık Bulutu</string>
+    <string name="enemy_giant">Dev</string>
+    <string name="enemy_iron_giant">Demir Dev</string>
+    <string name="enemy_malboro">Malboro</string>
+    <string name="enemy_djinn_boss">Büyük Djinn</string>
+    <string name="enemy_nepto_dragon">Nepto Ejderhası</string>
+    <string name="enemy_garuda">Garuda</string>
+    <string name="enemy_goldor">Goldor</string>
+    <string name="enemy_xande">Xande</string>
+
+    <!-- Dimension 4 Strings -->
+    <string name="dim4_title">İkinci Ay</string>
+    <string name="dim4_subtitle">Final Fantasy IV</string>
+    <string name="dim4_story">Karanlık Şövalye Cecil, Çile Dağında arınma arar ve Dört Element İblisi ile savaşır...</string>
+    <string name="biome_baron_castle">Baron Kalesi</string>
+    <string name="biome_mount_ordeals">Çile Dağı</string>
+    <string name="biome_dwarven_castle">Cüce Kalesi</string>
+    <string name="biome_lunar_subterrane">Ay Yeraltı Geçidi</string>
+    <string name="biome_moon_core">Ay Çekirdeği</string>
+    <string name="enemy_captain">Kaptan</string>
+    <string name="enemy_antlion">Karınca Aslanı</string>
+    <string name="enemy_mist_dragon">Sis Ejderhası</string>
+    <string name="enemy_dark_imp">Karanlık İblis</string>
+    <string name="enemy_lunar_dragon">Ay Ejderhası</string>
+    <string name="enemy_mindflayer">Zihin Yüzücü</string>
+    <string name="enemy_mist_dragon_boss">Kadim Sis Ejderhası</string>
+    <string name="enemy_antlion_boss">Kraliyet Karınca Aslanı</string>
+    <string name="enemy_golbez">Golbez</string>
+    <string name="enemy_cagnazzo">Cagnazzo</string>
+    <string name="enemy_barbariccia">Barbariccia</string>
+    <string name="enemy_scarmiglione">Scarmiglione</string>
+    <string name="enemy_rubicante">Rubicante</string>
+    <string name="enemy_dark_bahamut">Karanlık Bahamut</string>
+    <string name="enemy_zeromus">Zeromus</string>
+
+    <!-- Dimension 5 Strings -->
+    <string name="dim5_title">Savaşçının Yolculuğu</string>
+    <string name="dim5_subtitle">Final Fantasy V</string>
+    <string name="dim5_story">Bartz ve arkadaşları Exdeath\'i mühürlemek için parçalanmış dünyalar arasında yolculuk eder...</string>
+    <string name="biome_tule_wind_shrine">Rüzgar Tapınağı</string>
+    <string name="biome_karnak_castle">Karnak Kalesi</string>
+    <string name="biome_library_ancients">Kadimler Kütüphanesi</string>
+    <string name="biome_exdeath_castle">Exdeath\'in Kalesi</string>
+    <string name="biome_void">Boyutlararası Yarık</string>
+    <string name="enemy_fariis">Peri</string>
+    <string name="enemy_skull_eater">Kafatası Yiyici</string>
+    <string name="enemy_gargoyle">Gargoyle</string>
+    <string name="enemy_stoker">Körükçü</string>
+    <string name="enemy_omega_proto">Proto-Omega</string>
+    <string name="enemy_shinryu">Shinryu</string>
+    <string name="enemy_wing_raptor">Kanatlı Raptor</string>
+    <string name="enemy_karlabos">Karlabos</string>
+    <string name="enemy_ifrit_boss">Ifrit</string>
+    <string name="enemy_gilgamesh">Gilgamesh</string>
+    <string name="enemy_atomos">Atomos</string>
+    <string name="enemy_gilgamesh_2">Enkidu &amp; Gilgamesh</string>
+    <string name="enemy_exdeath">Exdeath</string>
+    <string name="enemy_omega">Omega</string>
+    <string name="enemy_neo_exdeath">Neo Exdeath</string>
+
+    <!-- Dimension 6 Strings -->
+    <string name="dim6_title">Yıkım Dünyası</string>
+    <string name="dim6_subtitle">Final Fantasy VI</string>
+    <string name="dim6_story">Terra, Locke ve Dönenler, Gestahl İmparatorluğu ve çılgın Kefka ile savaşır...</string>
+    <string name="biome_narshe_mines">Narshe Madenleri</string>
+    <string name="biome_magitek_factory">Magitek Araştırma Tesisleri</string>
+    <string name="biome_floating_continent">Uçan Kıta</string>
+    <string name="biome_kefka_tower">Kefka\'nın Kulesi</string>
+    <string name="biome_world_of_ruin">Yıkım Dünyası</string>
+    <string name="enemy_mp">Magitek Askeri</string>
+    <string name="enemy_brawler">Dövüşçü</string>
+    <string name="enemy_magitek_armor">Magitek Zırhı</string>
+    <string name="enemy_ninja">Ninja</string>
+    <string name="enemy_dragon">Ejderha</string>
+    <string name="enemy_dark_force">Karanlık Güç</string>
+    <string name="enemy_magic_master">Büyü Ustası</string>
+    <string name="enemy_whelk">Salyangoz</string>
+    <string name="enemy_vargas">Vargas</string>
+    <string name="enemy_number_024">Numara 024</string>
+    <string name="enemy_ultros">Ultros</string>
+    <string name="enemy_typhon">Typhon</string>
+    <string name="enemy_air_force">Hava Kuvvetleri</string>
+    <string name="enemy_guardian">Muhafız</string>
+    <string name="enemy_ultima_weapon">Ultima Silahı</string>
+    <string name="enemy_kefka">Kefka Palazzo</string>
+
+    <!-- Dimension 7 Strings -->
+    <string name="dim7_title">Jenova\'nın Mirası</string>
+    <string name="dim7_subtitle">Final Fantasy VII</string>
+    <string name="dim7_story">Cloud Strife ve AVALANCHE, Shinra Şirketi ve efsanevi Sephiroth\'a karşı savaşır...</string>
+    <string name="biome_midgar_slums">Midgar Varoşları</string>
+    <string name="biome_shinra_building">Shinra Genel Merkezi</string>
+    <string name="biome_junon_underwater">Junon Denizaltı Reaktörü</string>
+    <string name="biome_northern_crater">Kuzey Krateri</string>
+    <string name="biome_sephiroth_realm">Gezegen Çekirdeği</string>
+    <string name="enemy_grunt">Shinra Er</string>
+    <string name="enemy_sweeper">Süpürücü</string>
+    <string name="enemy_hellhound">Cehennem Tazısı</string>
+    <string name="enemy_jenova_cell">Jenova Örneği</string>
+    <string name="enemy_dragon_rider">Ejderha Binicisi</string>
+    <string name="enemy_weapon">Zümrüt Silah</string>
+    <string name="enemy_guard_scorpion">Muhafız Akrep</string>
+    <string name="enemy_airbuster">Hava Yıkıcı</string>
+    <string name="enemy_jenova_birth">Jenova-DOĞUM</string>
+    <string name="enemy_rufus">Rufus Shinra</string>
+    <string name="enemy_jenova_life">Jenova-YAŞAM</string>
 
     <!-- Town Screen -->
     <string name="town_name">BÜYÜK BAŞKENT</string>

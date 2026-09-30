@@ -45,12 +45,26 @@
     <string name="enemy_adamantoise">Adamantoise</string>
     <string name="enemy_dark_knight">Cavaller Fosc</string>
     <string name="enemy_emperor">Emperador Mateus</string>
+    <string name="enemy_sea_snake">Serp Marina</string>
+    <string name="enemy_behemoth">Behemoth</string>
+    <string name="enemy_toad">Calamars / Granota</string>
+    <string name="enemy_leon">Leon</string>
+    <string name="enemy_borghen">Borghen</string>
+    <string name="enemy_gottos">Gottos</string>
+    <string name="enemy_roundworm">Cuc Gegant</string>
+    <string name="enemy_cyclone">Cicló</string>
+
+    <string name="enemy_zombie">Zombi</string>
+    <string name="enemy_wyvern">Guivern</string>
+    <string name="enemy_astos">Astos</string>
+    <string name="enemy_marilith">Marilith</string>
 
     <string name="dim3_title">Llum dels Cristalls</string>
     <string name="dim3_subtitle">Final Fantasy III</string>
     <string name="dim3_story">Nens orfes triats pels Cristalls de la Llum han de restaurar l\'equilibri al món...</string>
 
     <string name="biome_ur_village">Poble d\'Ur</string>
+    <string name="biome_nepto_shrine">Santuari de Nepto</string>
     <string name="biome_crystal_tower_dim3">Torre de Cristall</string>
     <string name="biome_dark_world">Món de la Foscor</string>
 
@@ -59,6 +73,111 @@
     <string name="enemy_hein">Hein</string>
     <string name="enemy_tonberry">Tonberry</string>
     <string name="enemy_cloud_of_darkness">Núvol de Foscor</string>
+    <string name="enemy_giant">Gegant</string>
+    <string name="enemy_iron_giant">Gegant de Ferro</string>
+    <string name="enemy_malboro">Molbol</string>
+    <string name="enemy_djinn_boss">Gran Djinn</string>
+    <string name="enemy_nepto_dragon">Drap de Nepto</string>
+    <string name="enemy_garuda">Gàruda</string>
+    <string name="enemy_goldor">Goldor</string>
+    <string name="enemy_xande">Xande</string>
+
+    <!-- Dimension 4 Strings -->
+    <string name="dim4_title">La Segona Lluna</string>
+    <string name="dim4_subtitle">Final Fantasy IV</string>
+    <string name="dim4_story">Cecil el Cavaller Fosc busca la redempció a la Muntanya de les Proves i lluita contra els Quatre Arxidimonis...</string>
+    <string name="biome_baron_castle">Castell de Baró</string>
+    <string name="biome_mount_ordeals">Muntanya de les Proves</string>
+    <string name="biome_dwarven_castle">Castell Nan</string>
+    <string name="biome_lunar_subterrane">Subterrani Lunar</string>
+    <string name="biome_moon_core">Nucli Lunar</string>
+    <string name="enemy_captain">Capità</string>
+    <string name="enemy_antlion">Antlleó</string>
+    <string name="enemy_mist_dragon">Drap de la Boira</string>
+    <string name="enemy_dark_imp">Dimoni Fosc</string>
+    <string name="enemy_lunar_dragon">Drap Lunar</string>
+    <string name="enemy_mindflayer">Flagell de Ments</string>
+    <string name="enemy_mist_dragon_boss">Gran Drap de la Boira</string>
+    <string name="enemy_antlion_boss">Antlleó Reial</string>
+    <string name="enemy_golbez">Golbez</string>
+    <string name="enemy_cagnazzo">Cagnazzo</string>
+    <string name="enemy_barbariccia">Barbariccia</string>
+    <string name="enemy_scarmiglione">Scarmiglione</string>
+    <string name="enemy_rubicante">Rubicante</string>
+    <string name="enemy_dark_bahamut">Bahamut Fosc</string>
+    <string name="enemy_zeromus">Zeromus</string>
+
+    <!-- Dimension 5 Strings -->
+    <string name="dim5_title">El Viatge del Guerrer</string>
+    <string name="dim5_subtitle">Final Fantasy V</string>
+    <string name="dim5_story">Bartz i els seus companys viatgen a través de mons fragmentats per segellar Exdeath...</string>
+    <string name="biome_tule_wind_shrine">Santuari del Vent</string>
+    <string name="biome_karnak_castle">Castell de Karnak</string>
+    <string name="biome_library_ancients">Biblioteca dels Antics</string>
+    <string name="biome_exdeath_castle">Castell d\'Exdeath</string>
+    <string name="biome_void">La Fissura Interdimensional</string>
+    <string name="enemy_fariis">Fada</string>
+    <string name="enemy_skull_eater">Devorador de Cranis</string>
+    <string name="enemy_gargoyle">Gàrgola</string>
+    <string name="enemy_stoker">Atizzador</string>
+    <string name="enemy_omega_proto">Proto-Omega</string>
+    <string name="enemy_shinryu">Shinryu</string>
+    <string name="enemy_wing_raptor">Ràptor Alat</string>
+    <string name="enemy_karlabos">Karlabos</string>
+    <string name="enemy_ifrit_boss">Ifrit</string>
+    <string name="enemy_gilgamesh">Gilgamesh</string>
+    <string name="enemy_atomos">Àtomos</string>
+    <string name="enemy_gilgamesh_2">Enkidu i Gilgamesh</string>
+    <string name="enemy_exdeath">Exdeath</string>
+    <string name="enemy_omega">Omega</string>
+    <string name="enemy_neo_exdeath">Neo Exdeath</string>
+
+    <!-- Dimension 6 Strings -->
+    <string name="dim6_title">El Món en Ruïnes</string>
+    <string name="dim6_subtitle">Final Fantasy VI</string>
+    <string name="dim6_story">Terra, Locke i els Reclamants lluiten contra l\'Imperi Gestahlià i el bufó Kefka...</string>
+    <string name="biome_narshe_mines">Mines de Narshe</string>
+    <string name="biome_magitek_factory">Planta Magitek</string>
+    <string name="biome_floating_continent">Continent Flotant</string>
+    <string name="biome_kefka_tower">Torre de Kefka</string>
+    <string name="biome_world_of_ruin">Món en Ruïnes</string>
+    <string name="enemy_mp">Soldat Magitek</string>
+    <string name="enemy_brawler">Lluitador</string>
+    <string name="enemy_magitek_armor">Armadura Magitek</string>
+    <string name="enemy_ninja">Ninja</string>
+    <string name="enemy_dragon">Drap</string>
+    <string name="enemy_dark_force">Força Fosca</string>
+    <string name="enemy_magic_master">Mestre Màgic</string>
+    <string name="enemy_whelk">Cargol de Mina</string>
+    <string name="enemy_vargas">Vargas</string>
+    <string name="enemy_number_024">Número 024</string>
+    <string name="enemy_ultros">Ultros</string>
+    <string name="enemy_typhon">Tifó</string>
+    <string name="enemy_air_force">Força Aèria</string>
+    <string name="enemy_guardian">Guardià</string>
+    <string name="enemy_ultima_weapon">Arma Ultima</string>
+    <string name="enemy_kefka">Kefka Palazzo</string>
+
+    <!-- Dimension 7 Strings -->
+    <string name="dim7_title">El Llegat de Jenova</string>
+    <string name="dim7_subtitle">Final Fantasy VII</string>
+    <string name="dim7_story">Cloud Strife i AVALANCHE lluiten contra la Companyia Shinra i el llegendari Sephiroth...</string>
+    <string name="biome_midgar_slums">Subürbis de Midgar</string>
+    <string name="biome_shinra_building">Seu de Shinra</string>
+    <string name="biome_junon_underwater">Reactor Submarí de Junon</string>
+    <string name="biome_northern_crater">Cràter del Nord</string>
+    <string name="biome_sephiroth_realm">Nucli del Planeta</string>
+    <string name="enemy_grunt">Soldat Shinra</string>
+    <string name="enemy_sweeper">Mcombrador</string>
+    <string name="enemy_hellhound">Gos de l\'Infern</string>
+    <string name="enemy_jenova_cell">Mostra de Jénova</string>
+    <string name="enemy_dragon_rider">Jinet de Drap</string>
+    <string name="enemy_weapon">Arma Esmeralda</string>
+    <string name="enemy_guard_scorpion">Escorpió Guardià</string>
+    <string name="enemy_airbuster">Destructor Aeri</string>
+    <string name="enemy_jenova_birth">Jénova-NAIXEMENT</string>
+    <string name="enemy_rufus">Rufus Shinra</string>
+    <string name="enemy_jenova_life">Jénova-VIDA</string>
 
     <!-- Town Screen -->
     <string name="town_name">GRAN CAPITAL</string>

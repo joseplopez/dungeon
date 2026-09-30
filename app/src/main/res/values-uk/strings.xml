@@ -45,12 +45,26 @@
     <string name="enemy_adamantoise">Адамантуаз</string>
     <string name="enemy_dark_knight">Темний лицар</string>
     <string name="enemy_emperor">Імператор Матеус</string>
+    <string name="enemy_sea_snake">Морська змія</string>
+    <string name="enemy_behemoth">Бегемот</string>
+    <string name="enemy_toad">Жаба</string>
+    <string name="enemy_leon">Леон</string>
+    <string name="enemy_borghen">Борхен</string>
+    <string name="enemy_gottos">Готтос</string>
+    <string name="enemy_roundworm">Гігантський черв\'як</string>
+    <string name="enemy_cyclone">Циклон</string>
+
+    <string name="enemy_zombie">Зомбі</string>
+    <string name="enemy_wyvern">Виверна</string>
+    <string name="enemy_astos">Астос</string>
+    <string name="enemy_marilith">Маріліт</string>
 
     <string name="dim3_title">Світло Кристалів</string>
     <string name="dim3_subtitle">Final Fantasy III</string>
     <string name="dim3_story">Сироти, обрані Кристалами Світла, мають відновити баланс у світі...</string>
 
     <string name="biome_ur_village">Село Ур</string>
+    <string name="biome_nepto_shrine">Святилище Непто</string>
     <string name="biome_crystal_tower_dim3">Кришталева вежа</string>
     <string name="biome_dark_world">Світ Темряви</string>
 
@@ -59,6 +73,111 @@
     <string name="enemy_hein">Хейн</string>
     <string name="enemy_tonberry">Тонберрі</string>
     <string name="enemy_cloud_of_darkness">Хмара Темряви</string>
+    <string name="enemy_giant">Гігант</string>
+    <string name="enemy_iron_giant">Залізний гігант</string>
+    <string name="enemy_malboro">Молбол</string>
+    <string name="enemy_djinn_boss">Великий Джинн</string>
+    <string name="enemy_nepto_dragon">Дракон Непто</string>
+    <string name="enemy_garuda">Гаруда</string>
+    <string name="enemy_goldor">Голдор</string>
+    <string name="enemy_xande">Ксанде</string>
+
+    <!-- Dimension 4 Strings -->
+    <string name="dim4_title">Другий Місяць</string>
+    <string name="dim4_subtitle">Final Fantasy IV</string>
+    <string name="dim4_story">Темний лицар Сесіл шукає спокути на Горі Выпробувань і бореться з Чотирма Владиками Стихій...</string>
+    <string name="biome_baron_castle">Замок Барон</string>
+    <string name="biome_mount_ordeals">Гора Випробувань</string>
+    <string name="biome_dwarven_castle">Замок Гномів</string>
+    <string name="biome_lunar_subterrane">Місячна печера</string>
+    <string name="biome_moon_core">Ядро Місяця</string>
+    <string name="enemy_captain">Капітан</string>
+    <string name="enemy_antlion">Мурашиний лев</string>
+    <string name="enemy_mist_dragon">Дракон Туману</string>
+    <string name="enemy_dark_imp">Темний біс</string>
+    <string name="enemy_lunar_dragon">Місячний дракон</string>
+    <string name="enemy_mindflayer">Ловець розуму</string>
+    <string name="enemy_mist_dragon_boss">Старший Дракон Туману</string>
+    <string name="enemy_antlion_boss">Королівський Мурашиний Лев</string>
+    <string name="enemy_golbez">Голбез</string>
+    <string name="enemy_cagnazzo">Каньяццо</string>
+    <string name="enemy_barbariccia">Барбаричча</string>
+    <string name="enemy_scarmiglione">Скармільйоне</string>
+    <string name="enemy_rubicante">Рубіканте</string>
+    <string name="enemy_dark_bahamut">Темний Бахамут</string>
+    <string name="enemy_zeromus">Зеромус</string>
+
+    <!-- Dimension 5 Strings -->
+    <string name="dim5_title">Подорож Воїна</string>
+    <string name="dim5_subtitle">Final Fantasy V</string>
+    <string name="dim5_story">Бартц та його супутники подорожують крізь розколоті світи, щоб запечатати Ексдета...</string>
+    <string name="biome_tule_wind_shrine">Храм Вітру</string>
+    <string name="biome_karnak_castle">Замок Карнак</string>
+    <string name="biome_library_ancients">Бібліотека Древніх</string>
+    <string name="biome_exdeath_castle">Замок Ексдета</string>
+    <string name="biome_void">Міжвимірний Розлом</string>
+    <string name="enemy_fariis">Мавка</string>
+    <string name="enemy_skull_eater">Пожирач Черепів</string>
+    <string name="enemy_gargoyle">Гаргулья</string>
+    <string name="enemy_stoker">Кочегар</string>
+    <string name="enemy_omega_proto">Прото-Омега</string>
+    <string name="enemy_shinryu">Шинрю</string>
+    <string name="enemy_wing_raptor">Крилатий Раптор</string>
+    <string name="enemy_karlabos">Карлабос</string>
+    <string name="enemy_ifrit_boss">Іфрит</string>
+    <string name="enemy_gilgamesh">Гільгамеш</string>
+    <string name="enemy_atomos">Атомос</string>
+    <string name="enemy_gilgamesh_2">Енкіду та Гільгамеш</string>
+    <string name="enemy_exdeath">Ексдет</string>
+    <string name="enemy_omega">Омега</string>
+    <string name="enemy_neo_exdeath">Нео Ексдет</string>
+
+    <!-- Dimension 6 Strings -->
+    <string name="dim6_title">Світ Руїн</string>
+    <string name="dim6_subtitle">Final Fantasy VI</string>
+    <string name="dim6_story">Терра, Локк та Поверненці борються проти Імперії та божевільного Кефки...</string>
+    <string name="biome_narshe_mines">Шахти Нарше</string>
+    <string name="biome_magitek_factory">Дослідний центр Магітек</string>
+    <string name="biome_floating_continent">Lейкий Континент</string>
+    <string name="biome_kefka_tower">Вежа Кефки</string>
+    <string name="biome_world_of_ruin">Світ Руїн</string>
+    <string name="enemy_mp">Солдат Магітек</string>
+    <string name="enemy_brawler">Боєць</string>
+    <string name="enemy_magitek_armor">Броня Магітек</string>
+    <string name="enemy_ninja">Ніндзя</string>
+    <string name="enemy_dragon">Дракон</string>
+    <string name="enemy_dark_force">Темна Сила</string>
+    <string name="enemy_magic_master">Майстер Магії</string>
+    <string name="enemy_whelk">Равлик</string>
+    <string name="enemy_vargas">Варгас</string>
+    <string name="enemy_number_024">Номер 024</string>
+    <string name="enemy_ultros">Ультрос</string>
+    <string name="enemy_typhon">Тифон</string>
+    <string name="enemy_air_force">ВПС</string>
+    <string name="enemy_guardian">Страж</string>
+    <string name="enemy_ultima_weapon">Зброя Ультіма</string>
+    <string name="enemy_kefka">Кефка Палаццо</string>
+
+    <!-- Dimension 7 Strings -->
+    <string name="dim7_title">Спадщина Дженовы</string>
+    <string name="dim7_subtitle">Final Fantasy VII</string>
+    <string name="dim7_story">Клауд Страйф та АВАЛАНШ борються проти Шінра та Сефірота...</string>
+    <string name="biome_midgar_slums">Трущоби Мідгара</string>
+    <string name="biome_shinra_building">Штаб-квартира Шінра</string>
+    <string name="biome_junon_underwater">Підводний реактор Джунона</string>
+    <string name="biome_northern_crater">Північний Кратер</string>
+    <string name="biome_sephiroth_realm">Ядро Планети</string>
+    <string name="enemy_grunt">Солдат Шінра</string>
+    <string name="enemy_sweeper">Прибиральник</string>
+    <string name="enemy_hellhound">Пекельний хорт</string>
+    <string name="enemy_jenova_cell">Зразок Дженовы</string>
+    <string name="enemy_dragon_rider">Вершник на драконі</string>
+    <string name="enemy_weapon">Смарагдова Зброя</string>
+    <string name="enemy_guard_scorpion">Страж-Скорпіон</string>
+    <string name="enemy_airbuster">Повітряний Руйнівник</string>
+    <string name="enemy_jenova_birth">Дженова-НАРОДЖЕННЯ</string>
+    <string name="enemy_rufus">Руфус Шінра</string>
+    <string name="enemy_jenova_life">Дженова-ЖИТТЯ</string>
 
     <!-- Town Screen -->
     <string name="town_name">ВЕЛИКА СТОЛИЦЯ</string>

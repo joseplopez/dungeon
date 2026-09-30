@@ -70,7 +70,7 @@ fun MasteryScreen(
                     Tab(
                         selected = selectedTab == index,
                         onClick = { selectedTab = index },
-                        text = { Text(title, style = PixelBody, color = if (selectedTab == index) GoldBright else StoneGray) }
+                        text = { Text(title, style = PixelBody, color = if (selectedTab == index) GoldBright else GoldDark) }
                     )
                 }
             }

@@ -25,11 +25,13 @@ import androidx.compose.ui.graphics.BlendMode
 import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.CompositingStrategy
+import androidx.compose.ui.graphics.TransformOrigin
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
@@ -303,7 +305,7 @@ fun DungeonTopBar(
 
 @Composable
 fun BattleArea(
-    modifier: Modifier,
+    modifier: Modifier = Modifier,
     heroes: List<Hero>,
     enemies: List<Enemy>,
     dyingHeroIds: Set<String>,
@@ -314,42 +316,195 @@ fun BattleArea(
     dimension: FFDimension?,
     floor: Int
 ) {
-    Box(modifier.fillMaxSize()) {
-        // Heroes
+    BoxWithConstraints(modifier.fillMaxSize()) {
+        val totalWidth = maxWidth
+        val totalHeight = maxHeight
+        val sideWidth = totalWidth / 2f - 16.dp
+
         Row(
-            Modifier.fillMaxHeight().fillMaxWidth(0.5f).align(Alignment.CenterStart).padding(horizontal = 16.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly,
+            modifier = Modifier.fillMaxSize(),
             verticalAlignment = CenterVertically
         ) {
-            heroes.forEach { hero ->
-                key(hero.id) {
-                    HeroUnitDisplay(
-                        hero = hero,
-                        isAttacking = attackingUnitId == hero.id,
-                        isHit = hitHeroId == hero.id,
-                        isCritical = isCritical && hitHeroId == hero.id,
-                        isDying = dyingHeroIds.contains(hero.id)
-                    )
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight(),
+                contentAlignment = Center
+            ) {
+                HeroesSide(
+                    heroes = heroes,
+                    dyingHeroIds = dyingHeroIds,
+                    attackingUnitId = attackingUnitId,
+                    hitHeroId = hitHeroId,
+                    isCritical = isCritical,
+                    sideWidth = sideWidth,
+                    totalHeight = totalHeight
+                )
+            }
+
+            Box(
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxHeight(),
+                contentAlignment = Center
+            ) {
+                EnemiesSide(
+                    enemies = enemies,
+                    hitEnemyId = hitEnemyId,
+                    isCritical = isCritical,
+                    dimension = dimension,
+                    floor = floor,
+                    sideWidth = sideWidth,
+                    totalHeight = totalHeight
+                )
+            }
+        }
+    }
+}
+
+@Composable
+private fun HeroesSide(
+    heroes: List<Hero>,
+    dyingHeroIds: Set<String>,
+    attackingUnitId: String?,
+    hitHeroId: String?,
+    isCritical: Boolean,
+    sideWidth: androidx.compose.ui.unit.Dp,
+    totalHeight: androidx.compose.ui.unit.Dp
+) {
+    val baseHeroWidth = 80.dp
+    val baseHeroHeight = 140.dp
+    val spacing = 4.dp
+    val heroCount = heroes.size
+
+    val requiredHeroesWidth = if (heroCount > 0) {
+        baseHeroWidth * heroCount + spacing * (heroCount - 1)
+    } else 0.dp
+
+    val heroWidthScale = if (heroCount > 0 && requiredHeroesWidth > sideWidth && sideWidth > 0.dp) {
+        sideWidth / requiredHeroesWidth
+    } else 1.0f
+
+    val heroHeightScale = if (totalHeight < baseHeroHeight && totalHeight > 0.dp) {
+        totalHeight / baseHeroHeight
+    } else 1.0f
+
+    val heroScale = minOf(heroWidthScale, heroHeightScale).coerceIn(0.4f, 1.0f)
+
+    Row(
+        Modifier
+            .fillMaxHeight()
+            .fillMaxWidth()
+            .padding(horizontal = 4.dp),
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        verticalAlignment = CenterVertically
+    ) {
+        heroes.forEach { hero ->
+            key(hero.id) {
+                val scaledWidth = baseHeroWidth * heroScale
+                val scaledHeight = baseHeroHeight * heroScale
+
+                Box(
+                    modifier = Modifier.size(scaledWidth, scaledHeight),
+                    contentAlignment = Center
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .requiredSize(baseHeroWidth, baseHeroHeight)
+                            .graphicsLayer(
+                                scaleX = heroScale,
+                                scaleY = heroScale,
+                                transformOrigin = TransformOrigin(0.5f, 0.5f)
+                            ),
+                        contentAlignment = Center
+                    ) {
+                        HeroUnitDisplay(
+                            hero = hero,
+                            isAttacking = attackingUnitId == hero.id,
+                            isHit = hitHeroId == hero.id,
+                            isCritical = isCritical && hitHeroId == hero.id,
+                            isDying = dyingHeroIds.contains(hero.id)
+                        )
+                    }
                 }
             }
         }
+    }
+}
 
-        // Enemies
-        Row(
-            Modifier.fillMaxHeight().fillMaxWidth(0.5f).align(Alignment.CenterEnd).padding(horizontal = 16.dp),
-            horizontalArrangement = Arrangement.SpaceEvenly,
-            verticalAlignment = CenterVertically
-        ) {
-            enemies.forEach { enemy ->
-                key(enemy.id) {
-                    val bossTemplate = dimension?.let { FFDimensionData.getBossForFloor(it, floor) }
-                    val isBoss = bossTemplate != null && safeStringResource(bossTemplate.nameRes) == enemy.name
-                    EnemyUnitDisplay(
-                        enemy = enemy,
-                        isHit = hitEnemyId == enemy.id,
-                        isCritical = isCritical && hitEnemyId == enemy.id,
-                        isBoss = isBoss
-                    )
+@Composable
+private fun EnemiesSide(
+    enemies: List<Enemy>,
+    hitEnemyId: String?,
+    isCritical: Boolean,
+    dimension: FFDimension?,
+    floor: Int,
+    sideWidth: androidx.compose.ui.unit.Dp,
+    totalHeight: androidx.compose.ui.unit.Dp
+) {
+    val enemyCount = enemies.size
+    val spacing = 4.dp
+    val bossTemplate = dimension?.let { FFDimensionData.getBossForFloor(it, floor) }
+
+    val requiredEnemiesWidth = if (enemyCount > 0) {
+        enemies.sumOf { enemy ->
+            val isBoss = bossTemplate != null && safeStringResource(bossTemplate.nameRes) == enemy.name
+            if (isBoss) 100 else 72
+        }.dp + spacing * (enemyCount - 1)
+    } else 0.dp
+
+    val maxEnemyBaseHeight = if (enemies.any { enemy ->
+            val isBoss = bossTemplate != null && safeStringResource(bossTemplate.nameRes) == enemy.name
+            isBoss
+        }) 140.dp else 120.dp
+
+    val enemyWidthScale = if (enemyCount > 0 && requiredEnemiesWidth > sideWidth && sideWidth > 0.dp) {
+        sideWidth / requiredEnemiesWidth
+    } else 1.0f
+
+    val enemyHeightScale = if (totalHeight < maxEnemyBaseHeight && totalHeight > 0.dp) {
+        totalHeight / maxEnemyBaseHeight
+    } else 1.0f
+
+    val enemyScale = minOf(enemyWidthScale, enemyHeightScale).coerceIn(0.4f, 1.0f)
+
+    Row(
+        Modifier
+            .fillMaxHeight()
+            .fillMaxWidth()
+            .padding(horizontal = 4.dp),
+        horizontalArrangement = Arrangement.SpaceEvenly,
+        verticalAlignment = CenterVertically
+    ) {
+        enemies.forEach { enemy ->
+            key(enemy.id) {
+                val isBoss = bossTemplate != null && safeStringResource(bossTemplate.nameRes) == enemy.name
+                val baseEnemyWidth = if (isBoss) 100.dp else 72.dp
+                val baseEnemyHeight = if (isBoss) 140.dp else 120.dp
+                val scaledWidth = baseEnemyWidth * enemyScale
+                val scaledHeight = baseEnemyHeight * enemyScale
+
+                Box(
+                    modifier = Modifier.size(scaledWidth, scaledHeight),
+                    contentAlignment = Center
+                ) {
+                    Box(
+                        modifier = Modifier
+                            .requiredSize(baseEnemyWidth, baseEnemyHeight)
+                            .graphicsLayer(
+                                scaleX = enemyScale,
+                                scaleY = enemyScale,
+                                transformOrigin = TransformOrigin(0.5f, 0.5f)
+                            ),
+                        contentAlignment = Center
+                    ) {
+                        EnemyUnitDisplay(
+                            enemy = enemy,
+                            isHit = hitEnemyId == enemy.id,
+                            isCritical = isCritical && hitEnemyId == enemy.id,
+                            isBoss = isBoss
+                        )
+                    }
                 }
             }
         }
@@ -446,7 +601,7 @@ fun HeroUnitDisplay(hero: Hero, isAttacking: Boolean, isHit: Boolean, isCritical
                 }
             }
         }
-        Text(hero.name, style = PixelSmall, color = Color.White)
+        Text(hero.name, style = PixelSmall, color = Color.White, maxLines = 1, overflow = TextOverflow.Ellipsis)
         
         if (!isDying && hero.hasSpecialAbility) {
             Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
@@ -478,7 +633,7 @@ fun EnemyUnitDisplay(enemy: Enemy, isHit: Boolean, isCritical: Boolean, isBoss: 
         modifier = Modifier.offset(x = shakeOffset.value.dp)
     ) {
         if (isBoss) {
-            Text(enemy.name, style = PixelHeading, color = EnemyRed)
+            Text(enemy.name, style = PixelHeading, color = EnemyRed, maxLines = 1, overflow = TextOverflow.Ellipsis)
             PixelHpBar(enemy.currentHp, enemy.maxHp, Modifier.width(100.dp))
         } else {
             PixelHpBar(enemy.currentHp, enemy.maxHp, Modifier.width(48.dp))
@@ -520,7 +675,7 @@ fun EnemyUnitDisplay(enemy: Enemy, isHit: Boolean, isCritical: Boolean, isBoss: 
             }
         }
         if (!isBoss) {
-            Text(enemy.name, style = PixelSmall, color = EnemyRed)
+            Text(enemy.name, style = PixelSmall, color = EnemyRed, maxLines = 1, overflow = TextOverflow.Ellipsis)
         }
     }
 }

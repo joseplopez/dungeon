@@ -45,12 +45,26 @@
     <string name="enemy_adamantoise">ایڈمانٹوائز</string>
     <string name="enemy_dark_knight">ڈارک نائٹ</string>
     <string name="enemy_emperor">شہنشاہ میٹیوس</string>
+    <string name="enemy_sea_snake">سمندری سانپ</string>
+    <string name="enemy_behemoth">بہیموتھ</string>
+    <string name="enemy_toad">مینڈک</string>
+    <string name="enemy_leon">لیون</string>
+    <string name="enemy_borghen">بورگھن</string>
+    <string name="enemy_gottos">گوٹوس</string>
+    <string name="enemy_roundworm">عظیم الجثہ کیڑا</string>
+    <string name="enemy_cyclone">سائیکلون</string>
+
+    <string name="enemy_zombie">زومبی</string>
+    <string name="enemy_wyvern">وائیورن</string>
+    <string name="enemy_astos">ایسٹوس</string>
+    <string name="enemy_marilith">میریلیتھ</string>
 
     <string name="dim3_title">کرسٹل کی روشنی</string>
     <string name="dim3_subtitle">فائنل فینٹسی 3</string>
     <string name="dim3_story">روشنی کے کرسٹل کے منتخب کردہ یتیم بچوں کو دنیا میں توازن بحال کرنا ہوگا...</string>
 
     <string name="biome_ur_village">ار گاؤں</string>
+    <string name="biome_nepto_shrine">نیپٹو کی عبادت گاہ</string>
     <string name="biome_crystal_tower_dim3">کرسٹل ٹاور</string>
     <string name="biome_dark_world">اندھیری دنیا</string>
 
@@ -59,6 +73,111 @@
     <string name="enemy_hein">ہین</string>
     <string name="enemy_tonberry">ٹونبیری</string>
     <string name="enemy_cloud_of_darkness">اندھیرے کا بادل</string>
+    <string name="enemy_giant">دیو</string>
+    <string name="enemy_iron_giant">لوہے کا دیو</string>
+    <string name="enemy_malboro">مالبورو</string>
+    <string name="enemy_djinn_boss">عظیم جن</string>
+    <string name="enemy_nepto_dragon">نیپٹو ڈریگن</string>
+    <string name="enemy_garuda">گاروڈا</string>
+    <string name="enemy_goldor">گولڈور</string>
+    <string name="enemy_xande">زینڈے</string>
+
+    <!-- Dimension 4 Strings -->
+    <string name="dim4_title">دوسرا چاند</string>
+    <string name="dim4_subtitle">فائنل فینٹسی 4</string>
+    <string name="dim4_story">ڈارک نائٹ سیسل کوہ آزمائش پر توبہ کا طالب ہے اور چار عناصر کے شیاطین سے لڑتا ہے...</string>
+    <string name="biome_baron_castle">بیرن قلعہ</string>
+    <string name="biome_mount_ordeals">کوہ آزمائش</string>
+    <string name="biome_dwarven_castle">بونوں کا قلعہ</string>
+    <string name="biome_lunar_subterrane">چاند کا زیر زمین راستہ</string>
+    <string name="biome_moon_core">چاند کا مرکز</string>
+    <string name="enemy_captain">کپتان</string>
+    <string name="enemy_antlion">چیونٹی شیر</string>
+    <string name="enemy_mist_dragon">دھند کا ڈریگن</string>
+    <string name="enemy_dark_imp">تاریک عفریت</string>
+    <string name="enemy_lunar_dragon">چاند کا ڈریگن</string>
+    <string name="enemy_mindflayer">مائنڈ فلیئر</string>
+    <string name="enemy_mist_dragon_boss">بزرگ دھند کا ڈریگن</string>
+    <string name="enemy_antlion_boss">شاہی چیونٹی شیر</string>
+    <string name="enemy_golbez">گولبیز</string>
+    <string name="enemy_cagnazzo">کینازو</string>
+    <string name="enemy_barbariccia">بارباریکیا</string>
+    <string name="enemy_scarmiglione">سکارمیلیون</string>
+    <string name="enemy_rubicante">روبیکانٹے</string>
+    <string name="enemy_dark_bahamut">تاریک باہاموت</string>
+    <string name="enemy_zeromus">زیرومس</string>
+
+    <!-- Dimension 5 Strings -->
+    <string name="dim5_title">مجاہد کا سفر</string>
+    <string name="dim5_subtitle">فائنل فینٹسی 5</string>
+    <string name="dim5_story">بارٹز اور اس کے ساتھی ایکس ڈیتھ کو قید کرنے کے لیے بکھری دنیاؤں کا سفر کرتے ہیں...</string>
+    <string name="biome_tule_wind_shrine">ہوا کا معبد</string>
+    <string name="biome_karnak_castle">کارناک قلعہ</string>
+    <string name="biome_library_ancients">قدیم لوگوں کا کتب خانہ</string>
+    <string name="biome_exdeath_castle">ایکس ڈیتھ کا قلعہ</string>
+    <string name="biome_void">بین الابعاد دراڑ</string>
+    <string name="enemy_fariis">پری</string>
+    <string name="enemy_skull_eater">کھوپڑی کھانے والا</string>
+    <string name="enemy_gargoyle">گارگوئل</string>
+    <string name="enemy_stoker">اسٹوکر</string>
+    <string name="enemy_omega_proto">پروٹو اومیگا</string>
+    <string name="enemy_shinryu">شنریو</string>
+    <string name="enemy_wing_raptor">پروں والا ریپٹر</string>
+    <string name="enemy_karlabos">کارلابوس</string>
+    <string name="enemy_ifrit_boss">عفریت</string>
+    <string name="enemy_gilgamesh">گلگامش</string>
+    <string name="enemy_atomos">اٹوموس</string>
+    <string name="enemy_gilgamesh_2">اینکیڈو اور گلگامش</string>
+    <string name="enemy_exdeath">ایکس ڈیتھ</string>
+    <string name="enemy_omega">اومیگا</string>
+    <string name="enemy_neo_exdeath">نیو ایکس ڈیتھ</string>
+
+    <!-- Dimension 6 Strings -->
+    <string name="dim6_title">تباہی کی دنیا</string>
+    <string name="dim6_subtitle">فائنل فینٹسی 6</string>
+    <string name="dim6_story">ٹیرا، لوک اور ریٹرنرز شہنشاہیت اور پاگل کیپکا کے خلاف لڑتے ہیں...</string>
+    <string name="biome_narshe_mines">نارش کی کانیں</string>
+    <string name="biome_magitek_factory">میجی ٹیک ریسرچ سینٹر</string>
+    <string name="biome_floating_continent">تیرتا ہوا بر اعظم</string>
+    <string name="biome_kefka_tower">کیپکا کا ٹاور</string>
+    <string name="biome_world_of_ruin">تباہی کی دنیا</string>
+    <string name="enemy_mp">میجی ٹیک سپاہی</string>
+    <string name="enemy_brawler">پہلوان</string>
+    <string name="enemy_magitek_armor">میجی ٹیک زرہ</string>
+    <string name="enemy_ninja">ننجا</string>
+    <string name="enemy_dragon">ڈریگن</string>
+    <string name="enemy_dark_force">تاریک طاقت</string>
+    <string name="enemy_magic_master">جادو کا استاد</string>
+    <string name="enemy_whelk">گھونگھا</string>
+    <string name="enemy_vargas">وارگاس</string>
+    <string name="enemy_number_024">نمبر 024</string>
+    <string name="enemy_ultros">الٹروس</string>
+    <string name="enemy_typhon">ٹائفون</string>
+    <string name="enemy_air_force">فضائیہ</string>
+    <string name="enemy_guardian">محافظ</string>
+    <string name="enemy_ultima_weapon">الٹیما ہتھیار</string>
+    <string name="enemy_kefka">کیپکا پالازو</string>
+
+    <!-- Dimension 7 Strings -->
+    <string name="dim7_title">جینووا کا ورثہ</string>
+    <string name="dim7_subtitle">فائنل فینٹسی 7</string>
+    <string name="dim7_story">کلاؤڈ سٹرائف اور ایوالانچ شنرا کمپنی اور عظیم سیفیروتھ سے لڑتے ہیں...</string>
+    <string name="biome_midgar_slums">مدگار کے کچے مکانات</string>
+    <string name="biome_shinra_building">شنرا کا ہیڈ کوارٹر</string>
+    <string name="biome_junon_underwater">جونون زیرِ آب ری ایکٹر</string>
+    <string name="biome_northern_crater">شمالی گڑھا</string>
+    <string name="biome_sephiroth_realm">سیارے کا مرکز</string>
+    <string name="enemy_grunt">شنرا کا سپاہی</string>
+    <string name="enemy_sweeper">جھاڑو دینے والا</string>
+    <string name="enemy_hellhound">جہنم کا کتا</string>
+    <string name="enemy_jenova_cell">جینووا ਦਾ نمونہ</string>
+    <string name="enemy_dragon_rider">ڈریگن سوار</string>
+    <string name="enemy_weapon">زمردی ہتھیار</string>
+    <string name="enemy_guard_scorpion">محافظ بچھو</string>
+    <string name="enemy_airbuster">فضائی تباہ کن</string>
+    <string name="enemy_jenova_birth">جینووا-پیدائش</string>
+    <string name="enemy_rufus">روفوس شنرا</string>
+    <string name="enemy_jenova_life">جینووا-زندگی</string>
 
     <!-- Town Screen -->
     <string name="town_name">عظیم دارالحکومت</string>

@@ -45,12 +45,26 @@
     <string name="enemy_adamantoise">อะดามันตอยส์</string>
     <string name="enemy_dark_knight">อัศวินแห่งความมืด</string>
     <string name="enemy_emperor">จักรพรรดิมาเทอุส</string>
+    <string name="enemy_sea_snake">งูทะเล</string>
+    <string name="enemy_behemoth">เบเฮมอธ</string>
+    <string name="enemy_toad">คางคก</string>
+    <string name="enemy_leon">เลออน</string>
+    <string name="enemy_borghen">บอร์เกน</string>
+    <string name="enemy_gottos">ก็อตทอส</string>
+    <string name="enemy_roundworm">หนอนยักษ์</string>
+    <string name="enemy_cyclone">พายุไซโคลน</string>
+
+    <string name="enemy_zombie">ซอมบี้</string>
+    <string name="enemy_wyvern">ไวเวิร์น</string>
+    <string name="enemy_astos">อัสโตส</string>
+    <string name="enemy_marilith">มาริลิธ</string>
 
     <string name="dim3_title">แสงแห่งคริสตัล</string>
     <string name="dim3_subtitle">ไฟนอลแฟนตาซี III</string>
     <string name="dim3_story">เด็กกำพร้าที่ถูกเลือกโดยคริสตัลแห่งแสงต้องคืนสมดุลให้กับโลก...</string>
 
     <string name="biome_ur_village">หมู่บ้านอูร์</string>
+    <string name="biome_nepto_shrine">วิหารเนปโต</string>
     <string name="biome_crystal_tower_dim3">หอคอยคริสตัล</string>
     <string name="biome_dark_world">โลกแห่งความมืด</string>
 
@@ -59,6 +73,111 @@
     <string name="enemy_hein">ไฮน์</string>
     <string name="enemy_tonberry">ทอนเบอร์รี่</string>
     <string name="enemy_cloud_of_darkness">เมฆาแห่งความมืด</string>
+    <string name="enemy_giant">ยักษ์</string>
+    <string name="enemy_iron_giant">ยักษ์เหล็ก</string>
+    <string name="enemy_malboro">มอลโบโร</string>
+    <string name="enemy_djinn_boss">มหาจิน</string>
+    <string name="enemy_nepto_dragon">มังกรเนปโต</string>
+    <string name="enemy_garuda">การูด้า</string>
+    <string name="enemy_goldor">โกลดอร์</string>
+    <string name="enemy_xande">ซานเด</string>
+
+    <!-- Dimension 4 Strings -->
+    <string name="dim4_title">ดวงจันทร์ดวงที่สอง</string>
+    <string name="dim4_subtitle">ไฟนอลแฟนตาซี IV</string>
+    <string name="dim4_story">อัศวินดำเซซิลแสวงหาการไถ่บาปบนภูเขาแห่งการทดสอบ และต่อสู้กับสี่จอมอสูร...</string>
+    <string name="biome_baron_castle">ปราสาทบารอน</string>
+    <string name="biome_mount_ordeals">ภูเขาแห่งการทดสอบ</string>
+    <string name="biome_dwarven_castle">ปราสาทคนแคระ</string>
+    <string name="biome_lunar_subterrane">ทางใต้ดินจันทรา</string>
+    <string name="biome_moon_core">แกนกลางดวงจันทร์</string>
+    <string name="enemy_captain">กัปตัน</string>
+    <string name="enemy_antlion">มดสิงโต</string>
+    <string name="enemy_mist_dragon">มังกรหมอก</string>
+    <string name="enemy_dark_imp">อิมป์มืด</string>
+    <string name="enemy_lunar_dragon">มังกรจันทรา</string>
+    <string name="enemy_mindflayer">มายด์เฟลเยอร์</string>
+    <string name="enemy_mist_dragon_boss">มังกรหมอกอาวุโส</string>
+    <string name="enemy_antlion_boss">พญามดสิงโต</string>
+    <string name="enemy_golbez">กอลเบซ่า</string>
+    <string name="enemy_cagnazzo">คันยักโซ่</string>
+    <string name="enemy_barbariccia">บาร์บาริชเชีย</string>
+    <string name="enemy_scarmiglione">สการ์มิลิโอเน</string>
+    <string name="enemy_rubicante">รูบิกันเต้</string>
+    <string name="enemy_dark_bahamut">ดาร์กบาฮามุท</string>
+    <string name="enemy_zeromus">เซโรมุส</string>
+
+    <!-- Dimension 5 Strings -->
+    <string name="dim5_title">การเดินทางของผู้กล้า</string>
+    <string name="dim5_subtitle">ไฟนอลแฟนตาซี V</string>
+    <string name="dim5_story">บาร์ตซ์และพรรคพวกเดินทางข้ามโลกที่แตกสลายเพื่อผนึกเอ็กซ์เดธ...</string>
+    <string name="biome_tule_wind_shrine">วิหารแห่งลม</string>
+    <string name="biome_karnak_castle">ปราสาทคาร์นัค</string>
+    <string name="biome_library_ancients">หอสมุดโบราณ</string>
+    <string name="biome_exdeath_castle">ปราสาทเอ็กซ์เดธ</string>
+    <string name="biome_void">รอยแยกมิติ</string>
+    <string name="enemy_fariis">พราย</string>
+    <string name="enemy_skull_eater">ตัวกินหัวกะโหลก</string>
+    <string name="enemy_gargoyle">การ์กอยล์</string>
+    <string name="enemy_stoker">สโตเกอร์</string>
+    <string name="enemy_omega_proto">โปรโตโอเมก้า</string>
+    <string name="enemy_shinryu">ชินริว</string>
+    <string name="enemy_wing_raptor">วิงแรปเตอร์</string>
+    <string name="enemy_karlabos">คาร์ลาบอส</string>
+    <string name="enemy_ifrit_boss">อิฟริท</string>
+    <string name="enemy_gilgamesh">กิลกาเมช</string>
+    <string name="enemy_atomos">อาโทมอส</string>
+    <string name="enemy_gilgamesh_2">เอนกิดู และ กิลกาเมช</string>
+    <string name="enemy_exdeath">เอ็กซ์เดธ</string>
+    <string name="enemy_omega">โอเมก้า</string>
+    <string name="enemy_neo_exdeath">นีโอเอ็กซ์เดธ</string>
+
+    <!-- Dimension 6 Strings -->
+    <string name="dim6_title">โลกแห่งความสูญสิ้น</string>
+    <string name="dim6_subtitle">ไฟนอลแฟนตาซี VI</string>
+    <string name="dim6_story">ทิน่า และ ล็อค ต่อสู้กับจักรวรรดิ และเคฟก้าผู้บ้าคลั่ง...</string>
+    <string name="biome_narshe_mines">เหมืองนาร์เช่</string>
+    <string name="biome_magitek_factory">ศูนย์วิจัยมาจิเทค</string>
+    <string name="biome_floating_continent">ทวีปลอยฟ้า</string>
+    <string name="biome_kefka_tower">หอคอยเคฟก้า</string>
+    <string name="biome_world_of_ruin">โลกแห่งความสูญสิ้น</string>
+    <string name="enemy_mp">ทหารมาจิเทค</string>
+    <string name="enemy_brawler">นักสู้</string>
+    <string name="enemy_magitek_armor">เกราะมาจิเทค</string>
+    <string name="enemy_ninja">นินจา</string>
+    <string name="enemy_dragon">มังกร</string>
+    <string name="enemy_dark_force">ดาร์กฟอร์ซ</string>
+    <string name="enemy_magic_master">เมจิกมาสเตอร์</string>
+    <string name="enemy_whelk">หอยยักษ์</string>
+    <string name="enemy_vargas">วาร์กัส</string>
+    <string name="enemy_number_024">หมายเลข 024</string>
+    <string name="enemy_ultros">อัลทรอส</string>
+    <string name="enemy_typhon">ไทฟูน</string>
+    <string name="enemy_air_force">แอร์ฟอร์ซ</string>
+    <string name="enemy_guardian">การ์เดียน</string>
+    <string name="enemy_ultima_weapon">อัลติม่าเวพอน</string>
+    <string name="enemy_kefka">เคฟก้า ปาลาซโซ่</string>
+
+    <!-- Dimension 7 Strings -->
+    <string name="dim7_title">มรดกแห่งเจโนวา</string>
+    <string name="dim7_subtitle">ไฟนอลแฟนตาซี VII</string>
+    <string name="dim7_story">คลาวด์ สไตรฟ์ และ อาวาลานช์ ต่อสู้กับบริษัทชินระ และเซฟิรอธ...</string>
+    <string name="biome_midgar_slums">สลัมมิดการ์</string>
+    <string name="biome_shinra_building">สำนักงานใหญ่ชินระ</string>
+    <string name="biome_junon_underwater">เตาปฏิกรณ์ใต้น้ำจูนอน</string>
+    <string name="biome_northern_crater">หลุมอุกกาบาตทิศเหนือ</string>
+    <string name="biome_sephiroth_realm">แกนกลางของดาวเคราะห์</string>
+    <string name="enemy_grunt">ทหารชินระ</string>
+    <string name="enemy_sweeper">สวีปเปอร์</string>
+    <string name="enemy_hellhound">สุนัขขุมนรก</string>
+    <string name="enemy_jenova_cell">ตัวอย่างเจโนวา</string>
+    <string name="enemy_dragon_rider">อัศวินขี่มังกร</string>
+    <string name="enemy_weapon">เอมเมอรัลด์เวพอน</string>
+    <string name="enemy_guard_scorpion">แมงป่องอารักขา</string>
+    <string name="enemy_airbuster">แอร์บัสเตอร์</string>
+    <string name="enemy_jenova_birth">เจโนวา-กำเนิด</string>
+    <string name="enemy_rufus">รูฟัส ชินระ</string>
+    <string name="enemy_jenova_life">เจโนวา-ชีวิต</string>
 
     <!-- Town Screen -->
     <string name="town_name">มหานคร</string>

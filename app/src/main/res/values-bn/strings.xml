@@ -45,12 +45,26 @@
     <string name="enemy_adamantoise">আদামান্তোইস</string>
     <string name="enemy_dark_knight">অন্ধকার নাইট</string>
     <string name="enemy_emperor">সম্রাট মাতিউস</string>
+    <string name="enemy_sea_snake">সামুদ্রিক সাপ</string>
+    <string name="enemy_behemoth">বেহেমথ</string>
+    <string name="enemy_toad">ব্যাঙ</string>
+    <string name="enemy_leon">লিওন</string>
+    <string name="enemy_borghen">বরগেন</string>
+    <string name="enemy_gottos">গোটোস</string>
+    <string name="enemy_roundworm">দৈত্যাকার কেঁচো</string>
+    <string name="enemy_cyclone">ঘূর্ণিঝড়</string>
+
+    <string name="enemy_zombie">জোম্বি</string>
+    <string name="enemy_wyvern">ওয়াইভার্ন</string>
+    <string name="enemy_astos">আস্তোস</string>
+    <string name="enemy_marilith">মেরিলিথ</string>
 
     <string name="dim3_title">স্ফটিকের আলো</string>
     <string name="dim3_subtitle">ফাইনাল ফ্যান্টাসি ৩</string>
     <string name="dim3_story">আলোর স্ফটিক দ্বারা নির্বাচিত এতিম শিশুদের অবশ্যই বিশ্বের ভারসাম্য পুনরুদ্ধার করতে হবে...</string>
 
     <string name="biome_ur_village">উর গ্রাম</string>
+    <string name="biome_nepto_shrine">নেপ্টো মঠ</string>
     <string name="biome_crystal_tower_dim3">ক্রিস্টাল টাওয়ার</string>
     <string name="biome_dark_world">অন্ধকার বিশ্ব</string>
 
@@ -59,6 +73,111 @@
     <string name="enemy_hein">হেইন</string>
     <string name="enemy_tonberry">টনবেরি</string>
     <string name="enemy_cloud_of_darkness">অন্ধকারের মেঘ</string>
+    <string name="enemy_giant">দৈত্য</string>
+    <string name="enemy_iron_giant">লোহার দৈত্য</string>
+    <string name="enemy_malboro">মালবোরো</string>
+    <string name="enemy_djinn_boss">মহাজিন</string>
+    <string name="enemy_nepto_dragon">নেপ্টো ড্রাগন</string>
+    <string name="enemy_garuda">গরুড়</string>
+    <string name="enemy_goldor">গোল্ডোর</string>
+    <string name="enemy_xande">জান্দে</string>
+
+    <!-- Dimension 4 Strings -->
+    <string name="dim4_title">দ্বিতীয় চাঁদ</string>
+    <string name="dim4_subtitle">ফাইনাল ফ্যান্টাসি ৪</string>
+    <string name="dim4_story">ডার্ক নাইট সেসিল মাউন্ট অর্ডিলসে মুক্তির সন্ধান করে এবং চার উপাদানের সাথে যুদ্ধ করে...</string>
+    <string name="biome_baron_castle">ব্যারন দুর্গ</string>
+    <string name="biome_mount_ordeals">মাউন্ট অর্ডিলস</string>
+    <string name="biome_dwarven_castle">বামনদের দুর্গ</string>
+    <string name="biome_lunar_subterrane">চাঁদের ভূগর্ভস্থ পথ</string>
+    <string name="biome_moon_core">চাঁদের কেন্দ্র</string>
+    <string name="enemy_captain">ক্যাপ্টেন</string>
+    <string name="enemy_antlion">পিঁপড়া সিংহ</string>
+    <string name="enemy_mist_dragon">কুয়াশার ড্রাগন</string>
+    <string name="enemy_dark_imp">ডার্ক ইম্প</string>
+    <string name="enemy_lunar_dragon">চাঁদের ড্রাগন</string>
+    <string name="enemy_mindflayer">মাইন্ডফ্লেয়ার</string>
+    <string name="enemy_mist_dragon_boss">বৃদ্ধ কুয়াশার ড্রাগন</string>
+    <string name="enemy_antlion_boss">রাজকীয় পিঁপড়া সিংহ</string>
+    <string name="enemy_golbez">গোলবেজ</string>
+    <string name="enemy_cagnazzo">কাগনাতজো</string>
+    <string name="enemy_barbariccia">বারবারিকিয়া</string>
+    <string name="enemy_scarmiglione">স্কারমিগলিওনে</string>
+    <string name="enemy_rubicante">রুবিচানতে</string>
+    <string name="enemy_dark_bahamut">ডার্ক বাহামুত</string>
+    <string name="enemy_zeromus">জিরোমাস</string>
+
+    <!-- Dimension 5 Strings -->
+    <string name="dim5_title">যোদ্ধার যাত্রা</string>
+    <string name="dim5_subtitle">ফাইনাল ফ্যান্টাসি ৫</string>
+    <string name="dim5_story">বার্টজ এবং তার সঙ্গীরা এক্সডেথকে মুক্ত হতে না দিতে বিভক্ত জগতে ভ্রমণ করে...</string>
+    <string name="biome_tule_wind_shrine">বাতাসের মঠ</string>
+    <string name="biome_karnak_castle">কার্নাক দুর্গ</string>
+    <string name="biome_library_ancients">প্রাচীনদের লাইব্রেরি</string>
+    <string name="biome_exdeath_castle">এক্সডেথের দুর্গ</string>
+    <string name="biome_void">আন্তঃমাত্রিক ফাটল</string>
+    <string name="enemy_fariis">পরী</string>
+    <string name="enemy_skull_eater">মাথার খুলি খাদক</string>
+    <string name="enemy_gargoyle">গারগোয়েল</string>
+    <string name="enemy_stoker">স্টোকার</string>
+    <string name="enemy_omega_proto">প্রোটো ওমেগা</string>
+    <string name="enemy_shinryu">শিনরিউ</string>
+    <string name="enemy_wing_raptor">উড়ন্ত র‍্যাপ্টর</string>
+    <string name="enemy_karlabos">কার্লাবোস</string>
+    <string name="enemy_ifrit_boss">ইফরিত</string>
+    <string name="enemy_gilgamesh">গিলগামেশ</string>
+    <string name="enemy_atomos">এটমস</string>
+    <string name="enemy_gilgamesh_2">এনকিডু ও গিলগামেশ</string>
+    <string name="enemy_exdeath">এক্সডেথ</string>
+    <string name="enemy_omega">ওমেগা</string>
+    <string name="enemy_neo_exdeath">নিও এক্সডেথ</string>
+
+    <!-- Dimension 6 Strings -->
+    <string name="dim6_title">ধ্বংসের বিশ্ব</string>
+    <string name="dim6_subtitle">ফাইনাল ফ্যান্টাসি ৬</string>
+    <string name="dim6_story">টেরা, লক এবং রিটার্নার্স সাম্রাজ্য এবং উন্মাদ কেফকার বিরুদ্ধে লড়াই করে...</string>
+    <string name="biome_narshe_mines">নার্শে খনি</string>
+    <string name="biome_magitek_factory">ম্যাজিটেক গবেষণা কেন্দ্র</string>
+    <string name="biome_floating_continent">ভাসমান মহাদেশ</string>
+    <string name="biome_kefka_tower">কেফকার টাওয়ার</string>
+    <string name="biome_world_of_ruin">ধ্বংসের বিশ্ব</string>
+    <string name="enemy_mp">ম্যাজিটেক ট্রুপার</string>
+    <string name="enemy_brawler">কুস্তিগীর</string>
+    <string name="enemy_magitek_armor">ম্যাজিটেক বর্ম</string>
+    <string name="enemy_ninja">নিনজা</string>
+    <string name="enemy_dragon">ড্রাগন</string>
+    <string name="enemy_dark_force">অন্ধকার শক্তি</string>
+    <string name="enemy_magic_master">ম্যাজিক মাস্টার</string>
+    <string name="enemy_whelk">শামুক</string>
+    <string name="enemy_vargas">ভারগাস</string>
+    <string name="enemy_number_024">নম্বর ০২৪</string>
+    <string name="enemy_ultros">আলট্রোস</string>
+    <string name="enemy_typhon">টাইফুন</string>
+    <string name="enemy_air_force">বিমান বাহিনী</string>
+    <string name="enemy_guardian">পাহাড়াদার</string>
+    <string name="enemy_ultima_weapon">আলটিমা ওয়েপন</string>
+    <string name="enemy_kefka">কেফকা পালাজো</string>
+
+    <!-- Dimension 7 Strings -->
+    <string name="dim7_title">জেনোভার উত্তরাধিকার</string>
+    <string name="dim7_subtitle">ফাইনাল ফ্যান্টাসি ৭</string>
+    <string name="dim7_story">ক্লাউড স্ট্রাইফ এবং অ্যাভালাঞ্চ শিনরা কোম্পানি এবং কিংবদন্তি সেফিরোথের বিরুদ্ধে যুদ্ধ করে...</string>
+    <string name="biome_midgar_slums">মিডগার বস্তি</string>
+    <string name="biome_shinra_building">শিনরা সদর দফতর</string>
+    <string name="biome_junon_underwater">জুনোন সাবমেরিন রিয়্যাক্টর</string>
+    <string name="biome_northern_crater">উত্তর গর্ত</string>
+    <string name="biome_sephiroth_realm">গ্রহের কেন্দ্র</string>
+    <string name="enemy_grunt">শিনরা সৈন্য</string>
+    <string name="enemy_sweeper">সুইপার</string>
+    <string name="enemy_hellhound">নরকের কুকুর</string>
+    <string name="enemy_jenova_cell">জেনোভা নমুনা</string>
+    <string name="enemy_dragon_rider">ড্রাগন আরোহী</string>
+    <string name="enemy_weapon">পান্না অস্ত্র</string>
+    <string name="enemy_guard_scorpion">গার্ড বিচ্ছু</string>
+    <string name="enemy_airbuster">এয়ারবাস্টার</string>
+    <string name="enemy_jenova_birth">জেনোভা-জন্ম</string>
+    <string name="enemy_rufus">রুফাস শিনরা</string>
+    <string name="enemy_jenova_life">জেনোভা-জীবন</string>
 
     <!-- Town Screen -->
     <string name="town_name">মহা রাজধানী</string>

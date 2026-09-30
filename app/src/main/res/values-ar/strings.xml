@@ -45,12 +45,26 @@
     <string name="enemy_adamantoise">أدامانتويس</string>
     <string name="enemy_dark_knight">فارس الظلام</string>
     <string name="enemy_emperor">الإمبراطور ماتيوس</string>
+    <string name="enemy_sea_snake">ثعبان البحر</string>
+    <string name="enemy_behemoth">بهيموث</string>
+    <string name="enemy_toad">ضفدع</string>
+    <string name="enemy_leon">ليون</string>
+    <string name="enemy_borghen">بورغين</string>
+    <string name="enemy_gottos">غوتوس</string>
+    <string name="enemy_roundworm">دودة عملاقة</string>
+    <string name="enemy_cyclone">إعصار</string>
+
+    <string name="enemy_zombie">زومبي</string>
+    <string name="enemy_wyvern">وايفيرن</string>
+    <string name="enemy_astos">أستوس</string>
+    <string name="enemy_marilith">ماريليث</string>
 
     <string name="dim3_title">ضوء البلورات</string>
     <string name="dim3_subtitle">فاينل فانتسي 3</string>
     <string name="dim3_story">يجب على الأطفال الأيتام الذين اختارتهم بلورات الضوء إعادة التوازن إلى العالم...</string>
 
     <string name="biome_ur_village">قرية أور</string>
+    <string name="biome_nepto_shrine">محراب نيبتو</string>
     <string name="biome_crystal_tower_dim3">برج الكريستال</string>
     <string name="biome_dark_world">عالم الظلام</string>
 
@@ -59,6 +73,111 @@
     <string name="enemy_hein">هاين</string>
     <string name="enemy_tonberry">تونبيري</string>
     <string name="enemy_cloud_of_darkness">سحابة الظلام</string>
+    <string name="enemy_giant">عملاق</string>
+    <string name="enemy_iron_giant">عملاق حديدي</string>
+    <string name="enemy_malboro">مالبورو</string>
+    <string name="enemy_djinn_boss">الجني الأعظم</string>
+    <string name="enemy_nepto_dragon">تنين نيبتو</string>
+    <string name="enemy_garuda">غارودا</string>
+    <string name="enemy_goldor">غولدور</string>
+    <string name="enemy_xande">كزاندي</string>
+
+    <!-- Dimension 4 Strings -->
+    <string name="dim4_title">القمر الثاني</string>
+    <string name="dim4_subtitle">فاينل فانتسي 4</string>
+    <string name="dim4_story">يسعى سيسيل فارس الظلام للخلاص على جبل المحن، ويحارب شياطين العناصر الأربعة...</string>
+    <string name="biome_baron_castle">قلعة بارون</string>
+    <string name="biome_mount_ordeals">جبل المحن</string>
+    <string name="biome_dwarven_castle">قلعة الأقزام</string>
+    <string name="biome_lunar_subterrane">الكهف القمري</string>
+    <string name="biome_moon_core">قلب القمر</string>
+    <string name="enemy_captain">قائد</string>
+    <string name="enemy_antlion">أسد النمل</string>
+    <string name="enemy_mist_dragon">تنين الضباب</string>
+    <string name="enemy_dark_imp">شيطان مظلم</string>
+    <string name="enemy_lunar_dragon">تنين قمري</string>
+    <string name="enemy_mindflayer">سارق العقول</string>
+    <string name="enemy_mist_dragon_boss">تنين الضباب الأكبر</string>
+    <string name="enemy_antlion_boss">أسد النمل الملكي</string>
+    <string name="enemy_golbez">غولبيز</string>
+    <string name="enemy_cagnazzo">كانياتزو</string>
+    <string name="enemy_barbariccia">بارباريتشيا</string>
+    <string name="enemy_scarmiglione">سكارميليوني</string>
+    <string name="enemy_rubicante">روبيكانتي</string>
+    <string name="enemy_dark_bahamut">باهاموت المظلم</string>
+    <string name="enemy_zeromus">زيروموس</string>
+
+    <!-- Dimension 5 Strings -->
+    <string name="dim5_title">رحلة المحارب</string>
+    <string name="dim5_subtitle">فاينل فانتسي 5</string>
+    <string name="dim5_story">يسافر بارتز ورفاقه عبر عوالم ممزقة لختم إكسديث وحماية البلورات...</string>
+    <string name="biome_tule_wind_shrine">محراب الرياح</string>
+    <string name="biome_karnak_castle">قلعة كرنك</string>
+    <string name="biome_library_ancients">مكتبة القدماء</string>
+    <string name="biome_exdeath_castle">قلعة إكسديث</string>
+    <string name="biome_void">الصدع بين الأبعاد</string>
+    <string name="enemy_fariis">جنية</string>
+    <string name="enemy_skull_eater">آكل الجماجم</string>
+    <string name="enemy_gargoyle">غرغويل</string>
+    <string name="enemy_stoker">موقد النار</string>
+    <string name="enemy_omega_proto">بروتو أوميغا</string>
+    <string name="enemy_shinryu">شينريو</string>
+    <string name="enemy_wing_raptor">جارح مجنح</string>
+    <string name="enemy_karlabos">كارلابوس</string>
+    <string name="enemy_ifrit_boss">عفريت</string>
+    <string name="enemy_gilgamesh">غلغامش</string>
+    <string name="enemy_atomos">أتوموس</string>
+    <string name="enemy_gilgamesh_2">إنكيدو وغلغامش</string>
+    <string name="enemy_exdeath">إكسديث</string>
+    <string name="enemy_omega">أوميغا</string>
+    <string name="enemy_neo_exdeath">نيو إكسديث</string>
+
+    <!-- Dimension 6 Strings -->
+    <string name="dim6_title">عالم الخراب</string>
+    <string name="dim6_subtitle">فاينل فانتسي 6</string>
+    <string name="dim6_story">تقاتل تيرا ولوك والعائدون ضد الإمبراطورية وكيفكا المجنون...</string>
+    <string name="biome_narshe_mines">مناجم نارش</string>
+    <string name="biome_magitek_factory">مصنع ماجيتيك</string>
+    <string name="biome_floating_continent">القارة العائمة</string>
+    <string name="biome_kefka_tower">برج كيفكا</string>
+    <string name="biome_world_of_ruin">عالم الخراب</string>
+    <string name="enemy_mp">جندي ماجيتيك</string>
+    <string name="enemy_brawler">مقاتل</string>
+    <string name="enemy_magitek_armor">درع ماجيتيك</string>
+    <string name="enemy_ninja">نينجا</string>
+    <string name="enemy_dragon">تنين</string>
+    <string name="enemy_dark_force">قوة مظلمة</string>
+    <string name="enemy_magic_master">سيد السحر</string>
+    <string name="enemy_whelk">حلزون</string>
+    <string name="enemy_vargas">فارغاس</string>
+    <string name="enemy_number_024">رقم 024</string>
+    <string name="enemy_ultros">ألتروس</string>
+    <string name="enemy_typhon">تايفون</string>
+    <string name="enemy_air_force">سلاح الجو</string>
+    <string name="enemy_guardian">حارس</string>
+    <string name="enemy_ultima_weapon">سلاح ألتتيما</string>
+    <string name="enemy_kefka">كيفكا بالاتزو</string>
+
+    <!-- Dimension 7 Strings -->
+    <string name="dim7_title">إرث جينوفا</string>
+    <string name="dim7_subtitle">فاينل فانتسي 7</string>
+    <string name="dim7_story">يقاتل كلاود سترايف وأفالانش شركة شينرا وسيفيروث الاسطوري...</string>
+    <string name="biome_midgar_slums">أحياء ميدغار الفقيرة</string>
+    <string name="biome_shinra_building">مقر شينرا الرئيسي</string>
+    <string name="biome_junon_underwater">مفاعل جُنون تحت الماء</string>
+    <string name="biome_northern_crater">الفوهة الشمالية</string>
+    <string name="biome_sephiroth_realm">قلب الكوكب</string>
+    <string name="enemy_grunt">جندي شينرا</string>
+    <string name="enemy_sweeper">ماسح</string>
+    <string name="enemy_hellhound">كلب الجحيم</string>
+    <string name="enemy_jenova_cell">عينة جينوفا</string>
+    <string name="enemy_dragon_rider">فارس التنين</string>
+    <string name="enemy_weapon">السلاح الزمردي</string>
+    <string name="enemy_guard_scorpion">العقرب الحارس</string>
+    <string name="enemy_airbuster">مدمر الجو</string>
+    <string name="enemy_jenova_birth">جينوفا-الميلاد</string>
+    <string name="enemy_rufus">روفوس شينرا</string>
+    <string name="enemy_jenova_life">جينوفا-الحياة</string>
 
     <!-- Town Screen -->
     <string name="town_name">العاصمة الكبرى</string>

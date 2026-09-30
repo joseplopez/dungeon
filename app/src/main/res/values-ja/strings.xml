@@ -45,12 +45,26 @@
     <string name="enemy_adamantoise">アダマンタイマイ</string>
     <string name="enemy_dark_knight">ダークナイト</string>
     <string name="enemy_emperor">皇帝マティウス</string>
+    <string name="enemy_sea_snake">シースネーク</string>
+    <string name="enemy_behemoth">ベヒーモス</string>
+    <string name="enemy_toad">トード</string>
+    <string name="enemy_leon">レオンハルト</string>
+    <string name="enemy_borghen">ボーゲン</string>
+    <string name="enemy_gottos">ゴートス</string>
+    <string name="enemy_roundworm">ラウンドワーム</string>
+    <string name="enemy_cyclone">竜巻</string>
+
+    <string name="enemy_zombie">ゾンビ</string>
+    <string name="enemy_wyvern">ワイバーン</string>
+    <string name="enemy_astos">アストス</string>
+    <string name="enemy_marilith">マリリス</string>
 
     <string name="dim3_title">クリスタルの光</string>
     <string name="dim3_subtitle">ファイナルファンタジーIII</string>
     <string name="dim3_story">光のクリスタルに選ばれた孤児たちは、世界にバランスを取り戻さなければならない...</string>
 
     <string name="biome_ur_village">ウルの村</string>
+    <string name="biome_nepto_shrine">ネプトの神殿</string>
     <string name="biome_crystal_tower_dim3">クリスタルタワー</string>
     <string name="biome_dark_world">闇の世界</string>
 
@@ -59,6 +73,111 @@
     <string name="enemy_hein">ハイン</string>
     <string name="enemy_tonberry">トンベリ</string>
     <string name="enemy_cloud_of_darkness">暗闇の雲</string>
+    <string name="enemy_giant">ジャイアント</string>
+    <string name="enemy_iron_giant">鉄巨人</string>
+    <string name="enemy_malboro">モルボル</string>
+    <string name="enemy_djinn_boss">大魔人ジン</string>
+    <string name="enemy_nepto_dragon">ネプト竜</string>
+    <string name="enemy_garuda">ガルーダ</string>
+    <string name="enemy_goldor">ゴールドル</string>
+    <string name="enemy_xande">ザンデ</string>
+
+    <!-- Dimension 4 Strings -->
+    <string name="dim4_title">ふたつの月</string>
+    <string name="dim4_subtitle">ファイナルファンタジーIV</string>
+    <string name="dim4_story">暗黒騎士セシルは試練の山で己の過去と向き合い、四天王を倒してふたつの月を救う...</string>
+    <string name="biome_baron_castle">バロン城</string>
+    <string name="biome_mount_ordeals">試練の山</string>
+    <string name="biome_dwarven_castle">ドワーフ城</string>
+    <string name="biome_lunar_subterrane">月の地下渓谷</string>
+    <string name="biome_moon_core">月の中心部</string>
+    <string name="enemy_captain">キャプテン</string>
+    <string name="enemy_antlion">アントリオン</string>
+    <string name="enemy_mist_dragon">ミストドラゴン</string>
+    <string name="enemy_dark_imp">ダークインプ</string>
+    <string name="enemy_lunar_dragon">ルナドラゴン</string>
+    <string name="enemy_mindflayer">マインドフレア</string>
+    <string name="enemy_mist_dragon_boss">ミストドラゴン（長）</string>
+    <string name="enemy_antlion_boss">キングアントリオン</string>
+    <string name="enemy_golbez">ゴルベーザ</string>
+    <string name="enemy_cagnazzo">カイナッツォ</string>
+    <string name="enemy_barbariccia">バルバリシア</string>
+    <string name="enemy_scarmiglione">スカルミリョーネ</string>
+    <string name="enemy_rubicante">ルビカンテ</string>
+    <string name="enemy_dark_bahamut">ダークバハムート</string>
+    <string name="enemy_zeromus">ゼロムス</string>
+
+    <!-- Dimension 5 Strings -->
+    <string name="dim5_title">探求の旅</string>
+    <string name="dim5_subtitle">ファイナルファンタジーV</string>
+    <string name="dim5_story">バッツたちは世界の危機を救うため、エクスデスを封印すべく４つのクリスタルを巡る...</string>
+    <string name="biome_tule_wind_shrine">風の神殿</string>
+    <string name="biome_karnak_castle">カルナック城</string>
+    <string name="biome_library_ancients">古代図書館</string>
+    <string name="biome_exdeath_castle">エクスデス城</string>
+    <string name="biome_void">次元の狭間</string>
+    <string name="enemy_fariis">スプライト</string>
+    <string name="enemy_skull_eater">スカルイーター</string>
+    <string name="enemy_gargoyle">ガーゴイル</string>
+    <string name="enemy_stoker">ストーカー</string>
+    <string name="enemy_omega_proto">プロトタイプオメガ</string>
+    <string name="enemy_shinryu">神竜</string>
+    <string name="enemy_wing_raptor">ウイングラプター</string>
+    <string name="enemy_karlabos">カーラボス</string>
+    <string name="enemy_ifrit_boss">イフリート</string>
+    <string name="enemy_gilgamesh">ギルガメッシュ</string>
+    <string name="enemy_atomos">アトモス</string>
+    <string name="enemy_gilgamesh_2">エンキドゥ＆ギルガメッシュ</string>
+    <string name="enemy_exdeath">エクスデス</string>
+    <string name="enemy_omega">オメガ</string>
+    <string name="enemy_neo_exdeath">ネオエクスデス</string>
+
+    <!-- Dimension 6 Strings -->
+    <string name="dim6_title">崩壊の世界</string>
+    <string name="dim6_subtitle">ファイナルファンタジーVI</string>
+    <string name="dim6_story">ティナとロックたちはガストラ帝国と狂気のケフカに立ち向かう...</string>
+    <string name="biome_narshe_mines">炭鉱都市ナルシェ</string>
+    <string name="biome_magitek_factory">魔導研究所</string>
+    <string name="biome_floating_continent">魔大陸</string>
+    <string name="biome_kefka_tower">瓦礫の塔</string>
+    <string name="biome_world_of_ruin">崩壊後の世界</string>
+    <string name="enemy_mp">魔導兵</string>
+    <string name="enemy_brawler">格闘家</string>
+    <string name="enemy_magitek_armor">魔導アーマー</string>
+    <string name="enemy_ninja">忍者</string>
+    <string name="enemy_dragon">ドラゴン</string>
+    <string name="enemy_dark_force">ダークフォース</string>
+    <string name="enemy_magic_master">マジックマスター</string>
+    <string name="enemy_whelk">ユミール</string>
+    <string name="enemy_vargas">バルガス</string>
+    <string name="enemy_number_024">ナンバー024</string>
+    <string name="enemy_ultros">オルトロス</string>
+    <string name="enemy_typhon">テュポーン</string>
+    <string name="enemy_air_force">エアフォース</string>
+    <string name="enemy_guardian">ガーディアン</string>
+    <string name="enemy_ultima_weapon">アルテマウェポン</string>
+    <string name="enemy_kefka">ケフカ・パラッツォ</string>
+
+    <!-- Dimension 7 Strings -->
+    <string name="dim7_title">ジェノバの遺産</string>
+    <string name="dim7_subtitle">ファイナルファンタジーVII</string>
+    <string name="dim7_story">クラウドとアバランチは神羅カンパニーと伝説のセフィロスに戦いを挑む...</string>
+    <string name="biome_midgar_slums">ミッドガル・スラム</string>
+    <string name="biome_shinra_building">神羅ビル</string>
+    <string name="biome_junon_underwater">ジュノン海底魔導炉</string>
+    <string name="biome_northern_crater">大穴（大空洞）</string>
+    <string name="biome_sephiroth_realm">星の中心</string>
+    <string name="enemy_grunt">神羅兵</string>
+    <string name="enemy_sweeper">スイーパー</string>
+    <string name="enemy_hellhound">ヘルハウンド</string>
+    <string name="enemy_jenova_cell">ジェノバサンプル</string>
+    <string name="enemy_dragon_rider">ドラゴンライダー</string>
+    <string name="enemy_weapon">エメラルドウェポン</string>
+    <string name="enemy_guard_scorpion">ガードサソリ</string>
+    <string name="enemy_airbuster">エアバスター</string>
+    <string name="enemy_jenova_birth">ジェノバBIRTH</string>
+    <string name="enemy_rufus">ルーファウス神羅</string>
+    <string name="enemy_jenova_life">ジェノバLIFE</string>
 
     <!-- Town Screen -->
     <string name="town_name">グランドキャピタル</string>

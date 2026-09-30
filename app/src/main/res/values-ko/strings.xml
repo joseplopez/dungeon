@@ -45,12 +45,26 @@
     <string name="enemy_adamantoise">아다만타이마이</string>
     <string name="enemy_dark_knight">다크 나이트</string>
     <string name="enemy_emperor">황제 마테우스</string>
+    <string name="enemy_sea_snake">바다뱀</string>
+    <string name="enemy_behemoth">베히모스</string>
+    <string name="enemy_toad">두꺼비</string>
+    <string name="enemy_leon">레온하르트</string>
+    <string name="enemy_borghen">보르겐</string>
+    <string name="enemy_gottos">고토스</string>
+    <string name="enemy_roundworm">라운드웜</string>
+    <string name="enemy_cyclone">사이클론</string>
+
+    <string name="enemy_zombie">좀비</string>
+    <string name="enemy_wyvern">와이번</string>
+    <string name="enemy_astos">아스토스</string>
+    <string name="enemy_marilith">마릴리스</string>
 
     <string name="dim3_title">크리스탈의 빛</string>
     <string name="dim3_subtitle">파이널 판타지 III</string>
     <string name="dim3_story">빛의 크리스탈에 선택받은 고아들은 세계의 균형을 되찾아야 한다...</string>
 
     <string name="biome_ur_village">우르 마을</string>
+    <string name="biome_nepto_shrine">넵토 신전</string>
     <string name="biome_crystal_tower_dim3">크리스탈 타워</string>
     <string name="biome_dark_world">어둠의 세계</string>
 
@@ -59,6 +73,111 @@
     <string name="enemy_hein">하인</string>
     <string name="enemy_tonberry">톤베리</string>
     <string name="enemy_cloud_of_darkness">어둠의 구름</string>
+    <string name="enemy_giant">거인</string>
+    <string name="enemy_iron_giant">철거인</string>
+    <string name="enemy_malboro">몰볼</string>
+    <string name="enemy_djinn_boss">대마인 진</string>
+    <string name="enemy_nepto_dragon">넵토 드래곤</string>
+    <string name="enemy_garuda">가루다</string>
+    <string name="enemy_goldor">골도르</string>
+    <string name="enemy_xande">잔데</string>
+
+    <!-- Dimension 4 Strings -->
+    <string name="dim4_title">두 개의 달</string>
+    <string name="dim4_subtitle">파이널 판타지 IV</string>
+    <string name="dim4_story">암흑기사 세실은 시련의 산에서 구원을 찾고, 사천왕과 싸워 두 개의 달을 구하려 한다...</string>
+    <string name="biome_baron_castle">바론 성</string>
+    <string name="biome_mount_ordeals">시련의 산</string>
+    <string name="biome_dwarven_castle">드워프 성</string>
+    <string name="biome_lunar_subterrane">달의 지하계곡</string>
+    <string name="biome_moon_core">달의 중심부</string>
+    <string name="enemy_captain">캡틴</string>
+    <string name="enemy_antlion">안트리온</string>
+    <string name="enemy_mist_dragon">안개 드래곤</string>
+    <string name="enemy_dark_imp">다크 임프</string>
+    <string name="enemy_lunar_dragon">루나 드래곤</string>
+    <string name="enemy_mindflayer">마인드플레이어</string>
+    <string name="enemy_mist_dragon_boss">장로 안개 드래곤</string>
+    <string name="enemy_antlion_boss">킹 안트리온</string>
+    <string name="enemy_golbez">골베자</string>
+    <string name="enemy_cagnazzo">카그나초</string>
+    <string name="enemy_barbariccia">바르바리차</string>
+    <string name="enemy_scarmiglione">스카르밀리오네</string>
+    <string name="enemy_rubicante">루비칸테</string>
+    <string name="enemy_dark_bahamut">다크 바하무트</string>
+    <string name="enemy_zeromus">제로무스</string>
+
+    <!-- Dimension 5 Strings -->
+    <string name="dim5_title">용사의 여정</string>
+    <string name="dim5_subtitle">파이널 판타지 V</string>
+    <string name="dim5_story">바츠와 동료들은 엑스데스를 봉인하고 4개의 크리스탈을 지키기 위해 떠난다...</string>
+    <string name="biome_tule_wind_shrine">바람의 신전</string>
+    <string name="biome_karnak_castle">카르나크 성</string>
+    <string name="biome_library_ancients">고대 도서관</string>
+    <string name="biome_exdeath_castle">엑스데스 성</string>
+    <string name="biome_void">차원의 틈새</string>
+    <string name="enemy_fariis">요정</string>
+    <string name="enemy_skull_eater">스컬 이터</string>
+    <string name="enemy_gargoyle">가고일</string>
+    <string name="enemy_stoker">스토커</string>
+    <string name="enemy_omega_proto">프로토타입 오메가</string>
+    <string name="enemy_shinryu">신룡</string>
+    <string name="enemy_wing_raptor">윙 랩터</string>
+    <string name="enemy_karlabos">카를라보스</string>
+    <string name="enemy_ifrit_boss">이프리트</string>
+    <string name="enemy_gilgamesh">길가메시</string>
+    <string name="enemy_atomos">아토모스</string>
+    <string name="enemy_gilgamesh_2">엔키두 &amp; 길가메시</string>
+    <string name="enemy_exdeath">엑스데스</string>
+    <string name="enemy_omega">오메가</string>
+    <string name="enemy_neo_exdeath">네오 엑스데스</string>
+
+    <!-- Dimension 6 Strings -->
+    <string name="dim6_title">붕괴된 세계</string>
+    <string name="dim6_subtitle">파이널 판타지 VI</string>
+    <string name="dim6_story">티나와 로크는 가스트라 제국과 광기의 케프카에 맞서 싸운다...</string>
+    <string name="biome_narshe_mines">나르샤 탄광</string>
+    <string name="biome_magitek_factory">마도 연구소</string>
+    <string name="biome_floating_continent">마대륙</string>
+    <string name="biome_kefka_tower">잔해의 탑</string>
+    <string name="biome_world_of_ruin">붕괴 후 세계</string>
+    <string name="enemy_mp">마도병</string>
+    <string name="enemy_brawler">격투가</string>
+    <string name="enemy_magitek_armor">마도 아머</string>
+    <string name="enemy_ninja">닌자</string>
+    <string name="enemy_dragon">드래곤</string>
+    <string name="enemy_dark_force">다크 포스</string>
+    <string name="enemy_magic_master">매직 마스터</string>
+    <string name="enemy_whelk">유미르</string>
+    <string name="enemy_vargas">바르가스</string>
+    <string name="enemy_number_024">넘버 024</string>
+    <string name="enemy_ultros">울트로스</string>
+    <string name="enemy_typhon">테폰</string>
+    <string name="enemy_air_force">에어포스</string>
+    <string name="enemy_guardian">가디언</string>
+    <string name="enemy_ultima_weapon">알테마 웨폰</string>
+    <string name="enemy_kefka">케프카 팔라초</string>
+
+    <!-- Dimension 7 Strings -->
+    <string name="dim7_title">제노바의 유산</string>
+    <string name="dim7_subtitle">파이널 판타지 VII</string>
+    <string name="dim7_story">클라우드와 아발란치는 신라 컴퍼니와 세피로스에 맞서 싸운다...</string>
+    <string name="biome_midgar_slums">미드가르 슬럼</string>
+    <string name="biome_shinra_building">신라 빌딩</string>
+    <string name="biome_junon_underwater">주논 해저 마황로</string>
+    <string name="biome_northern_crater">대공동</string>
+    <string name="biome_sephiroth_realm">별의 중심</string>
+    <string name="enemy_grunt">신라병</string>
+    <string name="enemy_sweeper">스위퍼</string>
+    <string name="enemy_hellhound">헬하운드</string>
+    <string name="enemy_jenova_cell">제노바 샘플</string>
+    <string name="enemy_dragon_rider">드래곤 라이더</string>
+    <string name="enemy_weapon">에메랄드 웨폰</string>
+    <string name="enemy_guard_scorpion">가드 전갈</string>
+    <string name="enemy_airbuster">에어 버스터</string>
+    <string name="enemy_jenova_birth">제노바 BIRTH</string>
+    <string name="enemy_rufus">루퍼스 신라</string>
+    <string name="enemy_jenova_life">제노바 LIFE</string>
 
     <!-- Town Screen -->
     <string name="town_name">그랜드 캐피탈</string>

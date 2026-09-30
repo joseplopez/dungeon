@@ -45,12 +45,26 @@
     <string name="enemy_adamantoise">Adamantoise</string>
     <string name="enemy_dark_knight">Knight wa Giza</string>
     <string name="enemy_emperor">Mfalme Mateus</string>
+    <string name="enemy_sea_snake">Nyoka wa Bahari</string>
+    <string name="enemy_behemoth">Behemoth</string>
+    <string name="enemy_toad">Chura</string>
+    <string name="enemy_leon">Leon</string>
+    <string name="enemy_borghen">Borghen</string>
+    <string name="enemy_gottos">Gottos</string>
+    <string name="enemy_roundworm">Mnyoo Mkubwa</string>
+    <string name="enemy_cyclone">Kimbunga</string>
+
+    <string name="enemy_zombie">Panya / Zombie</string>
+    <string name="enemy_wyvern">Wyvern</string>
+    <string name="enemy_astos">Astos</string>
+    <string name="enemy_marilith">Marilith</string>
 
     <string name="dim3_title">Mwanga wa Fuwele</string>
     <string name="dim3_subtitle">Final Fantasy III</string>
     <string name="dim3_story">Watoto yatima waliochaguliwa na Fuwele za Mwanga lazima warejeshe usawa ulimwenguni...</string>
 
     <string name="biome_ur_village">Kijiji cha Ur</string>
+    <string name="biome_nepto_shrine">Hekalu la Nepto</string>
     <string name="biome_crystal_tower_dim3">Mnara wa Kioo</string>
     <string name="biome_dark_world">Ulimwengu wa Giza</string>
 
@@ -59,6 +73,111 @@
     <string name="enemy_hein">Hein</string>
     <string name="enemy_tonberry">Tonberry</string>
     <string name="enemy_cloud_of_darkness">Wingu la Giza</string>
+    <string name="enemy_giant">Daktari Mkubwa</string>
+    <string name="enemy_iron_giant">Daktari wa Chuma</string>
+    <string name="enemy_malboro">Malboro</string>
+    <string name="enemy_djinn_boss">Djinn Mkubwa</string>
+    <string name="enemy_nepto_dragon">Dragon wa Nepto</string>
+    <string name="enemy_garuda">Garuda</string>
+    <string name="enemy_goldor">Goldor</string>
+    <string name="enemy_xande">Xande</string>
+
+    <!-- Dimension 4 Strings -->
+    <string name="dim4_title">Mwezi wa Pili</string>
+    <string name="dim4_subtitle">Final Fantasy IV</string>
+    <string name="dim4_story">Cecil Knight wa Giza anatafuta ukombozi Mlima Ordeals na kupigana na Mashetani...</string>
+    <string name="biome_baron_castle">Ngome ya Baron</string>
+    <string name="biome_mount_ordeals">Mlima Ordeals</string>
+    <string name="biome_dwarven_castle">Ngome ya Mbilikimo</string>
+    <string name="biome_lunar_subterrane">Pango la Mwezi</string>
+    <string name="biome_moon_core">Moyo wa Mwezi</string>
+    <string name="enemy_captain">Kapteni</string>
+    <string name="enemy_antlion">Antlion</string>
+    <string name="enemy_mist_dragon">Dragon wa Ukungu</string>
+    <string name="enemy_dark_imp">Shetani wa Giza</string>
+    <string name="enemy_lunar_dragon">Dragon wa Mwezi</string>
+    <string name="enemy_mindflayer">Mindflayer</string>
+    <string name="enemy_mist_dragon_boss">Dragon Mkubwa wa Ukungu</string>
+    <string name="enemy_antlion_boss">Antlion wa Kifalme</string>
+    <string name="enemy_golbez">Golbez</string>
+    <string name="enemy_cagnazzo">Cagnazzo</string>
+    <string name="enemy_barbariccia">Barbariccia</string>
+    <string name="enemy_scarmiglione">Scarmiglione</string>
+    <string name="enemy_rubicante">Rubicante</string>
+    <string name="enemy_dark_bahamut">Bahamut wa Giza</string>
+    <string name="enemy_zeromus">Zeromus</string>
+
+    <!-- Dimension 5 Strings -->
+    <string name="dim5_title">Safari ya Mwanajeshi</string>
+    <string name="dim5_subtitle">Final Fantasy V</string>
+    <string name="dim5_story">Bartz na wenzake wanasafiri katika ulimwengu uliovunjika kumfunga Exdeath...</string>
+    <string name="biome_tule_wind_shrine">Hekalu la Upepo</string>
+    <string name="biome_karnak_castle">Ngome ya Karnak</string>
+    <string name="biome_library_ancients">Maktaba ya Kale</string>
+    <string name="biome_exdeath_castle">Ngome ya Exdeath</string>
+    <string name="biome_void">Ufa wa Vipimo</string>
+    <string name="enemy_fariis">Kijini</string>
+    <string name="enemy_skull_eater">Mla Fuvu</string>
+    <string name="enemy_gargoyle">Gargoyle</string>
+    <string name="enemy_stoker">Stoker</string>
+    <string name="enemy_omega_proto">Proto-Omega</string>
+    <string name="enemy_shinryu">Shinryu</string>
+    <string name="enemy_wing_raptor">Raptor wa Mabawa</string>
+    <string name="enemy_karlabos">Karlabos</string>
+    <string name="enemy_ifrit_boss">Ifrit</string>
+    <string name="enemy_gilgamesh">Gilgamesh</string>
+    <string name="enemy_atomos">Atomos</string>
+    <string name="enemy_gilgamesh_2">Enkidu &amp; Gilgamesh</string>
+    <string name="enemy_exdeath">Exdeath</string>
+    <string name="enemy_omega">Omega</string>
+    <string name="enemy_neo_exdeath">Neo Exdeath</string>
+
+    <!-- Dimension 6 Strings -->
+    <string name="dim6_title">Ulimwengu wa Magofu</string>
+    <string name="dim6_subtitle">Final Fantasy VI</string>
+    <string name="dim6_story">Terra, Locke na wenzake wanapigana na Dola na Kefka aliyevurugika...</string>
+    <string name="biome_narshe_mines">Maji ya Narshe</string>
+    <string name="biome_magitek_factory">Kiwanda cha Magitek</string>
+    <string name="biome_floating_continent">Bara Linaloelea</string>
+    <string name="biome_kefka_tower">Mnara wa Kefka</string>
+    <string name="biome_world_of_ruin">Ulimwengu wa Magofu</string>
+    <string name="enemy_mp">Askari wa Magitek</string>
+    <string name="enemy_brawler">Mpiganaji</string>
+    <string name="enemy_magitek_armor">Koti la Magitek</string>
+    <string name="enemy_ninja">Ninja</string>
+    <string name="enemy_dragon">Dragon</string>
+    <string name="enemy_dark_force">Nguvu ya Giza</string>
+    <string name="enemy_magic_master">Mwalimu wa Uchawi</string>
+    <string name="enemy_whelk">Kaa</string>
+    <string name="enemy_vargas">Vargas</string>
+    <string name="enemy_number_024">Nambari 024</string>
+    <string name="enemy_ultros">Ultros</string>
+    <string name="enemy_typhon">Typhon</string>
+    <string name="enemy_air_force">Jeshi la Anga</string>
+    <string name="enemy_guardian">Mlinzi</string>
+    <string name="enemy_ultima_weapon">Silaha ya Ultima</string>
+    <string name="enemy_kefka">Kefka Palazzo</string>
+
+    <!-- Dimension 7 Strings -->
+    <string name="dim7_title">Urithi wa Jenova</string>
+    <string name="dim7_subtitle">Final Fantasy VII</string>
+    <string name="dim7_story">Cloud Strife na AVALANCHE wanapigana na Kampuni ya Shinra na Sephiroth...</string>
+    <string name="biome_midgar_slums">Mitaa ya Midgar</string>
+    <string name="biome_shinra_building">Makuu ya Shinra</string>
+    <string name="biome_junon_underwater">Reactor ya Junon</string>
+    <string name="biome_northern_crater">Shimo la Kaskazini</string>
+    <string name="biome_sephiroth_realm">Moyo wa Dunia</string>
+    <string name="enemy_grunt">Askari wa Shinra</string>
+    <string name="enemy_sweeper">Mufagiaji</string>
+    <string name="enemy_hellhound">Mbwa wa Kuzimu</string>
+    <string name="enemy_jenova_cell">Sampuli ya Jenova</string>
+    <string name="enemy_dragon_rider">Mpanda Dragon</string>
+    <string name="enemy_weapon">Silaha ya Emerald</string>
+    <string name="enemy_guard_scorpion">Nge Mlinzi</string>
+    <string name="enemy_airbuster">Mharibu Anga</string>
+    <string name="enemy_jenova_birth">Jenova-KUZALIWA</string>
+    <string name="enemy_rufus">Rufus Shinra</string>
+    <string name="enemy_jenova_life">Jenova-UZIMA</string>
 
     <!-- Town Screen -->
     <string name="town_name">MTEJA MKUU</string>

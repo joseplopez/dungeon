@@ -1562,6 +1562,2318 @@ fun DrawScope.drawCloudOfDarkness() {
     drawMonsterMatrix(matrix, palette)
 }
 
+fun DrawScope.drawZombie() {
+    val matrix = arrayOf(
+        ".......KKKKK......", // 0
+        "......KGGGGGK.....", // 1
+        ".....KGGGGGGGK....", // 2
+        "....KGGYYYYGGK....", // 3
+        "....KGGKKKKGGK....", // 4
+        "....KGGGGGGGGK....", // 5
+        "....KGGGGWWGGK....", // 6
+        "....KGGGGGGGGK.KK.", // 7
+        "...KRRRRGGGGGKKSK.", // 8
+        "..KRRRRRRGGGGKKSK.", // 9
+        ".KRRRRRRRRGGGKKK..", // 10
+        ".KRRRRRRRRRRRK....", // 11
+        ".KRRRRRRRRRRRK....", // 12
+        "..KRRRRRRRRRRK....", // 13
+        "...KRRRRRRRRRK....", // 14
+        "....KDDDDDDDK.....", // 15
+        "....KGGGGGGGK.....", // 16
+        "....KGGKKKGGK.....", // 17
+        "....KGGK.KGGK.....", // 18
+        "....KGGK.KGGK.....", // 19
+        "....KDDK.KDDK.....", // 20
+        "....KKKK.KKKK....."  // 21
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'G' to Color(0xFF556B2F), // Sickly olive green skin
+        'D' to Color(0xFF3B4A20), // Dark green skin shadow
+        'R' to Color(0xFF8B0000), // Dark red tattered rags
+        'Y' to Color(0xFFF1C40F), // Sunken glowing yellow eyes
+        'W' to Color(0xFFECF0F1), // Exposed bone / fangs
+        'S' to Color(0xFFBDC3C7)  // Bone claws
+    )
+
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawWyvern() {
+    val matrix = arrayOf(
+        "............KKKK........", // 0
+        "...........KPPPPK...KK..", // 1
+        "..........KPPPPPRK.KPK..", // 2
+        ".........KPPPPPPPPKPPK..", // 3
+        "........KPPPPPPPPPPK....", // 4
+        "...KKKKKPPPPPPPPPPPK....", // 5
+        "..KBBBBBPPPPPPPPPPPK....", // 6
+        ".KBBBBBBBPPPPPPPPPPK....", // 7
+        "KBBBBBBBBBPPPPPPPPPK....", // 8
+        ".KBBBBBBBBBPPPPPPPK.....", // 9
+        "..KBBBBBBBBBPPPPPK......", // 10
+        "...KKBBBBBBBPPPPK.......", // 11
+        ".....KBBBBBBPPPPK.......", // 12
+        "......KBBBBBPPPPK.......", // 13
+        ".......KBBBBPPPPK.......", // 14
+        "........KPPP.PPPK.......", // 15
+        "........KPPK.KPPK.......", // 16
+        "........KPPK.KPPK.......", // 17
+        ".......KYYPK.KYYPK......", // 18
+        ".......KYYPK.KYYPK......", // 19
+        ".......KKKKK.KKKKK......", // 20
+        "........................"  // 21
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'P' to Color(0xFF6C3483), // Purple Wyvern body
+        'B' to Color(0xFF2980B9), // Blue wing membrane
+        'R' to Color(0xFFE74C3C), // Crimson eye
+        'Y' to Color(0xFFF1C40F)  // Gold horn & talons
+    )
+
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawBehemoth() {
+    val matrix = arrayOf(
+        "...............KKK........", // 0
+        "..............KYYYK.......", // 1
+        ".............KYYYYK...KK..", // 2
+        "............KYYYYYK..KPK..", // 3
+        "...........KYYYYYRK.KPPK..", // 4
+        "..........KYYYYYYPPKPPPPK.", // 5
+        ".........KYYYYYPPPPPPPPPK.", // 6
+        "......KKKCCCCCPPPPPPPPPPK.", // 7
+        ".....KCCCCCCCPPPPPPPPPPPK.", // 8
+        "....KCCCCCCCCPPPPPPPPPPPK.", // 9
+        "...KCCCCCCCCCPPPPPPPPPPPK.", // 10
+        "..KCCCCCCCCC3PPPPPPPPPPPK.", // 11
+        ".KCCCCCCCCC33PPPPPPPPPPK..", // 12
+        "KCCCCCCCCCCC3PPPPPPPPPK...", // 13
+        ".KCCCCCCCCCC3PPPPPPPPK....", // 14
+        "..KCCCCCCCCCPPPPPPPPPK....", // 15
+        "...KCCCCK....KPPPPPPPK....", // 16
+        "...KCCCK......KPPPPPPK....", // 17
+        "...KCCCK......KPPPPPPK....", // 18
+        "..KSSSK........KSSSKKK....", // 19
+        "..KSSSK........KSSSK......", // 20
+        "..KKKKK........KKKKK......"  // 21
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'P' to Color(0xFF4A235A), // Deep purple body
+        '3' to Color(0xFF6C3483), // Lighter purple shading
+        'C' to Color(0xFF1ABC9C), // Cyan wild mane
+        'Y' to Color(0xFFF1C40F), // Gold curved horns
+        'R' to Color(0xFFE74C3C), // Red eye
+        'S' to Color(0xFFBDC3C7)  // Silver claws
+    )
+
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawToad() {
+    val matrix = arrayOf(
+        "......KKKKKK......", // 0
+        "....KGGGGGGGGK....", // 1
+        "...KGGYYYYYGGGK...", // 2
+        "..KGGGKKKKKGGGGK..", // 3
+        ".KGGGGGGGGGGGGGGK.", // 4
+        ".KGGGGGWWWWGGGGGK.", // 5
+        "KGGGGGGWWWWGGGGGGK", // 6
+        "KGGYYYYYYYYYYYYGGK", // 7
+        "KGGYYYYYYYYYYYYGGK", // 8
+        ".KGGYYYYYYYYYYGGK.", // 9
+        ".KGGYYYYYYYYYYGGK.", // 10
+        "..KGGGYYYYYYGGGK..", // 11
+        "..KKGGGGGGGGGGKK..", // 12
+        ".KGGK.KKKKKK.KGGK.", // 13
+        ".KGGK........KGGK.", // 14
+        "..KK..........KK.."  // 15
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'G' to Color(0xFF27AE60), // Emerald green skin
+        'Y' to Color(0xFFF1C40F), // Yellow belly & eye iris
+        'W' to Color(0xFFFFFFFF)  // Eye sclera
+    )
+
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawIfrit() {
+    val matrix = arrayOf(
+        ".KK..............KK...", // 0
+        "KYYK............KYYK..", // 1
+        ".KYYK..........KYYK...", // 2
+        "..KYYKKKKKKKKKKYYK....", // 3
+        "...KRRRRRRRRRRRRK.....", // 4
+        "...KRRRRWERRE3RRK.....", // 5
+        "...KRRRRRRRRRRRRK.....", // 6
+        "...KRRRRWWWW3RRRK.....", // 7
+        "..KYYYYRRRRRRYYYYK....", // 8
+        ".KYYYYYRRRRRRYYYYYK...", // 9
+        "KYYYYYYRRRRRRYYYYYYK..", // 10
+        ".KRRRRRRRRRRRRRRRRK...", // 11
+        "..KRRRRRRRRRRRRRRK....", // 12
+        "...KRRRRRRRRRRRRK.....", // 13
+        "...KRRRRRRRRRRRRK.....", // 14
+        "...KRRRRRRRRRRRRK.....", // 15
+        "...KRRRRRRRRRRRRK.....", // 16
+        "...KRRRRRRRRRRRRK.....", // 17
+        "...KRRRRK....KRRRRK...", // 18
+        "...KRRRRK....KRRRRK...", // 19
+        "...KRRRRK....KRRRRK...", // 20
+        "..KYYYYYK...KYYYYYK...", // 21
+        "..KYYYYYK...KYYYYYK...", // 22
+        "..KKKKKKK...KKKKKKK..."  // 23
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'R' to Color(0xFFC0392B), // Fiery crimson red skin
+        '3' to Color(0xFFE74C3C), // Bright orange-red highlights
+        'Y' to Color(0xFFF1C40F), // Gold horns & arm bracers/greaves
+        'W' to Color(0xFFFFFFFF), // White fangs
+        'E' to Color(0xFFFFCC00)  // Glowing yellow eyes
+    )
+
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawOmega() {
+    val matrix = arrayOf(
+        "........KKKKKK..........", // 0
+        ".......KYYYYYYK.........", // 1
+        "......KYYYYYYYYK........", // 2
+        ".....KSSSSSSSSSSK.......", // 3
+        "....KSSSSEERSSSSSK......", // 4
+        "...KSSSSSSSSSSSSSSK.....", // 5
+        "..KSSSSSSSSSSSSSSSSK....", // 6
+        ".KSSSSSSSSSSSSSSSSSSK...", // 7
+        "KSSSSSSSSSSSSSSSSSSSSK..", // 8
+        "KSSSSSSSSSSSSSSSSSSSSK..", // 9
+        ".KSSSSSSSSSSSSSSSSSSK...", // 10
+        "..KSSSSSSSSSSSSSSSSK....", // 11
+        "..KYYK.KSSSSSSK.KYYK....", // 12
+        ".KYYK..KSSSSSSK..KYYK...", // 13
+        "KYYK...KSSSSSSK...KYYK..", // 14
+        "KYYK...KSSSSSSK...KYYK..", // 15
+        "KYYK...KSSKKSSK...KYYK..", // 16
+        "KKK....KSSK.KSSK...KKK..", // 17
+        ".......KSSK.KSSK........", // 18
+        ".......KKKK.KKKK........"  // 19
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'S' to Color(0xFF7F8C8D), // Steel silver body
+        'Y' to Color(0xFFF1C40F), // Gold limbs & cannon accents
+        'E' to Color(0xFFFF0000), // Glowing red laser visor eye
+        'R' to Color(0xFFFF5252)  // Laser core center
+    )
+
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawHellhound() {
+    val matrix = arrayOf(
+        ".......KKKK.........", // 0
+        "......KRRRRK...KK...", // 1
+        ".....KRRRRRRK.KRRK..", // 2
+        "....KRRRRRRRRKRRRK..", // 3
+        "...KYYYRRRRRRRRRRK..", // 4
+        "..KYYYYYRRRRRREWSK..", // 5
+        ".KDDYYYYRRRRRRWW3K..", // 6
+        "KDDDDYYYYRRRRRRRRK..", // 7
+        "KDDDDDDYYYRRRRRRRK..", // 8
+        ".KDDDDDDYYYYRRKK....", // 9
+        "..KDDDDDDYYYK.......", // 10
+        "...KDDYYYYYK........", // 11
+        "...KRRK..KRRK.......", // 12
+        "...KRRK..KRRK.......", // 13
+        "...KDDK..KDDK.......", // 14
+        "...KKK....KKK.......", // 15
+        "....................", // 16
+        "...................."  // 17
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'R' to Color(0xFF922B21), // Dark red fur
+        'D' to Color(0xFF641E16), // Dark charcoal/red shadow
+        'Y' to Color(0xFFF39C12), // Fiery orange spine mane
+        'E' to Color(0xFFF1C40F), // Yellow eye
+        'W' to Color(0xFFFFFFFF), // Teeth
+        'S' to Color(0xFFE74C3C), // Red inner mouth
+        '3' to Color(0xFFD35400)  // Dark flame accent
+    )
+
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawJenova() {
+    val matrix = arrayOf(
+        "........KKKK..........", // 0
+        ".......KPPPPK.........", // 1
+        "......KPPPPPPK........", // 2
+        ".....KPPPPPPPPK.......", // 3
+        "....KPPPWWWWPPPK......", // 4
+        "....KPPWERRE3PPK......", // 5
+        "....KPPPWWWWPPPK......", // 6
+        "...KCCCCWWWWCCCCK.....", // 7
+        "..KCCCCCCWWCCCCCCK....", // 8
+        ".KCCCCCCCWWCCCCCCCK...", // 9
+        ".KCCCCCCCWWCCCCCCCK...", // 10
+        ".KPPPPPPPWWPPPPPPPK...", // 11
+        "..KPPPPPPWWPPPPPPK....", // 12
+        "...KPPPPCRRCPPPPK.....", // 13
+        "....KPPCRRRRCPPK......", // 14
+        "....KPPCRRRRCPPK......", // 15
+        "....KPPPCRRCPPPK......", // 16
+        "....KPPPPPPPPPPK......", // 17
+        "....KPPPP..PPPPK......", // 18
+        "....KPPK....KPPK......", // 19
+        "....KPPK....KPPK......", // 20
+        "....KPPK....KPPK......", // 21
+        "....KKKK....KKKK......", // 22
+        "......................"  // 23
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'P' to Color(0xFF5B2C6F), // Deep purple bio-structure
+        'C' to Color(0xFF16A085), // Cyan/teal wing-like organic appendages
+        'W' to Color(0xFFECF0F1), // Pale alien torso/face
+        'E' to Color(0xFFFF2A2A), // Glowing crimson eyes
+        'R' to Color(0xFFE74C3C), // Red organic heart/core
+        '3' to Color(0xFF8E44AD)  // Purple shading
+    )
+
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawEvrae() {
+    val matrix = arrayOf(
+        ".KK......KK......KK.....", // 0
+        "KYYK....KYYK....KYYK....", // 1
+        "KYSK....KYSK....KYSK....", // 2
+        ".KYYK...KYYK...KYYK.....", // 3
+        "..KYYK..KYYK..KYYK......", // 4
+        "...KYYKKKYYKKKYYK.......", // 5
+        "....KCCCCCCCCCCK........", // 6
+        "...KCCCCCCCCCCCCK.......", // 7
+        "..KCCCCCCCCCCCCCCK......", // 8
+        ".KCCCCCCCCCCCCCCCCK.....", // 9
+        "KCCCCCCCCCCCCCCCCCCK....", // 10
+        "KCCCCCCCCCCCCCCCCCCK....", // 11
+        ".KCCCCCCCCCCCCCCCCK.....", // 12
+        "..KCCCCCCCCCCCCCCK......", // 13
+        "...KCCCCCCCCCCCCK.......", // 14
+        "....KCCCCCCCCCCK........", // 15
+        ".....KCCK....KCCK.......", // 16
+        ".....KCCK....KCCK.......", // 17
+        ".....KCCK....KCCK.......", // 18
+        "....KCCCK...KCCCK.......", // 19
+        "....KKKKK...KKKKK.......", // 20
+        "........................"  // 21
+    )
+
+    val palette = mapOf(
+        'K' to Color(0xFF17202A), // Dark outline
+        'C' to Color(0xFF3498DB), // Celestial cyan dragon body
+        'S' to Color(0xFFECF0F1), // Silver dragon scales
+        'Y' to Color(0xFFF1C40F)  // Majestic gold horns & fins
+    )
+
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawAstos() {
+    val matrix = arrayOf(
+        ".......KKKKK........",
+        "......KBBBBBK.......",
+        ".....KBBBBBBBK......",
+        "....KBBYYYYYBBK.....",
+        "....KBBWWWWWBBK.KK..",
+        "....KBBWERREBBKKSK..",
+        "....KBBWWWWWBBKKSK..",
+        "...KBBBBBBBBBBBKSK..",
+        "..KBBBBBBBBBBBBKKSK.",
+        ".KBBBBBBBBBBBBBBKSK.",
+        ".KBBBBBBBBBBBBBBKSK.",
+        ".KBBBBBBBBBBBBBBKSK.",
+        "..KBBBBBBBBBBBBKKSK.",
+        "...KBBBBBBBBBBBKSK..",
+        "....KDDDDDDDDDKKSK..",
+        "....KBBKKKKKBBKKSK..",
+        "....KBBK...KBBK.KK..",
+        "....KBBK...KBBK.....",
+        "....KDDK...KDDK.....",
+        "....KKKK...KKKK....."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'B' to Color(0xFF1F618D),
+        'D' to Color(0xFF114B72),
+        'Y' to Color(0xFFF1C40F),
+        'W' to Color(0xFFECF0F1),
+        'E' to Color(0xFFE74C3C),
+        'S' to Color(0xFF795548)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawMarilith() {
+    val matrix = arrayOf(
+        ".......KKKKK........",
+        "......KPPPPP3K......",
+        ".....KPPPPPPPPK.....",
+        "....KPPPWRYWPPPK....",
+        "....KPPPPPPPPPPK....",
+        "....KPPPPPPPPPPK....",
+        "...KSSPPPPPPPPSSK...",
+        "..KSSSSPPPPPPSSSSK..",
+        ".KSSSSSSRRRRSSSSSSK.",
+        "KSSSSSSSRRRRSSSSSSSK",
+        ".KSSSSSSRRRRSSSSSSK.",
+        "..KSSSSSRRRRSSSSSK..",
+        "...KRRRRRRRRRRRRK...",
+        "....KRRRRRRRRRRK....",
+        ".....KRRRRRRRRK.....",
+        "......KRRRRRRK......",
+        ".......KRRRRK.......",
+        "......KRRRRRRK......",
+        ".....KRRRRRRRRK.....",
+        "....KKKKKKKKKKKK...."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'P' to Color(0xFF8E44AD),
+        '3' to Color(0xFFA569BD),
+        'W' to Color(0xFFECF0F1),
+        'R' to Color(0xFFC0392B),
+        'Y' to Color(0xFFF1C40F),
+        'S' to Color(0xFFBDC3C7)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawLeon() {
+    val matrix = arrayOf(
+        ".......KKKKKK.......",
+        "......KCCCCCCK......",
+        ".....KCCCCCCCCK.....",
+        "....KCCCCEERCCCK....",
+        "....KCCCCCCCCCCK....",
+        "...KPPCCCCCCCCPPK...",
+        "..KPPPCCCCCCCCPPPK..",
+        ".KPPPPCCCCCCCCPPPPK.",
+        ".KPPPPCCCCCCSSPPPPK.",
+        ".KPPPPCCCCCCSSPPPPK.",
+        "..KPPPCCCCCCSSPPPK..",
+        "...KPPCCCCCCSSPPK...",
+        "....KCCCCCCCCCK.....",
+        "....KCCCCCCCCCK.....",
+        "....KCCCCKCCCCK.....",
+        "....KCCCK.KCCCK.....",
+        "....KCCCK.KCCCK.....",
+        "....KDDK...KDDK.....",
+        "....KKKK...KKKK....."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'C' to Color(0xFF2C3E50),
+        'P' to Color(0xFF6C3483),
+        'R' to Color(0xFFE74C3C),
+        'E' to Color(0xFFFF5252),
+        'D' to Color(0xFF1A252F),
+        'S' to Color(0xFFBDC3C7)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawBorghen() {
+    val matrix = arrayOf(
+        ".......KKKKKK.......",
+        "......KWWWWWWK......",
+        ".....KWWWWWWWWK.....",
+        "....KWWWWERREWWK....",
+        "....KWWWWWWWWWWK....",
+        "...KYYYYYYYYYYYYK...",
+        "..KYYYYYYYYYYYYYYK..",
+        ".KYYYYYYYYYYYYYYYYK.",
+        ".KYYYYYYYYYYYYYYYYK.",
+        ".KYYYYYYYYYYYYYYYYK.",
+        "..KYYYYYYYYYYYYYYK..",
+        "...KYYYYYYYYYYYYK...",
+        "....KYYYYYYYYYYK....",
+        "....KYYYYKYYYYK.....",
+        "....KYYYK.KYYYK.....",
+        "....KYYYK.KYYYK.....",
+        "....KDDK...KDDK.....",
+        "....KKKK...KKKK....."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'W' to Color(0xFFF3C59D),
+        'Y' to Color(0xFFD4AC0D),
+        'R' to Color(0xFFE74C3C),
+        'E' to Color(0xFF2C3E50),
+        'D' to Color(0xFF7D6608)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawGottos() {
+    val matrix = arrayOf(
+        "......KKYYYYKK......",
+        ".....KYYYYYYYYK.....",
+        "....KYYYYYYYYYYK....",
+        "....KYYYYWERREYK....",
+        "....KYYYYWWWWYYK....",
+        "...KBBBBYYYYBBBBK...",
+        "..KBBBBBBYYBBBBBBK..",
+        ".KBBBBBBBBBBBBBBBBK.",
+        ".KBBBBBBBBBBBBBBBBK.",
+        ".KBBBBBBBBBBBBBBBBK.",
+        "..KBBBBBBBBBBBBBBK..",
+        "...KBBBBBBBBBBBBK...",
+        "....KBBBBBBBBBBK....",
+        "....KBBBBKBBBBK.....",
+        "....KBBBK.KBBBK.....",
+        "....KBBBK.KBBBK.....",
+        "....KDDK...KDDK.....",
+        "....KKKK...KKKK....."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'Y' to Color(0xFFF1C40F),
+        'B' to Color(0xFF2980B9),
+        'W' to Color(0xFFF3C59D),
+        'R' to Color(0xFFE74C3C),
+        'E' to Color(0xFF17202A),
+        'D' to Color(0xFF1F618D)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawRoundworm() {
+    val matrix = arrayOf(
+        "......KKKKKK......",
+        "....KOOOOOOOOK....",
+        "...KOOOOOOOOOOK...",
+        "..KOOWWWWWWWWOOK..",
+        ".KOOWWEERRRRWEEOK.",
+        ".KOOWWEERRRRWEEOK.",
+        "KOOWWWWWWWWWWWWOOK",
+        "KOOOOOOOOOOOOOOOOK",
+        ".KOOOOOOOOOOOOOOK.",
+        "..KOOOOOOOOOOOOK..",
+        "...KOOOOOOOOOOK...",
+        "....KOOOOOOOOK....",
+        ".....KOOOOOOK.....",
+        "......KOOOOK......",
+        ".......KOOK.......",
+        "........KK........"
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'O' to Color(0xFFE67E22),
+        'W' to Color(0xFFECF0F1),
+        'R' to Color(0xFFC0392B),
+        'E' to Color(0xFFFF5252)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawCyclone() {
+    val matrix = arrayOf(
+        "..KKKKKKKKKKKKKK..",
+        ".KCCCCCCCCCCCCCCK.",
+        "KCCCCCCCCCCCCCCCCK",
+        ".KCCCCCCCCCCCCCCK.",
+        "..KCCCCCCCCCCCCK..",
+        "...KCCCCWWCCCCK...",
+        "....KCCWEERCCK....",
+        ".....KCWWWWCK.....",
+        "......KCCCCK......",
+        ".......KCCK.......",
+        "........KC........",
+        ".......KCCK.......",
+        "......KCCCCK......",
+        ".....KCCCCCCK.....",
+        "....KCCCCCCCCK...."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'C' to Color(0xFF5DADE2),
+        'W' to Color(0xFFECF0F1),
+        'E' to Color(0xFFF1C40F),
+        'R' to Color(0xFFE74C3C)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawNeptoDragon() {
+    val matrix = arrayOf(
+        "............KKKK........",
+        "...........KCCCCK...KK..",
+        "..........KCCCCCRK.KCK..",
+        ".........KCCCCCCCCKCCK..",
+        "........KCCCCCCCCCCK....",
+        "...KKKKKCCCCCCCCCCCK....",
+        "..KBBBBBCCCCCCCCCCCK....",
+        ".KBBBBBBBCCCCCCCCCCK....",
+        "KBBBBBBBBBCCCCCCCCCK....",
+        ".KBBBBBBBBBCCCCCCCK.....",
+        "..KBBBBBBBBBCCCCCK......",
+        "...KKBBBBBBBCCCCK.......",
+        ".....KBBBBBBCCCCK.......",
+        "......KBBBBBCCCCK.......",
+        ".......KBBBBCCCCK.......",
+        "........KCCC.CCCK.......",
+        "........KCCK.KCCK.......",
+        "........KCCK.KCCK.......",
+        ".......KYYCK.KYYCK......",
+        ".......KKKKK.KKKKK......"
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'C' to Color(0xFF1ABC9C),
+        'B' to Color(0xFF16A085),
+        'R' to Color(0xFFE74C3C),
+        'Y' to Color(0xFFF1C40F)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawGaruda() {
+    val matrix = arrayOf(
+        "......KRRK........",
+        ".....KRRRRK.......",
+        "....KYYYYYYK......",
+        "...KYYYYYYYYK.....",
+        "..KYYYYYRYWSK.....",
+        "..KYYYYYYYYWWK....",
+        "..KYYYYYYYYKK.....",
+        "...KYYYYYYK.......",
+        ".KK.KYYYYYYK.KK...",
+        "KRRK.KYYYYYK.KRRK.",
+        "KRRRK.KYYYK.KRRRK.",
+        ".KRRRK.KYYK.KRRRK.",
+        "..KRRRRKYYKRRRRK..",
+        "...KRRRRKKRRRRK...",
+        "....KRRRRRRRRK....",
+        ".....KYYYYYYK.....",
+        ".....KYYKKYYK.....",
+        ".....KOOK.KOOK....",
+        ".....KKKK.KKKK...."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'Y' to Color(0xFFF1C40F),
+        'R' to Color(0xFFE74C3C),
+        'S' to Color(0xFFFFFFFF),
+        'W' to Color(0xFFE67E22),
+        'O' to Color(0xFFD35400)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawGoldor() {
+    val matrix = arrayOf(
+        ".......KKYYYYKK.......",
+        "......KYYYYYYYYK......",
+        ".....KYYYYYYYYYYK.....",
+        "....KYYYYWERREYYK.....",
+        "....KYYYYWWWWYYYK.....",
+        "...KYYYYYYYYYYYYYK.KK.",
+        "..KYYYYYYYYYYYYYYYKKSK",
+        ".KYYYYYYYYYYYYYYYYKKSK",
+        ".KYYYYYYYYYYYYYYYYKKSK",
+        ".KYYYYYYYYYYYYYYYYKKSK",
+        "..KYYYYYYYYYYYYYYYKKSK",
+        "...KYYYYYYYYYYYYYK.KK.",
+        "....KYYYYYYYYYYYK.....",
+        "....KYYYYKYYYYKK......",
+        "....KYYYK.KYYYK.......",
+        "....KDDK...KDDK.......",
+        "....KKKK...KKKK......."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'Y' to Color(0xFFF1C40F),
+        'D' to Color(0xFFB7950B),
+        'W' to Color(0xFFFFFFFF),
+        'R' to Color(0xFFE74C3C),
+        'E' to Color(0xFF17202A),
+        'S' to Color(0xFFF39C12)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawXande() {
+    val matrix = arrayOf(
+        ".......KKWWWWKK.......",
+        "......KWWWWWWWWK......",
+        ".....KWWWWWWWWWWK.....",
+        "....KRRRWERRE3RRK.....",
+        "....KRRRRRRRRRRRK.....",
+        "...KPPPPPRRRRPPPPPK...",
+        "..KPPPPPPPRRPPPPPPK..",
+        ".KPPPPPPPPPPPPPPPPK..",
+        ".KPPPPPPPPPPPPPPPPK..",
+        ".KPPPPPPPPPPPPPPPPK..",
+        "..KPPPPPPPPPPPPPPK...",
+        "...KPPPPPPPPPPPPK....",
+        "....KPPPPPPPPPPK.....",
+        "....KPPPPKPPPPK......",
+        "....KPPPK.KPPPK......",
+        "....KDDK...KDDK......",
+        "....KKKK...KKKK......"
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'W' to Color(0xFFECF0F1),
+        'R' to Color(0xFFC0392B),
+        'E' to Color(0xFFF1C40F),
+        '3' to Color(0xFFE74C3C),
+        'P' to Color(0xFF4A235A),
+        'D' to Color(0xFF2C3E50)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawMistDragon() {
+    val matrix = arrayOf(
+        "..........KKKK..........",
+        ".........KCCCCK...KK....",
+        "........KCCCCCRK.KCCK...",
+        ".......KCCCCCCCCKCCCK...",
+        "......KCCCCCCCCCCCCCK...",
+        ".....KCCCCCCCCCCCCCCK...",
+        "....KCCCCCCCCCCCCCCCK...",
+        "...KCCCCCCCCCCCCCCCCK...",
+        "..KCCCCCCCCCCCCCCCCCK...",
+        ".KCCCCCCCCCCCCCCCCCK....",
+        ".KCCCCCCCCCCCCCCCCK.....",
+        "..KCCCCCCCCCCCCCCK......",
+        "...KCCCCCCCCCCCCK.......",
+        "....KCCCCK..KCCCCK......",
+        "....KCCCCK..KCCCCK......",
+        "...KCCCCCK.KCCCCCK......",
+        "...KKKKKKK.KKKKKKK......"
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'C' to Color(0xFFA3E4D7),
+        'R' to Color(0xFFF1C40F)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawAntlionBoss() {
+    val matrix = arrayOf(
+        "KK....................KK",
+        "KYYK................KYYK",
+        ".KYYK..............KYYK.",
+        "..KYYKKKKKKKKKKKKKKYYK..",
+        "...KYYYYYYYYYYYYYYYYK...",
+        "...KYYYYYWWWWYYYYYYYK...",
+        "...KYYYYWERREWYYYYYYK...",
+        "...KYYYYYWWWWYYYYYYYK...",
+        "..KYYYYYYYYYYYYYYYYYK...",
+        ".KYYYYYYYYYYYYYYYYYYYK..",
+        "KYYYYYYYYYYYYYYYYYYYYYK.",
+        "KYYYYYYYYYYYYYYYYYYYYYK.",
+        ".KYYYYYYYYYYYYYYYYYYYK..",
+        "..KYYYYYYYYYYYYYYYYYK...",
+        "...KYYYYK......KYYYYK...",
+        "...KYYYYK......KYYYYK...",
+        "...KKKKKK......KKKKKK..."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'Y' to Color(0xFFD4AC0D),
+        'W' to Color(0xFFFFFFFF),
+        'R' to Color(0xFFC0392B),
+        'E' to Color(0xFFE74C3C)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawGolbez() {
+    val matrix = arrayOf(
+        "..KK................KK..",
+        ".KYYK..............KYYK.",
+        "KYYYK..............KYYYK",
+        ".KYYYKKKKKKKKKKKKKKYYYK.",
+        "..KCCCCCCCCCCCCCCCCCCK..",
+        "...KCCCCCCCCCCCCCCCK....",
+        "...KCCCCCCCEERCCCCCK....",
+        "...KCCCCCCCCCCCCCCCK....",
+        "..KBBCCCCCCCCCCCCCCBK...",
+        ".KBBBCCCCCCCCCCCCCCBBK..",
+        "KBBBBCCCCCCCCCCCCCCBBBK.",
+        "KBBBBCCCCCCCCCCCCCCBBBK.",
+        ".KBBBCCCCCCCCCCCCCCBBK..",
+        "..KBBCCCCCCCCCCCCCCBK...",
+        "...KCCCCCCCCCCCCCCCK....",
+        "....KCCCCCCCCCKCCCCK....",
+        "....KCCCCK....KCCCCK....",
+        "....KCCCCK....KCCCCK....",
+        "....KDDK......KDDK......",
+        "....KKKK......KKKK......"
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'Y' to Color(0xFFF1C40F),
+        'C' to Color(0xFF1B2631),
+        'B' to Color(0xFF1B4F72),
+        'E' to Color(0xFFFF2A2A),
+        'R' to Color(0xFFE74C3C),
+        'D' to Color(0xFF11161B)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawCagnazzo() {
+    val matrix = arrayOf(
+        ".........KKKKKK.........",
+        "........KBBBBBBK........",
+        ".......KBBBBBBBBK.......",
+        "......KBBBBBBBBBBK......",
+        ".....KBBBBBBBBBBBBK.....",
+        "....KBBBBBBBBBBBBBBK....",
+        "...KBBBBBWERREBBBBBBK...",
+        "..KBBBBBBBBBBBBBBBBBBK..",
+        ".KBBBBBBBBBBBBBBBBBBBBK.",
+        "KBBBBBBBBBBBBBBBBBBBBBBK",
+        "KTTTTTTTTTTTTTTTTTTTTTTK",
+        "KTTTTTTTTTTTTTTTTTTTTTTK",
+        ".KTTTTTTTTTTTTTTTTTTTTK.",
+        "..KTTTTTTTTTTTTTTTTTTK..",
+        "...KTTK.KTTTTK.KTTK.....",
+        "...KKKK.KKKKKK.KKKK....."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'B' to Color(0xFF2980B9),
+        'T' to Color(0xFFD4AC0D),
+        'R' to Color(0xFFE74C3C),
+        'E' to Color(0xFFF1C40F)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawBarbariccia() {
+    val matrix = arrayOf(
+        ".......KKYYYYKK.......",
+        "......KYYYYYYYYK......",
+        ".....KYYYYYYYYYYK.....",
+        "....KYYYYWERREYYK.....",
+        "....KYYYYWWWWYYYK.....",
+        "...KGGGGYYYYGGGGK.....",
+        "..KGGGGGGYYGGGGGGK....",
+        ".KGGGGGGGGGGGGGGGGK...",
+        ".KGGGGGGGGGGGGGGGGK...",
+        ".KGGGGGGGGGGGGGGGGK...",
+        "..KGGGGGGGGGGGGGGK....",
+        "...KGGGGGGGGGGGGK.....",
+        "....KGGGGGGGGGGK......",
+        "....KGGGGKGGGGK.......",
+        "....KGGGK.KGGGK.......",
+        "....KDDK...KDDK.......",
+        "....KKKK...KKKK......."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'Y' to Color(0xFFF1C40F),
+        'G' to Color(0xFF27AE60),
+        'W' to Color(0xFFF3C59D),
+        'R' to Color(0xFFE74C3C),
+        'E' to Color(0xFF17202A),
+        'D' to Color(0xFF196F3D)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawScarmiglione() {
+    val matrix = arrayOf(
+        ".......KKKKKK.......",
+        "......KBBBBBBK......",
+        ".....KBBBBBBBBK.....",
+        "....KBBBWWWWBBBK....",
+        "....KBBBWERREBBK....",
+        "....KBBBWWWWBBBK....",
+        "....KBBBWBWBBBBK....",
+        "....KBBBBWWBBBBK....",
+        "...KBBBBBBBBBBBBK...",
+        "..KBBBBBBBBBBBBBBK..",
+        ".KBBBBBBBDDBBBBBBBK.",
+        ".KBBBBBBBDDBBBBBBBK.",
+        ".KBBBBBBBDDBBBBBBBK.",
+        ".KBBBBBBBDDBBBBBBBK.",
+        ".KBBBBBBBDDBBBBBBBK.",
+        ".KBBBBBBBDDBBBBBBBK.",
+        "..KBBBBBBDDBBBBBBK..",
+        "...KKKKKKKKKKKKKK..."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'B' to Color(0xFF6E2C00),
+        'D' to Color(0xFF421B00),
+        'W' to Color(0xFFECF0F1),
+        'E' to Color(0xFFE74C3C)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawRubicante() {
+    val matrix = arrayOf(
+        ".......KKKKKK.......",
+        "......KRRRRRRK......",
+        ".....KRRRRRRRRK.....",
+        "....KRRRWERRE3RK....",
+        "....KRRRRRRRRRRK....",
+        "...KRRRRRRRRRRRRK...",
+        "..KRRRRRRRRRRRRRRK..",
+        ".KRRRRRRRRRRRRRRRRK.",
+        ".KRRRRRRRRRRRRRRRRK.",
+        ".KRRRRRRRRRRRRRRRRK.",
+        "..KRRRRRRRRRRRRRRK..",
+        "...KRRRRRRRRRRRRK...",
+        "....KRRRRRRRRRRK....",
+        "....KRRRRKRRRRK.....",
+        "....KRRRK.KRRRK.....",
+        "....KDDK...KDDK.....",
+        "....KKKK...KKKK....."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'R' to Color(0xFFC0392B),
+        '3' to Color(0xFFE74C3C),
+        'E' to Color(0xFFF1C40F),
+        'D' to Color(0xFF7B241C)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawDarkBahamut() {
+    val matrix = arrayOf(
+        "..........KKKK..........",
+        ".........KCCCCK...KK....",
+        "........KCCCCCRK.KCCK...",
+        ".......KCCCCCCCCKCCCK...",
+        "......KCCCCCCCCCCCCCK...",
+        ".....KCCCCCCCCCCCCCCK...",
+        "....KCCCCCCCCCCCCCCCK...",
+        "...KCCCCCCCCCCCCCCCCK...",
+        "..KCCCCCCCCCCCCCCCCCK...",
+        ".KCCCCCCCCCCCCCCCCCK....",
+        ".KCCCCCCCCCCCCCCCCK.....",
+        "..KCCCCCCCCCCCCCCK......",
+        "...KCCCCCCCCCCCCK.......",
+        "....KCCCCK..KCCCCK......",
+        "....KCCCCK..KCCCCK......",
+        "...KCCCCCK.KCCCCCK......",
+        "...KKKKKKK.KKKKKKK......"
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'C' to Color(0xFF1A252F),
+        'R' to Color(0xFFE74C3C)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawZeromus() {
+    val matrix = arrayOf(
+        "........KKKKKK..........",
+        ".......KPPPPPPK.........",
+        "......KPPPPPPPPK........",
+        ".....KPPPPERREPPK.......",
+        "....KPPPPPPPPPPPPK......",
+        "...KPPPPPCRRRCPPPPK.....",
+        "..KPPPPPCRRRRRCPPPPK....",
+        ".KPPPPPPCRRRRRCPPPPPK...",
+        ".KPPPPPPCRRRRRCPPPPPK...",
+        ".KPPPPPPCRRRRRCPPPPPK...",
+        "..KPPPPPCRRRRCPPPPK.....",
+        "...KPPPPPCRRCPPPPK......",
+        "....KPPPPPPPPPPPK.......",
+        "....KPPPP..PPPPK........",
+        "....KPPK....KPPK........",
+        "....KKKK....KKKK........"
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'P' to Color(0xFF5B2C6F),
+        'C' to Color(0xFF8E44AD),
+        'R' to Color(0xFFFF0000),
+        'E' to Color(0xFFF1C40F)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawWingRaptor() {
+    val matrix = arrayOf(
+        "......KRRK........",
+        ".....KRRRRK.......",
+        "....KYYYYYYK......",
+        "...KYYYYYYYYK.....",
+        "..KYYYYYRYWSK.....",
+        "..KYYYYYYYYWWK....",
+        "..KYYYYYYYYKK.....",
+        "...KYYYYYYK.......",
+        ".KK.KYYYYYYK.KK...",
+        "KGGK.KYYYYYK.KGGK.",
+        "KGGGK.KYYYK.KGGGK.",
+        ".KGGGK.KYYK.KGGGK.",
+        "..KGGGGKYYKGGGGK..",
+        "...KGGGGKKGGGGK...",
+        "....KGGGGGGGGK....",
+        ".....KYYYYYYK.....",
+        ".....KYYKKYYK.....",
+        ".....KOOK.KOOK....",
+        ".....KKKK.KKKK...."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'Y' to Color(0xFFF1C40F),
+        'R' to Color(0xFFE74C3C),
+        'G' to Color(0xFF27AE60),
+        'S' to Color(0xFFFFFFFF),
+        'W' to Color(0xFFE67E22),
+        'O' to Color(0xFFD35400)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawKarlabos() {
+    val matrix = arrayOf(
+        "KK....................KK",
+        "KCCK................KCCK",
+        ".KCCK..............KCCK.",
+        "..KCCKKKKKKKKKKKKKKCCK..",
+        "...KCCCCCCCCCCCCCCCCK...",
+        "...KCCCCCWWWWCCCCCCYK...",
+        "...KCCCCWERRECCCCCCYK...",
+        "...KCCCCCWWWWCCCCCCYK...",
+        "..KCCCCCCCCCCCCCCCCYK...",
+        ".KCCCCCCCCCCCCCCCCCCCK..",
+        "KCCCCCCCCCCCCCCCCCCCCCK.",
+        "KCCCCCCCCCCCCCCCCCCCCCK.",
+        ".KCCCCCCCCCCCCCCCCCCCK..",
+        "..KCCCCCCCCCCCCCCCCYK...",
+        "...KCCCCK......KCCCCK...",
+        "...KCCCCK......KCCCCK...",
+        "...KKKKKK......KKKKKK..."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'C' to Color(0xFF1ABC9C),
+        'Y' to Color(0xFFF1C40F),
+        'W' to Color(0xFFFFFFFF),
+        'R' to Color(0xFFE74C3C),
+        'E' to Color(0xFF17202A)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawGilgamesh() {
+    val matrix = arrayOf(
+        "......KKYYYYKK......",
+        ".....KYYYYYYYYK.....",
+        "....KYYYYYYYYYYK....",
+        "....KYYYYWERREYK....",
+        "....KYYYYWWWWYYK....",
+        "...KRRRRYYYYRRRRK...",
+        "..KRRRRRRYYRRRRRRK..",
+        ".KRRRRRRRRRRRRRRRRK.",
+        ".KRRRRRRRRRRRRRRRRK.",
+        ".KRRRRRRRRRRRRRRRRK.",
+        "..KRRRRRRRRRRRRRRK..",
+        "...KRRRRRRRRRRRRK...",
+        "....KRRRRRRRRRRK....",
+        "....KRRRRKRRRRK.....",
+        "....KRRRK.KRRRK.....",
+        "....KDDK...KDDK.....",
+        "....KKKK...KKKK....."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'Y' to Color(0xFFF1C40F),
+        'R' to Color(0xFFC0392B),
+        'W' to Color(0xFFFFFFFF),
+        'E' to Color(0xFF17202A),
+        'D' to Color(0xFF7B241C)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawAtomos() {
+    val matrix = arrayOf(
+        "........KKKKKK..........",
+        ".......KPPPPPPK.........",
+        "......KPPPPPPPPK........",
+        ".....KPPWWWWWWPPK.......",
+        "....KPPWERREEEWPK.......",
+        "....KPPWERREEEWPK.......",
+        "....KPPWERREEEWPK.......",
+        ".....KPPWWWWWWPPK.......",
+        "......KPPPPPPPPK........",
+        ".......KPPPPPPK.........",
+        "........KKKKKK.........."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'P' to Color(0xFF6C3483),
+        'W' to Color(0xFF17202A),
+        'R' to Color(0xFFE74C3C),
+        'E' to Color(0xFF8E44AD)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawExdeath() {
+    val matrix = arrayOf(
+        "..KK................KK..",
+        ".KYYK..............KYYK.",
+        "KYYYK..............KYYYK",
+        ".KYYYKKKKKKKKKKKKKKYYYK.",
+        "..KBBBBBBBBBBBBBBBBBBK..",
+        "...KBBBBBBBBBBBBBBBBK...",
+        "...KBBBBBBBEERBBBBBBK...",
+        "...KBBBBBBBBBBBBBBBBK...",
+        "..KPPBBBBBBBBBBBBBBPPK..",
+        ".KPPPBBBBBBBBBBBBBBPPPK.",
+        "KPPPPBBBBBBBBBBBBBBPPPPK",
+        "KPPPPBBBBBBBBBBBBBBPPPPK",
+        ".KPPPBBBBBBBBBBBBBBPPPK.",
+        "..KPPBBBBBBBBBBBBBBPPK..",
+        "...KBBBBBBBBBBBBBBBBK...",
+        "....KBBBBBBBBKBBBBBBK...",
+        "....KBBBBK...KBBBBKK....",
+        "....KDDK......KDDK......",
+        "....KKKK......KKKK......"
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'Y' to Color(0xFFF1C40F),
+        'B' to Color(0xFF1F618D),
+        'P' to Color(0xFF6C3483),
+        'E' to Color(0xFFFF0000),
+        'R' to Color(0xFFE74C3C),
+        'D' to Color(0xFF114B72)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawNeoExdeath() {
+    val matrix = arrayOf(
+        "........KKKKKK..........",
+        ".......KPPPPPPK.........",
+        "......KPPPPPPPPK........",
+        ".....KPPPPERREPPK.......",
+        "....KPPPPPPPPPPPPK......",
+        "...KPPPPPCRRRCPPPPK.....",
+        "..KPPPPPCRRRRRCPPPPK....",
+        ".KPPPPPPCRRRRRCPPPPPK...",
+        ".KPPPPPPCRRRRRCPPPPPK...",
+        ".KPPPPPPCRRRRRCPPPPPK...",
+        "..KPPPPPCRRRRCPPPPK.....",
+        "...KPPPPPCRRCPPPPK......",
+        "....KPPPPPPPPPPPK.......",
+        "....KPPPP..PPPPK........",
+        "....KPPK....KPPK........",
+        "....KKKK....KKKK........"
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'P' to Color(0xFF4A235A),
+        'C' to Color(0xFF8E44AD),
+        'R' to Color(0xFFC0392B),
+        'E' to Color(0xFFF1C40F)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawWhelk() {
+    val matrix = arrayOf(
+        ".........KKKKKK.........",
+        "........KPPPPPPK........",
+        ".......KPPPPPPPPK.......",
+        "......KPPYYYYYYPPK......",
+        ".....KPPYWEERREYYPPK....",
+        "....KPPYYWWWWWWYYPPK....",
+        "...KPPYYYYYYYYYYPPK.....",
+        "..KPPYYYYYYYYYYYYPPK....",
+        ".KPPYYYYYYYYYYYYYYPPK...",
+        "KPPYYYYYYYYYYYYYYYYPPK..",
+        ".KPPYYYYYYYYYYYYYYPPK...",
+        "..KPPYYYYYYYYYYYYPPK....",
+        "...KPPYYYYYYYYYYPPK.....",
+        "....KKKKKKKKKKKKKK......"
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'P' to Color(0xFF8E44AD),
+        'Y' to Color(0xFFF1C40F),
+        'W' to Color(0xFFFFFFFF),
+        'R' to Color(0xFFE74C3C),
+        'E' to Color(0xFF2C3E50)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawVargas() {
+    val matrix = arrayOf(
+        ".......KKRRRRKK.......",
+        "......KRRRRRRRRK......",
+        ".....KRRRRRRRRRRK.....",
+        "....KWWWWWERREWWK.....",
+        "....KWWWWWWWWWWWK.....",
+        "...KBBBBWWWWWWBBBK....",
+        "..KBBBBBBWWWWBBBBBK...",
+        ".KBBBBBBBBBBBBBBBBBK..",
+        ".KBBBBBBBBBBBBBBBBBK..",
+        ".KBBBBBBBBBBBBBBBBBK..",
+        "..KBBBBBBBBBBBBBBBK...",
+        "...KBBBBBBBBBBBBBK....",
+        "....KBBBBBBBBBBBK.....",
+        "....KBBBBK.KBBBBK.....",
+        "....KBBBK...KBBBK.....",
+        "....KDDK.....KDDK.....",
+        "....KKKK.....KKKK....."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'R' to Color(0xFFC0392B),
+        'W' to Color(0xFFF3C59D),
+        'B' to Color(0xFF6E2C00),
+        'E' to Color(0xFF17202A),
+        'D' to Color(0xFF421B00)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawNumber024() {
+    val matrix = arrayOf(
+        ".......KKKKKK.......",
+        "......KCCCCCCK......",
+        ".....KCCCCCCCCK.....",
+        "....KCCCCEERCCCK....",
+        "....KCCCCCCCCCCK....",
+        "...KSSCCCCCCCCSSK...",
+        "..KSSSCCCCCCSSSSK...",
+        ".KSSSSCCCCCCSSSSSK..",
+        "KSSSSSRRRRRRSSSSSSK.",
+        ".KSSSSRRRRRRSSSSSK..",
+        "..KSSSSRRRRSSSSSK...",
+        "...KSSSSRRRSSSSK....",
+        "....KSSSSSSSSSSK....",
+        ".....KCCCCCCCCK.....",
+        ".....KCCCCKCCCK.....",
+        "....KKKKKK.KKKKKK..."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'C' to Color(0xFF34495E),
+        'S' to Color(0xFFBDC3C7),
+        'R' to Color(0xFFE74C3C),
+        'E' to Color(0xFFF1C40F)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawUltros() {
+    val matrix = arrayOf(
+        "........KKKKKK..........",
+        ".......KPPPPP3K.........",
+        "......KPPPPPPPPK........",
+        ".....KPPPPPPPPPPK.......",
+        "....KPPPPWWWWPPPPK......",
+        "...KPPPPWERRE3PPPK......",
+        "...KPPPPWWWWWWPPPK......",
+        "...KPPPPWWWBWBPPPK......",
+        "...KPPPPPWWWWPPPPK......",
+        "....KPPPPPPPPPPPK.......",
+        "....KCCCCCCCCCCCCK......",
+        "...KCC.CC.CC.CC.CCK.....",
+        "..KCC..CC..CC..CC..CK...",
+        ".KCC...CC..CC..CC...CK..",
+        "KCC....CC..CC..CC....CK.",
+        "..KK..KK..KK..KK..KK..."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'P' to Color(0xFF8E44AD),
+        '3' to Color(0xFFA569BD),
+        'C' to Color(0xFF9B59B6),
+        'W' to Color(0xFFFFFFFF),
+        'E' to Color(0xFF17202A),
+        'B' to Color(0xFF17202A),
+        'R' to Color(0xFFE74C3C)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawTyphon() {
+    val matrix = arrayOf(
+        "......KKKKKK......",
+        "....KPPPPPPPPK....",
+        "...KPPPPPPPPPPK...",
+        "..KPPPPWWWWPPPPK..",
+        ".KPPPPWERRE3PPPPK.",
+        ".KPPPPWWWWWWPPPPK.",
+        "KPPPPWWWBWBWWPPPPK",
+        "KPPPPPPPPPPPPPPPPK",
+        ".KPPPPPPPPPPPPPPK.",
+        "..KPPPPPPPPPPPPK..",
+        "...KPPPPPPPPPPK...",
+        "....KDDDDDDDDK....",
+        ".....KKKKKKKK....."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'P' to Color(0xFFE74C3C),
+        'D' to Color(0xFFB03A2E),
+        'W' to Color(0xFFFFFFFF),
+        'E' to Color(0xFF17202A),
+        'B' to Color(0xFF17202A),
+        '3' to Color(0xFFF1948A)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawAirForce() {
+    val matrix = arrayOf(
+        "........KKKKKK..........",
+        ".......KSSSSSSK.........",
+        "......KSSSSSSSSK........",
+        ".....KSSSSSSSSSSK.......",
+        "....KSSSSEERSSSSSK......",
+        "...KSSSSSSSSSSSSSSK.....",
+        "..KSSSSSSSSSSSSSSSSK....",
+        ".KSSSSSSSSSSSSSSSSSSK...",
+        "KSSSSSSSSSSSSSSSSSSSSK..",
+        ".KSSSSSSSSSSSSSSSSSSK...",
+        "..KYYK.KSSSSSSK.KYYK....",
+        ".KYYK..KSSSSSSK..KYYK...",
+        "KKK....KSSK.KSSK...KKK.."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'S' to Color(0xFF7F8C8D),
+        'Y' to Color(0xFFF1C40F),
+        'E' to Color(0xFFFF0000),
+        'R' to Color(0xFFFF5252)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawGuardian() {
+    val matrix = arrayOf(
+        ".......KKYYYYKK.......",
+        "......KYYYYYYYYK......",
+        ".....KYYYYYYYYYYK.....",
+        "....KYYYYWERREYYK.....",
+        "....KYYYYWWWWYYYK.....",
+        "...KSSSSYYYYSSSSK.....",
+        "..KSSSSSSYYSSSSSSK....",
+        ".KSSSSSSSSSSSSSSSSK...",
+        ".KSSSSSSSSSSSSSSSSK...",
+        ".KSSSSSSSSSSSSSSSSK...",
+        "..KSSSSSSSSSSSSSSK....",
+        "...KSSSSSSSSSSSSK.....",
+        "....KSSSSSSSSSSK......",
+        "....KSSSSKSSSSK.......",
+        "....KSSSK.KSSSK.......",
+        "....KDDK...KDDK.......",
+        "....KKKK...KKKK......."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'Y' to Color(0xFFD4AC0D),
+        'S' to Color(0xFF7F8C8D),
+        'W' to Color(0xFFFFFFFF),
+        'R' to Color(0xFFE74C3C),
+        'E' to Color(0xFF17202A),
+        'D' to Color(0xFF7D6608)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawUltimaWeapon() {
+    val matrix = arrayOf(
+        "..........KKKK..........",
+        ".........KCCCCK...KK....",
+        "........KCCCCCRK.KCCK...",
+        ".......KCCCCCCCCKCCCK...",
+        "......KCCCCCCCCCCCCCK...",
+        ".....KCCCCCCCCCCCCCCK...",
+        "....KCCCCCCCCCCCCCCCK...",
+        "...KCCCCCCCCCCCCCCCCK...",
+        "..KCCCCCCCCCCCCCCCCCK...",
+        ".KCCCCCCCCCCCCCCCCCK....",
+        ".KCCCCCCCCCCCCCCCCK.....",
+        "..KCCCCCCCCCCCCCCK......",
+        "...KCCCCCCCCCCCCK.......",
+        "....KCCCCK..KCCCCK......",
+        "....KCCCCK..KCCCCK......",
+        "...KCCCCCK.KCCCCCK......",
+        "...KKKKKKK.KKKKKKK......"
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'C' to Color(0xFF2980B9),
+        'R' to Color(0xFFF1C40F)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawKefka() {
+    val matrix = arrayOf(
+        ".......KKYYYYKK.......",
+        "......KYYYYYYYYK......",
+        ".....KYYYYWWWWYYK.....",
+        "....KYYYYWWWWWWYYK....",
+        "....KYYYYWERRE3YYK....",
+        "....KYYYYWWWWWWYYK....",
+        "...KRRRRYYYYYYYYRRRK..",
+        "..KRRRRRRYYYYRRRRRRK..",
+        ".KRRRRRRRRRRRRRRRRRRK.",
+        ".KRRRRRRRRRRRRRRRRRRK.",
+        ".KRRRRRRRRRRRRRRRRRRK.",
+        "..KRRRRRRRRRRRRRRRRK..",
+        "...KRRRRRRRRRRRRRRK...",
+        "....KRRRRRRRRRRRRK....",
+        "....KRRRRK..KRRRRK....",
+        "....KRRRK....KRRRK....",
+        "....KDDK......KDDK....",
+        "....KKKK......KKKK...."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'Y' to Color(0xFFF1C40F),
+        'W' to Color(0xFFFFFFFF),
+        'E' to Color(0xFF8E44AD),
+        'R' to Color(0xFFE74C3C),
+        '3' to Color(0xFF27AE60),
+        'D' to Color(0xFFB03A2E)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawGuardScorpion() {
+    val matrix = arrayOf(
+        "KK....................KK",
+        "KBBK................KBBK",
+        ".KBBK..............KBBK.",
+        "..KBBKKKKKKKKKKKKKKBBK..",
+        "...KBBBBBBBBBBBBBBBBK...",
+        "...KBBBBBWWWWBBBBBB3K...",
+        "...KBBBBWERREBBBBBB3K...",
+        "...KBBBBBWWWWBBBBBB3K...",
+        "..KBBBBBBBBBBBBBBBB3K...",
+        ".KBBBBBBBBBBBBBBBBB3K.",
+        "KBBBBBBBBBBBBBBBBBBBBBBK",
+        "KBBBBBBBBBBBBBBBBBBBBBBK",
+        ".KBBBBBBBBBBBBBBBBB3K.",
+        "..KBBBBBBBBBBBBBBBB3K...",
+        "...KBBBBK......KBBBBK...",
+        "...KBBBBK......KBBBBK...",
+        "...KKKKKK......KKKKKK..."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'B' to Color(0xFF1F618D),
+        '3' to Color(0xFF114B72),
+        'W' to Color(0xFFFFFFFF),
+        'R' to Color(0xFFFF0000),
+        'E' to Color(0xFFF1C40F)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawAirbuster() {
+    val matrix = arrayOf(
+        ".......KKKKKK.......",
+        "......KCCCCCCK......",
+        ".....KCCCCCCCCK.....",
+        "....KCCCCEERCCCK....",
+        "....KCCCCCCCCCCK....",
+        "...KRRCCCCCCCCRRK...",
+        "..KRRRCCCCCCCCRRRK..",
+        ".KRRRRCCCCCCCCRRRRK.",
+        ".KRRRRCCCCCCSSRRRRK.",
+        ".KRRRRCCCCCCSSRRRRK.",
+        "..KRRRCCCCCCSSRRRK..",
+        "...KRRCCCCCCSSRRK...",
+        "....KCCCCCCCCCK.....",
+        "....KCCCCCCCCCK.....",
+        "....KCCCCKCCCCK.....",
+        "....KCCCK.KCCCK.....",
+        "....KCCCK.KCCCK.....",
+        "....KDDK...KDDK.....",
+        "....KKKK...KKKK....."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'C' to Color(0xFF7F8C8D),
+        'R' to Color(0xFFC0392B),
+        'E' to Color(0xFFFF5252),
+        'S' to Color(0xFFBDC3C7),
+        'D' to Color(0xFF34495E)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawRufus() {
+    val matrix = arrayOf(
+        ".......KKYYYYKK.......",
+        "......KYYYYYYYYK......",
+        ".....KYYYYWWWWYYK.....",
+        "....KYYYYWWWWWWYYK....",
+        "....KYYYYWERRE3YYK....",
+        "....KYYYYWWWWWWYYK....",
+        "...KWWWWWWWWWWWWWWK.KK",
+        "..KWWWWWWWWWWWWWWWWKSK",
+        ".KWWWWWWWWWWWWWWWWWWKSK",
+        ".KWWWWWWWWWWWWWWWWWWKSK",
+        ".KWWWWWWWWWWWWWWWWWWKSK",
+        "..KWWWWWWWWWWWWWWWWKSK",
+        "...KWWWWWWWWWWWWWWK.KK",
+        "....KWWWWWWWWWWWWK....",
+        "....KWWWWK..KWWWWK....",
+        "....KWWWK....KWWWK....",
+        "....KDDK......KDDK....",
+        "....KKKK......KKKK...."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'Y' to Color(0xFFF1C40F),
+        'W' to Color(0xFFECF0F1),
+        'R' to Color(0xFFC0392B),
+        'E' to Color(0xFF17202A),
+        '3' to Color(0xFFF3C59D),
+        'D' to Color(0xFFBDC3C7),
+        'S' to Color(0xFF34495E)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawHojo() {
+    val matrix = arrayOf(
+        ".......KKKKKK.......",
+        "......KWWWWWWK......",
+        ".....KWWWWWWWWK.....",
+        "....KWWWWERREWWK....",
+        "....KWWWWWWWWWWK....",
+        "...KWWWWWWWWWWWWK.KK",
+        "..KWWWWWWWWWWWWWWKSK",
+        ".KWWWWWWWWWWWWWWWWKSK",
+        ".KWWWWWWWWWWWWWWWWKSK",
+        ".KWWWWWWWWWWWWWWWWKSK",
+        "..KWWWWWWWWWWWWWWKSK",
+        "...KWWWWWWWWWWWWK.KK",
+        "....KWWWWWWWWWWK....",
+        "....KWWWWK..KWWWWK..",
+        "....KWWWK....KWWWK..",
+        "....KDDK......KDDK..",
+        "....KKKK......KKKK.."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'W' to Color(0xFFECF0F1),
+        'E' to Color(0xFF27AE60),
+        'R' to Color(0xFF17202A),
+        'S' to Color(0xFF2ECC71),
+        'D' to Color(0xFFBDC3C7)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawBizarroSephiroth() {
+    val matrix = arrayOf(
+        "KK....................KK",
+        "KSSK................KSSK",
+        ".KSSK..............KSSK.",
+        "..KSSKKKKKKKKKKKKKKSSK..",
+        "...KWWWWWWWWWWWWWWWWK...",
+        "...KWWWWWERREWWWWWW3K...",
+        "...KWWWWWERREWWWWWW3K...",
+        "...KWWWWWWWWWWWWWWWWK...",
+        "..KRRRRRRWWWWRRRRRRRK...",
+        ".KRRRRRRRRRRRRRRRRRRRK..",
+        "KRRRRRRRRRRRRRRRRRRRRRK.",
+        "KRRRRRRRRRRRRRRRRRRRRRK.",
+        ".KRRRRRRRRRRRRRRRRRRRK..",
+        "..KRRRRRRRRRRRRRRRRRK...",
+        "...KRRRRK......KRRRRK...",
+        "...KKKKKK......KKKKKK..."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'S' to Color(0xFFECF0F1),
+        'W' to Color(0xFFECF0F1),
+        'R' to Color(0xFFC0392B),
+        'E' to Color(0xFF17202A),
+        '3' to Color(0xFF922B21)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawSephiroth() {
+    val matrix = arrayOf(
+        ".......KKYYYYKK.......",
+        "......KYYYYYYYYK......",
+        ".....KYYYYWWWWYYK.....",
+        "....KYYYYWWWWWWYYK....",
+        "....KYYYYWERRE3YYK....",
+        "....KYYYYWWWWWWYYK....",
+        "...KSSSSYYYYYYYYSSSSK.",
+        "..KSSSSSSYYSSSSSSSSSK.",
+        ".KSSSSSSSSSSSSSSSSSSK.",
+        ".KSSSSSSSSSSSSSSSSSSK.",
+        ".KSSSSSSSSSSSSSSSSSSK.",
+        "..KSSSSSSSSSSSSSSSSK..",
+        "...KSSSSSSSSSSSSSSK...",
+        "....KSSSSSSSSSSSSK....",
+        "....KSSSSK..KSSSSK....",
+        "....KSSSK....KSSSK....",
+        "....KDDK......KDDK....",
+        "....KKKK......KKKK...."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'Y' to Color(0xFFECF0F1),
+        'W' to Color(0xFFF3C59D),
+        'E' to Color(0xFF17202A),
+        'R' to Color(0xFF1ABC9C),
+        '3' to Color(0xFFF3C59D),
+        'S' to Color(0xFF17202A),
+        'D' to Color(0xFF2C3E50)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawNorg() {
+    val matrix = arrayOf(
+        "........KKKKKK..........",
+        ".......KRRRRRRK.........",
+        "......KRRRRRRRRK........",
+        ".....KRRRWWWWRRRK.......",
+        "....KRRRWERRE3RRK.......",
+        "....KRRRWWWWWWRRK.......",
+        "....KRRRWWWBWBRRK.......",
+        ".....KRRRWWWWRRRK.......",
+        "......KRRRRRRRRK........",
+        ".......KRRRRRRK.........",
+        "........KKKKKK.........."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'R' to Color(0xFFE74C3C),
+        'W' to Color(0xFFF1C40F),
+        'E' to Color(0xFF17202A),
+        'B' to Color(0xFF17202A),
+        '3' to Color(0xFFD35400)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawEdea() {
+    val matrix = arrayOf(
+        ".......KKSSSSKK.......",
+        "......KSSSSSSSSK......",
+        ".....KSSSSSSSSSSK.....",
+        "....KSSSSWERRE3SK.....",
+        "....KSSSSWWWWWWSSK....",
+        "...KCCCCSSSSSSSSCCCCK.",
+        "..KCCCCCCSSCCCCCCKKK..",
+        ".KCCCCCCCCCCCCCCCCCK..",
+        ".KCCCCCCCCCCCCCCCCCK..",
+        ".KCCCCCCCCCCCCCCCCCK..",
+        "..KCCCCCCCCCCCCCCCK...",
+        "...KCCCCCCCCCCCCCK....",
+        "....KCCCCCCCCCCCK.....",
+        "....KCCCCK..KCCCCK....",
+        "....KCCCK....KCCCK....",
+        "....KDDK......KDDK....",
+        "....KKKK......KKKK...."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'S' to Color(0xFF34495E),
+        'W' to Color(0xFFECF0F1),
+        'E' to Color(0xFF17202A),
+        '3' to Color(0xFF8E44AD),
+        'C' to Color(0xFF17202A),
+        'D' to Color(0xFF2C3E50)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawFujinRaijin() {
+    val matrix = arrayOf(
+        ".......KKWWWWKK.......",
+        "......KWWWWWWWWK......",
+        ".....KWWWWWWWWWWK.....",
+        "....KWWWWERRE3WWK.....",
+        "....KWWWWWWWWWWWK.....",
+        "...KBBBBWWWWWWBBBK....",
+        "..KBBBBBBWWWWBBBBBK...",
+        ".KBBBBBBBBBBBBBBBBBK..",
+        ".KBBBBBBBBBBBBBBBBBK..",
+        ".KBBBBBBBBBBBBBBBBBK..",
+        "..KBBBBBBBBBBBBBBBK...",
+        "...KBBBBBBBBBBBBBK....",
+        "....KBBBBBBBBBBBK.....",
+        "....KBBBBK.KBBBBK.....",
+        "....KBBBK...KBBBK.....",
+        "....KDDK.....KDDK.....",
+        "....KKKK.....KKKK....."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'W' to Color(0xFFECF0F1),
+        'E' to Color(0xFF17202A),
+        '3' to Color(0xFFF3C59D),
+        'R' to Color(0xFF17202A),
+        'B' to Color(0xFF2C3E50),
+        'D' to Color(0xFF1A252F)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawSeifer() {
+    val matrix = arrayOf(
+        ".......KKYYYYKK.......",
+        "......KYYYYYYYYK......",
+        ".....KYYYYWWWWYYK.....",
+        "....KYYYYWWWWWWYYK....",
+        "....KYYYYWERRE3YYK....",
+        "....KYYYYWWWWWWYYK....",
+        "...KYYYYYYYYYYYYYYK.KK",
+        "..KYYYYYYYYYYYYYYYYKSK",
+        ".KYYYYYYYYYYYYYYYYYKSK",
+        ".KYYYYYYYYYYYYYYYYYKSK",
+        ".KYYYYYYYYYYYYYYYYYKSK",
+        "..KYYYYYYYYYYYYYYYYKSK",
+        "...KYYYYYYYYYYYYYYK.KK",
+        "....KYYYYYYYYYYYYK....",
+        "....KYYYYK..KYYYYK....",
+        "....KYYYK....KYYYK....",
+        "....KDDK......KDDK....",
+        "....KKKK......KKKK...."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'Y' to Color(0xFFF1C40F),
+        'W' to Color(0xFFF3C59D),
+        'R' to Color(0xFFC0392B),
+        'E' to Color(0xFF17202A),
+        '3' to Color(0xFFF3C59D),
+        'D' to Color(0xFFB7950B),
+        'S' to Color(0xFFBDC3C7)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawAdel() {
+    val matrix = arrayOf(
+        "......KKYYYYYYKK......",
+        ".....KYYYYYYYYYYK.....",
+        "....KYYYYYYYYYYYYK....",
+        "....KYYYYWERRE3YYK....",
+        "....KYYYYWWWWWWYYK....",
+        "...KRRRRRRRRRRRRRRK...",
+        "..KRRRRRRRRRRRRRRRRK..",
+        ".KRRRRRRRRRRRRRRRRRRK.",
+        ".KRRRRRRRRRRRRRRRRRRK.",
+        ".KRRRRRRRRRRRRRRRRRRK.",
+        "..KRRRRRRRRRRRRRRRRK..",
+        "...KRRRRRRRRRRRRRRK...",
+        "....KRRRRRRRRRRRRK....",
+        "....KRRRRK..KRRRRK....",
+        "....KRRRK....KRRRK....",
+        "....KDDK......KDDK....",
+        "....KKKK......KKKK...."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'Y' to Color(0xFFF1C40F),
+        'W' to Color(0xFFF3C59D),
+        'E' to Color(0xFF17202A),
+        '3' to Color(0xFFF3C59D),
+        'R' to Color(0xFFC0392B),
+        'D' to Color(0xFF7B241C)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawTrauma() {
+    val matrix = arrayOf(
+        "........KKKKKK..........",
+        ".......KCCCCCCK.........",
+        "......KCCCCCCCCK........",
+        ".....KCCCCWERRECK.......",
+        "....KCCCCCCCCCCCCK......",
+        "...KCCCCPCRRRCPCCCK.....",
+        "..KCCCCPCRRRRRCPCCCK....",
+        ".KCCCCCCCRRRRRCCCCCCK...",
+        ".KCCCCCCCRRRRRCCCCCCK...",
+        ".KCCCCCCCRRRRRCCCCCCK...",
+        "..KCCCCPCRRRRCPCCCK.....",
+        "...KCCCCPCRRCPCCCK......",
+        "....KCCCCCCCCCCCCK......",
+        "....KCCCC....CCCCK......",
+        "....KCCK......KCCK......",
+        "....KKKK......KKKK......"
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'C' to Color(0xFF7F8C8D),
+        'P' to Color(0xFF8E44AD),
+        'R' to Color(0xFFFF0000),
+        'E' to Color(0xFFF1C40F)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawOmegaWeapon() {
+    val matrix = arrayOf(
+        "........KKKKKK..........",
+        ".......KYYYYYYK.........",
+        "......KYYYYYYYYK........",
+        ".....KSSSSSSSSSSK.......",
+        "....KSSSSEERSSSSSK......",
+        "...KSSSSSSSSSSSSSSK.....",
+        "..KSSSSSSSSSSSSSSSSK....",
+        ".KSSSSSSSSSSSSSSSSSSK...",
+        "KSSSSSSSSSSSSSSSSSSSSK..",
+        "KSSSSSSSSSSSSSSSSSSSSK..",
+        ".KSSSSSSSSSSSSSSSSSSK...",
+        "..KSSSSSSSSSSSSSSSSK....",
+        "..KRRK.KSSSSSSK.KRRK....",
+        ".KRRK..KSSSSSSK..KRRK...",
+        "KRRK...KSSSSSSK...KRRK..",
+        "KKK....KSSK.KSSK...KKK.."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'S' to Color(0xFF2C3E50),
+        'Y' to Color(0xFFF1C40F),
+        'E' to Color(0xFFFF0000),
+        'R' to Color(0xFFE74C3C)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawUltimecia() {
+    val matrix = arrayOf(
+        ".KK..............KK...",
+        "KYYK............KYYK..",
+        ".KYYK..........KYYK...",
+        "..KYYKKKKKKKKKKYYK....",
+        "...KRRRRRRRRRRRRK.....",
+        "...KRRRRWERRE3RRK.....",
+        "...KRRRRWWWW3RRRK.....",
+        "...KRRRRWWWW3RRRK.....",
+        "..KRRRRRRRRRRRRRRK....",
+        ".KRRRRRRRRRRRRRRRRK...",
+        "KRRRRRRRRRRRRRRRRRRK..",
+        ".KRRRRRRRRRRRRRRRRK...",
+        "..KRRRRRRRRRRRRRRK....",
+        "...KRRRRRRRRRRRRK.....",
+        "...KRRRRK....KRRRRK...",
+        "...KDDK.......KDDK....",
+        "...KKKK.......KKKK...."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'Y' to Color(0xFFF1C40F),
+        'R' to Color(0xFFC0392B),
+        '3' to Color(0xFFE74C3C),
+        'W' to Color(0xFFECF0F1),
+        'E' to Color(0xFF17202A),
+        'D' to Color(0xFF7B241C)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawPlantBrain() {
+    val matrix = arrayOf(
+        "......KKKKKK......",
+        "....KGGGGGGGGK....",
+        "...KGGGGGGGGGGK...",
+        "..KGGGGWWWWGGGGK..",
+        ".KGGGGWERRE3GGGGK.",
+        ".KGGGGWWWWWWGGGGK.",
+        "KGGGGGGWWWWGGGGGGK",
+        "KGGGGGGGGGGGGGGGGK",
+        ".KGGGGGGGGGGGGGGK.",
+        "..KRRRRGGGGRRRRK..",
+        ".KRRRRRRK.KRRRRRRK",
+        "KRRRRRRRK.KRRRRRRK",
+        ".KKKKKKK...KKKKKKK"
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'G' to Color(0xFF1E8449),
+        'R' to Color(0xFFC0392B),
+        'W' to Color(0xFFFFFFFF),
+        'E' to Color(0xFFFF0000),
+        '3' to Color(0xFFE74C3C)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawBlackWaltz() {
+    val matrix = arrayOf(
+        ".......KKYYYYKK.......",
+        "......KYYYYYYYYK......",
+        ".....KYYYYYYYYYYK.....",
+        "....KYYYYYYYYYYYYK....",
+        "....KBBBBERRE3BBBK....",
+        "....KBBBBBBBBBBBBK....",
+        "...KBBBBBBBBBBBBBBK.KK",
+        "..KBBBBBBBBBBBBBBBBKSK",
+        ".KBBBBBBBBBBBBBBBBBKSK",
+        ".KBBBBBBBBBBBBBBBBBKSK",
+        ".KBBBBBBBBBBBBBBBBBKSK",
+        "..KBBBBBBBBBBBBBBBBKSK",
+        "...KBBBBBBBBBBBBBBK.KK",
+        "....KBBBBBBBBBBBBK....",
+        "....KBBBBK..KBBBBK....",
+        "....KBBBK....KBBBK....",
+        "....KDDK......KDDK....",
+        "....KKKK......KKKK...."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'Y' to Color(0xFFF1C40F),
+        'B' to Color(0xFF1F618D),
+        'E' to Color(0xFFF1C40F),
+        'R' to Color(0xFFF1C40F),
+        '3' to Color(0xFF17202A),
+        'D' to Color(0xFF114B72),
+        'S' to Color(0xFF17202A)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawZornThorn() {
+    val matrix = arrayOf(
+        "......KKYYYYKK......",
+        ".....KYYYYYYYYK.....",
+        "....KYYYYYYYYYYK....",
+        "....KYYYYWERREYK....",
+        "....KYYYYWWWWYYK....",
+        "...KRRRRYYYYRRRRK...",
+        "..KRRRRRRYYRRRRRRK..",
+        ".KRRRRRRRRRRRRRRRRK.",
+        ".KRRRRRRRRRRRRRRRRK.",
+        ".KRRRRRRRRRRRRRRRRK.",
+        "..KRRRRRRRRRRRRRRK..",
+        "...KRRRRRRRRRRRRK...",
+        "....KRRRRRRRRRRK....",
+        "....KRRRRKRRRRK.....",
+        "....KRRRK.KRRRK.....",
+        "....KDDK...KDDK.....",
+        "....KKKK...KKKK....."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'Y' to Color(0xFFE74C3C),
+        'R' to Color(0xFF2980B9),
+        'W' to Color(0xFFFFFFFF),
+        'E' to Color(0xFF17202A),
+        'D' to Color(0xFF1F618D)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawRalvurahva() {
+    val matrix = arrayOf(
+        ".......KKKKKK.......",
+        "......KSSSSSSK......",
+        ".....KSSSSSSSSK.....",
+        "....KSSSSEERSSSSK...",
+        "....KSSSSSSSSSSSK...",
+        "...KSSSSSSSSSSSSSK..",
+        "..KSSSSSSSSSSSSSSSK.",
+        ".KSSSSSSSSSSSSSSSSSK",
+        ".KSSSSSSSSSSSSSSSSSK",
+        ".KSSSSSSSSSSSSSSSSSK",
+        "..KSSSSSSSSSSSSSSSK.",
+        "...KSSSSSSSSSSSSSK..",
+        "....KSSSSSSSSSSSK...",
+        "....KSSSSK..KSSSSK..",
+        "....KSSSK....KSSSK..",
+        "....KDDK......KDDK..",
+        "....KKKK......KKKK.."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'S' to Color(0xFF7F8C8D),
+        'E' to Color(0xFFE74C3C),
+        'R' to Color(0xFFFF5252),
+        'D' to Color(0xFF34495E)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawMaliris() {
+    val matrix = arrayOf(
+        ".......KKKKK........",
+        "......KRRRRR3K......",
+        ".....KRRRRRRRRK.....",
+        "....KRRRWRYW3RRK....",
+        "....KRRRRRRRRRRK....",
+        "....KRRRRRRRRRRK....",
+        "...KSSRRRRRRRRSSK...",
+        "..KSSSSRRRRRRSSSSK..",
+        ".KSSSSSSRRRRSSSSSSK.",
+        "KSSSSSSSRRRRSSSSSSSK",
+        ".KSSSSSSRRRRSSSSSSK.",
+        "..KSSSSSRRRRSSSSSK..",
+        "...KRRRRRRRRRRRRK...",
+        "....KRRRRRRRRRRK....",
+        ".....KRRRRRRRRK.....",
+        "......KRRRRRRK......",
+        ".......KRRRRK.......",
+        "......KRRRRRRK......",
+        ".....KRRRRRRRRK.....",
+        "....KKKKKKKKKKKK...."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'R' to Color(0xFFC0392B),
+        '3' to Color(0xFFE74C3C),
+        'W' to Color(0xFFECF0F1),
+        'Y' to Color(0xFFF1C40F),
+        'S' to Color(0xFFBDC3C7)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawKuja() {
+    val matrix = arrayOf(
+        ".......KKYYYYKK.......",
+        "......KYYYYYYYYK......",
+        ".....KYYYYWWWWYYK.....",
+        "....KYYYYWWWWWWYYK....",
+        "....KYYYYWERRE3YYK....",
+        "....KYYYYWWWWWWYYK....",
+        "...KPPPPYYYYYYYYPPPPK.",
+        "..KPPPPPPYYSSSSSSSSSK.",
+        ".KPPPPPPPPPPPPPPPPPPK.",
+        ".KPPPPPPPPPPPPPPPPPPK.",
+        ".KPPPPPPPPPPPPPPPPPPK.",
+        "..KPPPPPPPPPPPPPPPPK..",
+        "...KPPPPPPPPPPPPPPK...",
+        "....KPPPPPPPPPPPPK....",
+        "....KPPPPK..KPPPPK....",
+        "....KPPPK....KPPPK....",
+        "....KDDK......KDDK....",
+        "....KKKK......KKKK...."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'Y' to Color(0xFFECF0F1),
+        'W' to Color(0xFFF3C59D),
+        'E' to Color(0xFF17202A),
+        'R' to Color(0xFF8E44AD),
+        '3' to Color(0xFFF3C59D),
+        'P' to Color(0xFF6C3483),
+        'S' to Color(0xFFECF0F1),
+        'D' to Color(0xFF4A235A)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawTranceKuja() {
+    val matrix = arrayOf(
+        ".......KKRRRRKK.......",
+        "......KRRRRRRRRK......",
+        ".....KRRRRWWWW3RK.....",
+        "....KRRRRWWWWWW3RK....",
+        "....KRRRRWERRE33RK....",
+        "....KRRRRWWWWWW3RK....",
+        "...KRRRRRRRRRRRRRRRK..",
+        "..KRRRRRRRRRRRRRRRRRK.",
+        ".KRRRRRRRRRRRRRRRRRRK.",
+        ".KRRRRRRRRRRRRRRRRRRK.",
+        ".KRRRRRRRRRRRRRRRRRRK.",
+        "..KRRRRRRRRRRRRRRRRK..",
+        "...KRRRRRRRRRRRRRRK...",
+        "....KRRRRRRRRRRRRK....",
+        "....KRRRRK..KRRRRK....",
+        "....KRRRK....KRRRK....",
+        "....KDDK......KDDK....",
+        "....KKKK......KKKK...."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'R' to Color(0xFFE74C3C),
+        '3' to Color(0xFFF1948A),
+        'W' to Color(0xFFF3C59D),
+        'E' to Color(0xFF17202A),
+        'D' to Color(0xFFB03A2E)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawNecron() {
+    val matrix = arrayOf(
+        ".......KKKKKK.......",
+        "......KBBBBBBK......",
+        ".....KBBBBBBBBK.....",
+        "....KBBBWWWWBBBK....",
+        "....KBBBWERREBBK....",
+        "....KBBBWWWWBBBK....",
+        "....KBBBWBWBBBBK....",
+        "....KBBBBWWBBBBK....",
+        "...KBBBBBBBBBBBBK...",
+        "..KBBBBBBBBBBBBBBK..",
+        ".KBBBBBBBCCCCCCBBBK.",
+        ".KBBBBBBCCCCCCCCBBK.",
+        ".KBBBBBBCCCCCCCCBBK.",
+        ".KBBBBBBBCCCCCCBBBK.",
+        "..KBBBBBBBBBBBBBBK..",
+        "...KKKKKKKKKKKKKK..."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'B' to Color(0xFF2980B9),
+        'W' to Color(0xFFECF0F1),
+        'E' to Color(0xFFF1C40F),
+        'R' to Color(0xFFE74C3C),
+        'C' to Color(0xFF5DADE2)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawKlikk() {
+    val matrix = arrayOf(
+        "KK....................KK",
+        "KCCK................KCCK",
+        ".KCCK..............KCCK.",
+        "..KCCKKKKKKKKKKKKKKCCK..",
+        "...KCCCCCCCCCCCCCCCCK...",
+        "...KCCCCCWWWWCCCCCCYK...",
+        "...KCCCCWERRECCCCCCYK...",
+        "...KCCCCCWWWWCCCCCCYK...",
+        "..KCCCCCCCCCCCCCCCCYK...",
+        ".KCCCCCCCCCCCCCCCCCCCK..",
+        "KCCCCCCCCCCCCCCCCCCCCCK.",
+        "KCCCCCCCCCCCCCCCCCCCCCK.",
+        ".KCCCCCCCCCCCCCCCCCCCK..",
+        "..KCCCCCCCCCCCCCCCCYK...",
+        "...KCCCCK......KCCCCK...",
+        "...KCCCCK......KCCCCK...",
+        "...KKKKKK......KKKKKK..."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'C' to Color(0xFF16A085),
+        'Y' to Color(0xFFF1C40F),
+        'W' to Color(0xFFFFFFFF),
+        'R' to Color(0xFFE74C3C),
+        'E' to Color(0xFF17202A)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawOblitzerator() {
+    val matrix = arrayOf(
+        ".......KKKKKK.......",
+        "......KYYYYYYK......",
+        ".....KYYYYYYYYK.....",
+        "....KYYYYEERYYYK....",
+        "....KYYYYYYYYYYK....",
+        "...KSSYYYYYYYYSSK...",
+        "..KSSSYYYYYYSSSSK...",
+        ".KSSSSYYYYYYYYSSSK..",
+        "KSSSSSRRRRRRSSSSSSK.",
+        ".KSSSSRRRRRRSSSSSK..",
+        "..KSSSSRRRRSSSSSK...",
+        "...KSSSSRRRSSSSK....",
+        "....KSSSSSSSSSSK....",
+        ".....KYYYYYYYYK.....",
+        ".....KYYYYKYYYK.....",
+        "....KKKKKK.KKKKKK..."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'Y' to Color(0xFFF1C40F),
+        'S' to Color(0xFFBDC3C7),
+        'R' to Color(0xFF34495E),
+        'E' to Color(0xFFFF0000)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawSeymour() {
+    val matrix = arrayOf(
+        "......KKCCCCKK......",
+        ".....KCCCCCCCCK.....",
+        "....KCCCCCCCCCCK....",
+        "....KCCCCWWWWCCK....",
+        "....KCCCCWERRECK....",
+        "....KCCCCWWWWCCK....",
+        "...KPPPPCCCCCCCCPK..",
+        "..KPPPPPPCCCCCPPPPK.",
+        ".KPPPPPPPPPPPPPPPPK.",
+        ".KPPPPPPPPPPPPPPPPK.",
+        ".KPPPPPPPPPPPPPPPPK.",
+        "..KPPPPPPPPPPPPPPK..",
+        "...KPPPPPPPPPPPPK...",
+        "....KPPPPPPPPPPK....",
+        "....KPPPPK..KPPPPK..",
+        "....KPPPK....KPPPK..",
+        "....KDDK......KDDK..",
+        "....KKKK......KKKK.."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'C' to Color(0xFF3498DB),
+        'W' to Color(0xFFF3C59D),
+        'E' to Color(0xFF17202A),
+        'R' to Color(0xFF8E44AD),
+        'P' to Color(0xFF4A235A),
+        'D' to Color(0xFF2C3E50)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawJecht() {
+    val matrix = arrayOf(
+        ".......KKRRRRKK.......",
+        "......KRRRRRRRRK......",
+        ".....KRRRRWWWW3RK.....",
+        "....KRRRRWWWWWW3RK....",
+        "....KRRRRWERRE33RK....",
+        "....KRRRRWWWWWW3RK....",
+        "...KWWWWWWWWWWWWWWK.KK",
+        "..KWWWWWWWWWWWWWWWWKSK",
+        ".KWWWWWWWWWWWWWWWWWKSK",
+        ".KWWWWWWWWWWWWWWWWWKSK",
+        ".KWWWWWWWWWWWWWWWWWKSK",
+        "..KWWWWWWWWWWWWWWWWKSK",
+        "...KWWWWWWWWWWWWWWK.KK",
+        "....KWWWWWWWWWWWWK....",
+        "....KWWWWK..KWWWWK....",
+        "....KWWWK....KWWWK....",
+        "....KDDK......KDDK....",
+        "....KKKK......KKKK...."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'R' to Color(0xFFC0392B),
+        'W' to Color(0xFFF3C59D),
+        'E' to Color(0xFF17202A),
+        '3' to Color(0xFFF3C59D),
+        'D' to Color(0xFF7B241C),
+        'S' to Color(0xFFE74C3C)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawPenance() {
+    val matrix = arrayOf(
+        ".......KKYYYYKK.......",
+        "......KYYYYYYYYK......",
+        ".....KYYYYYYYYYYK.....",
+        "....KYYYYWERREYYK.....",
+        "....KYYYYWWWWYYYK.....",
+        "...KSSSSYYYYSSSSK.....",
+        "..KSSSSSSYYSSSSSSK....",
+        ".KSSSSSSSSSSSSSSSSK...",
+        ".KSSSSSSSSSSSSSSSSK...",
+        ".KSSSSSSSSSSSSSSSSK...",
+        "..KSSSSSSSSSSSSSSK....",
+        "...KSSSSSSSSSSSSK.....",
+        "....KSSSSSSSSSSK......",
+        "....KSSSSKSSSSK.......",
+        "....KSSSK.KSSSK.......",
+        "....KDDK...KDDK.......",
+        "....KKKK...KKKK......."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'Y' to Color(0xFFF1C40F),
+        'S' to Color(0xFFBDC3C7),
+        'W' to Color(0xFFFFFFFF),
+        'R' to Color(0xFFE74C3C),
+        'E' to Color(0xFF17202A),
+        'D' to Color(0xFFB7950B)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawYuYevon() {
+    val matrix = arrayOf(
+        "........KKKKKK..........",
+        ".......KGGGGGGK.........",
+        "......KGGGGGGGGK........",
+        ".....KGGYYYYYYGGK.......",
+        "....KGGYWEERREYYGK......",
+        "....KGGYWEERREYYGK......",
+        "....KGGYWEERREYYGK......",
+        ".....KGGYYYYYYGGK.......",
+        "......KGGGGGGGGK........",
+        ".......KGGGGGGK.........",
+        "........KKKKKK.........."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'G' to Color(0xFF27AE60),
+        'Y' to Color(0xFFF1C40F),
+        'W' to Color(0xFFFFFFFF),
+        'R' to Color(0xFFE74C3C),
+        'E' to Color(0xFF17202A)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawSin() {
+    val matrix = arrayOf(
+        ".........KKKKKK.........",
+        "........KCCCCCCCK.......",
+        ".......KCCCCCCCCCK......",
+        "......KCCCCCCCCCCCK.....",
+        ".....KCCCCCCCCCCCCCK....",
+        "....KCCCWERRECCCCCCCK...",
+        "...KCCCCCCCCCCCCCCCCCK..",
+        "..KCCCCCCCCCCCCCCCCCCCK.",
+        ".KCCCCCCCCCCCCCCCCCCCCCK",
+        "KCCCCCCCCCCCCCCCCCCCCCCK",
+        ".KCCCCCCCCCCCCCCCCCCCCCK",
+        "..KCCCCCCCCCCCCCCCCCCCK.",
+        "...KCCCCCCCCCCCCCCCCCK..",
+        "....KCCCCCCCCCCCCCCCK...",
+        ".....KKKKKKKKKKKKKKK...."
+    )
+    val palette = mapOf(
+        'K' to Color(0xFF17202A),
+        'C' to Color(0xFF34495E),
+        'R' to Color(0xFFFF0000),
+        'E' to Color(0xFFE74C3C)
+    )
+    drawMonsterMatrix(matrix, palette)
+}
+
 // --- COMPOSABLE WRAPPERS ---
 
 @Composable fun HeroSprite(heroClass: HeroClass, modifier: Modifier = Modifier) = Canvas(modifier) {
@@ -1589,30 +3901,117 @@ fun DrawScope.drawCloudOfDarkness() {
 
 @Composable fun EnemySprite(enemyName: String, modifier: Modifier = Modifier) = Canvas(modifier) {
     when {
+        // ── FF1-FF10 Bosses ──
+        enemyName.contains("Garland", true) -> drawGarland()
+        enemyName.contains("Astos", true) -> drawAstos()
+        enemyName.contains("Lich", true) -> drawLich()
+        enemyName.contains("Marilith", true) -> drawMarilith()
+        enemyName.contains("Kraken", true) -> drawKraken()
+        enemyName.contains("Tiamat", true) -> drawTiamat()
+        enemyName.contains("Chaos", true) -> drawChaos()
+
+        enemyName.contains("Leon", true) -> drawLeon()
+        enemyName.contains("Borghen", true) -> drawBorghen()
+        enemyName.contains("Gottos", true) -> drawGottos()
+        enemyName.contains("Roundworm", true) -> drawRoundworm()
+        enemyName.contains("Cyclone", true) -> drawCyclone()
+        enemyName.contains("Emperor", true) -> drawEmperor()
+
+        enemyName.contains("Djinn", true) -> drawDjinn()
+        enemyName.contains("Nepto Dragon", true) || enemyName.contains("Nepto", true) -> drawNeptoDragon()
+        enemyName.contains("Hein", true) -> drawHein()
+        enemyName.contains("Garuda", true) -> drawGaruda()
+        enemyName.contains("Goldor", true) -> drawGoldor()
+        enemyName.contains("Xande", true) -> drawXande()
+        enemyName.contains("Cloud of Darkness", true) -> drawCloudOfDarkness()
+
+        enemyName.contains("Mist Dragon", true) -> drawMistDragon()
+        enemyName.contains("Antlion", true) -> drawAntlionBoss()
+        enemyName.contains("Golbez", true) -> drawGolbez()
+        enemyName.contains("Cagnazzo", true) -> drawCagnazzo()
+        enemyName.contains("Barbariccia", true) -> drawBarbariccia()
+        enemyName.contains("Scarmiglione", true) -> drawScarmiglione()
+        enemyName.contains("Rubicante", true) -> drawRubicante()
+        enemyName.contains("Dark Bahamut", true) -> drawDarkBahamut()
+        enemyName.contains("Zeromus", true) -> drawZeromus()
+
+        enemyName.contains("Wing Raptor", true) -> drawWingRaptor()
+        enemyName.contains("Karlabos", true) -> drawKarlabos()
+        enemyName.contains("Ifrit", true) -> drawIfrit()
+        enemyName.contains("Gilgamesh", true) -> drawGilgamesh()
+        enemyName.contains("Atomos", true) -> drawAtomos()
+        enemyName.contains("Exdeath", true) -> drawExdeath()
+        enemyName.contains("Neo Exdeath", true) -> drawNeoExdeath()
+        enemyName.contains("Omega Weapon", true) -> drawOmegaWeapon()
+        enemyName.contains("Omega", true) -> drawOmega()
+
+        enemyName.contains("Whelk", true) -> drawWhelk()
+        enemyName.contains("Vargas", true) -> drawVargas()
+        enemyName.contains("Number 024", true) || enemyName.contains("Number 128", true) || enemyName.contains("Number", true) -> drawNumber024()
+        enemyName.contains("Ultros", true) -> drawUltros()
+        enemyName.contains("Typhon", true) -> drawTyphon()
+        enemyName.contains("Air Force", true) -> drawAirForce()
+        enemyName.contains("Guardian", true) -> drawGuardian()
+        enemyName.contains("Ultima Weapon", true) -> drawUltimaWeapon()
+        enemyName.contains("Kefka", true) -> drawKefka()
+
+        enemyName.contains("Guard Scorpion", true) -> drawGuardScorpion()
+        enemyName.contains("Airbuster", true) -> drawAirbuster()
+        enemyName.contains("Rufus", true) -> drawRufus()
+        enemyName.contains("Hojo", true) -> drawHojo()
+        enemyName.contains("Bizarro Sephiroth", true) || enemyName.contains("Bizarro Seph", true) -> drawBizarroSephiroth()
+        enemyName.contains("Sephiroth", true) -> drawSephiroth()
+        enemyName.contains("Jenova", true) -> drawJenova()
+
+        enemyName.contains("NORG", true) -> drawNorg()
+        enemyName.contains("Edea", true) -> drawEdea()
+        enemyName.contains("Fujin", true) || enemyName.contains("Raijin", true) -> drawFujinRaijin()
+        enemyName.contains("Seifer", true) -> drawSeifer()
+        enemyName.contains("Adel", true) -> drawAdel()
+        enemyName.contains("Trauma", true) -> drawTrauma()
+        enemyName.contains("Ultimecia", true) -> drawUltimecia()
+
+        enemyName.contains("Plant Brain", true) -> drawPlantBrain()
+        enemyName.contains("Black Waltz", true) -> drawBlackWaltz()
+        enemyName.contains("Zorn", true) || enemyName.contains("Thorn", true) -> drawZornThorn()
+        enemyName.contains("Ralvurahva", true) -> drawRalvurahva()
+        enemyName.contains("Maliris", true) -> drawMaliris()
+        enemyName.contains("Trance Kuja", true) -> drawTranceKuja()
+        enemyName.contains("Kuja", true) -> drawKuja()
+        enemyName.contains("Necron", true) -> drawNecron()
+
+        enemyName.contains("Klikk", true) -> drawKlikk()
+        enemyName.contains("Oblitzerator", true) -> drawOblitzerator()
+        enemyName.contains("Evrae", true) -> drawEvrae()
+        enemyName.contains("Seymour", true) -> drawSeymour()
+        enemyName.contains("Jecht", true) -> drawJecht()
+        enemyName.contains("Penance", true) -> drawPenance()
+        enemyName.contains("Yu Yevon", true) -> drawYuYevon()
+        enemyName.contains("Sin", true) -> drawSin()
+
+        // ── Regular Monsters ──
         enemyName.contains("Slime", true) || enemyName.contains("Flan", true) -> drawSlime()
         enemyName.contains("Goblin", true) -> drawGoblin()
         enemyName.contains("Orc", true) || enemyName.contains("Ogre", true) -> drawOgre()
-        enemyName.contains("Chaos", true) || enemyName.contains("Demon", true) -> drawChaos()
-        enemyName.contains("Tiamat", true) -> drawTiamat()
         enemyName.contains("Dragon", true) -> drawDragon(Color.Red)
         enemyName.contains("Rat", true) -> drawWildRat()
-        enemyName.contains("Wolf", true) -> drawWolf()
-        enemyName.contains("Sahagin", true) || enemyName.contains("Merman", true) -> drawSahagin()
+        enemyName.contains("Wolf", true) || enemyName.contains("Dingo", true) -> drawWolf()
+        enemyName.contains("Sahagin", true) || enemyName.contains("Merman", true) || enemyName.contains("Sea Snake", true) -> drawSahagin()
         enemyName.contains("Pirate", true) -> drawPirate()
         enemyName.contains("Cockatrice", true) -> drawCockatrice()
-        enemyName.contains("Kraken", true) -> drawKraken()
-        enemyName.contains("Bomb", true) -> drawBomb()
-        enemyName.contains("Eye", true) -> drawEye()
+        enemyName.contains("Bomb", true) || enemyName.contains("Stoker", true) -> drawBomb()
+        enemyName.contains("Eye", true) || enemyName.contains("Malboro", true) -> drawEye()
         enemyName.contains("Tonberry", true) -> drawTonberry()
-        enemyName.contains("Lich", true) -> drawLich()
-        enemyName.contains("Garland", true) -> drawGarland()
-        enemyName.contains("Dark Knight", true) || enemyName.contains("Black Knight", true) || enemyName.contains("Sergeant", true) -> drawDarkKnight()
+        enemyName.contains("Mindflayer", true) || enemyName.contains("Dark Force", true) -> drawLich()
+        enemyName.contains("Dark Knight", true) || enemyName.contains("Black Knight", true) || enemyName.contains("Sergeant", true) || enemyName.contains("Captain", true) || enemyName.contains("Soldier", true) || enemyName.contains("Grunt", true) || enemyName.contains("Sweeper", true) -> drawDarkKnight()
         enemyName.contains("Lamia", true) || enemyName.contains("Medusa", true) -> drawLamia()
         enemyName.contains("Adamantoise", true) -> drawAdamantoise()
-        enemyName.contains("Djinn", true) -> drawDjinn()
-        enemyName.contains("Hein", true) -> drawHein()
-        enemyName.contains("Emperor", true) -> drawEmperor()
-        enemyName.contains("Cloud", true) -> drawCloudOfDarkness()
+        enemyName.contains("Zombie", true) -> drawZombie()
+        enemyName.contains("Wyvern", true) || enemyName.contains("Elnoyle", true) -> drawWyvern()
+        enemyName.contains("Behemoth", true) || enemyName.contains("Giant", true) || enemyName.contains("Brawler", true) || enemyName.contains("Wendigo", true) || enemyName.contains("Zaghnol", true) || enemyName.contains("Mistodon", true) -> drawBehemoth()
+        enemyName.contains("Toad", true) -> drawToad()
+        enemyName.contains("Hellhound", true) || enemyName.contains("Geezard", true) -> drawHellhound()
+
         else -> drawSlime()
     }
 }
