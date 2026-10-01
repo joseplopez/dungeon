@@ -14,7 +14,7 @@ android {
         applicationId = "com.centelles.dungeon"
         minSdk = 26
         targetSdk = 37
-        versionCode = 23
+        versionCode = 25
         versionName = "0.2"
         testInstrumentationRunner = "com.game.dungeon.HiltTestRunner"
         buildConfigField("long", "INITIAL_GIL", "0L")
@@ -32,7 +32,7 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField("long", "INITIAL_GIL", "100000L")
+            buildConfigField("long", "INITIAL_GIL", "10000000L")
             buildConfigField("int", "INITIAL_MAGICITE", "100000")
             manifestPlaceholders["admobAppId"] = "ca-app-pub-3940256099942544~3347511713"
             buildConfigField("String", "REWARDED_AD_UNIT_ID", "\"ca-app-pub-3940256099942544/5224354917\"")

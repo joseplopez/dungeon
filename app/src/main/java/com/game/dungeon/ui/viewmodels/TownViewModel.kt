@@ -119,7 +119,10 @@ class TownViewModel @Inject constructor(
 
         if (currentLevel >= type.maxLevel) return
 
-        val rawCost = type.baseCost * (currentLevel + 1)
+        val rawCost =
+            if (currentLevel<10) type.baseCost * (currentLevel + 1)
+            else type.baseCost * (currentLevel*currentLevel)
+
         val discount = gs.upgradeDiscount
         val finalCost = (rawCost * (1f - discount)).toLong()
 

@@ -68,7 +68,10 @@ data class GameState(
     val notifiedHiddenJobs: Set<HeroClass> = emptySet(),
     val lastPartyClasses: List<HeroClass> = emptyList()
 ) {
-    val maxGil: Long get() = 10_000L + (vaultLevel * 50_000L)
+    val maxGil: Long get() =
+        if (vaultLevel<10) 10_000L + (vaultLevel * 50_000L)
+        else 10_000L + (vaultLevel * vaultLevel * 5_000L)
+
     val upgradeDiscount: Float get() = planningLevel * 0.05f
     val restDiscount: Float get() = clinicLevel * 0.10f
     val expMultiplier: Float get() = (1.0f + (trainingLevel * 0.10f)) * 
@@ -172,12 +175,12 @@ enum class UpgradeType(
 ) {
     INN(R.string.upgrade_inn_name, R.string.upgrade_inn_desc, 500, 1, "🍺"),
     BARRACKS(R.string.upgrade_barracks_name, R.string.upgrade_barracks_desc, 1000, 2, "🏕"),
-    VAULT(R.string.upgrade_vault_name, R.string.upgrade_vault_desc, 300, 10, "🏦"),
-    ARMORY(R.string.upgrade_armory_name, R.string.upgrade_armory_desc, 400, 20, "🛡️"),
-    MAGIC_SHOP(R.string.upgrade_magic_shop_name, R.string.upgrade_magic_shop_desc, 600, 10, "🔮"),
-    TRAINING(R.string.upgrade_training_name, R.string.upgrade_training_desc, 500, 10, "📈"),
-    PLANNING(R.string.upgrade_planning_name, R.string.upgrade_planning_desc, 1000, 5, "🏗"),
-    CLINIC(R.string.upgrade_clinic_name, R.string.upgrade_clinic_desc, 200, 10, "🏥"),
+    VAULT(R.string.upgrade_vault_name, R.string.upgrade_vault_desc, 300, 40, "🏦"),
+    ARMORY(R.string.upgrade_armory_name, R.string.upgrade_armory_desc, 400, 40, "🛡️"),
+    MAGIC_SHOP(R.string.upgrade_magic_shop_name, R.string.upgrade_magic_shop_desc, 600, 40, "🔮"),
+    TRAINING(R.string.upgrade_training_name, R.string.upgrade_training_desc, 500, 30, "📈"),
+    PLANNING(R.string.upgrade_planning_name, R.string.upgrade_planning_desc, 1000, 20, "🏗"),
+    CLINIC(R.string.upgrade_clinic_name, R.string.upgrade_clinic_desc, 200, 20, "🏥"),
     PATHFINDER(R.string.upgrade_pathfinder_name, R.string.upgrade_pathfinder_desc, 800, 4, "🧭")
 }
 

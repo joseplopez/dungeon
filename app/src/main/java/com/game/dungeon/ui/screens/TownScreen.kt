@@ -658,7 +658,8 @@ fun UpgradesDialog(
                         }
                         
                         val isMax = currentLevel >= type.maxLevel
-                        val rawCost = type.baseCost * (currentLevel + 1)
+                        val rawCost =  if (currentLevel<10) type.baseCost * (currentLevel + 1)
+                        else type.baseCost * (currentLevel*currentLevel)
                         val finalCost = (rawCost * (1f - gs.upgradeDiscount)).toLong()
                         val canAfford = gs.gold >= finalCost
 

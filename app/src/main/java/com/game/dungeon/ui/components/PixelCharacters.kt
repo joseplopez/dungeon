@@ -1902,7 +1902,7 @@ fun DrawScope.drawGarland() {
         '0' to Color(0xFF2D4691)
     )
 
-    drawMonsterMatrix(matrix, palette)
+    drawMonsterMatrix(flip(matrix), palette)
 }
 
 fun DrawScope.drawLich() {
