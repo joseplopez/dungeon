@@ -314,8 +314,8 @@ object FFDimensionData {
                 FFBiome(R.string.biome_midgar_slums,     1..100,  BiomeType.MIDGAR_SEWERS),
                 FFBiome(R.string.biome_shinra_building,  101..230,BiomeType.SHINRA_BUILDING),
                 FFBiome(R.string.biome_junon_underwater, 231..360,BiomeType.SEA_SHRINE),
-                FFBiome(R.string.biome_northern_crater,  361..560,BiomeType.NORTHERN_CRATER),
-                FFBiome(R.string.biome_sephiroth_realm,  561..700,BiomeType.CHAOS_SHRINE)
+                FFBiome(R.string.biome_sephiroth_realm, 361..560 ,BiomeType.CHAOS_SHRINE),
+                FFBiome(R.string.biome_northern_crater,  561..700 ,BiomeType.NORTHERN_CRATER),
             ),
             enemies = listOf(
                 // ── Regular enemies ──────────────────────────────────────
