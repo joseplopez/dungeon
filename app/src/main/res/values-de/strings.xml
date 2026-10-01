@@ -466,6 +466,127 @@
     <string name="item_rarity_epic">Episch</string>
     <string name="item_rarity_legendary">Legendär</string>
     <string name="item_name_template">%1$s %2$s</string>
+    <!-- Item Categories -->
+    <!-- Weapons -->
+    <string name="item_cat_sword">Schwert</string>
+    <string name="item_cat_dagger">Dolch</string>
+    <string name="item_cat_staff">Stab</string>
+    <string name="item_cat_wooden_wand">Holzzauberstab</string>
+    <string name="item_cat_battle_axe">Streitaxt</string>
+    <string name="item_cat_hunting_bow">Jagdbogen</string>
+    <string name="item_cat_knight_lance">Ritterlanze</string>
+    <string name="item_cat_mithril_rod">Mithril-Stab</string>
+    <string name="item_cat_katana">Katana</string>
+    <string name="item_cat_greatsword">Großschwert</string>
+    <string name="item_cat_scythe">Sense</string>
+    <string name="item_cat_starlight_wand">Sternenlicht-Zauberstab</string>
+    <string name="item_cat_crystal_scepter">Kristallzepter</string>
+    <string name="item_cat_lunar_blade">Klinge des Mondes</string>
+    <string name="item_cat_shadow_dagger">Schattendolch</string>
+    <string name="item_cat_holy_wand">Heiliger Zauberstab</string>
+    <string name="item_cat_dark_scepter">Dunkles Zepter</string>
+    <string name="item_cat_rift_edge">Klinge des Risses</string>
+    <string name="item_cat_brave_sword">Mutschwert</string>
+    <string name="item_cat_elemental_rod">Elementarstab</string>
+    <string name="item_cat_mystic_wand">Mystischer Zauberstab</string>
+    <string name="item_cat_runeblade">Runenklinge</string>
+    <string name="item_cat_chainsaw">Kettensäge</string>
+    <string name="item_cat_magitek_rod">Magitek-Stab</string>
+    <string name="item_cat_esper_wand">Esper-Zauberstab</string>
+    <string name="item_cat_buster_sword">Panzerschwert</string>
+    <string name="item_cat_leather_glove">Lederhandschuh</string>
+    <string name="item_cat_gatling_gun">Gatling-Kanone</string>
+    <string name="item_cat_mako_staff">Mako-Stab</string>
+    <string name="item_cat_materia_wand">Materia-Zauberstab</string>
+    <string name="item_cat_gunblade">Revolverschwert</string>
+    <string name="item_cat_pinwheel">Windrad</string>
+    <string name="item_cat_guardian_wand">Wächter-Zauberstab</string>
+    <string name="item_cat_sorceress_rod">Hexenzepter</string>
+    <string name="item_cat_mage_masher">Magiefresser</string>
+    <string name="item_cat_thief_dagger">Diebesdolch</string>
+    <string name="item_cat_cypress_pole">Zypressenstab</string>
+    <string name="item_cat_summoner_flute">Beschwörerflöte</string>
+    <string name="item_cat_dimensional_blade">Dimensionale Klinge</string>
+    <string name="item_cat_void_scythe">Sense des Nichts</string>
+    <string name="item_cat_astral_wand">Astral-Zauberstab</string>
+    <string name="item_cat_celestial_rod">Himmlisches Zepter</string>
+
+    <!-- Armor -->
+    <string name="item_cat_plate_armor">Plattenpanzer</string>
+    <string name="item_cat_leather_helm">Lederhelm</string>
+    <string name="item_cat_cloth_robe">Stoffrobe</string>
+    <string name="item_cat_scale_mail">Schuppenpanzer</string>
+    <string name="item_cat_heavy_cuirass">Schwere Kürass</string>
+    <string name="item_cat_mithril_vest">Mithril-Weste</string>
+    <string name="item_cat_dragon_scale_armor">Drachenschuppen-Rüstung</string>
+    <string name="item_cat_archmage_robes">Erzmagier-Robe</string>
+    <string name="item_cat_knight_mail">Ritterrüstung</string>
+    <string name="item_cat_paladin_cuirass">Paladin-Kürass</string>
+    <string name="item_cat_dark_armor">Dunkle Rüstung</string>
+    <string name="item_cat_white_robe">Weiße Robe</string>
+    <string name="item_cat_mirage_vest">Trugbild-Weste</string>
+    <string name="item_cat_diamond_armor">Diamant-Rüstung</string>
+    <string name="item_cat_summoner_garb">Beschwörer-Gewand</string>
+    <string name="item_cat_genji_armor">Genji-Rüstung</string>
+    <string name="item_cat_magitek_coat">Magitek-Mantel</string>
+    <string name="item_cat_silk_robe">Seidenrobe</string>
+    <string name="item_cat_soldier_uniform">SOLDIER-Uniform</string>
+    <string name="item_cat_shinra_vest">Shinra-Weste</string>
+    <string name="item_cat_aegis_coat">Aegis-Mantel</string>
+    <string name="item_cat_seed_uniform">SeeD-Uniform</string>
+    <string name="item_cat_balamb_jacket">Balamb-Jacke</string>
+    <string name="item_cat_sorceress_gown">Hexengewand</string>
+    <string name="item_cat_grand_armor">Große Rüstung</string>
+    <string name="item_cat_black_cowl">Schwarze Kapuze</string>
+    <string name="item_cat_feather_hat">Federhut</string>
+    <string name="item_cat_dimensional_cuirass">Dimensionaler Kürass</string>
+    <string name="item_cat_astral_vestment">Astrales Gewand</string>
+    <string name="item_cat_celestial_garb">Himmlisches Gewand</string>
+
+    <!-- Shields -->
+    <string name="item_cat_round_shield">Rundschild</string>
+    <string name="item_cat_guard_shield">Wächterschild</string>
+    <string name="item_cat_aegis_shield">Aegis-Schild</string>
+    <string name="item_cat_tower_shield">Turmschild</string>
+    <string name="item_cat_force_shield">Kraftschild</string>
+    <string name="item_cat_mirror_shield">Spiegelschild</string>
+    <string name="item_cat_lunar_barrier">Barriere des Mondes</string>
+    <string name="item_cat_light_shield">Lichtschild</string>
+    <string name="item_cat_elemental_aegis">Elementar-Aegis</string>
+    <string name="item_cat_crystal_shield">Kristallschild</string>
+    <string name="item_cat_genji_shield">Genji-Schild</string>
+    <string name="item_cat_magitek_barrier">Magitek-Barriere</string>
+    <string name="item_cat_mythril_armlet">Mithril-Armband</string>
+    <string name="item_cat_guard_bracelet">Wächter-Armband</string>
+    <string name="item_cat_guardian_shield">Schutzschild</string>
+    <string name="item_cat_force_aegis">Kraft-Aegis</string>
+    <string name="item_cat_shield_alexandria">Schild von Alexandria</string>
+    <string name="item_cat_dragon_shield">Drachenschild</string>
+    <string name="item_cat_dimensional_barrier">Dimensionale Barriere</string>
+    <string name="item_cat_void_aegis">Aegis des Nichts</string>
+
+    <!-- Accessories -->
+    <string name="item_cat_copper_ring">Kupferring</string>
+    <string name="item_cat_silver_pendant">Silberanhänger</string>
+    <string name="item_cat_ruby_bracelet">Rubinarmband</string>
+    <string name="item_cat_jade_earring">Jadeohrring</string>
+    <string name="item_cat_relic_amulet">Relikt-Amulett</string>
+    <string name="item_cat_cosmic_charm">Kosmischer Talisman</string>
+    <string name="item_cat_moonstone_ring">Mondsteinring</string>
+    <string name="item_cat_star_pendant">Sternenanhänger</string>
+    <string name="item_cat_flame_ring">Feuerring</string>
+    <string name="item_cat_angel_ring">Engelsring</string>
+    <string name="item_cat_relic_ring">Reliktring</string>
+    <string name="item_cat_earring_power">Ohrring der Macht</string>
+    <string name="item_cat_ribbon">Schleife</string>
+    <string name="item_cat_mako_earring">Mako-Ohrring</string>
+    <string name="item_cat_gf_talisman">GF-Talisman</string>
+    <string name="item_cat_sorceress_crown">Hexenkrone</string>
+    <string name="item_cat_pumice_piece">Bimsstein-Stück</string>
+    <string name="item_cat_garnet_amulet">Granat-Amulett</string>
+    <string name="item_cat_dimensional_core">Dimensionaler Kern</string>
+    <string name="item_cat_cosmic_crest">Kosmisches Wappen</string>
+
     <!-- Pets -->
     <string name="pet_chocobo_name">Chocobo</string>
     <string name="pet_chocobo_desc">+20%% Gegenstand-Fund</string>
@@ -655,4 +776,11 @@
     <string name="bulletin_perk_vault">💰 Tresor Gil-Zinsen: +%1$d%%</string>
     <string name="bulletin_perk_pathfinder">🧭 Pfadfinder Start-Ebene: Ebene %1$d</string>
     <string name="bulletin_perk_planning">📜 Upgrade-Rabatt: %1$d%%</string>
+
+    <!-- Gold to Gems Exchange -->
+    <string name="exchange_title">TAUSCH</string>
+    <string name="exchange_gold_for_gems_title">GOLD GEGEN EDELSTEINE TAUSCHEN</string>
+    <string name="exchange_rate_format">%1$s Gil ➔ %2$d Edelsteine</string>
+    <string name="btn_exchange_pack">Tauschen</string>
+    <string name="btn_need_gil">Benötigt %1$s Gil</string>
 </resources>

@@ -178,6 +178,82 @@
     <string name="enemy_jenova_birth">제노바 BIRTH</string>
     <string name="enemy_rufus">루퍼스 신라</string>
     <string name="enemy_jenova_life">제노바 LIFE</string>
+    <string name="enemy_hojo">호조 교수</string>
+    <string name="enemy_jenova_synthesis">제노바-SYNTHESIS</string>
+    <string name="enemy_bizarro_seph">리버스 세피로스</string>
+    <string name="enemy_sephiroth">세파 세피로스</string>
+
+    <!-- Dimension 8 Strings -->
+    <string name="dim8_title">시간 압축</string>
+    <string name="dim8_subtitle">파이널 판타지 VIII</string>
+    <string name="dim8_story">스콜 레온하트와 SeeD 용병들이 마녀 알티미시아의 시간 압축을 막기 위해 시공간을 넘어 여행한다...</string>
+    <string name="biome_balamb_garden">발람 가든</string>
+    <string name="biome_galbadia_missile">갈바디아 미사일 기지</string>
+    <string name="biome_deep_sea_deposit">해양 탐사 인공섬</string>
+    <string name="biome_lunatic_pandora">루나틱 판도라</string>
+    <string name="biome_ultimecia_castle">알티미시아 성</string>
+    <string name="enemy_galbadian_soldier">갈바디아 병사</string>
+    <string name="enemy_bite_bug">바이트 버그</string>
+    <string name="enemy_geezard">기자드</string>
+    <string name="enemy_wendigo">웬디고</string>
+    <string name="enemy_elnoyle">엘노일</string>
+    <string name="enemy_ruby_dragon">루비 드래곤</string>
+    <string name="enemy_norg">NORG</string>
+    <string name="enemy_edea">마녀 이데아</string>
+    <string name="enemy_fujin_raijin">풍신 &amp; 뇌신</string>
+    <string name="enemy_seifer">사이퍼 알마시</string>
+    <string name="enemy_adel">마녀 아델</string>
+    <string name="enemy_trauma">트라우마</string>
+    <string name="enemy_omega_weapon">오메가 웨폰</string>
+    <string name="enemy_ultimecia">알티미시아</string>
+
+    <!-- Dimension 9 Strings -->
+    <string name="dim9_title">크리스탈의 기억</string>
+    <string name="dim9_subtitle">파이널 판타지 IX</string>
+    <string name="dim9_story">지탄 트라이벌과 탄탈라스 극단이 가넷 공주를 납치하고 크리스탈을 파괴하려는 쿠자의 음모를 파헤친다...</string>
+    <string name="biome_lindblum">린드블룸 성</string>
+    <string name="biome_conde_petie">콘데 파티 산길</string>
+    <string name="biome_oeilvert">우이유베르</string>
+    <string name="biome_pandemonium_ix">판데모니움</string>
+    <string name="biome_memoria">기억의 장소</string>
+    <string name="enemy_black_mage_unit">흑마도사 1호</string>
+    <string name="enemy_zaghnol">자그놀</string>
+    <string name="enemy_mistodon">미스토돈</string>
+    <string name="enemy_silver_dragon">은룡</string>
+    <string name="enemy_plant_brain">플랜트 브레인</string>
+    <string name="enemy_black_waltz">검은 왈츠</string>
+    <string name="enemy_zorn_thorn">존 &amp; 손</string>
+    <string name="enemy_ralvurahva">랄바라바</string>
+    <string name="enemy_maliris">마리리스</string>
+    <string name="enemy_kuja">쿠자</string>
+    <string name="enemy_trance_kuja">트랜스 쿠자</string>
+    <string name="enemy_necron">영원의 어둠</string>
+
+    <!-- Dimension 10 Strings -->
+    <string name="dim10_title">스피라의 꿈</string>
+    <string name="dim10_subtitle">파이널 판타지 X</string>
+    <string name="dim10_story">티두스, 유나, 그리고 가디언들이 \'신\'이라 불리는 공포의 존재를 무찌르기 위해 스피라 순례를 떠난다...</string>
+    <string name="biome_besaid_island">비사이드 섬</string>
+    <string name="biome_mi_ihen_highroad">미헨 가도</string>
+    <string name="biome_bevelle_temple">베벨 사원</string>
+    <string name="biome_omega_ruins">오메가 유적</string>
+    <string name="biome_sin_interior">신의 내부</string>
+    <string name="biome_dream_zanarkand">꿈의 자나르카나드</string>
+    <string name="enemy_dingo">딩고</string>
+    <string name="enemy_water_flan">워터 푸딩</string>
+    <string name="enemy_klikk">클릭</string>
+    <string name="enemy_guado_guardian">구아도 가드</string>
+    <string name="enemy_great_malboro">몰볼 그레이트</string>
+    <string name="enemy_dark_aeon">다크 소환수</string>
+    <string name="enemy_klikk_boss">장로 클릭</string>
+    <string name="enemy_oblitzerator">오블리체라토르</string>
+    <string name="enemy_evrae">에브라에</string>
+    <string name="enemy_seymour">씨모어 구아도</string>
+    <string name="enemy_omega_weapon_x">오메가 웨폰</string>
+    <string name="enemy_jecht">브라스카의 최종 이계 소환</string>
+    <string name="enemy_penance">데어 리히터</string>
+    <string name="enemy_yu_yevon">에본주</string>
+    <string name="enemy_sin">신</string>
 
     <!-- Town Screen -->
     <string name="town_name">그랜드 캐피탈</string>
@@ -391,6 +467,127 @@
     <string name="item_rarity_epic">에픽</string>
     <string name="item_rarity_legendary">전설</string>
     <string name="item_name_template">%1$s %2$s</string>
+    <!-- Item Categories -->
+    <!-- Weapons -->
+    <string name="item_cat_sword">검</string>
+    <string name="item_cat_dagger">단검</string>
+    <string name="item_cat_staff">지팡이</string>
+    <string name="item_cat_wooden_wand">나무 완드</string>
+    <string name="item_cat_battle_axe">배틀액스</string>
+    <string name="item_cat_hunting_bow">헌팅 보우</string>
+    <string name="item_cat_knight_lance">나이트 랜스</string>
+    <string name="item_cat_mithril_rod">미스릴 로드</string>
+    <string name="item_cat_katana">카타나</string>
+    <string name="item_cat_greatsword">대검</string>
+    <string name="item_cat_scythe">낫</string>
+    <string name="item_cat_starlight_wand">스타라이트 완드</string>
+    <string name="item_cat_crystal_scepter">크리스탈 셉터</string>
+    <string name="item_cat_lunar_blade">루나 블레이드</string>
+    <string name="item_cat_shadow_dagger">섀도우 단검</string>
+    <string name="item_cat_holy_wand">홀리 완드</string>
+    <string name="item_cat_dark_scepter">다크 셉터</string>
+    <string name="item_cat_rift_edge">리프트 에지</string>
+    <string name="item_cat_brave_sword">브레이브 소드</string>
+    <string name="item_cat_elemental_rod">엘리멘탈 로드</string>
+    <string name="item_cat_mystic_wand">미스틱 완드</string>
+    <string name="item_cat_runeblade">룬블레이드</string>
+    <string name="item_cat_chainsaw">전기톱</string>
+    <string name="item_cat_magitek_rod">마도 로드</string>
+    <string name="item_cat_esper_wand">에스퍼 완드</string>
+    <string name="item_cat_buster_sword">버스터 소드</string>
+    <string name="item_cat_leather_glove">가죽 장갑</string>
+    <string name="item_cat_gatling_gun">개틀링건</string>
+    <string name="item_cat_mako_staff">마황 지팡이</string>
+    <string name="item_cat_materia_wand">마테리아 완드</string>
+    <string name="item_cat_gunblade">건블레이드</string>
+    <string name="item_cat_pinwheel">바람개비</string>
+    <string name="item_cat_guardian_wand">가디언 완드</string>
+    <string name="item_cat_sorceress_rod">마녀의 로드</string>
+    <string name="item_cat_mage_masher">메이지 매셔</string>
+    <string name="item_cat_thief_dagger">도적의 단검</string>
+    <string name="item_cat_cypress_pole">편백나무 지팡이</string>
+    <string name="item_cat_summoner_flute">소환사의 플루트</string>
+    <string name="item_cat_dimensional_blade">차원검</string>
+    <string name="item_cat_void_scythe">보이드 사이스</string>
+    <string name="item_cat_astral_wand">아스트랄 완드</string>
+    <string name="item_cat_celestial_rod">천상의 로드</string>
+
+    <!-- Armor -->
+    <string name="item_cat_plate_armor">플레이트 아머</string>
+    <string name="item_cat_leather_helm">가죽 헬멧</string>
+    <string name="item_cat_cloth_robe">천 로브</string>
+    <string name="item_cat_scale_mail">스케일 메일</string>
+    <string name="item_cat_heavy_cuirass">헤비 큐리시</string>
+    <string name="item_cat_mithril_vest">미스릴 조끼</string>
+    <string name="item_cat_dragon_scale_armor">드래곤 스케일 아머</string>
+    <string name="item_cat_archmage_robes">아크메이지 로브</string>
+    <string name="item_cat_knight_mail">나이트 메일</string>
+    <string name="item_cat_paladin_cuirass">팔라딘 큐리시</string>
+    <string name="item_cat_dark_armor">다크 아머</string>
+    <string name="item_cat_white_robe">화이트 로브</string>
+    <string name="item_cat_mirage_vest">미라주 조끼</string>
+    <string name="item_cat_diamond_armor">다이아몬드 아머</string>
+    <string name="item_cat_summoner_garb">소환사 의복</string>
+    <string name="item_cat_genji_armor">겐지 아머</string>
+    <string name="item_cat_magitek_coat">마도 코트</string>
+    <string name="item_cat_silk_robe">비단 로브</string>
+    <string name="item_cat_soldier_uniform">솔저 제복</string>
+    <string name="item_cat_shinra_vest">신라 조끼</string>
+    <string name="item_cat_aegis_coat">이지스 코트</string>
+    <string name="item_cat_seed_uniform">SeeD 제복</string>
+    <string name="item_cat_balamb_jacket">발람 재킷</string>
+    <string name="item_cat_sorceress_gown">마녀 드레스</string>
+    <string name="item_cat_grand_armor">그랜드 아머</string>
+    <string name="item_cat_black_cowl">검은 두건</string>
+    <string name="item_cat_feather_hat">깃털 모자</string>
+    <string name="item_cat_dimensional_cuirass">차원 큐리시</string>
+    <string name="item_cat_astral_vestment">아스트랄 의복</string>
+    <string name="item_cat_celestial_garb">천상의 의복</string>
+
+    <!-- Shields -->
+    <string name="item_cat_round_shield">라운드 실드</string>
+    <string name="item_cat_guard_shield">가드 실드</string>
+    <string name="item_cat_aegis_shield">이지스의 실드</string>
+    <string name="item_cat_tower_shield">타워 실드</string>
+    <string name="item_cat_force_shield">포스 실드</string>
+    <string name="item_cat_mirror_shield">미러 실드</string>
+    <string name="item_cat_lunar_barrier">루나 베리어</string>
+    <string name="item_cat_light_shield">빛의 실드</string>
+    <string name="item_cat_elemental_aegis">엘리멘탈 이지스</string>
+    <string name="item_cat_crystal_shield">크리스탈 실드</string>
+    <string name="item_cat_genji_shield">겐지 실드</string>
+    <string name="item_cat_magitek_barrier">마도 베리어</string>
+    <string name="item_cat_mythril_armlet">미스릴 팔찌</string>
+    <string name="item_cat_guard_bracelet">가드 브레이슬릿</string>
+    <string name="item_cat_guardian_shield">가디언 실드</string>
+    <string name="item_cat_force_aegis">포스 이지스</string>
+    <string name="item_cat_shield_alexandria">알렉산드리아의 실드</string>
+    <string name="item_cat_dragon_shield">드래곤 실드</string>
+    <string name="item_cat_dimensional_barrier">차원 베리어</string>
+    <string name="item_cat_void_aegis">보이드 이지스</string>
+
+    <!-- Accessories -->
+    <string name="item_cat_copper_ring">구리 반지</string>
+    <string name="item_cat_silver_pendant">은 펜던트</string>
+    <string name="item_cat_ruby_bracelet">루비 팔찌</string>
+    <string name="item_cat_jade_earring">비취 귀걸이</string>
+    <string name="item_cat_relic_amulet">유물 부적</string>
+    <string name="item_cat_cosmic_charm">코스믹 참</string>
+    <string name="item_cat_moonstone_ring">월광석 반지</string>
+    <string name="item_cat_star_pendant">별 펜던트</string>
+    <string name="item_cat_flame_ring">화염 반지</string>
+    <string name="item_cat_angel_ring">천사의 반지</string>
+    <string name="item_cat_relic_ring">유물 반지</string>
+    <string name="item_cat_earring_power">파워 귀걸이</string>
+    <string name="item_cat_ribbon">리본</string>
+    <string name="item_cat_mako_earring">마황 귀걸이</string>
+    <string name="item_cat_gf_talisman">GF 부적</string>
+    <string name="item_cat_sorceress_crown">마녀의 왕관</string>
+    <string name="item_cat_pumice_piece">경석 조각</string>
+    <string name="item_cat_garnet_amulet">가넷 부적</string>
+    <string name="item_cat_dimensional_core">차원 코어</string>
+    <string name="item_cat_cosmic_crest">코스믹 크레스트</string>
+
     <!-- Pets -->
     <string name="pet_chocobo_name">초코보</string>
     <string name="pet_chocobo_desc">+20%% 아이템 발견</string>
@@ -580,4 +777,11 @@
     <string name="bulletin_perk_vault">💰 금고 길 이자: +%1$d%%</string>
     <string name="bulletin_perk_pathfinder">🧭 개척자 시작 층: %1$d 층</string>
     <string name="bulletin_perk_planning">📜 강화 할인: %1$d%%</string>
+
+    <!-- Gold to Gems Exchange -->
+    <string name="exchange_title">교환</string>
+    <string name="exchange_gold_for_gems_title">골드를 보석으로 교환</string>
+    <string name="exchange_rate_format">%1$s 길 ➔ %2$d 보석</string>
+    <string name="btn_exchange_pack">교환</string>
+    <string name="btn_need_gil">%1$s 길 필요</string>
 </resources>

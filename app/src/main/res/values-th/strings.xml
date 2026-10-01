@@ -178,6 +178,82 @@
     <string name="enemy_jenova_birth">เจโนวา-กำเนิด</string>
     <string name="enemy_rufus">รูฟัส ชินระ</string>
     <string name="enemy_jenova_life">เจโนวา-ชีวิต</string>
+    <string name="enemy_hojo">ศาสตราจารย์ โฮโจ</string>
+    <string name="enemy_jenova_synthesis">เจโนวา-SYNTHESIS</string>
+    <string name="enemy_bizarro_seph">บิซาร์โร เซฟิรอธ</string>
+    <string name="enemy_sephiroth">เซฟเออร์ เซฟิรอธ</string>
+
+    <!-- Dimension 8 Strings -->
+    <string name="dim8_title">การบีบอัดเวลา</string>
+    <string name="dim8_subtitle">ไฟนอลแฟนตาซี VIII</string>
+    <string name="dim8_story">สคอวลล์ ลีออนฮาร์ต และทหารรับจ้าง SeeD เดินทางข้ามเวลาเพื่อหยุดยั้งแม่มดอัลทิเมเซียจากการบีบอัดเวลา...</string>
+    <string name="biome_balamb_garden">บาลัมบ์การ์เดน</string>
+    <string name="biome_galbadia_missile">ฐานมิสไซล์การ์บาเดีย</string>
+    <string name="biome_deep_sea_deposit">ศูนย์วิจัยใต้ทะเลลึก</string>
+    <string name="biome_lunatic_pandora">ลูนาติกแพนโดรา</string>
+    <string name="biome_ultimecia_castle">ปราสาทอัลทิเมเซีย</string>
+    <string name="enemy_galbadian_soldier">ทหารการ์บาเดีย</string>
+    <string name="enemy_bite_bug">แมลงกัด</string>
+    <string name="enemy_geezard">กีซาร์ด</string>
+    <string name="enemy_wendigo">เวลดิโก</string>
+    <string name="enemy_elnoyle">เอลนอยล์</string>
+    <string name="enemy_ruby_dragon">มังกรทับทิม</string>
+    <string name="enemy_norg">นอร์ก</string>
+    <string name="enemy_edea">แม่มดอีเดีย</string>
+    <string name="enemy_fujin_raijin">ฟูจิน &amp; ไรจิน</string>
+    <string name="enemy_seifer">ไซเฟอร์ อัลมาซี</string>
+    <string name="enemy_adel">แม่มดอาเดล</string>
+    <string name="enemy_trauma">ทรอม่า</string>
+    <string name="enemy_omega_weapon">โอเมกาเวพอน</string>
+    <string name="enemy_ultimecia">อัลทิเมเซีย</string>
+
+    <!-- Dimension 9 Strings -->
+    <string name="dim9_title">ความทรงจำของคริสตัล</string>
+    <string name="dim9_subtitle">ไฟนอลแฟนตาซี IX</string>
+    <string name="dim9_story">ซีดาน ไทรบัล และคณะละครแทนทาลัสลักพาตัวเจ้าหญิงการ์เน็ตและเปิดโปงแผนการของคุจาเพื่อทำลายคริสตัล...</string>
+    <string name="biome_lindblum">ปราสาทลินด์บลุม</string>
+    <string name="biome_conde_petie">ทางเดินคอนเดเปตี</string>
+    <string name="biome_oeilvert">เอาอีลเวิร์ต</string>
+    <string name="biome_pandemonium_ix">แพนเดโมเนียม</string>
+    <string name="biome_memoria">เมโมเรีย</string>
+    <string name="enemy_black_mage_unit">จอมเวทดำ หมายเลข 1</string>
+    <string name="enemy_zaghnol">ซักนอล</string>
+    <string name="enemy_mistodon">มิสโทดอน</string>
+    <string name="enemy_silver_dragon">มังกรเงิน</string>
+    <string name="enemy_plant_brain">สมองพืช</string>
+    <string name="enemy_black_waltz">แบล็กวอลตซ์</string>
+    <string name="enemy_zorn_thorn">ซอร์น &amp; ธอร์น</string>
+    <string name="enemy_ralvurahva">รัลวูราวา</string>
+    <string name="enemy_maliris">มาริลิส</string>
+    <string name="enemy_kuja">คุจา</string>
+    <string name="enemy_trance_kuja">ทรานส์ คุจา</string>
+    <string name="enemy_necron">เนครอน</string>
+
+    <!-- Dimension 10 Strings -->
+    <string name="dim10_title">ความฝันแห่งสปีรา</string>
+    <string name="dim10_subtitle">ไฟนอลแฟนตาซี X</string>
+    <string name="dim10_story">ทีดัส ยูนา และเหล่าการ์ดออกเดินทางแสวงบุญทั่วสปีราเพื่อปราบเอนทิตีอันน่าสะพรึงกลัวที่ชื่อว่า ซิน...</string>
+    <string name="biome_besaid_island">เกาะบีไซด์</string>
+    <string name="biome_mi_ihen_highroad">ถนนสายมิอิเฮน</string>
+    <string name="biome_bevelle_temple">วิหารเบเวลล์</string>
+    <string name="biome_omega_ruins">ซากปรักหักพังโอเมกา</string>
+    <string name="biome_sin_interior">ภายในซิน</string>
+    <string name="biome_dream_zanarkand">ซานาร์คันด์แห่งความฝัน</string>
+    <string name="enemy_dingo">ดิงโก</string>
+    <string name="enemy_water_flan">พุดดิ้งน้ำ</string>
+    <string name="enemy_klikk">คลิกก์</string>
+    <string name="enemy_guado_guardian">ยามกัวโด</string>
+    <string name="enemy_great_malboro">มอลโบโรใหญ่</string>
+    <string name="enemy_dark_aeon">อสูรสถิตมืด</string>
+    <string name="enemy_klikk_boss">คลิกก์ผู้อาวุโส</string>
+    <string name="enemy_oblitzerator">ออบลิเทอเรเตอร์</string>
+    <string name="enemy_evrae">เอฟเร</string>
+    <string name="enemy_seymour">ซีมัวร์ กัวโด</string>
+    <string name="enemy_omega_weapon_x">โอเมกาเวพอน</string>
+    <string name="enemy_jecht">อสูรสถิตสุดท้ายของบราสกา</string>
+    <string name="enemy_penance">เพนแนนซ์</string>
+    <string name="enemy_yu_yevon">ยู เยโวน</string>
+    <string name="enemy_sin">ซิน</string>
 
     <!-- Town Screen -->
     <string name="town_name">มหานคร</string>
@@ -390,6 +466,127 @@
     <string name="item_rarity_epic">มหากาพย์</string>
     <string name="item_rarity_legendary">ตำนาน</string>
     <string name="item_name_template">%1$s %2$s</string>
+    <!-- Item Categories -->
+    <!-- Weapons -->
+    <string name="item_cat_sword">ดาบ</string>
+    <string name="item_cat_dagger">มีดสั้น</string>
+    <string name="item_cat_staff">คทา</string>
+    <string name="item_cat_wooden_wand">ไม้กายสิทธิ์ไม้</string>
+    <string name="item_cat_battle_axe">ขวานศึก</string>
+    <string name="item_cat_hunting_bow">ธนูล่าสัตว์</string>
+    <string name="item_cat_knight_lance">หอกอัศวิน</string>
+    <string name="item_cat_mithril_rod">ไม้พลองมิธริล</string>
+    <string name="item_cat_katana">ดาบซามูไร</string>
+    <string name="item_cat_greatsword">ดาบใหญ่</string>
+    <string name="item_cat_scythe">เคียว</string>
+    <string name="item_cat_starlight_wand">ไม้กายสิทธิ์แสงดาว</string>
+    <string name="item_cat_crystal_scepter">คทาคริสตัล</string>
+    <string name="item_cat_lunar_blade">คมดาบจันทรา</string>
+    <string name="item_cat_shadow_dagger">มีดสั้นเงา</string>
+    <string name="item_cat_holy_wand">ไม้กายสิทธิ์ศักดิ์สิทธิ์</string>
+    <string name="item_cat_dark_scepter">คทามืด</string>
+    <string name="item_cat_rift_edge">คมดาบรอยแยก</string>
+    <string name="item_cat_brave_sword">ดาบผู้กล้า</string>
+    <string name="item_cat_elemental_rod">ไม้พลองธาตุ</string>
+    <string name="item_cat_mystic_wand">ไม้กายสิทธิ์ลึกลับ</string>
+    <string name="item_cat_runeblade">ดาบรูน</string>
+    <string name="item_cat_chainsaw">เลื่อยไฟฟ้า</string>
+    <string name="item_cat_magitek_rod">ไม้พลองมาจิเทค</string>
+    <string name="item_cat_esper_wand">ไม้กายสิทธิ์อสูร</string>
+    <string name="item_cat_buster_sword">ดาบบัสเตอร์</string>
+    <string name="item_cat_leather_glove">ถุงมือหนัง</string>
+    <string name="item_cat_gatling_gun">ปืนกลแกตลิง</string>
+    <string name="item_cat_mako_staff">คทามาโค</string>
+    <string name="item_cat_materia_wand">ไม้กายสิทธิ์มาทีเรีย</string>
+    <string name="item_cat_gunblade">ดาบปืน</string>
+    <string name="item_cat_pinwheel">กังหันลม</string>
+    <string name="item_cat_guardian_wand">ไม้กายสิทธิ์ผู้พิทักษ์</string>
+    <string name="item_cat_sorceress_rod">คทาแม่มด</string>
+    <string name="item_cat_mage_masher">ดาบพิฆาตเวท</string>
+    <string name="item_cat_thief_dagger">มีดสั้นจอมโจร</string>
+    <string name="item_cat_cypress_pole">ไม้พลองไซเปรส</string>
+    <string name="item_cat_summoner_flute">ขลุ่ยผู้อัญเชิญ</string>
+    <string name="item_cat_dimensional_blade">คมดาบมิติ</string>
+    <string name="item_cat_void_scythe">เคียวห้วงอวกาศ</string>
+    <string name="item_cat_astral_wand">ไม้กายสิทธิ์ดารา</string>
+    <string name="item_cat_celestial_rod">คทาสรวงสวรรค์</string>
+
+    <!-- Armor -->
+    <string name="item_cat_plate_armor">เกราะแผ่น</string>
+    <string name="item_cat_leather_helm">หมวกหนัง</string>
+    <string name="item_cat_cloth_robe">เสื้อคลุมผ้า</string>
+    <string name="item_cat_scale_mail">เกราะเกล็ด</string>
+    <string name="item_cat_heavy_cuirass">เกราะอกหนา</string>
+    <string name="item_cat_mithril_vest">เสื้อกั๊กมิธริล</string>
+    <string name="item_cat_dragon_scale_armor">เกราะเกล็ดมังกร</string>
+    <string name="item_cat_archmage_robes">เสื้อคลุมมหาจอมเวท</string>
+    <string name="item_cat_knight_mail">เกราะอัศวิน</string>
+    <string name="item_cat_paladin_cuirass">เกราะอกพาลาดิน</string>
+    <string name="item_cat_dark_armor">เกราะมืด</string>
+    <string name="item_cat_white_robe">เสื้อคลุมขาว</string>
+    <string name="item_cat_mirage_vest">เสื้อกั๊กเงา</string>
+    <string name="item_cat_diamond_armor">เกราะเพชร</string>
+    <string name="item_cat_summoner_garb">ชุดผู้อัญเชิญ</string>
+    <string name="item_cat_genji_armor">เกราะเกนจิ</string>
+    <string name="item_cat_magitek_coat">เสื้อโค้ทมาจิเทค</string>
+    <string name="item_cat_silk_robe">เสื้อคลุมผ้าไหม</string>
+    <string name="item_cat_soldier_uniform">เครื่องแบบ SOLDIER</string>
+    <string name="item_cat_shinra_vest">เสื้อกั๊กชินระ</string>
+    <string name="item_cat_aegis_coat">เสื้อโค้ทอีจิส</string>
+    <string name="item_cat_seed_uniform">เครื่องแบบ SeeD</string>
+    <string name="item_cat_balamb_jacket">แจ็กเก็ตบาลัมบ์</string>
+    <string name="item_cat_sorceress_gown">ชุดราตรีแม่มด</string>
+    <string name="item_cat_grand_armor">เกราะใหญ่</string>
+    <string name="item_cat_black_cowl">หมวกคลุมดำ</string>
+    <string name="item_cat_feather_hat">หมวกติดขนนก</string>
+    <string name="item_cat_dimensional_cuirass">เกราะอกมิติ</string>
+    <string name="item_cat_astral_vestment">เครื่องแต่งกายดารา</string>
+    <string name="item_cat_celestial_garb">ชุดราตรีสรวงสวรรค์</string>
+
+    <!-- Shields -->
+    <string name="item_cat_round_shield">โล่กลม</string>
+    <string name="item_cat_guard_shield">โล่ยาม</string>
+    <string name="item_cat_aegis_shield">โล่อีจิส</string>
+    <string name="item_cat_tower_shield">โล่หอคอย</string>
+    <string name="item_cat_force_shield">โล่พลัง</string>
+    <string name="item_cat_mirror_shield">โล่กระจก</string>
+    <string name="item_cat_lunar_barrier">บาเรียจันทรา</string>
+    <string name="item_cat_light_shield">โล่แห่งแสง</string>
+    <string name="item_cat_elemental_aegis">อีจิสแห่งธาตุ</string>
+    <string name="item_cat_crystal_shield">โล่คริสตัล</string>
+    <string name="item_cat_genji_shield">โล่เกนจิ</string>
+    <string name="item_cat_magitek_barrier">บาเรียมาจิเทค</string>
+    <string name="item_cat_mythril_armlet">กำไลมิธริล</string>
+    <string name="item_cat_guard_bracelet">กำไลยาม</string>
+    <string name="item_cat_guardian_shield">โล่ผู้พิทักษ์</string>
+    <string name="item_cat_force_aegis">อีจิสพลัง</string>
+    <string name="item_cat_shield_alexandria">โล่อะเล็กซานเดรีย</string>
+    <string name="item_cat_dragon_shield">โล่มังกร</string>
+    <string name="item_cat_dimensional_barrier">บาเรียมิติ</string>
+    <string name="item_cat_void_aegis">อีจิสห้วงอวกาศ</string>
+
+    <!-- Accessories -->
+    <string name="item_cat_copper_ring">แหวนทองแดง</string>
+    <string name="item_cat_silver_pendant">จี้เงิน</string>
+    <string name="item_cat_ruby_bracelet">กำไลทับทิม</string>
+    <string name="item_cat_jade_earring">ต่างหูหยก</string>
+    <string name="item_cat_relic_amulet">เครื่องรางโบราณวัตถุ</string>
+    <string name="item_cat_cosmic_charm">เครื่องรางจักรวาล</string>
+    <string name="item_cat_moonstone_ring">แหวนมุกดาหาร</string>
+    <string name="item_cat_star_pendant">จี้ดวงดาว</string>
+    <string name="item_cat_flame_ring">แหวนไฟ</string>
+    <string name="item_cat_angel_ring">แหวนเทวดา</string>
+    <string name="item_cat_relic_ring">แหวนโบราณวัตถุ</string>
+    <string name="item_cat_earring_power">ต่างหูพลัง</string>
+    <string name="item_cat_ribbon">ริบบิ้น</string>
+    <string name="item_cat_mako_earring">ต่างหูมาโค</string>
+    <string name="item_cat_gf_talisman">เครื่องราง GF</string>
+    <string name="item_cat_sorceress_crown">มงกุฎแม่มด</string>
+    <string name="item_cat_pumice_piece">ชิ้นหินภูเขาไฟ</string>
+    <string name="item_cat_garnet_amulet">เครื่องรางโกเมน</string>
+    <string name="item_cat_dimensional_core">แกนกลางมิติ</string>
+    <string name="item_cat_cosmic_crest">ตราจักรวาล</string>
+
     <!-- Pets -->
     <string name="pet_chocobo_name">โจโกโบะ</string>
     <string name="pet_chocobo_desc">+20%% การพบไอเทม</string>
@@ -579,4 +776,11 @@
     <string name="bulletin_perk_vault">💰 ดอกเบี้ยกิลคลัง: +%1$d%%</string>
     <string name="bulletin_perk_pathfinder">🧭 ชั้นเริ่มต้นคนเบิกทาง: ชั้น %1$d</string>
     <string name="bulletin_perk_planning">📜 ส่วนลดการอัปเกรด: %1$d%%</string>
+
+    <!-- Gold to Gems Exchange -->
+    <string name="exchange_title">แลกเปลี่ยน</string>
+    <string name="exchange_gold_for_gems_title">แลกทองเป็นอัญมณี</string>
+    <string name="exchange_rate_format">%1$s กิล ➔ %2$d อัญมณี</string>
+    <string name="btn_exchange_pack">แลกเปลี่ยน</string>
+    <string name="btn_need_gil">ต้องการ %1$s กิล</string>
 </resources>

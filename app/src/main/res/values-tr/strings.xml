@@ -178,6 +178,82 @@
     <string name="enemy_jenova_birth">Jenova-DOĞUM</string>
     <string name="enemy_rufus">Rufus Shinra</string>
     <string name="enemy_jenova_life">Jenova-YAŞAM</string>
+    <string name="enemy_hojo">Profesör Hojo</string>
+    <string name="enemy_jenova_synthesis">Jenova-SENTEZ</string>
+    <string name="enemy_bizarro_seph">Bizarro Sephiroth</string>
+    <string name="enemy_sephiroth">Safer Sephiroth</string>
+
+    <!-- Dimension 8 Strings -->
+    <string name="dim8_title">Zaman Sıkıştırması</string>
+    <string name="dim8_subtitle">Final Fantasy VIII</string>
+    <string name="dim8_story">Squall Leonhart ve SeeD paralı askerleri, Büyücü Ultimecia\'nın Zaman Sıkıştırmasını gerçekleştirmesini önlemek için zamanda yolculuk eder...</string>
+    <string name="biome_balamb_garden">Balamb Bahçesi</string>
+    <string name="biome_galbadia_missile">Galbadia Füze Üssü</string>
+    <string name="biome_deep_sea_deposit">Derin Deniz Araştırma Merkezi</string>
+    <string name="biome_lunatic_pandora">Çılgın Pandora</string>
+    <string name="biome_ultimecia_castle">Ultimecia\'nın Kalesi</string>
+    <string name="enemy_galbadian_soldier">Galbadia Askeri</string>
+    <string name="enemy_bite_bug">Isırık Böceği</string>
+    <string name="enemy_geezard">Geezard</string>
+    <string name="enemy_wendigo">Wendigo</string>
+    <string name="enemy_elnoyle">Elnoyle</string>
+    <string name="enemy_ruby_dragon">Yakut Ejderhası</string>
+    <string name="enemy_norg">NORG</string>
+    <string name="enemy_edea">Büyücü Edea</string>
+    <string name="enemy_fujin_raijin">Fujin &amp; Raijin</string>
+    <string name="enemy_seifer">Seifer Almasy</string>
+    <string name="enemy_adel">Büyücü Adel</string>
+    <string name="enemy_trauma">Travma</string>
+    <string name="enemy_omega_weapon">Omega Silahı</string>
+    <string name="enemy_ultimecia">Ultimecia</string>
+
+    <!-- Dimension 9 Strings -->
+    <string name="dim9_title">Kristalin Hafızası</string>
+    <string name="dim9_subtitle">Final Fantasy IX</string>
+    <string name="dim9_story">Zidane Tribal ve Tantalus tiyatro grubu Prenses Garnet\'i kaçırır ve Kuja\'nın Kristali yok etme planını ortaya çıkarır...</string>
+    <string name="biome_lindblum">Lindblum Kalesi</string>
+    <string name="biome_conde_petie">Conde Petie Yolu</string>
+    <string name="biome_oeilvert">Oeilvert</string>
+    <string name="biome_pandemonium_ix">Pandemonium</string>
+    <string name="biome_memoria">Memoria</string>
+    <string name="enemy_black_mage_unit">Kara Büyücü No. 1</string>
+    <string name="enemy_zaghnol">Zaghnol</string>
+    <string name="enemy_mistodon">Mistodon</string>
+    <string name="enemy_silver_dragon">Gümüş Ejderha</string>
+    <string name="enemy_plant_brain">Bitki Beyni</string>
+    <string name="enemy_black_waltz">Kara Vals</string>
+    <string name="enemy_zorn_thorn">Zorn &amp; Thorn</string>
+    <string name="enemy_ralvurahva">Ralvurahva</string>
+    <string name="enemy_maliris">Maliris</string>
+    <string name="enemy_kuja">Kuja</string>
+    <string name="enemy_trance_kuja">Trance Kuja</string>
+    <string name="enemy_necron">Necron</string>
+
+    <!-- Dimension 10 Strings -->
+    <string name="dim10_title">Spira\'nın Rüyası</string>
+    <string name="dim10_subtitle">Final Fantasy X</string>
+    <string name="dim10_story">Tidus, Yuna ve koruyucuları Sin adlı korkunç yaratığı yenmek için Spira genelinde hac yolculuğuna çıkar...</string>
+    <string name="biome_besaid_island">Besaid Adası</string>
+    <string name="biome_mi_ihen_highroad">Mi\'ihen Yolu</string>
+    <string name="biome_bevelle_temple">Bevelle Tapınağı</string>
+    <string name="biome_omega_ruins">Omega Harabeleri</string>
+    <string name="biome_sin_interior">Sin\'in İçinde</string>
+    <string name="biome_dream_zanarkand">Rüya Zanarkand</string>
+    <string name="enemy_dingo">Dingo</string>
+    <string name="enemy_water_flan">Su Flanı</string>
+    <string name="enemy_klikk">Klikk</string>
+    <string name="enemy_guado_guardian">Guado Muhafızı</string>
+    <string name="enemy_great_malboro">Büyük Malboro</string>
+    <string name="enemy_dark_aeon">Karanlık Aeon</string>
+    <string name="enemy_klikk_boss">Yaşlı Klikk</string>
+    <string name="enemy_oblitzerator">Oblitzerator</string>
+    <string name="enemy_evrae">Evrae</string>
+    <string name="enemy_seymour">Seymour Guado</string>
+    <string name="enemy_omega_weapon_x">Omega Silahı</string>
+    <string name="enemy_jecht">Braska\'nın Son Aeon\'u</string>
+    <string name="enemy_penance">Penance</string>
+    <string name="enemy_yu_yevon">Yu Yevon</string>
+    <string name="enemy_sin">SİN</string>
 
     <!-- Town Screen -->
     <string name="town_name">BÜYÜK BAŞKENT</string>
@@ -390,6 +466,127 @@
     <string name="item_rarity_epic">Epik</string>
     <string name="item_rarity_legendary">Efsanevi</string>
     <string name="item_name_template">%1$s %2$s</string>
+    <!-- Item Categories -->
+    <!-- Weapons -->
+    <string name="item_cat_sword">Kılıç</string>
+    <string name="item_cat_dagger">Hançer</string>
+    <string name="item_cat_staff">Asa</string>
+    <string name="item_cat_wooden_wand">Ahşap Asa</string>
+    <string name="item_cat_battle_axe">Savaş Baltası</string>
+    <string name="item_cat_hunting_bow">Av Yayı</string>
+    <string name="item_cat_knight_lance">Şövalye Mızrağı</string>
+    <string name="item_cat_mithril_rod">Mithril Asa</string>
+    <string name="item_cat_katana">Katana</string>
+    <string name="item_cat_greatsword">Büyük Kılıç</string>
+    <string name="item_cat_scythe">Tırpan</string>
+    <string name="item_cat_starlight_wand">Yıldız Işığı Asası</string>
+    <string name="item_cat_crystal_scepter">Kristal Asa</string>
+    <string name="item_cat_lunar_blade">Ay Bıçağı</string>
+    <string name="item_cat_shadow_dagger">Gölge Hançeri</string>
+    <string name="item_cat_holy_wand">Kutsal Asa</string>
+    <string name="item_cat_dark_scepter">Karanlık Asa</string>
+    <string name="item_cat_rift_edge">Yarık Bıçağı</string>
+    <string name="item_cat_brave_sword">Cesur Kılıç</string>
+    <string name="item_cat_elemental_rod">Element Asası</string>
+    <string name="item_cat_mystic_wand">Mistik Asa</string>
+    <string name="item_cat_runeblade">Rün Kılıcı</string>
+    <string name="item_cat_chainsaw">Motorlu Testere</string>
+    <string name="item_cat_magitek_rod">Magitek Asası</string>
+    <string name="item_cat_esper_wand">Esper Asası</string>
+    <string name="item_cat_buster_sword">Buster Kılıcı</string>
+    <string name="item_cat_leather_glove">Deri Eldiven</string>
+    <string name="item_cat_gatling_gun">Gatling Döner Tüfek</string>
+    <string name="item_cat_mako_staff">Mako Asası</string>
+    <string name="item_cat_materia_wand">Materia Asası</string>
+    <string name="item_cat_gunblade">Tabanca Kılıç</string>
+    <string name="item_cat_pinwheel">Fırıldak</string>
+    <string name="item_cat_guardian_wand">Muhafız Asası</string>
+    <string name="item_cat_sorceress_rod">Büyücü Asası</string>
+    <string name="item_cat_mage_masher">Büyü Kırıcı</string>
+    <string name="item_cat_thief_dagger">Hırsız Hançeri</string>
+    <string name="item_cat_cypress_pole">Selvi Asası</string>
+    <string name="item_cat_summoner_flute">Çağırıcı Flütü</string>
+    <string name="item_cat_dimensional_blade">Boyut Kılıcı</string>
+    <string name="item_cat_void_scythe">Boşluk Tırpanı</string>
+    <string name="item_cat_astral_wand">Astral Asa</string>
+    <string name="item_cat_celestial_rod">Göksel Asa</string>
+
+    <!-- Armor -->
+    <string name="item_cat_plate_armor">Plaka Zırh</string>
+    <string name="item_cat_leather_helm">Deri Miğfer</string>
+    <string name="item_cat_cloth_robe">Kumaş Cübbe</string>
+    <string name="item_cat_scale_mail">Pul Zırh</string>
+    <string name="item_cat_heavy_cuirass">Ağır Göğüslük</string>
+    <string name="item_cat_mithril_vest">Mithril Yelek</string>
+    <string name="item_cat_dragon_scale_armor">Ejderha Pul Zırhı</string>
+    <string name="item_cat_archmage_robes">Başbüyücü Cübbesi</string>
+    <string name="item_cat_knight_mail">Şövalye Zırhı</string>
+    <string name="item_cat_paladin_cuirass">Paladin Göğüslüğü</string>
+    <string name="item_cat_dark_armor">Karanlık Zırh</string>
+    <string name="item_cat_white_robe">Beyaz Cübbe</string>
+    <string name="item_cat_mirage_vest">Serap Yeleği</string>
+    <string name="item_cat_diamond_armor">Elmas Zırh</string>
+    <string name="item_cat_summoner_garb">Çağırıcı Giysisi</string>
+    <string name="item_cat_genji_armor">Genji Zırhı</string>
+    <string name="item_cat_magitek_coat">Magitek Palto</string>
+    <string name="item_cat_silk_robe">İpek Cübbe</string>
+    <string name="item_cat_soldier_uniform">SOLDIER Üniforması</string>
+    <string name="item_cat_shinra_vest">Shinra Yeleği</string>
+    <string name="item_cat_aegis_coat">Aegis Palto</string>
+    <string name="item_cat_seed_uniform">SeeD Üniforması</string>
+    <string name="item_cat_balamb_jacket">Balamb Ceketi</string>
+    <string name="item_cat_sorceress_gown">Büyücü Elbisesi</string>
+    <string name="item_cat_grand_armor">Büyük Zırh</string>
+    <string name="item_cat_black_cowl">Siyah Başlık</string>
+    <string name="item_cat_feather_hat">Tüylü Şapka</string>
+    <string name="item_cat_dimensional_cuirass">Boyut Göğüslüğü</string>
+    <string name="item_cat_astral_vestment">Astral Giysi</string>
+    <string name="item_cat_celestial_garb">Göksel Elbise</string>
+
+    <!-- Shields -->
+    <string name="item_cat_round_shield">Yuvarlak Kalkan</string>
+    <string name="item_cat_guard_shield">Muhafız Kalkanı</string>
+    <string name="item_cat_aegis_shield">Aegis Kalkanı</string>
+    <string name="item_cat_tower_shield">Kule Kalkanı</string>
+    <string name="item_cat_force_shield">Güç Kalkanı</string>
+    <string name="item_cat_mirror_shield">Ayna Kalkanı</string>
+    <string name="item_cat_lunar_barrier">Ay Bariyeri</string>
+    <string name="item_cat_light_shield">Işık Kalkanı</string>
+    <string name="item_cat_elemental_aegis">Element Aegis\'i</string>
+    <string name="item_cat_crystal_shield">Kristal Kalkan</string>
+    <string name="item_cat_genji_shield">Genji Kalkanı</string>
+    <string name="item_cat_magitek_barrier">Magitek Bariyeri</string>
+    <string name="item_cat_mythril_armlet">Mithril Bilezik</string>
+    <string name="item_cat_guard_bracelet">Muhafız Bileziği</string>
+    <string name="item_cat_guardian_shield">Koruyucu Kalkan</string>
+    <string name="item_cat_force_aegis">Güç Aegis\'i</string>
+    <string name="item_cat_shield_alexandria">İskenderiye Kalkanı</string>
+    <string name="item_cat_dragon_shield">Ejderha Kalkanı</string>
+    <string name="item_cat_dimensional_barrier">Boyut Bariyeri</string>
+    <string name="item_cat_void_aegis">Boşluk Aegis\'i</string>
+
+    <!-- Accessories -->
+    <string name="item_cat_copper_ring">Bakır Yüzük</string>
+    <string name="item_cat_silver_pendant">Gümüş Kolye</string>
+    <string name="item_cat_ruby_bracelet">Yakut Bilezik</string>
+    <string name="item_cat_jade_earring">Yeşim Küpe</string>
+    <string name="item_cat_relic_amulet">Kalıntı Muska</string>
+    <string name="item_cat_cosmic_charm">Kozmik Uğur</string>
+    <string name="item_cat_moonstone_ring">Ay Taşı Yüzük</string>
+    <string name="item_cat_star_pendant">Yıldız Kolye</string>
+    <string name="item_cat_flame_ring">Alev Yüzüğü</string>
+    <string name="item_cat_angel_ring">Melek Yüzüğü</string>
+    <string name="item_cat_relic_ring">Kalıntı Yüzük</string>
+    <string name="item_cat_earring_power">Güç Küpesi</string>
+    <string name="item_cat_ribbon">Kurdele</string>
+    <string name="item_cat_mako_earring">Mako Küpesi</string>
+    <string name="item_cat_gf_talisman">GF Tılsımı</string>
+    <string name="item_cat_sorceress_crown">Büyücü Tacı</string>
+    <string name="item_cat_pumice_piece">Ponza Taşı Parçası</string>
+    <string name="item_cat_garnet_amulet">Lal Muska</string>
+    <string name="item_cat_dimensional_core">Boyut Çekirdeği</string>
+    <string name="item_cat_cosmic_crest">Kozmik Arması</string>
+
     <!-- Pets -->
     <string name="pet_chocobo_name">Chocobo</string>
     <string name="pet_chocobo_desc">+%%20 Eşya Bulma</string>
@@ -579,4 +776,11 @@
     <string name="bulletin_perk_vault">💰 Kasa Gil Faizi: +%1$d%%</string>
     <string name="bulletin_perk_pathfinder">🧭 İzci Başlangıç Katı: Kat %1$d</string>
     <string name="bulletin_perk_planning">📜 Yükseltme İndirimi: %1$d%%</string>
+
+    <!-- Gold to Gems Exchange -->
+    <string name="exchange_title">TAKAS</string>
+    <string name="exchange_gold_for_gems_title">ALTIN - MÜCEVHER TAKASI</string>
+    <string name="exchange_rate_format">%1$s Gil ➔ %2$d Mücevher</string>
+    <string name="btn_exchange_pack">Takas Et</string>
+    <string name="btn_need_gil">%1$s Gil Gerekli</string>
 </resources>

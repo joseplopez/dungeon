@@ -466,6 +466,127 @@
     <string name="item_rarity_epic">Epico</string>
     <string name="item_rarity_legendary">Leggendario</string>
     <string name="item_name_template">%1$s %2$s</string>
+    <!-- Item Categories -->
+    <!-- Weapons -->
+    <string name="item_cat_sword">Spada</string>
+    <string name="item_cat_dagger">Daga</string>
+    <string name="item_cat_staff">Bastone</string>
+    <string name="item_cat_wooden_wand">Bacchetta di Legno</string>
+    <string name="item_cat_battle_axe">Ascia da Battaglia</string>
+    <string name="item_cat_hunting_bow">Arco da Caccia</string>
+    <string name="item_cat_knight_lance">Lancia da Cavaliere</string>
+    <string name="item_cat_mithril_rod">Asta di Mithril</string>
+    <string name="item_cat_katana">Katana</string>
+    <string name="item_cat_greatsword">Spadone</string>
+    <string name="item_cat_scythe">Falce</string>
+    <string name="item_cat_starlight_wand">Bacchetta Stellare</string>
+    <string name="item_cat_crystal_scepter">Scettro di Cristallo</string>
+    <string name="item_cat_lunar_blade">Lama Lunare</string>
+    <string name="item_cat_shadow_dagger">Daga Ombra</string>
+    <string name="item_cat_holy_wand">Bacchetta Sacra</string>
+    <string name="item_cat_dark_scepter">Scettro Oscuro</string>
+    <string name="item_cat_rift_edge">Lama della Fenditura</string>
+    <string name="item_cat_brave_sword">Spada Valorosa</string>
+    <string name="item_cat_elemental_rod">Asta Elementale</string>
+    <string name="item_cat_mystic_wand">Bacchetta Mistica</string>
+    <string name="item_cat_runeblade">Spada Runica</string>
+    <string name="item_cat_chainsaw">Motosega</string>
+    <string name="item_cat_magitek_rod">Asta Magitek</string>
+    <string name="item_cat_esper_wand">Bacchetta di Esper</string>
+    <string name="item_cat_buster_sword">Spada Potente</string>
+    <string name="item_cat_leather_glove">Guanto di Pelle</string>
+    <string name="item_cat_gatling_gun">Cannone Gatling</string>
+    <string name="item_cat_mako_staff">Bastone Mako</string>
+    <string name="item_cat_materia_wand">Bacchetta di Materia</string>
+    <string name="item_cat_gunblade">Spadagun</string>
+    <string name="item_cat_pinwheel">Girandola</string>
+    <string name="item_cat_guardian_wand">Bacchetta Guardiana</string>
+    <string name="item_cat_sorceress_rod">Scettro della Strega</string>
+    <string name="item_cat_mage_masher">Mangiamagia</string>
+    <string name="item_cat_thief_dagger">Daga del Ladro</string>
+    <string name="item_cat_cypress_pole">Bastone di Cipresso</string>
+    <string name="item_cat_summoner_flute">Flauto dell\'Invocatore</string>
+    <string name="item_cat_dimensional_blade">Lama Dimensionale</string>
+    <string name="item_cat_void_scythe">Falce del Vuoto</string>
+    <string name="item_cat_astral_wand">Bacchetta Astrale</string>
+    <string name="item_cat_celestial_rod">Scettro Celestiale</string>
+
+    <!-- Armor -->
+    <string name="item_cat_plate_armor">Armatura di Piastre</string>
+    <string name="item_cat_leather_helm">Elmo di Pelle</string>
+    <string name="item_cat_cloth_robe">Toga di Stoffa</string>
+    <string name="item_cat_scale_mail">Corazza di Scaglie</string>
+    <string name="item_cat_heavy_cuirass">Corazza Pesante</string>
+    <string name="item_cat_mithril_vest">Gilet di Mithril</string>
+    <string name="item_cat_dragon_scale_armor">Armadura di Scaglie di Drago</string>
+    <string name="item_cat_archmage_robes">Toga dell\'Arcimago</string>
+    <string name="item_cat_knight_mail">Armatura da Cavaliere</string>
+    <string name="item_cat_paladin_cuirass">Corazza da Paladino</string>
+    <string name="item_cat_dark_armor">Armatura Oscura</string>
+    <string name="item_cat_white_robe">Toga Bianca</string>
+    <string name="item_cat_mirage_vest">Gilet Mirage</string>
+    <string name="item_cat_diamond_armor">Armatura di Diamante</string>
+    <string name="item_cat_summoner_garb">Abito dell\'Invocatore</string>
+    <string name="item_cat_genji_armor">Armatura Genji</string>
+    <string name="item_cat_magitek_coat">Cappotto Magitek</string>
+    <string name="item_cat_silk_robe">Toga di Seta</string>
+    <string name="item_cat_soldier_uniform">Uniforme SOLDIER</string>
+    <string name="item_cat_shinra_vest">Gilet Shinra</string>
+    <string name="item_cat_aegis_coat">Cappotto Egida</string>
+    <string name="item_cat_seed_uniform">Uniforme SeeD</string>
+    <string name="item_cat_balamb_jacket">Giacca di Balamb</string>
+    <string name="item_cat_sorceress_gown">Abito della Strega</string>
+    <string name="item_cat_grand_armor">Gran Armatura</string>
+    <string name="item_cat_black_cowl">Cappuccio Nero</string>
+    <string name="item_cat_feather_hat">Cappello Piumato</string>
+    <string name="item_cat_dimensional_cuirass">Corazza Dimensionale</string>
+    <string name="item_cat_astral_vestment">Veste Astrale</string>
+    <string name="item_cat_celestial_garb">Abito Celestiale</string>
+
+    <!-- Shields -->
+    <string name="item_cat_round_shield">Scudo Rotondo</string>
+    <string name="item_cat_guard_shield">Scudo di Guardia</string>
+    <string name="item_cat_aegis_shield">Scudo Egida</string>
+    <string name="item_cat_tower_shield">Scudo Torre</string>
+    <string name="item_cat_force_shield">Scudo di Forza</string>
+    <string name="item_cat_mirror_shield">Scudo Specchio</string>
+    <string name="item_cat_lunar_barrier">Barriera Lunare</string>
+    <string name="item_cat_light_shield">Scudo di Luce</string>
+    <string name="item_cat_elemental_aegis">Egida Elementale</string>
+    <string name="item_cat_crystal_shield">Scudo di Cristallo</string>
+    <string name="item_cat_genji_shield">Scudo Genji</string>
+    <string name="item_cat_magitek_barrier">Barriera Magitek</string>
+    <string name="item_cat_mythril_armlet">Bracciale di Mithril</string>
+    <string name="item_cat_guard_bracelet">Bracciale di Guardia</string>
+    <string name="item_cat_guardian_shield">Scudo del Guardiano</string>
+    <string name="item_cat_force_aegis">Egida di Forza</string>
+    <string name="item_cat_shield_alexandria">Scudo di Alessandria</string>
+    <string name="item_cat_dragon_shield">Scudo del Dragone</string>
+    <string name="item_cat_dimensional_barrier">Barriera Dimensionale</string>
+    <string name="item_cat_void_aegis">Egida del Vuoto</string>
+
+    <!-- Accessories -->
+    <string name="item_cat_copper_ring">Anello di Rame</string>
+    <string name="item_cat_silver_pendant">Pendente d\'Argento</string>
+    <string name="item_cat_ruby_bracelet">Bracciale di Rubino</string>
+    <string name="item_cat_jade_earring">Orecchino di Giada</string>
+    <string name="item_cat_relic_amulet">Amuleto della Reliquia</string>
+    <string name="item_cat_cosmic_charm">Amuleto Cosmico</string>
+    <string name="item_cat_moonstone_ring">Anello di Pietra Lunare</string>
+    <string name="item_cat_star_pendant">Pendente Stella</string>
+    <string name="item_cat_flame_ring">Anello di Fuoco</string>
+    <string name="item_cat_angel_ring">Anello dell\'Angelo</string>
+    <string name="item_cat_relic_ring">Anello della Reliquia</string>
+    <string name="item_cat_earring_power">Orecchino del Potere</string>
+    <string name="item_cat_ribbon">Nastro</string>
+    <string name="item_cat_mako_earring">Orecchino Mako</string>
+    <string name="item_cat_gf_talisman">Talismano GF</string>
+    <string name="item_cat_sorceress_crown">Corona della Strega</string>
+    <string name="item_cat_pumice_piece">Pezzo di Pomice</string>
+    <string name="item_cat_garnet_amulet">Amuleto di Granato</string>
+    <string name="item_cat_dimensional_core">Nucleo Dimensionale</string>
+    <string name="item_cat_cosmic_crest">Stemma Cosmico</string>
+
     <!-- Pets -->
     <string name="pet_chocobo_name">Chocobo</string>
     <string name="pet_chocobo_desc">+20%% Ritrovamento Oggetti</string>
@@ -655,4 +776,11 @@
     <string name="bulletin_perk_vault">💰 Interessi Gil Cassaforte: +%1$d%%</string>
     <string name="bulletin_perk_pathfinder">🧭 Piano partenza Apripista: Piano %1$d</string>
     <string name="bulletin_perk_planning">📜 Sconto potenziamenti: %1$d%%</string>
+
+    <!-- Gold to Gems Exchange -->
+    <string name="exchange_title">SCAMBIO</string>
+    <string name="exchange_gold_for_gems_title">SCAMBIO ORO IN GEMME</string>
+    <string name="exchange_rate_format">%1$s Gil ➔ %2$d Gemmes</string>
+    <string name="btn_exchange_pack">Scambia</string>
+    <string name="btn_need_gil">Serve %1$s Gil</string>
 </resources>

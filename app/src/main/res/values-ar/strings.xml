@@ -178,6 +178,82 @@
     <string name="enemy_jenova_birth">جينوفا-الميلاد</string>
     <string name="enemy_rufus">روفوس شينرا</string>
     <string name="enemy_jenova_life">جينوفا-الحياة</string>
+    <string name="enemy_hojo">البروفيسور هوجو</string>
+    <string name="enemy_jenova_synthesis">جينوفا-تخليق</string>
+    <string name="enemy_bizarro_seph">بيزارو سيفيروث</string>
+    <string name="enemy_sephiroth">سيفر سيفيروث</string>
+
+    <!-- Dimension 8 Strings -->
+    <string name="dim8_title">ضغط الزمان</string>
+    <string name="dim8_subtitle">فاينل فانتسي VIII</string>
+    <string name="dim8_story">يسافر سكوال ليونهارت ومرتزقة SeeD عبر الزمن لإيقاف الساحرة ألتيميسيا من تحقيق ضغط الزمان...</string>
+    <string name="biome_balamb_garden">حديقة بالامب</string>
+    <string name="biome_galbadia_missile">قاعدة صواريخ جالباديا</string>
+    <string name="biome_deep_sea_deposit">مركز أبحاث أعماق البحار</string>
+    <string name="biome_lunatic_pandora">لوناتيك باندورا</string>
+    <string name="biome_ultimecia_castle">قلعة ألتيميسيا</string>
+    <string name="enemy_galbadian_soldier">جندي جالبادي</string>
+    <string name="enemy_bite_bug">حشرة العض</string>
+    <string name="enemy_geezard">جيزارد</string>
+    <string name="enemy_wendigo">وينديجو</string>
+    <string name="enemy_elnoyle">النويل</string>
+    <string name="enemy_ruby_dragon">التنين الياقوتي</string>
+    <string name="enemy_norg">نورج</string>
+    <string name="enemy_edea">الساحرة إيديا</string>
+    <string name="enemy_fujin_raijin">فوجين ورابجين</string>
+    <string name="enemy_seifer">سيفير ألماسي</string>
+    <string name="enemy_adel">الساحرة عادل</string>
+    <string name="enemy_trauma">تروما</string>
+    <string name="enemy_omega_weapon">سلاح أوميغا</string>
+    <string name="enemy_ultimecia">ألتيميسيا</string>
+
+    <!-- Dimension 9 Strings -->
+    <string name="dim9_title">ذاكرة البلورة</string>
+    <string name="dim9_subtitle">فاينل فانتسي IX</string>
+    <string name="dim9_story">يختطف زيدان ترايبال وفرقة تانتالوس المسرحية الأميرة جارنيت ويكشفون مخطط كوجا لتدمير بلورة الخلق...</string>
+    <string name="biome_lindblum">قلعة ليندبلوم</string>
+    <string name="biome_conde_petie">طريق كوندي بيتي</string>
+    <string name="biome_oeilvert">أويلفيرت</string>
+    <string name="biome_pandemonium_ix">بانتيمونيوم</string>
+    <string name="biome_memoria">ميموريا</string>
+    <string name="enemy_black_mage_unit">الساحر الأسود رقم 1</string>
+    <string name="enemy_zaghnol">زاغنول</string>
+    <string name="enemy_mistodon">ميستودون</string>
+    <string name="enemy_silver_dragon">التنين الفضي</string>
+    <string name="enemy_plant_brain">دماغ النبات</string>
+    <string name="enemy_black_waltz">الفالس الأسود</string>
+    <string name="enemy_zorn_thorn">زورن وثورن</string>
+    <string name="enemy_ralvurahva">رالفورافا</string>
+    <string name="enemy_maliris">ماليريس</string>
+    <string name="enemy_kuja">كوجا</string>
+    <string name="enemy_trance_kuja">ترانس كوجا</string>
+    <string name="enemy_necron">نِكرون</string>
+
+    <!-- Dimension 10 Strings -->
+    <string name="dim10_title">حلم سبيرا</string>
+    <string name="dim10_subtitle">فاينل فانتسي X</string>
+    <string name="dim10_story">ينطلق تيدوس ويونا والحراس في رحلة عبر سبيرا لهزيمة الكائن المرعب المعروف باسم سين...</string>
+    <string name="biome_besaid_island">جزيرة بيسايد</string>
+    <string name="biome_mi_ihen_highroad">طريق مي إيهين السريع</string>
+    <string name="biome_bevelle_temple">معبد بيفيل</string>
+    <string name="biome_omega_ruins">أطلال أوميغا</string>
+    <string name="biome_sin_interior">داخل سين</string>
+    <string name="biome_dream_zanarkand">زاناركاند الأحلام</string>
+    <string name="enemy_dingo">دينغو</string>
+    <string name="enemy_water_flan">هلام الماء</string>
+    <string name="enemy_klikk">كليك</string>
+    <string name="enemy_guado_guardian">حارس غوادو</string>
+    <string name="enemy_great_malboro">مال بورو العظيم</string>
+    <string name="enemy_dark_aeon">آيون المظلم</string>
+    <string name="enemy_klikk_boss">كبير الكليك</string>
+    <string name="enemy_oblitzerator">أوبليتزيريتور</string>
+    <string name="enemy_evrae">إيفراي</string>
+    <string name="enemy_seymour">سيمور غوادو</string>
+    <string name="enemy_omega_weapon_x">سلاح أوميغا</string>
+    <string name="enemy_jecht">آيون براسكا النهائي</string>
+    <string name="enemy_penance">العقاب</string>
+    <string name="enemy_yu_yevon">يو يفون</string>
+    <string name="enemy_sin">سين</string>
 
     <!-- Town Screen -->
     <string name="town_name">العاصمة الكبرى</string>
@@ -390,6 +466,128 @@
     <string name="item_rarity_epic">ملحمي</string>
     <string name="item_rarity_legendary">أسطوري</string>
     <string name="item_name_template">%1$s %2$s</string>
+
+    <!-- Item Categories -->
+    <!-- Weapons -->
+    <string name="item_cat_sword">سيف</string>
+    <string name="item_cat_dagger">خنجر</string>
+    <string name="item_cat_staff">عصا</string>
+    <string name="item_cat_wooden_wand">عصا خشبية</string>
+    <string name="item_cat_battle_axe">فأس قتال</string>
+    <string name="item_cat_hunting_bow">قوس الصيد</string>
+    <string name="item_cat_knight_lance">رمح الفارس</string>
+    <string name="item_cat_mithril_rod">عصا ميثريل</string>
+    <string name="item_cat_katana">كاتانا</string>
+    <string name="item_cat_greatsword">سيف عظيم</string>
+    <string name="item_cat_scythe">منجل</string>
+    <string name="item_cat_starlight_wand">عصا ضوء النجوم</string>
+    <string name="item_cat_crystal_scepter">صولجان بلوري</string>
+    <string name="item_cat_lunar_blade">شفرة القمر</string>
+    <string name="item_cat_shadow_dagger">خنجر الظل</string>
+    <string name="item_cat_holy_wand">عصا مقدسة</string>
+    <string name="item_cat_dark_scepter">صولجان مظلم</string>
+    <string name="item_cat_rift_edge">شفرة الصدع</string>
+    <string name="item_cat_brave_sword">سيف الشجاع</string>
+    <string name="item_cat_elemental_rod">عصا العناصر</string>
+    <string name="item_cat_mystic_wand">عصا صوفية</string>
+    <string name="item_cat_runeblade">سيف الرونية</string>
+    <string name="item_cat_chainsaw">منشار كهربائي</string>
+    <string name="item_cat_magitek_rod">عصا ماجيتك</string>
+    <string name="item_cat_esper_wand">عصا إسبر</string>
+    <string name="item_cat_buster_sword">سيف باستر</string>
+    <string name="item_cat_leather_glove">قفاز جلدي</string>
+    <string name="item_cat_gatling_gun">مدفع غاتلينغ</string>
+    <string name="item_cat_mako_staff">عصا ماكو</string>
+    <string name="item_cat_materia_wand">عصا الماتيريا</string>
+    <string name="item_cat_gunblade">سيف بندقية</string>
+    <string name="item_cat_pinwheel">دولاب الهواء</string>
+    <string name="item_cat_guardian_wand">عصا الحارس</string>
+    <string name="item_cat_sorceress_rod">عصا الساحرة</string>
+    <string name="item_cat_mage_masher">قاطعة السحر</string>
+    <string name="item_cat_thief_dagger">خنجر اللص</string>
+    <string name="item_cat_cypress_pole">عصا السرو</string>
+    <string name="item_cat_summoner_flute">مزمار المستدعي</string>
+    <string name="item_cat_dimensional_blade">شفرة الأبعاد</string>
+    <string name="item_cat_void_scythe">منجل الفراغ</string>
+    <string name="item_cat_astral_wand">عصا نجمية</string>
+    <string name="item_cat_celestial_rod">عصا سماوية</string>
+
+    <!-- Armor -->
+    <string name="item_cat_plate_armor">درع ألواح</string>
+    <string name="item_cat_leather_helm">خوذة جلدية</string>
+    <string name="item_cat_cloth_robe">رداء قماش</string>
+    <string name="item_cat_scale_mail">درع حرشفي</string>
+    <string name="item_cat_heavy_cuirass">درع صليبة ثقيل</string>
+    <string name="item_cat_mithril_vest">سترة ميثريل</string>
+    <string name="item_cat_dragon_scale_armor">درع حرشوف التنين</string>
+    <string name="item_cat_archmage_robes">رداء كبير السحرة</string>
+    <string name="item_cat_knight_mail">درع الفارس</string>
+    <string name="item_cat_paladin_cuirass">درع الفارس القديس</string>
+    <string name="item_cat_dark_armor">درع مظلم</string>
+    <string name="item_cat_white_robe">رداء أبيض</string>
+    <string name="item_cat_mirage_vest">سترة السراب</string>
+    <string name="item_cat_diamond_armor">درع الماسية</string>
+    <string name="item_cat_summoner_garb">زي المستدعي</string>
+    <string name="item_cat_genji_armor">درع جينجي</string>
+    <string name="item_cat_magitek_coat">معطف ماجيتك</string>
+    <string name="item_cat_silk_robe">رداء حريري</string>
+    <string name="item_cat_soldier_uniform">زي SOLDIER</string>
+    <string name="item_cat_shinra_vest">سترة شينرا</string>
+    <string name="item_cat_aegis_coat">معطف إيجيس</string>
+    <string name="item_cat_seed_uniform">زي SeeD</string>
+    <string name="item_cat_balamb_jacket">سترة بالامب</string>
+    <string name="item_cat_sorceress_gown">ثوب الساحرة</string>
+    <string name="item_cat_grand_armor">درع عظيم</string>
+    <string name="item_cat_black_cowl">قلنسوة سوداء</string>
+    <string name="item_cat_feather_hat">قبعة ريشية</string>
+    <string name="item_cat_dimensional_cuirass">درع الأبعاد</string>
+    <string name="item_cat_astral_vestment">رداء نجمي</string>
+    <string name="item_cat_celestial_garb">ثوب سماوي</string>
+
+    <!-- Shields -->
+    <string name="item_cat_round_shield">درع دائر</string>
+    <string name="item_cat_guard_shield">درع الحارس</string>
+    <string name="item_cat_aegis_shield">درع إيجيس</string>
+    <string name="item_cat_tower_shield">درع البرج</string>
+    <string name="item_cat_force_shield">درع القوة</string>
+    <string name="item_cat_mirror_shield">درع المرآة</string>
+    <string name="item_cat_lunar_barrier">حاجز القمر</string>
+    <string name="item_cat_light_shield">درع النور</string>
+    <string name="item_cat_elemental_aegis">إيجيس العناصر</string>
+    <string name="item_cat_crystal_shield">درع بلوري</string>
+    <string name="item_cat_genji_shield">درع جينجي</string>
+    <string name="item_cat_magitek_barrier">حاجز ماجيتك</string>
+    <string name="item_cat_mythril_armlet">سوار ميثريل</string>
+    <string name="item_cat_guard_bracelet">سوار الحماية</string>
+    <string name="item_cat_guardian_shield">درع الحارس</string>
+    <string name="item_cat_force_aegis">إيجيس القوة</string>
+    <string name="item_cat_shield_alexandria">درع الإسكندرية</string>
+    <string name="item_cat_dragon_shield">درع التنين</string>
+    <string name="item_cat_dimensional_barrier">حاجز الأبعاد</string>
+    <string name="item_cat_void_aegis">إيجيس الفراغ</string>
+
+    <!-- Accessories -->
+    <string name="item_cat_copper_ring">خاتم نحاسي</string>
+    <string name="item_cat_silver_pendant">قلادة فضية</string>
+    <string name="item_cat_ruby_bracelet">سوار ياقوتي</string>
+    <string name="item_cat_jade_earring">قرط يشم</string>
+    <string name="item_cat_relic_amulet">تميمة أثرية</string>
+    <string name="item_cat_cosmic_charm">تعويذة كونية</string>
+    <string name="item_cat_moonstone_ring">خاتم حجر القمر</string>
+    <string name="item_cat_star_pendant">قلادة النجمة</string>
+    <string name="item_cat_flame_ring">خاتم النار</string>
+    <string name="item_cat_angel_ring">خاتم الملاك</string>
+    <string name="item_cat_relic_ring">خاتم الأثر</string>
+    <string name="item_cat_earring_power">قرط القوة</string>
+    <string name="item_cat_ribbon">شريط</string>
+    <string name="item_cat_mako_earring">قرط ماكو</string>
+    <string name="item_cat_gf_talisman">تعويذة GF</string>
+    <string name="item_cat_sorceress_crown">تاج الساحرة</string>
+    <string name="item_cat_pumice_piece">قطعة خفاف</string>
+    <string name="item_cat_garnet_amulet">تميمة العقيق</string>
+    <string name="item_cat_dimensional_core">نواة الأبعاد</string>
+    <string name="item_cat_cosmic_crest">شعار كوني</string>
+
     <!-- Pets -->
     <string name="pet_chocobo_name">تشوكوبو</string>
     <string name="pet_chocobo_desc">+20%% العثور على العناصر</string>
@@ -579,4 +777,11 @@
     <string name="bulletin_perk_vault">💰 فائدة جيل الخزينة: +%1$d%%</string>
     <string name="bulletin_perk_pathfinder">🧭 طابق بداية المستكشف: طابق %1$d</string>
     <string name="bulletin_perk_planning">📜 خصم الترقيات: %1$d%%</string>
+
+    <!-- Gold to Gems Exchange -->
+    <string name="exchange_title">تبديل</string>
+    <string name="exchange_gold_for_gems_title">تبديل الذهب بالجواهر</string>
+    <string name="exchange_rate_format">%1$s جيل ➔ %2$d جوهرة</string>
+    <string name="btn_exchange_pack">تبديل</string>
+    <string name="btn_need_gil">تحتاج %1$s جيل</string>
 </resources>

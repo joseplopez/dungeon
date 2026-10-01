@@ -50,6 +50,40 @@ fun HeroSpriteItem(heroClass: HeroClass, modifier: Modifier = Modifier) {
     }
 }
 
+
+
+@Preview(widthDp = 640, heightDp = 640)
+@Composable
+fun OnionKnightSpritePreview() {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFF121212))
+            .padding(16.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(
+                text = "Refactored Onion Knight (22x28 Exact Grid)",
+                color = Color(0xFFFFD700),
+                fontSize = 18.sp,
+                modifier = Modifier.padding(bottom = 12.dp)
+            )
+            Box(
+                modifier = Modifier
+                    .size(200.dp)
+                    .background(Color(0xFF253B80)) // Classic FF1 JRPG Blue
+                    .padding(16.dp)
+            ) {
+                HeroSprite(
+                    heroClass = HeroClass.ONION_KNIGHT,
+                    modifier = Modifier.fillMaxSize()
+                )
+            }
+        }
+    }
+}
+
 @Preview(widthDp = 640, heightDp = 640)
 @Composable
 fun WarriorSpritePreview() {
@@ -466,6 +500,7 @@ fun BardSpritePreview() {
         }
     }
 }
+
 
 @Preview(widthDp = 640, heightDp = 840)
 @Composable

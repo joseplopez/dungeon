@@ -466,6 +466,127 @@
     <string name="item_rarity_epic">Epic</string>
     <string name="item_rarity_legendary">Legendary</string>
     <string name="item_name_template">%1$s %2$s</string>
+
+    <!-- Item Categories -->
+    <!-- Weapons -->
+    <string name="item_cat_sword">Sword</string>
+    <string name="item_cat_dagger">Dagger</string>
+    <string name="item_cat_staff">Staff</string>
+    <string name="item_cat_wooden_wand">Wooden Wand</string>
+    <string name="item_cat_battle_axe">Battle Axe</string>
+    <string name="item_cat_hunting_bow">Hunting Bow</string>
+    <string name="item_cat_knight_lance">Knight Lance</string>
+    <string name="item_cat_mithril_rod">Mithril Rod</string>
+    <string name="item_cat_katana">Katana</string>
+    <string name="item_cat_greatsword">Greatsword</string>
+    <string name="item_cat_scythe">Scythe</string>
+    <string name="item_cat_starlight_wand">Starlight Wand</string>
+    <string name="item_cat_crystal_scepter">Crystal Scepter</string>
+    <string name="item_cat_lunar_blade">Lunar Blade</string>
+    <string name="item_cat_shadow_dagger">Shadow Dagger</string>
+    <string name="item_cat_holy_wand">Holy Wand</string>
+    <string name="item_cat_dark_scepter">Dark Scepter</string>
+    <string name="item_cat_rift_edge">Rift Edge</string>
+    <string name="item_cat_brave_sword">Brave Sword</string>
+    <string name="item_cat_elemental_rod">Elemental Rod</string>
+    <string name="item_cat_mystic_wand">Mystic Wand</string>
+    <string name="item_cat_runeblade">Runeblade</string>
+    <string name="item_cat_chainsaw">Chainsaw</string>
+    <string name="item_cat_magitek_rod">Magitek Rod</string>
+    <string name="item_cat_esper_wand">Esper Wand</string>
+    <string name="item_cat_buster_sword">Buster Sword</string>
+    <string name="item_cat_leather_glove">Leather Glove</string>
+    <string name="item_cat_gatling_gun">Gatling Gun</string>
+    <string name="item_cat_mako_staff">Mako Staff</string>
+    <string name="item_cat_materia_wand">Materia Wand</string>
+    <string name="item_cat_gunblade">Gunblade</string>
+    <string name="item_cat_pinwheel">Pinwheel</string>
+    <string name="item_cat_guardian_wand">Guardian Wand</string>
+    <string name="item_cat_sorceress_rod">Sorceress Rod</string>
+    <string name="item_cat_mage_masher">Mage Masher</string>
+    <string name="item_cat_thief_dagger">Thief Dagger</string>
+    <string name="item_cat_cypress_pole">Cypress Pole</string>
+    <string name="item_cat_summoner_flute">Summoner Flute</string>
+    <string name="item_cat_dimensional_blade">Dimensional Blade</string>
+    <string name="item_cat_void_scythe">Void Scythe</string>
+    <string name="item_cat_astral_wand">Astral Wand</string>
+    <string name="item_cat_celestial_rod">Celestial Rod</string>
+
+    <!-- Armor -->
+    <string name="item_cat_plate_armor">Plate Armor</string>
+    <string name="item_cat_leather_helm">Leather Helm</string>
+    <string name="item_cat_cloth_robe">Cloth Robe</string>
+    <string name="item_cat_scale_mail">Scale Mail</string>
+    <string name="item_cat_heavy_cuirass">Heavy Cuirass</string>
+    <string name="item_cat_mithril_vest">Mithril Vest</string>
+    <string name="item_cat_dragon_scale_armor">Dragon Scale Armor</string>
+    <string name="item_cat_archmage_robes">Archmage Robes</string>
+    <string name="item_cat_knight_mail">Knight Mail</string>
+    <string name="item_cat_paladin_cuirass">Paladin Cuirass</string>
+    <string name="item_cat_dark_armor">Dark Armor</string>
+    <string name="item_cat_white_robe">White Robe</string>
+    <string name="item_cat_mirage_vest">Mirage Vest</string>
+    <string name="item_cat_diamond_armor">Diamond Armor</string>
+    <string name="item_cat_summoner_garb">Summoner Garb</string>
+    <string name="item_cat_genji_armor">Genji Armor</string>
+    <string name="item_cat_magitek_coat">Magitek Coat</string>
+    <string name="item_cat_silk_robe">Silk Robe</string>
+    <string name="item_cat_soldier_uniform">SOLDIER Uniform</string>
+    <string name="item_cat_shinra_vest">Shinra Vest</string>
+    <string name="item_cat_aegis_coat">Aegis Coat</string>
+    <string name="item_cat_seed_uniform">SeeD Uniform</string>
+    <string name="item_cat_balamb_jacket">Balamb Jacket</string>
+    <string name="item_cat_sorceress_gown">Sorceress Gown</string>
+    <string name="item_cat_grand_armor">Grand Armor</string>
+    <string name="item_cat_black_cowl">Black Cowl</string>
+    <string name="item_cat_feather_hat">Feather Hat</string>
+    <string name="item_cat_dimensional_cuirass">Dimensional Cuirass</string>
+    <string name="item_cat_astral_vestment">Astral Vestment</string>
+    <string name="item_cat_celestial_garb">Celestial Garb</string>
+
+    <!-- Shields -->
+    <string name="item_cat_round_shield">Round Shield</string>
+    <string name="item_cat_guard_shield">Guard Shield</string>
+    <string name="item_cat_aegis_shield">Aegis Shield</string>
+    <string name="item_cat_tower_shield">Tower Shield</string>
+    <string name="item_cat_force_shield">Force Shield</string>
+    <string name="item_cat_mirror_shield">Mirror Shield</string>
+    <string name="item_cat_lunar_barrier">Lunar Barrier</string>
+    <string name="item_cat_light_shield">Light Shield</string>
+    <string name="item_cat_elemental_aegis">Elemental Aegis</string>
+    <string name="item_cat_crystal_shield">Crystal Shield</string>
+    <string name="item_cat_genji_shield">Genji Shield</string>
+    <string name="item_cat_magitek_barrier">Magitek Barrier</string>
+    <string name="item_cat_mythril_armlet">Mythril Armlet</string>
+    <string name="item_cat_guard_bracelet">Guard Bracelet</string>
+    <string name="item_cat_guardian_shield">Guardian Shield</string>
+    <string name="item_cat_force_aegis">Force Aegis</string>
+    <string name="item_cat_shield_alexandria">Shield of Alexandria</string>
+    <string name="item_cat_dragon_shield">Dragon Shield</string>
+    <string name="item_cat_dimensional_barrier">Dimensional Barrier</string>
+    <string name="item_cat_void_aegis">Void Aegis</string>
+
+    <!-- Accessories -->
+    <string name="item_cat_copper_ring">Copper Ring</string>
+    <string name="item_cat_silver_pendant">Silver Pendant</string>
+    <string name="item_cat_ruby_bracelet">Ruby Bracelet</string>
+    <string name="item_cat_jade_earring">Jade Earring</string>
+    <string name="item_cat_relic_amulet">Relic Amulet</string>
+    <string name="item_cat_cosmic_charm">Cosmic Charm</string>
+    <string name="item_cat_moonstone_ring">Moonstone Ring</string>
+    <string name="item_cat_star_pendant">Star Pendant</string>
+    <string name="item_cat_flame_ring">Flame Ring</string>
+    <string name="item_cat_angel_ring">Angel Ring</string>
+    <string name="item_cat_relic_ring">Relic Ring</string>
+    <string name="item_cat_earring_power">Earring of Power</string>
+    <string name="item_cat_ribbon">Ribbon</string>
+    <string name="item_cat_mako_earring">Mako Earring</string>
+    <string name="item_cat_gf_talisman">GF Talisman</string>
+    <string name="item_cat_sorceress_crown">Sorceress Crown</string>
+    <string name="item_cat_pumice_piece">Pumice Piece</string>
+    <string name="item_cat_garnet_amulet">Garnet Amulet</string>
+    <string name="item_cat_dimensional_core">Dimensional Core</string>
+    <string name="item_cat_cosmic_crest">Cosmic Crest</string>
     <!-- Pets -->
     <string name="pet_chocobo_name">Chocobo</string>
     <string name="pet_chocobo_desc">+20%% Item Find</string>
@@ -659,4 +780,11 @@
     <string name="bulletin_perk_pathfinder">🧭 Pathfinder Start Floor: Floor %1$d</string>
     <string name="bulletin_perk_planning">📜 Upgrade Discount: %1$d%%</string>
     <string name="dimension_label_format" translatable="false">Fantasy %1$d</string>
+
+    <!-- Gold to Gems Exchange -->
+    <string name="exchange_title">EXCHANGE</string>
+    <string name="exchange_gold_for_gems_title">GOLD TO GEMS EXCHANGE</string>
+    <string name="exchange_rate_format">%1$s Gil ➔ %2$d Gems</string>
+    <string name="btn_exchange_pack">Exchange</string>
+    <string name="btn_need_gil">Need %1$s Gil</string>
 </resources>

@@ -23,6 +23,7 @@ import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -43,6 +44,7 @@ fun RelicsScreen(
 ) {
     val gameState by viewModel.gameState.collectAsState()
     val magicite = gameState?.magicite ?: 0
+    val gold = gameState?.gold ?: 0L
     val navBackStackEntry by navController.currentBackStackEntryAsState()
     val currentRoute = navBackStackEntry?.destination?.route
 
@@ -50,6 +52,7 @@ fun RelicsScreen(
     var leftTab by remember { mutableIntStateOf(0) } // 0: RELICS, 1: AVAILABLE
     var rightTab by remember { mutableIntStateOf(0) } // 0: RELICS, 1: STATS
     var showSupportDialog by remember { mutableStateOf(false) }
+    var showExchangeDialog by remember { mutableStateOf(false) }
 
     val infiniteTransition = rememberInfiniteTransition(label = "relic_anim")
     val animTime by infiniteTransition.animateFloat(
@@ -97,9 +100,18 @@ fun RelicsScreen(
                         }
                         Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                             Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                                Text("🪙", fontSize = 14.sp)
+                                Text(formatGold(gold), style = PixelGold)
+                            }
+                            Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                                 Text("💎", fontSize = 14.sp)
                                 Text("$magicite", style = PixelGold)
                             }
+                            PixelButton(
+                                label = "⚖️ " + safeStringResource(R.string.exchange_title),
+                                onClick = { showExchangeDialog = true },
+                                modifier = Modifier.height(32.dp)
+                            )
                             SupportIconButton(onClick = { showSupportDialog = true })
                             MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
                         }
@@ -401,6 +413,129 @@ fun RelicsScreen(
 
             if (showSupportDialog) {
                 SupportDialog(onDismiss = { showSupportDialog = false })
+            }
+            if (showExchangeDialog) {
+                GoldExchangeDialog(
+                    currentGold = gold,
+                    currentMagicite = magicite,
+                    onExchange = { goldCost, magiciteAmount ->
+                        viewModel.exchangeGoldForMagicite(goldCost, magiciteAmount)
+                    },
+                    onDismiss = { showExchangeDialog = false }
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun GoldExchangeDialog(
+    currentGold: Long,
+    currentMagicite: Int,
+    onExchange: (Long, Int) -> Unit,
+    onDismiss: () -> Unit
+) {
+    val packs = listOf(
+        Triple(50_000L, 10, "50K"),
+        Triple(250_000L, 50, "250K"),
+        Triple(1_000_000L, 200, "1M")
+    )
+
+    Dialog(onDismissRequest = onDismiss) {
+        GoldenBorderBox(
+            modifier = Modifier
+                .fillMaxWidth(0.95f)
+                .wrapContentHeight()
+                .background(BgDarkest)
+        ) {
+            Column(
+                modifier = Modifier.padding(16.dp),
+                horizontalAlignment = CenterHorizontally
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceBetween,
+                    verticalAlignment = CenterVertically
+                ) {
+                    Text(
+                        safeStringResource(R.string.exchange_gold_for_gems_title),
+                        style = PixelHeading,
+                        fontSize = 14.sp
+                    )
+                    PixelButton(
+                        label = "X",
+                        onClick = onDismiss,
+                        modifier = Modifier.size(32.dp),
+                        horizontalPadding = 0.dp,
+                        verticalPadding = 0.dp
+                    )
+                }
+
+                Spacer(Modifier.height(8.dp))
+                PixelDivider()
+                Spacer(Modifier.height(12.dp))
+
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly,
+                    verticalAlignment = CenterVertically
+                ) {
+                    Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                        Text("🪙", fontSize = 16.sp)
+                        Text(formatGold(currentGold), style = PixelGold)
+                    }
+                    Text("•", style = PixelSmall, color = StoneGray)
+                    Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                        Text("💎", fontSize = 16.sp)
+                        Text("$currentMagicite", style = PixelGold)
+                    }
+                }
+
+                Spacer(Modifier.height(16.dp))
+
+                packs.forEach { (goldCost, magiciteAmount, _) ->
+                    val canAfford = currentGold >= goldCost
+                    GoldenBorderBox(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 4.dp)
+                            .background(BgPanel.copy(alpha = 0.8f))
+                    ) {
+                        Row(
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .padding(horizontal = 12.dp, vertical = 8.dp),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = CenterVertically
+                        ) {
+                            Column {
+                                Text(
+                                    safeStringResource(R.string.exchange_rate_format, formatGold(goldCost), magiciteAmount),
+                                    style = PixelBody,
+                                    color = GoldBright
+                                )
+                                Text(
+                                    "+$magiciteAmount 💎",
+                                    style = PixelSmall,
+                                    color = HpGreen
+                                )
+                            }
+
+                            PixelButton(
+                                label = if (canAfford) {
+                                    safeStringResource(R.string.btn_exchange_pack)
+                                } else {
+                                    safeStringResource(R.string.btn_need_gil, formatGold(goldCost))
+                                },
+                                onClick = {
+                                    onExchange(goldCost, magiciteAmount)
+                                },
+                                enabled = canAfford,
+                                modifier = Modifier.height(36.dp)
+                            )
+                        }
+                    }
+                }
             }
         }
     }

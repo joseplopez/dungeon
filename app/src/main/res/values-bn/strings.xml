@@ -6,7 +6,7 @@
     <string name="dim1_subtitle">ফাইনাল ফ্যান্টাসি ১</string>
     <string name="dim1_story">বিশৃঙ্খলার শক্তি দ্বারা চুরি করা স্ফটিকগুলি পুনরুদ্ধার করতে আলোর চার যোদ্ধা জেগে উঠেছে...</string>
 
-    <string name="biome_cornelia">কর্নেলিয়া অঞ্চল</string>
+    <string name="biome_cornelia"> কর্নেলিও অঞ্চল</string>
     <string name="biome_chaos_shrine">বিশৃঙ্খলার মাজার</string>
     <string name="biome_gurgu">গুরগু আগ্নেয়গিরি</string>
     <string name="biome_sea_shrine">সমুদ্র মাজার</string>
@@ -178,6 +178,82 @@
     <string name="enemy_jenova_birth">জেনোভা-জন্ম</string>
     <string name="enemy_rufus">রুফাস শিনরা</string>
     <string name="enemy_jenova_life">জেনোভা-জীবন</string>
+    <string name="enemy_hojo">প্রফেসর হোজো</string>
+    <string name="enemy_jenova_synthesis">জেনোভা-সিন্থেসিস</string>
+    <string name="enemy_bizarro_seph">বিজ্যারো সেফিরোথ</string>
+    <string name="enemy_sephiroth">সেফার সেফিরোথ</string>
+
+    <!-- Dimension 8 Strings -->
+    <string name="dim8_title">সময় সংকোচন</string>
+    <string name="dim8_subtitle">ফাইন্যাল ফ্যান্টাসি VIII</string>
+    <string name="dim8_story">স্কোয়াল লিওনহার্ট এবং SeeD যোদ্ধারা সময় সংকোচন রোধ করতে সময় ভ্রমণ করে...</string>
+    <string name="biome_balamb_garden">বাল্যাম্ব গার্ডেন</string>
+    <string name="biome_galbadia_missile">গ্যালবাডিয়া মিসাইল বেস</string>
+    <string name="biome_deep_sea_deposit">গভীর সমুদ্র গবেষণা কেন্দ্র</string>
+    <string name="biome_lunatic_pandora">লুনাটিক প্যান্ডোরা</string>
+    <string name="biome_ultimecia_castle">আলটিমেসিয়ার দুর্গ</string>
+    <string name="enemy_galbadian_soldier">গ্যালবাডিয়ান সৈনিক</string>
+    <string name="enemy_bite_bug">বাইট বাগ</string>
+    <string name="enemy_geezard">গিজার্ড</string>
+    <string name="enemy_wendigo">ওয়েন্ডিগো</string>
+    <string name="enemy_elnoyle">এলনয়েল</string>
+    <string name="enemy_ruby_dragon">রুবি ড্রাগন</string>
+    <string name="enemy_norg">নরগ</string>
+    <string name="enemy_edea">ডাইনি ইডিয়া</string>
+    <string name="enemy_fujin_raijin">ফুজিন এবং রাইজিন</string>
+    <string name="enemy_seifer">সাইফার আলমাসি</string>
+    <string name="enemy_adel">ডাইনি অ্যাডেল</string>
+    <string name="enemy_trauma">ট্রমা</string>
+    <string name="enemy_omega_weapon">ওমেগা ওয়েপন</string>
+    <string name="enemy_ultimecia">আলটিমেসিয়া</string>
+
+    <!-- Dimension 9 Strings -->
+    <string name="dim9_title">ক্রিস্টালের স্মৃতি</string>
+    <string name="dim9_subtitle">ফাইন্যাল ফ্যান্টাসি IX</string>
+    <string name="dim9_story">জিদান ট্রাইবাল এবং ট্যান্টালাস দল রাজকুমারী গারনেটকে অপহরণ করে এবং কুজার পরিকল্পনা উন্মোচন করে...</string>
+    <string name="biome_lindblum">লিন্ডব্লুম দুর্গ</string>
+    <string name="biome_conde_petie">কনডে পেটি পথ</string>
+    <string name="biome_oeilvert">ওয়েলভার্ট</string>
+    <string name="biome_pandemonium_ix">প্যান্ডেমোনিয়াম</string>
+    <string name="biome_memoria">মেমোরিয়া</string>
+    <string name="enemy_black_mage_unit">ব্ল্যাক মেজ নং ১</string>
+    <string name="enemy_zaghnol">জাগনোল</string>
+    <string name="enemy_mistodon">মিস্টোডন</string>
+    <string name="enemy_silver_dragon">রূপালী ড্রাগন</string>
+    <string name="enemy_plant_brain">প্ল্যান্ট ব্রেন</string>
+    <string name="enemy_black_waltz">ব্ল্যাক ওয়াল্টজ</string>
+    <string name="enemy_zorn_thorn">জোরন এবং থর্ন</string>
+    <string name="enemy_ralvurahva">রালভুরাহভা</string>
+    <string name="enemy_maliris">মালিরিস</string>
+    <string name="enemy_kuja">কুজা</string>
+    <string name="enemy_trance_kuja">ট্র্যান্স কুজা</string>
+    <string name="enemy_necron">নেক্রন</string>
+
+    <!-- Dimension 10 Strings -->
+    <string name="dim10_title">স্পিরার স্বপ্ন</string>
+    <string name="dim10_subtitle">ফাইন্যাল ফ্যান্টাসি X</string>
+    <string name="dim10_story">টিডাস, ইউনা এবং অভিভাবকরা সিন নামক দানবকে পরাজিত করতে যাত্রা শুরু করে...</string>
+    <string name="biome_besaid_island">বিসাইড দ্বীপ</string>
+    <string name="biome_mi_ihen_highroad">মি\'ইহেন হাইরোড</string>
+    <string name="biome_bevelle_temple">বেভেল মন্দির</string>
+    <string name="biome_omega_ruins">ওমেগা ধ্বংসাবশেষ</string>
+    <string name="biome_sin_interior">সিনের ভেতরে</string>
+    <string name="biome_dream_zanarkand">স্বপ্নের জানারকান্ড</string>
+    <string name="enemy_dingo">ডিঙ্গো</string>
+    <string name="enemy_water_flan">ওয়াটার ফ্ল্যান</string>
+    <string name="enemy_klikk">ক্লিক</string>
+    <string name="enemy_guado_guardian">গুয়াডো গার্ডিয়ান</string>
+    <string name="enemy_great_malboro">গ্রেট মালবোরো</string>
+    <string name="enemy_dark_aeon">ডার্ক এয়ন</string>
+    <string name="enemy_klikk_boss">এল্ডার ক্লিক</string>
+    <string name="enemy_oblitzerator">অবলিটারেটর</string>
+    <string name="enemy_evrae">এভরে</string>
+    <string name="enemy_seymour">সেমোর গুয়াডো</string>
+    <string name="enemy_omega_weapon_x">ওমেগা ওয়েপন</string>
+    <string name="enemy_jecht">ব্রাস্কার ফাইনাল এয়ন</string>
+    <string name="enemy_penance">পেন্যান্স</string>
+    <string name="enemy_yu_yevon">ইউ ইয়েভন</string>
+    <string name="enemy_sin">সিন</string>
 
     <!-- Town Screen -->
     <string name="town_name">মহা রাজধানী</string>
@@ -390,6 +466,128 @@
     <string name="item_rarity_epic">মহাকাব্য</string>
     <string name="item_rarity_legendary">কিংবদন্তি</string>
     <string name="item_name_template">%1$s %2$s</string>
+
+    <!-- Item Categories -->
+    <!-- Weapons -->
+    <string name="item_cat_sword">তরবারি</string>
+    <string name="item_cat_dagger">ড্যাগার</string>
+    <string name="item_cat_staff">লাঠি</string>
+    <string name="item_cat_wooden_wand">কাঠের ওয়ান্ড</string>
+    <string name="item_cat_battle_axe">যুদ্ধ কুড়াল</string>
+    <string name="item_cat_hunting_bow">শিকারের ধনু</string>
+    <string name="item_cat_knight_lance">নাইট ল্যান্স</string>
+    <string name="item_cat_mithril_rod">মিথরিল রড</string>
+    <string name="item_cat_katana">কাটানা</string>
+    <string name="item_cat_greatsword">বৃহৎ তরবারি</string>
+    <string name="item_cat_scythe">কাস্তে</string>
+    <string name="item_cat_starlight_wand">স্টারলাইট ওয়ান্ড</string>
+    <string name="item_cat_crystal_scepter">ক্রিস্টাল সেপ্টার</string>
+    <string name="item_cat_lunar_blade">লুনার ব্লেড</string>
+    <string name="item_cat_shadow_dagger">শ্যাডো ড্যাগার</string>
+    <string name="item_cat_holy_wand">হোলি ওয়ান্ড</string>
+    <string name="item_cat_dark_scepter">ডার্ক সেপ্টার</string>
+    <string name="item_cat_rift_edge">রিফ্ট এজ</string>
+    <string name="item_cat_brave_sword">ব্রেভ সোর্ড</string>
+    <string name="item_cat_elemental_rod">এলিমেন্টাল রড</string>
+    <string name="item_cat_mystic_wand">মিস্টিক ওয়ান্ড</string>
+    <string name="item_cat_runeblade">রুনব্লেড</string>
+    <string name="item_cat_chainsaw">চেইনস</string>
+    <string name="item_cat_magitek_rod">ম্যাজিটেক রড</string>
+    <string name="item_cat_esper_wand">এসপার ওয়ান্ড</string>
+    <string name="item_cat_buster_sword">বাস্টার সোর্ড</string>
+    <string name="item_cat_leather_glove">চামড়ার দস্তানা</string>
+    <string name="item_cat_gatling_gun">গ্যাটলিং গান</string>
+    <string name="item_cat_mako_staff">মাকো স্টাফ</string>
+    <string name="item_cat_materia_wand">মেটেরিয়া ওয়ান্ড</string>
+    <string name="item_cat_gunblade">গানব্লেড</string>
+    <string name="item_cat_pinwheel">পিনহুইল</string>
+    <string name="item_cat_guardian_wand">গার্ডিয়ান ওয়ান্ড</string>
+    <string name="item_cat_sorceress_rod">সোর্সারেস রড</string>
+    <string name="item_cat_mage_masher">মেজ ম্যশার</string>
+    <string name="item_cat_thief_dagger">থিফ ড্যাগার</string>
+    <string name="item_cat_cypress_pole">সাইপ্রেস পোল</string>
+    <string name="item_cat_summoner_flute">সামনার ফ্লুট</string>
+    <string name="item_cat_dimensional_blade">ডাইমেনশনাল ব্লেড</string>
+    <string name="item_cat_void_scythe">ভয়েড সাইথ</string>
+    <string name="item_cat_astral_wand">অ্যাস্ট্রাল ওয়ান্ড</string>
+    <string name="item_cat_celestial_rod">সেলেস্টিয়াল রড</string>
+
+    <!-- Armor -->
+    <string name="item_cat_plate_armor">প্লেট বর্ম</string>
+    <string name="item_cat_leather_helm">চামড়ার হেলমেট</string>
+    <string name="item_cat_cloth_robe">কাপড়ের রোব</string>
+    <string name="item_cat_scale_mail">স্কেল মেইল</string>
+    <string name="item_cat_heavy_cuirass">ভারী কিউরাস</string>
+    <string name="item_cat_mithril_vest">মিথরিল ভেস্ট</string>
+    <string name="item_cat_dragon_scale_armor">ড্রাগন স্কেল বর্ম</string>
+    <string name="item_cat_archmage_robes">আর্চমেজ রোব</string>
+    <string name="item_cat_knight_mail">নাইট মেইল</string>
+    <string name="item_cat_paladin_cuirass">প্যালাডিন কিউরাস</string>
+    <string name="item_cat_dark_armor">ডার্ক বর্ম</string>
+    <string name="item_cat_white_robe">হোয়াইট রোব</string>
+    <string name="item_cat_mirage_vest">মিরাজ ভেস্ট</string>
+    <string name="item_cat_diamond_armor">ডায়মন্ড বর্ম</string>
+    <string name="item_cat_summoner_garb">সামনার পোশাক</string>
+    <string name="item_cat_genji_armor">গেনজি বর্ম</string>
+    <string name="item_cat_magitek_coat">ম্যাজিটেক কোট</string>
+    <string name="item_cat_silk_robe">সিল্ক রোব</string>
+    <string name="item_cat_soldier_uniform">SOLDIER ইউনিফর্ম</string>
+    <string name="item_cat_shinra_vest">শিনরা ভেস্ট</string>
+    <string name="item_cat_aegis_coat">ইজিস কোট</string>
+    <string name="item_cat_seed_uniform">SeeD ইউনিফর্ম</string>
+    <string name="item_cat_balamb_jacket">বাল্যাম্ব জ্যাকেট</string>
+    <string name="item_cat_sorceress_gown">সোর্সারেস গাউন</string>
+    <string name="item_cat_grand_armor">গ্র্যান্ড বর্ম</string>
+    <string name="item_cat_black_cowl">ব্ল্যাক কাউল</string>
+    <string name="item_cat_feather_hat">পালকের টুপি</string>
+    <string name="item_cat_dimensional_cuirass">ডাইমেনশনাল কিউরাস</string>
+    <string name="item_cat_astral_vestment">অ্যাস্ট্রাল পোশাক</string>
+    <string name="item_cat_celestial_garb">সেলেস্টিয়াল পোশাক</string>
+
+    <!-- Shields -->
+    <string name="item_cat_round_shield">গোল ঢাল</string>
+    <string name="item_cat_guard_shield">গার্ড ঢাল</string>
+    <string name="item_cat_aegis_shield">ইজিস ঢাল</string>
+    <string name="item_cat_tower_shield">টাওয়ার ঢাল</string>
+    <string name="item_cat_force_shield">ফোর্স ঢাল</string>
+    <string name="item_cat_mirror_shield">মিরর ঢাল</string>
+    <string name="item_cat_lunar_barrier">লুনার ব্যারিয়ার</string>
+    <string name="item_cat_light_shield">লাইট ঢাল</string>
+    <string name="item_cat_elemental_aegis">এলিমেন্টাল ইজিস</string>
+    <string name="item_cat_crystal_shield">ক্রিস্টাল ঢাল</string>
+    <string name="item_cat_genji_shield">গেনজি ঢাল</string>
+    <string name="item_cat_magitek_barrier">ম্যাজিটেক ব্যারিয়ার</string>
+    <string name="item_cat_mythril_armlet">মিথরিল ব্র্যাচলেট</string>
+    <string name="item_cat_guard_bracelet">গার্ড ব্রেসলেট</string>
+    <string name="item_cat_guardian_shield">গার্ডিয়ান ঢাল</string>
+    <string name="item_cat_force_aegis">ফোর্স ইজিস</string>
+    <string name="item_cat_shield_alexandria">আলেকজান্দ্রিয়ার ঢাল</string>
+    <string name="item_cat_dragon_shield">ড্রাগন ঢাল</string>
+    <string name="item_cat_dimensional_barrier">ডাইমেনশনাল ব্যারিয়ার</string>
+    <string name="item_cat_void_aegis">ভয়েড ইজিস</string>
+
+    <!-- Accessories -->
+    <string name="item_cat_copper_ring">তামার আংটি</string>
+    <string name="item_cat_silver_pendant">রূপার লকেট</string>
+    <string name="item_cat_ruby_bracelet">রুবি ব্রেসলেট</string>
+    <string name="item_cat_jade_earring">জেড ইয়াররিং</string>
+    <string name="item_cat_relic_amulet">রিলিক অমুলেট</string>
+    <string name="item_cat_cosmic_charm">কসমিক চার্ম</string>
+    <string name="item_cat_moonstone_ring">মুনস্টোন আংটি</string>
+    <string name="item_cat_star_pendant">স্টার লকেট</string>
+    <string name="item_cat_flame_ring">ফ্লেম আংটি</string>
+    <string name="item_cat_angel_ring">এঞ্জেল আংটি</string>
+    <string name="item_cat_relic_ring">রিলিক আংটি</string>
+    <string name="item_cat_earring_power">পাওয়ার ইয়াররিং</string>
+    <string name="item_cat_ribbon">রিবন</string>
+    <string name="item_cat_mako_earring">মাকো ইয়াররিং</string>
+    <string name="item_cat_gf_talisman">GF তাবিজ</string>
+    <string name="item_cat_sorceress_crown">সোর্সারেস ক্রাউন</string>
+    <string name="item_cat_pumice_piece">পিউমিস পিস</string>
+    <string name="item_cat_garnet_amulet">গার্নেট অমুলেট</string>
+    <string name="item_cat_dimensional_core">ডাইমেনশনাল কোর</string>
+    <string name="item_cat_cosmic_crest">কসমিক ক্রেস্ট</string>
+
     <!-- Pets -->
     <string name="pet_chocobo_name">চোকোবো</string>
     <string name="pet_chocobo_desc">+২০%% আইটেম খোঁজ</string>
@@ -579,4 +777,11 @@
     <string name="bulletin_perk_vault">💰 ভল্ট গিল সুদ: +%1$d%%</string>
     <string name="bulletin_perk_pathfinder">🧭 পথপ্রদর্শকের শুরুর তলা: তলা %1$d</string>
     <string name="bulletin_perk_planning">📜 আপগ্রেড ছাড়: %1$d%%</string>
+
+    <!-- Gold to Gems Exchange -->
+    <string name="exchange_title">বিনিময়</string>
+    <string name="exchange_gold_for_gems_title">স্বর্ণ রত্নে বিনিময়</string>
+    <string name="exchange_rate_format">%1$s গিল ➔ %2$d রত্ন</string>
+    <string name="btn_exchange_pack">বিনিময়</string>
+    <string name="btn_need_gil">%1$s গিল প্রয়োজন</string>
 </resources>

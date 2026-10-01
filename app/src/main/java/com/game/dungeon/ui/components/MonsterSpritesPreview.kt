@@ -162,3 +162,36 @@ fun FF9AndFF10BossesPreview() {
         monsters = ff9AndFF10Bosses
     )
 }
+
+@Preview(name = "7. Pirate Monster", widthDp = 640, heightDp = 640)
+@Composable
+fun PirateSpritePreview() {
+    Box(
+        modifier = Modifier
+            .fillMaxSize()
+            .background(Color(0xFF121212))
+            .padding(16.dp),
+        contentAlignment = Alignment.Center
+    ) {
+        Column(horizontalAlignment = Alignment.CenterHorizontally) {
+            Text(
+                text = "Pirate Monster Sprite",
+                color = Color(0xFFFFD700),
+                fontSize = 18.sp,
+                modifier = Modifier.padding(bottom = 12.dp)
+            )
+            Box(
+                modifier = Modifier
+                    .size(200.dp)
+                    .background(Color(0xFF2E2342))
+                    .padding(16.dp),
+                contentAlignment = Alignment.Center
+            ) {
+                EnemySprite(
+                    enemyName = "Pirate",
+                    modifier = Modifier.fillMaxSize()
+                )
+            }
+        }
+    }
+}

@@ -81,4 +81,28 @@ class RelicsViewModel @Inject constructor(
             }
         }
     }
+
+    fun exchangeGoldForMagicite(goldCost: Long, magiciteAmount: Int) {
+        if (goldCost <= 0 || magiciteAmount <= 0) return
+        val gs = gameState.value ?: return
+        if (gs.gold >= goldCost) {
+            viewModelScope.launch {
+                val currentGs = repository.getGameStateOnce() ?: gs
+                if (currentGs.gold >= goldCost) {
+                    val updatedGs = currentGs.copy(
+                        gold = currentGs.gold - goldCost,
+                        magicite = currentGs.magicite + magiciteAmount,
+                        magiciteEarnedThisDim = currentGs.magiciteEarnedThisDim + magiciteAmount,
+                        totalMagiciteEarned = currentGs.totalMagiciteEarned + magiciteAmount
+                    )
+                    val params = android.os.Bundle().apply {
+                        putLong("gold_spent", goldCost)
+                        putInt("magicite_gained", magiciteAmount)
+                    }
+                    analytics.logEvent("gold_gems_exchange", params)
+                    repository.saveGameState(updatedGs)
+                }
+            }
+        }
+    }
 }

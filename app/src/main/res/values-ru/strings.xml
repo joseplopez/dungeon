@@ -178,6 +178,82 @@
     <string name="enemy_jenova_birth">Дженова-РОЖДЕНИЕ</string>
     <string name="enemy_rufus">Руфус Шинра</string>
     <string name="enemy_jenova_life">Дженова-ЖИЗНЬ</string>
+    <string name="enemy_hojo">Профессор Ходжо</string>
+    <string name="enemy_jenova_synthesis">Дженова-СИНТЕЗ</string>
+    <string name="enemy_bizarro_seph">Бизарро Сефирот</string>
+    <string name="enemy_sephiroth">Сейфер Сефирот</string>
+
+    <!-- Dimension 8 Strings -->
+    <string name="dim8_title">Сжатие Времени</string>
+    <string name="dim8_subtitle">Final Fantasy VIII</string>
+    <string name="dim8_story">Скволл Леонхарт и наемники SeeD путешествуют во времени, чтобы помешать Колдунье Ультимеции сжать время...</string>
+    <string name="biome_balamb_garden">Сад Баламб</string>
+    <string name="biome_galbadia_missile">Ракетная база Галбадии</string>
+    <string name="biome_deep_sea_deposit">Центр глубоководных исследований</string>
+    <string name="biome_lunatic_pandora">Лунатик Пандора</string>
+    <string name="biome_ultimecia_castle">Замок Ультимеции</string>
+    <string name="enemy_galbadian_soldier">Галбадийский солдат</string>
+    <string name="enemy_bite_bug">Кусачий жук</string>
+    <string name="enemy_geezard">Гизард</string>
+    <string name="enemy_wendigo">Вендиго</string>
+    <string name="enemy_elnoyle">Эльнойл</string>
+    <string name="enemy_ruby_dragon">Рубиновый дракон</string>
+    <string name="enemy_norg">НОРГ</string>
+    <string name="enemy_edea">Колдунья Эдея</string>
+    <string name="enemy_fujin_raijin">Фуджин &amp; Райджин</string>
+    <string name="enemy_seifer">Сейфер Алмази</string>
+    <string name="enemy_adel">Колдунья Адель</string>
+    <string name="enemy_trauma">Травма</string>
+    <string name="enemy_omega_weapon">Оружие Омега</string>
+    <string name="enemy_ultimecia">Ультимеция</string>
+
+    <!-- Dimension 9 Strings -->
+    <string name="dim9_title">Память Кристалла</string>
+    <string name="dim9_subtitle">Final Fantasy IX</string>
+    <string name="dim9_story">Зидан Трибал и труппа Танталус похищают принцессу Гарнет и раскрывают заговор Куджи по уничтожению Кристалла Создания...</string>
+    <string name="biome_lindblum">Замок Линдблюм</string>
+    <string name="biome_conde_petie">Тропа Конде Пети</string>
+    <string name="biome_oeilvert">Ойльверт</string>
+    <string name="biome_pandemonium_ix">Пандемониум</string>
+    <string name="biome_memoria">Мемория</string>
+    <string name="enemy_black_mage_unit">Черный маг № 1</string>
+    <string name="enemy_zaghnol">Загнол</string>
+    <string name="enemy_mistodon">Мистодон</string>
+    <string name="enemy_silver_dragon">Серебряный дракон</string>
+    <string name="enemy_plant_brain">Растительный мозг</string>
+    <string name="enemy_black_waltz">Черный вальс</string>
+    <string name="enemy_zorn_thorn">Зорн &amp; Торн</string>
+    <string name="enemy_ralvurahva">Ральвурахва</string>
+    <string name="enemy_maliris">Марилис</string>
+    <string name="enemy_kuja">Куджа</string>
+    <string name="enemy_trance_kuja">Транс Куджа</string>
+    <string name="enemy_necron">Некрон</string>
+
+    <!-- Dimension 10 Strings -->
+    <string name="dim10_title">Сон Спиры</string>
+    <string name="dim10_subtitle">Final Fantasy X</string>
+    <string name="dim10_story">Тидус, Юна и их стражи отправляются в паломничество по Спире, чтобы победить ужасающее существо по имени Грех...</string>
+    <string name="biome_besaid_island">Остров Бесайд</string>
+    <string name="biome_mi_ihen_highroad">Шоссе Ми\'ихен</string>
+    <string name="biome_bevelle_temple">Храм Бевелл</string>
+    <string name="biome_omega_ruins">Руины Омега</string>
+    <string name="biome_sin_interior">Внутри Греха</string>
+    <string name="biome_dream_zanarkand">Занарканд Снов</string>
+    <string name="enemy_dingo">Динго</string>
+    <string name="enemy_water_flan">Водяной флан</string>
+    <string name="enemy_klikk">Кликк</string>
+    <string name="enemy_guado_guardian">Страж Гуадо</string>
+    <string name="enemy_great_malboro">Великий Мальборо</string>
+    <string name="enemy_dark_aeon">Темный Эон</string>
+    <string name="enemy_klikk_boss">Старейшина Кликк</string>
+    <string name="enemy_oblitzerator">Облицератор</string>
+    <string name="enemy_evrae">Эврае</string>
+    <string name="enemy_seymour">Сеймур Гуадо</string>
+    <string name="enemy_omega_weapon_x">Оружие Омега</string>
+    <string name="enemy_jecht">Финальный Эон Браски</string>
+    <string name="enemy_penance">Кара</string>
+    <string name="enemy_yu_yevon">Ю Йевон</string>
+    <string name="enemy_sin">ГРЕХ</string>
 
     <!-- Town Screen -->
     <string name="town_name">ВЕЛИКАЯ СТОЛИЦА</string>
@@ -390,6 +466,127 @@
     <string name="item_rarity_epic">Эпический</string>
     <string name="item_rarity_legendary">Легендарный</string>
     <string name="item_name_template">%1$s %2$s</string>
+    <!-- Item Categories -->
+    <!-- Weapons -->
+    <string name="item_cat_sword">Меч</string>
+    <string name="item_cat_dagger">Кинжал</string>
+    <string name="item_cat_staff">Посох</string>
+    <string name="item_cat_wooden_wand">Деревянная палочка</string>
+    <string name="item_cat_battle_axe">Боевой топор</string>
+    <string name="item_cat_hunting_bow">Охотничий лук</string>
+    <string name="item_cat_knight_lance">Копьё рыцаря</string>
+    <string name="item_cat_mithril_rod">Мифриловый жезл</string>
+    <string name="item_cat_katana">Катана</string>
+    <string name="item_cat_greatsword">Двуручный меч</string>
+    <string name="item_cat_scythe">Коса</string>
+    <string name="item_cat_starlight_wand">Звёздная палочка</string>
+    <string name="item_cat_crystal_scepter">Кристальный скипетр</string>
+    <string name="item_cat_lunar_blade">Лунный клинок</string>
+    <string name="item_cat_shadow_dagger">Теневой кинжал</string>
+    <string name="item_cat_holy_wand">Святая палочка</string>
+    <string name="item_cat_dark_scepter">Тёмный скипетр</string>
+    <string name="item_cat_rift_edge">Клинок разлома</string>
+    <string name="item_cat_brave_sword">Меч храбрости</string>
+    <string name="item_cat_elemental_rod">Элементальный жезл</string>
+    <string name="item_cat_mystic_wand">Мистическая палочка</string>
+    <string name="item_cat_runeblade">Рунический меч</string>
+    <string name="item_cat_chainsaw">Бензопила</string>
+    <string name="item_cat_magitek_rod">Жезл Магитек</string>
+    <string name="item_cat_esper_wand">Палочка Эспера</string>
+    <string name="item_cat_buster_sword">Меч Мечтателя</string>
+    <string name="item_cat_leather_glove">Кожаная перчатка</string>
+    <string name="item_cat_gatling_gun">Пулемёт Гатлинга</string>
+    <string name="item_cat_mako_staff">Посох Мако</string>
+    <string name="item_cat_materia_wand">Палочка Материи</string>
+    <string name="item_cat_gunblade">Ганблейд</string>
+    <string name="item_cat_pinwheel">Вертушка</string>
+    <string name="item_cat_guardian_wand">Палочка хранителя</string>
+    <string name="item_cat_sorceress_rod">Жезл колдуньи</string>
+    <string name="item_cat_mage_masher">Разрушитель магов</string>
+    <string name="item_cat_thief_dagger">Кинжал вора</string>
+    <string name="item_cat_cypress_pole">Кипарисовый шест</string>
+    <string name="item_cat_summoner_flute">Флейта призывателя</string>
+    <string name="item_cat_dimensional_blade">Измерительный клинок</string>
+    <string name="item_cat_void_scythe">Коса пустоты</string>
+    <string name="item_cat_astral_wand">Астральная палочка</string>
+    <string name="item_cat_celestial_rod">Небесный жезл</string>
+
+    <!-- Armor -->
+    <string name="item_cat_plate_armor">Пластинчатый доспех</string>
+    <string name="item_cat_leather_helm">Кожаный шлем</string>
+    <string name="item_cat_cloth_robe">Тканевая мантия</string>
+    <string name="item_cat_scale_mail">Чешуйчатый доспех</string>
+    <string name="item_cat_heavy_cuirass">Тяжёлая кираса</string>
+    <string name="item_cat_mithril_vest">Мифриловый жилет</string>
+    <string name="item_cat_dragon_scale_armor">Доспех из драконьей чешуи</string>
+    <string name="item_cat_archmage_robes">Мантия архимага</string>
+    <string name="item_cat_knight_mail">Рыцарский доспех</string>
+    <string name="item_cat_paladin_cuirass">Кираса паладина</string>
+    <string name="item_cat_dark_armor">Тёмный доспех</string>
+    <string name="item_cat_white_robe">Белая мантия</string>
+    <string name="item_cat_mirage_vest">Жилет-мираж</string>
+    <string name="item_cat_diamond_armor">Алмазный доспех</string>
+    <string name="item_cat_summoner_garb">Одежда призывателя</string>
+    <string name="item_cat_genji_armor">Доспех Гэндзи</string>
+    <string name="item_cat_magitek_coat">Пальто Магитек</string>
+    <string name="item_cat_silk_robe">Шёлковая мантия</string>
+    <string name="item_cat_soldier_uniform">Форма СОЛДАТА</string>
+    <string name="item_cat_shinra_vest">Жилет Шинра</string>
+    <string name="item_cat_aegis_coat">Пальто Эгида</string>
+    <string name="item_cat_seed_uniform">Форма SeeD</string>
+    <string name="item_cat_balamb_jacket">Куртка Баламб</string>
+    <string name="item_cat_sorceress_gown">Платье колдуньи</string>
+    <string name="item_cat_grand_armor">Великий доспех</string>
+    <string name="item_cat_black_cowl">Чёрный капюшон</string>
+    <string name="item_cat_feather_hat">Шляпа с перьями</string>
+    <string name="item_cat_dimensional_cuirass">Измерительная кираса</string>
+    <string name="item_cat_astral_vestment">Астральное одеяние</string>
+    <string name="item_cat_celestial_garb">Небесный наряд</string>
+
+    <!-- Shields -->
+    <string name="item_cat_round_shield">Круглый щит</string>
+    <string name="item_cat_guard_shield">Защитный щит</string>
+    <string name="item_cat_aegis_shield">Щит Эгида</string>
+    <string name="item_cat_tower_shield">Башенный щит</string>
+    <string name="item_cat_force_shield">Щит силы</string>
+    <string name="item_cat_mirror_shield">Зеркальный щит</string>
+    <string name="item_cat_lunar_barrier">Лунный барьер</string>
+    <string name="item_cat_light_shield">Щит света</string>
+    <string name="item_cat_elemental_aegis">Элементальная Эгида</string>
+    <string name="item_cat_crystal_shield">Кристальный щит</string>
+    <string name="item_cat_genji_shield">Щит Гэндзи</string>
+    <string name="item_cat_magitek_barrier">Барьер Магитек</string>
+    <string name="item_cat_mythril_armlet">Мифриловый браслет</string>
+    <string name="item_cat_guard_bracelet">Защитный браслет</string>
+    <string name="item_cat_guardian_shield">Щит стража</string>
+    <string name="item_cat_force_aegis">Эгида силы</string>
+    <string name="item_cat_shield_alexandria">Щит Александрии</string>
+    <string name="item_cat_dragon_shield">Драконий щит</string>
+    <string name="item_cat_dimensional_barrier">Измерительный барьер</string>
+    <string name="item_cat_void_aegis">Эгида пустоты</string>
+
+    <!-- Accessories -->
+    <string name="item_cat_copper_ring">Медное кольцо</string>
+    <string name="item_cat_silver_pendant">Серебряный кулон</string>
+    <string name="item_cat_ruby_bracelet">Рубиновый браслет</string>
+    <string name="item_cat_jade_earring">Нефритовая серьга</string>
+    <string name="item_cat_relic_amulet">Амулет реликвии</string>
+    <string name="item_cat_cosmic_charm">Космический оберег</string>
+    <string name="item_cat_moonstone_ring">Кольцо лунного камня</string>
+    <string name="item_cat_star_pendant">Звёздный кулон</string>
+    <string name="item_cat_flame_ring">Огненное кольцо</string>
+    <string name="item_cat_angel_ring">Кольцо ангела</string>
+    <string name="item_cat_relic_ring">Кольцо реликвии</string>
+    <string name="item_cat_earring_power">Серьга силы</string>
+    <string name="item_cat_ribbon">Лента</string>
+    <string name="item_cat_mako_earring">Серьга Мако</string>
+    <string name="item_cat_gf_talisman">Талисман GF</string>
+    <string name="item_cat_sorceress_crown">Корона колдуньи</string>
+    <string name="item_cat_pumice_piece">Кусок пемзы</string>
+    <string name="item_cat_garnet_amulet">Гранатовый амулет</string>
+    <string name="item_cat_dimensional_core">Измерительное ядро</string>
+    <string name="item_cat_cosmic_crest">Космический герб</string>
+
     <!-- Pets -->
     <string name="pet_chocobo_name">Чокобо</string>
     <string name="pet_chocobo_desc">+20%% предметов найдено</string>
@@ -579,4 +776,11 @@
     <string name="bulletin_perk_vault">💰 Проценты Хранилище: +%1$d%%</string>
     <string name="bulletin_perk_pathfinder">🧭 Старт Следопыта: Этаж %1$d</string>
     <string name="bulletin_perk_planning">📜 Скидка на улучшения: %1$d%%</string>
+
+    <!-- Gold to Gems Exchange -->
+    <string name="exchange_title">ОБМЕН</string>
+    <string name="exchange_gold_for_gems_title">ОБМЕН ЗОЛОТА НА САМОЦВЕТЫ</string>
+    <string name="exchange_rate_format">%1$s Гилей ➔ %2$d Самоцветов</string>
+    <string name="btn_exchange_pack">Обменять</string>
+    <string name="btn_need_gil">Нужно %1$s Гилей</string>
 </resources>

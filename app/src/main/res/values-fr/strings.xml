@@ -301,7 +301,7 @@
     <string name="magicite_found_label">Magicite trouvée</string>
     <string name="bosses_slain_label">Boss vaincus</string>
     <string name="items_found_label">Objets trouvés</string>
-    <string name="ascension_rewards">RÉCOMPENSES D\'ASCENSION</string>
+    <string name="ascension_rewards">RÉCOMPENSES D\'ASCENSIÓN</string>
     <string name="dimension_reset_warning">Attention : Réinitialise les héros, l\'équipement et l\'étage actuel.</string>
     <string name="cancel_button">ANNULER</string>
     <string name="advance_button">AVANCER !</string>
@@ -466,6 +466,127 @@
     <string name="item_rarity_epic">Épique</string>
     <string name="item_rarity_legendary">Légendaire</string>
     <string name="item_name_template">%1$s %2$s</string>
+    <!-- Item Categories -->
+    <!-- Weapons -->
+    <string name="item_cat_sword">Épée</string>
+    <string name="item_cat_dagger">Dague</string>
+    <string name="item_cat_staff">Bâton</string>
+    <string name="item_cat_wooden_wand">Baguette en bois</string>
+    <string name="item_cat_battle_axe">Hache de bataille</string>
+    <string name="item_cat_hunting_bow">Arc de chasse</string>
+    <string name="item_cat_knight_lance">Lance de chevalier</string>
+    <string name="item_cat_mithril_rod">Sceptre de mithril</string>
+    <string name="item_cat_katana">Katana</string>
+    <string name="item_cat_greatsword">Grande épée</string>
+    <string name="item_cat_scythe">Faux</string>
+    <string name="item_cat_starlight_wand">Baguette stellaire</string>
+    <string name="item_cat_crystal_scepter">Sceptre de cristal</string>
+    <string name="item_cat_lunar_blade">Lame lunaire</string>
+    <string name="item_cat_shadow_dagger">Dague d\'ombre</string>
+    <string name="item_cat_holy_wand">Baguette sacrée</string>
+    <string name="item_cat_dark_scepter">Sceptre sombre</string>
+    <string name="item_cat_rift_edge">Lame de la faille</string>
+    <string name="item_cat_brave_sword">Épée du brave</string>
+    <string name="item_cat_elemental_rod">Sceptre élémentaire</string>
+    <string name="item_cat_mystic_wand">Baguette mystique</string>
+    <string name="item_cat_runeblade">Épée runique</string>
+    <string name="item_cat_chainsaw">Tronçonneuse</string>
+    <string name="item_cat_magitek_rod">Sceptre Magitek</string>
+    <string name="item_cat_esper_wand">Baguette d\'Chimère</string>
+    <string name="item_cat_buster_sword">Épée broyeuse</string>
+    <string name="item_cat_leather_glove">Gant de cuir</string>
+    <string name="item_cat_gatling_gun">Canon Gatling</string>
+    <string name="item_cat_mako_staff">Bâton Mako</string>
+    <string name="item_cat_materia_wand">Baguette de Matéria</string>
+    <string name="item_cat_gunblade">Pistolame</string>
+    <string name="item_cat_pinwheel">Moulinet</string>
+    <string name="item_cat_guardian_wand">Baguette gardienne</string>
+    <string name="item_cat_sorceress_rod">Sceptre de sorcière</string>
+    <string name="item_cat_mage_masher">Mangeur de magie</string>
+    <string name="item_cat_thief_dagger">Dague de voleur</string>
+    <string name="item_cat_cypress_pole">Bâton de cyprès</string>
+    <string name="item_cat_summoner_flute">Flûte d\'invocateur</string>
+    <string name="item_cat_dimensional_blade">Lame dimensionnelle</string>
+    <string name="item_cat_void_scythe">Faux du vide</string>
+    <string name="item_cat_astral_wand">Baguette astrale</string>
+    <string name="item_cat_celestial_rod">Sceptre céleste</string>
+
+    <!-- Armor -->
+    <string name="item_cat_plate_armor">Armure de plaques</string>
+    <string name="item_cat_leather_helm">Casque en cuir</string>
+    <string name="item_cat_cloth_robe">Robe en tissu</string>
+    <string name="item_cat_scale_mail">Cotte de mailles</string>
+    <string name="item_cat_heavy_cuirass">Cuirasse lourde</string>
+    <string name="item_cat_mithril_vest">Gilet de mithril</string>
+    <string name="item_cat_dragon_scale_armor">Armure en écailles de dragon</string>
+    <string name="item_cat_archmage_robes">Robe d\'archimage</string>
+    <string name="item_cat_knight_mail">Armure de chevalier</string>
+    <string name="item_cat_paladin_cuirass">Cuirasse de paladin</string>
+    <string name="item_cat_dark_armor">Armure sombre</string>
+    <string name="item_cat_white_robe">Robe blanche</string>
+    <string name="item_cat_mirage_vest">Gilet mirage</string>
+    <string name="item_cat_diamond_armor">Armure de diamant</string>
+    <string name="item_cat_summoner_garb">Tenue d\'invocateur</string>
+    <string name="item_cat_genji_armor">Armure de Genji</string>
+    <string name="item_cat_magitek_coat">Manteau Magitek</string>
+    <string name="item_cat_silk_robe">Robe de soie</string>
+    <string name="item_cat_soldier_uniform">Uniforme du SOLDIER</string>
+    <string name="item_cat_shinra_vest">Gilet Shinra</string>
+    <string name="item_cat_aegis_coat">Manteau d\'Égide</string>
+    <string name="item_cat_seed_uniform">Uniforme SeeD</string>
+    <string name="item_cat_balamb_jacket">Veste de Balamb</string>
+    <string name="item_cat_sorceress_gown">Robe de sorcière</string>
+    <string name="item_cat_grand_armor">Grande armure</string>
+    <string name="item_cat_black_cowl">Capuche noire</string>
+    <string name="item_cat_feather_hat">Chapeau à plume</string>
+    <string name="item_cat_dimensional_cuirass">Cuirasse dimensionnelle</string>
+    <string name="item_cat_astral_vestment">Vêtement astral</string>
+    <string name="item_cat_celestial_garb">Tenue céleste</string>
+
+    <!-- Shields -->
+    <string name="item_cat_round_shield">Bouclier rond</string>
+    <string name="item_cat_guard_shield">Bouclier de garde</string>
+    <string name="item_cat_aegis_shield">Bouclier d\'Égide</string>
+    <string name="item_cat_tower_shield">Bouclier pavois</string>
+    <string name="item_cat_force_shield">Bouclier de force</string>
+    <string name="item_cat_mirror_shield">Bouclier miroir</string>
+    <string name="item_cat_lunar_barrier">Barrière lunaire</string>
+    <string name="item_cat_light_shield">Bouclier de lumière</string>
+    <string name="item_cat_elemental_aegis">Égide élémentaire</string>
+    <string name="item_cat_crystal_shield">Bouclier de cristal</string>
+    <string name="item_cat_genji_shield">Bouclier de Genji</string>
+    <string name="item_cat_magitek_barrier">Barrière Magitek</string>
+    <string name="item_cat_mythril_armlet">Brassard de mithril</string>
+    <string name="item_cat_guard_bracelet">Bracelet de garde</string>
+    <string name="item_cat_guardian_shield">Bouclier gardien</string>
+    <string name="item_cat_force_aegis">Égide de force</string>
+    <string name="item_cat_shield_alexandria">Bouclier d\'Alexandrie</string>
+    <string name="item_cat_dragon_shield">Bouclier dragon</string>
+    <string name="item_cat_dimensional_barrier">Barrière dimensionnelle</string>
+    <string name="item_cat_void_aegis">Égide du vide</string>
+
+    <!-- Accessories -->
+    <string name="item_cat_copper_ring">Anneau de cuivre</string>
+    <string name="item_cat_silver_pendant">Pendentif en argent</string>
+    <string name="item_cat_ruby_bracelet">Bracelet de rubis</string>
+    <string name="item_cat_jade_earring">Boucle d\'oreille en jade</string>
+    <string name="item_cat_relic_amulet">Amulette de relique</string>
+    <string name="item_cat_cosmic_charm">Charme cosmique</string>
+    <string name="item_cat_moonstone_ring">Anneau de pierre de lune</string>
+    <string name="item_cat_star_pendant">Pendentif étoile</string>
+    <string name="item_cat_flame_ring">Anneau de feu</string>
+    <string name="item_cat_angel_ring">Anneau d\'ange</string>
+    <string name="item_cat_relic_ring">Anneau de relique</string>
+    <string name="item_cat_earring_power">Boucle d\'oreille de puissance</string>
+    <string name="item_cat_ribbon">Ruban</string>
+    <string name="item_cat_mako_earring">Boucle d\'oreille Mako</string>
+    <string name="item_cat_gf_talisman">Talisman de GF</string>
+    <string name="item_cat_sorceress_crown">Couronne de sorcière</string>
+    <string name="item_cat_pumice_piece">Morceau de pierre ponce</string>
+    <string name="item_cat_garnet_amulet">Amulette de grenat</string>
+    <string name="item_cat_dimensional_core">Cœur dimensionnel</string>
+    <string name="item_cat_cosmic_crest">Blason cosmique</string>
+
     <!-- Pets -->
     <string name="pet_chocobo_name">Chocobo</string>
     <string name="pet_chocobo_desc">+20%% Découverte d\'objets</string>
@@ -655,4 +776,11 @@
     <string name="bulletin_perk_vault">💰 Intérêts en Gils Réserve : +%1$d%%</string>
     <string name="bulletin_perk_pathfinder">🧭 Étage départ Éclaireur : Étage %1$d</string>
     <string name="bulletin_perk_planning">📜 Réduction d\'amélioration : %1$d%%</string>
+
+    <!-- Gold to Gems Exchange -->
+    <string name="exchange_title">ÉCHANGE</string>
+    <string name="exchange_gold_for_gems_title">ÉCHANGE D\'OR EN GEMMES</string>
+    <string name="exchange_rate_format">%1$s Gil ➔ %2$d Gemmes</string>
+    <string name="btn_exchange_pack">Échanger</string>
+    <string name="btn_need_gil">Requis : %1$s Gil</string>
 </resources>

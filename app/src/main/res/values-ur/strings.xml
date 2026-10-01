@@ -178,6 +178,82 @@
     <string name="enemy_jenova_birth">جینووا-پیدائش</string>
     <string name="enemy_rufus">روفوس شنرا</string>
     <string name="enemy_jenova_life">جینووا-زندگی</string>
+    <string name="enemy_hojo">پروفیسر ہوجو</string>
+    <string name="enemy_jenova_synthesis">جینووا-سنتھیسس</string>
+    <string name="enemy_bizarro_seph">بزارو سیفروتھ</string>
+    <string name="enemy_sephiroth">سیفر سیفروتھ</string>
+
+    <!-- Dimension 8 Strings -->
+    <string name="dim8_title">وقت کی دباؤ</string>
+    <string name="dim8_subtitle">فائنل فینٹسی VIII</string>
+    <string name="dim8_story">اسکوال لیونہارٹ اور SeeD کے مجاہدین وقت کو روکنے کے لیے الساحرہ الٹیمیشیا کے خلاف سفر کرتے ہیں...</string>
+    <string name="biome_balamb_garden">بلمب گارڈن</string>
+    <string name="biome_galbadia_missile">گلباڈیا میزائل بیس</string>
+    <string name="biome_deep_sea_deposit">ژرف سمندری تحققی مرکز</string>
+    <string name="biome_lunatic_pandora">لوناتک پینڈورا</string>
+    <string name="biome_ultimecia_castle">الٹیمیشیا کا قلعہ</string>
+    <string name="enemy_galbadian_soldier">گلباڈی سپاہی</string>
+    <string name="enemy_bite_bug">کاٹنے والا کیڑا</string>
+    <string name="enemy_geezard">جیزارڈ</string>
+    <string name="enemy_wendigo">وینڈیگو</string>
+    <string name="enemy_elnoyle">النوئل</string>
+    <string name="enemy_ruby_dragon">یاقوتی ڈریگن</string>
+    <string name="enemy_norg">نورگ</string>
+    <string name="enemy_edea">الساحرة اِڈیا</string>
+    <string name="enemy_fujin_raijin">فوجن اور رائجین</string>
+    <string name="enemy_seifer">سیفر الماسی</string>
+    <string name="enemy_adel">الساحرة عادل</string>
+    <string name="enemy_trauma">ٹراما</string>
+    <string name="enemy_omega_weapon">امیگا ہتھیار</string>
+    <string name="enemy_ultimecia">الٹیمیشیا</string>
+
+    <!-- Dimension 9 Strings -->
+    <string name="dim9_title">کرسٹل کی یادگار</string>
+    <string name="dim9_subtitle">فائنل فینٹسی IX</string>
+    <string name="dim9_story">زیدان ٹرائبل اور تانتالس تھیٹر شہزادی گارنیٹ کو اغوا کرتے ہیں اور کوجا کی سازش کو بے نقاب کرتے ہیں...</string>
+    <string name="biome_lindblum">لنڈبلم قلعہ</string>
+    <string name="biome_conde_petie">کونڈے پیٹی راستہ</string>
+    <string name="biome_oeilvert">اوئلورٹ</string>
+    <string name="biome_pandemonium_ix">پینڈیمونیم</string>
+    <string name="biome_memoria">میموریا</string>
+    <string name="enemy_black_mage_unit">سیاہ جادوگر نمبر 1</string>
+    <string name="enemy_zaghnol">زاگنول</string>
+    <string name="enemy_mistodon">مسٹوڈون</string>
+    <string name="enemy_silver_dragon">چاندی کا ڈریگن</string>
+    <string name="enemy_plant_brain">پودے کا دماغ</string>
+    <string name="enemy_black_waltz">بلیک والٹز</string>
+    <string name="enemy_zorn_thorn">زورن اور تھورن</string>
+    <string name="enemy_ralvurahva">رالفوراہوا</string>
+    <string name="enemy_maliris">مالیرس</string>
+    <string name="enemy_kuja">کوجا</string>
+    <string name="enemy_trance_kuja">ٹرانس کوجا</string>
+    <string name="enemy_necron">نیکرون</string>
+
+    <!-- Dimension 10 Strings -->
+    <string name="dim10_title">اسپیرا کا خواب</string>
+    <string name="dim10_subtitle">فائنل فینٹسی X</string>
+    <string name="dim10_story">تیڈس، یونا اور محافظ اسپیرا کے سفر پر نکلتے ہیں تاکہ "سن" نامی خوفناک مخلوق کو شکست دے سکیں...</string>
+    <string name="biome_besaid_island">بَسائیڈ جزیرہ</string>
+    <string name="biome_mi_ihen_highroad">می ایہن ہائی روڈ</string>
+    <string name="biome_bevelle_temple">بیویل مندر</string>
+    <string name="biome_omega_ruins">امیگا کے کھنڈرات</string>
+    <string name="biome_sin_interior">سن کے اندر</string>
+    <string name="biome_dream_zanarkand">خواب کا زانارکانڈ</string>
+    <string name="enemy_dingo">ڈنگو</string>
+    <string name="enemy_water_flan">پانی کا فلین</string>
+    <string name="enemy_klikk">کلک</string>
+    <string name="enemy_guado_guardian">گواڈو کا محافظ</string>
+    <string name="enemy_great_malboro">عظیم مال بورو</string>
+    <string name="enemy_dark_aeon">تاریک ایون</string>
+    <string name="enemy_klikk_boss">بڑا کلک</string>
+    <string name="enemy_oblitzerator">اوبلیٹریٹر</string>
+    <string name="enemy_evrae">ایورائے</string>
+    <string name="enemy_seymour">سیمور گواڈو</string>
+    <string name="enemy_omega_weapon_x">امیگا ہتھیار</string>
+    <string name="enemy_jecht">برَاسکا کا آخری ایون</string>
+    <string name="enemy_penance">پاداش</string>
+    <string name="enemy_yu_yevon">یو یوون</string>
+    <string name="enemy_sin">سن</string>
 
     <!-- Town Screen -->
     <string name="town_name">عظیم دارالحکومت</string>
@@ -390,6 +466,127 @@
     <string name="item_rarity_epic">ایپک</string>
     <string name="item_rarity_legendary">لیجنڈری</string>
     <string name="item_name_template">%1$s %2$s</string>
+    <!-- Item Categories -->
+    <!-- Weapons -->
+    <string name="item_cat_sword">تلوار</string>
+    <string name="item_cat_dagger">خنجر</string>
+    <string name="item_cat_staff">عصا</string>
+    <string name="item_cat_wooden_wand">لکڑی کی چھڑی</string>
+    <string name="item_cat_battle_axe">جنگی کلہاڑی</string>
+    <string name="item_cat_hunting_bow">شکار کی کمان</string>
+    <string name="item_cat_knight_lance">شہسوار کا نیزہ</string>
+    <string name="item_cat_mithril_rod">متھرل چھڑی</string>
+    <string name="item_cat_katana">کٹانہ</string>
+    <string name="item_cat_greatsword">بڑی تلوار</string>
+    <string name="item_cat_scythe">داس</string>
+    <string name="item_cat_starlight_wand">تاروں کی روشنی کی چھڑی</string>
+    <string name="item_cat_crystal_scepter">کرسٹل عصا</string>
+    <string name="item_cat_lunar_blade">چاند کی دھار</string>
+    <string name="item_cat_shadow_dagger">تاریک خنجر</string>
+    <string name="item_cat_holy_wand">مقدس چھڑی</string>
+    <string name="item_cat_dark_scepter">تاریک عصا</string>
+    <string name="item_cat_rift_edge">دراڑ کی دھار</string>
+    <string name="item_cat_brave_sword">بہادر تلوار</string>
+    <string name="item_cat_elemental_rod">عناصر کی چھڑی</string>
+    <string name="item_cat_mystic_wand">پرسرار چھڑی</string>
+    <string name="item_cat_runeblade">رونک تلوار</string>
+    <string name="item_cat_chainsaw">چین سار</string>
+    <string name="item_cat_magitek_rod">میجٹیک چھڑی</string>
+    <string name="item_cat_esper_wand">ایسپر چھڑی</string>
+    <string name="item_cat_buster_sword">باسٹر تلوار</string>
+    <string name="item_cat_leather_glove">چمڑے کا دستانہ</string>
+    <string name="item_cat_gatling_gun">گیٹلنگ گن</string>
+    <string name="item_cat_mako_staff">ماکو عصا</string>
+    <string name="item_cat_materia_wand">مٹیریا چھڑی</string>
+    <string name="item_cat_gunblade">گن بلیڈ</string>
+    <string name="item_cat_pinwheel">ونڈ مل</string>
+    <string name="item_cat_guardian_wand">محافظ چھڑی</string>
+    <string name="item_cat_sorceress_rod">ساحرہ کا عصا</string>
+    <string name="item_cat_mage_masher">جادو کاٹنے والا</string>
+    <string name="item_cat_thief_dagger">چور کا خنجر</string>
+    <string name="item_cat_cypress_pole">صنوبر کی چھڑی</string>
+    <string name="item_cat_summoner_flute">مستدعی کی بانسری</string>
+    <string name="item_cat_dimensional_blade">ابعادی دھار</string>
+    <string name="item_cat_void_scythe">خلا کی داس</string>
+    <string name="item_cat_astral_wand">نجمی چھڑی</string>
+    <string name="item_cat_celestial_rod">آسمانی چھڑی</string>
+
+    <!-- Armor -->
+    <string name="item_cat_plate_armor">پلیٹ زرہ</string>
+    <string name="item_cat_leather_helm">چمڑے کا ٹوپ</string>
+    <string name="item_cat_cloth_robe">کپڑے کا لبادہ</string>
+    <string name="item_cat_scale_mail">چھلکے دار زرہ</string>
+    <string name="item_cat_heavy_cuirass">بھاری زرہ</string>
+    <string name="item_cat_mithril_vest">متھرل واسکٹ</string>
+    <string name="item_cat_dragon_scale_armor">ڈریگن کی زرہ</string>
+    <string name="item_cat_archmage_robes">عظیم جادوگر کا لبادہ</string>
+    <string name="item_cat_knight_mail">شہسوار کی زرہ</string>
+    <string name="item_cat_paladin_cuirass">پالادن کی زرہ</string>
+    <string name="item_cat_dark_armor">تاریک زرہ</string>
+    <string name="item_cat_white_robe">سفید لبادہ</string>
+    <string name="item_cat_mirage_vest">سراب واسکٹ</string>
+    <string name="item_cat_diamond_armor">ہیرے کی زرہ</string>
+    <string name="item_cat_summoner_garb">مستدعی کا لباس</string>
+    <string name="item_cat_genji_armor">گنجی زرہ</string>
+    <string name="item_cat_magitek_coat">میجٹیک کوٹ</string>
+    <string name="item_cat_silk_robe">ریشمی لبادہ</string>
+    <string name="item_cat_soldier_uniform">SOLDIER کی وردی</string>
+    <string name="item_cat_shinra_vest">شنرا واسکٹ</string>
+    <string name="item_cat_aegis_coat">ایجس کوٹ</string>
+    <string name="item_cat_seed_uniform">SeeD کی وردی</string>
+    <string name="item_cat_balamb_jacket">بلمب جیکٹ</string>
+    <string name="item_cat_sorceress_gown">ساحرہ کا لباس</string>
+    <string name="item_cat_grand_armor">عظیم زرہ</string>
+    <string name="item_cat_black_cowl">سیاہ ٹوپی</string>
+    <string name="item_cat_feather_hat">پروں والی ٹوپی</string>
+    <string name="item_cat_dimensional_cuirass">ابعادی زرہ</string>
+    <string name="item_cat_astral_vestment">نجمی لباس</string>
+    <string name="item_cat_celestial_garb">آسمانی لباس</string>
+
+    <!-- Shields -->
+    <string name="item_cat_round_shield">گول ڈھال</string>
+    <string name="item_cat_guard_shield">محافظ ڈھال</string>
+    <string name="item_cat_aegis_shield">ایجس ڈھال</string>
+    <string name="item_cat_tower_shield">برج ڈھال</string>
+    <string name="item_cat_force_shield">قوت ڈھال</string>
+    <string name="item_cat_mirror_shield">آئینہ ڈھال</string>
+    <string name="item_cat_lunar_barrier">چاند کی رکاوٹ</string>
+    <string name="item_cat_light_shield">روشنی کی ڈھال</string>
+    <string name="item_cat_elemental_aegis">عناصر کی ایجس</string>
+    <string name="item_cat_crystal_shield">کرسٹل ڈھال</string>
+    <string name="item_cat_genji_shield">گنجی ڈھال</string>
+    <string name="item_cat_magitek_barrier">میجٹیک رکاوٹ</string>
+    <string name="item_cat_mythril_armlet">متھرل کنگن</string>
+    <string name="item_cat_guard_bracelet">محافظ کنگن</string>
+    <string name="item_cat_guardian_shield">پاسبان ڈھال</string>
+    <string name="item_cat_force_aegis">قوت کی ایجس</string>
+    <string name="item_cat_shield_alexandria">سکندریہ کی ڈھال</string>
+    <string name="item_cat_dragon_shield">ڈریگن ڈھال</string>
+    <string name="item_cat_dimensional_barrier">ابعادی رکاوٹ</string>
+    <string name="item_cat_void_aegis">خلا کی ایجس</string>
+
+    <!-- Accessories -->
+    <string name="item_cat_copper_ring">تانبے کی انگوٹھی</string>
+    <string name="item_cat_silver_pendant">چاندی کا آویزہ</string>
+    <string name="item_cat_ruby_bracelet">یاقوتی کنگن</string>
+    <string name="item_cat_jade_earring">جیڈ بالی</string>
+    <string name="item_cat_relic_amulet">مقدس تعویذ</string>
+    <string name="item_cat_cosmic_charm">کائناتی تعویذ</string>
+    <string name="item_cat_moonstone_ring">چاند کے پتھر کی انگوٹھی</string>
+    <string name="item_cat_star_pendant">ستارہ آویزہ</string>
+    <string name="item_cat_flame_ring">آگ کی انگوٹھی</string>
+    <string name="item_cat_angel_ring">فرشتے کی انگوٹھی</string>
+    <string name="item_cat_relic_ring">مقدس انگوٹھی</string>
+    <string name="item_cat_earring_power">طاقت کی بالی</string>
+    <string name="item_cat_ribbon">ربن</string>
+    <string name="item_cat_mako_earring">ماکو بالی</string>
+    <string name="item_cat_gf_talisman">GF تعویذ</string>
+    <string name="item_cat_sorceress_crown">ساحرہ کا تاج</string>
+    <string name="item_cat_pumice_piece">جھانواں پتھر</string>
+    <string name="item_cat_garnet_amulet">گارنیٹ تعویذ</string>
+    <string name="item_cat_dimensional_core">ابعادی مرکز</string>
+    <string name="item_cat_cosmic_crest">کائناتی نشان</string>
+
     <!-- Pets -->
     <string name="pet_chocobo_name">چوکو بو</string>
     <string name="pet_chocobo_desc">+20%% اشیاء کی تلاش</string>
@@ -579,4 +776,11 @@
     <string name="bulletin_perk_vault">💰 خزانے کا گل سود: +%1$d%%</string>
     <string name="bulletin_perk_pathfinder">🧭 راہنما کی شروعاتی منزل: منزل %1$d</string>
     <string name="bulletin_perk_planning">📜 ترقی کی رعایت: %1$d%%</string>
+
+    <!-- Gold to Gems Exchange -->
+    <string name="exchange_title">تبدیلی</string>
+    <string name="exchange_gold_for_gems_title">سونا جواہرات میں تبدیل کریں</string>
+    <string name="exchange_rate_format">%1$s گل ➔ %2$d جواہرات</string>
+    <string name="btn_exchange_pack">تبدیل کریں</string>
+    <string name="btn_need_gil">%1$s گل درکار</string>
 </resources>

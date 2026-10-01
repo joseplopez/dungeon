@@ -178,6 +178,82 @@
     <string name="enemy_jenova_birth">Jénova-NAIXEMENT</string>
     <string name="enemy_rufus">Rufus Shinra</string>
     <string name="enemy_jenova_life">Jénova-VIDA</string>
+    <string name="enemy_hojo">Professor Hojo</string>
+    <string name="enemy_jenova_synthesis">Jenova-SÍNTESI</string>
+    <string name="enemy_bizarro_seph">Bizarro Sephiroth</string>
+    <string name="enemy_sephiroth">Safer Sephiroth</string>
+
+    <!-- Dimension 8 Strings -->
+    <string name="dim8_title">Compressió del Temps</string>
+    <string name="dim8_subtitle">Final Fantasy VIII</string>
+    <string name="dim8_story">Squall Leonhart i els mercenaris de SeeD viatgen en el temps per evitar que la Bruixa Ultimecia aconsegueixi la Compressió del Temps...</string>
+    <string name="biome_balamb_garden">Jardí de Balamb</string>
+    <string name="biome_galbadia_missile">Base de Míssils de Galbadia</string>
+    <string name="biome_deep_sea_deposit">Centre d\'Investigació Marítima</string>
+    <string name="biome_lunatic_pandora">Lunatic Pandora</string>
+    <string name="biome_ultimecia_castle">Castell d\'Ultimecia</string>
+    <string name="enemy_galbadian_soldier">Soldat de Galbadia</string>
+    <string name="enemy_bite_bug">Escarabat Mossegador</string>
+    <string name="enemy_geezard">Geezard</string>
+    <string name="enemy_wendigo">Wendigo</string>
+    <string name="enemy_elnoyle">Elnoyle</string>
+    <string name="enemy_ruby_dragon">Dragó de Rubí</string>
+    <string name="enemy_norg">NORG</string>
+    <string name="enemy_edea">Bruixa Edea</string>
+    <string name="enemy_fujin_raijin">Fujin i Raijin</string>
+    <string name="enemy_seifer">Seifer Almasy</string>
+    <string name="enemy_adel">Bruixa Adel</string>
+    <string name="enemy_trauma">Trauma</string>
+    <string name="enemy_omega_weapon">Arma Omega</string>
+    <string name="enemy_ultimecia">Ultimecia</string>
+
+    <!-- Dimension 9 Strings -->
+    <string name="dim9_title">La Memòria del Cristall</string>
+    <string name="dim9_subtitle">Final Fantasy IX</string>
+    <string name="dim9_story">Zidane Tribal i la companyia Tantalus secrestren la princesa Garnet i destapen el pla de Kuja per destruir el Cristall de la Creació...</string>
+    <string name="biome_lindblum">Castell de Lindblum</string>
+    <string name="biome_conde_petie">Camí de Conde Petie</string>
+    <string name="biome_oeilvert">Oeilvert</string>
+    <string name="biome_pandemonium_ix">Pandemònium</string>
+    <string name="biome_memoria">Memòria</string>
+    <string name="enemy_black_mage_unit">Mague Negre Núm. 1</string>
+    <string name="enemy_zaghnol">Zaghnol</string>
+    <string name="enemy_mistodon">Mistodon</string>
+    <string name="enemy_silver_dragon">Dragó de Plata</string>
+    <string name="enemy_plant_brain">Cervell Vegetal</string>
+    <string name="enemy_black_waltz">Vals Negre</string>
+    <string name="enemy_zorn_thorn">Zorn i Thorn</string>
+    <string name="enemy_ralvurahva">Ralvurahva</string>
+    <string name="enemy_maliris">Maliris</string>
+    <string name="enemy_kuja">Kuja</string>
+    <string name="enemy_trance_kuja">Trance Kuja</string>
+    <string name="enemy_necron">Necron</string>
+
+    <!-- Dimension 10 Strings -->
+    <string name="dim10_title">El Somni de Spira</string>
+    <string name="dim10_subtitle">Final Fantasy X</string>
+    <string name="dim10_story">Tidus, Yuna i els guardians empren un pelegrinatge per Spira per derrotar l\'entitat coneguda com a Sin...</string>
+    <string name="biome_besaid_island">Illa de Besaid</string>
+    <string name="biome_mi_ihen_highroad">Camí de Mi\'ihen</string>
+    <string name="biome_bevelle_temple">Temple de Bevelle</string>
+    <string name="biome_omega_ruins">Ruïnes d\'Omega</string>
+    <string name="biome_sin_interior">Dins de Sin</string>
+    <string name="biome_dream_zanarkand">Zanarkand dels Somnis</string>
+    <string name="enemy_dingo">Dingo</string>
+    <string name="enemy_water_flan">Flan d\'Aigua</string>
+    <string name="enemy_klikk">Klikk</string>
+    <string name="enemy_guado_guardian">Guardià Guado</string>
+    <string name="enemy_great_malboro">Gran Malboro</string>
+    <string name="enemy_dark_aeon">Aeon Fosc</string>
+    <string name="enemy_klikk_boss">Gran Klikk</string>
+    <string name="enemy_oblitzerator">Oblitzerator</string>
+    <string name="enemy_evrae">Evrae</string>
+    <string name="enemy_seymour">Seymour Guado</string>
+    <string name="enemy_omega_weapon_x">Arma Omega</string>
+    <string name="enemy_jecht">Aeon Final de Braska</string>
+    <string name="enemy_penance">Penance</string>
+    <string name="enemy_yu_yevon">Yu Yevon</string>
+    <string name="enemy_sin">SIN</string>
 
     <!-- Town Screen -->
     <string name="town_name">GRAN CAPITAL</string>
@@ -390,6 +466,128 @@
     <string name="item_rarity_epic">Èpic</string>
     <string name="item_rarity_legendary">Llegendari</string>
     <string name="item_name_template">%1$s %2$s</string>
+
+    <!-- Item Categories -->
+    <!-- Weapons -->
+    <string name="item_cat_sword">Espasa</string>
+    <string name="item_cat_dagger">Daga</string>
+    <string name="item_cat_staff">Bastó</string>
+    <string name="item_cat_wooden_wand">Varieta de Fusta</string>
+    <string name="item_cat_battle_axe">Destral de Batalla</string>
+    <string name="item_cat_hunting_bow">Arc de Caça</string>
+    <string name="item_cat_knight_lance">Lança de Cavaller</string>
+    <string name="item_cat_mithril_rod">Vara de Mitril</string>
+    <string name="item_cat_katana">Katana</string>
+    <string name="item_cat_greatsword">Espasa Gran</string>
+    <string name="item_cat_scythe">Guadanya</string>
+    <string name="item_cat_starlight_wand">Varieta Estel·lar</string>
+    <string name="item_cat_crystal_scepter">Cetre de Cristall</string>
+    <string name="item_cat_lunar_blade">Fulla Lunar</string>
+    <string name="item_cat_shadow_dagger">Daga Ombrívola</string>
+    <string name="item_cat_holy_wand">Varieta Sagrada</string>
+    <string name="item_cat_dark_scepter">Cetre Fosc</string>
+    <string name="item_cat_rift_edge">Fulla de la Fenedura</string>
+    <string name="item_cat_brave_sword">Espasa Valent</string>
+    <string name="item_cat_elemental_rod">Vara Elemental</string>
+    <string name="item_cat_mystic_wand">Varieta Mística</string>
+    <string name="item_cat_runeblade">Espasa Rúnica</string>
+    <string name="item_cat_chainsaw">Motoserra</string>
+    <string name="item_cat_magitek_rod">Vara Magitek</string>
+    <string name="item_cat_esper_wand">Varieta d\'Esper</string>
+    <string name="item_cat_buster_sword">Espasa Buster</string>
+    <string name="item_cat_leather_glove">Guant de Cuir</string>
+    <string name="item_cat_gatling_gun">Canó Gatling</string>
+    <string name="item_cat_mako_staff">Bastó Mako</string>
+    <string name="item_cat_materia_wand">Varieta de Matèria</string>
+    <string name="item_cat_gunblade">Sable Pistola</string>
+    <string name="item_cat_pinwheel">Molinet</string>
+    <string name="item_cat_guardian_wand">Varieta Guardiana</string>
+    <string name="item_cat_sorceress_rod">Vara de Bruixa</string>
+    <string name="item_cat_mage_masher">Trencamagies</string>
+    <string name="item_cat_thief_dagger">Daga de Lladre</string>
+    <string name="item_cat_cypress_pole">Vara de Xiprer</string>
+    <string name="item_cat_summoner_flute">Flauta d\'Invocador</string>
+    <string name="item_cat_dimensional_blade">Fulla Dimensional</string>
+    <string name="item_cat_void_scythe">Guadanya del Buit</string>
+    <string name="item_cat_astral_wand">Varieta Astral</string>
+    <string name="item_cat_celestial_rod">Vara Celestial</string>
+
+    <!-- Armor -->
+    <string name="item_cat_plate_armor">Armadura de Plaques</string>
+    <string name="item_cat_leather_helm">Elm de Cuir</string>
+    <string name="item_cat_cloth_robe">Túnica de Roba</string>
+    <string name="item_cat_scale_mail">Cota de Malla</string>
+    <string name="item_cat_heavy_cuirass">Corassa Pesada</string>
+    <string name="item_cat_mithril_vest">Armilla de Mitril</string>
+    <string name="item_cat_dragon_scale_armor">Armadura d\'Escates de Dragó</string>
+    <string name="item_cat_archmage_robes">Túnica d\'Arquimag</string>
+    <string name="item_cat_knight_mail">Malla de Cavaller</string>
+    <string name="item_cat_paladin_cuirass">Corassa de Paladí</string>
+    <string name="item_cat_dark_armor">Armadura Fosca</string>
+    <string name="item_cat_white_robe">Túnica Blanca</string>
+    <string name="item_cat_mirage_vest">Armilla Miratge</string>
+    <string name="item_cat_diamond_armor">Armadura de Diamant</string>
+    <string name="item_cat_summoner_garb">Indumentària d\'Invocador</string>
+    <string name="item_cat_genji_armor">Armadura Genji</string>
+    <string name="item_cat_magitek_coat">Abric Magitek</string>
+    <string name="item_cat_silk_robe">Túnica de Seda</string>
+    <string name="item_cat_soldier_uniform">Uniforme de SOLDIER</string>
+    <string name="item_cat_shinra_vest">Armilla Shinra</string>
+    <string name="item_cat_aegis_coat">Abric Ègida</string>
+    <string name="item_cat_seed_uniform">Uniforme de SeeD</string>
+    <string name="item_cat_balamb_jacket">Jaqueta de Balamb</string>
+    <string name="item_cat_sorceress_gown">Vestit de Bruixa</string>
+    <string name="item_cat_grand_armor">Gran Armadura</string>
+    <string name="item_cat_black_cowl">Caputxa Negra</string>
+    <string name="item_cat_feather_hat">Barret de Plomes</string>
+    <string name="item_cat_dimensional_cuirass">Corassa Dimensional</string>
+    <string name="item_cat_astral_vestment">Vestidura Astral</string>
+    <string name="item_cat_celestial_garb">Indumentària Celestial</string>
+
+    <!-- Shields -->
+    <string name="item_cat_round_shield">Escut Rodó</string>
+    <string name="item_cat_guard_shield">Escut Guardià</string>
+    <string name="item_cat_aegis_shield">Escut Ègida</string>
+    <string name="item_cat_tower_shield">Escut Torre</string>
+    <string name="item_cat_force_shield">Escut de Força</string>
+    <string name="item_cat_mirror_shield">Escut Mirall</string>
+    <string name="item_cat_lunar_barrier">Barrera Lunar</string>
+    <string name="item_cat_light_shield">Escut de Llum</string>
+    <string name="item_cat_elemental_aegis">Ègida Elemental</string>
+    <string name="item_cat_crystal_shield">Escut de Cristall</string>
+    <string name="item_cat_genji_shield">Escut Genji</string>
+    <string name="item_cat_magitek_barrier">Barrera Magitek</string>
+    <string name="item_cat_mythril_armlet">Braçalet de Mitril</string>
+    <string name="item_cat_guard_bracelet">Braçalet Guardià</string>
+    <string name="item_cat_guardian_shield">Escut del Guardià</string>
+    <string name="item_cat_force_aegis">Ègida de Força</string>
+    <string name="item_cat_shield_alexandria">Escut d\'Alexandria</string>
+    <string name="item_cat_dragon_shield">Escut de Dragó</string>
+    <string name="item_cat_dimensional_barrier">Barrera Dimensional</string>
+    <string name="item_cat_void_aegis">Ègida del Buit</string>
+
+    <!-- Accessories -->
+    <string name="item_cat_copper_ring">Anell de Coure</string>
+    <string name="item_cat_silver_pendant">Penjoll de Plata</string>
+    <string name="item_cat_ruby_bracelet">Braçalet de Rubí</string>
+    <string name="item_cat_jade_earring">Arracada de Jade</string>
+    <string name="item_cat_relic_amulet">Amuleto de Relíquia</string>
+    <string name="item_cat_cosmic_charm">Encant Cósmic</string>
+    <string name="item_cat_moonstone_ring">Anell de Pedra de Lluna</string>
+    <string name="item_cat_star_pendant">Penjoll d\'Estrella</string>
+    <string name="item_cat_flame_ring">Anell de Foc</string>
+    <string name="item_cat_angel_ring">Anell d\'Àngel</string>
+    <string name="item_cat_relic_ring">Anell de Relíquia</string>
+    <string name="item_cat_earring_power">Arracada de Poder</string>
+    <string name="item_cat_ribbon">Cinta</string>
+    <string name="item_cat_mako_earring">Arracada Mako</string>
+    <string name="item_cat_gf_talisman">Talismà GF</string>
+    <string name="item_cat_sorceress_crown">Corona de Bruixa</string>
+    <string name="item_cat_pumice_piece">Tros de Pedra Tosca</string>
+    <string name="item_cat_garnet_amulet">Amulet de Granat</string>
+    <string name="item_cat_dimensional_core">Nucli Dimensional</string>
+    <string name="item_cat_cosmic_crest">Cresta Còsmica</string>
+
     <!-- Pets -->
     <string name="pet_chocobo_name">Chocobo</string>
     <string name="pet_chocobo_desc">+20%% Trobada d\'Objectes</string>
@@ -579,4 +777,11 @@
     <string name="bulletin_perk_vault">💰 Interès de Gil Càmera: +%1$d%%</string>
     <string name="bulletin_perk_pathfinder">🧭 Planta inicial Pioner: Planta %1$d</string>
     <string name="bulletin_perk_planning">📜 Descompte de millores: %1$d%%</string>
+
+    <!-- Gold to Gems Exchange -->
+    <string name="exchange_title">INTERCANVI</string>
+    <string name="exchange_gold_for_gems_title">CANVI D\'OR A GEMMES</string>
+    <string name="exchange_rate_format">%1$s Gil ➔ %2$d Gemmes</string>
+    <string name="btn_exchange_pack">Intercanviar</string>
+    <string name="btn_need_gil">Calen %1$s Gil</string>
 </resources>

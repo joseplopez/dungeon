@@ -178,6 +178,82 @@
     <string name="enemy_jenova_birth">Jenova-KUZALIWA</string>
     <string name="enemy_rufus">Rufus Shinra</string>
     <string name="enemy_jenova_life">Jenova-UZIMA</string>
+    <string name="enemy_hojo">Profesa Hojo</string>
+    <string name="enemy_jenova_synthesis">Jenova-SYNTHESIS</string>
+    <string name="enemy_bizarro_seph">Bizarro Sephiroth</string>
+    <string name="enemy_sephiroth">Safer Sephiroth</string>
+
+    <!-- Dimension 8 Strings -->
+    <string name="dim8_title">Mshinikizo wa Wakati</string>
+    <string name="dim8_subtitle">Final Fantasy VIII</string>
+    <string name="dim8_story">Squall Leonhart na mamluki wa SeeD wasafiri kupitia wakati kumsimamisha Mchawi Ultimecia...</string>
+    <string name="biome_balamb_garden">Bustani ya Balamb</string>
+    <string name="biome_galbadia_missile">Kituo cha Rasi cha Galbadia</string>
+    <string name="biome_deep_sea_deposit">Kituo cha Utafiti cha Bahari Kuu</string>
+    <string name="biome_lunatic_pandora">Lunatic Pandora</string>
+    <string name="biome_ultimecia_castle">Castle ya Ultimecia</string>
+    <string name="enemy_galbadian_soldier">Askari wa Galbadia</string>
+    <string name="enemy_bite_bug">Dudu la Kuuma</string>
+    <string name="enemy_geezard">Geezard</string>
+    <string name="enemy_wendigo">Wendigo</string>
+    <string name="enemy_elnoyle">Elnoyle</string>
+    <string name="enemy_ruby_dragon">Dragon wa Rubi</string>
+    <string name="enemy_norg">NORG</string>
+    <string name="enemy_edea">Mchawi Edea</string>
+    <string name="enemy_fujin_raijin">Fujin &amp; Raijin</string>
+    <string name="enemy_seifer">Seifer Almasy</string>
+    <string name="enemy_adel">Mchawi Adel</string>
+    <string name="enemy_trauma">Trauma</string>
+    <string name="enemy_omega_weapon">Silaha ya Omega</string>
+    <string name="enemy_ultimecia">Ultimecia</string>
+
+    <!-- Dimension 9 Strings -->
+    <string name="dim9_title">Kumbukumbu ya Kioo</string>
+    <string name="dim9_subtitle">Final Fantasy IX</string>
+    <string name="dim9_story">Zidane Tribal na kundi la Tantalus wamteka Binti Mfalme Garnet na kufichua mpango wa Kuja...</string>
+    <string name="biome_lindblum">Castle ya Lindblum</string>
+    <string name="biome_conde_petie">Njia ya Conde Petie</string>
+    <string name="biome_oeilvert">Oeilvert</string>
+    <string name="biome_pandemonium_ix">Pandemonium</string>
+    <string name="biome_memoria">Memoria</string>
+    <string name="enemy_black_mage_unit">Mchawi Mweusi Nambari 1</string>
+    <string name="enemy_zaghnol">Zaghnol</string>
+    <string name="enemy_mistodon">Mistodon</string>
+    <string name="enemy_silver_dragon">Dragon wa Fedha</string>
+    <string name="enemy_plant_brain">Ubongo wa Mmea</string>
+    <string name="enemy_black_waltz">Waltz Mweusi</string>
+    <string name="enemy_zorn_thorn">Zorn &amp; Thorn</string>
+    <string name="enemy_ralvurahva">Ralvurahva</string>
+    <string name="enemy_maliris">Maliris</string>
+    <string name="enemy_kuja">Kuja</string>
+    <string name="enemy_trance_kuja">Trance Kuja</string>
+    <string name="enemy_necron">Necron</string>
+
+    <!-- Dimension 10 Strings -->
+    <string name="dim10_title">Ndoto ya Spira</string>
+    <string name="dim10_subtitle">Final Fantasy X</string>
+    <string name="dim10_story">Tidus, Yuna na walinzi waondoka katika safari kote Spira kumshinda Sin...</string>
+    <string name="biome_besaid_island">Kisiwa cha Besaid</string>
+    <string name="biome_mi_ihen_highroad">Barabara Kuu ya Mi\'ihen</string>
+    <string name="biome_bevelle_temple">Hekalu la Bevelle</string>
+    <string name="biome_omega_ruins">Magofu ya Omega</string>
+    <string name="biome_sin_interior">Ndani ya Sin</string>
+    <string name="biome_dream_zanarkand">Zanarkand ya Ndoto</string>
+    <string name="enemy_dingo">Dingo</string>
+    <string name="enemy_water_flan">Flan wa Maji</string>
+    <string name="enemy_klikk">Klikk</string>
+    <string name="enemy_guado_guardian">Mlinzi wa Guado</string>
+    <string name="enemy_great_malboro">Malboro Mkubwa</string>
+    <string name="enemy_dark_aeon">Aeon Mweusi</string>
+    <string name="enemy_klikk_boss">Klikk Mzee</string>
+    <string name="enemy_oblitzerator">Oblitzerator</string>
+    <string name="enemy_evrae">Evrae</string>
+    <string name="enemy_seymour">Seymour Guado</string>
+    <string name="enemy_omega_weapon_x">Silaha ya Omega</string>
+    <string name="enemy_jecht">Aeon wa Mwisho wa Braska</string>
+    <string name="enemy_penance">Penance</string>
+    <string name="enemy_yu_yevon">Yu Yevon</string>
+    <string name="enemy_sin">SIN</string>
 
     <!-- Town Screen -->
     <string name="town_name">MTEJA MKUU</string>
@@ -390,6 +466,127 @@
     <string name="item_rarity_epic">Epic</string>
     <string name="item_rarity_legendary">Hadithi</string>
     <string name="item_name_template">%1$s %2$s</string>
+    <!-- Item Categories -->
+    <!-- Weapons -->
+    <string name="item_cat_sword">Upanga</string>
+    <string name="item_cat_dagger">Kisu</string>
+    <string name="item_cat_staff">Fimbo</string>
+    <string name="item_cat_wooden_wand">Fimbo ya Mti</string>
+    <string name="item_cat_battle_axe">Shoka la Vita</string>
+    <string name="item_cat_hunting_bow">Upinde wa Kuwinda</string>
+    <string name="item_cat_knight_lance">Mkuki wa Askari</string>
+    <string name="item_cat_mithril_rod">Fimbo ya Mithril</string>
+    <string name="item_cat_katana">Katana</string>
+    <string name="item_cat_greatsword">Upanga Mkubwa</string>
+    <string name="item_cat_scythe">Katakata</string>
+    <string name="item_cat_starlight_wand">Fimbo ya Nuru ya Nyota</string>
+    <string name="item_cat_crystal_scepter">Bakora ya Kioo</string>
+    <string name="item_cat_lunar_blade">Bamba la Mwezi</string>
+    <string name="item_cat_shadow_dagger">Kisu cha Kivuli</string>
+    <string name="item_cat_holy_wand">Fimbo Takatifu</string>
+    <string name="item_cat_dark_scepter">Bakora Giza</string>
+    <string name="item_cat_rift_edge">Makali ya Ufa</string>
+    <string name="item_cat_brave_sword">Upanga wa Shujaa</string>
+    <string name="item_cat_elemental_rod">Fimbo ya Elements</string>
+    <string name="item_cat_mystic_wand">Fimbo ya Fumbo</string>
+    <string name="item_cat_runeblade">Upanga wa Rune</string>
+    <string name="item_cat_chainsaw">Msumeno wa Umeme</string>
+    <string name="item_cat_magitek_rod">Fimbo ya Magitek</string>
+    <string name="item_cat_esper_wand">Fimbo ya Esper</string>
+    <string name="item_cat_buster_sword">Upanga Mkubwa wa Buster</string>
+    <string name="item_cat_leather_glove">Glovu ya Ngozi</string>
+    <string name="item_cat_gatling_gun">Bunduki ya Gatling</string>
+    <string name="item_cat_mako_staff">Fimbo ya Mako</string>
+    <string name="item_cat_materia_wand">Fimbo ya Materia</string>
+    <string name="item_cat_gunblade">Gunblade</string>
+    <string name="item_cat_pinwheel">Kipepeo</string>
+    <string name="item_cat_guardian_wand">Fimbo ya Mlinzi</string>
+    <string name="item_cat_sorceress_rod">Fimbo ya Mchawi</string>
+    <string name="item_cat_mage_masher">Mvunja Uchawi</string>
+    <string name="item_cat_thief_dagger">Kisu cha Mwizi</string>
+    <string name="item_cat_cypress_pole">Fimbo ya Saiprasi</string>
+    <string name="item_cat_summoner_flute">Flute ya Mwombaji</string>
+    <string name="item_cat_dimensional_blade">Bamba la Vipimo</string>
+    <string name="item_cat_void_scythe">Katakata ya Utupu</string>
+    <string name="item_cat_astral_wand">Fimbo ya Astral</string>
+    <string name="item_cat_celestial_rod">Fimbo ya Mbinguni</string>
+
+    <!-- Armor -->
+    <string name="item_cat_plate_armor">Silaha ya Sahani</string>
+    <string name="item_cat_leather_helm">Kofia ya Ngozi</string>
+    <string name="item_cat_cloth_robe">Joho la Kitambaa</string>
+    <string name="item_cat_scale_mail">Silaha ya Magamba</string>
+    <string name="item_cat_heavy_cuirass">Silaha Nzito ya Kifua</string>
+    <string name="item_cat_mithril_vest">Fulana ya Mithril</string>
+    <string name="item_cat_dragon_scale_armor">Silaha ya Magamba ya Dragon</string>
+    <string name="item_cat_archmage_robes">Joho la Archmage</string>
+    <string name="item_cat_knight_mail">Silaha ya Askari</string>
+    <string name="item_cat_paladin_cuirass">Silaha ya Paladin</string>
+    <string name="item_cat_dark_armor">Silaha Giza</string>
+    <string name="item_cat_white_robe">Joho Jeupe</string>
+    <string name="item_cat_mirage_vest">Fulana ya Illusion</string>
+    <string name="item_cat_diamond_armor">Silaha ya Almasi</string>
+    <string name="item_cat_summoner_garb">Mavazi ya Mwombaji</string>
+    <string name="item_cat_genji_armor">Silaha ya Genji</string>
+    <string name="item_cat_magitek_coat">Koti la Magitek</string>
+    <string name="item_cat_silk_robe">Joho la Hariri</string>
+    <string name="item_cat_soldier_uniform">Uniform ya SOLDIER</string>
+    <string name="item_cat_shinra_vest">Fulana ya Shinra</string>
+    <string name="item_cat_aegis_coat">Koti la Aegis</string>
+    <string name="item_cat_seed_uniform">Uniform ya SeeD</string>
+    <string name="item_cat_balamb_jacket">Jaketi la Balamb</string>
+    <string name="item_cat_sorceress_gown">Gauni la Mchawi</string>
+    <string name="item_cat_grand_armor">Silaha Kubwa</string>
+    <string name="item_cat_black_cowl">Kofia Nyusi</string>
+    <string name="item_cat_feather_hat">Kofia ya Nyoya</string>
+    <string name="item_cat_dimensional_cuirass">Silaha ya Vipimo</string>
+    <string name="item_cat_astral_vestment">Mavazi ya Astral</string>
+    <string name="item_cat_celestial_garb">Mavazi ya Mbinguni</string>
+
+    <!-- Shields -->
+    <string name="item_cat_round_shield">Ngao ya Duara</string>
+    <string name="item_cat_guard_shield">Ngao ya Mlinzi</string>
+    <string name="item_cat_aegis_shield">Ngao ya Aegis</string>
+    <string name="item_cat_tower_shield">Ngao ya Mnara</string>
+    <string name="item_cat_force_shield">Ngao ya Nguvu</string>
+    <string name="item_cat_mirror_shield">Ngao ya Kioo</string>
+    <string name="item_cat_lunar_barrier">Kizuizi cha Mwezi</string>
+    <string name="item_cat_light_shield">Ngao ya Nuru</string>
+    <string name="item_cat_elemental_aegis">Aegis ya Elements</string>
+    <string name="item_cat_crystal_shield">Ngao ya Kioo</string>
+    <string name="item_cat_genji_shield">Ngao ya Genji</string>
+    <string name="item_cat_magitek_barrier">Kizuizi cha Magitek</string>
+    <string name="item_cat_mythril_armlet">Bangili ya Mithril</string>
+    <string name="item_cat_guard_bracelet">Bangili ya Mlinzi</string>
+    <string name="item_cat_guardian_shield">Ngao ya Mlinzi</string>
+    <string name="item_cat_force_aegis">Aegis ya Nguvu</string>
+    <string name="item_cat_shield_alexandria">Ngao ya Alexandria</string>
+    <string name="item_cat_dragon_shield">Ngao ya Dragon</string>
+    <string name="item_cat_dimensional_barrier">Kizuizi cha Vipimo</string>
+    <string name="item_cat_void_aegis">Aegis ya Utupu</string>
+
+    <!-- Accessories -->
+    <string name="item_cat_copper_ring">Sugu la Shaba</string>
+    <string name="item_cat_silver_pendant">Mkufu wa Fedha</string>
+    <string name="item_cat_ruby_bracelet">Bangili ya Rubi</string>
+    <string name="item_cat_jade_earring">Bangeri ya Jade</string>
+    <string name="item_cat_relic_amulet">Hirizi ya Relic</string>
+    <string name="item_cat_cosmic_charm">Charm ya Ulimwengu</string>
+    <string name="item_cat_moonstone_ring">Sugu la Jiwe la Mwezi</string>
+    <string name="item_cat_star_pendant">Mkufu wa Nyota</string>
+    <string name="item_cat_flame_ring">Sugu la Moto</string>
+    <string name="item_cat_angel_ring">Sugu la Malaika</string>
+    <string name="item_cat_relic_ring">Sugu la Relic</string>
+    <string name="item_cat_earring_power">Bangeri ya Nguvu</string>
+    <string name="item_cat_ribbon">Utepe</string>
+    <string name="item_cat_mako_earring">Bangeri ya Mako</string>
+    <string name="item_cat_gf_talisman">Talisman ya GF</string>
+    <string name="item_cat_sorceress_crown">Taji la Mchawi</string>
+    <string name="item_cat_pumice_piece">Kipande cha Pumice</string>
+    <string name="item_cat_garnet_amulet">Hirizi ya Garnet</string>
+    <string name="item_cat_dimensional_core">Inti ya Vipimo</string>
+    <string name="item_cat_cosmic_crest">Nembo ya Ulimwengu</string>
+
     <!-- Pets -->
     <string name="pet_chocobo_name">Chocobo</string>
     <string name="pet_chocobo_desc">+20%% Kupata Vitu</string>
@@ -579,4 +776,11 @@
     <string name="bulletin_perk_vault">💰 Faida ya Gil Akiba: +%1$d%%</string>
     <string name="bulletin_perk_pathfinder">🧭 Ghorofa ya Kuanzia Msacambia: Ghorofa %1$d</string>
     <string name="bulletin_perk_planning">📜 Punguzo la Maboresho: %1$d%%</string>
+
+    <!-- Gold to Gems Exchange -->
+    <string name="exchange_title">BADILISHA</string>
+    <string name="exchange_gold_for_gems_title">KUBADILISHA DHAHABU KUWA VITO</string>
+    <string name="exchange_rate_format">%1$s Gil ➔ %2$d Vito</string>
+    <string name="btn_exchange_pack">Badilisha</string>
+    <string name="btn_need_gil">Unahitaji %1$s Gil</string>
 </resources>

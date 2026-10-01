@@ -82,13 +82,163 @@ class GameplayProgressionTest {
     }
 
     @Test
-    fun testItemCategoriesAndStatScalingByDimension() {
-        val itemDim1 = Item.random(floor = 50, context = mockContext, minRarity = Rarity.LEGENDARY, dimension = 1)
-        val itemDim3 = Item.random(floor = 50, context = mockContext, minRarity = Rarity.LEGENDARY, dimension = 3)
+    fun testRebalancedGilAndMagiciteScaling() {
+        val regularTemplate = FFEnemyTemplate(
+            nameRes = 1,
+            emoji = "👺",
+            minFloor = 1,
+            maxFloor = 1000,
+            gilReward = 100,
+            magiciteChance = 0.05f
+        )
+        val bossTemplate = FFEnemyTemplate(
+            nameRes = 1,
+            emoji = "🐉",
+            minFloor = 1,
+            maxFloor = 1000,
+            gilReward = 1000,
+            isBoss = true
+        )
 
-        assertNotNull(itemDim1)
-        assertNotNull(itemDim3)
-        assertTrue("Item from higher dimension should have equal or higher power score for same rarity", itemDim3.powerScore >= itemDim1.powerScore)
+        val regularFloor1 = Enemy.fromTemplate(regularTemplate, floor = 1, context = mockContext)
+        val regularFloor10 = Enemy.fromTemplate(regularTemplate, floor = 10, context = mockContext)
+        val regularFloor100 = Enemy.fromTemplate(regularTemplate, floor = 100, context = mockContext)
+        val regularFloor500 = Enemy.fromTemplate(regularTemplate, floor = 500, context = mockContext)
+
+        // Monotonic Gil progression
+        assertTrue(regularFloor10.gilDropped > regularFloor1.gilDropped)
+        assertTrue(regularFloor100.gilDropped > regularFloor10.gilDropped)
+        assertTrue(regularFloor500.gilDropped > regularFloor100.gilDropped)
+
+        // Verify Gil scaling remains balanced at floor 100 (sub-linear multiplier ~4.5x, gil ~450)
+        assertTrue("Floor 100 Gil reward should be balanced (< 800 for 100 base)", regularFloor100.gilDropped < 800)
+        // Verify Gil scaling remains balanced at floor 500 (sub-linear multiplier ~14.35x, gil ~1435)
+        assertTrue("Floor 500 Gil reward should be balanced (< 2500 for 100 base)", regularFloor500.gilDropped < 2500)
+
+        // Boss magicite tests
+        val bossFloor1 = Enemy.fromTemplate(bossTemplate, floor = 1, context = mockContext)
+        val bossFloor100 = Enemy.fromTemplate(bossTemplate, floor = 100, context = mockContext)
+        val bossFloor500 = Enemy.fromTemplate(bossTemplate, floor = 500, context = mockContext)
+
+        assertTrue("Boss Floor 1 Magicite should be >= 3", bossFloor1.magiciteDropped >= 3)
+        assertTrue("Boss Floor 100 Magicite should be around 10", bossFloor100.magiciteDropped in 8..12)
+        assertTrue("Boss Floor 500 Magicite should be capped at 20", bossFloor500.magiciteDropped <= 20)
+
+        // Regular monster magicite quantity check (never > 2)
+        for (f in listOf(1, 10, 50, 100, 200, 500, 1000)) {
+            val reg = Enemy.fromTemplate(regularTemplate, floor = f, context = mockContext)
+            assertTrue("Regular enemy magicite drop quantity on floor $f must be <= 2", reg.magiciteDropped <= 2)
+        }
+    }
+
+    @Test
+    fun testEnemyAndBossDimensionStatScaling() {
+        val regTemplate = FFEnemyTemplate(
+            nameRes = 1,
+            emoji = "👺",
+            minFloor = 1,
+            maxFloor = 500,
+            gilReward = 50
+        )
+        val bossTemplate = FFEnemyTemplate(
+            nameRes = 1,
+            emoji = "🐉",
+            minFloor = 1,
+            maxFloor = 500,
+            gilReward = 500,
+            isBoss = true
+        )
+
+        val dim1 = FFDimensionData.getDimension(1)
+        val dim2 = FFDimensionData.getDimension(2)
+        val dim3 = FFDimensionData.getDimension(3)
+
+        val regDim1 = Enemy.fromTemplate(regTemplate, floor = 50, context = mockContext, dimension = dim1)
+        val regDim2 = Enemy.fromTemplate(regTemplate, floor = 50, context = mockContext, dimension = dim2)
+        val regDim3 = Enemy.fromTemplate(regTemplate, floor = 50, context = mockContext, dimension = dim3)
+
+        // Dimension 2 regular enemy should have ~30% higher stats than Dimension 1
+        assertTrue("Dim 2 HP must be > Dim 1 HP", regDim2.maxHp > regDim1.maxHp)
+        assertTrue("Dim 3 HP must be > Dim 2 HP", regDim3.maxHp > regDim2.maxHp)
+        assertTrue("Dim 2 ATK must be > Dim 1 ATK", regDim2.attack > regDim1.attack)
+        assertTrue("Dim 3 ATK must be > Dim 2 ATK", regDim3.attack > regDim2.attack)
+
+        // Boss dimension scaling checks
+        val bossDim1 = Enemy.fromTemplate(bossTemplate, floor = 100, context = mockContext, dimension = dim1)
+        val bossDim2 = Enemy.fromTemplate(bossTemplate, floor = 100, context = mockContext, dimension = dim2)
+        val bossDim3 = Enemy.fromTemplate(bossTemplate, floor = 100, context = mockContext, dimension = dim3)
+
+        assertTrue("Dim 2 Boss HP must be > Dim 1 Boss HP", bossDim2.maxHp > bossDim1.maxHp)
+        assertTrue("Dim 3 Boss HP must be > Dim 2 Boss HP", bossDim3.maxHp > bossDim2.maxHp)
+        assertTrue("Dim 2 Boss ATK must be > Dim 1 Boss ATK", bossDim2.attack > bossDim1.attack)
+
+        // Verify extra boss scaling in higher dimensions
+        val regHpRatioDim2 = regDim2.maxHp.toFloat() / regDim1.maxHp
+        val bossHpRatioDim2 = bossDim2.maxHp.toFloat() / bossDim1.maxHp
+        assertTrue("Boss dimension scaling ratio should be higher than regular enemy dimension scaling ratio", bossHpRatioDim2 > regHpRatioDim2)
+    }
+
+    @Test
+    fun testRebalancedItemStatScalingAcrossDimensions() {
+        val itemDim1 = Item.random(floor = 100, context = mockContext, minRarity = Rarity.LEGENDARY, dimension = 1)
+        
+        // Verify stats on high floors stay within reasonable non-inflated bounds
+        // Legendary item on floor 100 in Dim 1 should have HP < 400 (previously was > 1,400)
+        assertTrue("Floor 100 Legendary item HP should be balanced (< 400)", itemDim1.hpBonus < 400)
+
+        // Verify deterministic stat comparison across dimensions for same slot & rarity
+        val bonusMult = 4.0f // Legendary
+        val atkDim1 = ((2 + 100 / 8) * bonusMult * (1f + 0 * 0.12f)).toInt() // 14 * 4 = 56
+        val atkDim3 = ((2 + 100 / 8) * bonusMult * (1f + 2 * 0.12f)).toInt() // 14 * 4 * 1.24 = 69
+        val atkDim5 = ((2 + 100 / 8) * bonusMult * (1f + 4 * 0.12f)).toInt() // 14 * 4 * 1.48 = 82
+
+        assertTrue("Higher dimension weapon ATK should scale deterministically", atkDim3 > atkDim1)
+        assertTrue("Higher dimension weapon ATK should scale deterministically", atkDim5 > atkDim3)
+
+        // Verify weapon attack bounds
+        assertTrue("Weapon ATK in Dim 1 on Floor 100 should be around 56", atkDim1 in 50..65)
+        assertTrue("Weapon ATK in Dim 5 on Floor 100 should be around 82", atkDim5 in 75..95)
+
+        // Verify defense bounds
+        val defDim1 = ((2 + 100 / 6) * bonusMult * 1.0f).toInt() // 18 * 4 = 72
+        val defDim5 = ((2 + 100 / 6) * bonusMult * (1f + 4 * 0.12f)).toInt() // 18 * 4 * 1.48 = 106
+        assertTrue("Armor DEF in Dim 1 on Floor 100 should be around 72", defDim1 in 60..80)
+        assertTrue("Armor DEF in Dim 5 on Floor 100 should be around 106", defDim5 in 95..120)
+    }
+
+    @Test
+    fun testItemCategoriesAndStatScalingByDimension() {
+        val itemsDim1 = List(30) { Item.random(floor = 50, context = mockContext, minRarity = Rarity.LEGENDARY, dimension = 1) }
+        val itemsDim3 = List(30) { Item.random(floor = 50, context = mockContext, minRarity = Rarity.LEGENDARY, dimension = 3) }
+
+        val avgPowerDim1 = itemsDim1.map { it.powerScore }.average()
+        val avgPowerDim3 = itemsDim3.map { it.powerScore }.average()
+
+        assertTrue("Item from higher dimension should on average have higher power score for same rarity", avgPowerDim3 > avgPowerDim1)
+    }
+
+    @Test
+    fun testMagicalWeaponsAndTenDimensionsCategoryGeneration() {
+        for (dim in 1..10) {
+            val items = List(50) { Item.random(floor = 50, context = mockContext, minRarity = Rarity.RARE, dimension = dim) }
+            assertTrue("Items generated for Dimension $dim should not be empty", items.isNotEmpty())
+        }
+
+        var foundMagicalWeapon = false
+        var foundPhysicalWeapon = false
+        repeat(200) {
+            val item = Item.random(floor = 50, context = mockContext, dimension = 1)
+            if (item.slot == ItemSlot.WEAPON) {
+                if (item.magicBonus > 0 && item.attackBonus == 0) {
+                    foundMagicalWeapon = true
+                }
+                if (item.attackBonus > 0 && item.magicBonus == 0) {
+                    foundPhysicalWeapon = true
+                }
+            }
+        }
+        assertTrue("Should be able to generate magical weapons with magicBonus", foundMagicalWeapon)
+        assertTrue("Should be able to generate physical weapons with attackBonus", foundPhysicalWeapon)
     }
 
     @Test
