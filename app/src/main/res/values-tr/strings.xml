@@ -266,7 +266,7 @@
     <string name="unlocks_job_format">%1$s kilidini açar</string>
     <string name="owned_status">✓ SAHİP OLUNDU</string>
     <string name="town_upgrades">KASABA GELİŞTİRMELERİ</string>
-    <string name="upgrade_discount">İndirim: %1$d%%</string>
+    <string name="upgrade_discount">İndirim: %1$d%%%</string>
     <string name="max_level">MAKS</string>
     <string name="level_format">SNT %1$d / %2$d</string>
     <string name="pathfinder_level_format">SNT %1$d / %2$d (Maks Kat: %3$d)</string>
@@ -359,7 +359,7 @@
     <string name="log_summon_format">🌟 %1$s, %2$s çağırıyor! Toplam: %3$d hasar!</string>
     <string name="log_magicite_stolen">%1$s, %2$d Magicite çaldı!</string>
     <string name="log_bard_song">🎵 %1$s: %2$s</string>
-    <string name="log_total_wipe">💀 TAMAMEN YOK OLMA: Macera kazancının %%30\'u kaybedildi.</string>
+    <string name="log_total_wipe">💀 TAMAMEN YOK OLMA: Macera kazancının %%%30\'u kaybedildi.</string>
     <string name="log_physical_attack">%1$s, %2$s kişisine %3$d hasar vererek saldırıyor!</string>
     <string name="log_physical_crit">💥 %1$s, %2$s kişisinin HAYATİ NOKTASINA %3$d hasarla vuruyor! (KRİTİK)</string>
     <string name="log_magic_attack">%1$s, %2$s üzerine büyü yapıyor ve %3$d hasar veriyor!</string>
@@ -589,15 +589,15 @@
 
     <!-- Pets -->
     <string name="pet_chocobo_name">Chocobo</string>
-    <string name="pet_chocobo_desc">+%%20 Eşya Bulma</string>
+    <string name="pet_chocobo_desc">+%%%20 Eşya Bulma</string>
     <string name="pet_moogle_name">Moogle</string>
-    <string name="pet_moogle_desc">+%%50 EXP Kazancı</string>
+    <string name="pet_moogle_desc">+%%%50 EXP Kazancı</string>
     <string name="pet_cat_name">Şanslı Kedi</string>
-    <string name="pet_cat_desc">+%%30 Gil Kazancı</string>
+    <string name="pet_cat_desc">+%%%30 Gil Kazancı</string>
     <string name="pet_cactuar_name">Cactuar</string>
-    <string name="pet_cactuar_desc">+%%15 Kritik Oranı</string>
+    <string name="pet_cactuar_desc">+%%%15 Kritik Oranı</string>
     <string name="pet_tonberry_name">Tonberry</string>
-    <string name="pet_tonberry_desc">+%%100 Kritik Hasar</string>
+    <string name="pet_tonberry_desc">+%%%100 Kritik Hasar</string>
 
     <!-- Battle Abilities -->
     <string name="ability_cover_name">Siper</string>
@@ -629,7 +629,7 @@
     <string name="tab_pets">EVCİL HAYVANLAR</string>
     <string name="mastery_bonus_label">BONUS</string>
     <string name="mastery_exp_format">%1$d / %2$d EXP</string>
-    <string name="pet_bonus_format">+%%1$.1f %2$s</string>
+    <string name="pet_bonus_format">+%%%1$.1f %2$s</string>
     <string name="mastery_bonus_stat_format">+%1$d %2$s</string>
     <string name="select_companion_label">BİR YOLDAŞ SEÇİN</string>
     <string name="pet_none">YOK</string>
@@ -663,8 +663,8 @@
     <string name="hero_lvl_class_format">SNT %1$d %2$s</string>
     <string name="ghost_run_close">KAPAT</string>
     <string name="empty_time">---</string>
-    <string name="format_m">%1$.1fM</string>
-    <string name="format_k">%1$.1fK</string>
+    <string name="format_m">%%1$.1fM</string>
+    <string name="format_k">%%1$.1fK</string>
     <string name="player_name_you">SEN</string>
     <string name="my_id_label">KİMLİĞİNİZ: %1$s</string>
     <string name="copy_id_hint">Kimliğinizi kopyalamak için dokunun</string>
@@ -734,8 +734,8 @@
     <string name="stat_bonus_def">SAV: +%1$d</string>
     <string name="stat_bonus_mag">BÜY: +%1$d</string>
     <string name="stat_bonus_hp">CAN: +%1$d</string>
-    <string name="stat_bonus_crit_chance">KRİT %%: +%1$d%%</string>
-    <string name="stat_bonus_crit_damage">KRİT HASAR: +%1$d%%</string>
+    <string name="stat_bonus_crit_chance">KRİT %%%: +%1$d%%%</string>
+    <string name="stat_bonus_crit_damage">KRİT HASAR: +%1$d%%%</string>
     <string name="hero_status_rip">ÖLDÜ</string>
     <string name="jobs_count_format">%1$d MESLEK</string>
     <string name="party_full">DOLU</string>
@@ -771,11 +771,11 @@
     <string name="love_final_dungeon">FINAL DUNGEON\'U SEVDİNİZ Mİ?</string>
     <string name="rate_app_desc">Uygulamayı derecelendirmek diğer oyuncuların zindanı keşfetmesine yardımcı olur!</string>
     <string name="btn_rate_store">⭐ PLAY STORE\'DA DEĞERLENDİR</string>
-    <string name="bulletin_perk_inn">🏨 Han Can İyileşmesi: +%1$d%%</string>
+    <string name="bulletin_perk_inn">🏨 Han Can İyileşmesi: +%1$d%%%</string>
     <string name="bulletin_perk_barracks">🛡️ Kışla Maks Grup Boyutu: %1$d</string>
-    <string name="bulletin_perk_vault">💰 Kasa Gil Faizi: +%1$d%%</string>
+    <string name="bulletin_perk_vault">💰 Kasa Gil Faizi: +%1$d%%%</string>
     <string name="bulletin_perk_pathfinder">🧭 İzci Başlangıç Katı: Kat %1$d</string>
-    <string name="bulletin_perk_planning">📜 Yükseltme İndirimi: %1$d%%</string>
+    <string name="bulletin_perk_planning">📜 Yükseltme İndirimi: %1$d%%%</string>
 
     <!-- Gold to Gems Exchange -->
     <string name="exchange_title">TAKAS</string>
@@ -783,4 +783,68 @@
     <string name="exchange_rate_format">%1$s Gil ➔ %2$d Mücevher</string>
     <string name="btn_exchange_pack">Takas Et</string>
     <string name="btn_need_gil">%1$s Gil Gerekli</string>
+    <!-- Job Details & Ability Descriptions -->
+    <string name="job_detail_title">MESLEK DETAYLARI</string>
+    <string name="job_detail_tier_format">AŞAMA %1$d</string>
+    <string name="job_detail_crystal_format">Kristal: %1$s</string>
+    <string name="job_detail_hire_cost_format">Kiralama Ücreti: %1$d Gil</string>
+    <string name="job_detail_tactical_role">Taktik Rol: %1$s %2$s</string>
+    <string name="job_detail_charged_ability_title">Şarjlı Yetenek</string>
+    <string name="job_detail_triggers_every_3_turns">Savaştaki her 3 turda bir tetiklenir</string>
+    <string name="job_detail_base_stats_title">Temel İstatistikler</string>
+    <string name="job_detail_mastery_title">Ustalık Durumu ve Bonus</string>
+
+    <string name="ability_freelancer_name">Çok Yönlü Eylem</string>
+    <string name="ability_freelancer_desc">Şarj biriktirmeden dengeli fiziksel veya büyü saldırıları gerçekleştirir.</string>
+
+    <string name="ability_warrior_name">Güçlü Vuruş</string>
+    <string name="ability_warrior_desc">Her 3 turda bir en yüksek cana sahip düşmana %%200 ağır fiziksel hasar verir.</string>
+
+    <string name="ability_white_mage_name">Curaga Patlaması</string>
+    <string name="ability_white_mage_desc">Her 3 turda bir tüm bilinci yerinde takım arkadaşlarının canını büyük miktarda yeniler.</string>
+
+    <string name="ability_black_mage_name">Elementel Parlama</string>
+    <string name="ability_black_mage_desc">Her 3 turda bir tüm düşmanlara %%180 hasar veren güçlü bir büyü dalgası yayar.</string>
+
+    <string name="ability_thief_name">Gölge Yağması</string>
+    <string name="ability_thief_desc">Hızlıca saldırır ve her 3 turda bir düşmandan ekstra Magicite çalar.</string>
+
+    <string name="ability_monk_name">Çakra Vuruşu</string>
+    <string name="ability_monk_desc">Kendine %%35 Maks Can yeniler ve hedef düşmana %%150 fiziksel hasar verir.</string>
+
+    <string name="ability_knight_name">Kalkan Darbesi</string>
+    <string name="ability_knight_desc">En güçlü düşmana %%180 fiziksel hasar verir. Normal turlarda yaralı müttefikleri korur.</string>
+
+    <string name="ability_paladin_name">Kutsal Işıma</string>
+    <string name="ability_paladin_desc">Her 3 turda bir tüm düşmanlara kutsal hasar verirken tüm müttefikleri iyileştirir.</string>
+
+    <string name="ability_red_mage_name">Çift Büyü</string>
+    <string name="ability_red_mage_desc">Her 3 turda bir tek bir turda düşmanlara üst üste iki büyü saldırısı yapar.</string>
+
+    <string name="ability_summoner_name">Eidolonu Çağır</string>
+    <string name="ability_summoner_desc">Her 3 turda bir Ifrit, Shiva, Ramuh veya Bahamut\'u çağırarak muazzam büyü hasarı verir.</string>
+
+    <string name="ability_ninja_name">Gölge Darbesi</string>
+    <string name="ability_ninja_desc">Her 3 turda bir hedefe %%220 saldırı hasarı veren ölümcül bir çift bıçak darbesi indirir.</string>
+
+    <string name="ability_dragoon_name">Yüksek Sıçrama</string>
+    <string name="ability_dragoon_desc">Gökyüzüne sıçrar ve düşmanın üzerine inerek devasa havadan mızrak hasarı verir.</string>
+
+    <string name="ability_bard_name">Kahramanlık Şarkısı</string>
+    <string name="ability_bard_desc">İstatistikleri artıran veya müttefikleri iyileştiren ilham verici şarkılar söyler.</string>
+
+    <string name="ability_samurai_name">Zeninage Kesişi</string>
+    <string name="ability_samurai_desc">Gil fırlatarak tüm düşmanlara %%200 fiziksel hasar verir.</string>
+
+    <string name="ability_onion_knight_name">Gizli Potansiyel</string>
+    <string name="ability_onion_knight_desc">Ustalık seviyesi arttıkça muazzam istatistik bonusları kazanır (Seviye başına +50 Can).</string>
+
+    <string name="ability_mime_name">Taklit</string>
+    <string name="ability_mime_desc">Bir müttefikin kullandığı son özel yeteneği anında kopyalar ve uygular.</string>
+
+    <string name="ability_necromancer_name">Ruh Emişi</string>
+    <string name="ability_necromancer_desc">Düşmandan %%200 büyü hasarı emer ve bunun %%50\'sini takıma iyileştirme olarak dağıtır.</string>
+
+    <string name="ability_blue_mage_name">Canavar Bilgisi</string>
+    <string name="ability_blue_mage_desc">Zindan canavarlarından öğrenilen mavi büyüyü kullanarak savaşa uyum sağlar.</string>
 </resources>

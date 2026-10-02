@@ -266,7 +266,7 @@
     <string name="unlocks_job_format">Hufungua %1$s</string>
     <string name="owned_status">✓ INAMILIKIWA</string>
     <string name="town_upgrades">MABORESHO YA MJI</string>
-    <string name="upgrade_discount">Punguzo: %1$d%%</string>
+    <string name="upgrade_discount">Punguzo: %1$d%%%</string>
     <string name="max_level">MAX</string>
     <string name="level_format">NGAZI %1$d / %2$d</string>
     <string name="pathfinder_level_format">NGAZI %1$d / %2$d (Ghorofa ya Max: %3$d)</string>
@@ -359,7 +359,7 @@
     <string name="log_summon_format">🌟 %1$s anamwita %2$s! Jumla: %3$d uharibifu!</string>
     <string name="log_magicite_stolen">%1$s ameiba %2$d Magicite!</string>
     <string name="log_bard_song">🎵 %1$s: %2$s</string>
-    <string name="log_total_wipe">💀 WIPE YA JUMLA: Imepoteza 30%% ya mapato ya run.</string>
+    <string name="log_total_wipe">💀 WIPE YA JUMLA: Imepoteza 30%%% ya mapato ya run.</string>
     <string name="log_physical_attack">%1$s anashambulia %2$s kwa %3$d!</string>
     <string name="log_physical_crit">💥 %1$s anapiga PUNGUZO LA MUHIMU la %2$s kwa %3$d! (CRITICAL)</string>
     <string name="log_magic_attack">%1$s anatupa uchawi kwa %2$s kwa %3$d!</string>
@@ -589,15 +589,15 @@
 
     <!-- Pets -->
     <string name="pet_chocobo_name">Chocobo</string>
-    <string name="pet_chocobo_desc">+20%% Kupata Vitu</string>
+    <string name="pet_chocobo_desc">+20%%% Kupata Vitu</string>
     <string name="pet_moogle_name">Moogle</string>
-    <string name="pet_moogle_desc">+50%% Kupata EXP</string>
+    <string name="pet_moogle_desc">+50%%% Kupata EXP</string>
     <string name="pet_cat_name">Paka wa Bahati</string>
-    <string name="pet_cat_desc">+30%% Kupata Gil</string>
+    <string name="pet_cat_desc">+30%%% Kupata Gil</string>
     <string name="pet_cactuar_name">Cactuar</string>
-    <string name="pet_cactuar_desc">+15%% Kiwango cha Crit</string>
+    <string name="pet_cactuar_desc">+15%%% Kiwango cha Crit</string>
     <string name="pet_tonberry_name">Tonberry</string>
-    <string name="pet_tonberry_desc">+100%% Uharibifu wa Crit</string>
+    <string name="pet_tonberry_desc">+100%%% Uharibifu wa Crit</string>
 
     <!-- Battle Abilities -->
     <string name="ability_cover_name">Cover</string>
@@ -629,7 +629,7 @@
     <string name="tab_pets">WANYAMA WA KUFUGWA</string>
     <string name="mastery_bonus_label">BONUS</string>
     <string name="mastery_exp_format">%1$d / %2$d EXP</string>
-    <string name="pet_bonus_format">+%1$.1f%% %2$s</string>
+    <string name="pet_bonus_format">+%%1$.1f%%% %2$s</string>
     <string name="mastery_bonus_stat_format">+%1$d %2$s</string>
     <string name="select_companion_label">CHAGUA MWENZAKO</string>
     <string name="pet_none">HAKUNA</string>
@@ -663,8 +663,8 @@
     <string name="hero_lvl_class_format">NGAZI %1$d %2$s</string>
     <string name="ghost_run_close">FUNGA</string>
     <string name="empty_time">---</string>
-    <string name="format_m">%1$.1fM</string>
-    <string name="format_k">%1$.1fK</string>
+    <string name="format_m">%%1$.1fM</string>
+    <string name="format_k">%%1$.1fK</string>
     <string name="player_name_you">WEWE</string>
     <string name="my_id_label">ID YAKO: %1$s</string>
     <string name="copy_id_hint">Gusa ili kunakili ID yako</string>
@@ -734,8 +734,8 @@
     <string name="stat_bonus_def">ULINZI: +%1$d</string>
     <string name="stat_bonus_mag">UCHAWI: +%1$d</string>
     <string name="stat_bonus_hp">AFYA: +%1$d</string>
-    <string name="stat_bonus_crit_chance">KRITIKALI %%: +%1$d%%</string>
-    <string name="stat_bonus_crit_damage">MADHARA KRITIKALI: +%1$d%%</string>
+    <string name="stat_bonus_crit_chance">KRITIKALI %%%: +%1$d%%%</string>
+    <string name="stat_bonus_crit_damage">MADHARA KRITIKALI: +%1$d%%%</string>
     <string name="hero_status_rip">FARIKI</string>
     <string name="jobs_count_format">%1$d KAZI</string>
     <string name="party_full">IMEJAA</string>
@@ -771,11 +771,11 @@
     <string name="love_final_dungeon">UNAPENDA FINAL DUNGEON?</string>
     <string name="rate_app_desc">Kutathmini programu husaidia wachezaji wengine kugundua mchezo!</string>
     <string name="btn_rate_store">⭐ TATHMINI KWENYE PLAY STORE</string>
-    <string name="bulletin_perk_inn">🏨 Tiba ya Afya Nyumba ya Wageni: +%1$d%%</string>
+    <string name="bulletin_perk_inn">🏨 Tiba ya Afya Nyumba ya Wageni: +%1$d%%%</string>
     <string name="bulletin_perk_barracks">🛡️ Ukubwa wa Kikosi Kambi: %1$d</string>
-    <string name="bulletin_perk_vault">💰 Faida ya Gil Akiba: +%1$d%%</string>
+    <string name="bulletin_perk_vault">💰 Faida ya Gil Akiba: +%1$d%%%</string>
     <string name="bulletin_perk_pathfinder">🧭 Ghorofa ya Kuanzia Msacambia: Ghorofa %1$d</string>
-    <string name="bulletin_perk_planning">📜 Punguzo la Maboresho: %1$d%%</string>
+    <string name="bulletin_perk_planning">📜 Punguzo la Maboresho: %1$d%%%</string>
 
     <!-- Gold to Gems Exchange -->
     <string name="exchange_title">BADILISHA</string>
@@ -783,4 +783,68 @@
     <string name="exchange_rate_format">%1$s Gil ➔ %2$d Vito</string>
     <string name="btn_exchange_pack">Badilisha</string>
     <string name="btn_need_gil">Unahitaji %1$s Gil</string>
+    <!-- Job Details & Ability Descriptions -->
+    <string name="job_detail_title">MAELEZO YA KAZI</string>
+    <string name="job_detail_tier_format">DARAJA LA %1$d</string>
+    <string name="job_detail_crystal_format">Mlio: %1$s</string>
+    <string name="job_detail_hire_cost_format">Gharama ya Ajira: %1$d Gil</string>
+    <string name="job_detail_tactical_role">Wajibu wa Mbinu: %1$s %2$s</string>
+    <string name="job_detail_charged_ability_title">Uwezo Uliowekwa Chaji</string>
+    <string name="job_detail_triggers_every_3_turns">Inawaka kila zamu 3 vitani</string>
+    <string name="job_detail_base_stats_title">Takwimu za Msingi</string>
+    <string name="job_detail_mastery_title">Hali ya Ustadi &amp; Bonasi</string>
+
+    <string name="ability_freelancer_name">Kitendo cha Anuwai</string>
+    <string name="ability_freelancer_desc">Hufanya mashambulizi ya kimwili au kichawi bila kuhitaji chaji.</string>
+
+    <string name="ability_warrior_name">Pigo lenye Nguvu</string>
+    <string name="ability_warrior_desc">Humpiga adui mwenye afya ya juu kwa uharibifu wa 200%%% kila zamu 3.</string>
+
+    <string name="ability_white_mage_name">Mlipo wa Curaga</string>
+    <string name="ability_white_mage_desc">Hurudisha afya kubwa kwa wanachama wote walio hai kila zamu 3.</string>
+
+    <string name="ability_black_mage_name">Mwangaza wa Asili</string>
+    <string name="ability_black_mage_desc">Hurusha wimbi la uchawi linalowadhuru maadui wote kwa 180%%% kila zamu 3.</string>
+
+    <string name="ability_thief_name">Unyang\'anyi wa Kivuli</string>
+    <string name="ability_thief_desc">Hushambulia kwa haraka na kuiba Magicite zaidi kutoka kwa adui.</string>
+
+    <string name="ability_monk_name">Pigo la Chakra</string>
+    <string name="ability_monk_desc">Hurudisha 35%%% ya HP yake na kushambulia adui kwa 150%%% ya uharibifu.</string>
+
+    <string name="ability_knight_name">Pigo la Ngao</string>
+    <string name="ability_knight_desc">Humpiga adui mwenye nguvu kwa 180%%%. Huwalinda wenzake waliojeruhiwa.</string>
+
+    <string name="ability_paladin_name">Mng\'ao Mtakatifu</string>
+    <string name="ability_paladin_desc">Huwadhuru maadui wote huku akiwaponya wenzake wote walio hai kila zamu 3.</string>
+
+    <string name="ability_red_mage_name">Uchawi Mara Mbili</string>
+    <string name="ability_red_mage_desc">Hurusha mashambulizi mawili mfululizo ya uchawi katika zamu moja.</string>
+
+    <string name="ability_summoner_name">Wito wa Eidolon</string>
+    <string name="ability_summoner_desc">Humwita Ifrit, Shiva, Ramuh au Bahamut ili kuwadhuru maadui wote vibaya sana.</string>
+
+    <string name="ability_ninja_name">Shambulio la Kivuli</string>
+    <string name="ability_ninja_desc">Humpiga adui kwa pigo la panga mbili za hatari lenye uharibifu wa 220%%%.</string>
+
+    <string name="ability_dragoon_name">Rukia Juu</string>
+    <string name="ability_dragoon_desc">Rukia juu angani na kumwangukia adui kwa mkuki wenye uharibifu mkubwa.</string>
+
+    <string name="ability_bard_name">Wimbo wa Shujaa</string>
+    <string name="ability_bard_desc">Huimba nyimbo za kuhamasisha zinazoongeza takwimu au kuponya wenzake.</string>
+
+    <string name="ability_samurai_name">Kukata kwa Zeninage</string>
+    <string name="ability_samurai_desc">Hurusha Gil kwa nguvu kubwa na kuwadhuru maadui wote kwa 200%%%.</string>
+
+    <string name="ability_onion_knight_name">Uwezo Uliofichika</string>
+    <string name="ability_onion_knight_desc">Hupata bonasi kubwa za takwimu kadiri kiwango cha ustadi kinavyoongezeka.</string>
+
+    <string name="ability_mime_name">Uigizaji</string>
+    <string name="ability_mime_desc">Huiga na kutekeleza mara moja uwezo wa mwisho uliotumiwa na mwenzake.</string>
+
+    <string name="ability_necromancer_name">Ufyonzaji wa Roho</string>
+    <string name="ability_necromancer_desc">Hufyonza uchawi kutoka kwa adui na kugawa nusu yake kama tiba kwa timu.</string>
+
+    <string name="ability_blue_mage_name">Ujuzi wa Majini</string>
+    <string name="ability_blue_mage_desc">Hutumia uchawi wa buluu uliojifunza kutoka kwa majini kukabili vita.</string>
 </resources>

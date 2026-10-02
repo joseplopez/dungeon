@@ -266,7 +266,7 @@
     <string name="unlocks_job_format">Разблокирует %1$s</string>
     <string name="owned_status">✓ КУПЛЕНО</string>
     <string name="town_upgrades">УЛУЧШЕНИЯ ГОРОДА</string>
-    <string name="upgrade_discount">Скидка: %1$d%%</string>
+    <string name="upgrade_discount">Скидка: %1$d%%%</string>
     <string name="max_level">МАКС</string>
     <string name="level_format">УР %1$d / %2$d</string>
     <string name="pathfinder_level_format">УР %1$d / %2$d (Макс. этаж: %3$d)</string>
@@ -359,7 +359,7 @@
     <string name="log_summon_format">🌟 %1$s призывает %2$s! Всего: %3$d урона!</string>
     <string name="log_magicite_stolen">%1$s украл %2$d магицита!</string>
     <string name="log_bard_song">🎵 %1$s: %2$s</string>
-    <string name="log_total_wipe">💀 ПОЛНАЯ ГИБЕЛЬ: Потеряно 30%% заработка за забег.</string>
+    <string name="log_total_wipe">💀 ПОЛНАЯ ГИБЕЛЬ: Потеряно 30%%% заработка за забег.</string>
     <string name="log_physical_attack">%1$s атакует %2$s на %3$d!</string>
     <string name="log_physical_crit">💥 %1$s поражает КРИТИЧЕСКУЮ ТОЧКУ %2$s на %3$d! (КРИТ)</string>
     <string name="log_magic_attack">%1$s применяет заклинание на %2$s на %3$d!</string>
@@ -589,15 +589,15 @@
 
     <!-- Pets -->
     <string name="pet_chocobo_name">Чокобо</string>
-    <string name="pet_chocobo_desc">+20%% предметов найдено</string>
+    <string name="pet_chocobo_desc">+20%%% предметов найдено</string>
     <string name="pet_moogle_name">Мугл</string>
-    <string name="pet_moogle_desc">+50%% к получению EXP</string>
+    <string name="pet_moogle_desc">+50%%% к получению EXP</string>
     <string name="pet_cat_name">Кот удачи</string>
-    <string name="pet_cat_desc">+30%% к получению гилей</string>
+    <string name="pet_cat_desc">+30%%% к получению гилей</string>
     <string name="pet_cactuar_name">Кактуар</string>
-    <string name="pet_cactuar_desc">+15%% к шансу крита</string>
+    <string name="pet_cactuar_desc">+15%%% к шансу крита</string>
     <string name="pet_tonberry_name">Тонберри</string>
-    <string name="pet_tonberry_desc">+100%% к критическому урону</string>
+    <string name="pet_tonberry_desc">+100%%% к критическому урону</string>
 
     <!-- Battle Abilities -->
     <string name="ability_cover_name">Прикрытие</string>
@@ -629,7 +629,7 @@
     <string name="tab_pets">ПИТОМЦЫ</string>
     <string name="mastery_bonus_label">БОНУС</string>
     <string name="mastery_exp_format">%1$d / %2$d EXP</string>
-    <string name="pet_bonus_format">+%1$.1f%% %2$s</string>
+    <string name="pet_bonus_format">+%%1$.1f%%% %2$s</string>
     <string name="mastery_bonus_stat_format">+%1$d %2$s</string>
     <string name="select_companion_label">ВЫБЕРИТЕ СПУТНИКА</string>
     <string name="pet_none">НЕТ</string>
@@ -663,8 +663,8 @@
     <string name="hero_lvl_class_format">УР %1$d %2$s</string>
     <string name="ghost_run_close">ЗАКРЫТЬ</string>
     <string name="empty_time">---</string>
-    <string name="format_m">%1$.1fM</string>
-    <string name="format_k">%1$.1fK</string>
+    <string name="format_m">%%1$.1fM</string>
+    <string name="format_k">%%1$.1fK</string>
     <string name="player_name_you">ВЫ</string>
     <string name="my_id_label">ВАШ ID: %1$s</string>
     <string name="copy_id_hint">Нажмите, чтобы скопировать ID</string>
@@ -734,8 +734,8 @@
     <string name="stat_bonus_def">ЗАЩ: +%1$d</string>
     <string name="stat_bonus_mag">МАГ: +%1$d</string>
     <string name="stat_bonus_hp">ОЗ: +%1$d</string>
-    <string name="stat_bonus_crit_chance">КРИТ %%: +%1$d%%</string>
-    <string name="stat_bonus_crit_damage">УРОН КРИТ: +%1$d%%</string>
+    <string name="stat_bonus_crit_chance">КРИТ %%%: +%1$d%%%</string>
+    <string name="stat_bonus_crit_damage">УРОН КРИТ: +%1$d%%%</string>
     <string name="hero_status_rip">ПОГИБ</string>
     <string name="jobs_count_format">%1$d КЛАССОВ</string>
     <string name="party_full">ПОЛНО</string>
@@ -771,11 +771,11 @@
     <string name="love_final_dungeon">НРАВИТСЯ FINAL DUNGEON?</string>
     <string name="rate_app_desc">Оценка приложения помогает другим игрокам узнать об игре!</string>
     <string name="btn_rate_store">⭐ ОЦЕНИТЬ В PLAY STORE</string>
-    <string name="bulletin_perk_inn">🏨 Лечение ОЗ Таверна: +%1$d%%</string>
+    <string name="bulletin_perk_inn">🏨 Лечение ОЗ Таверна: +%1$d%%%</string>
     <string name="bulletin_perk_barracks">🛡️ Макс. отряд Казарма: %1$d</string>
-    <string name="bulletin_perk_vault">💰 Проценты Хранилище: +%1$d%%</string>
+    <string name="bulletin_perk_vault">💰 Проценты Хранилище: +%1$d%%%</string>
     <string name="bulletin_perk_pathfinder">🧭 Старт Следопыта: Этаж %1$d</string>
-    <string name="bulletin_perk_planning">📜 Скидка на улучшения: %1$d%%</string>
+    <string name="bulletin_perk_planning">📜 Скидка на улучшения: %1$d%%%</string>
 
     <!-- Gold to Gems Exchange -->
     <string name="exchange_title">ОБМЕН</string>
@@ -783,4 +783,68 @@
     <string name="exchange_rate_format">%1$s Гилей ➔ %2$d Самоцветов</string>
     <string name="btn_exchange_pack">Обменять</string>
     <string name="btn_need_gil">Нужно %1$s Гилей</string>
+    <!-- Job Details & Ability Descriptions -->
+    <string name="job_detail_title">ДЕТАЛИ КЛАССА</string>
+    <string name="job_detail_tier_format">РАНГ %1$d</string>
+    <string name="job_detail_crystal_format">Кристалл: %1$s</string>
+    <string name="job_detail_hire_cost_format">Стоимость найма: %1$d Гиль</string>
+    <string name="job_detail_tactical_role">Тактическая роль: %1$s %2$s</string>
+    <string name="job_detail_charged_ability_title">Заряжаемый навык</string>
+    <string name="job_detail_triggers_every_3_turns">Срабатывает каждые 3 хода в бою</string>
+    <string name="job_detail_base_stats_title">Базовые характеристики</string>
+    <string name="job_detail_mastery_title">Мастерство и бонусы</string>
+
+    <string name="ability_freelancer_name">Универсальный удар</string>
+    <string name="ability_freelancer_desc">Выполняет сбалансированные физические или магические атаки без накопления заряда.</string>
+
+    <string name="ability_warrior_name">Мощный удар</string>
+    <string name="ability_warrior_desc">Наносит 200%% тяжелого физ. урона врагу с наибольшим здоровьем каждые 3 хода.</string>
+
+    <string name="ability_white_mage_name">Вспышка Кураги</string>
+    <string name="ability_white_mage_desc">Восстанавливает большое количество ОЗ всем живым союзникам каждые 3 хода.</string>
+
+    <string name="ability_black_mage_name">Стихийная вспышка</string>
+    <string name="ability_black_mage_desc">Выпускает мощную волну магии, наносящую 180%% урона всем врагам каждые 3 хода.</string>
+
+    <string name="ability_thief_name">Теневой грабеж</string>
+    <string name="ability_thief_desc">Быстро атакует цель и крадет дополнительный Магицит у врага каждые 3 хода.</string>
+
+    <string name="ability_monk_name">Удар чакры</string>
+    <string name="ability_monk_desc">Восстанавливает 35%% макс. ОЗ себе и наносит 150%% физ. урона цели каждые 3 хода.</string>
+
+    <string name="ability_knight_name">Удар щитом</string>
+    <string name="ability_knight_desc">Наносит тяжелый физ. урон 180%% самому сильному врагу. Прикрывает раненых в обычные ходы.</string>
+
+    <string name="ability_paladin_name">Святое сияние</string>
+    <string name="ability_paladin_desc">Наносит святой урон всем врагам и одновременно исцеляет всех живых союзников каждые 3 хода.</string>
+
+    <string name="ability_red_mage_name">Двойное заклинание</string>
+    <string name="ability_red_mage_desc">Кастует две магические атаки подряд за один ход каждые 3 хода.</string>
+
+    <string name="ability_summoner_name">Призыв Эйдолона</string>
+    <string name="ability_summoner_desc">Призывает Ифрита, Шиву, Раму или Бахамута, нанося огромный маг. урон всем врагам каждые 3 хода.</string>
+
+    <string name="ability_ninja_name">Теневой разрез</string>
+    <string name="ability_ninja_desc">Наносит смертоносный удар двумя клинками (220%% урона) по цели каждые 3 хода.</string>
+
+    <string name="ability_dragoon_name">Высокий прыжок</string>
+    <string name="ability_dragoon_desc">Взмывает в небо и обрушивается на врага копьем, нанося огромный урон каждые 3 хода.</string>
+
+    <string name="ability_bard_name">Героическая песнь</string>
+    <string name="ability_bard_desc">Исполняет песни (Пеон, Минне, Менуэт, Баллада), усиливая отряд или исцеляя союзников.</string>
+
+    <string name="ability_samurai_name">Взмах Дзенинаге</string>
+    <string name="ability_samurai_desc">Бросает гили с огромной силой, нанося 200%% физ. урона всем врагам каждые 3 хода.</string>
+
+    <string name="ability_onion_knight_name">Скрытый потенциал</string>
+    <string name="ability_onion_knight_desc">Получает огромные бонусы к характеристикам с ростом мастерства (+50 ОЗ за уровень).</string>
+
+    <string name="ability_mime_name">Мимикрия</string>
+    <string name="ability_mime_desc">Мгновенно копирует и повторяет последний навык союзника каждые 3 хода.</string>
+
+    <string name="ability_necromancer_name">Иссушение души</string>
+    <string name="ability_necromancer_desc">Высасывает 200%% маг. урона у врага и передает 50%% в виде исцеления отряду каждые 3 хода.</string>
+
+    <string name="ability_blue_mage_name">Магия монстров</string>
+    <string name="ability_blue_mage_desc">Использует изученную магию монстров для адаптации к бою каждые 3 хода.</string>
 </resources>

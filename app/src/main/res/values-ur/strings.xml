@@ -266,7 +266,7 @@
     <string name="unlocks_job_format">%1$s کو غیر مقفل کرتا ہے</string>
     <string name="owned_status">✓ ملکیت</string>
     <string name="town_upgrades">شہر کی اپ گریڈز</string>
-    <string name="upgrade_discount">رعایت: %1$d%%</string>
+    <string name="upgrade_discount">رعایت: %1$d%%%</string>
     <string name="max_level">زیادہ سے زیادہ</string>
     <string name="level_format">لیول %1$d / %2$d</string>
     <string name="pathfinder_level_format">لیول %1$d / %2$d (زیادہ سے زیادہ فلور: %3$d)</string>
@@ -359,7 +359,7 @@
     <string name="log_summon_format">🌟 %1$s نے %2$s کو بلایا! کل: %3$d نقصان!</string>
     <string name="log_magicite_stolen">%1$s نے %2$d میجیسائٹ چرا لیا! </string>
     <string name="log_bard_song">🎵 %1$s: %2$s</string>
-    <string name="log_total_wipe">💀 مکمل صفائی: رن کی کمائی کا 30%% ضائع ہوگیا۔</string>
+    <string name="log_total_wipe">💀 مکمل صفائی: رن کی کمائی کا 30%%% ضائع ہوگیا۔</string>
     <string name="log_physical_attack">%1$s نے %2$s پر %3$d کا حملہ کیا!</string>
     <string name="log_physical_crit">💥 %1$s نے %2$s کے اہم مقام پر %3$d کی چوٹ ماری! (کریٹیکل)</string>
     <string name="log_magic_attack">%1$s نے %2$s پر %3$d کا جادو کیا!</string>
@@ -589,15 +589,15 @@
 
     <!-- Pets -->
     <string name="pet_chocobo_name">چوکو بو</string>
-    <string name="pet_chocobo_desc">+20%% اشیاء کی تلاش</string>
+    <string name="pet_chocobo_desc">+20%%% اشیاء کی تلاش</string>
     <string name="pet_moogle_name">موگل</string>
-    <string name="pet_moogle_desc">+50%% EXP حصول</string>
+    <string name="pet_moogle_desc">+50%%% EXP حصول</string>
     <string name="pet_cat_name">خوش قسمت بلی</string>
-    <string name="pet_cat_desc">+30%% گِل حصول</string>
+    <string name="pet_cat_desc">+30%%% گِل حصول</string>
     <string name="pet_cactuar_name">کیکٹس</string>
-    <string name="pet_cactuar_desc">+15%% کریٹ کی شرح</string>
+    <string name="pet_cactuar_desc">+15%%% کریٹ کی شرح</string>
     <string name="pet_tonberry_name">ٹونبیری</string>
-    <string name="pet_tonberry_desc">+100%% کریٹ نقصان</string>
+    <string name="pet_tonberry_desc">+100%%% کریٹ نقصان</string>
 
     <!-- Battle Abilities -->
     <string name="ability_cover_name">کور</string>
@@ -629,7 +629,7 @@
     <string name="tab_pets">پالتو جانور</string>
     <string name="mastery_bonus_label">بونس</string>
     <string name="mastery_exp_format">%1$d / %2$d EXP</string>
-    <string name="pet_bonus_format">+%1$.1f%% %2$s</string>
+    <string name="pet_bonus_format">+%%1$.1f%%% %2$s</string>
     <string name="mastery_bonus_stat_format">+%1$d %2$s</string>
     <string name="select_companion_label">ساتھی کا انتخاب کریں</string>
     <string name="pet_none">کوئی نہیں</string>
@@ -663,8 +663,8 @@
     <string name="hero_lvl_class_format">لیول %1$d %2$s</string>
     <string name="ghost_run_close">بند کریں</string>
     <string name="empty_time">---</string>
-    <string name="format_m">%1$.1fM</string>
-    <string name="format_k">%1$.1fK</string>
+    <string name="format_m">%%1$.1fM</string>
+    <string name="format_k">%%1$.1fK</string>
     <string name="player_name_you">آپ</string>
     <string name="my_id_label">آپ کا ID: %1$s</string>
     <string name="copy_id_hint">اپنا ID کاپی کرنے کے لیے تھپتھپائیں</string>
@@ -734,8 +734,8 @@
     <string name="stat_bonus_def">دفاع: +%1$d</string>
     <string name="stat_bonus_mag">جادو: +%1$d</string>
     <string name="stat_bonus_hp">صحت: +%1$d</string>
-    <string name="stat_bonus_crit_chance">نازک %%: +%1$d%%</string>
-    <string name="stat_bonus_crit_damage">نازک نقصان: +%1$d%%</string>
+    <string name="stat_bonus_crit_chance">نازک %%%: +%1$d%%%</string>
+    <string name="stat_bonus_crit_damage">نازک نقصان: +%1$d%%%</string>
     <string name="hero_status_rip">وفات</string>
     <string name="jobs_count_format">%1$d نوکریاں</string>
     <string name="party_full">مکمل</string>
@@ -771,11 +771,11 @@
     <string name="love_final_dungeon">کیا فائنل ڈنجن پسند آیا؟</string>
     <string name="rate_app_desc">ایپ کی درجہ بندی کرنے سے دوسرے کھلاڑیوں کو کھیل کی دریافت میں مدد ملتی ہے!</string>
     <string name="btn_rate_store">⭐ پلے اسٹور پر درجہ بندی کریں</string>
-    <string name="bulletin_perk_inn">🏨 سرائے میں صحت کی بحالی: +%1$d%%</string>
+    <string name="bulletin_perk_inn">🏨 سرائے میں صحت کی بحالی: +%1$d%%%</string>
     <string name="bulletin_perk_barracks">🛡️ بارک میں گروپ کا سائز: %1$d</string>
-    <string name="bulletin_perk_vault">💰 خزانے کا گل سود: +%1$d%%</string>
+    <string name="bulletin_perk_vault">💰 خزانے کا گل سود: +%1$d%%%</string>
     <string name="bulletin_perk_pathfinder">🧭 راہنما کی شروعاتی منزل: منزل %1$d</string>
-    <string name="bulletin_perk_planning">📜 ترقی کی رعایت: %1$d%%</string>
+    <string name="bulletin_perk_planning">📜 ترقی کی رعایت: %1$d%%%</string>
 
     <!-- Gold to Gems Exchange -->
     <string name="exchange_title">تبدیلی</string>
@@ -783,4 +783,68 @@
     <string name="exchange_rate_format">%1$s گل ➔ %2$d جواہرات</string>
     <string name="btn_exchange_pack">تبدیل کریں</string>
     <string name="btn_need_gil">%1$s گل درکار</string>
+    <!-- Job Details & Ability Descriptions -->
+    <string name="job_detail_title">ملازمت کی تفصیلات</string>
+    <string name="job_detail_tier_format">درجہ %1$d</string>
+    <string name="job_detail_crystal_format">کرسٹل: %1$s</string>
+    <string name="job_detail_hire_cost_format">بھرتی کی قیمت: %1$d گل</string>
+    <string name="job_detail_tactical_role">حکمت عملی کا کردار: %1$s %2$s</string>
+    <string name="job_detail_charged_ability_title">چارج شدہ صلاحیت</string>
+    <string name="job_detail_triggers_every_3_turns">جنگ میں ہر 3 باریوں میں فعال ہوتا ہے</string>
+    <string name="job_detail_base_stats_title">بنیادی اعداد و شمار</string>
+    <string name="job_detail_mastery_title">مہارت کی صورتحال اور بونس</string>
+
+    <string name="ability_freelancer_name">ہمہ گیر عمل</string>
+    <string name="ability_freelancer_desc">چارج کے بغیر متوازن جسمانی یا جادوئی حملے کرتا ہے۔</string>
+
+    <string name="ability_warrior_name">طاقتور وار</string>
+    <string name="ability_warrior_desc">ہر 3 باریوں میں سب سے زیادہ صحت والے دشمن کو 200%%% جسمانی نقصان پہنچاتا ہے۔</string>
+
+    <string name="ability_white_mage_name">کوراگا دھماکہ</string>
+    <string name="ability_white_mage_desc">ہر 3 باریوں میں تمام زندہ ساتھیوں کی صحت بحال کرتا ہے۔</string>
+
+    <string name="ability_black_mage_name">عنصری شعاع</string>
+    <string name="ability_black_mage_desc">تمام دشمنوں کو 180%%% جادوئی نقصان پہنچانے والی لہر خارج کرتا ہے۔</string>
+
+    <string name="ability_thief_name">سایہ لوٹ مار</string>
+    <string name="ability_thief_desc">تیزی سے حملہ کرتا ہے اور دشمن سے اضافی میجیسائٹ چراتا ہے۔</string>
+
+    <string name="ability_monk_name">چکرا وار</string>
+    <string name="ability_monk_desc">اپنی 35%%% صحت بحال کرتا ہے اور دشمن کو 150%%% جسمانی نقصان پہنچاتا ہے۔</string>
+
+    <string name="ability_knight_name">ڈھال کا وار</string>
+    <string name="ability_knight_desc">سب سے مضبوط دشمن کو 180%%% نقصان پہنچاتا ہے اور زخمی ساتھیوں کی حفاظت کرتا ہے۔</string>
+
+    <string name="ability_paladin_name">مقدس چمک</string>
+    <string name="ability_paladin_desc">تمام دشمنوں کو نقصان پہنچاتا ہے اور تمام ساتھیوں کو شفا دیتا ہے۔</string>
+
+    <string name="ability_red_mage_name">دوہرا جادو</string>
+    <string name="ability_red_mage_desc">ایک ہی باری میں دشمنوں پر مسلسل دو جادوئی حملے کرتا ہے۔</string>
+
+    <string name="ability_summoner_name">عفریت کا بلاوا</string>
+    <string name="ability_summoner_desc">افریت، شیوا یا بہاموت کو بلا کر تمام دشمنوں کو شدید نقصان پہنچاتا ہے۔</string>
+
+    <string name="ability_ninja_name">سایہ وار</string>
+    <string name="ability_ninja_desc">دوہری تلواروں سے 220%%% مہلک حملہ کرتا ہے۔</string>
+
+    <string name="ability_dragoon_name">اونچی چھلانگ</string>
+    <string name="ability_dragoon_desc">آسمان میں اونچی چھلانگ لگا کر نیزے سے شدید حملہ کرتا ہے۔</string>
+
+    <string name="ability_bard_name">فاتحانہ گیت</string>
+    <string name="ability_bard_desc">حوصلہ افزا گیت گا کر طاقت بڑھاتا ہے یا شفا دیتا ہے۔</string>
+
+    <string name="ability_samurai_name">سکوں کا وار</string>
+    <string name="ability_samurai_desc">گل پھینک کر تمام دشمنوں کو 200%%% جسمانی نقصان پہنچاتا ہے۔</string>
+
+    <string name="ability_onion_knight_name">پوشیدہ صلاحیت</string>
+    <string name="ability_onion_knight_desc">مہارت کی سطح بڑھنے کے ساتھ زبردست طاقت حاصل کرتا ہے۔</string>
+
+    <string name="ability_mime_name">نقل</string>
+    <string name="ability_mime_desc">ساتھی کی آخری استعمال شدہ صلاحیت کو فوری طور پر نقل کرتا ہے۔</string>
+
+    <string name="ability_necromancer_name">روح کا نچوڑ</string>
+    <string name="ability_necromancer_desc">دشمن سے جادوئی طاقت نچوڑ کر ٹیم میں شفا کے طور پر بانٹتا ہے۔</string>
+
+    <string name="ability_blue_mage_name">بلاؤں کا علم</string>
+    <string name="ability_blue_mage_desc">دشمنوں سے سیکھا ہوا نیلا جادو استعمال کر کے جنگ میں ڈھلتا ہے۔</string>
 </resources>

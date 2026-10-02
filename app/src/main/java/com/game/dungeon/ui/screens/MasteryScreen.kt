@@ -8,6 +8,8 @@ import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
@@ -16,8 +18,8 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
@@ -40,6 +42,7 @@ fun MasteryScreen(
     
     var selectedTab by remember { mutableIntStateOf(0) }
     var showSupportDialog by remember { mutableStateOf(false) }
+    var selectedJobDetail by remember { mutableStateOf<HeroClass?>(null) }
     val tabs = listOf(safeStringResource(R.string.tab_job_mastery), safeStringResource(R.string.tab_pets))
 
     Box(Modifier.fillMaxSize().background(BgDarkest)) {
@@ -77,8 +80,12 @@ fun MasteryScreen(
 
             Box(Modifier.weight(1f).padding(8.dp)) {
                 when (selectedTab) {
-                    0 -> JobMasteryTab(gs ?: GameState())
-                    1 -> PetsTab(gs ?: GameState(), 
+                    0 -> JobMasteryTab(
+                        gs = gs ?: GameState(),
+                        onSelectJob = { selectedJobDetail = it }
+                    )
+                    1 -> PetsTab(
+                        gs = gs ?: GameState(), 
                         onSelect = { viewModel.selectPet(it) },
                         onUnlock = { viewModel.unlockPet(it) }
                     )
@@ -91,11 +98,19 @@ fun MasteryScreen(
         if (showSupportDialog) {
             SupportDialog(onDismiss = { showSupportDialog = false })
         }
+
+        selectedJobDetail?.let { job ->
+            JobDetailFullScreenView(
+                job = job,
+                gs = gs ?: GameState(),
+                onDismiss = { selectedJobDetail = null }
+            )
+        }
     }
 }
 
 @Composable
-fun JobMasteryTab(gs: GameState) {
+fun JobMasteryTab(gs: GameState, onSelectJob: (HeroClass) -> Unit = {}) {
     val visibleJobs = HeroClass.entries.filter { job ->
         val isUnlocked = gs.unlockedJobs.contains(job) || job == HeroClass.FREELANCER
         val tierMet = if (job.tier >= 2) gs.innLevel >= 1 else true
@@ -109,7 +124,13 @@ fun JobMasteryTab(gs: GameState) {
             val nextExp = gs.getMasteryNextLevelExp(job)
             val bonus = gs.getMasteryBonus(job)
             
-            PixelPanel(Modifier.fillMaxWidth(), borderColor = Color(job.crystalColor.colorHex)) {
+            PixelPanel(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .testTag("JobMasteryRow_${job.name}")
+                    .clickable { onSelectJob(job) },
+                borderColor = Color(job.crystalColor.colorHex)
+            ) {
                 Row(Modifier.padding(8.dp), verticalAlignment = Alignment.CenterVertically) {
                     HeroSprite(job, Modifier.size(48.dp))
                     Spacer(Modifier.width(12.dp))
@@ -133,6 +154,257 @@ fun JobMasteryTab(gs: GameState) {
                 }
             }
         }
+    }
+}
+
+@Composable
+fun JobDetailFullScreenView(
+    job: HeroClass,
+    gs: GameState,
+    onDismiss: () -> Unit
+) {
+    val level = gs.getMasteryLevel(job)
+    val exp = gs.getMasteryExp(job)
+    val nextExp = gs.getMasteryNextLevelExp(job)
+    val bonus = gs.getMasteryBonus(job)
+
+    Box(
+        Modifier
+            .fillMaxSize()
+            .background(BgDarkest)
+            .testTag("JobDetailDialog")
+    ) {
+        Column(Modifier.fillMaxSize()) {
+            // Full Screen Header Bar
+            GoldenBorderBox(Modifier.fillMaxWidth().height(56.dp).background(BgDarkest)) {
+                Row(
+                    Modifier
+                        .fillMaxSize()
+                        .padding(horizontal = 12.dp),
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.SpaceBetween
+                ) {
+                    PixelButton(
+                        safeStringResource(R.string.back_button),
+                        onClick = onDismiss,
+                        modifier = Modifier.height(36.dp)
+                    )
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                    ) {
+                        HeroSprite(job, Modifier.size(36.dp))
+                        Text(
+                            "${job.emoji} ${safeStringResource(job.nameRes)}",
+                            style = PixelHeading,
+                            color = GoldBright
+                        )
+                    }
+                    Text(
+                        safeStringResource(R.string.job_detail_tier_format, job.tier),
+                        style = PixelBody,
+                        color = SystemCyan
+                    )
+                }
+            }
+
+            // 2-Column Main Content Layout
+            Row(
+                Modifier
+                    .weight(1f)
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                // LEFT COLUMN - Overview, Lore, Base Stats
+                Column(
+                    Modifier
+                        .weight(1f)
+                        .fillMaxHeight()
+                        .verticalScroll(rememberScrollState()),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    // Identity & Crystal Card
+                    PixelPanel(Modifier.fillMaxWidth(), borderColor = Color(job.crystalColor.colorHex)) {
+                        Row(Modifier.padding(10.dp), verticalAlignment = Alignment.CenterVertically) {
+                            Box(
+                                Modifier
+                                    .size(56.dp)
+                                    .background(BgDarkest),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                HeroSprite(job, Modifier.size(48.dp))
+                            }
+                            Spacer(Modifier.width(10.dp))
+                            Column(Modifier.weight(1f)) {
+                                Text(
+                                    safeStringResource(job.nameRes),
+                                    style = PixelHeading,
+                                    color = GoldBright
+                                )
+                                Spacer(Modifier.height(2.dp))
+                                Text(
+                                    job.crystalColor.displayName,
+                                    style = PixelSmall,
+                                    color = Color(job.crystalColor.colorHex)
+                                )
+                                Spacer(Modifier.height(2.dp))
+                                Text(
+                                    safeStringResource(R.string.job_detail_hire_cost_format, job.hireCost),
+                                    style = PixelSmall,
+                                    color = GoldBright
+                                )
+                            }
+                        }
+                    }
+
+                    // Lore & Description Card
+                    PixelPanel(Modifier.fillMaxWidth(), borderColor = GoldDark) {
+                        Column(Modifier.padding(10.dp)) {
+                            Text(
+                                safeStringResource(job.descRes),
+                                style = PixelBody,
+                                color = Color.White
+                            )
+                        }
+                    }
+
+                    // Base Statistics Card
+                    PixelPanel(Modifier.fillMaxWidth(), borderColor = StoneGray) {
+                        Column(Modifier.padding(10.dp)) {
+                            Text(
+                                safeStringResource(R.string.job_detail_base_stats_title),
+                                style = PixelBody,
+                                color = GoldBright
+                            )
+                            Spacer(Modifier.height(8.dp))
+                            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                                StatBadge("HP", job.baseHp, HpGreen)
+                                StatBadge("MP", job.baseMp, SystemCyan)
+                                StatBadge("ATK", job.baseAttack, EnemyRed)
+                            }
+                            Spacer(Modifier.height(6.dp))
+                            Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.SpaceBetween) {
+                                StatBadge("MAG", job.baseMagic, Color(0xFFAA44FF))
+                                StatBadge("DEF", job.baseDefense, GoldBright)
+                                StatBadge("SPD", job.baseSpeed, StoneGray)
+                            }
+                        }
+                    }
+                }
+
+                // RIGHT COLUMN - Tactical Role, Charged Ability, Mastery
+                Column(
+                    Modifier
+                        .weight(1f)
+                        .fillMaxHeight()
+                        .verticalScroll(rememberScrollState()),
+                    verticalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
+                    // Tactical Role & Charged Ability Panel
+                    PixelPanel(Modifier.fillMaxWidth(), borderColor = SystemCyan) {
+                        Column(Modifier.padding(10.dp)) {
+                            Text(
+                                safeStringResource(R.string.job_detail_charged_ability_title),
+                                style = PixelBody,
+                                color = SystemCyan,
+                                fontWeight = FontWeight.Bold
+                            )
+                            Spacer(Modifier.height(4.dp))
+                            Row(verticalAlignment = Alignment.CenterVertically) {
+                                Text(
+                                    safeStringResource(job.abilityNameRes),
+                                    style = PixelBody,
+                                    color = GoldBright
+                                )
+                                Spacer(Modifier.width(6.dp))
+                                Text(
+                                    "⚡ ${safeStringResource(R.string.job_detail_triggers_every_3_turns)}",
+                                    style = PixelSmall,
+                                    color = StoneGray
+                                )
+                            }
+                            Spacer(Modifier.height(6.dp))
+                            Text(
+                                safeStringResource(job.abilityDescRes),
+                                style = PixelSmall,
+                                color = Color.White
+                            )
+                            Spacer(Modifier.height(8.dp))
+                            Text(
+                                safeStringResource(
+                                    R.string.job_detail_tactical_role,
+                                    job.defaultPriority.emoji,
+                                    job.defaultPriority.displayName
+                                ),
+                                style = PixelSmall,
+                                color = StoneGray
+                            )
+                        }
+                    }
+
+                    // Mastery Status & Party Bonus Panel
+                    PixelPanel(Modifier.fillMaxWidth(), borderColor = HpGreen) {
+                        Column(Modifier.padding(10.dp)) {
+                            Row(
+                                Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                Text(
+                                    safeStringResource(R.string.job_detail_mastery_title),
+                                    style = PixelBody,
+                                    color = HpGreen
+                                )
+                                Text("LV.$level", style = PixelBody, color = SystemCyan)
+                            }
+                            Spacer(Modifier.height(6.dp))
+                            // EXP Bar
+                            Box(
+                                Modifier
+                                    .fillMaxWidth()
+                                    .height(8.dp)
+                                    .background(BgDarkest)
+                            ) {
+                                Box(
+                                    Modifier
+                                        .fillMaxWidth(exp.toFloat() / nextExp.coerceAtLeast(1).toFloat())
+                                        .fillMaxHeight()
+                                        .background(SystemCyan)
+                                )
+                            }
+                            Spacer(Modifier.height(4.dp))
+                            Row(
+                                Modifier.fillMaxWidth(),
+                                horizontalArrangement = Arrangement.SpaceBetween
+                            ) {
+                                Text(
+                                    safeStringResource(R.string.mastery_exp_format, exp, nextExp),
+                                    style = PixelSmall,
+                                    color = StoneGray
+                                )
+                                Text(
+                                    safeStringResource(
+                                        R.string.mastery_bonus_stat_format,
+                                        bonus,
+                                        safeStringResource(job.masteryStatType.nameRes)
+                                    ),
+                                    style = PixelBody,
+                                    color = HpGreen
+                                )
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun StatBadge(label: String, value: Int, color: Color) {
+    Row(verticalAlignment = Alignment.CenterVertically) {
+        Text("$label: ", style = PixelSmall, color = StoneGray)
+        Text("$value", style = PixelSmall, color = color, fontWeight = FontWeight.Bold)
     }
 }
 

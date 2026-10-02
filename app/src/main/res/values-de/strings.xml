@@ -266,7 +266,7 @@
     <string name="unlocks_job_format">Schaltet %1$s frei</string>
     <string name="owned_status">✓ BESITZT</string>
     <string name="town_upgrades">STADT-VERBESSERUNGEN</string>
-    <string name="upgrade_discount">Rabatt: %1$d%%</string>
+    <string name="upgrade_discount">Rabatt: %1$d%%%</string>
     <string name="max_level">MAX</string>
     <string name="level_format">Lvl %1$d / %2$d</string>
     <string name="pathfinder_level_format">Lvl %1$d / %2$d (Max. Ebene: %3$d)</string>
@@ -359,7 +359,7 @@
     <string name="log_summon_format">🌟 %1$s beschwört %2$s! Gesamt: %3$d Schaden!</string>
     <string name="log_magicite_stolen">%1$s hat %2$d Magicite gestohlen!</string>
     <string name="log_bard_song">🎵 %1$s: %2$s</string>
-    <string name="log_total_wipe">💀 TOTALAUSFALL: 30%% der Run-Einnahmen verloren.</string>
+    <string name="log_total_wipe">💀 TOTALAUSFALL: 30%%% der Run-Einnahmen verloren.</string>
     <string name="log_physical_attack">%1$s greift %2$s für %3$d an!</string>
     <string name="log_physical_crit">💥 %1$s trifft die SCHWACHSTELLE von %2$s für %3$d! (KRITISCH)</string>
     <string name="log_magic_attack">%1$s wirkt Zauber auf %2$s für %3$d!</string>
@@ -589,15 +589,15 @@
 
     <!-- Pets -->
     <string name="pet_chocobo_name">Chocobo</string>
-    <string name="pet_chocobo_desc">+20%% Gegenstand-Fund</string>
+    <string name="pet_chocobo_desc">+20%%% Gegenstand-Fund</string>
     <string name="pet_moogle_name">Moogle</string>
-    <string name="pet_moogle_desc">+50%% EXP-Gewinn</string>
+    <string name="pet_moogle_desc">+50%%% EXP-Gewinn</string>
     <string name="pet_cat_name">Glückskatze</string>
-    <string name="pet_cat_desc">+30%% Gil-Gewinn</string>
+    <string name="pet_cat_desc">+30%%% Gil-Gewinn</string>
     <string name="pet_cactuar_name">Kaktor</string>
-    <string name="pet_cactuar_desc">+15%% Crit-Rate</string>
+    <string name="pet_cactuar_desc">+15%%% Crit-Rate</string>
     <string name="pet_tonberry_name">Tonberry</string>
-    <string name="pet_tonberry_desc">+100%% Crit-Schaden</string>
+    <string name="pet_tonberry_desc">+100%%% Crit-Schaden</string>
 
     <!-- Battle Abilities -->
     <string name="ability_cover_name">Deckung</string>
@@ -629,7 +629,7 @@
     <string name="tab_pets">PETS</string>
     <string name="mastery_bonus_label">BONUS</string>
     <string name="mastery_exp_format">%1$d / %2$d EXP</string>
-    <string name="pet_bonus_format">+%1$.1f%% %2$s</string>
+    <string name="pet_bonus_format">+%%1$.1f%%% %2$s</string>
     <string name="mastery_bonus_stat_format">+%1$d %2$s</string>
     <string name="select_companion_label">WÄHLE EINEN BEGLEITER</string>
     <string name="pet_none">KEINER</string>
@@ -663,8 +663,8 @@
     <string name="hero_lvl_class_format">Lvl %1$d %2$s</string>
     <string name="ghost_run_close">SCHLIESSEN</string>
     <string name="empty_time">---</string>
-    <string name="format_m">%1$.1fM</string>
-    <string name="format_k">%1$.1fK</string>
+    <string name="format_m">%%1$.1fM</string>
+    <string name="format_k">%%1$.1fK</string>
     <string name="player_name_you">DU</string>
     <string name="my_id_label">DEINE ID: %1$s</string>
     <string name="copy_id_hint">Tippen zum Kopieren deiner ID</string>
@@ -734,8 +734,8 @@
     <string name="stat_bonus_def">ABW: +%1$d</string>
     <string name="stat_bonus_mag">MAG: +%1$d</string>
     <string name="stat_bonus_hp">TP: +%1$d</string>
-    <string name="stat_bonus_crit_chance">KRIT %%: +%1$d%%</string>
-    <string name="stat_bonus_crit_damage">KRIT-SCHADEN: +%1$d%%</string>
+    <string name="stat_bonus_crit_chance">KRIT %%%: +%1$d%%%</string>
+    <string name="stat_bonus_crit_damage">KRIT-SCHADEN: +%1$d%%%</string>
     <string name="hero_status_rip">RIP</string>
     <string name="jobs_count_format">%1$d KLASSEN</string>
     <string name="party_full">VOLL</string>
@@ -771,11 +771,11 @@
     <string name="love_final_dungeon">GEFÄLLT DIR FINAL DUNGEON?</string>
     <string name="rate_app_desc">Eine Bewertung hilft anderen Spielern, den Dungeon zu entdecken!</string>
     <string name="btn_rate_store">⭐ IM PLAY STORE BEWERTEN</string>
-    <string name="bulletin_perk_inn">🏨 Taverne TP-Heilung: +%1$d%%</string>
+    <string name="bulletin_perk_inn">🏨 Taverne TP-Heilung: +%1$d%%%</string>
     <string name="bulletin_perk_barracks">🛡️ Kaserne Max. Gruppe: %1$d</string>
-    <string name="bulletin_perk_vault">💰 Tresor Gil-Zinsen: +%1$d%%</string>
+    <string name="bulletin_perk_vault">💰 Tresor Gil-Zinsen: +%1$d%%%</string>
     <string name="bulletin_perk_pathfinder">🧭 Pfadfinder Start-Ebene: Ebene %1$d</string>
-    <string name="bulletin_perk_planning">📜 Upgrade-Rabatt: %1$d%%</string>
+    <string name="bulletin_perk_planning">📜 Upgrade-Rabatt: %1$d%%%</string>
 
     <!-- Gold to Gems Exchange -->
     <string name="exchange_title">TAUSCH</string>
@@ -783,4 +783,68 @@
     <string name="exchange_rate_format">%1$s Gil ➔ %2$d Edelsteine</string>
     <string name="btn_exchange_pack">Tauschen</string>
     <string name="btn_need_gil">Benötigt %1$s Gil</string>
+    <!-- Job Details & Ability Descriptions -->
+    <string name="job_detail_title">JOB-DETAILS</string>
+    <string name="job_detail_tier_format">RANG %1$d</string>
+    <string name="job_detail_crystal_format">Kristall: %1$s</string>
+    <string name="job_detail_hire_cost_format">Anheuerkosten: %1$d Gil</string>
+    <string name="job_detail_tactical_role">Taktische Rolle: %1$s %2$s</string>
+    <string name="job_detail_charged_ability_title">Aufgeladene Fähigkeit</string>
+    <string name="job_detail_triggers_every_3_turns">Wird alle 3 Runden im Kampf ausgelöst</string>
+    <string name="job_detail_base_stats_title">Basiswerte</string>
+    <string name="job_detail_mastery_title">Meisterschaftsstatus &amp; Bonus</string>
+
+    <string name="ability_freelancer_name">Vielseitige Aktion</string>
+    <string name="ability_freelancer_desc">Führt ausgewogene physische oder magische Angriffe ohne Aufladezeit aus.</string>
+
+    <string name="ability_warrior_name">Machtschlag</string>
+    <string name="ability_warrior_desc">Fügt dem Gegner mit den meisten KP alle 3 Runden 200%% schweren physischen Schaden zu.</string>
+
+    <string name="ability_white_mage_name">Vitus-Segen</string>
+    <string name="ability_white_mage_desc">Stellt allen bewussten Gruppenmitgliedern alle 3 Runden eine große Menge KP wieder her.</string>
+
+    <string name="ability_black_mage_name">Elementarschlag</string>
+    <string name="ability_black_mage_desc">Entfesselt eine mächtige Magiewelle, die allen Gegnern alle 3 Runden 180%% Schaden zufügt.</string>
+
+    <string name="ability_thief_name">Schattenraub</string>
+    <string name="ability_thief_desc">Greift das Ziel schnell an und stiehlt dem Gegner alle 3 Runden zusätzliche Magicit.</string>
+
+    <string name="ability_monk_name">Chakra-Schlag</string>
+    <string name="ability_monk_desc">Stellt 35%% der eigenen max. KP wieder her und trifft das Ziel alle 3 Runden mit 150%% physischem Schaden.</string>
+
+    <string name="ability_knight_name">Schildstoß</string>
+    <string name="ability_knight_desc">Fügt dem stärksten Gegner 180%% physischen Schaden zu. Beschützt verwundete Verbündete in normalen Runden.</string>
+
+    <string name="ability_paladin_name">Heiliger Glanz</string>
+    <string name="ability_paladin_desc">Trifft alle Gegner mit heiligem Schaden und heilt gleichzeitig alle bewussten Verbündeten alle 3 Runden.</string>
+
+    <string name="ability_red_mage_name">Doppelzauber</string>
+    <string name="ability_red_mage_desc">Wirkt alle 3 Runden zwei aufeinanderfolgende Magieangriffe in einem einzigen Zug.</string>
+
+    <string name="ability_summoner_name">Eidolons Beschwörung</string>
+    <string name="ability_summoner_desc">Ruft Ifrit, Shiva, Ramuh oder Bahamut an, um allen Gegnern alle 3 Runden kolossalen Magieschaden zuzufügen.</string>
+
+    <string name="ability_ninja_name">Schattenschlag</string>
+    <string name="ability_ninja_desc">Führt einen tödlichen Doppelkingenangriff aus, der dem Ziel alle 3 Runden 220%% Angriffsschaden zufügt.</string>
+
+    <string name="ability_dragoon_name">Sprung</string>
+    <string name="ability_dragoon_desc">Springt hoch in den Himmel und stürzt auf den Gegner herab, um alle 3 Runden enormen Speerschaden zu verursachen.</string>
+
+    <string name="ability_bard_name">Heldenlied</string>
+    <string name="ability_bard_desc">Spielt inspirierende Lieder (Paeon, Minne, Minuet, Ballad), die Werte erhöhen oder Verbündete heilen.</string>
+
+    <string name="ability_samurai_name">Zeninage-Schnitt</string>
+    <string name="ability_samurai_desc">Wirft Gil mit enormer Kraft und fügt allen Gegnern alle 3 Runden 200%% physischen Schaden zu.</string>
+
+    <string name="ability_onion_knight_name">Verborgenes Potenzial</string>
+    <string name="ability_onion_knight_desc">Erhält mit steigender Meisterschaft gewaltige Werteboni (+50 KP pro Stufe).</string>
+
+    <string name="ability_mime_name">Mimikry</string>
+    <string name="ability_mime_desc">Kopiert und führt sofort die letzte Spezialfähigkeit eines Verbündeten alle 3 Runden aus.</string>
+
+    <string name="ability_necromancer_name">Seelenentzug</string>
+    <string name="ability_necromancer_desc">Entzieht dem Ziel 200%% Magieschaden und verteilt 50%% des Schadens als Heilung an die Gruppe.</string>
+
+    <string name="ability_blue_mage_name">Monsterwissen</string>
+    <string name="ability_blue_mage_desc">Nutzt erlernte Blaumagie von Monstern, um sich an die Kampfsituation anzupassen.</string>
 </resources>

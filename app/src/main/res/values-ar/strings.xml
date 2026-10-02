@@ -266,7 +266,7 @@
     <string name="unlocks_job_format">يفتح %1$s</string>
     <string name="owned_status">✓ مملوك</string>
     <string name="town_upgrades">ترقيات المدينة</string>
-    <string name="upgrade_discount">الخصم: %1$d%%</string>
+    <string name="upgrade_discount">الخصم: %1$d%%%</string>
     <string name="max_level">أقصى</string>
     <string name="level_format">المستوى %1$d / %2$d</string>
     <string name="pathfinder_level_format">المستوى %1$d / %2$d (أقصى طابق: %3$d)</string>
@@ -359,7 +359,7 @@
     <string name="log_summon_format">🌟 %1$s يستدعي %2$s! الإجمالي: %3$d ضرر!</string>
     <string name="log_magicite_stolen">سرق %1$s %2$d ماجيسيت!</string>
     <string name="log_bard_song">🎵 %1$s: %2$s</string>
-    <string name="log_total_wipe">💀 هزيمة كاملة: فقدت 30%% من أرباح الجولة.</string>
+    <string name="log_total_wipe">💀 هزيمة كاملة: فقدت 30%%% من أرباح الجولة.</string>
     <string name="log_physical_attack">%1$s يهاجم %2$s بقوة %3$d!</string>
     <string name="log_physical_crit">💥 ضرب %1$s نقطة حيوية لـ %2$s بضرر %3$d! (حرج)</string>
     <string name="log_magic_attack">%1$s يلقي تعويذة على %2$s بضرر %3$d!</string>
@@ -590,15 +590,15 @@
 
     <!-- Pets -->
     <string name="pet_chocobo_name">تشوكوبو</string>
-    <string name="pet_chocobo_desc">+20%% العثور على العناصر</string>
+    <string name="pet_chocobo_desc">+20%%% العثور على العناصر</string>
     <string name="pet_moogle_name">موغل</string>
-    <string name="pet_moogle_desc">+50%% كسب الخبرة</string>
+    <string name="pet_moogle_desc">+50%%% كسب الخبرة</string>
     <string name="pet_cat_name">قط الحظ</string>
-    <string name="pet_cat_desc">+30%% كسب الجيل</string>
+    <string name="pet_cat_desc">+30%%% كسب الجيل</string>
     <string name="pet_cactuar_name">كاكتوار</string>
-    <string name="pet_cactuar_desc">+15%% معدل الضربات الحرجة</string>
+    <string name="pet_cactuar_desc">+15%%% معدل الضربات الحرجة</string>
     <string name="pet_tonberry_name">تونبيري</string>
-    <string name="pet_tonberry_desc">+100%% الضرر الحرج</string>
+    <string name="pet_tonberry_desc">+100%%% الضرر الحرج</string>
 
     <!-- Battle Abilities -->
     <string name="ability_cover_name">حماية</string>
@@ -630,7 +630,7 @@
     <string name="tab_pets">الحيوانات الأليفة</string>
     <string name="mastery_bonus_label">مكافأة</string>
     <string name="mastery_exp_format">%1$d / %2$d EXP</string>
-    <string name="pet_bonus_format">+%1$.1f%% %2$s</string>
+    <string name="pet_bonus_format">+%%1$.1f%%% %2$s</string>
     <string name="mastery_bonus_stat_format">+%1$d %2$s</string>
     <string name="select_companion_label">اختر رفيقاً</string>
     <string name="pet_none">لا يوجد</string>
@@ -664,8 +664,8 @@
     <string name="hero_lvl_class_format">مستوى %1$d %2$s</string>
     <string name="ghost_run_close">إغلاق</string>
     <string name="empty_time">---</string>
-    <string name="format_m">%1$.1fM</string>
-    <string name="format_k">%1$.1fK</string>
+    <string name="format_m">%%1$.1fM</string>
+    <string name="format_k">%%1$.1fK</string>
     <string name="player_name_you">أنت</string>
     <string name="my_id_label">معرفك: %1$s</string>
     <string name="copy_id_hint">اضغط لنسخ معرفك</string>
@@ -735,8 +735,8 @@
     <string name="stat_bonus_def">دفاع: +%1$d</string>
     <string name="stat_bonus_mag">سحر: +%1$d</string>
     <string name="stat_bonus_hp">صحة: +%1$d</string>
-    <string name="stat_bonus_crit_chance">حرج %%: +%1$d%%</string>
-    <string name="stat_bonus_crit_damage">ضرر حرج: +%1$d%%</string>
+    <string name="stat_bonus_crit_chance">حرج %%%: +%1$d%%%</string>
+    <string name="stat_bonus_crit_damage">ضرر حرج: +%1$d%%%</string>
     <string name="hero_status_rip">توفي</string>
     <string name="jobs_count_format">%1$d وظائف</string>
     <string name="party_full">ممتلئ</string>
@@ -772,11 +772,11 @@
     <string name="love_final_dungeon">هل تحب FINAL DUNGEON؟</string>
     <string name="rate_app_desc">تقييم التطبيق يساعد اللاعبين الآخرين في اكتشاف الزنزانة!</string>
     <string name="btn_rate_store">⭐ تقييم في متجر PLAY</string>
-    <string name="bulletin_perk_inn">🏨 شفاء صحة النزل: +%1$d%%</string>
+    <string name="bulletin_perk_inn">🏨 شفاء صحة النزل: +%1$d%%%</string>
     <string name="bulletin_perk_barracks">🛡️ أقصى حجم للفريق الثكنة: %1$d</string>
-    <string name="bulletin_perk_vault">💰 فائدة جيل الخزينة: +%1$d%%</string>
+    <string name="bulletin_perk_vault">💰 فائدة جيل الخزينة: +%1$d%%%</string>
     <string name="bulletin_perk_pathfinder">🧭 طابق بداية المستكشف: طابق %1$d</string>
-    <string name="bulletin_perk_planning">📜 خصم الترقيات: %1$d%%</string>
+    <string name="bulletin_perk_planning">📜 خصم الترقيات: %1$d%%%</string>
 
     <!-- Gold to Gems Exchange -->
     <string name="exchange_title">تبديل</string>
@@ -784,4 +784,68 @@
     <string name="exchange_rate_format">%1$s جيل ➔ %2$d جوهرة</string>
     <string name="btn_exchange_pack">تبديل</string>
     <string name="btn_need_gil">تحتاج %1$s جيل</string>
+    <!-- Job Details & Ability Descriptions -->
+    <string name="job_detail_title">تفاصيل الوظيفة</string>
+    <string name="job_detail_tier_format">المستوى %1$d</string>
+    <string name="job_detail_crystal_format">الكريستال: %1$s</string>
+    <string name="job_detail_hire_cost_format">تكلفة التوظيف: %1$d جيل</string>
+    <string name="job_detail_tactical_role">الرتبة التكتيكية: %1$s %2$s</string>
+    <string name="job_detail_charged_ability_title">القدرة المشحونة</string>
+    <string name="job_detail_triggers_every_3_turns">تتفعل كل 3 أدوار في المعركة</string>
+    <string name="job_detail_base_stats_title">الإحصائيات الأساسية</string>
+    <string name="job_detail_mastery_title">حالة الإتقان والمكافأة</string>
+
+    <string name="ability_freelancer_name">عمل متعدد الاستخدامات</string>
+    <string name="ability_freelancer_desc">ينفذ هجمات جسدية أو سحرية متوازنة دون الحاجة لشحن.</string>
+
+    <string name="ability_warrior_name">ضربة قوية</string>
+    <string name="ability_warrior_desc">يلحق 200%% ضررًا جسديًا ثقيلاً بالمنافس صاحب أعلى صحة كل 3 أدوار.</string>
+
+    <string name="ability_white_mage_name">انفجار كوراجا</string>
+    <string name="ability_white_mage_desc">يستعيد كمية كبيرة من الصحة لجميع أعضاء الفريق الواعين كل 3 أدوار.</string>
+
+    <string name="ability_black_mage_name">وهج العناصر</string>
+    <string name="ability_black_mage_desc">يطلق موجة سحرية قوية تلحق 180%% ضررًا بجميع الأعداء كل 3 أدوار.</string>
+
+    <string name="ability_thief_name">نهب الظل</string>
+    <string name="ability_thief_desc">يهاجم الهدف بسرعة ويسرق ماجيسيت إضافيًا من العدو كل 3 أدوار.</string>
+
+    <string name="ability_monk_name">ضربة الشاكرا</string>
+    <string name="ability_monk_desc">يستعيد 35%% من الصحة القصوى لنفسه ثم يضرب الهدف بـ 150%% ضرر جسدي كل 3 أدوار.</string>
+
+    <string name="ability_knight_name">ضربة الدرع</string>
+    <string name="ability_knight_desc">يلحق 180%% ضررًا جسديًا بالعدو الأقوى. يحمي الحلفاء المصابين في الأدوار العادية.</string>
+
+    <string name="ability_paladin_name">الإشعاع المقدس</string>
+    <string name="ability_paladin_desc">يضرب جميع الأعداء بضرر مقدس ويشفي جميع الحلفاء الواعين في الوقت نفسه كل 3 أدوار.</string>
+
+    <string name="ability_red_mage_name">السحر المزدوج</string>
+    <string name="ability_red_mage_desc">يلقي هجومين سحريين متتاليين ضد الأعداء في دور واحد كل 3 أدوار.</string>
+
+    <string name="ability_summoner_name">استدعاء إيدولون</string>
+    <string name="ability_summoner_desc">يستدعي إفريت أو شيفا أو راموه أو باهاموت لإلحاق ضرر سحري هائل بجميع الأعداء كل 3 أدوار.</string>
+
+    <string name="ability_ninja_name">ضربة الظل</string>
+    <string name="ability_ninja_desc">ينفذ ضربة مزدوجة مميتة تلحق 220%% ضرر هجومي بالهدف كل 3 أدوار.</string>
+
+    <string name="ability_dragoon_name">قفزة عالية</string>
+    <string name="ability_dragoon_desc">يقفز عالياً في السماء ويسقط على العدو بضرر رمح جوي هائل كل 3 أدوار.</string>
+
+    <string name="ability_bard_name">أغنية بطولية</string>
+    <string name="ability_bard_desc">يعزف أغانٍ ملهمة تعزز الإحصائيات أو تشفي الحلفاء كل 3 أدوار.</string>
+
+    <string name="ability_samurai_name">قطع زينينام</string>
+    <string name="ability_samurai_desc">يرمي الجيل بقوة هائلة ليسبب 200%% ضررًا جسديًا لجميع الأعداء كل 3 أدوار.</string>
+
+    <string name="ability_onion_knight_name">إمكانات خفية</string>
+    <string name="ability_onion_knight_desc">يكتسب مكافآت إحصائيات ضخمة مع زيادة مستوى الإتقان (+50 صحة لكل مستوى).</string>
+
+    <string name="ability_mime_name">محاكاة</string>
+    <string name="ability_mime_desc">ينسخ وينفذ فوراً آخر قدرة خاصة استخدمها أي حليف كل 3 أدوار.</string>
+
+    <string name="ability_necromancer_name">استنزاف الروح</string>
+    <string name="ability_necromancer_desc">يستنزف 200%% ضرر سحري من العدو ويوزع 50%% منها كشفاء للفريق كل 3 أدوار.</string>
+
+    <string name="ability_blue_mage_name">معرفة الوحوش</string>
+    <string name="ability_blue_mage_desc">يستخدم السحر الأزرق المتخصص للترجمات والتكيف مع المعركة كل 3 أدوار.</string>
 </resources>

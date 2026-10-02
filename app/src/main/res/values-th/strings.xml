@@ -266,7 +266,7 @@
     <string name="unlocks_job_format">ปลดล็อก %1$s</string>
     <string name="owned_status">✓ ครอบครองแล้ว</string>
     <string name="town_upgrades">การอัปเกรดเมือง</string>
-    <string name="upgrade_discount">ส่วนลด: %1$d%%</string>
+    <string name="upgrade_discount">ส่วนลด: %1$d%%%</string>
     <string name="max_level">สูงสุด</string>
     <string name="level_format">เลเวล %1$d / %2$d</string>
     <string name="pathfinder_level_format">เลเวล %1$d / %2$d (ชั้นสูงสุด: %3$d)</string>
@@ -359,7 +359,7 @@
     <string name="log_summon_format">🌟 %1$s อัญเชิญ %2$s! สร้างความเสียหายรวม: %3$d!</string>
     <string name="log_magicite_stolen">%1$s ขโมยมาจิไซต์ได้ %2$d ชิ้น!</string>
     <string name="log_bard_song">🎵 %1$s: %2$s</string>
-    <string name="log_total_wipe">💀 พ่ายแพ้ราบคาบ: สูญเสีย 30%% ของกิลที่ได้รับในการสำรวจครั้งนี้</string>
+    <string name="log_total_wipe">💀 พ่ายแพ้ราบคาบ: สูญเสีย 30%%% ของกิลที่ได้รับในการสำรวจครั้งนี้</string>
     <string name="log_physical_attack">%1$s โจมตี %2$s ด้วยพลัง %3$d!</string>
     <string name="log_physical_crit">💥 %1$s โจมตีจุดตายของ %2$s ด้วยพลัง %3$d! (คริติคอล)</string>
     <string name="log_magic_attack">%1$s ร่ายมนตร์ใส่ %2$s เสียพลัง %3$d!</string>
@@ -589,15 +589,15 @@
 
     <!-- Pets -->
     <string name="pet_chocobo_name">โจโกโบะ</string>
-    <string name="pet_chocobo_desc">+20%% การพบไอเทม</string>
+    <string name="pet_chocobo_desc">+20%%% การพบไอเทม</string>
     <string name="pet_moogle_name">ม็อกเกิล</string>
-    <string name="pet_moogle_desc">+50%% การได้รับ EXP</string>
+    <string name="pet_moogle_desc">+50%%% การได้รับ EXP</string>
     <string name="pet_cat_name">แมวกวัก</string>
-    <string name="pet_cat_desc">+30%% การได้รับกิล</string>
+    <string name="pet_cat_desc">+30%%% การได้รับกิล</string>
     <string name="pet_cactuar_name">แคคตัวร์</string>
-    <string name="pet_cactuar_desc">+15%% อัตราคริติคอล</string>
+    <string name="pet_cactuar_desc">+15%%% อัตราคริติคอล</string>
     <string name="pet_tonberry_name">ทอนเบอร์รี่</string>
-    <string name="pet_tonberry_desc">+100%% ความเสียหายคริติคอล</string>
+    <string name="pet_tonberry_desc">+100%%% ความเสียหายคริติคอล</string>
 
     <!-- Battle Abilities -->
     <string name="ability_cover_name">ป้องกันแทน</string>
@@ -629,7 +629,7 @@
     <string name="tab_pets">สัตว์เลี้ยง</string>
     <string name="mastery_bonus_label">โบนัส</string>
     <string name="mastery_exp_format">%1$d / %2$d EXP</string>
-    <string name="pet_bonus_format">+%1$.1f%% %2$s</string>
+    <string name="pet_bonus_format">+%%1$.1f%%% %2$s</string>
     <string name="mastery_bonus_stat_format">+%1$d %2$s</string>
     <string name="select_companion_label">เลือกคู่หู</string>
     <string name="pet_none">ไม่มี</string>
@@ -663,8 +663,8 @@
     <string name="hero_lvl_class_format">เลเวล %1$d %2$s</string>
     <string name="ghost_run_close">ปิด</string>
     <string name="empty_time">---</string>
-    <string name="format_m">%1$.1fM</string>
-    <string name="format_k">%1$.1fK</string>
+    <string name="format_m">%%1$.1fM</string>
+    <string name="format_k">%%1$.1fK</string>
     <string name="player_name_you">คุณ</string>
     <string name="my_id_label">ID ของคุณ: %1$s</string>
     <string name="copy_id_hint">แตะเพื่อคัดลอก ID ของคุณ</string>
@@ -734,8 +734,8 @@
     <string name="stat_bonus_def">ป้องกัน: +%1$d</string>
     <string name="stat_bonus_mag">เวทมนตร์: +%1$d</string>
     <string name="stat_bonus_hp">พลังชีวิต: +%1$d</string>
-    <string name="stat_bonus_crit_chance">อัตราคริติคอล %%: +%1$d%%</string>
-    <string name="stat_bonus_crit_damage">ความเสียหายคริติคอล: +%1$d%%</string>
+    <string name="stat_bonus_crit_chance">อัตราคริติคอล %%%: +%1$d%%%</string>
+    <string name="stat_bonus_crit_damage">ความเสียหายคริติคอล: +%1$d%%%</string>
     <string name="hero_status_rip">เสียชีวิต</string>
     <string name="jobs_count_format">%1$d อาชีพ</string>
     <string name="party_full">เต็ม</string>
@@ -771,11 +771,11 @@
     <string name="love_final_dungeon">ชอบ FINAL DUNGEON ไหม?</string>
     <string name="rate_app_desc">การให้คะแนนแอปช่วยให้ผู้เล่นคนอื่นค้นพบดันเจี้ยนได้มากขึ้น!</string>
     <string name="btn_rate_store">⭐ ให้คะแนนบน PLAY STORE</string>
-    <string name="bulletin_perk_inn">🏨 ฟื้นฟูพลังชีวิตโรงเตี๊ยม: +%1$d%%</string>
+    <string name="bulletin_perk_inn">🏨 ฟื้นฟูพลังชีวิตโรงเตี๊ยม: +%1$d%%%</string>
     <string name="bulletin_perk_barracks">🛡️ ขนาดปาร์ตี้สูงสุดค่ายทหาร: %1$d</string>
-    <string name="bulletin_perk_vault">💰 ดอกเบี้ยกิลคลัง: +%1$d%%</string>
+    <string name="bulletin_perk_vault">💰 ดอกเบี้ยกิลคลัง: +%1$d%%%</string>
     <string name="bulletin_perk_pathfinder">🧭 ชั้นเริ่มต้นคนเบิกทาง: ชั้น %1$d</string>
-    <string name="bulletin_perk_planning">📜 ส่วนลดการอัปเกรด: %1$d%%</string>
+    <string name="bulletin_perk_planning">📜 ส่วนลดการอัปเกรด: %1$d%%%</string>
 
     <!-- Gold to Gems Exchange -->
     <string name="exchange_title">แลกเปลี่ยน</string>
@@ -783,4 +783,68 @@
     <string name="exchange_rate_format">%1$s กิล ➔ %2$d อัญมณี</string>
     <string name="btn_exchange_pack">แลกเปลี่ยน</string>
     <string name="btn_need_gil">ต้องการ %1$s กิล</string>
+    <!-- Job Details & Ability Descriptions -->
+    <string name="job_detail_title">รายละเอียดอาชีพ</string>
+    <string name="job_detail_tier_format">ระดับ %1$d</string>
+    <string name="job_detail_crystal_format">คริสตัล: %1$s</string>
+    <string name="job_detail_hire_cost_format">ค่าจ้าง: %1$d กิล</string>
+    <string name="job_detail_tactical_role">บทบาททางยุทธวิธี: %1$s %2$s</string>
+    <string name="job_detail_charged_ability_title">ทักษะชาร์จ</string>
+    <string name="job_detail_triggers_every_3_turns">แสดงผลทุกๆ 3 เทิร์นในการต่อสู้</string>
+    <string name="job_detail_base_stats_title">ค่าสถานะพื้นฐาน</string>
+    <string name="job_detail_mastery_title">สถานะความชำนาญและโบนัส</string>
+
+    <string name="ability_freelancer_name">การกระทำอเนกประสงค์</string>
+    <string name="ability_freelancer_desc">โจมตีทางกายภาพหรือเวทมนตร์อย่างสมดุลโดยไม่ต้องสะสมชาร์จ</string>
+
+    <string name="ability_warrior_name">การจู่โจมทรงพลัง</string>
+    <string name="ability_warrior_desc">สร้างความเสียหายทางกายภาพ 200%%% ใส่ศัตรูที่มี HP สูงสุดทุกๆ 3 เทิร์น</string>
+
+    <string name="ability_white_mage_name">เคอร์ราก้าระเบิดพลัง</string>
+    <string name="ability_white_mage_desc">ฟื้นฟู HP ปริมาณมากให้กับเพื่อนร่วมทีมทุกคนที่รอดชีวิตทุกๆ 3 เทิร์น</string>
+
+    <string name="ability_black_mage_name">เปลวเพลิงธาตุ</string>
+    <string name="ability_black_mage_desc">ปลดปล่อยคลื่นเวทมนตร์สร้างความเสียหาย 180%%% ใส่ศัตรูทั้งหมดทุกๆ 3 เทิร์น</string>
+
+    <string name="ability_thief_name">ปล้นเงา</string>
+    <string name="ability_thief_desc">โจมตีเป้าหมายอย่างรวดเร็วและขโมยเวทมนตร์หินเพิ่มเติมจากศัตรู</string>
+
+    <string name="ability_monk_name">หมัดจักระ</string>
+    <string name="ability_monk_desc">ฟื้นฟู HP สูงสุด 35%%% ให้ตัวเอง แล้วโจมตีกายภาพ 150%%% ใส่เป้าหมาย</string>
+
+    <string name="ability_knight_name">กระแทกด้วยโล่</string>
+    <string name="ability_knight_desc">สร้างความเสียหายกายภาพ 180%%% ใส่ศัตรูที่แข็งแกร่งที่สุด และปกป้องเพื่อนที่บาดเจ็บ</string>
+
+    <string name="ability_paladin_name">รัศมีศักดิ์สิทธิ์</string>
+    <string name="ability_paladin_desc">โจมตีศัตรูทั้งหมดด้วยความเสียหายศักดิ์สิทธิ์ พร้อมรักษาเพื่อนร่วมทีมทุกคน</string>
+
+    <string name="ability_red_mage_name">เวทมนตร์คู่</string>
+    <string name="ability_red_mage_desc">ร่ายการโจมตีทางเวทมนตร์ต่อเนื่อง 2 ครั้งใส่ศัตรูในเทิร์นเดียว</string>
+
+    <string name="ability_summoner_name">อัญเชิญอสูร</string>
+    <string name="ability_summoner_desc">อัญเชิญ อิฟริท, ชิวา, รามูห์ หรือ บาฮามุท เพื่อสร้างความเสียหายเวทมนตร์มหาศาล</string>
+
+    <string name="ability_ninja_name">การโจมตีเงา</string>
+    <string name="ability_ninja_desc">โจมตีด้วยดาบคู่สร้างความเสียหาย 220%%% ใส่เป้าหมายทุกๆ 3 เทิร์น</string>
+
+    <string name="ability_dragoon_name">กระโดดสูง</string>
+    <string name="ability_dragoon_desc">กระโดดขึ้นฟ้าแล้วพุ่งลงมาแทงศัตรูสร้างความเสียหายมหาศาล</string>
+
+    <string name="ability_bard_name">บทเพลงวีรบุรุษ</string>
+    <string name="ability_bard_desc">ขับร้องเพลงสร้างแรงบันดาลใจเพื่อเพิ่มสถานะหรือรักษาเพื่อนร่วมทีม</string>
+
+    <string name="ability_samurai_name">ฟันปาเงิน</string>
+    <string name="ability_samurai_desc">ปาเงินกิลอย่างรุนแรงสร้างความเสียหายกายภาพ 200%%% ใส่ศัตรูทั้งหมด</string>
+
+    <string name="ability_onion_knight_name">ศักยภาพที่ซ่อนอยู่</string>
+    <string name="ability_onion_knight_desc">ได้รับโบนัสสถานะมหาศาลเมื่อระดับความชำนาญสูงขึ้น (+50 HP ต่อระดับ)</string>
+
+    <string name="ability_mime_name">การเลียนแบบ</string>
+    <string name="ability_mime_desc">คัดลอกและใช้ทักษะพิเศษล่าสุดที่เพื่อนร่วมทีมใช้ทันที</string>
+
+    <string name="ability_necromancer_name">สูบวิญญาณ</string>
+    <string name="ability_necromancer_desc">สูบพลังเวทมนตร์จากศัตรูแล้วเปลี่ยน 50%%% เป็นการรักษาให้ทั้งทีม</string>
+
+    <string name="ability_blue_mage_name">ศาสตร์แห่งมอนสเตอร์</string>
+    <string name="ability_blue_mage_desc">ใช้มนตร์น้ำเงินที่เรียนรู้จากมอนสเตอร์เพื่อปรับตัวให้เข้ากับสถานการณ์</string>
 </resources>

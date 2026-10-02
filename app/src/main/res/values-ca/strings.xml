@@ -266,7 +266,7 @@
     <string name="unlocks_job_format">Desbloqueja %1$s</string>
     <string name="owned_status">✓ PROPIETAT</string>
     <string name="town_upgrades">MILLORES DE LA CIUTAT</string>
-    <string name="upgrade_discount">Descompte: %1$d%%</string>
+    <string name="upgrade_discount">Descompte: %1$d%%%</string>
     <string name="max_level">MÀX</string>
     <string name="level_format">NIVELL %1$d / %2$d</string>
     <string name="pathfinder_level_format">NIVELL %1$d / %2$d (Pis Màx: %3$d)</string>
@@ -359,7 +359,7 @@
     <string name="log_summon_format">🌟 ¡%1$s invoca %2$s! Total: ¡%3$d de dany!</string>
     <string name="log_magicite_stolen">¡%1$s ha robat %2$d de Magicita!</string>
     <string name="log_bard_song">🎵 %1$s: %2$s</string>
-    <string name="log_total_wipe">💀 ELIMINACIÓ TOTAL: S\'ha perdut el 30%% dels guanys de la incursió.</string>
+    <string name="log_total_wipe">💀 ELIMINACIÓ TOTAL: S\'ha perdut el 30%%% dels guanys de la incursió.</string>
     <string name="log_physical_attack">¡%1$s ataca %2$s per %3$d!</string>
     <string name="log_physical_crit">💥 ¡%1$s colpeja el PUNT VITAL de %2$s per %3$d! (CRÍTIC)</string>
     <string name="log_magic_attack">¡%1$s llança un encanteri a %2$s per %3$d!</string>
@@ -590,15 +590,15 @@
 
     <!-- Pets -->
     <string name="pet_chocobo_name">Chocobo</string>
-    <string name="pet_chocobo_desc">+20%% Trobada d\'Objectes</string>
+    <string name="pet_chocobo_desc">+20%%% Trobada d\'Objectes</string>
     <string name="pet_moogle_name">Moogle</string>
-    <string name="pet_moogle_desc">+50%% Guany de EXP</string>
+    <string name="pet_moogle_desc">+50%%% Guany de EXP</string>
     <string name="pet_cat_name">Gat de la Sort</string>
-    <string name="pet_cat_desc">+30%% Guany de Gils</string>
+    <string name="pet_cat_desc">+30%%% Guany de Gils</string>
     <string name="pet_cactuar_name">Cactili</string>
-    <string name="pet_cactuar_desc">+15%% Taxa Crítica</string>
+    <string name="pet_cactuar_desc">+15%%% Taxa Crítica</string>
     <string name="pet_tonberry_name">Tonberry</string>
-    <string name="pet_tonberry_desc">+100%% Dany Crític</string>
+    <string name="pet_tonberry_desc">+100%%% Dany Crític</string>
 
     <!-- Battle Abilities -->
     <string name="ability_cover_name">Cobertura</string>
@@ -630,7 +630,7 @@
     <string name="tab_pets">MASCOTES</string>
     <string name="mastery_bonus_label">BONIFICACIÓ</string>
     <string name="mastery_exp_format">%1$d / %2$d EXP</string>
-    <string name="pet_bonus_format">+%1$.1f%% %2$s</string>
+    <string name="pet_bonus_format">+%%1$.1f%%% %2$s</string>
     <string name="mastery_bonus_stat_format">+%1$d %2$s</string>
     <string name="select_companion_label">SELECCIONA UN COMPANYS</string>
     <string name="pet_none">CAP</string>
@@ -664,8 +664,8 @@
     <string name="hero_lvl_class_format">NIVELL %1$d %2$s</string>
     <string name="ghost_run_close">TANCAR</string>
     <string name="empty_time">---</string>
-    <string name="format_m">%1$.1fM</string>
-    <string name="format_k">%1$.1fK</string>
+    <string name="format_m">%%1$.1fM</string>
+    <string name="format_k">%%1$.1fK</string>
     <string name="player_name_you">TU</string>
     <string name="my_id_label">EL TEU ID: %1$s</string>
     <string name="copy_id_hint">Toca per copiar el teu ID</string>
@@ -735,8 +735,8 @@
     <string name="stat_bonus_def">DEF: +%1$d</string>
     <string name="stat_bonus_mag">MAG: +%1$d</string>
     <string name="stat_bonus_hp">PV: +%1$d</string>
-    <string name="stat_bonus_crit_chance">CRÍT %%: +%1$d%%</string>
-    <string name="stat_bonus_crit_damage">DANY CRÍT: +%1$d%%</string>
+    <string name="stat_bonus_crit_chance">CRÍT %%%: +%1$d%%%</string>
+    <string name="stat_bonus_crit_damage">DANY CRÍT: +%1$d%%%</string>
     <string name="hero_status_rip">DEP</string>
     <string name="jobs_count_format">%1$d OFICIS</string>
     <string name="party_full">PLE</string>
@@ -772,11 +772,11 @@
     <string name="love_final_dungeon">T\'AGRADA FINAL DUNGEON?</string>
     <string name="rate_app_desc">Valorar l\'aplicació ajuda altres jugadors a descobrir la mazmorra!</string>
     <string name="btn_rate_store">⭐ VALORAR A LA PLAY STORE</string>
-    <string name="bulletin_perk_inn">🏨 Curació PV Hostal: +%1$d%%</string>
+    <string name="bulletin_perk_inn">🏨 Curació PV Hostal: +%1$d%%%</string>
     <string name="bulletin_perk_barracks">🛡️ Mida màx. grup Caserna: %1$d</string>
-    <string name="bulletin_perk_vault">💰 Interès de Gil Càmera: +%1$d%%</string>
+    <string name="bulletin_perk_vault">💰 Interès de Gil Càmera: +%1$d%%%</string>
     <string name="bulletin_perk_pathfinder">🧭 Planta inicial Pioner: Planta %1$d</string>
-    <string name="bulletin_perk_planning">📜 Descompte de millores: %1$d%%</string>
+    <string name="bulletin_perk_planning">📜 Descompte de millores: %1$d%%%</string>
 
     <!-- Gold to Gems Exchange -->
     <string name="exchange_title">INTERCANVI</string>
@@ -784,4 +784,68 @@
     <string name="exchange_rate_format">%1$s Gil ➔ %2$d Gemmes</string>
     <string name="btn_exchange_pack">Intercanviar</string>
     <string name="btn_need_gil">Calen %1$s Gil</string>
+    <!-- Job Details & Ability Descriptions -->
+    <string name="job_detail_title">DETALLS DE TREBALL</string>
+    <string name="job_detail_tier_format">NIVELL %1$d</string>
+    <string name="job_detail_crystal_format">Cristall: %1$s</string>
+    <string name="job_detail_hire_cost_format">Cost de contractació: %1$d Gil</string>
+    <string name="job_detail_tactical_role">Rol tàctic: %1$s %2$s</string>
+    <string name="job_detail_charged_ability_title">Habilitat carregada</string>
+    <string name="job_detail_triggers_every_3_turns">S\'activa cada 3 torns en batalla</string>
+    <string name="job_detail_base_stats_title">Estadístiques base</string>
+    <string name="job_detail_mastery_title">Estat de maestria i bonificació</string>
+
+    <string name="ability_freelancer_name">Acció versàtil</string>
+    <string name="ability_freelancer_desc">Executa atacs físics o màgics equilibrats sense requerir càrrega.</string>
+
+    <string name="ability_warrior_name">Cop poderós</string>
+    <string name="ability_warrior_desc">Infligeix un 200%%% de dany físic pesat a l\'enemic amb més vida cada 3 torns.</string>
+
+    <string name="ability_white_mage_name">Ràfega Curaga</string>
+    <string name="ability_white_mage_desc">Restaura una gran quantitat de PV a tots els membres conscients del grup cada 3 torns.</string>
+
+    <string name="ability_black_mage_name">Ràfega elemental</string>
+    <string name="ability_black_mage_desc">Llança una poderosa ona màgica que infligeix un 180%%% de dany a tots els enemics cada 3 torns.</string>
+
+    <string name="ability_thief_name">Saqueig d\'ombra</string>
+    <string name="ability_thief_desc">Ataca ràpid a l\'objectiu i roba Magicita addicional a l\'enemic cada 3 torns.</string>
+
+    <string name="ability_monk_name">Cop de chakra</string>
+    <string name="ability_monk_desc">Restaura un 35%%% de PV màx. a si mateix i infligeix un 150%%% de dany físic a l\'objectiu cada 3 torns.</string>
+
+    <string name="ability_knight_name">Cop d\'escut</string>
+    <string name="ability_knight_desc">Infligeix un 180%%% de dany físic a l\'enemic més fort. Cobreix els aliats ferits en torns normals.</string>
+
+    <string name="ability_paladin_name">Radiança sagrada</string>
+    <string name="ability_paladin_desc">Ataca tots els enemics amb dany sagrat mentre cura simultàniament tots els aliats conscients cada 3 torns.</string>
+
+    <string name="ability_red_mage_name">Doble màgia</string>
+    <string name="ability_red_mage_desc">Llança dos atacs màgics consecutius contra els enemics en un sol torn cada 3 torns.</string>
+
+    <string name="ability_summoner_name">Invocació d\'eidoló</string>
+    <string name="ability_summoner_desc">Invoca Ifrit, Shiva, Ramuh o Bahamut per infligir un dany màgic colossal a tots els enemics cada 3 torns.</string>
+
+    <string name="ability_ninja_name">Atac d\'ombra</string>
+    <string name="ability_ninja_desc">Executa un cop mortal de doble fulla infligint un 220%%% de dany d\'atac a l\'objectiu cada 3 torns.</string>
+
+    <string name="ability_dragoon_name">Gran salt</string>
+    <string name="ability_dragoon_desc">Salta alt al cel i cau sobre l\'enemic infligint un enorme dany de llança aèria cada 3 torns.</string>
+
+    <string name="ability_bard_name">Cant heroic</string>
+    <string name="ability_bard_desc">Interpreta cançons inspiradores (Paeon, Minne, Minuet, Ballad) que milloren les estadístiques o curen els aliats.</string>
+
+    <string name="ability_samurai_name">Tall Zeninage</string>
+    <string name="ability_samurai_desc">Llança Gil amb força tremenda infligint un 200%%% de dany físic a tots els enemics cada 3 torns.</string>
+
+    <string name="ability_onion_knight_name">Potencial ocult</string>
+    <string name="ability_onion_knight_desc">Obté enormes bonificacions d\'estadístiques a mesura que augmenta el nivell de maestria (+50 PV per nivell).</string>
+
+    <string name="ability_mime_name">Mimetisme</string>
+    <string name="ability_mime_desc">Copia i executa a l\'instant l\'última habilitat especial utilitzada per qualsevol aliat del grup cada 3 torns.</string>
+
+    <string name="ability_necromancer_name">Drenatge d\'ànima</string>
+    <string name="ability_necromancer_desc">Drena un 200%%% de dany màgic de l\'enemic i distribueix el 50%%% del dany com a curació a tots els aliats.</string>
+
+    <string name="ability_blue_mage_name">Saber de monstres</string>
+    <string name="ability_blue_mage_desc">Utilitza màgia blava especialitzada meva dels monstres per adaptar-se a la batalla cada 3 torns.</string>
 </resources>

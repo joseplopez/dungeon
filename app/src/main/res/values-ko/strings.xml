@@ -266,7 +266,7 @@
     <string name="unlocks_job_format">%1$s 잠금 해제</string>
     <string name="owned_status">✓ 보유 중</string>
     <string name="town_upgrades">마을 업그레이드</string>
-    <string name="upgrade_discount">할인: %1$d%%</string>
+    <string name="upgrade_discount">할인: %1$d%%%</string>
     <string name="max_level">최대</string>
     <string name="level_format">LV %1$d / %2$d</string>
     <string name="pathfinder_level_format">LV %1$d / %2$d (최대 층: %3$d)</string>
@@ -359,7 +359,7 @@
     <string name="log_summon_format">🌟 %1$s이(가) %2$s을(를) 소환! 총 %3$d 피해! </string>
     <string name="log_magicite_stolen">%1$s이(가) 마석 %2$d개를 훔쳤습니다!</string>
     <string name="log_bard_song">🎵 %1$s: %2$s</string>
-    <string name="log_total_wipe">💀 파티 전멸: 탐험 수익의 30%%를 잃었습니다.</string>
+    <string name="log_total_wipe">💀 파티 전멸: 탐험 수익의 30%%%를 잃었습니다.</string>
     <string name="log_physical_attack">%1$s이(가) %2$s을(를) 공격하여 %3$d 피해!</string>
     <string name="log_physical_crit">💥 %1$s이(가) %2$s의 급소를 타격하여 %3$d 피해! (크리티컬)</string>
     <string name="log_magic_attack">%1$s이(가) %2$s에게 마법을 시전하여 %3$d 피해!</string>
@@ -590,15 +590,15 @@
 
     <!-- Pets -->
     <string name="pet_chocobo_name">초코보</string>
-    <string name="pet_chocobo_desc">+20%% 아이템 발견</string>
+    <string name="pet_chocobo_desc">+20%%% 아이템 발견</string>
     <string name="pet_moogle_name">모그리</string>
-    <string name="pet_moogle_desc">+50%% EXP 획득</string>
+    <string name="pet_moogle_desc">+50%%% EXP 획득</string>
     <string name="pet_cat_name">복고양이</string>
-    <string name="pet_cat_desc">+30%% 길 획득</string>
+    <string name="pet_cat_desc">+30%%% 길 획득</string>
     <string name="pet_cactuar_name">선인장</string>
-    <string name="pet_cactuar_desc">+15%% 크리티컬 확률</string>
+    <string name="pet_cactuar_desc">+15%%% 크리티컬 확률</string>
     <string name="pet_tonberry_name">톤베리</string>
-    <string name="pet_tonberry_desc">+100%% 크리티컬 피해</string>
+    <string name="pet_tonberry_desc">+100%%% 크리티컬 피해</string>
 
     <!-- Battle Abilities -->
     <string name="ability_cover_name">엄호</string>
@@ -630,7 +630,7 @@
     <string name="tab_pets">펫</string>
     <string name="mastery_bonus_label">보너스</string>
     <string name="mastery_exp_format">%1$d / %2$d EXP</string>
-    <string name="pet_bonus_format">+%1$.1f%% %2$s</string>
+    <string name="pet_bonus_format">+%%1$.1f%%% %2$s</string>
     <string name="mastery_bonus_stat_format">+%1$d %2$s</string>
     <string name="select_companion_label">동료를 선택하세요</string>
     <string name="pet_none">없음</string>
@@ -664,8 +664,8 @@
     <string name="hero_lvl_class_format">레벨 %1$d %2$s</string>
     <string name="ghost_run_close">닫기</string>
     <string name="empty_time">---</string>
-    <string name="format_m">%1$.1fM</string>
-    <string name="format_k">%1$.1fK</string>
+    <string name="format_m">%%1$.1fM</string>
+    <string name="format_k">%%1$.1fK</string>
     <string name="player_name_you">나</string>
     <string name="my_id_label">내 ID: %1$s</string>
     <string name="copy_id_hint">탭하여 ID 복사</string>
@@ -735,8 +735,8 @@
     <string name="stat_bonus_def">방어: +%1$d</string>
     <string name="stat_bonus_mag">마력: +%1$d</string>
     <string name="stat_bonus_hp">HP: +%1$d</string>
-    <string name="stat_bonus_crit_chance">치명타율 %%: +%1$d%%</string>
-    <string name="stat_bonus_crit_damage">치명타 피해: +%1$d%%</string>
+    <string name="stat_bonus_crit_chance">치명타율 %%%: +%1$d%%%</string>
+    <string name="stat_bonus_crit_damage">치명타 피해: +%1$d%%%</string>
     <string name="hero_status_rip">전사</string>
     <string name="jobs_count_format">%1$d개 직업</string>
     <string name="party_full">가득 차다</string>
@@ -772,11 +772,11 @@
     <string name="love_final_dungeon">FINAL DUNGEON이 마음에 드시나요?</string>
     <string name="rate_app_desc">평가를 남겨주시면 다른 플레이어가 게임을 찾는 데 도움이 됩니다!</string>
     <string name="btn_rate_store">⭐ PLAY STORE에서 평가하기</string>
-    <string name="bulletin_perk_inn">🏨 여관 HP 회복: +%1$d%%</string>
+    <string name="bulletin_perk_inn">🏨 여관 HP 회복: +%1$d%%%</string>
     <string name="bulletin_perk_barracks">🛡️ 병영 최대 파티원: %1$d</string>
-    <string name="bulletin_perk_vault">💰 금고 길 이자: +%1$d%%</string>
+    <string name="bulletin_perk_vault">💰 금고 길 이자: +%1$d%%%</string>
     <string name="bulletin_perk_pathfinder">🧭 개척자 시작 층: %1$d 층</string>
-    <string name="bulletin_perk_planning">📜 강화 할인: %1$d%%</string>
+    <string name="bulletin_perk_planning">📜 강화 할인: %1$d%%%</string>
 
     <!-- Gold to Gems Exchange -->
     <string name="exchange_title">교환</string>
@@ -784,4 +784,68 @@
     <string name="exchange_rate_format">%1$s 길 ➔ %2$d 보석</string>
     <string name="btn_exchange_pack">교환</string>
     <string name="btn_need_gil">%1$s 길 필요</string>
+    <!-- Job Details & Ability Descriptions -->
+    <string name="job_detail_title">직업 상세</string>
+    <string name="job_detail_tier_format">티어 %1$d</string>
+    <string name="job_detail_crystal_format">크리스탈: %1$s</string>
+    <string name="job_detail_hire_cost_format">고용 비용: %1$d 길</string>
+    <string name="job_detail_tactical_role">전술 역할: %1$s %2$s</string>
+    <string name="job_detail_charged_ability_title">충전 스킬</string>
+    <string name="job_detail_triggers_every_3_turns">전투 중 3턴마다 발동</string>
+    <string name="job_detail_base_stats_title">기본 능력치</string>
+    <string name="job_detail_mastery_title">마스터리 상태 및 보너스</string>
+
+    <string name="ability_freelancer_name">다재다능한 공격</string>
+    <string name="ability_freelancer_desc">충전 시간 없이 균형 잡힌 물리 또는 마법 공격을 실행합니다.</string>
+
+    <string name="ability_warrior_name">강력한 타격</string>
+    <string name="ability_warrior_desc">3턴마다 체력이 가장 높은 적에게 200%%%의 강력한 물리 피해를 입힙니다.</string>
+
+    <string name="ability_white_mage_name">케알가 버스트</string>
+    <string name="ability_white_mage_desc">3턴마다 생존한 모든 아군의 체력을 크게 회복시킵니다.</string>
+
+    <string name="ability_black_mage_name">엘리멘탈 플레어</string>
+    <string name="ability_black_mage_desc">3턴마다 강력한 마법 파동을 방출하여 모든 적에게 180%%%의 피해를 입힙니다.</string>
+
+    <string name="ability_thief_name">그림자 털기</string>
+    <string name="ability_thief_desc">3턴마다 대상을 빠르게 공격하고 적에게서 추가 마석을 훔칩니다.</string>
+
+    <string name="ability_monk_name">차크라 타격</string>
+    <string name="ability_monk_desc">3턴마다 자신의 최대 체력을 35%%% 회복한 후 대상에게 150%%%의 물리 피해를 입힙니다.</string>
+
+    <string name="ability_knight_name">방패 강타</string>
+    <string name="ability_knight_desc">가장 강한 적에게 180%%%의 물리 피해를 입힙니다. 일반 턴에는 부상당한 아군을 엄호합니다.</string>
+
+    <string name="ability_paladin_name">신성한 광채</string>
+    <string name="ability_paladin_desc">3턴마다 모든 적에게 신성 피해를 입히는 동시에 생존한 모든 아군을 회복시킵니다.</string>
+
+    <string name="ability_red_mage_name">연속 마법</string>
+    <string name="ability_red_mage_desc">3턴마다 한 턴에 적을 향해 연속으로 2회의 마법 공격을 퍼붓습니다.</string>
+
+    <string name="ability_summoner_name">환수 소환</string>
+    <string name="ability_summoner_desc">3턴마다 이프리트, 시바, 라무, 바하무트를 소환하여 모든 적에게 엄청난 마법 피해를 입힙니다.</string>
+
+    <string name="ability_ninja_name">그림자 베기</string>
+    <string name="ability_ninja_desc">3턴마다 이도류 일격을 날려 대상에게 220%%%의 공격 피해를 입힙니다.</string>
+
+    <string name="ability_dragoon_name">하이 점프</string>
+    <string name="ability_dragoon_desc">3턴마다 하늘 높이 솟구쳐 적에게 떨어지며 강력한 공중 창 피해를 입힙니다.</string>
+
+    <string name="ability_bard_name">영웅의 노래</string>
+    <string name="ability_bard_desc">3턴마다 아군의 사기를 높이는 노래를 불러 능력치를 강화하거나 체력을 회복시킵니다.</string>
+
+    <string name="ability_samurai_name">동전 던지기 베기</string>
+    <string name="ability_samurai_desc">3턴마다 길을 강하게 던져 모든 적에게 200%%%의 물리 피해를 입힙니다.</string>
+
+    <string name="ability_onion_knight_name">숨겨진 잠재력</string>
+    <string name="ability_onion_knight_desc">마스터리 레벨이 오를수록 엄청난 능력치 보너스(레벨당 HP +50)를 얻습니다.</string>
+
+    <string name="ability_mime_name">흉내내기</string>
+    <string name="ability_mime_desc">3턴마다 아군이 마지막으로 사용한 특수 스킬을 즉시 복사하여 실행합니다.</string>
+
+    <string name="ability_necromancer_name">영혼 흡수</string>
+    <string name="ability_necromancer_desc">3턴마다 적에게서 200%%%의 마법 피해를 흡수하고 피해량의 50%%%를 파티 전체 회복으로 분배합니다.</string>
+
+    <string name="ability_blue_mage_name">몬스터 청마법</string>
+    <string name="ability_blue_mage_desc">3턴마다 던전 몬스터에게서 습득한 청마법을 사용하여 전투에 대응합니다.</string>
 </resources>

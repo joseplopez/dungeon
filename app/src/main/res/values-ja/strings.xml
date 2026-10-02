@@ -266,7 +266,7 @@
     <string name="unlocks_job_format">Розблокує %1$s</string>
     <string name="owned_status">✓ КУПЛЕНО</string>
     <string name="town_upgrades">ПОКРАЩЕННЯ МІСТА</string>
-    <string name="upgrade_discount">Знижка: %1$d%%</string>
+    <string name="upgrade_discount">Знижка: %1$d%%%</string>
     <string name="max_level">МАКС</string>
     <string name="level_format">РІВ %1$d / %2$d</string>
     <string name="pathfinder_level_format">РІВ %1$d / %2$d (Макс. поверх: %3$d)</string>
@@ -359,7 +359,7 @@
     <string name="log_summon_format">🌟 %1$s закликає %2$s! Всього: %3$d шкоди!</string>
     <string name="log_magicite_stolen">%1$s вкрав %2$d магіциту!</string>
     <string name="log_bard_song">🎵 %1$s: %2$s</string>
-    <string name="log_total_wipe">💀 ПОВНА ЗАГИБЕЛЬ: Втрачено 30%% заробітку за забіг.</string>
+    <string name="log_total_wipe">💀 ПОВНА ЗАГИБЕЛЬ: Втрачено 30%%% заробітку за забіг.</string>
     <string name="log_physical_attack">%1$s атакує %2$s на %3$d!</string>
     <string name="log_physical_crit">💥 %1$s вражає КРИТИЧНУ ТОЧКУ %2$s на %3$d! (КРИТ)</string>
     <string name="log_magic_attack">%1$s застосовує заклинання на %2$s на %3$d!</string>
@@ -589,15 +589,15 @@
 
     <!-- Pets -->
     <string name="pet_chocobo_name">Чокобо</string>
-    <string name="pet_chocobo_desc">+20%% предметів знайдено</string>
+    <string name="pet_chocobo_desc">+20%%% предметів знайдено</string>
     <string name="pet_moogle_name">Мугл</string>
-    <string name="pet_moogle_desc">+50%% до отримання EXP</string>
+    <string name="pet_moogle_desc">+50%%% до отримання EXP</string>
     <string name="pet_cat_name">Кіт удачі</string>
-    <string name="pet_cat_desc">+30%% до отримання гілей</string>
+    <string name="pet_cat_desc">+30%%% до отримання гілей</string>
     <string name="pet_cactuar_name">Кактуар</string>
-    <string name="pet_cactuar_desc">+15%% до шансу криту</string>
+    <string name="pet_cactuar_desc">+15%%% до шансу криту</string>
     <string name="pet_tonberry_name">Тонберрі</string>
-    <string name="pet_tonberry_desc">+100%% до критичної шкоди</string>
+    <string name="pet_tonberry_desc">+100%%% до критичної шкоди</string>
 
     <!-- Battle Abilities -->
     <string name="ability_cover_name">Прикриття</string>
@@ -629,7 +629,7 @@
     <string name="tab_pets">ДОМАШНІ ТВАРИНИ</string>
     <string name="mastery_bonus_label">БОНУС</string>
     <string name="mastery_exp_format">%1$d / %2$d EXP</string>
-    <string name="pet_bonus_format">+%1$.1f%% %2$s</string>
+    <string name="pet_bonus_format">+%%1$.1f%%% %2$s</string>
     <string name="mastery_bonus_stat_format">+%1$d %2$s</string>
     <string name="select_companion_label">ВИБЕРІТЬ СУПУТНИКА</string>
     <string name="pet_none">НЕМАЄ</string>
@@ -663,8 +663,8 @@
     <string name="hero_lvl_class_format">РІВ %1$d %2$s</string>
     <string name="ghost_run_close">ЗАКРИТИ</string>
     <string name="empty_time">---</string>
-    <string name="format_m">%1$.1fM</string>
-    <string name="format_k">%1$.1fK</string>
+    <string name="format_m">%%1$.1fM</string>
+    <string name="format_k">%%1$.1fK</string>
     <string name="player_name_you">ВИ</string>
     <string name="my_id_label">ВАШ ID: %1$s</string>
     <string name="copy_id_hint">Натисніть, щоб скопіювати ID</string>
@@ -734,8 +734,8 @@
     <string name="stat_bonus_def">ЗАХ: +%1$d</string>
     <string name="stat_bonus_mag">МАГ: +%1$d</string>
     <string name="stat_bonus_hp">ОЗ: +%1$d</string>
-    <string name="stat_bonus_crit_chance">КРИТ %%: +%1$d%%</string>
-    <string name="stat_bonus_crit_damage">ШКОДА КРИТ: +%1$d%%</string>
+    <string name="stat_bonus_crit_chance">КРИТ %%%: +%1$d%%%</string>
+    <string name="stat_bonus_crit_damage">ШКОДА КРИТ: +%1$d%%%</string>
     <string name="hero_status_rip">ПОГИБ</string>
     <string name="jobs_count_format">%1$d КЛАСІВ</string>
     <string name="party_full">ПОВНО</string>
@@ -771,11 +771,11 @@
     <string name="love_final_dungeon">ПОДОБАЄТЬСЯ FINAL DUNGEON?</string>
     <string name="rate_app_desc">Оцінка додатка допомагає іншим гравцям дізнатися про гру!</string>
     <string name="btn_rate_store">⭐ ОЦІНИТИ В PLAY STORE</string>
-    <string name="bulletin_perk_inn">🏨 Лікування ОЗ Таверна: +%1$d%%</string>
+    <string name="bulletin_perk_inn">🏨 Лікування ОЗ Таверна: +%1$d%%%</string>
     <string name="bulletin_perk_barracks">🛡️ Макс. загін Казарма: %1$d</string>
-    <string name="bulletin_perk_vault">💰 Відсотки Сховище: +%1$d%%</string>
+    <string name="bulletin_perk_vault">💰 Відсотки Сховище: +%1$d%%%</string>
     <string name="bulletin_perk_pathfinder">🧭 Старт Слідопита: Поверх %1$d</string>
-    <string name="bulletin_perk_planning">📜 Знижка на покращення: %1$d%%</string>
+    <string name="bulletin_perk_planning">📜 Знижка на покращення: %1$d%%%</string>
 
     <!-- Gold to Gems Exchange -->
     <string name="exchange_title">ОБМІН</string>
@@ -783,4 +783,68 @@
     <string name="exchange_rate_format">%1$s Ґілей ➔ %2$d Самоцвітів</string>
     <string name="btn_exchange_pack">Обміняти</string>
     <string name="btn_need_gil">Потрібно %1$s Ґілей</string>
+    <!-- Job Details & Ability Descriptions -->
+    <string name="job_detail_title">ジョブ詳細</string>
+    <string name="job_detail_tier_format">ランク %1$d</string>
+    <string name="job_detail_crystal_format">クリスタル: %1$s</string>
+    <string name="job_detail_hire_cost_format">雇用費用: %1$d ギル</string>
+    <string name="job_detail_tactical_role">戦術役割: %1$s %2$s</string>
+    <string name="job_detail_charged_ability_title">チャージアビリティ</string>
+    <string name="job_detail_triggers_every_3_turns">戦闘中3ターンごとに発動</string>
+    <string name="job_detail_base_stats_title">基本ステータス</string>
+    <string name="job_detail_mastery_title">マスター状態＆ボーナス</string>
+
+    <string name="ability_freelancer_name">万能アクション</string>
+    <string name="ability_freelancer_desc">チャージを必要とせず、バランスの取れた物理・魔法攻撃を行います。</string>
+
+    <string name="ability_warrior_name">パワーストライク</string>
+    <string name="ability_warrior_desc">3ターンごとに、最もHPが高い敵に200%%%の強力な物理ダメージを与えます。</string>
+
+    <string name="ability_white_mage_name">ケアルガバースト</string>
+    <string name="ability_white_mage_desc">3ターンごとに、生存している味方全員のHPを大きく回復します。</string>
+
+    <string name="ability_black_mage_name">エレメンタルフレア</string>
+    <string name="ability_black_mage_desc">3ターンごとに、強力な魔法波を放ち全敵に180%%%の魔法ダメージを与えます。</string>
+
+    <string name="ability_thief_name">シャドウみぐるぎはぎ</string>
+    <string name="ability_thief_desc">3ターンごとに素早く攻撃し、敵から追加の魔石を奪い取ります。</string>
+
+    <string name="ability_monk_name">チャクラ打撃</string>
+    <string name="ability_monk_desc">3ターンごとに自身の最大HPを35%%%回復し、対象に150%%%の物理ダメージを与えます。</string>
+
+    <string name="ability_knight_name">シールドバッシュ</string>
+    <string name="ability_knight_desc">最も強い敵に180%%%の重い物理ダメージを与えます。通常ターンは傷ついた味方をかばいます。</string>
+
+    <string name="ability_paladin_name">ホーリーレディアンス</string>
+    <string name="ability_paladin_desc">3ターンごとに全敵に聖なるダメージを与えつつ、生存している味方全員を回復します。</string>
+
+    <string name="ability_red_mage_name">連続魔</string>
+    <string name="ability_red_mage_desc">3ターンごとに、1ターンで2回連続の魔法攻撃を繰り出します。</string>
+
+    <string name="ability_summoner_name">幻獣召喚</string>
+    <string name="ability_summoner_desc">3ターンごとにイフリート、シヴァ、ラムウ、バハムートを召喚し全敵に絶大な魔法ダメージを与えます。</string>
+
+    <string name="ability_ninja_name">影縫い二刀流</string>
+    <string name="ability_ninja_desc">3ターンごとに二刀流の一撃を放ち、対象に220%%%の攻撃ダメージを与えます。</string>
+
+    <string name="ability_dragoon_name">ハイジャンプ</string>
+    <string name="ability_dragoon_desc">3ターンごとに上空高く跳び上がり、槍で急降下して絶大な空中ダメージを与えます。</string>
+
+    <string name="ability_bard_name">英雄の歌</string>
+    <string name="ability_bard_desc">3ターンごとに味方を鼓舞する歌を唱え、ステータス強化やHP回復を行います。</string>
+
+    <string name="ability_samurai_name">銭投げ斬り</string>
+    <string name="ability_samurai_desc">3ターンごとにギルを全力で投げつけ、全敵に200%%%の物理ダメージを与えます。</string>
+
+    <string name="ability_onion_knight_name">秘められた大器</string>
+    <string name="ability_onion_knight_desc">マスターレベルが上がるにつれて圧倒的なステータス成長（Lv毎にHP+50）を遂げます。</string>
+
+    <string name="ability_mime_name">ものまね</string>
+    <string name="ability_mime_desc">3ターンごとに、味方が最後に使用した特殊アビリティを即座に模倣・実行します。</string>
+
+    <string name="ability_necromancer_name">ソウルドレイン</string>
+    <string name="ability_necromancer_desc">3ターンごとに敵から200%%%の魔法ダメージを吸収し、その50%%%を味方全体の回復に分配します。</string>
+
+    <string name="ability_blue_mage_name">ラーニング</string>
+    <string name="ability_blue_mage_desc">3ターンごとにダンジョンモンスターから修得した青魔法を使い戦況に対応します。</string>
 </resources>

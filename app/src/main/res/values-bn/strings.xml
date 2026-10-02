@@ -266,7 +266,7 @@
     <string name="unlocks_job_format">%1$s আনলক করে</string>
     <string name="owned_status">✓ মালিকানাধীন</string>
     <string name="town_upgrades">শহরের আপগ্রেড</string>
-    <string name="upgrade_discount">ছাড়: %1$d%%</string>
+    <string name="upgrade_discount">ছাড়: %1$d%%%</string>
     <string name="max_level">সর্বোচ্চ</string>
     <string name="level_format">স্তর %1$d / %2$d</string>
     <string name="pathfinder_level_format">স্তর %1$d / %2$d (সর্বোচ্চ তলা: %3$d)</string>
@@ -359,7 +359,7 @@
     <string name="log_summon_format">🌟 %1$s %2$s কে ডেকেছে! মোট: %3$d ক্ষতি!</string>
     <string name="log_magicite_stolen">%1$s %2$d ম্যাজিসাইট চুরি করেছে!</string>
     <string name="log_bard_song">🎵 %1$s: %2$s</string>
-    <string name="log_total_wipe">💀 সম্পূর্ণ নিশ্চিহ্ন: রানের ৩০%% উপার্জন হারিয়েছে।</string>
+    <string name="log_total_wipe">💀 সম্পূর্ণ নিশ্চিহ্ন: রানের ৩০%%% উপার্জন হারিয়েছে।</string>
     <string name="log_physical_attack">%1$s %2$s কে %3$d এর জন্য আক্রমণ করেছে!</string>
     <string name="log_physical_crit">💥 %1$s %2$s এর গুরুত্বপূর্ণ পয়েন্টে %3$d এর জন্য আঘাত করেছে! (গুরুত্বপূর্ণ)</string>
     <string name="log_magic_attack">%1$s %2$s এর উপর %3$d এর জন্য জাদু কাস্ট করেছে!</string>
@@ -590,15 +590,15 @@
 
     <!-- Pets -->
     <string name="pet_chocobo_name">চোকোবো</string>
-    <string name="pet_chocobo_desc">+২০%% আইটেম খোঁজ</string>
+    <string name="pet_chocobo_desc">+২০%%% আইটেম খোঁজ</string>
     <string name="pet_moogle_name">মুগল</string>
-    <string name="pet_moogle_desc">+৫০%% EXP লাভ</string>
+    <string name="pet_moogle_desc">+৫০%%% EXP লাভ</string>
     <string name="pet_cat_name">ভাগ্যবান বিড়াল</string>
-    <string name="pet_cat_desc">+৩০%% গিল লাভ</string>
+    <string name="pet_cat_desc">+৩০%%% গিল লাভ</string>
     <string name="pet_cactuar_name">ক্যাকটুয়ার</string>
-    <string name="pet_cactuar_desc">+১৫%% ক্রিট রেট</string>
+    <string name="pet_cactuar_desc">+১৫%%% ক্রিট রেট</string>
     <string name="pet_tonberry_name">টনবেরি</string>
-    <string name="pet_tonberry_desc">+১০০%% ক্রিট ক্ষতি</string>
+    <string name="pet_tonberry_desc">+১০০%%% ক্রিট ক্ষতি</string>
 
     <!-- Battle Abilities -->
     <string name="ability_cover_name">কভার</string>
@@ -630,7 +630,7 @@
     <string name="tab_pets">পোষা প্রাণী</string>
     <string name="mastery_bonus_label">বোনাস</string>
     <string name="mastery_exp_format">%1$d / %2$d EXP</string>
-    <string name="pet_bonus_format">+%1$.1f%% %2$s</string>
+    <string name="pet_bonus_format">+%%1$.1f%%% %2$s</string>
     <string name="mastery_bonus_stat_format">+%1$d %2$s</string>
     <string name="select_companion_label">একটি সঙ্গী চয়ন করুন</string>
     <string name="pet_none">কেউ না</string>
@@ -664,8 +664,8 @@
     <string name="hero_lvl_class_format">স্তর %1$d %2$s</string>
     <string name="ghost_run_close">বন্ধ করুন</string>
     <string name="empty_time">---</string>
-    <string name="format_m">%1$.1fM</string>
-    <string name="format_k">%1$.1fK</string>
+    <string name="format_m">%%1$.1fM</string>
+    <string name="format_k">%%1$.1fK</string>
     <string name="player_name_you">আপনি</string>
     <string name="my_id_label">আপনার আইডি: %1$s</string>
     <string name="copy_id_hint">আপনার আইডি কপি করতে আলতো চাপুন</string>
@@ -735,8 +735,8 @@
     <string name="stat_bonus_def">প্রতিরোধ: +%1$d</string>
     <string name="stat_bonus_mag">জাদু: +%1$d</string>
     <string name="stat_bonus_hp">এইচপি: +%1$d</string>
-    <string name="stat_bonus_crit_chance">ক্রিটিক্যাল %%: +%1$d%%</string>
-    <string name="stat_bonus_crit_damage">ক্রিটিক্যাল ক্ষতি: +%1$d%%</string>
+    <string name="stat_bonus_crit_chance">ক্রিটিক্যাল %%%: +%1$d%%%</string>
+    <string name="stat_bonus_crit_damage">ক্রিটিক্যাল ক্ষতি: +%1$d%%%</string>
     <string name="hero_status_rip">প্রয়াত</string>
     <string name="jobs_count_format">%1$dটি পেশা</string>
     <string name="party_full">পূর্ণ</string>
@@ -772,11 +772,11 @@
     <string name="love_final_dungeon">FINAL DUNGEON পছন্দ হয়েছে?</string>
     <string name="rate_app_desc">অ্যাপটির মূল্যায়ন অন্যান্য খেলোয়াড়দের গেমটি খুঁজে পেতে সহায়তা করে!</string>
     <string name="btn_rate_store">⭐ প্লে স্টোরে রেট দিন</string>
-    <string name="bulletin_perk_inn">🏨 পান্থশালা এইচপি আরোগ্য: +%1$d%%</string>
+    <string name="bulletin_perk_inn">🏨 পান্থশালা এইচপি আরোগ্য: +%1$d%%%</string>
     <string name="bulletin_perk_barracks">🛡️ ব্যারাকে দলের সর্বোচ্চ আকার: %1$d</string>
-    <string name="bulletin_perk_vault">💰 ভল্ট গিল সুদ: +%1$d%%</string>
+    <string name="bulletin_perk_vault">💰 ভল্ট গিল সুদ: +%1$d%%%</string>
     <string name="bulletin_perk_pathfinder">🧭 পথপ্রদর্শকের শুরুর তলা: তলা %1$d</string>
-    <string name="bulletin_perk_planning">📜 আপগ্রেড ছাড়: %1$d%%</string>
+    <string name="bulletin_perk_planning">📜 আপগ্রেড ছাড়: %1$d%%%</string>
 
     <!-- Gold to Gems Exchange -->
     <string name="exchange_title">বিনিময়</string>
@@ -784,4 +784,68 @@
     <string name="exchange_rate_format">%1$s গিল ➔ %2$d রত্ন</string>
     <string name="btn_exchange_pack">বিনিময়</string>
     <string name="btn_need_gil">%1$s গিল প্রয়োজন</string>
+    <!-- Job Details & Ability Descriptions -->
+    <string name="job_detail_title">কাজের বিবরণ</string>
+    <string name="job_detail_tier_format">স্তর %1$d</string>
+    <string name="job_detail_crystal_format">ক্রিস্টাল: %1$s</string>
+    <string name="job_detail_hire_cost_format">নিয়োগ খরচ: %1$d গিল</string>
+    <string name="job_detail_tactical_role">কৌশলগত ভূমিকা: %1$s %2$s</string>
+    <string name="job_detail_charged_ability_title">চার্জড ক্ষমতা</string>
+    <string name="job_detail_triggers_every_3_turns">যুদ্ধের প্রতি ৩ টানে কার্যকর হয়</string>
+    <string name="job_detail_base_stats_title">মূল পরিসংখ্যানে</string>
+    <string name="job_detail_mastery_title">দক্ষতার অবস্থা ও বোনাস</string>
+
+    <string name="ability_freelancer_name">বহুমুখী অ্যাকশন</string>
+    <string name="ability_freelancer_desc">চার্জ ছাড়াই ভারসাম্যপূর্ণ শারীরিক বা জাদুকরী আক্রমণ করে।</string>
+
+    <string name="ability_warrior_name">শক্তিশালী আঘাত</string>
+    <string name="ability_warrior_desc">প্রতি ৩ টানে সর্বোচ্চ এইচপি থাকা শত্রুকে ২০০%%% শারীরিক ক্ষতি করে।</string>
+
+    <string name="ability_white_mage_name">কুরাগা বিস্ফোরণ</string>
+    <string name="ability_white_mage_desc">প্রতি ৩ টানে দলের সকল সচল সদস্যের এইচপি পুনরুদ্ধার করে।</string>
+
+    <string name="ability_black_mage_name">মৌলিক ফ্লেয়ার</string>
+    <string name="ability_black_mage_desc">প্রতি ৩ টানে সকল শত্রুকে ১৮০%%% জাদুকরী ক্ষতি করে।</string>
+
+    <string name="ability_thief_name">ছায়া লুণ্ঠন</string>
+    <string name="ability_thief_desc">দ্রুত আক্রমণ করে এবং শত্রুর কাছ থেকে অতিরিক্ত ম্যাজিসাইট চুরি করে।</string>
+
+    <string name="ability_monk_name">চক্র আঘাত</string>
+    <string name="ability_monk_desc">নিজের ৩৫%%% সর্বোচ্চ এইচপি পুনরুদ্ধার করে এবং শত্রুকে ১৫০%%% শারীরিক আঘাত করে।</string>
+
+    <string name="ability_knight_name">ঢাল আঘাত</string>
+    <string name="ability_knight_desc">শক্তিশালী শত্রুকে ১৮০%%% শারীরিক ক্ষতি করে এবং আহত সঙ্গীদের রক্ষা করে।</string>
+
+    <string name="ability_paladin_name">পবিত্র দ্যুতি</string>
+    <string name="ability_paladin_desc">সকল শত্রুকে পবিত্র ক্ষতি করে এবং সকল সঙ্গীকে আরোগ্য দান করে।</string>
+
+    <string name="ability_red_mage_name">দ্বৈত জাদু</string>
+    <string name="ability_red_mage_desc">একই টানে শত্রুদের ওপর পরপর দুটি জাদুকরী আক্রমণ করে।</string>
+
+    <string name="ability_summoner_name">আইডোলন আহ্বান</string>
+    <string name="ability_summoner_desc">ইফ্রিট, শিভা, রামু বা বাহামুটকে আহ্বান করে সকল শত্রুকে বিশাল ক্ষতি করে।</string>
+
+    <string name="ability_ninja_name">ছায়া আঘাত</string>
+    <string name="ability_ninja_desc">জোড়া তরবারি দিয়ে ২২০%%% মারাত্মক শারীরিক ক্ষতি করে।</string>
+
+    <string name="ability_dragoon_name">উচ্চ লাফ</string>
+    <string name="ability_dragoon_desc">আকাশে লাফিয়ে উঠে বর্ষা দিয়ে শত্রুর ওপর প্রচণ্ড আঘাত করে।</string>
+
+    <string name="ability_bard_name">বীরত্বপূর্ণ গান</string>
+    <string name="ability_bard_desc">প্রেরণাদায়ক গান গেয়ে দলের শক্তি বৃদ্ধি করে বা আরোগ্য দেয়।</string>
+
+    <string name="ability_samurai_name">জেনিনেজ আঘাত</string>
+    <string name="ability_samurai_desc">প্রচণ্ড শক্তিতে গিল ছুড়ে সকল শত্রুকে ২০০%%% শারীরিক ক্ষতি করে।</string>
+
+    <string name="ability_onion_knight_name">লুকানো সম্ভাবনা</string>
+    <string name="ability_onion_knight_desc">দক্ষতার স্তর বৃদ্ধির সাথে সাথে বিশাল পরিসংখ্যানে বোনাস পায়।</string>
+
+    <string name="ability_mime_name">অনুকরণ</string>
+    <string name="ability_mime_desc">সঙ্গীর ব্যবহৃত শেষ বিশেষ ক্ষমতাটি তাৎক্ষণিকভাবে অনুকরণ করে।</string>
+
+    <string name="ability_necromancer_name">আত্মা শোষণ</string>
+    <string name="ability_necromancer_desc">শত্রুর জাদুকরী শক্তি শোষণ করে দলের আরোগ্য হিসেবে বিতরণ করে।</string>
+
+    <string name="ability_blue_mage_name">দানব জ্ঞান</string>
+    <string name="ability_blue_mage_desc">দানবের কাছ থেকে শেখা নীল জাদু ব্যবহার করে যুদ্ধের সাথে খাপ খাইয়ে নেয়।</string>
 </resources>
