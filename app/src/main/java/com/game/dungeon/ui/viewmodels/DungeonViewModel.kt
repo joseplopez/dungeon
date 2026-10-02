@@ -9,6 +9,7 @@ import com.game.dungeon.R
 import com.game.dungeon.analytics.AnalyticsManager
 import com.game.dungeon.data.models.*
 import com.game.dungeon.data.repository.GameRepository
+import com.game.dungeon.data.repository.UserPreferencesRepository
 import com.game.dungeon.engine.*
 import com.game.dungeon.monetization.AdManager
 import dagger.hilt.android.lifecycle.HiltViewModel
@@ -22,6 +23,7 @@ import javax.inject.Inject
 @HiltViewModel
 class DungeonViewModel @Inject constructor(
     private val repo: GameRepository,
+    private val userPreferencesRepo: UserPreferencesRepository,
     private val analytics: AnalyticsManager,
     private val adManager: AdManager,
     @ApplicationContext private val context: Context
@@ -31,6 +33,16 @@ class DungeonViewModel @Inject constructor(
 
   val battleState = MutableStateFlow(FFBattleState())
   val gameState = repo.getGameState().stateIn(viewModelScope, SharingStarted.Eagerly, GameState())
+
+  init {
+    viewModelScope.launch {
+      userPreferencesRepo.battleSpeed.collect { savedSpeed ->
+        if (!battleState.value.isRunning) {
+          battleState.update { it.copy(speed = savedSpeed) }
+        }
+      }
+    }
+  }
 
   private var battleJob: Job? = null
 
@@ -85,6 +97,8 @@ class DungeonViewModel @Inject constructor(
     val relics = RelicBonuses.from(gs)
 
     viewModelScope.launch {
+        val savedSpeed = userPreferencesRepo.battleSpeed.first()
+
         // Fetch items for all heroes to bake stats
         val partyWithStats = party.map { hero ->
             val items = repo.getEquippedItems(hero.id).first()
@@ -115,6 +129,7 @@ class DungeonViewModel @Inject constructor(
             dimension = dimension,
             heroes = partyWithStats,
             originalPartySize = party.size,
+            speed = savedSpeed,
             isRunning = true
         )
 
@@ -448,6 +463,9 @@ class DungeonViewModel @Inject constructor(
 
   fun setSpeed(speed: BattleSpeed) {
     battleState.update { it.copy(speed=speed) }
+    viewModelScope.launch {
+        userPreferencesRepo.setBattleSpeed(speed)
+    }
     val gs = gameState.value ?: return
     val dimension = battleState.value.dimension ?: return
     val relics = RelicBonuses.from(gs)
