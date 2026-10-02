@@ -5,6 +5,7 @@ import java.util.UUID
 
 data class Enemy(
     val id: String = UUID.randomUUID().toString(),
+    val type: MonsterType = MonsterType.GOBLIN,
     val name: String,
     val emoji: String,
     var currentHp: Int,
@@ -57,6 +58,7 @@ data class Enemy(
             val enemyName = try { context.getString(template.nameRes) } catch (_: Exception) { null } ?: "Monster"
 
             return Enemy(
+                type = template.type,
                 name = enemyName,
                 emoji = template.emoji,
                 maxHp = baseHp.toInt(),

@@ -29,6 +29,7 @@ enum class BiomeType {
 }
 
 data class FFEnemyTemplate(
+    val type: MonsterType = MonsterType.GOBLIN,
     @StringRes val nameRes: Int,
     val emoji: String,
     val minFloor: Int, val maxFloor: Int,

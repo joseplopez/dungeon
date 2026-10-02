@@ -19,6 +19,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
@@ -237,7 +238,7 @@ fun LeaderboardScreen(
                                     horizontalArrangement = Arrangement.spacedBy(4.dp),
                                     verticalAlignment = CenterVertically
                                 ) {
-                                    topChampion.team.take(4).forEach { hero ->
+                                    topChampion.team.take(5).forEach { hero ->
                                         Box(
                                             Modifier
                                                 .size(24.dp)
@@ -533,19 +534,20 @@ fun LeaderboardRow(entry: LeaderboardEntry, selectedTab: Int, onClick: () -> Uni
         Row(
             Modifier.weight(1f),
             verticalAlignment = CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(6.dp)
+            horizontalArrangement = Arrangement.spacedBy(4.dp)
         ) {
             Text(
                 text = if (entry.isUser) safeStringResource(R.string.player_name_you) else entry.playerName,
                 style = PixelSmall,
                 color = textColor,
-                modifier = Modifier.width(85.dp),
-                maxLines = 1
+                modifier = Modifier.widthIn(max = 75.dp),
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
             )
 
             // Mini Hero Team Canvas Sprites
             Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
-                entry.team.take(4).forEach { hero ->
+                entry.team.take(5).forEach { hero ->
                     Box(
                         Modifier
                             .size(18.dp)

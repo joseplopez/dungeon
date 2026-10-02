@@ -40,13 +40,14 @@ private val mockHero1 = Hero(heroClass = HeroClass.WARRIOR, name = "Warrior", cu
 private val mockHero2 = Hero(heroClass = HeroClass.BLACK_MAGE, name = "Black Mage", currentHp = 140, currentMp = 180, level = 44, aiPriority = AIPriority.MAGIC)
 private val mockHero3 = Hero(heroClass = HeroClass.WHITE_MAGE, name = "White Mage", currentHp = 160, currentMp = 160, level = 44, aiPriority = AIPriority.HEAL)
 private val mockHero4 = Hero(heroClass = HeroClass.NINJA, name = "Ninja", currentHp = 210, currentMp = 80, level = 42, aiPriority = AIPriority.ATTACK)
+private val mockHero5 = Hero(heroClass = HeroClass.THIEF, name = "Thief", currentHp = 180, currentMp = 40, level = 43, aiPriority = AIPriority.ATTACK)
 
 private val mockLeaderboard = listOf(
-    LeaderboardEntry(playerId = "1", playerName = "GarlandX", maxFloor = 120, dimension = 5, totalMagicite = 8500, fastestClearMs = 1420000L, rank = 1, isUser = false, team = listOf(mockHero1, mockHero2, mockHero3, mockHero4)),
-    LeaderboardEntry(playerId = "2", playerName = "Cecil_Paladin", maxFloor = 115, dimension = 5, totalMagicite = 7200, fastestClearMs = 1580000L, rank = 2, isUser = false, team = listOf(mockHero1, mockHero3)),
-    LeaderboardEntry(playerId = "3", playerName = "Shadow_Ninja", maxFloor = 108, dimension = 4, totalMagicite = 6400, fastestClearMs = 1750000L, rank = 3, isUser = false, team = listOf(mockHero4, mockHero2)),
-    LeaderboardEntry(playerId = "4", playerName = "Stranger (You)", maxFloor = 95, dimension = 4, totalMagicite = 5100, fastestClearMs = 2100000L, rank = 4, isUser = true, team = listOf(mockHero1, mockHero2, mockHero3)),
-    LeaderboardEntry(playerId = "5", playerName = "Bartz_Freelancer", maxFloor = 88, dimension = 3, totalMagicite = 4200, fastestClearMs = 2450000L, rank = 5, isUser = false, team = listOf(mockHero1, mockHero2))
+    LeaderboardEntry(playerId = "1", playerName = "GarlandX", maxFloor = 120, dimension = 5, totalMagicite = 8500, fastestClearMs = 1420000L, rank = 1, isUser = false, team = listOf(mockHero1, mockHero2, mockHero3, mockHero4, mockHero5)),
+    LeaderboardEntry(playerId = "2", playerName = "Cecil_Paladin", maxFloor = 115, dimension = 5, totalMagicite = 7200, fastestClearMs = 1580000L, rank = 2, isUser = false, team = listOf(mockHero1, mockHero3, mockHero4, mockHero5, mockHero2)),
+    LeaderboardEntry(playerId = "3", playerName = "Shadow_Ninja", maxFloor = 108, dimension = 4, totalMagicite = 6400, fastestClearMs = 1750000L, rank = 3, isUser = false, team = listOf(mockHero4, mockHero2, mockHero1, mockHero3, mockHero5)),
+    LeaderboardEntry(playerId = "4", playerName = "Stranger (You)", maxFloor = 95, dimension = 4, totalMagicite = 5100, fastestClearMs = 2100000L, rank = 4, isUser = true, team = listOf(mockHero1, mockHero2, mockHero3, mockHero4, mockHero5)),
+    LeaderboardEntry(playerId = "5", playerName = "Bartz_Freelancer", maxFloor = 88, dimension = 3, totalMagicite = 4200, fastestClearMs = 2450000L, rank = 5, isUser = false, team = listOf(mockHero1, mockHero2, mockHero3, mockHero4, mockHero5))
 )
 
 // ============================================================================
@@ -210,21 +211,21 @@ fun ColosseumOption1GrandDashboard() {
                                     Row(
                                         Modifier.weight(1f),
                                         verticalAlignment = CenterVertically,
-                                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                                        horizontalArrangement = Arrangement.spacedBy(4.dp)
                                     ) {
                                         Text(
                                             entry.playerName,
                                             style = PixelSmall,
                                             color = if (entry.isUser) GoldBright else Color.White,
-                                            modifier = Modifier.width(110.dp)
+                                            modifier = Modifier.width(85.dp)
                                         )
 
                                         // Mini Hero Team Canvas Sprites
                                         Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
-                                            entry.team.take(4).forEach { hero ->
+                                            entry.team.take(5).forEach { hero ->
                                                 Box(
                                                     Modifier
-                                                        .size(22.dp)
+                                                        .size(18.dp)
                                                         .background(BgDarkest, RoundedCornerShape(2.dp))
                                                         .border(0.5.dp, GoldDark, RoundedCornerShape(2.dp))
                                                 ) {

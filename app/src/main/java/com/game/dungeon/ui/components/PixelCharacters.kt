@@ -11,6 +11,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.unit.dp
 import com.game.dungeon.data.models.HeroClass
+import com.game.dungeon.data.models.MonsterType
 import com.game.dungeon.data.models.PetType
 import kotlinx.coroutines.delay
 import kotlin.math.cos
@@ -9657,121 +9658,161 @@ fun DrawScope.drawSin() {
     }
 }
 
-@Composable fun EnemySprite(enemyName: String, modifier: Modifier = Modifier) = Canvas(modifier) {
-    when {
-        // ── FF1-FF10 Bosses ──
-        enemyName.contains("Garland", true) -> drawGarland()
-        enemyName.contains("Astos", true) -> drawAstos()
-        enemyName.contains("Lich", true) -> drawLich()
-        enemyName.contains("Marilith", true) -> drawMarilith()
-        enemyName.contains("Kraken", true) -> drawKraken()
-        enemyName.contains("Tiamat", true) -> drawTiamat()
-        enemyName.contains("Chaos", true) -> drawChaos()
+private fun DrawScope.drawMonsterSprite(monsterType: MonsterType) {
+    when (monsterType) {
+        MonsterType.GARLAND, MonsterType.ASTOS, MonsterType.LICH, MonsterType.MARILITH, MonsterType.MALIRIS,
+        MonsterType.KRAKEN, MonsterType.TIAMAT, MonsterType.CHAOS, MonsterType.LEON, MonsterType.BORGHEN,
+        MonsterType.GOTTOS, MonsterType.ROUNDWORM, MonsterType.CYCLONE, MonsterType.EMPEROR,
+        MonsterType.DJINN, MonsterType.DJINN_BOSS, MonsterType.NEPTO_DRAGON, MonsterType.HEIN, MonsterType.GARUDA,
+        MonsterType.GOLDOR, MonsterType.XANDE, MonsterType.CLOUD_OF_DARKNESS, MonsterType.MIST_DRAGON,
+        MonsterType.MIST_DRAGON_BOSS, MonsterType.ANTLION, MonsterType.ANTLION_BOSS, MonsterType.GOLBEZ,
+        MonsterType.CAGNAZZO, MonsterType.BARBARICCIA, MonsterType.SCARMIGLIONE, MonsterType.RUBICANTE,
+        MonsterType.DARK_BAHAMUT, MonsterType.ZEROMUS, MonsterType.WING_RAPTOR, MonsterType.KARLABOS,
+        MonsterType.IFRIT_BOSS, MonsterType.GILGAMESH, MonsterType.GILGAMESH_2, MonsterType.ATOMOS,
+        MonsterType.EXDEATH, MonsterType.NEO_EXDEATH, MonsterType.OMEGA, MonsterType.OMEGA_PROTO,
+        MonsterType.OMEGA_WEAPON, MonsterType.WEAPON, MonsterType.OMEGA_WEAPON_X -> drawBossSpriteFF1To5(monsterType)
 
-        enemyName.contains("Leon", true) -> drawLeon()
-        enemyName.contains("Borghen", true) -> drawBorghen()
-        enemyName.contains("Gottos", true) -> drawGottos()
-        enemyName.contains("Roundworm", true) -> drawRoundworm()
-        enemyName.contains("Cyclone", true) -> drawCyclone()
-        enemyName.contains("Emperor", true) -> drawEmperor()
+        MonsterType.WHELK, MonsterType.VARGAS, MonsterType.NUMBER_024, MonsterType.ULTROS, MonsterType.TYPHON,
+        MonsterType.AIR_FORCE, MonsterType.GUARDIAN, MonsterType.ULTIMA_WEAPON, MonsterType.KEFKA,
+        MonsterType.GUARD_SCORPION, MonsterType.MAGITEK_ARMOR, MonsterType.AIRBUSTER, MonsterType.RUFUS,
+        MonsterType.HOJO, MonsterType.BIZARRO_SEPH, MonsterType.SEPHIROT, MonsterType.JENOVA_CELL,
+        MonsterType.JENOVA_BIRTH, MonsterType.JENOVA_LIFE, MonsterType.JENOVA_SYNTHESIS, MonsterType.NORG,
+        MonsterType.EDEA, MonsterType.FUJIN_RAIJIN, MonsterType.SEIFER, MonsterType.ADEL, MonsterType.TRAUMA,
+        MonsterType.ULTIMECIA, MonsterType.PLANT_BRAIN, MonsterType.BLACK_WALTZ, MonsterType.ZORN_THORN,
+        MonsterType.RALVURAHVA, MonsterType.KUJA, MonsterType.TRANCE_KUJA, MonsterType.NECRON,
+        MonsterType.KLIKK, MonsterType.KLIKK_BOSS, MonsterType.OBLITZERATOR, MonsterType.EVRAE,
+        MonsterType.SEYMOUR, MonsterType.JECHT, MonsterType.PENANCE, MonsterType.YU_YEVON,
+        MonsterType.SIN -> drawBossSpriteFF6To10(monsterType)
 
-        enemyName.contains("Djinn", true) -> drawDjinn()
-        enemyName.contains("Nepto Dragon", true) || enemyName.contains("Nepto", true) -> drawNeptoDragon()
-        enemyName.contains("Hein", true) -> drawHein()
-        enemyName.contains("Garuda", true) -> drawGaruda()
-        enemyName.contains("Goldor", true) -> drawGoldor()
-        enemyName.contains("Xande", true) -> drawXande()
-        enemyName.contains("Cloud of Darkness", true) -> drawCloudOfDarkness()
+        else -> drawRegularMonsterSprite(monsterType)
+    }
+}
 
-        enemyName.contains("Mist Dragon", true) -> drawMistDragon()
-        enemyName.contains("Antlion", true) -> drawAntlionBoss()
-        enemyName.contains("Golbez", true) -> drawGolbez()
-        enemyName.contains("Cagnazzo", true) -> drawCagnazzo()
-        enemyName.contains("Barbariccia", true) -> drawBarbariccia()
-        enemyName.contains("Scarmiglione", true) -> drawScarmiglione()
-        enemyName.contains("Rubicante", true) -> drawRubicante()
-        enemyName.contains("Dark Bahamut", true) -> drawDarkBahamut()
-        enemyName.contains("Zeromus", true) -> drawZeromus()
-
-        enemyName.contains("Wing Raptor", true) -> drawWingRaptor()
-        enemyName.contains("Karlabos", true) -> drawKarlabos()
-        enemyName.contains("Ifrit", true) -> drawIfrit()
-        enemyName.contains("Gilgamesh", true) -> drawGilgamesh()
-        enemyName.contains("Atomos", true) -> drawAtomos()
-        enemyName.equals("Exdeath", true) -> drawExdeath()
-        enemyName.contains("Neo Exdeath", true) -> drawNeoExdeath()
-        enemyName.contains("Omega Weapon", true) -> drawOmegaWeapon()
-        enemyName.contains("Omega", true) -> drawOmegaWeapon()
-
-        enemyName.contains("Whelk", true) -> drawWhelk()
-        enemyName.contains("Vargas", true) -> drawVargas()
-        enemyName.contains("Number 024", true) || enemyName.contains("Number 128", true) || enemyName.contains("Number", true) -> drawNumber024()
-        enemyName.contains("Ultros", true) -> drawUltros()
-        enemyName.contains("Typhon", true) -> drawTyphon()
-        enemyName.contains("Air Force", true) -> drawAirForce()
-        enemyName.contains("Guardian", true) -> drawGuardian()
-        enemyName.contains("Ultima Weapon", true) -> drawUltimaWeapon()
-        enemyName.contains("Kefka", true) -> drawKefka()
-
-        enemyName.contains("Guard Scorpion", true) -> drawGuardScorpion()
-        enemyName.contains("Airbuster", true) -> drawAirbuster()
-        enemyName.contains("Rufus", true) -> drawRufus()
-        enemyName.contains("Hojo", true) -> drawHojo()
-        enemyName.contains("Bizarro Sephiroth", true) || enemyName.contains("Bizarro Seph", true) -> drawBizarroSephiroth()
-        enemyName.contains("Sephiroth", true) -> drawSephiroth()
-        enemyName.contains("Jenova", true) -> drawJenova()
-
-        enemyName.contains("NORG", true) -> drawNorg()
-        enemyName.contains("Edea", true) -> drawEdea()
-        enemyName.contains("Fujin", true) || enemyName.contains("Raijin", true) -> drawFujinRaijin()
-        enemyName.contains("Seifer", true) -> drawSeifer()
-        enemyName.contains("Adel", true) -> drawAdel()
-        enemyName.contains("Trauma", true) -> drawTrauma()
-        enemyName.contains("Ultimecia", true) -> drawUltimecia()
-
-        enemyName.contains("Plant Brain", true) -> drawPlantBrain()
-        enemyName.contains("Black Waltz", true) -> drawBlackWaltz()
-        enemyName.contains("Zorn", true) || enemyName.contains("Thorn", true) -> drawZornThorn()
-        enemyName.contains("Ralvurahva", true) -> drawRalvurahva()
-        enemyName.contains("Maliris", true) -> drawMaliris()
-        enemyName.contains("Trance Kuja", true) -> drawTranceKuja()
-        enemyName.contains("Kuja", true) -> drawKuja()
-        enemyName.contains("Necron", true) -> drawNecron()
-
-        enemyName.contains("Klikk", true) -> drawKlikk()
-        enemyName.contains("Oblitzerator", true) -> drawOblitzerator()
-        enemyName.contains("Evrae", true) -> drawEvrae()
-        enemyName.contains("Seymour", true) -> drawSeymour()
-        enemyName.contains("Jecht", true) -> drawJecht()
-        enemyName.contains("Penance", true) -> drawPenance()
-        enemyName.contains("Yu Yevon", true) -> drawYuYevon()
-        enemyName.contains("Sin", true) -> drawSin()
-
-        // ── Regular Monsters ──
-        enemyName.contains("Slime", true) || enemyName.contains("Flan", true) -> drawSlime()
-        enemyName.contains("Goblin", true) -> drawGoblin()
-        enemyName.contains("Orc", true) || enemyName.contains("Ogre", true) -> drawOgre()
-        enemyName.contains("Dragon", true) -> drawDragon(Color.Red)
-        enemyName.equals("Rat", true) || enemyName.equals("Wild Rat", true)-> drawWildRat()
-        enemyName.contains("Wolf", true) || enemyName.contains("Dingo", true) -> drawWolf()
-        enemyName.contains("Sahagin", true) || enemyName.contains("Merman", true) || enemyName.contains("Sea Snake", true) -> drawSahagin()
-        enemyName.contains("Pirate", true) -> drawPirate()
-        enemyName.contains("Cockatrice", true) -> drawCockatrice()
-        enemyName.contains("Bomb", true) || enemyName.contains("Stoker", true) -> drawBomb()
-        enemyName.contains("Eye", true) || enemyName.contains("Malboro", true) -> drawEye()
-        enemyName.contains("Tonberry", true) -> drawTonberry()
-        enemyName.contains("Mindflayer", true) || enemyName.contains("Dark Force", true) -> drawLich()
-        enemyName.contains("Dark Knight", true) || enemyName.contains("Black Knight", true) || enemyName.contains("Sergeant", true) || enemyName.contains("Captain", true) || enemyName.contains("Soldier", true) || enemyName.contains("Grunt", true) || enemyName.contains("Sweeper", true) -> drawDarkKnight()
-        enemyName.contains("Lamia", true) || enemyName.contains("Medusa", true) -> drawLamia()
-        enemyName.contains("Adamantoise", true) -> drawAdamantoise()
-        enemyName.contains("Zombie", true) -> drawZombie()
-        enemyName.contains("Wyvern", true) || enemyName.contains("Elnoyle", true) -> drawWyvern()
-        enemyName.contains("Behemoth", true) || enemyName.contains("Giant", true) || enemyName.contains("Brawler", true) || enemyName.contains("Wendigo", true) || enemyName.contains("Zaghnol", true) || enemyName.contains("Mistodon", true) -> drawBehemoth()
-        enemyName.contains("Toad", true) -> drawToad()
-        enemyName.contains("Hellhound", true) || enemyName.contains("Geezard", true) -> drawHellhound()
-
+private fun DrawScope.drawBossSpriteFF1To5(monsterType: MonsterType) {
+    when (monsterType) {
+        MonsterType.GARLAND -> drawGarland()
+        MonsterType.ASTOS -> drawAstos()
+        MonsterType.LICH -> drawLich()
+        MonsterType.MARILITH, MonsterType.MALIRIS -> drawMarilith()
+        MonsterType.KRAKEN -> drawKraken()
+        MonsterType.TIAMAT -> drawTiamat()
+        MonsterType.CHAOS -> drawChaos()
+        MonsterType.LEON -> drawLeon()
+        MonsterType.BORGHEN -> drawBorghen()
+        MonsterType.GOTTOS -> drawGottos()
+        MonsterType.ROUNDWORM -> drawRoundworm()
+        MonsterType.CYCLONE -> drawCyclone()
+        MonsterType.EMPEROR -> drawEmperor()
+        MonsterType.DJINN, MonsterType.DJINN_BOSS -> drawDjinn()
+        MonsterType.NEPTO_DRAGON -> drawNeptoDragon()
+        MonsterType.HEIN -> drawHein()
+        MonsterType.GARUDA -> drawGaruda()
+        MonsterType.GOLDOR -> drawGoldor()
+        MonsterType.XANDE -> drawXande()
+        MonsterType.CLOUD_OF_DARKNESS -> drawCloudOfDarkness()
+        MonsterType.MIST_DRAGON, MonsterType.MIST_DRAGON_BOSS -> drawMistDragon()
+        MonsterType.ANTLION, MonsterType.ANTLION_BOSS -> drawAntlionBoss()
+        MonsterType.GOLBEZ -> drawGolbez()
+        MonsterType.CAGNAZZO -> drawCagnazzo()
+        MonsterType.BARBARICCIA -> drawBarbariccia()
+        MonsterType.SCARMIGLIONE -> drawScarmiglione()
+        MonsterType.RUBICANTE -> drawRubicante()
+        MonsterType.DARK_BAHAMUT -> drawDarkBahamut()
+        MonsterType.ZEROMUS -> drawZeromus()
+        MonsterType.WING_RAPTOR -> drawWingRaptor()
+        MonsterType.KARLABOS -> drawKarlabos()
+        MonsterType.IFRIT_BOSS -> drawIfrit()
+        MonsterType.GILGAMESH, MonsterType.GILGAMESH_2 -> drawGilgamesh()
+        MonsterType.ATOMOS -> drawAtomos()
+        MonsterType.EXDEATH -> drawExdeath()
+        MonsterType.NEO_EXDEATH -> drawNeoExdeath()
+        MonsterType.OMEGA, MonsterType.OMEGA_PROTO, MonsterType.OMEGA_WEAPON, MonsterType.WEAPON, MonsterType.OMEGA_WEAPON_X -> drawOmegaWeapon()
         else -> drawSlime()
     }
+}
+
+private fun DrawScope.drawBossSpriteFF6To10(monsterType: MonsterType) {
+    when (monsterType) {
+        MonsterType.WHELK -> drawWhelk()
+        MonsterType.VARGAS -> drawVargas()
+        MonsterType.NUMBER_024 -> drawNumber024()
+        MonsterType.ULTROS -> drawUltros()
+        MonsterType.TYPHON -> drawTyphon()
+        MonsterType.AIR_FORCE -> drawAirForce()
+        MonsterType.GUARDIAN -> drawGuardian()
+        MonsterType.ULTIMA_WEAPON -> drawUltimaWeapon()
+        MonsterType.KEFKA -> drawKefka()
+        MonsterType.GUARD_SCORPION, MonsterType.MAGITEK_ARMOR -> drawGuardScorpion()
+        MonsterType.AIRBUSTER -> drawAirbuster()
+        MonsterType.RUFUS -> drawRufus()
+        MonsterType.HOJO -> drawHojo()
+        MonsterType.BIZARRO_SEPH -> drawBizarroSephiroth()
+        MonsterType.SEPHIROT -> drawSephiroth()
+        MonsterType.JENOVA_CELL, MonsterType.JENOVA_BIRTH, MonsterType.JENOVA_LIFE, MonsterType.JENOVA_SYNTHESIS -> drawJenova()
+        MonsterType.NORG -> drawNorg()
+        MonsterType.EDEA -> drawEdea()
+        MonsterType.FUJIN_RAIJIN -> drawFujinRaijin()
+        MonsterType.SEIFER -> drawSeifer()
+        MonsterType.ADEL -> drawAdel()
+        MonsterType.TRAUMA -> drawTrauma()
+        MonsterType.ULTIMECIA -> drawUltimecia()
+        MonsterType.PLANT_BRAIN -> drawPlantBrain()
+        MonsterType.BLACK_WALTZ -> drawBlackWaltz()
+        MonsterType.ZORN_THORN -> drawZornThorn()
+        MonsterType.RALVURAHVA -> drawRalvurahva()
+        MonsterType.KUJA -> drawKuja()
+        MonsterType.TRANCE_KUJA -> drawTranceKuja()
+        MonsterType.NECRON -> drawNecron()
+        MonsterType.KLIKK, MonsterType.KLIKK_BOSS -> drawKlikk()
+        MonsterType.OBLITZERATOR -> drawOblitzerator()
+        MonsterType.EVRAE -> drawEvrae()
+        MonsterType.SEYMOUR -> drawSeymour()
+        MonsterType.JECHT -> drawJecht()
+        MonsterType.PENANCE -> drawPenance()
+        MonsterType.YU_YEVON -> drawYuYevon()
+        MonsterType.SIN -> drawSin()
+        else -> drawSlime()
+    }
+}
+
+private fun DrawScope.drawRegularMonsterSprite(monsterType: MonsterType) {
+    when (monsterType) {
+        MonsterType.RED_FLAN, MonsterType.SLIME, MonsterType.WATER_FLAN, MonsterType.FARIIS, MonsterType.SKULL_EATER -> drawSlime()
+        MonsterType.GOBLIN -> drawGoblin()
+        MonsterType.OGRE, MonsterType.GARGOYLE, MonsterType.ORC -> drawOgre()
+        MonsterType.LUNAR_DRAGON, MonsterType.DRAGON, MonsterType.DRAGON_RIDER, MonsterType.RUBY_DRAGON, MonsterType.SILVER_DRAGON, MonsterType.DARK_AEON, MonsterType.SHINRYU -> drawDragon(Color.Red)
+        MonsterType.WILD_RAT, MonsterType.RAT -> drawWildRat()
+        MonsterType.WOLF, MonsterType.DINGO -> drawWolf()
+        MonsterType.SAHAGIN, MonsterType.SEA_SNAKE, MonsterType.MERMAN -> drawSahagin()
+        MonsterType.PIRATE -> drawPirate()
+        MonsterType.COCKATRICE, MonsterType.BITE_BUG -> drawCockatrice()
+        MonsterType.BOMB, MonsterType.DARK_IMP, MonsterType.STOKER, MonsterType.STOKER_MONSTER -> drawBomb()
+        MonsterType.EVIL_EYE, MonsterType.MALBORO, MonsterType.GREAT_MALBORO -> drawEye()
+        MonsterType.TONBERRY -> drawTonberry()
+        MonsterType.MINDFLAYER, MonsterType.DARK_FORCE -> drawLich()
+        MonsterType.BLACK_KNIGHT, MonsterType.SERGEANT, MonsterType.DARK_KNIGHT, MonsterType.CAPTAIN, MonsterType.GRUNT, MonsterType.SWEEPER, MonsterType.GALBADIAN_SOLDIER, MonsterType.GUADO_GUARDIAN -> drawDarkKnight()
+        MonsterType.LAMIA, MonsterType.MEDUSA -> drawLamia()
+        MonsterType.ADAMANTOISE -> drawAdamantoise()
+        MonsterType.ZOMBIE -> drawZombie()
+        MonsterType.WYVERN, MonsterType.ELNOYLE -> drawWyvern()
+        MonsterType.BEHEMOTH, MonsterType.GIANT, MonsterType.IRON_GIANT, MonsterType.BRAWLER, MonsterType.WENDIGO, MonsterType.ZAGHNOL, MonsterType.MISTODON -> drawBehemoth()
+        MonsterType.TOAD -> drawToad()
+        MonsterType.HELLHOUND, MonsterType.GEEZARD -> drawHellhound()
+        MonsterType.MP, MonsterType.MAGIC_MASTER, MonsterType.BLACK_MAGE_UNIT -> drawBlackMage()
+        MonsterType.NINJA -> drawNinja()
+        else -> drawSlime()
+    }
+}
+
+@Composable fun EnemySprite(monsterType: MonsterType, modifier: Modifier = Modifier) = Canvas(modifier) {
+    drawMonsterSprite(monsterType)
+}
+
+@Composable fun EnemySprite(enemyName: String, modifier: Modifier = Modifier) {
+    val type = MonsterType.entries.find { 
+        it.name.equals(enemyName, ignoreCase = true) || enemyName.contains(it.name.replace("_", " "), ignoreCase = true)
+    } ?: MonsterType.SLIME
+    EnemySprite(monsterType = type, modifier = modifier)
 }
 
 @Composable fun PetSprite(petType: PetType, modifier: Modifier = Modifier) = Canvas(modifier) {

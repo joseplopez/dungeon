@@ -653,7 +653,7 @@ fun EnemyUnitDisplay(enemy: Enemy, isHit: Boolean, isCritical: Boolean, isBoss: 
             }
 
             EnemySprite(
-                enemy.name, 
+                enemy.type,
                 Modifier
                     .fillMaxSize()
                     .graphicsLayer(compositingStrategy = CompositingStrategy.Offscreen)
