@@ -952,7 +952,7 @@ fun RunCompleteOverlay(
                         
                         Text(safeStringResource(R.string.item_lvl_rarity_format, item.floorFound, item.rarity.name), style = PixelSmall, color = StoneGray)
 
-                        PixelButton(safeStringResource(R.string.close_button), onClick = { selectedItemForDetail = null }, modifier = Modifier.fillMaxWidth())
+                        PixelButton(safeStringResource(R.string.close_button), onClick = { selectedItemForDetail = null }, modifier = Modifier.fillMaxWidth().height(40.dp))
                     }
                 }
             }

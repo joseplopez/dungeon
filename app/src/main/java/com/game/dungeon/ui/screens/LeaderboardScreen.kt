@@ -702,7 +702,7 @@ fun GhostRunDialog(entry: LeaderboardEntry, onDismiss: () -> Unit) {
                 PixelButton(
                     label = safeStringResource(R.string.ghost_run_close),
                     onClick = onDismiss,
-                    modifier = Modifier.fillMaxWidth().height(32.dp)
+                    modifier = Modifier.fillMaxWidth().height(40.dp)
                 )
             }
         }

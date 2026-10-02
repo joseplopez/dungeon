@@ -261,7 +261,8 @@ fun ResourceShopDialog(
                                         if (activity != null) {
                                             onBuyProduct(activity, product)
                                         }
-                                    }
+                                    },
+                                    modifier = Modifier.height(36.dp)
                                 )
                             }
                         }

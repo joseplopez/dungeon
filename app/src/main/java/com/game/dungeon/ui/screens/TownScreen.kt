@@ -604,7 +604,7 @@ fun CrystalShopRow(
                 "${crystal.color.baseCost}G",
                 onClick = onBuy,
                 enabled = gil >= crystal.color.baseCost,
-                modifier = Modifier.width(80.dp)
+                modifier = Modifier.width(80.dp).height(36.dp)
             )
         }
     }

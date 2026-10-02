@@ -610,12 +610,12 @@ private fun SellAllConfirmationOverlay(
                     PixelButton(
                         label = safeStringResource(R.string.cancel_button),
                         onClick = onDismiss,
-                        modifier = Modifier.weight(1f)
+                        modifier = Modifier.weight(1f).height(40.dp)
                     )
                     PixelButton(
                         label = safeStringResource(R.string.sell_all_confirm_action),
                         onClick = onConfirm,
-                        modifier = Modifier.weight(1f),
+                        modifier = Modifier.weight(1f).height(40.dp),
                         active = true
                     )
                 }
@@ -694,11 +694,11 @@ private fun ItemDetailOverlay(
                     )
                     val actionClick = if (isEquipped) onUnequip else onEquip
 
-                    PixelButton(actionLabel, onClick = actionClick, modifier = Modifier.weight(1f))
-                    PixelButton(safeStringResource(R.string.sell_button_format, item.sellValue), onClick = onSell, modifier = Modifier.weight(1f), active = true)
+                    PixelButton(actionLabel, onClick = actionClick, modifier = Modifier.weight(1f).height(40.dp))
+                    PixelButton(safeStringResource(R.string.sell_button_format, item.sellValue), onClick = onSell, modifier = Modifier.weight(1f).height(40.dp), active = true)
                 }
 
-                PixelButton(safeStringResource(R.string.close_button), onClick = onClose, modifier = Modifier.fillMaxWidth())
+                PixelButton(safeStringResource(R.string.close_button), onClick = onClose, modifier = Modifier.fillMaxWidth().height(40.dp))
             }
         }
     }

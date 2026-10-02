@@ -32,6 +32,8 @@ import androidx.compose.ui.unit.sp
 import com.game.dungeon.ui.theme.*
 import kotlinx.coroutines.delay
 import androidx.compose.foundation.Canvas
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.unit.TextUnit
 import androidx.compose.ui.unit.Dp
 
 @Composable
@@ -65,15 +67,64 @@ fun PixelPanel(
 }
 
 @Composable
+fun AutoResizedText(
+    text: String,
+    style: TextStyle,
+    modifier: Modifier = Modifier,
+    color: Color = Color.Unspecified,
+    maxLines: Int = 2,
+    minFontSize: TextUnit = 8.sp,
+    textAlign: TextAlign = TextAlign.Center
+) {
+    var resizedTextStyle by remember(text, style) {
+        mutableStateOf(style.copy(textAlign = textAlign))
+    }
+    var readyToDraw by remember(text, style) { mutableStateOf(false) }
+
+    Text(
+        text = text,
+        color = color,
+        modifier = modifier.drawWithContent {
+            if (readyToDraw) {
+                drawContent()
+            }
+        },
+        style = resizedTextStyle,
+        maxLines = maxLines,
+        softWrap = true,
+        onTextLayout = { result ->
+            if (result.hasVisualOverflow) {
+                val currentSize = resizedTextStyle.fontSize
+                val baseSize = if (currentSize != TextUnit.Unspecified) currentSize else style.fontSize
+                val effectiveBase = if (baseSize != TextUnit.Unspecified) baseSize else 14.sp
+                if (effectiveBase.value > minFontSize.value) {
+                    val newSize = (effectiveBase.value - 1f).coerceAtLeast(minFontSize.value).sp
+                    resizedTextStyle = resizedTextStyle.copy(
+                        fontSize = newSize,
+                        lineHeight = (newSize.value * 1.15f).sp
+                    )
+                } else {
+                    readyToDraw = true
+                }
+            } else {
+                readyToDraw = true
+            }
+        }
+    )
+}
+
+@Composable
 fun PixelButton(
     label: String,
     onClick: () -> Unit,
     modifier: Modifier = Modifier,
     enabled: Boolean = true,
     active: Boolean = false,
-    horizontalPadding: androidx.compose.ui.unit.Dp = 8.dp,
-    verticalPadding: androidx.compose.ui.unit.Dp = 2.dp,
-    fontSize: androidx.compose.ui.unit.TextUnit = androidx.compose.ui.unit.TextUnit.Unspecified
+    horizontalPadding: Dp = 12.dp,
+    verticalPadding: Dp = 4.dp,
+    fontSize: TextUnit = TextUnit.Unspecified,
+    maxLines: Int = 2,
+    minFontSize: TextUnit = 8.sp
 ) {
     val interactionSource = remember { MutableInteractionSource() }
     val isPressed by interactionSource.collectIsPressedAsState()
@@ -86,7 +137,7 @@ fun PixelButton(
     }
     val textColor = if (active) BgDarkest else GoldBright
 
-    val textStyle = if (fontSize != androidx.compose.ui.unit.TextUnit.Unspecified) {
+    val textStyle = if (fontSize != TextUnit.Unspecified) {
         PixelBody.copy(fontSize = fontSize, textAlign = TextAlign.Center)
     } else {
         PixelBody.copy(textAlign = TextAlign.Center)
@@ -94,6 +145,7 @@ fun PixelButton(
 
     Box(
         modifier = modifier
+            .defaultMinSize(minWidth = 64.dp, minHeight = 38.dp)
             .scale(scale)
             .clickable(interactionSource = interactionSource, indication = null, enabled = enabled) { onClick() }
             .background(bgColor)
@@ -101,11 +153,12 @@ fun PixelButton(
             .padding(horizontal = horizontalPadding, vertical = verticalPadding),
         contentAlignment = Center
     ) {
-        Text(
-            text = label, 
+        AutoResizedText(
+            text = label,
             style = textStyle,
             color = textColor,
-            maxLines = 1
+            maxLines = maxLines,
+            minFontSize = minFontSize
         )
     }
 }
