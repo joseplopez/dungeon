@@ -124,11 +124,47 @@ class GameplayProgressionTest {
         assertTrue("Boss Floor 100 Magicite should be around 10", bossFloor100.magiciteDropped in 8..12)
         assertTrue("Boss Floor 500 Magicite should be capped at 20", bossFloor500.magiciteDropped <= 20)
 
-        // Regular monster magicite quantity check (never > 2)
+        // Regular monster magicite quantity check (never > 2 in Dimension 1)
         for (f in listOf(1, 10, 50, 100, 200, 500, 1000)) {
             val reg = Enemy.fromTemplate(regularTemplate, floor = f, context = mockContext)
             assertTrue("Regular enemy magicite drop quantity on floor $f must be <= 2", reg.magiciteDropped <= 2)
         }
+    }
+
+    @Test
+    fun testMagiciteScalingAcrossDimensions() {
+        val bossTemplate = FFEnemyTemplate(
+            nameRes = 1, emoji = "🐉", minFloor = 1, maxFloor = 1000,
+            gilReward = 1000, isBoss = true
+        )
+        val regTemplate = FFEnemyTemplate(
+            nameRes = 1, emoji = "👺", minFloor = 1, maxFloor = 1000,
+            gilReward = 100, magiciteChance = 1.0f
+        )
+
+        val dim1 = FFDimensionData.getDimension(1)
+        val dim2 = FFDimensionData.getDimension(2)
+        val dim5 = FFDimensionData.getDimension(5)
+        val dim10 = FFDimensionData.getDimension(10)
+
+        // Boss magicite in higher dimensions
+        val bossDim1 = Enemy.fromTemplate(bossTemplate, floor = 100, context = mockContext, dimension = dim1)
+        val bossDim2 = Enemy.fromTemplate(bossTemplate, floor = 100, context = mockContext, dimension = dim2)
+        val bossDim5 = Enemy.fromTemplate(bossTemplate, floor = 100, context = mockContext, dimension = dim5)
+        val bossDim10 = Enemy.fromTemplate(bossTemplate, floor = 100, context = mockContext, dimension = dim10)
+
+        assertTrue("Dim 2 Boss magicite should be greater than Dim 1", bossDim2.magiciteDropped > bossDim1.magiciteDropped)
+        assertTrue("Dim 5 Boss magicite should be greater than Dim 2", bossDim5.magiciteDropped > bossDim2.magiciteDropped)
+        assertTrue("Dim 10 Boss magicite should be greater than Dim 5", bossDim10.magiciteDropped > bossDim5.magiciteDropped)
+
+        // Verify late dimension boss yields significant magicite
+        val boss1000Dim10 = Enemy.fromTemplate(bossTemplate, floor = 1000, context = mockContext, dimension = dim10)
+        assertTrue("Dim 10 floor 1000 boss should yield >= 100 magicite", boss1000Dim10.magiciteDropped >= 100)
+
+        // Regular monster magicite quantity in late dimensions (over multiple rolls due to drop chance)
+        val dropsDim1 = List(100) { Enemy.fromTemplate(regTemplate, floor = 50, context = mockContext, dimension = dim1).magiciteDropped }
+        val dropsDim10 = List(100) { Enemy.fromTemplate(regTemplate, floor = 50, context = mockContext, dimension = dim10).magiciteDropped }
+        assertTrue("Dim 10 regular enemies should drop more magicite on average than Dim 1", dropsDim10.sum() > dropsDim1.sum())
     }
 
     @Test

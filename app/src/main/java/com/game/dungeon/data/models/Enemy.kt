@@ -44,15 +44,24 @@ data class Enemy(
             val floorGilMult = 1f + (floor * 0.02f) + (kotlin.math.sqrt(floor.toFloat()) * 0.15f)
             val scaledGil = (template.gilReward * floorGilMult * (1f + (difficultyMult - 1f) * 0.5f)).toInt().coerceAtLeast(template.gilReward)
 
-            // Magicite scaling: Bosses grant balanced magicite payouts; regular monsters drop occasionally without flooding
+            // Magicite scaling: Bosses grant scaling magicite payouts per dimension; regular monsters drop quantity scales in late dimensions
             val magiciteQuantity = if (template.isBoss) {
-                (3 + (kotlin.math.sqrt(floor.toFloat()) * 0.75f).toInt()).coerceIn(3, 20)
+                val baseBossMagicite = 3f + kotlin.math.sqrt(floor.toFloat()) * 0.75f
+                val dimMagiciteMult = 1f + (dimension.number - 1) * 0.50f
+                val maxCap = 20 + (dimension.number - 1) * 15
+                (baseBossMagicite * dimMagiciteMult).toInt().coerceIn(3, maxCap)
             } else {
-                val baseChance = template.magiciteChance + (floor / 1000f)
-                val bonusChance = relicBonuses?.magnetBonus ?: 0f
+                val dimChanceBonus = (dimension.number - 1) * 0.015f
+                val baseChance = template.magiciteChance + (floor / 1000f) + dimChanceBonus
+                val bonusChance = (relicBonuses?.magiciteChanceBonus ?: 0f) + (relicBonuses?.magnetBonus ?: 0f)
                 val rawChance = baseChance + bonusChance
-                val finalChance = if (rawChance > 0f) (rawChance / (rawChance + 0.25f)).coerceAtMost(0.25f) else 0f
-                if (Math.random() < finalChance) (if (floor >= 300) 2 else 1) else 0
+                val maxChanceCap = (0.25f + (dimension.number - 1) * 0.02f).coerceAtMost(0.50f)
+                val finalChance = if (rawChance > 0f) (rawChance / (rawChance + 0.25f)).coerceAtMost(maxChanceCap) else 0f
+                if (Math.random() < finalChance) {
+                    val dimQtyBonus = ((dimension.number - 1) * 0.5f).toInt()
+                    val floorQtyBonus = if (floor >= 300) 1 else 0
+                    1 + dimQtyBonus + floorQtyBonus
+                } else 0
             }
 
             val enemyName = try { context.getString(template.nameRes) } catch (_: Exception) { null } ?: "Monster"
