@@ -1,7 +1,7 @@
 package com.game.dungeon.data.models
 
-enum class BattleSpeed(val delayMs: Long) {
-    NORMAL(800L),
-    FAST(400L),
-    ULTRAFAST(150L)
+enum class BattleSpeed(val delayMs: Long, val speedFactor: Float) {
+    NORMAL(800L, 1.0f),
+    FAST(400L, 2.0f),
+    ULTRAFAST(150L, 4.0f)
 }

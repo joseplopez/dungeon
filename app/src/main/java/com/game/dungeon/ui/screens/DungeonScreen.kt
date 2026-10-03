@@ -83,18 +83,30 @@ fun DungeonScreen(
                 onOpenSupport = { showSupportDialog = true }
             )
             
-            BattleArea(
-                modifier = Modifier.weight(1f),
-                heroes = state.heroes,
-                enemies = state.enemies,
-                dyingHeroIds = state.dyingHeroIds,
-                attackingUnitId = state.attackingHeroId,
-                hitEnemyId = state.hitEnemyId,
-                hitHeroId = state.hitHeroId,
-                isCritical = state.isCriticalHit,
-                dimension = dimension,
-                floor = state.currentFloor
-            )
+            Box(Modifier.weight(1f)) {
+                BattleArea(
+                    modifier = Modifier.fillMaxSize(),
+                    heroes = state.heroes,
+                    enemies = state.enemies,
+                    dyingHeroIds = state.dyingHeroIds,
+                    attackingUnitId = state.attackingHeroId,
+                    hitEnemyId = state.hitEnemyId,
+                    hitHeroId = state.hitHeroId,
+                    isCritical = state.isCriticalHit,
+                    dimension = dimension,
+                    floor = state.currentFloor
+                )
+
+                state.activeAbilityAnimation?.let { animInfo ->
+                    AbilityEffectsOverlay(
+                        animInfo = animInfo,
+                        speed = state.speed,
+                        heroes = state.heroes,
+                        enemies = state.enemies,
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
+            }
 
             BattleLogPanel(state.battleLog)
         }

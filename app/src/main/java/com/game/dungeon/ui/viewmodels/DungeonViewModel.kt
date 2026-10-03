@@ -46,6 +46,19 @@ class DungeonViewModel @Inject constructor(
 
   private var battleJob: Job? = null
 
+  data class AbilityAnimationInfo(
+    val id: String = java.util.UUID.randomUUID().toString(),
+    val heroClass: HeroClass? = null,
+    val isSummon: Boolean = false,
+    val summonName: String? = null,
+    val isEnemyAttack: Boolean = false,
+    val isBossAttack: Boolean = false,
+    val monsterType: MonsterType? = null,
+    val attackerId: String? = null,
+    val targetId: String? = null,
+    val durationMs: Long = 400L
+  )
+
   data class FFBattleState(
     val currentFloor: Int = 1,
     val currentBiome: FFBiome? = null,
@@ -71,6 +84,7 @@ class DungeonViewModel @Inject constructor(
     val hitEnemyId: String? = null,
     val hitHeroId: String? = null,
     val isCriticalHit: Boolean = false,
+    val activeAbilityAnimation: AbilityAnimationInfo? = null,
     val recentLoot: Item? = null,
     val showFloorBanner: Boolean = false,
     val floorBannerText: String = "",
@@ -155,8 +169,31 @@ class DungeonViewModel @Inject constructor(
           battleState.update { it.copy(enemies = event.enemies, currentFloor = event.floor, currentBiome = biome ?: it.currentBiome) }
       }
       is FFBattleEvent.DamageDealt -> {
+        val isHeroAttacking = findIsHero(battleState.value, event.attackerId)
+        val attackerEnemy = if (!isHeroAttacking) battleState.value.enemies.find { it.id == event.attackerId } else null
+        val attackerHero = if (isHeroAttacking) battleState.value.heroes.find { it.id == event.attackerId } else null
+        val isBoss = attackerEnemy?.isBoss == true || (battleState.value.dimension != null && FFDimensionData.getBossForFloor(battleState.value.dimension!!, battleState.value.currentFloor) != null && !isHeroAttacking)
+        val enemyAnimDuration = if (isBoss) 900L else 400L
+        
+        val animInfo = if (!isHeroAttacking) {
+            AbilityAnimationInfo(
+                isEnemyAttack = true,
+                isBossAttack = isBoss,
+                monsterType = attackerEnemy?.type,
+                attackerId = event.attackerId,
+                targetId = event.targetId,
+                durationMs = enemyAnimDuration
+            )
+        } else {
+            battleState.value.activeAbilityAnimation ?: AbilityAnimationInfo(
+                heroClass = attackerHero?.heroClass ?: HeroClass.WARRIOR,
+                attackerId = event.attackerId,
+                targetId = event.targetId,
+                durationMs = 400L
+            )
+        }
+
         battleState.update { state ->
-          val isHeroAttacking = findIsHero(state, event.attackerId)
           val attackerName = findName(state, event.attackerId)
           val targetName = findName(state, event.targetId)
           
@@ -173,13 +210,22 @@ class DungeonViewModel @Inject constructor(
             hitHeroId = if (findIsHero(state, event.targetId)) event.targetId else null,
             attackingHeroId = if (isHeroAttacking) event.attackerId else null,
             isCriticalHit = event.isCritical,
+            activeAbilityAnimation = animInfo,
             battleLog = (state.battleLog + FFLogEntry(logRes, listOf(attackerName, targetName, event.damage),
               if(isHeroAttacking) LogType.HERO_ATTACK else LogType.ENEMY_ATTACK)).takeLast(25)
           )
         }
         viewModelScope.launch {
-          delay(300) // Increased from 150ms for better animation visibility
-          battleState.update { it.copy(hitEnemyId=null, hitHeroId=null, attackingHeroId=null, isCriticalHit=false) }
+          val speedFactor = battleState.value.speed.speedFactor
+          val delayMs = ((if (isBoss && attackerEnemy != null) 900L else 400L) / speedFactor).coerceAtLeast(100f).toLong()
+          delay(delayMs)
+          battleState.update { 
+              if (it.activeAbilityAnimation?.id == animInfo.id) {
+                  it.copy(hitEnemyId=null, hitHeroId=null, attackingHeroId=null, isCriticalHit=false, activeAbilityAnimation = null)
+              } else {
+                  it.copy(hitEnemyId=null, hitHeroId=null, attackingHeroId=null, isCriticalHit=false)
+              }
+          }
         }
       }
       is FFBattleEvent.ExpGained -> {
@@ -196,9 +242,6 @@ class DungeonViewModel @Inject constructor(
               state.copy(
                   heroes = state.heroes.map { h -> 
                       if (h.id == event.heroId) {
-                          // The values are already updated in the engine's hero objects,
-                          // but state.heroes contains copies.
-                          // We need to keep them in sync for the UI.
                           val engineHero = state.heroes.find { it.id == event.heroId }
                           engineHero?.copy(level = event.newLevel) ?: h
                       } else h
@@ -217,6 +260,16 @@ class DungeonViewModel @Inject constructor(
           }
       }
       is FFBattleEvent.HealCast -> {
+          val casterHero = battleState.value.heroes.find { it.id == event.casterId }
+          val animInfo = if (casterHero != null) {
+              AbilityAnimationInfo(
+                  heroClass = casterHero.heroClass,
+                  attackerId = event.casterId,
+                  targetId = event.targetId,
+                  durationMs = 450L
+              )
+          } else null
+
           battleState.update { state ->
               val updatedHeroes = state.heroes.map { h ->
                   if (h.id == event.targetId) h.copy(currentHp = minOf(h.maxHp, h.currentHp + event.amount))
@@ -224,11 +277,29 @@ class DungeonViewModel @Inject constructor(
               }
               state.copy(
                   heroes = updatedHeroes,
+                  activeAbilityAnimation = animInfo ?: state.activeAbilityAnimation,
                   battleLog = (state.battleLog + FFLogEntry(R.string.log_heal_format, listOf(findName(state, event.casterId), findName(state, event.targetId), event.amount), LogType.HEAL)).takeLast(25)
               )
           }
+          if (animInfo != null) {
+              viewModelScope.launch {
+                  val speedFactor = battleState.value.speed.speedFactor
+                  val delayMs = (450L / speedFactor).coerceAtLeast(100f).toLong()
+                  delay(delayMs)
+                  battleState.update { if (it.activeAbilityAnimation?.id == animInfo.id) it.copy(activeAbilityAnimation = null) else it }
+              }
+          }
       }
       is FFBattleEvent.GroupHeal -> {
+          val casterHero = battleState.value.heroes.find { it.id == event.casterId }
+          val animInfo = if (casterHero != null) {
+              AbilityAnimationInfo(
+                  heroClass = casterHero.heroClass,
+                  attackerId = event.casterId,
+                  durationMs = 450L
+              )
+          } else null
+
           battleState.update { state ->
               val updatedHeroes = state.heroes.map { h ->
                   val heal = event.amounts[h.id] ?: 0
@@ -237,15 +308,37 @@ class DungeonViewModel @Inject constructor(
               }
               state.copy(
                   heroes = updatedHeroes,
+                  activeAbilityAnimation = animInfo ?: state.activeAbilityAnimation,
                   battleLog = (state.battleLog + FFLogEntry(R.string.log_group_heal, listOf(findName(state, event.casterId)), LogType.HEAL)).takeLast(25)
               )
           }
+          if (animInfo != null) {
+              viewModelScope.launch {
+                  val speedFactor = battleState.value.speed.speedFactor
+                  val delayMs = (450L / speedFactor).coerceAtLeast(100f).toLong()
+                  delay(delayMs)
+                  battleState.update { if (it.activeAbilityAnimation?.id == animInfo.id) it.copy(activeAbilityAnimation = null) else it }
+              }
+          }
       }
       is FFBattleEvent.AbilityUsed -> {
+          val hero = battleState.value.heroes.find { h -> h.id == event.heroId }
+          val animInfo = AbilityAnimationInfo(
+              heroClass = hero?.heroClass ?: HeroClass.WARRIOR,
+              attackerId = event.heroId,
+              durationMs = 450L
+          )
           battleState.update { state ->
               state.copy(
+                  activeAbilityAnimation = animInfo,
                   battleLog = (state.battleLog + FFLogEntry(event.descRes, event.args, LogType.ABILITY)).takeLast(25)
               )
+          }
+          viewModelScope.launch {
+              val speedFactor = battleState.value.speed.speedFactor
+              val delayMs = (450L / speedFactor).coerceAtLeast(100f).toLong()
+              delay(delayMs)
+              battleState.update { if (it.activeAbilityAnimation?.id == animInfo.id) it.copy(activeAbilityAnimation = null) else it }
           }
       }
       is FFBattleEvent.HeroFell -> {
@@ -355,11 +448,24 @@ class DungeonViewModel @Inject constructor(
         }
       }
       is FFBattleEvent.SummonUsed -> {
+        val animInfo = AbilityAnimationInfo(
+            heroClass = HeroClass.SUMMONER,
+            isSummon = true,
+            summonName = event.summonName,
+            attackerId = event.heroId,
+            durationMs = 900L
+        )
         battleState.update { state ->
-          state.copy(battleLog = (state.battleLog + FFLogEntry(
-            R.string.log_summon_format,
-            listOf(findName(state, event.heroId), event.summonName, event.totalDamage),
-            LogType.SUMMON)).takeLast(25))
+          state.copy(
+            activeAbilityAnimation = animInfo,
+            battleLog = (state.battleLog + FFLogEntry(
+              R.string.log_summon_format,
+              listOf(findName(state, event.heroId), event.summonName, event.totalDamage),
+              LogType.SUMMON)).takeLast(25))
+        }
+        viewModelScope.launch {
+            delay(900L)
+            battleState.update { if (it.activeAbilityAnimation?.attackerId == event.heroId) it.copy(activeAbilityAnimation = null) else it }
         }
       }
       is FFBattleEvent.MagiciteStolen -> {
@@ -371,10 +477,20 @@ class DungeonViewModel @Inject constructor(
           }
       }
       is FFBattleEvent.BardSong -> {
-           battleState.update { state ->
+          val animInfo = AbilityAnimationInfo(
+              heroClass = HeroClass.BARD,
+              attackerId = event.heroId,
+              durationMs = 450L
+          )
+          battleState.update { state ->
               state.copy(
+                  activeAbilityAnimation = animInfo,
                   battleLog = (state.battleLog + FFLogEntry(event.effectRes, emptyList(), LogType.ABILITY)).takeLast(25)
               )
+          }
+          viewModelScope.launch {
+              delay(450L)
+              battleState.update { if (it.activeAbilityAnimation?.attackerId == event.heroId) it.copy(activeAbilityAnimation = null) else it }
           }
       }
       is FFBattleEvent.AllHeroesFell -> {
