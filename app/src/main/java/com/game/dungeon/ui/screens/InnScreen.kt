@@ -543,10 +543,16 @@ fun PathfinderFloorSelectDialog(
                     Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
-                    PixelButton("-5", onClick = { selectedFloor = (selectedFloor - 5).coerceAtLeast(1) }, modifier = Modifier.weight(1f).height(32.dp))
+                    if (maxStartFloor>100) {
+                        PixelButton("-100", onClick = { selectedFloor = (selectedFloor - 100).coerceAtLeast(1) }, modifier = Modifier.weight(1f).height(32.dp))
+                    }
+                    PixelButton("-10", onClick = { selectedFloor = (selectedFloor - 10).coerceAtLeast(1) }, modifier = Modifier.weight(1f).height(32.dp))
                     PixelButton("-1", onClick = { selectedFloor = (selectedFloor - 1).coerceAtLeast(1) }, modifier = Modifier.weight(1f).height(32.dp))
                     PixelButton("+1", onClick = { selectedFloor = (selectedFloor + 1).coerceAtMost(maxStartFloor) }, modifier = Modifier.weight(1f).height(32.dp))
-                    PixelButton("+5", onClick = { selectedFloor = (selectedFloor + 5).coerceAtMost(maxStartFloor) }, modifier = Modifier.weight(1f).height(32.dp))
+                    PixelButton("+10", onClick = { selectedFloor = (selectedFloor + 10).coerceAtMost(maxStartFloor) }, modifier = Modifier.weight(1f).height(32.dp))
+                    if (maxStartFloor>100) {
+                        PixelButton("+100", onClick = { selectedFloor = (selectedFloor + 100).coerceAtMost(maxStartFloor) }, modifier = Modifier.weight(1f).height(32.dp))
+                    }
                 }
 
                 PixelDivider()
