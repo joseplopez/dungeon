@@ -23,6 +23,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import com.game.dungeon.R
@@ -590,14 +591,19 @@ fun LeaderboardRow(entry: LeaderboardEntry, selectedTab: Int, onClick: () -> Uni
 fun EditNameDialog(currentName: String, onDismiss: () -> Unit, onSave: (String) -> Unit) {
     var text by remember { mutableStateOf(currentName) }
 
-    Dialog(onDismissRequest = onDismiss) {
+    Dialog(
+        onDismissRequest = onDismiss,
+        properties = DialogProperties(usePlatformDefaultWidth = false)
+    ) {
         GoldenBorderBox(
             Modifier
-                .fillMaxWidth(0.9f)
+                .fillMaxWidth(0.90f)
+                .widthIn(max = 400.dp)
+                .wrapContentHeight()
                 .background(BgDarkest)
-                .padding(16.dp)
         ) {
             Column(
+                modifier = Modifier.padding(20.dp),
                 horizontalAlignment = CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
@@ -634,14 +640,19 @@ fun EditNameDialog(currentName: String, onDismiss: () -> Unit, onSave: (String) 
 
 @Composable
 fun GhostRunDialog(entry: LeaderboardEntry, onDismiss: () -> Unit) {
-    Dialog(onDismissRequest = onDismiss) {
+    Dialog(
+        onDismissRequest = onDismiss,
+        properties = DialogProperties(usePlatformDefaultWidth = false)
+    ) {
         GoldenBorderBox(
             Modifier
-                .fillMaxWidth(0.95f)
+                .fillMaxWidth(0.90f)
+                .widthIn(max = 480.dp)
+                .wrapContentHeight()
                 .background(BgDarkest)
-                .padding(16.dp)
         ) {
             Column(
+                modifier = Modifier.padding(20.dp),
                 horizontalAlignment = CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(10.dp)
             ) {

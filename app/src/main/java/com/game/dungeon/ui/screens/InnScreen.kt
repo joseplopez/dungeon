@@ -21,6 +21,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -400,10 +401,15 @@ fun HireHeroClassDialog(
 ) {
     val canHire = gil >= job.hireCost && partySize < maxPartySize
 
-    Dialog(onDismissRequest = onDismiss) {
+    Dialog(
+        onDismissRequest = onDismiss,
+        properties = DialogProperties(usePlatformDefaultWidth = false)
+    ) {
         GoldenBorderBox(
             Modifier
-                .width(320.dp)
+                .fillMaxWidth(0.90f)
+                .widthIn(max = 380.dp)
+                .wrapContentHeight()
                 .background(BgDarkest)
         ) {
             Column(
@@ -500,10 +506,15 @@ fun PathfinderFloorSelectDialog(
     var selectedFloor by remember { mutableIntStateOf(initialStartFloor) }
     val maxStartFloor = (highestFloor * (pathfinderLevel * 0.25f)).toInt().coerceIn(1, highestFloor.coerceAtLeast(1))
 
-    Dialog(onDismissRequest = onDismiss) {
+    Dialog(
+        onDismissRequest = onDismiss,
+        properties = DialogProperties(usePlatformDefaultWidth = false)
+    ) {
         GoldenBorderBox(
             Modifier
-                .width(320.dp)
+                .fillMaxWidth(0.90f)
+                .widthIn(max = 380.dp)
+                .wrapContentHeight()
                 .background(BgDarkest)
                 .testTag("PathfinderFloorSelector")
         ) {
@@ -852,14 +863,22 @@ fun DimensionResetDialog(gs: GameState, onDismiss: () -> Unit, onConfirm: () -> 
     val bonusMagicite = baseDescendReward + (gs.magiciteEarnedThisDim * multiplier).toInt()
     val goldKept = (gs.gold * gs.pocketsBonus).toLong()
 
-    Dialog(onDismissRequest = onDismiss) {
+    Dialog(
+        onDismissRequest = onDismiss,
+        properties = DialogProperties(usePlatformDefaultWidth = false)
+    ) {
         GoldenBorderBox(
             Modifier
-                .fillMaxWidth()
+                .fillMaxWidth(0.90f)
+                .widthIn(max = 450.dp)
+                .wrapContentHeight()
                 .background(BgDarkest)
-                .padding(16.dp)
         ) {
-            Column(horizontalAlignment = CenterHorizontally, verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            Column(
+                modifier = Modifier.padding(20.dp),
+                horizontalAlignment = CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
                 Text(safeStringResource(R.string.dimension_complete), style = PixelHeading, color = GoldBright)
                 Text(safeStringResource(nextDimension.storyRes), style = PixelSmall, color = Color.White, textAlign = TextAlign.Center)
                 
@@ -915,14 +934,22 @@ fun HallOfFameRow(label: String, value: String) {
 
 @Composable
 fun HiddenJobUnlockDialog(heroClass: HeroClass, onDismiss: () -> Unit) {
-    Dialog(onDismissRequest = onDismiss) {
+    Dialog(
+        onDismissRequest = onDismiss,
+        properties = DialogProperties(usePlatformDefaultWidth = false)
+    ) {
         GoldenBorderBox(
             Modifier
-                .fillMaxWidth()
+                .fillMaxWidth(0.90f)
+                .widthIn(max = 420.dp)
+                .wrapContentHeight()
                 .background(BgDarkest)
-                .padding(16.dp)
         ) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(12.dp)) {
+            Column(
+                modifier = Modifier.padding(20.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
                 Text(safeStringResource(R.string.hidden_job_unlock_title), style = PixelHeading, color = GoldBright)
                 Spacer(Modifier.height(4.dp))
                 HeroSprite(heroClass, Modifier.size(64.dp))

@@ -35,6 +35,7 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import androidx.navigation.NavController
 import com.game.dungeon.R
 import com.game.dungeon.data.models.*
@@ -184,15 +185,19 @@ fun DungeonScreen(
 
 @Composable
 fun ReviveDialog(onRevive: () -> Unit, onGiveUp: () -> Unit) {
-    Dialog(onDismissRequest = {}) {
+    Dialog(
+        onDismissRequest = {},
+        properties = DialogProperties(usePlatformDefaultWidth = false)
+    ) {
         PixelPanel(
             Modifier
-                .width(300.dp)
-                .padding(16.dp),
+                .fillMaxWidth(0.88f)
+                .widthIn(max = 380.dp)
+                .background(BgDarkest),
             borderColor = EnemyRed
         ) {
             Column(
-                Modifier.padding(16.dp),
+                Modifier.padding(20.dp),
                 horizontalAlignment = CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {

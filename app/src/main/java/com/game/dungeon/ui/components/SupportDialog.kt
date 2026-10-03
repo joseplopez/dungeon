@@ -13,6 +13,7 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import com.game.dungeon.R
 import com.game.dungeon.ui.theme.*
 
@@ -36,10 +37,14 @@ fun SupportDialog(
 ) {
     val context = LocalContext.current
 
-    Dialog(onDismissRequest = onDismiss) {
+    Dialog(
+        onDismissRequest = onDismiss,
+        properties = DialogProperties(usePlatformDefaultWidth = false)
+    ) {
         GoldenBorderBox(
             Modifier
-                .fillMaxWidth(0.95f)
+                .fillMaxWidth(0.90f)
+                .widthIn(max = 450.dp)
                 .wrapContentHeight()
                 .background(BgDarkest)
         ) {

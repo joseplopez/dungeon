@@ -24,6 +24,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -441,15 +442,19 @@ fun GoldExchangeDialog(
         Triple(1_000_000L, 200, "1M")
     )
 
-    Dialog(onDismissRequest = onDismiss) {
+    Dialog(
+        onDismissRequest = onDismiss,
+        properties = DialogProperties(usePlatformDefaultWidth = false)
+    ) {
         GoldenBorderBox(
             modifier = Modifier
-                .fillMaxWidth(0.95f)
+                .fillMaxWidth(0.90f)
+                .widthIn(max = 450.dp)
                 .wrapContentHeight()
                 .background(BgDarkest)
         ) {
             Column(
-                modifier = Modifier.padding(16.dp),
+                modifier = Modifier.padding(20.dp),
                 horizontalAlignment = CenterHorizontally
             ) {
                 Row(

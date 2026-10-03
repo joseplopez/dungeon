@@ -50,14 +50,14 @@ fun ResourceShopDialog(
         GoldenBorderBox(
             modifier = Modifier
                 .fillMaxWidth(0.92f)
+                .widthIn(max = 520.dp)
                 .fillMaxHeight(0.88f)
                 .background(BgDarkest)
-                .padding(20.dp)
         ) {
             Column(
                 modifier = Modifier
                     .fillMaxSize()
-                    .padding(8.dp),
+                    .padding(20.dp),
                 horizontalAlignment = Alignment.CenterHorizontally
             ) {
                 // Header Bar

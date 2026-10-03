@@ -27,6 +27,7 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
+import androidx.compose.ui.window.DialogProperties
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
@@ -416,15 +417,21 @@ fun BulletinBoardDialog(
     gs: GameState,
     onDismiss: () -> Unit
 ) {
-    Dialog(onDismissRequest = onDismiss) {
+    Dialog(
+        onDismissRequest = onDismiss,
+        properties = DialogProperties(usePlatformDefaultWidth = false)
+    ) {
         GoldenBorderBox(
             Modifier
-                .fillMaxWidth(0.95f)
+                .fillMaxWidth(0.90f)
+                .widthIn(max = 460.dp)
                 .wrapContentHeight()
                 .background(BgDarkest)
-                .padding(16.dp)
         ) {
             Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp),
                 horizontalAlignment = CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
@@ -508,15 +515,18 @@ fun CrystalShopDialog(
     onDismiss: () -> Unit,
     gs: GameState
 ) {
-    Dialog(onDismissRequest = onDismiss) {
+    Dialog(
+        onDismissRequest = onDismiss,
+        properties = DialogProperties(usePlatformDefaultWidth = false)
+    ) {
         GoldenBorderBox(
             Modifier
-                .fillMaxWidth(0.95f)
-                .height(450.dp)
+                .fillMaxWidth(0.90f)
+                .widthIn(max = 480.dp)
+                .height(460.dp)
                 .background(BgDarkest)
-
         ) {
-            Column(Modifier.padding(all = 24.dp)) {
+            Column(Modifier.fillMaxSize().padding(all = 20.dp)) {
                 Row(
                     Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.SpaceBetween,
@@ -616,11 +626,20 @@ fun UpgradesDialog(
     onUpgrade: (UpgradeType) -> Unit,
     onDismiss: () -> Unit
 ) {
-    Dialog(onDismissRequest = onDismiss) {
-        GoldenBorderBox(Modifier.fillMaxWidth(0.98f).fillMaxHeight(0.85f).background(BgDarkest).padding(16.dp)) {
-            Column {
+    Dialog(
+        onDismissRequest = onDismiss,
+        properties = DialogProperties(usePlatformDefaultWidth = false)
+    ) {
+        GoldenBorderBox(
+            Modifier
+                .fillMaxWidth(0.92f)
+                .widthIn(max = 520.dp)
+                .fillMaxHeight(0.85f)
+                .background(BgDarkest)
+        ) {
+            Column(Modifier.fillMaxSize().padding(16.dp)) {
                 Row(
-                    Modifier.fillMaxWidth().padding(horizontal = 12.dp, vertical = 8.dp), 
+                    Modifier.fillMaxWidth().padding(bottom = 8.dp),
                     horizontalArrangement = Arrangement.SpaceBetween, 
                     verticalAlignment = CenterVertically
                 ) {
