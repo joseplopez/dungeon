@@ -27,12 +27,7 @@ import com.game.dungeon.data.models.AIPriority
 import com.game.dungeon.data.models.Hero
 import com.game.dungeon.data.models.HeroClass
 import com.game.dungeon.data.models.LeaderboardEntry
-import com.game.dungeon.ui.components.GoldenBorderBox
-import com.game.dungeon.ui.components.MusicToggleButton
-import com.game.dungeon.ui.components.HeroSprite
-import com.game.dungeon.ui.components.PixelButton
-import com.game.dungeon.ui.components.PixelDivider
-import com.game.dungeon.ui.components.PixelPanel
+import com.game.dungeon.ui.components.*
 import com.game.dungeon.ui.theme.*
 
 // Mock Data for Previews
@@ -236,7 +231,7 @@ fun ColosseumOption1GrandDashboard() {
                                     }
 
                                     Text("${entry.maxFloor}", style = PixelSmall, color = Color.White, modifier = Modifier.width(55.dp), textAlign = TextAlign.Center)
-                                    Text("${entry.totalMagicite}", style = PixelSmall, color = Color.White, modifier = Modifier.width(55.dp), textAlign = TextAlign.Center)
+                                    Text(formatMagicite(entry.totalMagicite), style = PixelSmall, color = Color.White, modifier = Modifier.width(55.dp), textAlign = TextAlign.Center)
                                     Text("23m 40s", style = PixelSmall, color = Color.White, modifier = Modifier.width(80.dp), textAlign = TextAlign.Center)
                                 }
                                 PixelDivider()
@@ -414,7 +409,7 @@ fun ColosseumOption2DualPane() {
                                             Text(entry.playerName, style = PixelSmall, color = if (entry.isUser) GoldBright else Color.White)
                                             Text("Dim ${entry.dimension} • Floor ${entry.maxFloor}", style = PixelSmall, color = StoneGray, fontSize = 9.sp)
                                         }
-                                        Text("💎 ${entry.totalMagicite}", style = PixelSmall, color = GoldBright)
+                                        Text("💎 ${formatMagicite(entry.totalMagicite)}", style = PixelSmall, color = GoldBright)
                                     }
                                     PixelDivider()
                                 }
@@ -524,7 +519,7 @@ fun ColosseumOption3PodiumHeader() {
                                     Text("#${entry.rank}", style = PixelBody, color = if (entry.isUser) GoldBright else Color.White)
                                     Column {
                                         Text(entry.playerName, style = PixelBody, color = if (entry.isUser) GoldBright else Color.White)
-                                        Text("Floor ${entry.maxFloor} • Magicite ${entry.totalMagicite}", style = PixelSmall, color = StoneGray)
+                                        Text("Floor ${entry.maxFloor} • Magicite ${formatMagicite(entry.totalMagicite)}", style = PixelSmall, color = StoneGray)
                                     }
                                 }
                                 PixelButton("VIEW PARTY", onClick = {}, modifier = Modifier.height(28.dp))

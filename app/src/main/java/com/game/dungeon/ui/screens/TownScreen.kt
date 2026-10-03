@@ -130,8 +130,7 @@ fun TownScreen(
                                     verticalAlignment = CenterVertically,
                                     horizontalArrangement = Arrangement.spacedBy(4.dp)
                                 ) {
-                                    Text("🪙", fontSize = 14.sp)
-                                    Text(formatGold(gil), style = PixelGold)
+                                    PixelGoldDisplay(amount = gil)
                                     if (gs != null) {
                                         Text("/${formatGold(gs!!.maxGil)}", style = PixelSmall, color = StoneGray)
                                     }
@@ -146,8 +145,7 @@ fun TownScreen(
                                     verticalAlignment = CenterVertically,
                                     horizontalArrangement = Arrangement.spacedBy(4.dp)
                                 ) {
-                                    Text("💎", fontSize = 14.sp)
-                                    Text("$magicite", style = PixelGold)
+                                    PixelMagiciteDisplay(amount = magicite)
                                     AdRewardIconButton(
                                         isMagicite = true,
                                         onClick = { viewModel.openResourceShop(com.game.dungeon.monetization.ResourceType.MAGICITE) },

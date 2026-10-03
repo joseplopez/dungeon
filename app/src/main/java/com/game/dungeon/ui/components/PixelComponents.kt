@@ -435,18 +435,84 @@ fun PixelSpriteBox(
 }
 
 @Composable
-fun PixelGoldDisplay(amount: Long) {
-    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-        Text("🪙", fontSize = 14.sp)
-        Text(formatGold(amount), style = PixelGold)
+fun PixelGoldDisplay(
+    amount: Long,
+    modifier: Modifier = Modifier,
+    style: TextStyle = PixelGold,
+    iconSize: TextUnit = 14.sp
+) {
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(4.dp)
+    ) {
+        Text("🪙", fontSize = iconSize)
+        Text(formatGold(amount), style = style)
     }
 }
 
-fun formatGold(n: Long): String = when {
-    n >= 1_000_000 -> "%.3fM".format(n / 1_000_000f)
-    n >= 1_000 -> "%.3fK".format(n / 1_000f)
-    else -> n.toString()
+@Composable
+fun PixelGoldDisplay(
+    amount: Int,
+    modifier: Modifier = Modifier,
+    style: TextStyle = PixelGold,
+    iconSize: TextUnit = 14.sp
+) = PixelGoldDisplay(amount.toLong(), modifier, style, iconSize)
+
+@Composable
+fun PixelMagiciteDisplay(
+    amount: Long,
+    modifier: Modifier = Modifier,
+    style: TextStyle = PixelGold,
+    iconSize: TextUnit = 14.sp
+) {
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(4.dp)
+    ) {
+        Text("💎", fontSize = iconSize)
+        Text(formatMagicite(amount), style = style)
+    }
 }
+
+@Composable
+fun PixelMagiciteDisplay(
+    amount: Int,
+    modifier: Modifier = Modifier,
+    style: TextStyle = PixelGold,
+    iconSize: TextUnit = 14.sp
+) = PixelMagiciteDisplay(amount.toLong(), modifier, style, iconSize)
+
+fun formatAmount(n: Long): String {
+    val absN = kotlin.math.abs(n)
+    val formatted = when {
+        absN >= 1_000_000 -> {
+            val v = absN / 1_000_000.0
+            val s = String.format(java.util.Locale.US, "%.3f", v)
+                .dropLastWhile { it == '0' }
+                .removeSuffix(".")
+            "${s}M"
+        }
+        absN >= 1_000 -> {
+            val v = absN / 1_000.0
+            val s = String.format(java.util.Locale.US, "%.3f", v)
+                .dropLastWhile { it == '0' }
+                .removeSuffix(".")
+            "${s}K"
+        }
+        else -> absN.toString()
+    }
+    return if (n < 0) "-$formatted" else formatted
+}
+
+fun formatAmount(n: Int): String = formatAmount(n.toLong())
+
+fun formatGold(n: Long): String = formatAmount(n)
+fun formatGold(n: Int): String = formatAmount(n.toLong())
+
+fun formatMagicite(n: Long): String = formatAmount(n)
+fun formatMagicite(n: Int): String = formatAmount(n.toLong())
 
 @Composable
 fun FloatingDamageText(text: String, color: Color, onDone: () -> Unit) {

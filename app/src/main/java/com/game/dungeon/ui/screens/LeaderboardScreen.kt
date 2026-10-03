@@ -94,8 +94,8 @@ fun LeaderboardScreen(
                     verticalAlignment = CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text("🪙 ${gameState?.gold ?: 0}G", style = PixelGold)
-                    Text("💎 ${gameState?.magicite ?: 0}", style = PixelGold)
+                    Text("🪙 ${formatGold(gameState?.gold ?: 0)}G", style = PixelGold)
+                    Text("💎 ${formatMagicite(gameState?.magicite ?: 0)}", style = PixelGold)
                     SupportIconButton(onClick = { showSupportDialog = true })
                     MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
                 }
@@ -659,7 +659,7 @@ fun GhostRunDialog(entry: LeaderboardEntry, onDismiss: () -> Unit) {
                 val displayName = if (entry.isUser) safeStringResource(R.string.player_name_you) else entry.playerName
                 Text(safeStringResource(R.string.ghost_run_team_title, displayName), style = PixelHeading)
                 Text(
-                    text = "DIM ${entry.dimension} • FLOOR ${entry.maxFloor} • 💎 ${entry.totalMagicite}",
+                    text = "DIM ${entry.dimension} • FLOOR ${entry.maxFloor} • 💎 ${formatMagicite(entry.totalMagicite)}",
                     style = PixelSmall,
                     color = GoldBright
                 )
@@ -720,16 +720,7 @@ fun GhostRunDialog(entry: LeaderboardEntry, onDismiss: () -> Unit) {
     }
 }
 
-@Composable
-fun formatLargeNumber(num: Int): String {
-    return if (num >= 1000000) {
-        safeStringResource(R.string.format_m, num / 1000000f)
-    } else if (num >= 1000) {
-        safeStringResource(R.string.format_k, num / 1000f)
-    } else {
-        num.toString()
-    }
-}
+fun formatLargeNumber(num: Int): String = formatAmount(num)
 
 @Composable
 fun formatTime(fastest: Long, current: Long): String {

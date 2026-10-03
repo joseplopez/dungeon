@@ -321,7 +321,7 @@ fun GuildStageArea(
                                     .padding(horizontal = 4.dp, vertical = 1.dp)
                             ) {
                                 Text(
-                                    text = "${job.hireCost}G",
+                                    text = "${formatGold(job.hireCost)}G",
                                     style = PixelSmall,
                                     color = Color.Black,
                                     fontSize = 8.sp,
@@ -465,7 +465,7 @@ fun HireHeroClassDialog(
                     verticalAlignment = CenterVertically
                 ) {
                     Text("COST:", style = PixelBody, color = StoneGray)
-                    Text("${job.hireCost} G", style = PixelGold, fontWeight = FontWeight.Bold)
+                    Text("${formatGold(job.hireCost)} G", style = PixelGold, fontWeight = FontWeight.Bold)
                 }
 
                 Row(
@@ -618,7 +618,7 @@ fun PartyPanel(
                 val rehireLabel = if (hasNoLastParty) {
                     "🔄 " + safeStringResource(R.string.btn_rehire_no_run)
                 } else {
-                    "🔄 " + safeStringResource(R.string.btn_rehire_party, rehireCost)
+                    "🔄 " + safeStringResource(R.string.btn_rehire_party, formatGold(rehireCost))
                 }
                 PixelButton(
                     label = rehireLabel,
@@ -799,7 +799,7 @@ fun InnTopBar(
                         horizontalArrangement = Arrangement.spacedBy(6.dp)
                     ) {
                         Text("💎", fontSize = 16.sp)
-                        Text(magicite.toString(), style = PixelGold, fontWeight = FontWeight.Bold)
+                        Text(formatMagicite(magicite), style = PixelGold, fontWeight = FontWeight.Bold)
                         AdRewardIconButton(
                             isMagicite = true,
                             onClick = { onOpenResourceShop(com.game.dungeon.monetization.ResourceType.MAGICITE) },
@@ -892,7 +892,7 @@ fun DimensionResetDialog(gs: GameState, onDismiss: () -> Unit, onConfirm: () -> 
                     verticalArrangement = Arrangement.spacedBy(4.dp)
                 ) {
                     HallOfFameRow(safeStringResource(R.string.gil_earned_label), formatGold(gs.gilEarnedThisDim))
-                    HallOfFameRow(safeStringResource(R.string.magicite_found_label), gs.magiciteEarnedThisDim.toString())
+                    HallOfFameRow(safeStringResource(R.string.magicite_found_label), formatMagicite(gs.magiciteEarnedThisDim))
                     HallOfFameRow(safeStringResource(R.string.bosses_slain_label), gs.bossesKilledThisDim.toString())
                     HallOfFameRow(safeStringResource(R.string.items_found_label), gs.itemsFoundThisDim.toString())
                 }
@@ -903,7 +903,7 @@ fun DimensionResetDialog(gs: GameState, onDismiss: () -> Unit, onConfirm: () -> 
                 Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                     Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                         Text("💎", fontSize = 14.sp)
-                        Text("+$bonusMagicite", style = PixelGold)
+                        Text("+${formatMagicite(bonusMagicite)}", style = PixelGold)
                     }
                     if (goldKept > 0) {
                         Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {

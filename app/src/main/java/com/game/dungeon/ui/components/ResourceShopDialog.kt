@@ -127,7 +127,7 @@ fun ResourceShopDialog(
                         contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = "💎 ${safeStringResource(R.string.tab_magicite)} ($currentMagicite)",
+                            text = "💎 ${safeStringResource(R.string.tab_magicite)} (${formatMagicite(currentMagicite)})",
                             style = PixelBody,
                             color = if (magiciteSelected) Color(0xFF00E5FF) else StoneGray
                         )
@@ -166,7 +166,7 @@ fun ResourceShopDialog(
                         ) {
                             Column {
                                 Text(
-                                    text = if (selectedTab == ResourceType.GIL) "🪙 +${formatGold(freeGilReward)} Gil" else "💎 +$freeMagiciteReward Magicite",
+                                    text = if (selectedTab == ResourceType.GIL) "🪙 +${formatGold(freeGilReward)} Gil" else "💎 +${formatMagicite(freeMagiciteReward)} Magicite",
                                     style = PixelHeading,
                                     color = if (selectedTab == ResourceType.GIL) GoldBright else Color(0xFF00E5FF)
                                 )
@@ -182,7 +182,7 @@ fun ResourceShopDialog(
                             PixelButton(
                                 label = "📺 " + safeStringResource(
                                     if (selectedTab == ResourceType.GIL) R.string.watch_ad_for_gil else R.string.watch_ad_for_magicite,
-                                    if (selectedTab == ResourceType.GIL) formatGold(freeGilReward) else freeMagiciteReward
+                                    if (selectedTab == ResourceType.GIL) formatGold(freeGilReward) else formatMagicite(freeMagiciteReward)
                                 ),
                                 onClick = {
                                     if (activity != null) {
@@ -247,7 +247,7 @@ fun ResourceShopDialog(
                                             text = if (product.resourceType == ResourceType.GIL) {
                                                 "+${formatGold(product.rewardAmount)} Gil"
                                             } else {
-                                                "+${product.rewardAmount} Magicite"
+                                                "+${formatMagicite(product.rewardAmount)} Magicite"
                                             },
                                             style = PixelSmall,
                                             color = if (product.resourceType == ResourceType.GIL) GoldBright else Color(0xFF00E5FF)

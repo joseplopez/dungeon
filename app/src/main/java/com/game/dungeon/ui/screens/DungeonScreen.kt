@@ -310,7 +310,7 @@ fun DungeonTopBar(
                     }
                     Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                         Text("💎", fontSize = 12.sp)
-                        Text("$magiciteTotal", style = PixelGold)
+                        Text(formatMagicite(magiciteTotal), style = PixelGold)
                     }
                 }
                 SupportIconButton(onClick = onOpenSupport)
@@ -858,7 +858,7 @@ fun RunCompleteOverlay(
                             Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                                 Text("💎", fontSize = 24.sp)
                                 Column {
-                                    Text("$magiciteEarnedThisRun", style = PixelTitle, color = Color(0xFFAA44FF))
+                                    Text(formatMagicite(magiciteEarnedThisRun), style = PixelTitle, color = Color(0xFFAA44FF))
                                     Text("MAGICITE", style = PixelSmall, color = GoldDark)
                                 }
                             }

@@ -106,7 +106,7 @@ fun RelicsScreen(
                             }
                             Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                                 Text("💎", fontSize = 14.sp)
-                                Text("$magicite", style = PixelGold)
+                                Text(formatMagicite(magicite), style = PixelGold)
                             }
                             PixelButton(
                                 label = "⚖️ " + safeStringResource(R.string.exchange_title),
@@ -397,9 +397,9 @@ fun RelicsScreen(
                                     item { StatSummaryRow(icon = "🌌", label = safeStringResource(R.string.stat_label_dimension), value = "Dim ${gs.currentDimension}") }
                                     item { StatSummaryRow(icon = "🏰", label = safeStringResource(R.string.stat_label_highest_floor), value = "F${gs.highestFloor}") }
                                     item { StatSummaryRow(icon = "👑", label = safeStringResource(R.string.stat_label_lifetime_floor), value = "F${gs.lifetimeHighestFloor}") }
-                                    item { StatSummaryRow(icon = "💎", label = safeStringResource(R.string.stat_label_total_magicite), value = "${gs.totalMagiciteEarned}") }
-                                    item { StatSummaryRow(icon = "🪙", label = safeStringResource(R.string.stat_label_total_gil), value = "${gs.totalGilEarned}") }
-                                    item { StatSummaryRow(icon = "🏦", label = safeStringResource(R.string.stat_label_vault_cap), value = "${gs.maxGil}") }
+                                    item { StatSummaryRow(icon = "💎", label = safeStringResource(R.string.stat_label_total_magicite), value = formatMagicite(gs.totalMagiciteEarned)) }
+                                    item { StatSummaryRow(icon = "🪙", label = safeStringResource(R.string.stat_label_total_gil), value = formatGold(gs.totalGilEarned)) }
+                                    item { StatSummaryRow(icon = "🏦", label = safeStringResource(R.string.stat_label_vault_cap), value = formatGold(gs.maxGil)) }
                                     item { StatSummaryRow(icon = "⚡", label = safeStringResource(R.string.stat_label_exp_boost), value = "+${((gs.expMultiplier - 1.0f) * 100).toInt()}%") }
                                     item { StatSummaryRow(icon = "🏷️", label = safeStringResource(R.string.stat_label_upgrade_discount), value = "-${(gs.upgradeDiscount * 100).toInt()}%") }
                                     item { StatSummaryRow(icon = "💤", label = safeStringResource(R.string.stat_label_rest_discount), value = "-${(gs.restDiscount * 100).toInt()}%") }
@@ -492,7 +492,7 @@ fun GoldExchangeDialog(
                     Text("•", style = PixelSmall, color = StoneGray)
                     Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                         Text("💎", fontSize = 16.sp)
-                        Text("$currentMagicite", style = PixelGold)
+                        Text(formatMagicite(currentMagicite), style = PixelGold)
                     }
                 }
 
@@ -515,12 +515,12 @@ fun GoldExchangeDialog(
                         ) {
                             Column {
                                 Text(
-                                    safeStringResource(R.string.exchange_rate_format, formatGold(goldCost), magiciteAmount),
+                                    safeStringResource(R.string.exchange_rate_format, formatGold(goldCost), formatMagicite(magiciteAmount)),
                                     style = PixelBody,
                                     color = GoldBright
                                 )
                                 Text(
-                                    "+$magiciteAmount 💎",
+                                    "+${formatMagicite(magiciteAmount)} 💎",
                                     style = PixelSmall,
                                     color = HpGreen
                                 )
