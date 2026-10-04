@@ -91,7 +91,7 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideAdManager(): AdManager = AdMobManager()
+    fun provideAdManager(@ApplicationContext context: Context): AdManager = AdMobManager(context)
 
     @Provides
     @Singleton
