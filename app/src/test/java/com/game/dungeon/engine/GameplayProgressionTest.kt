@@ -468,4 +468,26 @@ class GameplayProgressionTest {
         assertTrue("Hero with high hpBonus must remain alive after taking 113 damage", copiedHero.isAlive)
         assertEquals(4887, copiedHero.currentHp)
     }
+
+    @Test
+    fun testLategameBossStatsAreBalancedAndNotOverpowered() {
+        val dim10 = FFDimensionData.getDimension(10)
+        val boss1000 = FFDimensionData.getBossForFloor(dim10, 1000)
+        assertNotNull("Dimension 10 floor 1000 boss must exist", boss1000)
+
+        val sinBoss = Enemy.fromTemplate(boss1000!!, floor = 1000, context = mockContext, dimension = dim10)
+
+        // Sin at floor 1000 in Dimension 10 should be challenging but not have 150k+ ATK and 3.6M+ HP
+        assertTrue("Dim 10 max boss ATK must be balanced (< 40,000)", sinBoss.attack < 40000)
+        assertTrue("Dim 10 max boss HP must be balanced (< 1,000,000)", sinBoss.maxHp < 1000000)
+
+        val dim5 = FFDimensionData.getDimension(5)
+        val boss500 = FFDimensionData.getBossForFloor(dim5, 500)
+        assertNotNull("Dimension 5 floor 500 boss must exist", boss500)
+
+        val neoExdeath = Enemy.fromTemplate(boss500!!, floor = 500, context = mockContext, dimension = dim5)
+
+        assertTrue("Dim 5 max boss ATK must be balanced (< 15,000)", neoExdeath.attack < 15000)
+        assertTrue("Dim 5 max boss HP must be balanced (< 250,000)", neoExdeath.maxHp < 250000)
+    }
 }

@@ -243,9 +243,9 @@ object FFDimensionData {
                 FFEnemyTemplate(MonsterType.EXDEATH,     R.string.enemy_exdeath,     "🌲",  350,350,
                     hpMult = 8.0f, atkMult = 3.0f, defMult = 2.0f, gilReward = 2000, isBoss = true),
                 FFEnemyTemplate(MonsterType.OMEGA,       R.string.enemy_omega,       "⚙️",  450,450,
-                    hpMult = 12.0f, atkMult = 4.0f, defMult = 3.0f, gilReward = 4000, isBoss = true),
+                    hpMult = 10.0f, atkMult = 3.5f, defMult = 2.2f, gilReward = 4000, isBoss = true),
                 FFEnemyTemplate(MonsterType.NEO_EXDEATH, R.string.enemy_neo_exdeath, "🌌",  500,500,
-                    hpMult = 18.0f, atkMult = 5.5f, defMult = 2.5f, gilReward = 9000, isBoss = true)
+                    hpMult = 14.0f, atkMult = 4.2f, defMult = 2.0f, gilReward = 9000, isBoss = true)
             )
         ),
 
@@ -294,9 +294,9 @@ object FFDimensionData {
                 FFEnemyTemplate(MonsterType.GUARDIAN,    R.string.enemy_guardian,    "🛡️",  380,380,
                     hpMult = 7.5f, atkMult = 2.8f, defMult = 2.5f, gilReward = 2000, isBoss = true),
                 FFEnemyTemplate(MonsterType.ULTIMA_WEAPON,R.string.enemy_ultima_weapon,"⚔️", 450,450,
-                    hpMult = 10.0f, atkMult = 3.5f, defMult = 2.0f, gilReward = 3500, isBoss = true),
+                    hpMult = 8.5f, atkMult = 3.2f, defMult = 1.8f, gilReward = 3500, isBoss = true),
                 FFEnemyTemplate(MonsterType.KEFKA,       R.string.enemy_kefka,       "🃏",  600,600,
-                    hpMult = 20.0f, atkMult = 6.0f, defMult = 2.5f, gilReward = 12000, isBoss = true)
+                    hpMult = 15.0f, atkMult = 4.5f, defMult = 2.0f, gilReward = 12000, isBoss = true)
             )
         ),
 
@@ -344,9 +344,9 @@ object FFDimensionData {
                 FFEnemyTemplate(MonsterType.JENOVA_SYNTHESIS,R.string.enemy_jenova_synthesis,"🧫",480,480,
                     hpMult = 9.0f, atkMult = 3.2f, gilReward = 2800, isBoss = true),
                 FFEnemyTemplate(MonsterType.BIZARRO_SEPH,R.string.enemy_bizarro_seph,"⚔️",  580,580,
-                    hpMult = 12.0f, atkMult = 4.0f, defMult = 2.0f, gilReward = 4500, isBoss = true),
+                    hpMult = 10.0f, atkMult = 3.6f, defMult = 1.8f, gilReward = 4500, isBoss = true),
                 FFEnemyTemplate(MonsterType.SEPHIROT,   R.string.enemy_sephiroth,   "🪶",  700,700,
-                    hpMult = 22.0f, atkMult = 6.5f, defMult = 2.5f, gilReward = 15000, isBoss = true)
+                    hpMult = 16.0f, atkMult = 4.8f, defMult = 2.0f, gilReward = 15000, isBoss = true)
             )
         ),
 
@@ -392,9 +392,9 @@ object FFDimensionData {
                 FFEnemyTemplate(MonsterType.TRAUMA,      R.string.enemy_trauma,      "🧠",  560,560,
                     hpMult = 9.0f, atkMult = 3.2f, gilReward = 3200, isBoss = true),
                 FFEnemyTemplate(MonsterType.OMEGA_WEAPON,R.string.enemy_omega_weapon,"⚙️",  650,650,
-                    hpMult = 15.0f, atkMult = 5.0f, defMult = 3.5f, gilReward = 6000, isBoss = true),
+                    hpMult = 11.0f, atkMult = 3.8f, defMult = 2.2f, gilReward = 6000, isBoss = true),
                 FFEnemyTemplate(MonsterType.ULTIMECIA,   R.string.enemy_ultimecia,   "⏳",  800,800,
-                    hpMult = 25.0f, atkMult = 7.0f, defMult = 3.0f, gilReward = 18000, isBoss = true)
+                    hpMult = 17.0f, atkMult = 5.0f, defMult = 2.2f, gilReward = 18000, isBoss = true)
             )
         ),
 
@@ -440,9 +440,9 @@ object FFDimensionData {
                 FFEnemyTemplate(MonsterType.KUJA,       R.string.enemy_kuja,       "🌙",  620,620,
                     hpMult = 9.0f, atkMult = 3.3f, gilReward = 3500, isBoss = true),
                 FFEnemyTemplate(MonsterType.TRANCE_KUJA,R.string.enemy_trance_kuja,"🌟",  750,750,
-                    hpMult = 12.0f, atkMult = 4.2f, defMult = 2.0f, gilReward = 6000, isBoss = true),
+                    hpMult = 10.0f, atkMult = 3.6f, defMult = 1.8f, gilReward = 6000, isBoss = true),
                 FFEnemyTemplate(MonsterType.NECRON,     R.string.enemy_necron,     "💀",  900,900,
-                    hpMult = 28.0f, atkMult = 7.5f, defMult = 3.0f, gilReward = 22000, isBoss = true)
+                    hpMult = 18.0f, atkMult = 5.2f, defMult = 2.2f, gilReward = 22000, isBoss = true)
             )
         ),
 
@@ -486,15 +486,15 @@ object FFDimensionData {
                 FFEnemyTemplate(MonsterType.SEYMOUR,     R.string.enemy_seymour,     "🌸",  450,450,
                     hpMult = 8.0f, atkMult = 3.0f, defMult = 2.0f, gilReward = 2800, isBoss = true),
                 FFEnemyTemplate(MonsterType.OMEGA_WEAPON_X,R.string.enemy_omega_weapon_x,"⚙️",560,560,
-                    hpMult = 14.0f, atkMult = 5.0f, defMult = 3.5f, gilReward = 5500, isBoss = true),
+                    hpMult = 11.0f, atkMult = 3.8f, defMult = 2.2f, gilReward = 5500, isBoss = true),
                 FFEnemyTemplate(MonsterType.JECHT,       R.string.enemy_jecht,       "🌊",  700,700,
-                    hpMult = 11.0f, atkMult = 4.0f, defMult = 2.5f, gilReward = 4500, isBoss = true),
+                    hpMult = 9.5f, atkMult = 3.5f, defMult = 2.0f, gilReward = 4500, isBoss = true),
                 FFEnemyTemplate(MonsterType.PENANCE,     R.string.enemy_penance,     "⚡",  800,800,
-                    hpMult = 20.0f, atkMult = 6.0f, defMult = 5.0f, gilReward = 9000, isBoss = true),
+                    hpMult = 14.0f, atkMult = 4.5f, defMult = 2.5f, gilReward = 9000, isBoss = true),
                 FFEnemyTemplate(MonsterType.YU_YEVON,    R.string.enemy_yu_yevon,    "🌐",  900,900,
-                    hpMult = 12.0f, atkMult = 2.0f, defMult = 4.0f, gilReward = 6000, isBoss = true),
+                    hpMult = 10.0f, atkMult = 2.0f, defMult = 2.5f, gilReward = 6000, isBoss = true),
                 FFEnemyTemplate(MonsterType.SIN,         R.string.enemy_sin,         "🌊",  1000,1000,
-                    hpMult = 35.0f, atkMult = 8.0f, defMult = 3.5f, gilReward = 30000, isBoss = true)
+                    hpMult = 20.0f, atkMult = 5.5f, defMult = 2.5f, gilReward = 30000, isBoss = true)
             )
         )
     )

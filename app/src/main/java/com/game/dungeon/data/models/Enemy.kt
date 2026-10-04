@@ -32,13 +32,22 @@ data class Enemy(
             ): Enemy {
             // Dimension difficulty scaling factor (Dimension 1 = 1.0x baseline; higher dimensions scale stats)
             val dimMult = 1f + (dimension.number - 1) * 0.30f
-            val bossDimExtra = if (template.isBoss) 1f + (dimension.number - 1) * 0.15f else 1f
+            // Moderate boss dimension multiplier to prevent extreme stat inflation at high dimensions
+            val bossDimExtra = if (template.isBoss) 1f + (dimension.number - 1) * 0.02f else 1f
             val totalDimMult = dimMult * bossDimExtra
 
+            // For bosses in late game (high floors > 100), apply a soft dampening factor
+            // to keep boss stats aligned with hero progression curves.
+            val bossLateGameDampener = if (template.isBoss && floor > 100) {
+                1f / (1f + (floor - 100) * 0.0012f)
+            } else {
+                1f
+            }
+
             // Enhanced stat scaling with floor depth and dimension level
-            val baseHp = (20 + floor * 12) * template.hpMult * difficultyMult * totalDimMult
-            val baseAtk = (5 + floor * 2.2f) * template.atkMult * difficultyMult * totalDimMult
-            val baseDef = (1 + floor / 2.5f) * template.defMult * difficultyMult * totalDimMult
+            val baseHp = (20 + floor * 12) * template.hpMult * difficultyMult * totalDimMult * bossLateGameDampener
+            val baseAtk = (5 + floor * 2.2f) * template.atkMult * difficultyMult * totalDimMult * bossLateGameDampener
+            val baseDef = (1 + floor / 2.5f) * template.defMult * difficultyMult * totalDimMult * bossLateGameDampener
 
             // Gil scaling with floor level and difficulty (sub-linear curve to prevent high floor inflation)
             val floorGilMult = 1f + (floor * 0.02f) + (kotlin.math.sqrt(floor.toFloat()) * 0.15f)
