@@ -33,6 +33,7 @@ class Hero(
     @Ignore var mpBonus: Int = 0
     @Ignore var critChance: Int = 5
     @Ignore var critDamage: Int = 50
+    @Ignore var jobMasteryLevel: Int = 0
 
     fun copy(
         id: String = this.id,
@@ -79,6 +80,7 @@ class Hero(
         newHero.mpBonus = this.mpBonus
         newHero.critChance = this.critChance
         newHero.critDamage = this.critDamage
+        newHero.jobMasteryLevel = this.jobMasteryLevel
         return newHero
     }
 
@@ -108,7 +110,8 @@ class Hero(
                 hpBonus == other.hpBonus &&
                 mpBonus == other.mpBonus &&
                 critChance == other.critChance &&
-                critDamage == other.critDamage
+                critDamage == other.critDamage &&
+                jobMasteryLevel == other.jobMasteryLevel
     }
 
     override fun hashCode(): Int {
@@ -136,11 +139,12 @@ class Hero(
         result = 31 * result + mpBonus
         result = 31 * result + critChance
         result = 31 * result + critDamage
+        result = 31 * result + jobMasteryLevel
         return result
     }
 
     override fun toString(): String {
-        return "Hero(id='$id', heroClass=$heroClass, name='$name', currentHp=$currentHp, currentMp=$currentMp, level=$level, exp=$exp, expToNextLevel=$expToNextLevel, abilityCharge=$abilityCharge, aiPriority=$aiPriority, weaponId=$weaponId, armorId=$armorId, shieldId=$shieldId, accessory1Id=$accessory1Id, accessory2Id=$accessory2Id, isInParty=$isInParty, partyPosition=$partyPosition, attackBonus=$attackBonus, defenseBonus=$defenseBonus, magicBonus=$magicBonus, hpBonus=$hpBonus, mpBonus=$mpBonus, critChance=$critChance, critDamage=$critDamage)"
+        return "Hero(id='$id', heroClass=$heroClass, name='$name', currentHp=$currentHp, currentMp=$currentMp, level=$level, exp=$exp, expToNextLevel=$expToNextLevel, abilityCharge=$abilityCharge, aiPriority=$aiPriority, weaponId=$weaponId, armorId=$armorId, shieldId=$shieldId, accessory1Id=$accessory1Id, accessory2Id=$accessory2Id, isInParty=$isInParty, partyPosition=$partyPosition, attackBonus=$attackBonus, defenseBonus=$defenseBonus, magicBonus=$magicBonus, hpBonus=$hpBonus, mpBonus=$mpBonus, critChance=$critChance, critDamage=$critDamage, jobMasteryLevel=$jobMasteryLevel)"
     }
 
     @get:Ignore
@@ -149,7 +153,7 @@ class Hero(
     @get:Ignore
     val nickname: String get() = name
 
-    val hasSpecialAbility: Boolean get() = heroClass != HeroClass.FREELANCER
+    val hasSpecialAbility: Boolean get() = JobAbilityData.getActiveAbilityForLevel(heroClass, jobMasteryLevel) != null
 
     val masteryLevel: Int get() = when { level >= 50 -> 50; level >= 25 -> 25; else -> level }
     val hasGroupHeal: Boolean get() = heroClass == HeroClass.WHITE_MAGE && level >= 10
@@ -224,6 +228,9 @@ class Hero(
     val speed: Int get() = heroClass.baseSpeed + (level - 1) / 5 // Speed increases slowly
 
     fun calculateStats(equippedItems: List<Item>, relicBonuses: RelicBonuses? = null): Map<String, Int> {
+        if (relicBonuses != null) {
+            jobMasteryLevel = relicBonuses.jobMasteryLevels[heroClass] ?: 0
+        }
         val masteryHp = relicBonuses?.getMasteryBonus(heroClass, StatType.HP) ?: 0
         val masteryAtk = relicBonuses?.getMasteryBonus(heroClass, StatType.ATTACK) ?: 0
         val masteryDef = relicBonuses?.getMasteryBonus(heroClass, StatType.DEFENSE) ?: 0

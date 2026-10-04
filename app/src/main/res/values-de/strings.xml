@@ -847,4 +847,153 @@
 
     <string name="ability_blue_mage_name">Monsterwissen</string>
     <string name="ability_blue_mage_desc">Nutzt erlernte Blaumagie von Monstern, um sich an die Kampfsituation anzupassen.</string>
-</resources>
+
+     <!-- Job Ability Progression -->
+        <string name="job_ability_progression_title">⚡ Job-Fähigkeiten-Fortschritt</string>
+        <string name="job_ability_unlocked">✅ Freigeschaltet</string>
+        <string name="job_ability_unlocks_at">🔒 Freischaltung ab Stufe %1$d</string>
+
+        <!-- Freelancer Skills -->
+        <string name="skill_freelancer_t1_name">Erste Hilfe</string>
+        <string name="skill_freelancer_t1_desc">Stellt eigene KP mit einfacher Feldmedizin wieder her.</string>
+        <string name="skill_freelancer_t2_name">Fokus-Aufladung</string>
+        <string name="skill_freelancer_t2_desc">Erhöht physischen und magischen Schaden für den nächsten Zug.</string>
+        <string name="skill_freelancer_t3_name">Joker</string>
+        <string name="skill_freelancer_t3_desc">Führt einen ausgewogenen Schlag aus, der die Fähigkeitenleiste sofort auflädt.</string>
+
+        <!-- Warrior Skills -->
+        <string name="skill_warrior_t1_name">Schwerer Schlag</string>
+        <string name="skill_warrior_t1_desc">Fügt einem einzelnen Gegner 150%% schweren physischen Schaden zu.</string>
+        <string name="skill_warrior_t2_name">Rüstungsbrecher</string>
+        <string name="skill_warrior_t2_desc">Fügt 180%% physischen Schaden zu und verringert die gegnerische Verteidigung.</string>
+        <string name="skill_warrior_t3_name">Riesenaktaxt-Spaltung</string>
+        <string name="skill_warrior_t3_desc">Trifft ALLE Gegner mit 220%% massivem physischem Schaden.</string>
+
+        <!-- White Mage Skills -->
+        <string name="skill_white_mage_t1_name">Vita</string>
+        <string name="skill_white_mage_t1_desc">Stellt moderate KP beim Einzelverbündeten mit den niedrigsten KP wieder her.</string>
+        <string name="skill_white_mage_t2_name">Vitaraja-Schild</string>
+        <string name="skill_white_mage_t2_desc">Heilt den Verbündeten mit den niedrigsten KP stark und verleiht der Gruppe eine Schadensbarriere.</string>
+        <string name="skill_white_mage_t3_name">Vitaga-Gruppenheilung</string>
+        <string name="skill_white_mage_t3_desc">Stellt massive KP bei ALLEN handlungsfähigen Gruppenmitgliedern wieder her!</string>
+
+        <!-- Black Mage Skills -->
+        <string name="skill_black_mage_t1_name">Feuerball</string>
+        <string name="skill_black_mage_t1_desc">Fügt einem einzelnen Gegner 140%% magischen Schaden zu.</string>
+        <string name="skill_black_mage_t2_name">Kettenblitz</string>
+        <string name="skill_black_mage_t2_desc">Fügt bis zu 2 Gegnern 170%% Elementarmagieschaden zu.</string>
+        <string name="skill_black_mage_t3_name">Meteor-Sturm</string>
+        <string name="skill_black_mage_t3_desc">Beschwört Meteore herab, die ALLEN Gegnern 220%% massiven magischen Schaden zufügen!</string>
+
+        <!-- Thief Skills -->
+        <string name="skill_thief_t1_name">Schneller Dolch</string>
+        <string name="skill_thief_t1_desc">Schneller Angriff mit hoher Chance auf kritischen Treffer.</string>
+        <string name="skill_thief_t2_name">Schattenplünderung</string>
+        <string name="skill_thief_t2_desc">Trifft das Ziel und stiehlt dem Gegner zusätzliche Gil und Magicite.</string>
+        <string name="skill_thief_t3_name">Phantom-Fata-Morgana</string>
+        <string name="skill_thief_t3_desc">Mehrfach-Attentatsangriff, der enormen kritischen Schaden zufügt.</string>
+
+        <!-- Monk Skills -->
+        <string name="skill_monk_t1_name">Chakra</string>
+        <string name="skill_monk_t1_desc">Stellt 35%% der eigenen maximalen KP wieder her und erhöht die Angriffskraft.</string>
+        <string name="skill_monk_t2_name">Dreifach-Trommelfeuer</string>
+        <string name="skill_monk_t2_desc">Führt eine physische 3-Treffer-Kombo auf ein einzelnes Ziel aus.</string>
+        <string name="skill_monk_t3_name">Hundert Fäuste</string>
+        <string name="skill_monk_t3_desc">Rasche Abfolge von Schlägen, die ALLEN Gegnern schweren physischen Schaden zufügt!</string>
+
+        <!-- Knight Skills -->
+        <string name="skill_knight_t1_name">Schildstoß</string>
+        <string name="skill_knight_t1_desc">Fügt 1 Gegner physischen Schaden zu, der mit DEF skaliert.</string>
+        <string name="skill_knight_t2_name">Wächter-Schutz</string>
+        <string name="skill_knight_t2_desc">Reduziert den erlittenen Gruppenschaden für 2 Züge erheblich.</string>
+        <string name="skill_knight_t3_name">Urteil der Ägis</string>
+        <string name="skill_knight_t3_desc">Mächtiger heilig Schaden verursachender Schlag, der das Ziel schädigt und die Gruppe schützt.</string>
+
+        <!-- Paladin Skills -->
+        <string name="skill_paladin_t1_name">Heiliger Schnitt</string>
+        <string name="skill_paladin_t1_desc">Heiliger physischer Schaden am Ziel; heilt den geschwächtesten Verbündeten leicht.</string>
+        <string name="skill_paladin_t2_name">Göttliches Heiligtum</string>
+        <string name="skill_paladin_t2_desc">Heilt die Gruppe moderat und erhöht die physische und magische DEF der Gruppe.</string>
+        <string name="skill_paladin_t3_name">Heilige Läuterung</string>
+        <string name="skill_paladin_t3_desc">Fügt ALLEN Gegnern 200%% heiligen Schaden zu und stellt die KP der Gruppe vollständig wieder her!</string>
+
+        <!-- Red Mage Skills -->
+        <string name="skill_red_mage_t1_name">Doppelzauber: Feuer &amp; Vita</string>
+        <string name="skill_red_mage_t1_desc">Wirkt in 1 Zug Feuer auf das Ziel und Vita auf den geschwächtesten Verbündeten.</string>
+        <string name="skill_red_mage_t2_name">Arkaner Ausbruch</string>
+        <string name="skill_red_mage_t2_desc">Fügt dem Zielgegner Doppel-Elementarmagie (Feuer &amp; Eis) zu.</string>
+        <string name="skill_red_mage_t3_name">Zauberketten-Sturm</string>
+        <string name="skill_red_mage_t3_desc">Entfesselt 3 aufeinanderfolgende Elementarzauber auf alle Gegner und heilt die Gruppe.</string>
+
+        <!-- Summoner Skills -->
+        <string name="skill_summoner_t1_name">Geisterruf</string>
+        <string name="skill_summoner_t1_desc">Beschwört einen Elementargeist, der Flächen-Magieschaden (AoE) zufügt.</string>
+        <string name="skill_summoner_t2_name">Blitz des Gerichts</string>
+        <string name="skill_summoner_t2_desc">Beschwört Ramuh, um alle Gegner mit Blitzen zu treffen.</string>
+        <string name="skill_summoner_t3_name">Megaflare</string>
+        <string name="skill_summoner_t3_desc">Beschwört Drachenkönig Bahamut, der ALLEN 250%% kolossalen magischen Schaden zufügt!</string>
+
+        <!-- Ninja Skills -->
+        <string name="skill_ninja_t1_name">Shuriken-Wurf</string>
+        <string name="skill_ninja_t1_desc">Rüstungsdurchdringender Fernkampf-Physischer-Schlag auf das Ziel.</string>
+        <string name="skill_ninja_t2_name">Schattenbild</string>
+        <string name="skill_ninja_t2_desc">Mehrfachschlag mit 100%% garantiertem kritischem Treffer.</string>
+        <string name="skill_ninja_t3_name">Schnitt des Vergessens</string>
+        <string name="skill_ninja_t3_desc">Tödlicher Attentatsschlag, der einem Einzelziel enormen Schaden zufügt!</string>
+
+        <!-- Dragoon Skills -->
+        <string name="skill_dragoon_t1_name">Sprungangriff</string>
+        <string name="skill_dragoon_t1_desc">Springt in die Luft und stürzt herab, um 180%% physischen Schaden zuzufügen.</string>
+        <string name="skill_dragoon_t2_name">Drachenlanze</string>
+        <string name="skill_dragoon_t2_desc">Durchdringt gegnerische Rüstung für 220%% physischen Schaden.</string>
+        <string name="skill_dragoon_t3_name">Hochsprung-Nova</string>
+        <string name="skill_dragoon_t3_desc">Steigt in Drachenhöhen auf und explodiert mit einer AoE-Druckwelle, die ALLE Gegner trifft!</string>
+
+        <!-- Bard Skills -->
+        <string name="skill_bard_t1_name">Bardenballade</string>
+        <string name="skill_bard_t1_desc">Regeneriert in jedem Zug die KP der Gruppe.</string>
+        <string name="skill_bard_t2_name">Menuett der Macht</string>
+        <string name="skill_bard_t2_desc">Erhöht ANG (ATK) und MAG der Gruppe um 25%%.</string>
+        <string name="skill_bard_t3_name">Heroische Hymne</string>
+        <string name="skill_bard_t3_desc">Singt eine inspirierende Hymne, die ALLE Gruppenwerte steigert und die Gruppe heilt!</string>
+
+        <!-- Samurai Skills -->
+        <string name="skill_samurai_t1_name">Iai-Schnitt</string>
+        <string name="skill_samurai_t1_desc">Präziser Schwertstreich mit hoher kritischer Trefferquote.</string>
+        <string name="skill_samurai_t2_name">Münzwurf</string>
+        <string name="skill_samurai_t2_desc">Wirft Gil, um ALLEN Gegnern schweren physischen Schaden zuzufügen.</string>
+        <string name="skill_samurai_t3_name">Bushido-Hinrichtung</string>
+        <string name="skill_samurai_t3_desc">Meisterhafte Katana-Technik, die ALLEN Gegnern massiven kritischen Schaden zufügt!</string>
+
+        <!-- Onion Knight Skills -->
+        <string name="skill_onion_knight_t1_name">Zwiebel-Piks</string>
+        <string name="skill_onion_knight_t1_desc">Ein bescheidener Piks, der leichten physischen Schaden zufügt.</string>
+        <string name="skill_onion_knight_t2_name">Zwiebel-Ansturm</string>
+        <string name="skill_onion_knight_t2_desc">Rascher 2-Treffer-Angriff, der moderaten physischen Schaden zufügt.</string>
+        <string name="skill_onion_knight_t3_name">Zwiebel-Herrscher</string>
+        <string name="skill_onion_knight_t3_desc">Entfesselt eine ultra-physische &amp; magische Woge, die 300%% überragenden Schaden zufügt!</string>
+
+        <!-- Mime Skills -->
+        <string name="skill_mime_t1_name">Nachahmen</string>
+        <string name="skill_mime_t1_desc">Kopiert die Fähigkeit des vorherigen Verbündeten.</string>
+        <string name="skill_mime_t2_name">Große Nachahmung</string>
+        <string name="skill_mime_t2_desc">Kopiert die vorherige Fähigkeit mit um 150%% erhöhter Stärke.</string>
+        <string name="skill_mime_t3_name">Perfektes Echo</string>
+        <string name="skill_mime_t3_desc">Kopiert die stärkste Gruppenfähigkeit und trifft ALLE Ziele!</string>
+
+        <!-- Necromancer Skills -->
+        <string name="skill_necromancer_t1_name">Lebensentzug</string>
+        <string name="skill_necromancer_t1_desc">Entzieht dem Zielgegner KP, um sich selbst zu heilen.</string>
+        <string name="skill_necromancer_t2_name">Seelensiphon</string>
+        <string name="skill_necromancer_t2_desc">Entzieht dem Gegner KP und verteilt die Heilung auf ALLE handlungsfähigen Verbündeten.</string>
+        <string name="skill_necromancer_t3_name">Grabesturm</string>
+        <string name="skill_necromancer_t3_desc">Beschwört einen Schattensturm, der ALLEN Dunkelmagie zufügt &amp; die Gruppe heilt!</string>
+
+        <!-- Blue Mage Skills -->
+        <string name="skill_blue_mage_t1_name">Goblin-Schlag</string>
+        <string name="skill_blue_mage_t1_desc">Physische Fähigkeit, die in Monsterbegegnungen erlernt wurde.</string>
+        <string name="skill_blue_mage_t2_name">Weißer Wind</string>
+        <string name="skill_blue_mage_t2_desc">Heilt die Gruppe proportional zu den aktuellen KP des Blaumagiers.</string>
+        <string name="skill_blue_mage_t3_name">Mächtige Schutzwehr</string>
+        <string name="skill_blue_mage_t3_desc">Gewährt ALLEN Verbündeten massive DEF- &amp; MAG-DEF-Buffs und wirkt Flächen-Zustandsmagie!</string>
+    </resources>

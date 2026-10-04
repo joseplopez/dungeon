@@ -12,15 +12,124 @@ import org.junit.Test
 class GameplayProgressionTest {
 
     private class DummyContext : ContextWrapper(
-        object : ContextWrapper(null) {
+        object : Context() {
             @Suppress("DEPRECATION")
             private val dummyResources = object : Resources(null, DisplayMetrics(), Configuration()) {
                 override fun getText(id: Int): CharSequence = "TestString"
+                override fun getText(id: Int, def: CharSequence?): CharSequence = "TestString"
                 override fun getString(id: Int): String = "TestString"
                 override fun getString(id: Int, vararg formatArgs: Any?): String = "TestStringFormatted"
                 override fun getStringArray(id: Int): Array<String> = arrayOf("TestHero")
+                override fun getQuantityString(id: Int, quantity: Int): String = "TestString"
+                override fun getQuantityString(id: Int, quantity: Int, vararg formatArgs: Any?): String = "TestString"
+                override fun getQuantityText(id: Int, quantity: Int): CharSequence = "TestString"
+                override fun getResourceName(resid: Int): String = "test_resource"
+                override fun getResourceEntryName(resid: Int): String = "test_entry"
             }
             override fun getResources(): Resources = dummyResources
+            override fun getAssets(): android.content.res.AssetManager = throw UnsupportedOperationException()
+            override fun getPackageManager(): android.content.pm.PackageManager = throw UnsupportedOperationException()
+            override fun getContentResolver(): android.content.ContentResolver = throw UnsupportedOperationException()
+            override fun getMainLooper(): android.os.Looper = android.os.Looper.getMainLooper()
+            override fun getApplicationContext(): Context = this
+            override fun setTheme(resid: Int) {}
+            override fun getTheme(): Resources.Theme = throw UnsupportedOperationException()
+            override fun getClassLoader(): ClassLoader = javaClass.classLoader
+            override fun getPackageName(): String = "com.game.dungeon"
+            override fun getApplicationInfo(): android.content.pm.ApplicationInfo = android.content.pm.ApplicationInfo()
+            override fun getPackageResourcePath(): String = ""
+            override fun getPackageCodePath(): String = ""
+            override fun getSharedPreferences(name: String?, mode: Int): android.content.SharedPreferences = throw UnsupportedOperationException()
+            override fun moveSharedPreferencesFrom(from: Context?, name: String?): Boolean = false
+            override fun deleteSharedPreferences(name: String?): Boolean = false
+            override fun openFileInput(name: String?): java.io.FileInputStream = throw UnsupportedOperationException()
+            override fun openFileOutput(name: String?, mode: Int): java.io.FileOutputStream = throw UnsupportedOperationException()
+            override fun deleteFile(name: String?): Boolean = false
+            override fun getFileStreamPath(name: String?): java.io.File = throw UnsupportedOperationException()
+            override fun getDataDir(): java.io.File = throw UnsupportedOperationException()
+            override fun getFilesDir(): java.io.File = throw UnsupportedOperationException()
+            override fun getNoBackupFilesDir(): java.io.File = throw UnsupportedOperationException()
+            override fun getExternalFilesDir(type: String?): java.io.File? = null
+            override fun getExternalFilesDirs(type: String?): Array<java.io.File> = emptyArray()
+            override fun getObbDir(): java.io.File = throw UnsupportedOperationException()
+            override fun getObbDirs(): Array<java.io.File> = emptyArray()
+            override fun getCacheDir(): java.io.File = throw UnsupportedOperationException()
+            override fun getCodeCacheDir(): java.io.File = throw UnsupportedOperationException()
+            override fun getExternalCacheDir(): java.io.File? = null
+            override fun getExternalCacheDirs(): Array<java.io.File> = emptyArray()
+            @Suppress("DEPRECATION")
+            override fun getExternalMediaDirs(): Array<java.io.File> = emptyArray()
+            override fun fileList(): Array<String> = emptyArray()
+            override fun getDir(name: String?, mode: Int): java.io.File = throw UnsupportedOperationException()
+            override fun openOrCreateDatabase(name: String?, mode: Int, factory: android.database.sqlite.SQLiteDatabase.CursorFactory?): android.database.sqlite.SQLiteDatabase = throw UnsupportedOperationException()
+            override fun openOrCreateDatabase(name: String?, mode: Int, factory: android.database.sqlite.SQLiteDatabase.CursorFactory?, errorHandler: android.database.DatabaseErrorHandler?): android.database.sqlite.SQLiteDatabase = throw UnsupportedOperationException()
+            override fun moveDatabaseFrom(from: Context?, name: String?): Boolean = false
+            override fun deleteDatabase(name: String?): Boolean = false
+            override fun getDatabasePath(name: String?): java.io.File = throw UnsupportedOperationException()
+            override fun databaseList(): Array<String> = emptyArray()
+            override fun getWallpaper(): android.graphics.drawable.Drawable = throw UnsupportedOperationException()
+            override fun peekWallpaper(): android.graphics.drawable.Drawable = throw UnsupportedOperationException()
+            override fun getWallpaperDesiredMinimumWidth(): Int = 0
+            override fun getWallpaperDesiredMinimumHeight(): Int = 0
+            override fun setWallpaper(bitmap: android.graphics.Bitmap?) {}
+            override fun setWallpaper(snapshot: java.io.InputStream?) {}
+            override fun clearWallpaper() {}
+            override fun startActivity(intent: android.content.Intent?) {}
+            override fun startActivity(intent: android.content.Intent?, options: android.os.Bundle?) {}
+            override fun startActivities(intents: Array<out android.content.Intent>?) {}
+            override fun startActivities(intents: Array<out android.content.Intent>?, options: android.os.Bundle?) {}
+            override fun startIntentSender(intent: android.content.IntentSender?, fillInIntent: android.content.Intent?, flagsMask: Int, flagsValues: Int, extraFlags: Int) {}
+            override fun startIntentSender(intent: android.content.IntentSender?, fillInIntent: android.content.Intent?, flagsMask: Int, flagsValues: Int, extraFlags: Int, options: android.os.Bundle?) {}
+            override fun sendBroadcast(intent: android.content.Intent?) {}
+            override fun sendBroadcast(intent: android.content.Intent?, receiverPermission: String?) {}
+            override fun sendOrderedBroadcast(intent: android.content.Intent?, receiverPermission: String?) {}
+            override fun sendOrderedBroadcast(intent: android.content.Intent, receiverPermission: String?, resultReceiver: android.content.BroadcastReceiver?, scheduler: android.os.Handler?, initialCode: Int, initialData: String?, initialExtras: android.os.Bundle?) {}
+            override fun sendBroadcastAsUser(intent: android.content.Intent?, user: android.os.UserHandle?) {}
+            override fun sendBroadcastAsUser(intent: android.content.Intent?, user: android.os.UserHandle?, receiverPermission: String?) {}
+            override fun sendOrderedBroadcastAsUser(intent: android.content.Intent?, user: android.os.UserHandle?, receiverPermission: String?, resultReceiver: android.content.BroadcastReceiver?, scheduler: android.os.Handler?, initialCode: Int, initialData: String?, initialExtras: android.os.Bundle?) {}
+            override fun removeStickyBroadcast(intent: android.content.Intent?) {}
+            override fun removeStickyBroadcastAsUser(intent: android.content.Intent?, user: android.os.UserHandle?) {}
+            override fun sendStickyBroadcast(intent: android.content.Intent?) {}
+            override fun sendStickyBroadcastAsUser(intent: android.content.Intent?, user: android.os.UserHandle?) {}
+            override fun sendStickyOrderedBroadcast(intent: android.content.Intent?, resultReceiver: android.content.BroadcastReceiver?, scheduler: android.os.Handler?, initialCode: Int, initialData: String?, initialExtras: android.os.Bundle?) {}
+            override fun sendStickyOrderedBroadcastAsUser(intent: android.content.Intent?, user: android.os.UserHandle?, resultReceiver: android.content.BroadcastReceiver?, scheduler: android.os.Handler?, initialCode: Int, initialData: String?, initialExtras: android.os.Bundle?) {}
+            override fun startInstrumentation(className: android.content.ComponentName, profileFile: String?, arguments: android.os.Bundle?): Boolean = false
+            override fun registerReceiver(receiver: android.content.BroadcastReceiver?, filter: android.content.IntentFilter?): android.content.Intent? = null
+            override fun registerReceiver(receiver: android.content.BroadcastReceiver?, filter: android.content.IntentFilter?, flags: Int): android.content.Intent? = null
+            override fun registerReceiver(receiver: android.content.BroadcastReceiver?, filter: android.content.IntentFilter?, broadcastPermission: String?, scheduler: android.os.Handler?): android.content.Intent? = null
+            override fun registerReceiver(receiver: android.content.BroadcastReceiver?, filter: android.content.IntentFilter?, broadcastPermission: String?, scheduler: android.os.Handler?, flags: Int): android.content.Intent? = null
+            override fun unregisterReceiver(receiver: android.content.BroadcastReceiver?) {}
+            override fun startService(service: android.content.Intent?): android.content.ComponentName? = null
+            override fun startForegroundService(service: android.content.Intent?): android.content.ComponentName? = null
+            override fun stopService(service: android.content.Intent?): Boolean = false
+            override fun bindService(service: android.content.Intent, conn: android.content.ServiceConnection, flags: Int): Boolean = false
+            override fun unbindService(conn: android.content.ServiceConnection) {}
+            override fun getSystemService(name: String): Any? = null
+            override fun getSystemServiceName(serviceClass: Class<*>): String? = null
+            override fun checkPermission(permission: String, pid: Int, uid: Int): Int = 0
+            override fun checkCallingPermission(permission: String): Int = 0
+            override fun checkCallingOrSelfPermission(permission: String): Int = 0
+            override fun checkSelfPermission(permission: String): Int = 0
+            override fun enforcePermission(permission: String, pid: Int, uid: Int, message: String?) {}
+            override fun enforceCallingPermission(permission: String, message: String?) {}
+            override fun enforceCallingOrSelfPermission(permission: String, message: String?) {}
+            override fun grantUriPermission(toPackage: String?, uri: android.net.Uri?, modeFlags: Int) {}
+            override fun revokeUriPermission(uri: android.net.Uri?, modeFlags: Int) {}
+            override fun revokeUriPermission(toPackage: String?, uri: android.net.Uri?, modeFlags: Int) {}
+            override fun checkUriPermission(uri: android.net.Uri?, pid: Int, uid: Int, modeFlags: Int): Int = 0
+            override fun checkCallingUriPermission(uri: android.net.Uri?, modeFlags: Int): Int = 0
+            override fun checkCallingOrSelfUriPermission(uri: android.net.Uri?, modeFlags: Int): Int = 0
+            override fun checkUriPermission(uri: android.net.Uri?, readPermission: String?, writePermission: String?, pid: Int, uid: Int, modeFlags: Int): Int = 0
+            override fun enforceUriPermission(uri: android.net.Uri?, pid: Int, uid: Int, modeFlags: Int, message: String?) {}
+            override fun enforceCallingUriPermission(uri: android.net.Uri?, modeFlags: Int, message: String?) {}
+            override fun enforceCallingOrSelfUriPermission(uri: android.net.Uri?, modeFlags: Int, message: String?) {}
+            override fun enforceUriPermission(uri: android.net.Uri?, readPermission: String?, writePermission: String?, pid: Int, uid: Int, modeFlags: Int, message: String?) {}
+            override fun createPackageContext(packageName: String?, flags: Int): Context = this
+            override fun createContextForSplit(splitName: String?): Context = this
+            override fun createConfigurationContext(overrideConfiguration: Configuration): Context = this
+            override fun createDisplayContext(display: android.view.Display): Context = this
+            override fun createDeviceProtectedStorageContext(): Context = this
+            override fun isDeviceProtectedStorage(): Boolean = false
         }
     )
 
@@ -507,5 +616,112 @@ class GameplayProgressionTest {
         assertEquals("1.5M", com.game.dungeon.ui.components.formatAmount(1500000L))
         assertEquals("2.5B", com.game.dungeon.ui.components.formatAmount(2500000000L))
         assertEquals("∞", com.game.dungeon.ui.components.formatAmount(Long.MAX_VALUE))
+    }
+
+    @Test
+    fun testJobAbilityThreeTierProgression() {
+        for (job in HeroClass.entries) {
+            val abilities = JobAbilityData.getAbilitiesForJob(job)
+            assertEquals("Each job class must have 3 ability tiers defined", 3, abilities.size)
+
+            val level0Spec = JobAbilityData.getActiveAbilityForLevel(job, 0)
+            assertNull("Level 0 / 0 mastery must return null for active ability", level0Spec)
+
+            val tier1 = JobAbilityData.getActiveAbilityForLevel(job, 1)
+            val tier2 = JobAbilityData.getActiveAbilityForLevel(job, 10)
+            val tier3 = JobAbilityData.getActiveAbilityForLevel(job, 25)
+
+            assertNotNull("Level 1 must unlock tier 1 ability", tier1)
+            assertNotNull("Level 10 must unlock tier 2 ability", tier2)
+            assertNotNull("Level 25 must unlock tier 3 ability", tier3)
+
+            assertEquals(1, tier1!!.unlockLevel)
+            assertEquals(10, tier2!!.unlockLevel)
+            assertEquals(25, tier3!!.unlockLevel)
+
+            assertNotEquals(tier1.nameRes, tier2.nameRes)
+            assertNotEquals(tier2.nameRes, tier3.nameRes)
+        }
+    }
+
+    @Test
+    fun testJobAbilityUnlocksAndCombatExecution() {
+        val engine = FFBattleEngine(mockContext)
+
+        for (job in HeroClass.entries) {
+            // Verify level 0 returns null (no ability unlocked at level 0 mastery)
+            val level0Spec = JobAbilityData.getActiveAbilityForLevel(job, 0)
+            assertNull("Level 0 job mastery must return null (no ability unlocked)", level0Spec)
+
+            // Test level 0 mastery hero: ability should NOT trigger even when abilityCharge >= 3
+            val level0Hero = Hero(
+                id = "h0",
+                heroClass = job,
+                name = "Hero0",
+                currentHp = 100,
+                currentMp = 50,
+                level = 1,
+                abilityCharge = 2,
+                aiPriority = job.defaultPriority
+            )
+            val eventsLevel0 = mutableListOf<FFBattleEvent>()
+            kotlinx.coroutines.runBlocking {
+                engine.runBattle(
+                    heroes = listOf(level0Hero),
+                    dimension = FFDimensionData.getDimension(1),
+                    startFloor = 1,
+                    speed = BattleSpeed.FAST,
+                    relicBonuses = RelicBonuses.from(GameState(jobMasteryLevels = emptyMap())),
+                    isPaused = { false },
+                    onEvent = { eventsLevel0.add(it) }
+                )
+            }
+            val abilityEventLvl0 = eventsLevel0.filterIsInstance<FFBattleEvent.AbilityUsed>().firstOrNull()
+            assertNull("Hero with 0 job mastery level must NOT use job ability in combat", abilityEventLvl0)
+
+            // Verify unlocked tier specs
+            val tier1Spec = JobAbilityData.getActiveAbilityForLevel(job, 1)!!
+            val tier2Spec = JobAbilityData.getActiveAbilityForLevel(job, 10)!!
+            val tier3Spec = JobAbilityData.getActiveAbilityForLevel(job, 25)!!
+
+            assertEquals(1, tier1Spec.unlockLevel)
+            assertEquals(10, tier2Spec.unlockLevel)
+            assertEquals(25, tier3Spec.unlockLevel)
+
+            // Test combat execution when job mastery = 1, 10, 25
+            for ((masteryLvl, expectedSpec) in listOf(
+                1 to tier1Spec,
+                10 to tier2Spec,
+                25 to tier3Spec
+            )) {
+                val hero = Hero(
+                    id = "h_$masteryLvl",
+                    heroClass = job,
+                    name = "Hero$masteryLvl",
+                    currentHp = 100,
+                    currentMp = 50,
+                    level = 1,
+                    abilityCharge = 2,
+                    aiPriority = job.defaultPriority
+                )
+                val emittedEvents = mutableListOf<FFBattleEvent>()
+
+                kotlinx.coroutines.runBlocking {
+                    engine.runBattle(
+                        heroes = listOf(hero),
+                        dimension = FFDimensionData.getDimension(1),
+                        startFloor = 1,
+                        speed = BattleSpeed.FAST,
+                        relicBonuses = RelicBonuses.from(GameState(jobMasteryLevels = mapOf(job to masteryLvl))),
+                        isPaused = { false },
+                        onEvent = { emittedEvents.add(it) }
+                    )
+                }
+
+                val abilityEvent = emittedEvents.filterIsInstance<FFBattleEvent.AbilityUsed>().firstOrNull()
+                assertNotNull("AbilityUsed event must be emitted when abilityCharge reaches 3 at job mastery level $masteryLvl for $job", abilityEvent)
+                assertEquals("Ability used must match unlocked tier spec name at job mastery level $masteryLvl for $job", expectedSpec.nameRes, abilityEvent!!.nameRes)
+            }
+        }
     }
 }

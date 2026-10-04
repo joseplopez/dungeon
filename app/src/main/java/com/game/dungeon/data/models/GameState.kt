@@ -178,8 +178,8 @@ enum class UpgradeType(
     val maxLevel: Int,
     val emoji: String
 ) {
-    INN(R.string.upgrade_inn_name, R.string.upgrade_inn_desc, 500, 1, "🍺"),
-    BARRACKS(R.string.upgrade_barracks_name, R.string.upgrade_barracks_desc, 1000, 2, "🏕"),
+    INN(R.string.upgrade_inn_name, R.string.upgrade_inn_desc, 5000, 1, "🍺"),
+    BARRACKS(R.string.upgrade_barracks_name, R.string.upgrade_barracks_desc, 3000, 2, "🏕"),
     VAULT(R.string.upgrade_vault_name, R.string.upgrade_vault_desc, 300, 40, "🏦"),
     ARMORY(R.string.upgrade_armory_name, R.string.upgrade_armory_desc, 400, 40, "🛡️"),
     MAGIC_SHOP(R.string.upgrade_magic_shop_name, R.string.upgrade_magic_shop_desc, 600, 40, "🔮"),

@@ -847,4 +847,153 @@
 
     <string name="ability_blue_mage_name">ラーニング</string>
     <string name="ability_blue_mage_desc">3ターンごとにダンジョンモンスターから修得した青魔法を使い戦況に対応します。</string>
-</resources>
+
+        <!-- Job Ability Progression -->
+        <string name="job_ability_progression_title">⚡ ジョブアビリティの成長</string>
+        <string name="job_ability_unlocked">✅ 解放済み</string>
+        <string name="job_ability_unlocks_at">🔒 Lv.%1$d で解放</string>
+
+        <!-- Freelancer Skills -->
+        <string name="skill_freelancer_t1_name">応急手当</string>
+        <string name="skill_freelancer_t1_desc">野戦医学で自分のHPを回復する。</string>
+        <string name="skill_freelancer_t2_name">集中チャージ</string>
+        <string name="skill_freelancer_t2_desc">次のターンの物理および魔法ダメージを増加させる。</string>
+        <string name="skill_freelancer_t3_name">ワイルドカード</string>
+        <string name="skill_freelancer_t3_desc">バランスの取れた一撃を繰り出し、アビリティゲージを即座に再充填する。</string>
+
+        <!-- Warrior Skills -->
+        <string name="skill_warrior_t1_name">ヘヴィストライク</string>
+        <string name="skill_warrior_t1_desc">敵単体に150%%の強力な物理ダメージを与える。</string>
+        <string name="skill_warrior_t2_name">アーマーブレイク</string>
+        <string name="skill_warrior_t2_desc">180%%の物理ダメージを与え、対象の防御力を低下させる。</string>
+        <string name="skill_warrior_t3_name">ジャイアントアックス</string>
+        <string name="skill_warrior_t3_desc">敵全体に220%%の超絶物理ダメージで薙ぎ払う。</string>
+
+        <!-- White Mage Skills -->
+        <string name="skill_white_mage_t1_name">ケアル</string>
+        <string name="skill_white_mage_t1_desc">最もHPが低い味方1人のHPを中回復する。</string>
+        <string name="skill_white_mage_t2_name">ケアルジャシールド</string>
+        <string name="skill_white_mage_t2_desc">最もHPが低い味方のHPを大回復し、パーティにダメージバリアを付与する。</string>
+        <string name="skill_white_mage_t3_name">ケアルガパーティヒール</string>
+        <string name="skill_white_mage_t3_desc">生存している味方全員のHPを超大回復する！</string>
+
+        <!-- Black Mage Skills -->
+        <string name="skill_black_mage_t1_name">ファイアボール</string>
+        <string name="skill_black_mage_t1_desc">敵単体に140%%の魔法ダメージを与える。</string>
+        <string name="skill_black_mage_t2_name">チェインライトニング</string>
+        <string name="skill_black_mage_t2_desc">最大2体の敵に170%%の属性魔法ダメージを与える。</string>
+        <string name="skill_black_mage_t3_name">メテオテンペスト</string>
+        <string name="skill_black_mage_t3_desc">隕石を呼び寄せ、敵全体に220%%の巨大魔法ダメージを与える！</string>
+
+        <!-- Thief Skills -->
+        <string name="skill_thief_t1_name">クイックダガー</string>
+        <string name="skill_thief_t1_desc">クリティカル率が高い素早い攻撃。</string>
+        <string name="skill_thief_t2_name">シャドウランサック</string>
+        <string name="skill_thief_t2_desc">対象を攻撃し、敵から追加のギルとマギサイトを盗む。</string>
+        <string name="skill_thief_t3_name">ファントムミラージュ</string>
+        <string name="skill_thief_t3_desc">連続ヒットする暗殺撃で、巨大なクリティカルダメージを与える。</string>
+
+        <!-- Monk Skills -->
+        <string name="skill_monk_t1_name">チャクラ</string>
+        <string name="skill_monk_t1_desc">自分の最大HPの35%%を回復し、攻撃力を上昇させる。</string>
+        <string name="skill_monk_t2_name">トリプルパメル</string>
+        <string name="skill_monk_t2_desc">単体対象に3連撃の物理コンボを繰り出す。</string>
+        <string name="skill_monk_t3_name">百烈拳</string>
+        <string name="skill_monk_t3_desc">怒涛の連続拳で敵全体に強力な物理ダメージを与える！</string>
+
+        <!-- Knight Skills -->
+        <string name="skill_knight_t1_name">シールドバッシュ</string>
+        <string name="skill_knight_t1_desc">敵1体に防御力（DEF）依存の物理ダメージを与える。</string>
+        <string name="skill_knight_t2_name">センチネルカバー</string>
+        <string name="skill_knight_t2_desc">2ターンの間、パーティが受けるダメージを大幅に軽減する。</string>
+        <string name="skill_knight_t3_name">イージスジャッジメント</string>
+        <string name="skill_knight_t3_desc">対象にダメージを与え、味方全体を護る強力な聖なる一撃。</string>
+
+        <!-- Paladin Skills -->
+        <string name="skill_paladin_t1_name">ホーリースラッシュ</string>
+        <string name="skill_paladin_t1_desc">対象に聖なる物理ダメージを与え、最もHPが低い味方を微回復する。</string>
+        <string name="skill_paladin_t2_name">ディバインサンクチュアリ</string>
+        <string name="skill_paladin_t2_desc">パーティを中回復し、防御力と魔法防御力を上昇させる。</string>
+        <string name="skill_paladin_t3_name">セイクレッドクレンジング</string>
+        <string name="skill_paladin_t3_desc">敵全体に200%%の聖なるダメージを与え、パーティのHPを全回復する！</string>
+
+        <!-- Red Mage Skills -->
+        <string name="skill_red_mage_t1_name">連続魔：ファイア＆ケアル</string>
+        <string name="skill_red_mage_t1_desc">1ターンで対象にファイアを放ち、最もHPが低い味方にケアルを唱える。</string>
+        <string name="skill_red_mage_t2_name">アルケインバースト</string>
+        <string name="skill_red_mage_t2_desc">対象の敵に炎と氷の二重属性魔法を与える。</string>
+        <string name="skill_red_mage_t3_name">チェインスペルテンペスト</string>
+        <string name="skill_red_mage_t3_desc">敵全体に3連続の属性魔法を放ち、パーティを回復する。</string>
+
+        <!-- Summoner Skills -->
+        <string name="skill_summoner_t1_name">スピリットコール</string>
+        <string name="skill_summoner_t1_desc">属性の精霊を召喚し、範囲（AoE）魔法ダメージを与える。</string>
+        <string name="skill_summoner_t2_name">裁きの雷</string>
+        <string name="skill_summoner_t2_desc">ラムウを召喚し、敵全体に雷を落とす。</string>
+        <string name="skill_summoner_t3_name">メガフレア</string>
+        <string name="skill_summoner_t3_desc">竜王バハムートを召喚し、全員に250%%の超絶魔法ダメージを与える！</string>
+
+        <!-- Ninja Skills -->
+        <string name="skill_ninja_t1_name">手裏剣投擲</string>
+        <string name="skill_ninja_t1_desc">対象に防御貫通の遠距離物理ダメージを与える。</string>
+        <string name="skill_ninja_t2_name">影分身</string>
+        <string name="skill_ninja_t2_desc">100%%確定でクリティカルヒットする多段攻撃。</string>
+        <string name="skill_ninja_t3_name">忘却斬り</string>
+        <string name="skill_ninja_t3_desc">単体対象に絶大なダメージを与える致命的な暗殺撃！</string>
+
+        <!-- Dragoon Skills -->
+        <string name="skill_dragoon_t1_name">ジャンプストライク</string>
+        <string name="skill_dragoon_t1_desc">空中に跳び上がり、落下して180%%の物理ダメージを与える。</string>
+        <string name="skill_dragoon_t2_name">ドラゴンランス</string>
+        <string name="skill_dragoon_t2_desc">敵の装甲を貫通し、220%%の物理ダメージを与える。</string>
+        <string name="skill_dragoon_t3_name">ハイジャンプノヴァ</string>
+        <string name="skill_dragoon_t3_desc">竜の高みにまで上昇し、敵全体を打つ衝撃波を炸裂させる！</string>
+
+        <!-- Bard Skills -->
+        <string name="skill_bard_t1_name">吟遊詩人のバラード</string>
+        <string name="skill_bard_t1_desc">毎ターン、パーティのHPを継続回復する。</string>
+        <string name="skill_bard_t2_name">勇猛のメヌエット</string>
+        <string name="skill_bard_t2_desc">パーティの攻撃力と魔法攻撃力を25%%増加させる。</string>
+        <string name="skill_bard_t3_name">英雄の賛歌</string>
+        <string name="skill_bard_t3_desc">情熱的な歌でパーティの全ステータスを強化し、HPを回復する！</string>
+
+        <!-- Samurai Skills -->
+        <string name="skill_samurai_t1_name">居合い斬り</string>
+        <string name="skill_samurai_t1_desc">クリティカル率が高い精密な一閃。</string>
+        <string name="skill_samurai_t2_name">ぜになげ</string>
+        <string name="skill_samurai_t2_desc">ギルを投げて敵全体に強力な物理ダメージを与える。</string>
+        <string name="skill_samurai_t3_name">武士道処刑</string>
+        <string name="skill_samurai_t3_desc">敵全体に絶大なクリティカルダメージを与える極みの刀技！</string>
+
+        <!-- Onion Knight Skills -->
+        <string name="skill_onion_knight_t1_name">たまねぎつつき</string>
+        <string name="skill_onion_knight_t1_desc">ささやかな突きで軽微な物理ダメージを与える。</string>
+        <string name="skill_onion_knight_t2_name">オニオンラッシュ</string>
+        <string name="skill_onion_knight_t2_desc">中程度の物理ダメージを与える素早い2連撃。</string>
+        <string name="skill_onion_knight_t3_name">オニオンオーバーロード</string>
+        <string name="skill_onion_knight_t3_desc">物理と魔法の極大サージを放ち、300%%の至高ダメージを与える！</string>
+
+        <!-- Mime Skills -->
+        <string name="skill_mime_t1_name">まねる</string>
+        <string name="skill_mime_t1_desc">直前に行動した味方のアビリティを模倣する。</string>
+        <string name="skill_mime_t2_name">グランドミミック</string>
+        <string name="skill_mime_t2_desc">直前のアビリティを威力を150%%に強化して模倣する。</string>
+        <string name="skill_mime_t3_name">パーフェクトエコー</string>
+        <string name="skill_mime_t3_desc">パーティの最強のアビリティを模倣し、全対象に放つ！</string>
+
+        <!-- Necromancer Skills -->
+        <string name="skill_necromancer_t1_name">ライフドレイン</string>
+        <string name="skill_necromancer_t1_desc">対象の敵からHPを吸収して自分を回復する。</string>
+        <string name="skill_necromancer_t2_name">ソウルサイフォン</string>
+        <string name="skill_necromancer_t2_desc">敵からHPを吸収し、生存している味方全員に回復を分配する。</string>
+        <string name="skill_necromancer_t3_name">グレイブテンペスト</string>
+        <string name="skill_necromancer_t3_desc">影の嵐を召喚して全員に闇魔法ダメージを与え、パーティを回復する！</string>
+
+        <!-- Blue Mage Skills -->
+        <string name="skill_blue_mage_t1_name">ゴブリンパンチ</string>
+        <string name="skill_blue_mage_t1_desc">モンスターとの戦闘から習得した物理技能。</string>
+        <string name="skill_blue_mage_t2_name">ホワイトウィンド</string>
+        <string name="skill_blue_mage_t2_desc">青魔道士の現在のHPに比例してパーティを回復する。</string>
+        <string name="skill_blue_mage_t3_name">マイティガード</string>
+        <string name="skill_blue_mage_t3_desc">味方全員の防御力と魔法防御力を大幅に強化し、範囲状態変化を放つ！</string>
+    </resources>

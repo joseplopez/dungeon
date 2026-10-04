@@ -1,15 +1,25 @@
 package com.game.dungeon.ui.components
 
 import androidx.compose.animation.core.*
+import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.*
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.drawscope.Stroke
+import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.dp
 import com.game.dungeon.data.models.BattleSpeed
 import com.game.dungeon.data.models.Enemy
 import com.game.dungeon.data.models.Hero
@@ -69,7 +79,8 @@ fun AbilityEffectsOverlay(
                 drawMonsterAttack(animInfo.monsterType, animInfo.isBossAttack, progress, heroX, centerY)
             } else {
                 when (animInfo.heroClass) {
-                    HeroClass.WARRIOR, HeroClass.KNIGHT -> drawWarriorSlash(progress, enemyX, centerY)
+                    HeroClass.WARRIOR -> drawWarriorSlash(progress, enemyX, centerY)
+                    HeroClass.KNIGHT -> drawKnightGuardSlash(progress, heroX, enemyX, centerY)
                     HeroClass.WHITE_MAGE -> drawWhiteMageHeal(progress, heroX, centerY)
                     HeroClass.BLACK_MAGE -> drawBlackMageElemental(progress, enemyX, centerY)
                     HeroClass.THIEF -> drawThiefRansack(progress, heroX, enemyX, centerY)
@@ -89,7 +100,49 @@ fun AbilityEffectsOverlay(
                 }
             }
         }
+
+        // Skill / Ability Name Floating Banner
+        animInfo.abilityNameRes?.let { nameRes ->
+            val alpha = sin(progress * Math.PI.toFloat()).coerceIn(0f, 1f)
+            Surface(
+                modifier = Modifier
+                    .align(Alignment.TopCenter)
+                    .padding(top = 16.dp)
+                    .graphicsLayer(alpha = alpha),
+                color = Color.Black.copy(alpha = 0.8f),
+                shape = RoundedCornerShape(8.dp),
+                border = BorderStroke(1.dp, GoldBright)
+            ) {
+                Text(
+                    text = stringResource(nameRes),
+                    color = GoldBright,
+                    style = MaterialTheme.typography.titleMedium,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier.padding(horizontal = 16.dp, vertical = 6.dp)
+                )
+            }
+        }
     }
+}
+
+private fun androidx.compose.ui.graphics.drawscope.DrawScope.drawKnightGuardSlash(progress: Float, heroX: Float, enemyX: Float, centerY: Float) {
+    val alpha = (1f - progress).coerceIn(0f, 1f)
+
+    // Golden Aegis Shield Aura
+    drawCircle(
+        color = GoldBright.copy(alpha = alpha * 0.6f),
+        radius = 50f + progress * 30f,
+        center = Offset(heroX, centerY),
+        style = Stroke(width = 6f)
+    )
+
+    // Heavy Shield Slash Beam
+    val slashPath = Path().apply {
+        moveTo(enemyX - 40f, centerY - 60f)
+        lineTo(enemyX + 40f, centerY + 60f)
+    }
+    drawPath(slashPath, Color.White.copy(alpha = alpha), style = Stroke(width = 8f))
+    drawPath(slashPath, Color(0xFF4488FF).copy(alpha = alpha), style = Stroke(width = 4f))
 }
 
 private fun androidx.compose.ui.graphics.drawscope.DrawScope.drawWarriorSlash(progress: Float, targetX: Float, targetY: Float) {

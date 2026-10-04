@@ -848,4 +848,154 @@
 
     <string name="ability_blue_mage_name">몬스터 청마법</string>
     <string name="ability_blue_mage_desc">3턴마다 던전 몬스터에게서 습득한 청마법을 사용하여 전투에 대응합니다.</string>
-</resources>
+
+
+        <!-- Job Ability Progression -->
+        <string name="job_ability_progression_title">⚡ 직업 어빌리티 성장</string>
+        <string name="job_ability_unlocked">✅ 잠금 해제됨</string>
+        <string name="job_ability_unlocks_at">🔒 Lv.%1$d 달성 시 잠금 해제</string>
+
+        <!-- Freelancer Skills -->
+        <string name="skill_freelancer_t1_name">응급처치</string>
+        <string name="skill_freelancer_t1_desc">기초 야전 의술로 자신의 HP를 회복합니다.</string>
+        <string name="skill_freelancer_t2_name">집중 차지</string>
+        <string name="skill_freelancer_t2_desc">다음Turn 동안 물리 및 마법 피해량을 증가시킵니다.</string>
+        <string name="skill_freelancer_t3_name">와일드카드</string>
+        <string name="skill_freelancer_t3_desc">균형 잡힌 타격을 가하여 어빌리티 게이지를 즉시 재충전합니다.</string>
+
+        <!-- Warrior Skills -->
+        <string name="skill_warrior_t1_name">헤비 스트라이크</string>
+        <string name="skill_warrior_t1_desc">단일 적에게 150%%의 강력한 물리 피해를 입힙니다.</string>
+        <string name="skill_warrior_t2_name">아머 브레이크</string>
+        <string name="skill_warrior_t2_desc">180%%의 물리 피해를 입히고 대상의 방어력을 감소시킵니다.</string>
+        <string name="skill_warrior_t3_name">자이언트 엑스 클리브</string>
+        <string name="skill_warrior_t3_desc">모든 적을 220%%의 거대한 물리 피해로 베어버립니다.</string>
+
+        <!-- White Mage Skills -->
+        <string name="skill_white_mage_t1_name">케알</string>
+        <string name="skill_white_mage_t1_desc">HP가 가장 낮은 아군 1명의 HP를 적당량 회복합니다.</string>
+        <string name="skill_white_mage_t2_name">케알자 실드</string>
+        <string name="skill_white_mage_t2_desc">HP가 가장 낮은 아군을 크게 회복시키고 파티에 피해 방어막을 부여합니다.</string>
+        <string name="skill_white_mage_t3_name">케알가 파티 힐</string>
+        <string name="skill_white_mage_t3_desc">생존해 있는 모든 파티원의 HP를 대폭 회복합니다!</string>
+
+        <!-- Black Mage Skills -->
+        <string name="skill_black_mage_t1_name">파이어볼</string>
+        <string name="skill_black_mage_t1_desc">단일 적에게 140%%의 마법 피해를 입힙니다.</string>
+        <string name="skill_black_mage_t2_name">체인 라이트닝</string>
+        <string name="skill_black_mage_t2_desc">최대 2명의 적에게 170%%의 속성 마법 피해를 입힙니다.</string>
+        <string name="skill_black_mage_t3_name">메테오 템페스트</string>
+        <string name="skill_black_mage_t3_desc">운석을 떨어뜨려 모든 적에게 220%%의 거대한 마법 피해를 입힙니다!</string>
+
+        <!-- Thief Skills -->
+        <string name="skill_thief_t1_name">퀵 대거</string>
+        <string name="skill_thief_t1_desc">치명타 확률이 높은 빠른 공격입니다.</string>
+        <string name="skill_thief_t2_name">섀도 랜색</string>
+        <string name="skill_thief_t2_desc">대상을 공격하고 적에게서 추가 길과 마기사이트를 훔칩니다.</string>
+        <string name="skill_thief_t3_name">팬텀 미라주</string>
+        <string name="skill_thief_t3_desc">다단계 타격 암살 공격으로 엄청난 치명타 피해를 입힙니다.</string>
+
+        <!-- Monk Skills -->
+        <string name="skill_monk_t1_name">차크라</string>
+        <string name="skill_monk_t1_desc">자신 최대 HP의 35%%를 회복하고 공격력을 증가시킵니다.</string>
+        <string name="skill_monk_t2_name">트리플 퍼멜</string>
+        <string name="skill_monk_t2_desc">단일 대상에게 3타 물리 콤보를 가합니다.</string>
+        <string name="skill_monk_t3_name">백열권</string>
+        <string name="skill_monk_t3_desc">휘몰아치는 연속 연타로 모든 적에게 강력한 물리 피해를 입힙니다!</string>
+
+        <!-- Knight Skills -->
+        <string name="skill_knight_t1_name">실드 배시</string>
+        <string name="skill_knight_t1_desc">적 1명에게 DEF에 비례하는 물리 피해를 입힙니다.</string>
+        <string name="skill_knight_t2_name">센티널 커버</string>
+        <string name="skill_knight_t2_desc">2턴 동안 파티가 받는 피해를 크게 감소시킵니다.</string>
+        <string name="skill_knight_t3_name">이지스 저지먼트</string>
+        <string name="skill_knight_t3_desc">대상에게 피해를 주고 파티를 보호하는 강력한 성스러운 일격입니다.</string>
+
+        <!-- Paladin Skills -->
+        <string name="skill_paladin_t1_name">홀리 슬래시</string>
+        <string name="skill_paladin_t1_desc">대상에게 성스러운 물리 피해를 입히고 HP가 가장 낮은 아군을 소량 회복합니다.</string>
+        <string name="skill_paladin_t2_name">디바인 생츄어리</string>
+        <string name="skill_paladin_t2_desc">파티를 적당히 회복시키고 파티의 DEF 및 마법 DEF를 증가시킵니다.</string>
+        <string name="skill_paladin_t3_name">세이크리드 클렌징</string>
+        <string name="skill_paladin_t3_desc">모든 적에게 200%%의 신성 피해를 입히고 파티의 HP를 완전히 회복합니다!</string>
+
+        <!-- Red Mage Skills -->
+        <string name="skill_red_mage_t1_name">연속마: 파이어 &amp; 케알</string>
+        <string name="skill_red_mage_t1_desc">1턴 동안 대상에게 파이어를, HP가 가장 낮은 아군에게 케알을 시전합니다.</string>
+        <string name="skill_red_mage_t2_name">아케인 버스트</string>
+        <string name="skill_red_mage_t2_desc">지정한 적에게 화염과 얼음의 이중 속성 마법 피해를 입힙니다.</string>
+        <string name="skill_red_mage_t3_name">체인 스펠 템페스트</string>
+        <string name="skill_red_mage_t3_desc">모든 적에게 연속으로 3개의 속성 주문을 퍼붓고 파티를 회복합니다.</string>
+
+        <!-- Summoner Skills -->
+        <string name="skill_summoner_t1_name">스피릿 콜</string>
+        <string name="skill_summoner_t1_desc">속성 정령을 소환하여 범위(AoE) 마법 피해를 입힙니다.</string>
+        <string name="skill_summoner_t2_name">심판의 번개</string>
+        <string name="skill_summoner_t2_desc">라무를 소환하여 모든 적에게 번개를 내리칩니다.</string>
+        <string name="skill_summoner_t3_name">메가플레어</string>
+        <string name="skill_summoner_t3_desc">용왕 바하무트를 소환하여 모두에게 250%%의 압도적인 마법 피해를 입힙니다!</string>
+
+        <!-- Ninja Skills -->
+        <string name="skill_ninja_t1_name">수리검 던지기</string>
+        <string name="skill_ninja_t1_desc">대상에게 방어 관통 원거리 물리 타격을 가합니다.</string>
+        <string name="skill_ninja_t2_name">분신술</string>
+        <string name="skill_ninja_t2_desc">100%% 확정 치명타가 적용되는 다단계 타격입니다.</string>
+        <string name="skill_ninja_t3_name">망각 베기</string>
+        <string name="skill_ninja_t3_desc">단일 대상에게 치명적인 암살 공격을 퍼부어 엄청난 피해를 입힙니다!</string>
+
+        <!-- Dragoon Skills -->
+        <string name="skill_dragoon_t1_name">점프 스트라이크</string>
+        <string name="skill_dragoon_t1_desc">공중으로 뛰어올라 찍어 내리며 180%%의 물리 피해를 입힙니다.</string>
+        <string name="skill_dragoon_t2_name">드래곤 랜스</string>
+        <string name="skill_dragoon_t2_desc">적의 장갑을 관통하여 220%%의 물리 피해를 입힙니다.</string>
+        <string name="skill_dragoon_t3_name">하이 점프 노바</string>
+        <string name="skill_dragoon_t3_desc">드래곤의 고도까지 상승하여 충격파 폭발을 일으켜 모든 적을 타격합니다!</string>
+
+        <!-- Bard Skills -->
+        <string name="skill_bard_t1_name">음유시인의 발라드</string>
+        <string name="skill_bard_t1_desc">매 턴마다 파티원의 HP를 지속 회복합니다.</string>
+        <string name="skill_bard_t2_name">용맹의 미뉴에트</string>
+        <string name="skill_bard_t2_desc">파티의 공격력(ATK) 및 마법 공격력(MAG)을 25%% 증가시킵니다.</string>
+        <string name="skill_bard_t3_name">영웅의 찬가</string>
+        <string name="skill_bard_t3_desc">영감을 주는 찬가를 불러 파티의 모든 능력을 강화하고 파티를 회복시킵니다!</string>
+
+        <!-- Samurai Skills -->
+        <string name="skill_samurai_t1_name">발도술</string>
+        <string name="skill_samurai_t1_desc">치명타율이 높은 정밀한 검격입니다.</string>
+        <string name="skill_samurai_t2_name">돈던지기</string>
+        <string name="skill_samurai_t2_desc">길을 던져 모든 적에게 강력한 물리 피해를 입힙니다.</string>
+        <string name="skill_samurai_t3_name">무사도 처형</string>
+        <string name="skill_samurai_t3_desc">모든 적에게 대량의 치명타 피해를 입히는 숙련된 카타나 기술입니다!</string>
+
+        <!-- Onion Knight Skills -->
+        <string name="skill_onion_knight_t1_name">양파 찌르기</string>
+        <string name="skill_onion_knight_t1_desc">경미한 물리 피해를 입히는 소소한 찌르기입니다.</string>
+        <string name="skill_onion_knight_t2_name">양파 돌격</string>
+        <string name="skill_onion_knight_t2_desc">보통의 물리 피해를 입히는 빠른 2타 공격입니다.</string>
+        <string name="skill_onion_knight_t3_name">양파 오버로드</string>
+        <string name="skill_onion_knight_t3_desc">울트라 물리 및 마법 서지를 분출하여 300%%의 최고 피해를 입힙니다!</string>
+
+        <!-- Mime Skills -->
+        <string name="skill_mime_t1_name">흉내내기</string>
+        <string name="skill_mime_t1_desc">이전에 행동한 아군의 어빌리티를 복사합니다.</string>
+        <string name="skill_mime_t2_name">그랜드 미믹</string>
+        <string name="skill_mime_t2_desc">이전 어빌리티를 150%% 증가된 위력으로 복사합니다.</string>
+        <string name="skill_mime_t3_name">퍼펙트 에코</string>
+        <string name="skill_mime_t3_desc">파티의 가장 강력한 어빌리티를 복사하여 모든 대상에게 적용시킵니다!</string>
+
+        <!-- Necromancer Skills -->
+        <string name="skill_necromancer_t1_name">라이프 드레인</string>
+        <string name="skill_necromancer_t1_desc">지정한 적에게서 HP를 흡수하여 자신을 회복합니다.</string>
+        <string name="skill_necromancer_t2_name">소울 사이폰</string>
+        <string name="skill_necromancer_t2_desc">적에게서 HP를 흡수하여 생존해 있는 모든 아군에게 회복을 분배합니다.</string>
+        <string name="skill_necromancer_t3_name">그레이브 템페스트</string>
+        <string name="skill_necromancer_t3_desc">그림자 폭풍을 소환하여 모두에게 암흑 마법을 입히고 파티를 회복합니다!</string>
+
+        <!-- Blue Mage Skills -->
+        <string name="skill_blue_mage_t1_name">고블린 펀치</string>
+        <string name="skill_blue_mage_t1_desc">몬스터와의 전투에서 습득한 물리 기술입니다.</string>
+        <string name="skill_blue_mage_t2_name">화이트 윈드</string>
+        <string name="skill_blue_mage_t2_desc">청마도사의 현재 HP에 비례하여 파티를 회복합니다.</string>
+        <string name="skill_blue_mage_t3_name">마이티 가드</string>
+        <string name="skill_blue_mage_t3_desc">모든 아군에게 대폭적인 DEF 및 마법 DEF 버프를 부여하고 범위 상태 마법을 적용합니다!</string>
+    </resources>

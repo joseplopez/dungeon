@@ -852,4 +852,153 @@
 
     <string name="ability_blue_mage_name">Monster Lore</string>
     <string name="ability_blue_mage_desc">Uses specialized blue magic learned from dungeon monsters to adapt to battle situations every 3 turns.</string>
+
+    <!-- Job Ability Progression -->
+    <string name="job_ability_progression_title">⚡ Job Ability Progression</string>
+    <string name="job_ability_unlocked">✅ Unlocked</string>
+    <string name="job_ability_unlocks_at">🔒 Unlocks at Lv.%1$d</string>
+
+    <!-- Freelancer Skills -->
+    <string name="skill_freelancer_t1_name">First Aid</string>
+    <string name="skill_freelancer_t1_desc">Restores self HP with basic field medicine.</string>
+    <string name="skill_freelancer_t2_name">Focus Charge</string>
+    <string name="skill_freelancer_t2_desc">Boosts physical and magic damage for the next turn.</string>
+    <string name="skill_freelancer_t3_name">Wild Card</string>
+    <string name="skill_freelancer_t3_desc">Delivers a balanced strike that instantly recharges ability gauge.</string>
+
+    <!-- Warrior Skills -->
+    <string name="skill_warrior_t1_name">Heavy Strike</string>
+    <string name="skill_warrior_t1_desc">Deals 150%% heavy physical damage to a single enemy.</string>
+    <string name="skill_warrior_t2_name">Armor Break</string>
+    <string name="skill_warrior_t2_desc">Deals 180%% physical damage and reduces target defense.</string>
+    <string name="skill_warrior_t3_name">Gigantaxe Cleave</string>
+    <string name="skill_warrior_t3_desc">Slashes ALL enemies with 220%% massive physical damage.</string>
+
+    <!-- White Mage Skills -->
+    <string name="skill_white_mage_t1_name">Cure</string>
+    <string name="skill_white_mage_t1_desc">Restores moderate HP to the single ally with lowest HP.</string>
+    <string name="skill_white_mage_t2_name">Curaja Shield</string>
+    <string name="skill_white_mage_t2_desc">Heals lowest HP ally for large HP and grants damage barrier to party.</string>
+    <string name="skill_white_mage_t3_name">Curaga Party Heal</string>
+    <string name="skill_white_mage_t3_desc">Restores massive HP to ALL conscious party members!</string>
+
+    <!-- Black Mage Skills -->
+    <string name="skill_black_mage_t1_name">Fireball</string>
+    <string name="skill_black_mage_t1_desc">Deals 140%% magic damage to a single enemy.</string>
+    <string name="skill_black_mage_t2_name">Chain Lightning</string>
+    <string name="skill_black_mage_t2_desc">Deals 170%% elemental magic damage striking up to 2 enemies.</string>
+    <string name="skill_black_mage_t3_name">Meteor Tempest</string>
+    <string name="skill_black_mage_t3_desc">Calls down meteors dealing 220%% massive magic damage to ALL enemies!</string>
+
+    <!-- Thief Skills -->
+    <string name="skill_thief_t1_name">Quick Dagger</string>
+    <string name="skill_thief_t1_desc">Fast attack with high critical hit chance.</string>
+    <string name="skill_thief_t2_name">Shadow Ransack</string>
+    <string name="skill_thief_t2_desc">Strikes target and steals extra Gil and Magicite from enemy.</string>
+    <string name="skill_thief_t3_name">Phantom Mirage</string>
+    <string name="skill_thief_t3_desc">Multi-hit assassination strike dealing massive critical damage.</string>
+
+    <!-- Monk Skills -->
+    <string name="skill_monk_t1_name">Chakra</string>
+    <string name="skill_monk_t1_desc">Restores 35%% of self max HP and boosts attack power.</string>
+    <string name="skill_monk_t2_name">Triple Pummel</string>
+    <string name="skill_monk_t2_desc">Delivers a 3-hit physical combo to single target.</string>
+    <string name="skill_monk_t3_name">Hundred Fists</string>
+    <string name="skill_monk_t3_desc">Rapid flurry of blows dealing heavy physical damage to ALL enemies!</string>
+
+    <!-- Knight Skills -->
+    <string name="skill_knight_t1_name">Shield Bash</string>
+    <string name="skill_knight_t1_desc">Deals DEF-scaling physical damage to 1 enemy.</string>
+    <string name="skill_knight_t2_name">Sentinel Cover</string>
+    <string name="skill_knight_t2_desc">Greatly reduces incoming party damage for 2 turns.</string>
+    <string name="skill_knight_t3_name">Aegis Judgment</string>
+    <string name="skill_knight_t3_desc">Powerful holy strike that damages target and shields the party.</string>
+
+    <!-- Paladin Skills -->
+    <string name="skill_paladin_t1_name">Holy Slash</string>
+    <string name="skill_paladin_t1_desc">Holy physical damage to target and heals lowest HP ally slightly.</string>
+    <string name="skill_paladin_t2_name">Divine Sanctuary</string>
+    <string name="skill_paladin_t2_desc">Heals party moderately and boosts party DEF and Magic DEF.</string>
+    <string name="skill_paladin_t3_name">Sacred Cleansing</string>
+    <string name="skill_paladin_t3_desc">Deals 200%% holy damage to ALL enemies and fully restores party HP!</string>
+
+    <!-- Red Mage Skills -->
+    <string name="skill_red_mage_t1_name">Dual Cast: Fire &amp; Cure</string>
+    <string name="skill_red_mage_t1_desc">Casts Fire on target and Cure on lowest HP ally in 1 turn.</string>
+    <string name="skill_red_mage_t2_name">Arcane Burst</string>
+    <string name="skill_red_mage_t2_desc">Deals dual elemental fire &amp; ice magic to target enemy.</string>
+    <string name="skill_red_mage_t3_name">Chain Spell Tempest</string>
+    <string name="skill_red_mage_t3_desc">Unleashes 3 consecutive elemental spells across all enemies and heals party.</string>
+
+    <!-- Summoner Skills -->
+    <string name="skill_summoner_t1_name">Spirit Call</string>
+    <string name="skill_summoner_t1_desc">Summons elemental spirit dealing AoE magic damage.</string>
+    <string name="skill_summoner_t2_name">Judgement Bolt</string>
+    <string name="skill_summoner_t2_desc">Summons Ramuh to strike all enemies with lightning.</string>
+    <string name="skill_summoner_t3_name">Megaflare</string>
+    <string name="skill_summoner_t3_desc">Summons Dragon King Bahamut dealing 250%% colossal magic damage to ALL!</string>
+
+    <!-- Ninja Skills -->
+    <string name="skill_ninja_t1_name">Shuriken Toss</string>
+    <string name="skill_ninja_t1_desc">Ranged armor-piercing physical strike to target.</string>
+    <string name="skill_ninja_t2_name">Shadow Image</string>
+    <string name="skill_ninja_t2_desc">Multi-hit strike with 100%% guaranteed critical hit.</string>
+    <string name="skill_ninja_t3_name">Oblivion Slash</string>
+    <string name="skill_ninja_t3_desc">Lethal assassination strike dealing enormous single-target damage!</string>
+
+    <!-- Dragoon Skills -->
+    <string name="skill_dragoon_t1_name">Jump Strike</string>
+    <string name="skill_dragoon_t1_desc">Leaps into air and crashes down dealing 180%% physical damage.</string>
+    <string name="skill_dragoon_t2_name">Dragon Lance</string>
+    <string name="skill_dragoon_t2_desc">Pierces enemy armor for 220%% physical damage.</string>
+    <string name="skill_dragoon_t3_name">High Jump Nova</string>
+    <string name="skill_dragoon_t3_desc">Ascends to dragon heights and explodes with an AoE shockwave hitting ALL enemies!</string>
+
+    <!-- Bard Skills -->
+    <string name="skill_bard_t1_name">Minstrel Ballad</string>
+    <string name="skill_bard_t1_desc">Regenerates party HP every turn.</string>
+    <string name="skill_bard_t2_name">Minuet of Might</string>
+    <string name="skill_bard_t2_desc">Increases party ATK and MAG by 25%%.</string>
+    <string name="skill_bard_t3_name">Heroic Anthem</string>
+    <string name="skill_bard_t3_desc">Sings an inspiring anthem boosting ALL party stats and healing party!</string>
+
+    <!-- Samurai Skills -->
+    <string name="skill_samurai_t1_name">Iai Slash</string>
+    <string name="skill_samurai_t1_desc">Precision sword strike with high critical hit rate.</string>
+    <string name="skill_samurai_t2_name">Zeninage</string>
+    <string name="skill_samurai_t2_desc">Throws Gil to deal heavy physical damage to ALL enemies.</string>
+    <string name="skill_samurai_t3_name">Bushido Execution</string>
+    <string name="skill_samurai_t3_desc">Masterful katana technique dealing massive critical damage to ALL enemies!</string>
+
+    <!-- Onion Knight Skills -->
+    <string name="skill_onion_knight_t1_name">Onion Poke</string>
+    <string name="skill_onion_knight_t1_desc">A humble poke dealing light physical damage.</string>
+    <string name="skill_onion_knight_t2_name">Onion Rush</string>
+    <string name="skill_onion_knight_t2_desc">Rapid 2-hit attack dealing moderate physical damage.</string>
+    <string name="skill_onion_knight_t3_name">Onion Overlord</string>
+    <string name="skill_onion_knight_t3_desc">Unleashes ultra physical &amp; magic surge dealing 300%% supreme damage!</string>
+
+    <!-- Mime Skills -->
+    <string name="skill_mime_t1_name">Mimic</string>
+    <string name="skill_mime_t1_desc">Replicates the previous ally\'s ability.</string>
+    <string name="skill_mime_t2_name">Grand Mimicry</string>
+    <string name="skill_mime_t2_desc">Replicates previous ability with 150%% increased power.</string>
+    <string name="skill_mime_t3_name">Perfect Echo</string>
+    <string name="skill_mime_t3_desc">Replicates the strongest party ability affecting ALL targets!</string>
+
+    <!-- Necromancer Skills -->
+    <string name="skill_necromancer_t1_name">Life Drain</string>
+    <string name="skill_necromancer_t1_desc">Drains HP from target enemy to heal self.</string>
+    <string name="skill_necromancer_t2_name">Soul Siphon</string>
+    <string name="skill_necromancer_t2_desc">Drains HP from enemy and distributes heal to ALL conscious allies.</string>
+    <string name="skill_necromancer_t3_name">Grave Tempest</string>
+    <string name="skill_necromancer_t3_desc">Summons shadow tempest dealing dark magic to ALL &amp; healing party!</string>
+
+    <!-- Blue Mage Skills -->
+    <string name="skill_blue_mage_t1_name">Goblin Punch</string>
+    <string name="skill_blue_mage_t1_desc">Physical skill learned from monster encounters.</string>
+    <string name="skill_blue_mage_t2_name">White Wind</string>
+    <string name="skill_blue_mage_t2_desc">Heals party proportional to Blue Mage\'s current HP.</string>
+    <string name="skill_blue_mage_t3_name">Mighty Guard</string>
+    <string name="skill_blue_mage_t3_desc">Grants massive DEF &amp; MAG DEF buffs to ALL allies and deals AoE status magic!</string>
 </resources>

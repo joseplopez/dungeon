@@ -13,11 +13,11 @@ import com.game.dungeon.ui.viewmodels.DungeonViewModel
 
 private fun createSample5Heroes(): List<Hero> {
     return listOf(
-        Hero(id = "1", heroClass = HeroClass.WARRIOR, name = "Edgar", currentHp = 150, currentMp = 20, level = 10, exp = 50, expToNextLevel = 100, abilityCharge = 2, aiPriority = AIPriority.ATTACK),
-        Hero(id = "2", heroClass = HeroClass.NINJA, name = "Lightning", currentHp = 120, currentMp = 30, level = 10, exp = 30, expToNextLevel = 100, abilityCharge = 1, aiPriority = AIPriority.ATTACK),
-        Hero(id = "3", heroClass = HeroClass.WHITE_MAGE, name = "Rosa", currentHp = 90, currentMp = 80, level = 10, exp = 80, expToNextLevel = 100, abilityCharge = 3, aiPriority = AIPriority.HEAL),
-        Hero(id = "4", heroClass = HeroClass.RED_MAGE, name = "Rosa", currentHp = 100, currentMp = 40, level = 10, exp = 10, expToNextLevel = 100, abilityCharge = 0, aiPriority = AIPriority.HEAL),
-        Hero(id = "5", heroClass = HeroClass.BLACK_MAGE, name = "Penelo", currentHp = 80, currentMp = 100, level = 10, exp = 90, expToNextLevel = 100, abilityCharge = 2, aiPriority = AIPriority.MAGIC)
+        Hero(id = "1", heroClass = HeroClass.WARRIOR, name = "Edgar", currentHp = 150, currentMp = 20, level = 10, exp = 50, expToNextLevel = 100, abilityCharge = 2, aiPriority = AIPriority.ATTACK).apply { jobMasteryLevel = 1 },
+        Hero(id = "2", heroClass = HeroClass.NINJA, name = "Lightning", currentHp = 120, currentMp = 30, level = 10, exp = 30, expToNextLevel = 100, abilityCharge = 1, aiPriority = AIPriority.ATTACK).apply { jobMasteryLevel = 1 },
+        Hero(id = "3", heroClass = HeroClass.WHITE_MAGE, name = "Rosa", currentHp = 90, currentMp = 80, level = 10, exp = 80, expToNextLevel = 100, abilityCharge = 3, aiPriority = AIPriority.HEAL).apply { jobMasteryLevel = 1 },
+        Hero(id = "4", heroClass = HeroClass.RED_MAGE, name = "Rosa", currentHp = 100, currentMp = 40, level = 10, exp = 10, expToNextLevel = 100, abilityCharge = 0, aiPriority = AIPriority.HEAL).apply { jobMasteryLevel = 1 },
+        Hero(id = "5", heroClass = HeroClass.BLACK_MAGE, name = "Penelo", currentHp = 80, currentMp = 100, level = 10, exp = 90, expToNextLevel = 100, abilityCharge = 2, aiPriority = AIPriority.MAGIC).apply { jobMasteryLevel = 1 }
     )
 }
 

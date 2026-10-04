@@ -847,4 +847,167 @@
 
     <string name="ability_blue_mage_name">بلاؤں کا علم</string>
     <string name="ability_blue_mage_desc">دشمنوں سے سیکھا ہوا نیلا جادو استعمال کر کے جنگ میں ڈھلتا ہے۔</string>
-</resources>
+
+     <!-- Job Ability Progression -->
+        <string name="job_ability_progression_title">⚡ جاب کی صلاحیت کی پیشرفت</string>
+        <string name="job_ability_unlocked">✅ ان لاک ہو گیا</string>
+        <string name="job_ability_unlocks_at">🔒 لیول %1$d پر ان لاک ہوتا ہے</string>
+
+        <!-- Freelancer Skills -->
+        <string name="skill_freelancer_t1_name">ابتدائی طبی امداد</string>
+        <string name="skill_freelancer_t1_desc">بنیادی فیلڈ میڈیسن کے ساتھ اپنی HP بحال کرتا ہے۔</string>
+        <string name="skill_freelancer_t2_name">فوکس چارج</string>
+        <string name="skill_freelancer_t2_desc">اگلی باری کے لیے جسمانی اور جادوئی نقصان کو بڑھاتا ہے۔</string>
+        <string name="skill_freelancer_t3_name">وائلڈ کارڈ</string>
+        <string name="skill_freelancer_t3_desc">ایک متوازن ہٹ فراہم کرتا ہے جو صلاحیت کے گیج کو فوری طور پر ریچارج کرتا ہے۔</string>
+
+        <!-- Warrior Skills -->
+        <string name="skill_warrior_t1_name">بھاری حملہ</string>
+        <string name="skill_warrior_t1_desc">ایک دشمن کو 150%% بھاری جسمانی نقصان پہنچاتا ہے۔</string>
+        <string name="skill_warrior_t2_name">آرمر بریک</string>
+        <string name="skill_warrior_t2_desc">180%% جسمانی نقصان پہنچاتا ہے اور ہدف کا دفاع کم کرتا ہے۔</string>
+
+        <string name="skill_warrior_t3_name">عظیم کلہاڑی کا وار</string>
+        <string name="skill_warrior_t3_desc">تمام دشمنوں پر 220%% شدید جسمانی نقصان کے ساتھ وار کرتا ہے۔</string>
+
+        <!-- White Mage Skills -->
+        <string name="skill_white_mage_t1_name">شفاء</string>
+        <string name="skill_white_mage_t1_desc">سب سے کم HP والے واحد ساتھی کی مناسب HP بحال کرتا ہے۔</string>
+        <string name="skill_white_mage_t2_name">کوراجا شیلڈ</string>
+        <string name="skill_white_mage_t2_desc">سب سے کم HP والے ساتھی کو زیادہ HP سے شفاء دیتا ہے اور پارٹی کو نقصان سے بچاؤ کی شیلڈ دیتا ہے۔</string>
+        <string name="skill_white_mage_t3_name">کوراکا پارٹی ہیل</string>
+        <string name="skill_white_mage_t3_desc">تمام باہوش پارٹی ممبران کی زبردست HP بحال کرتا ہے!</string>
+
+        <!-- Black Mage Skills -->
+        <string name="skill_black_mage_t1_name">آگ کا گولا</string>
+        <string name="skill_black_mage_t1_desc">ایک دشمن کو 140%% جادوئی نقصان پہنچاتا ہے۔</string>
+        <string name="skill_black_mage_t2_name">زنجیری بجلی</string>
+        <string name="skill_black_mage_t2_desc">2 دشمنوں تک کو 170%% عنصری جادوئی نقصان پہنچاتا ہے۔</string>
+
+        <string name="skill_black_mage_t3_name">شہابِ ثاقب کا طوفان</string>
+        <string name="skill_black_mage_t3_desc">شہابِ ثاقب برسا کر تمام دشمنوں کو 220%% شدید جادوئی نقصان پہنچاتا ہے!</string>
+
+        <!-- Thief Skills -->
+        <string name="skill_thief_t1_name">تیز خنجر</string>
+        <string name="skill_thief_t1_desc">اعلی کرٹیکل ہٹ کے امکان کے ساتھ تیز رفتار حملہ۔</string>
+        <string name="skill_thief_t2_name">سایہ لوٹ مار</string>
+        <string name="skill_thief_t2_desc">ہدف پر وار کرتا ہے اور دشمن سے اضافی گِل اور میجیسائٹ چراتا ہے۔</string>
+        <string name="skill_thief_t3_name">فرضی سراب</string>
+        <string name="skill_thief_t3_desc">متعدد واروں والا قاتلانہ حملہ جو شدید کرٹیکل نقصان پہنچاتا ہے۔</string>
+
+        <!-- Monk Skills -->
+        <string name="skill_monk_t1_name">چکرا</string>
+        <string name="skill_monk_t1_desc">اپنی زیادہ سے زیادہ HP کا 35%% بحال کرتا ہے اور حملے کی طاقت بڑھاتا ہے۔</string>
+        <string name="skill_monk_t2_name">تہرا مکا</string>
+        <string name="skill_monk_t2_desc">ایک ہدف پر 3 واروں کا جسمانی کمبو فراہم کرتا ہے۔</string>
+
+        <string name="skill_monk_t3_name">سو مکے</string>
+        <string name="skill_monk_t3_desc">مکوں کی تیز بوچھاڑ جو تمام دشمنوں کو بھاری جسمانی نقصان پہنچاتی ہے!</string>
+
+        <!-- Knight Skills -->
+        <string name="skill_knight_t1_name">ڈھال کا وار</string>
+        <string name="skill_knight_t1_desc">1 دشمن کو DEF پر مبنی جسمانی نقصان پہنچاتا ہے۔</string>
+        <string name="skill_knight_t2_name">پاسبان کی حفاظت</string>
+        <string name="skill_knight_t2_desc">2 باریوں کے لیے پارٹی کو ملنے والے نقصان کو کافی حد تک کم کرتا ہے۔</string>
+        <string name="skill_knight_t3_name">ایجیس فیصلہ</string>
+        <string name="skill_knight_t3_desc">مقدس طاقتور وار جو ہدف کو نقصان پہنچاتا ہے اور پارٹی کی حفاظت کرتا ہے۔</string>
+
+        <!-- Paladin Skills -->
+        <string name="skill_paladin_t1_name">مقدس وار</string>
+        <string name="skill_paladin_t1_desc">ہدف کو مقدس جسمانی نقصان پہنچاتا ہے اور سب سے کم HP والے ساتھی کو معمولی شفاء دیتا ہے۔</string>
+
+        <string name="skill_paladin_t2_name">الہی پناہ گاہ</string>
+        <string name="skill_paladin_t2_desc">پارٹی کو مناسب شفاء دیتا ہے اور پارٹی کے DEF اور جادوئی DEF کو بڑھاتا ہے۔</string>
+        <string name="skill_paladin_t3_name">مقدس پاکیزگی</string>
+        <string name="skill_paladin_t3_desc">تمام دشمنوں کو 200%% مقدس نقصان پہنچاتا ہے اور پارٹی کی HP کو مکمل طور پر بحال کرتا ہے!</string>
+
+        <!-- Red Mage Skills -->
+        <string name="skill_red_mage_t1_name">دوہرا منتر: آگ &amp; شفاء</string>
+        <string name="skill_red_mage_t1_desc">1 باری میں ہدف پر فائر اور سب سے کم HP والے ساتھی پر کیور منتر چلاتا ہے۔</string>
+        <string name="skill_red_mage_t2_name">طلسماتی دھماکہ</string>
+        <string name="skill_red_mage_t2_desc">ہدف دشمن پر دوہرے عنصری فائر اور آئس جادو کا وار کرتا ہے۔</string>
+        <string name="skill_red_mage_t3_name">زنجیری منتر طوفان</string>
+
+        <string name="skill_red_mage_t3_desc">تمام دشمنوں پر مسلسل 3 عنصری منتر چلاتا ہے اور پارٹی کو شفاء دیتا ہے۔</string>
+
+        <!-- Summoner Skills -->
+        <string name="skill_summoner_t1_name">روحی پکار</string>
+        <string name="skill_summoner_t1_desc">عنصری روح کو بلاتا ہے جو ایریا جادوئی نقصان پہنچاتی ہے۔</string>
+        <string name="skill_summoner_t2_name">انصاف کی بجلی</string>
+        <string name="skill_summoner_t2_desc">تمام دشمنوں پر بجلی گرانے کے لیے راموہ کو بلاتا ہے۔</string>
+        <string name="skill_summoner_t3_name">میگا فلئیر</string>
+        <string name="skill_summoner_t3_desc">ڈریگن کنگ باہاموت کو بلاتا ہے جو سب کو 250%% زبردست جادوئی نقصان پہنچاتا ہے!</string>
+
+        <!-- Ninja Skills -->
+        <string name="skill_ninja_t1_name">شوریکن پھینکنا</string>
+
+        <string name="skill_ninja_t1_desc">ہدف پر دور سے آرمر توڑنے والا جسمانی وار۔</string>
+        <string name="skill_ninja_t2_name">سایہ کی تصویر</string>
+        <string name="skill_ninja_t2_desc">100%% یقینی کرٹیکل ہٹ کے ساتھ متعدد وار۔</string>
+        <string name="skill_ninja_t3_name">گمنامی کا وار</string>
+        <string name="skill_ninja_t3_desc">مہلک قاتلانہ وار جو واحد ہدف کو شدید نقصان پہنچاتا ہے!</string>
+
+        <!-- Dragoon Skills -->
+        <string name="skill_dragoon_t1_name">چھلانگ وار</string>
+        <string name="skill_dragoon_t1_desc">ہوا میں اچھلتا ہے اور نیچے آ کر 180%% جسمانی نقصان پہنچاتا ہے۔</string>
+        <string name="skill_dragoon_t2_name">ڈریگن نیزہ</string>
+        <string name="skill_dragoon_t2_desc">220%% جسمانی نقصان کے لیے دشمن کے آرمر کو چھیدتا ہے۔</string>
+        <string name="skill_dragoon_t3_name">اونچی چھلانگ نووا</string>
+
+        <string name="skill_dragoon_t3_desc">ڈریگن کی بلندیوں تک پہنچتا ہے اور تمام دشمنوں کو متاثر کرنے والی شاک ویو سے دھماکہ کرتا ہے!</string>
+
+        <!-- Bard Skills -->
+        <string name="skill_bard_t1_name">مطرب کا نغمہ</string>
+        <string name="skill_bard_t1_desc">ہر باری میں پارٹی کی HP کی تجدید کرتا ہے۔</string>
+        <string name="skill_bard_t2_name">طاقت کا نغمہ</string>
+        <string name="skill_bard_t2_desc">پارٹی کے ATK اور MAG میں 25%% اضافہ کرتا ہے۔</string>
+
+        <string name="skill_bard_t3_name">بہادرانہ ترانہ</string>
+        <string name="skill_bard_t3_desc">ایک پرجوش ترانہ گاتا ہے جو پارٹی کے تمام اعداد و شمار کو بڑھاتا ہے اور پارٹی کو شفاء دیتا ہے!</string>
+
+        <!-- Samurai Skills -->
+        <string name="skill_samurai_t1_name">ایائی کٹائی</string>
+        <string name="skill_samurai_t1_desc">اعلی کرٹیکل ریٹ کے ساتھ تلوار کا درست وار۔</string>
+
+        <string name="skill_samurai_t2_name">زینیناگے</string>
+        <string name="skill_samurai_t2_desc">تمام دشمنوں کو بھاری جسمانی نقصان پہنچانے کے لیے گِل پھینکتا ہے۔</string>
+        <string name="skill_samurai_t3_name">بوشیڈو سزائے موت</string>
+        <string name="skill_samurai_t3_desc">ماہرانہ کٹانا تکنیک جو تمام دشمنوں کو شدید کرٹیکل نقصان پہنچاتی ہے!</string>
+
+        <!-- Onion Knight Skills -->
+        <string name="skill_onion_knight_t1_name">پیاز کا کچوکا</string>
+        <string name="skill_onion_knight_t1_desc">ایک معمولی کچوکا جو ہلکا جسمانی نقصان پہنچاتا ہے۔</string>
+
+        <string name="skill_onion_knight_t2_name">پیاز کا ہجوم</string>
+        <string name="skill_onion_knight_t2_desc">2 واروں کا تیز حملہ جو مناسب جسمانی نقصان پہنچاتا ہے۔</string>
+        <string name="skill_onion_knight_t3_name">پیاز کا حکمران</string>
+        <string name="skill_onion_knight_t3_desc">زبردست جسمانی اور جادوئی لہر خارج کرتا ہے جو 300%% اعلی ترین نقصان پہنچاتی ہے!</string>
+
+        <!-- Mime Skills -->
+        <string name="skill_mime_t1_name">نقل</string>
+
+        <string name="skill_mime_t1_desc">پچھلے ساتھی کی صلاحیت کی نقل کرتا ہے۔</string>
+        <string name="skill_mime_t2_name">عظیم نقل</string>
+        <string name="skill_mime_t2_desc">150%% بڑھی ہوئی طاقت کے ساتھ پچھلی صلاحیت کی نقل کرتا ہے۔</string>
+        <string name="skill_mime_t3_name">کامل گونج</string>
+        <string name="skill_mime_t3_desc">پارٹی کی سب سے مضبوط صلاحیت کی نقل کرتا ہے جو تمام اہداف کو متاثر کرتی ہے!</string>
+
+        <!-- Necromancer Skills -->
+        <string name="skill_necromancer_t1_name">زندگی کا نکاس</string>
+        <string name="skill_necromancer_t1_desc">خود کو شفاء دینے کے لیے ہدف دشمن سے HP نچوڑتا ہے۔</string>
+
+        <string name="skill_necromancer_t2_name">روح کا نچوڑ</string>
+        <string name="skill_necromancer_t2_desc">دشمن سے HP نچوڑتا ہے اور تمام باہوش ساتھیوں میں شفاء تقسیم کرتا ہے۔</string>
+        <string name="skill_necromancer_t3_name">قبر کا طوفان</string>
+        <string name="skill_necromancer_t3_desc">سایہ کا طوفان بلاتا ہے جو سب پر تاریک جادو کا وار کرتا ہے &amp; پارٹی کو شفاء دیتا ہے!</string>
+
+        <!-- Blue Mage Skills -->
+        <string name="skill_blue_mage_t1_name">گوبلن مکا</string>
+        <string name="skill_blue_mage_t1_desc">راکشسوں سے مقابلے کے دوران سیکھی گئی جسمانی مہارت۔</string>
+
+        <string name="skill_blue_mage_t2_name">سفید ہوا</string>
+        <string name="skill_blue_mage_t2_desc">بلیو میج کی موجودہ HP کے تناسب سے پارٹی کو شفاء دیتا ہے۔</string>
+        <string name="skill_blue_mage_t3_name">طاقتور محافظ</string>
+        <string name="skill_blue_mage_t3_desc">تمام ساتھیوں کو شدید DEF اور جادوئی DEF کے ساتھ باافس دیتا ہے اور ایریا اسٹیٹس جادو کرتا ہے!</string>
+    </resources>
+

@@ -848,4 +848,153 @@
 
     <string name="ability_blue_mage_name">Saber de monstres</string>
     <string name="ability_blue_mage_desc">Utilitza màgia blava especialitzada meva dels monstres per adaptar-se a la batalla cada 3 torns.</string>
-</resources>
+
+        <!-- Job Ability Progression -->
+        <string name="job_ability_progression_title">⚡ Progressió d\'Habilitat de Classe</string>
+        <string name="job_ability_unlocked">✅ Desblocat</string>
+        <string name="job_ability_unlocks_at">🔒 Es desbloca al Nivell %1$d</string>
+
+        <!-- Freelancer Skills -->
+        <string name="skill_freelancer_t1_name">Primers Auxilis</string>
+        <string name="skill_freelancer_t1_desc">Restaura la mateixa salut (HP) amb medicina de camp bàsica.</string>
+        <string name="skill_freelancer_t2_name">Càrrega de Concentració</string>
+        <string name="skill_freelancer_t2_desc">Augmenta el dany físic i màgic per al següent torn.</string>
+        <string name="skill_freelancer_t3_name">Comodí</string>
+        <string name="skill_freelancer_t3_desc">Assesta un cop equilibrat que recarrega a l\'instant l\'indicador d\'habilitat.</string>
+
+        <!-- Warrior Skills -->
+        <string name="skill_warrior_t1_name">Cop Feixuc</string>
+        <string name="skill_warrior_t1_desc">Infligeix un 150%% de dany físic pesat a un sol enemic.</string>
+        <string name="skill_warrior_t2_name">Trencarmadures</string>
+        <string name="skill_warrior_t2_desc">Infligeix un 180%% de dany físic i redueix la defensa de l\'objectiu.</string>
+        <string name="skill_warrior_t3_name">Talla de la Destral Gegant</string>
+        <string name="skill_warrior_t3_desc">Ataca a TOTS els enemics amb un 220%% de dany físic massiu.</string>
+
+        <!-- White Mage Skills -->
+        <string name="skill_white_mage_t1_name">Cura</string>
+        <string name="skill_white_mage_t1_desc">Restaura una quantitat moderada de salut a l\'únic aliat amb la salut més baixa.</string>
+        <string name="skill_white_mage_t2_name">Escut Curaja</string>
+        <string name="skill_white_mage_t2_desc">Cura molt a l\'aliat amb menys salut i atorga una barrera de dany al grup.</string>
+        <string name="skill_white_mage_t3_name">Cura Curaga Grupal</string>
+        <string name="skill_white_mage_t3_desc">Restaura una quantitat massiva de salut a TOTS els membres conscients del grup!</string>
+
+        <!-- Black Mage Skills -->
+        <string name="skill_black_mage_t1_name">Bola de Foc</string>
+        <string name="skill_black_mage_t1_desc">Infligeix un 140%% de dany màgic a un sol enemic.</string>
+        <string name="skill_black_mage_t2_name">Rayo en Cadena</string>
+        <string name="skill_black_mage_t2_desc">Infligeix un 170%% de dany màgic elemental colpejant fins a 2 enemics.</string>
+        <string name="skill_black_mage_t3_name">Tempesta de Meteors</string>
+        <string name="skill_black_mage_t3_desc">Invoca meteors que infligeixen un 220%% de dany màgic massiu a TOTS els enemics!</string>
+
+        <!-- Thief Skills -->
+        <string name="skill_thief_t1_name">Daga Ràpida</string>
+        <string name="skill_thief_t1_desc">Atac ràpid amb una alta probabilitat de cop crític.</string>
+        <string name="skill_thief_t2_name">Saqueig d\'Ombres</string>
+        <string name="skill_thief_t2_desc">Colpeja l\'objectiu i roba Gil i Magicita addicionals de l\'enemic.</string>
+        <string name="skill_thief_t3_name">Miratge Fantasma</string>
+        <string name="skill_thief_t3_desc">Atac d\'assassinat de múltiples cops que infligeix un gran dany crític.</string>
+
+        <!-- Monk Skills -->
+        <string name="skill_monk_t1_name">Xakra</string>
+        <string name="skill_monk_t1_desc">Restaura el 35%% de la salut màxima pròpia i augmenta el poder d\'atac.</string>
+        <string name="skill_monk_t2_name">Triplica Cop</string>
+        <string name="skill_monk_t2_desc">Executa un combo físic de 3 cops a un sol objectiu.</string>
+        <string name="skill_monk_t3_name">Cent Cops de Penyora</string>
+        <string name="skill_monk_t3_desc">Ràfega ràpida de cops que infligeix un gran dany físic a TOTS els enemics!</string>
+
+        <!-- Knight Skills -->
+        <string name="skill_knight_t1_name">Cop d\'Escut</string>
+        <string name="skill_knight_t1_desc">Infligeix dany físic basat en la defensa a 1 enemic.</string>
+        <string name="skill_knight_t2_name">Cobertura de Sentinella</string>
+        <string name="skill_knight_t2_desc">Redueix considerablement el dany rebut pel grup durant 2 torns.</string>
+        <string name="skill_knight_t3_name">Judici de l\'Ègida</string>
+        <string name="skill_knight_t3_desc">Poderós cop sagrat que fa dany a l\'objectiu i protegeix el grup.</string>
+
+        <!-- Paladin Skills -->
+        <string name="skill_paladin_t1_name">Tall Sagrat</string>
+        <string name="skill_paladin_t1_desc">Dany físic sagrat a l\'objectiu i cura lleugerament l\'aliat amb menys salut.</string>
+        <string name="skill_paladin_t2_name">Santuari Diví</string>
+        <string name="skill_paladin_t2_desc">Cura el grup moderadament i augmenta la defensa física i màgica del grup.</string>
+        <string name="skill_paladin_t3_name">Purificació Sagrada</string>
+        <string name="skill_paladin_t3_desc">Infligeix un 200%% de dany sagrat a TOTS els enemics i restaura del tot la salut del grup!</string>
+
+        <!-- Red Mage Skills -->
+        <string name="skill_red_mage_t1_name">Doble Conjur: Foc &amp; Cura</string>
+        <string name="skill_red_mage_t1_desc">Llança Foc a l\'objectiu i Cura a l\'aliat amb menys salut en 1 torn.</string>
+        <string name="skill_red_mage_t2_name">Ràfega Arcana</string>
+        <string name="skill_red_mage_t2_desc">Infligeix màgia elemental doble de foc i gel a l\'enemic objectiu.</string>
+        <string name="skill_red_mage_t3_name">Tempesta de Hechizos Encadenats</string>
+        <string name="skill_red_mage_t3_desc">Deslliga 3 encanteris elementals consecutius sobre tots els enemics i cura el grup.</string>
+
+        <!-- Summoner Skills -->
+        <string name="skill_summoner_t1_name">Crida Espiritual</string>
+        <string name="skill_summoner_t1_desc">Invoca un esperit elemental que infligeix dany màgic en àrea (AoE).</string>
+        <string name="skill_summoner_t2_name">Llamp del Judici</string>
+        <string name="skill_summoner_t2_desc">Invoca Ramuh per colpejar tots els enemics amb llamps.</string>
+        <string name="skill_summoner_t3_name">Megafulgor</string>
+        <string name="skill_summoner_t3_desc">Invoca el Rei Drac Bahamut per infligir un 250%% de dany màgic colossal a TOTS!</string>
+
+        <!-- Ninja Skills -->
+        <string name="skill_ninja_t1_name">Llançament de Shuriken</string>
+        <string name="skill_ninja_t1_desc">Cop físic a distància que perfora l\'armadura de l\'objectiu.</string>
+        <string name="skill_ninja_t2_name">Imatge d\'Ombra</string>
+        <string name="skill_ninja_t2_desc">Cop de múltiples impactes amb un 100%% de probabilitat de cop crític garantit.</string>
+        <string name="skill_ninja_t3_name">Tall de l\'Oblit</string>
+        <string name="skill_ninja_t3_desc">Letal cop d\'assassinat que infligeix un dany enorme a un sol objectiu!</string>
+
+        <!-- Dragoon Skills -->
+        <string name="skill_dragoon_t1_name">Cop amb Salt</string>
+        <string name="skill_dragoon_t1_desc">Salta per l\'aire i cau infligint un 180%% de dany físic.</string>
+        <string name="skill_dragoon_t2_name">Llança de Drac</string>
+        <string name="skill_dragoon_t2_desc">Perfora l\'armadura de l\'enemic causant un 220%% de dany físic.</string>
+        <string name="skill_dragoon_t3_name">Nova del Salt Alt</string>
+        <string name="skill_dragoon_t3_desc">Ascendeix a altures draconianes i explota amb una ona de xoc en àrea que afecta TOTS!</string>
+
+        <!-- Bard Skills -->
+        <string name="skill_bard_t1_name">Balada del Menestral</string>
+        <string name="skill_bard_t1_desc">Regenera la salut del grup cada torn.</string>
+        <string name="skill_bard_t2_name">Minuet de Poder</string>
+        <string name="skill_bard_t2_desc">Augmenta l\'ATQ i la MAG del grup un 25%%.</string>
+        <string name="skill_bard_t3_name">Himne Heroic</string>
+        <string name="skill_bard_t3_desc">Canta un himne inspirador que millora TOTES les estadístiques del grup i el cura!</string>
+
+        <!-- Samurai Skills -->
+        <string name="skill_samurai_t1_name">Tall Iai</string>
+        <string name="skill_samurai_t1_desc">Cop d\'espasa de precisió amb una alta taxa de cop crític.</string>
+        <string name="skill_samurai_t2_name">Zeninage</string>
+        <string name="skill_samurai_t2_desc">Llança Gil per infligir un gran dany físic a TOTS els enemics.</string>
+        <string name="skill_samurai_t3_name">Execució Bushido</string>
+        <string name="skill_samurai_t3_desc">Tècnica magistral de katana que infligeix un dany crític massiu a TOTS els enemics!</string>
+
+        <!-- Onion Knight Skills -->
+        <string name="skill_onion_knight_t1_name">Empenta de Ceba</string>
+        <string name="skill_onion_knight_t1_desc">Un toc humil que infligeix un dany físic lleuger.</string>
+        <string name="skill_onion_knight_t2_name">Cursa de Ceba</string>
+        <string name="skill_onion_knight_t2_desc">Atac ràpid de 2 cops que infligeix dany físic moderat.</string>
+        <string name="skill_onion_knight_t3_name">Sobirà Ceba</string>
+        <string name="skill_onion_knight_t3_desc">Deslliga una onada ultra física i màgica que infligeix un 300%% de dany suprem!</string>
+
+        <!-- Mime Skills -->
+        <string name="skill_mime_t1_name">Mímica</string>
+        <string name="skill_mime_t1_desc">Replica l\'habilitat utilitzada per l\'aliat anterior.</string>
+        <string name="skill_mime_t2_name">Gran Mímica</string>
+        <string name="skill_mime_t2_desc">Replica l\'habilitat anterior amb un 150%% de potència augmentada.</string>
+        <string name="skill_mime_t3_name">Eco Perfecte</string>
+        <string name="skill_mime_t3_desc">Replica l\'habilitat més forta del grup afectant TOTS els objectius!</string>
+
+        <!-- Necromancer Skills -->
+        <string name="skill_necromancer_t1_name">Drenatge de Vida</string>
+        <string name="skill_necromancer_t1_desc">Drena salut de l\'enemic objectiu per curar-se a si mateix.</string>
+        <string name="skill_necromancer_t2_name">Sifó d\'Ànima</string>
+        <string name="skill_necromancer_t2_desc">Drena salut de l\'enemic i distribueix la curació a TOTS els aliats conscients.</string>
+        <string name="skill_necromancer_t3_name">Tempesta Sepulcral</string>
+        <string name="skill_necromancer_t3_desc">Invoca una tempesta d\'ombres que infligeix màgia fosca a TOTS &amp; cura el grup!</string>
+
+        <!-- Blue Mage Skills -->
+        <string name="skill_blue_mage_t1_name">Punyet de Follet</string>
+        <string name="skill_blue_mage_t1_desc">Habilitat física mantinguda de trobades amb monstres.</string>
+        <string name="skill_blue_mage_t2_name">Vent Blanc</string>
+        <string name="skill_blue_mage_t2_desc">Cura el grup de manera proporcional a la salut actual del Mag Blau.</string>
+        <string name="skill_blue_mage_t3_name">Guàrdia Poderosa</string>
+        <string name="skill_blue_mage_t3_desc">Atorga millores massives de defensa i defensa màgica a TOTS els aliats i aplica màgia d\'estat en àrea!</string>
+    </resources>

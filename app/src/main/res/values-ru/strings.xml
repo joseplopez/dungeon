@@ -847,4 +847,153 @@
 
     <string name="ability_blue_mage_name">Магия монстров</string>
     <string name="ability_blue_mage_desc">Использует изученную магию монстров для адаптации к бою каждые 3 хода.</string>
-</resources>
+
+        <!-- Job Ability Progression -->
+        <string name="job_ability_progression_title">⚡ Прогресс навыков профессии</string>
+        <string name="job_ability_unlocked">✅ Разблокировано</string>
+        <string name="job_ability_unlocks_at">🔒 Разблокируется на ур. %1$d</string>
+
+        <!-- Freelancer Skills -->
+        <string name="skill_freelancer_t1_name">Первая помощь</string>
+        <string name="skill_freelancer_t1_desc">Восстанавливает свое здоровье (HP) с помощью базовой полевой медицины.</string>
+        <string name="skill_freelancer_t2_name">Заряд фокуса</string>
+        <string name="skill_freelancer_t2_desc">Увеличивает физический и магический урон на следующий ход.</string>
+        <string name="skill_freelancer_t3_name">Джокер</string>
+        <string name="skill_freelancer_t3_desc">Наносит сбалансированный удар, который мгновенно перезаряжает шкалу навыка.</string>
+
+        <!-- Warrior Skills -->
+        <string name="skill_warrior_t1_name">Тяжелый удар</string>
+        <string name="skill_warrior_t1_desc">Наносит 150%% тяжелого физического урона одной цели.</string>
+        <string name="skill_warrior_t2_name">Раскол брони</string>
+        <string name="skill_warrior_t2_desc">Наносит 180%% физического урона и снижает защиту цели.</string>
+        <string name="skill_warrior_t3_name">Удар гигантского топора</string>
+        <string name="skill_warrior_t3_desc">Рассекает ВСЕХ врагов, нанося 220%% массивного физического урона.</string>
+
+        <!-- White Mage Skills -->
+        <string name="skill_white_mage_t1_name">Лечение</string>
+        <string name="skill_white_mage_t1_desc">Восстанавливает умеренное количество HP союзнику с наименьшим уровнем здоровья.</string>
+        <string name="skill_white_mage_t2_name">Щит Кураджи</string>
+        <string name="skill_white_mage_t2_desc">Сильно исцеляет союзника с наименьшим HP и накладывает барьер урона на всю группу.</string>
+        <string name="skill_white_mage_t3_name">Групповое исцеление Кураги</string>
+        <string name="skill_white_mage_t3_desc">Восстанавливает огромное количество HP ВСЕМ дееспособным членам группы!</string>
+
+        <!-- Black Mage Skills -->
+        <string name="skill_black_mage_t1_name">Огненный шар</string>
+        <string name="skill_black_mage_t1_desc">Наносит 140%% магического урона одной цели.</string>
+        <string name="skill_black_mage_t2_name">Цепная молния</string>
+        <string name="skill_black_mage_t2_desc">Наносит 170%% стихийного магического урона, поражая до 2 врагов.</string>
+        <string name="skill_black_mage_t3_name">Метеоритный шторм</string>
+        <string name="skill_black_mage_t3_desc">Призывает метеоры, наносящие 220%% массивного магического урона ВСЕМ врагам!</string>
+
+        <!-- Thief Skills -->
+        <string name="skill_thief_t1_name">Быстрый кинжал</string>
+        <string name="skill_thief_t1_desc">Быстрая атака с высоким шансом критического удара.</string>
+        <string name="skill_thief_t2_name">Теневой грабеж</string>
+        <string name="skill_thief_t2_desc">Атакует цель и крадет у врага дополнительные гили и магициты.</string>
+        <string name="skill_thief_t3_name">Призрачный мираж</string>
+        <string name="skill_thief_t3_desc">Серия убийственных ударов, наносящая огромный критический урон.</string>
+
+        <!-- Monk Skills -->
+        <string name="skill_monk_t1_name">Чакра</string>
+        <string name="skill_monk_t1_desc">Восстанавливает 35%% от максимального HP и повышает силу атаки.</string>
+        <string name="skill_monk_t2_name">Тройной удар</string>
+        <string name="skill_monk_t2_desc">Наносит физическое комбо из 3 ударов по одной цели.</string>
+        <string name="skill_monk_t3_name">Сто кулаков</string>
+        <string name="skill_monk_t3_desc">Быстрый шквал ударов, наносящий тяжелый физический урон ВСЕМ врагам!</string>
+
+        <!-- Knight Skills -->
+        <string name="skill_knight_t1_name">Удар щитом</string>
+        <string name="skill_knight_t1_desc">Наносит одному врагу физический урон, зависящий от DEF (защиты).</string>
+        <string name="skill_knight_t2_name">Укрытие стража</string>
+        <string name="skill_knight_t2_desc">Значительно снижает входящий урон по группе на 2 хода.</string>
+        <string name="skill_knight_t3_name">Суд Эгиды</string>
+        <string name="skill_knight_t3_desc">Мощный святой удар, который наносит урон цели и защищает группу.</string>
+
+        <!-- Paladin Skills -->
+        <string name="skill_paladin_t1_name">Святой разрез</string>
+        <string name="skill_paladin_t1_desc">Наносит святой физический урон цели и немного исцеляет союзника с наименьшим HP.</string>
+        <string name="skill_paladin_t2_name">Божественное святилище</string>
+        <string name="skill_paladin_t2_desc">Умеренно исцеляет группу и повышает показатели DEF и Magic DEF отряда.</string>
+        <string name="skill_paladin_t3_name">Священная очистка</string>
+        <string name="skill_paladin_t3_desc">Наносит 200%% святого урона ВСЕМ врагам и полностью восстанавливает HP группы!</string>
+
+        <!-- Red Mage Skills -->
+        <string name="skill_red_mage_t1_name">Двойное заклинание: Огонь &amp; Лечение</string>
+        <string name="skill_red_mage_t1_desc">Применяет Огонь на цель и Лечение на союзника с наименьшим HP за 1 ход.</string>
+        <string name="skill_red_mage_t2_name">Чародейский всплеск</string>
+        <string name="skill_red_mage_t2_desc">Наносит стихийный магический урон огнем и льдом целевому врагу.</string>
+        <string name="skill_red_mage_t3_name">Шторм цепных заклинаний</string>
+        <string name="skill_red_mage_t3_desc">Выпускает 3 последовательных стихийных заклинания по всем врагам и исцеляет группу.</string>
+
+        <!-- Summoner Skills -->
+        <string name="skill_summoner_t1_name">Призыв духа</string>
+        <string name="skill_summoner_t1_desc">Призывает духа стихии, наносящего магический урон по области (AoE).</string>
+        <string name="skill_summoner_t2_name">Молния суда</string>
+        <string name="skill_summoner_t2_desc">Призывает Раму, чтобы поразить всех врагов молнией.</string>
+        <string name="skill_summoner_t3_name">Мегавспышка</string>
+        <string name="skill_summoner_t3_desc">Призывает Короля Драконов Бахамута, наносящего колоссальный 250%% магический урон ВСЕМ!</string>
+
+        <!-- Ninja Skills -->
+        <string name="skill_ninja_t1_name">Бросок сюрикена</string>
+        <string name="skill_ninja_t1_desc">Дальний физический удар, пробивающий броню цели.</string>
+        <string name="skill_ninja_t2_name">Теневой клон</string>
+        <string name="skill_ninja_t2_desc">Многократный удар с 100%% гарантированным критическим попаданием.</string>
+        <string name="skill_ninja_t3_name">Разрез забвения</string>
+        <string name="skill_ninja_t3_desc">Смертоносный убийственный удар, наносящий огромный урон одиночной цели!</string>
+
+        <!-- Dragoon Skills -->
+        <string name="skill_dragoon_t1_name">Удар в прыжке</string>
+        <string name="skill_dragoon_t1_desc">Взмывает в воздух и обрушивается вниз, нанося 180%% физического урона.</string>
+        <string name="skill_dragoon_t2_name">Драконье копье</string>
+        <string name="skill_dragoon_t2_desc">Пробивает броню врага, нанося 220%% физического урона.</string>
+        <string name="skill_dragoon_t3_name">Вспышка высокого прыжка</string>
+        <string name="skill_dragoon_t3_desc">Взлетает на драконью высоту и взрывается ударной волной по области, поражая ВСЕХ врагов!</string>
+
+        <!-- Bard Skills -->
+        <string name="skill_bard_t1_name">Баллада менестреля</string>
+        <string name="skill_bard_t1_desc">Восстанавливает HP группы каждый ход.</string>
+        <string name="skill_bard_t2_name">Менуэт могущества</string>
+        <string name="skill_bard_t2_desc">Увеличивает показатели ATK и MAG группы на 25%%.</string>
+        <string name="skill_bard_t3_name">Героический гимн</string>
+        <string name="skill_bard_t3_desc">Исполняет вдохновляющий гимн, повышающий ВСЕ характеристики отряда и исцеляющий группу!</string>
+
+        <!-- Samurai Skills -->
+        <string name="skill_samurai_t1_name">Удар Иай</string>
+        <string name="skill_samurai_t1_desc">Точный удар мечом с высоким шансом критического попадания.</string>
+        <string name="skill_samurai_t2_name">Зенинаге</string>
+        <string name="skill_samurai_t2_desc">Бросает гили, нанося тяжелый физический урон ВСЕМ врагам.</string>
+        <string name="skill_samurai_t3_name">Казнь Бусидо</string>
+        <string name="skill_samurai_t3_desc">Виртуозная техника катаны, наносящая огромный критический урон ВСЕМ врагам!</string>
+
+        <!-- Onion Knight Skills -->
+        <string name="skill_onion_knight_t1_name">Луковый тычок</string>
+        <string name="skill_onion_knight_t1_desc">Скромный тычок, наносящий легкий физический урон.</string>
+        <string name="skill_onion_knight_t2_name">Луковый рывок</string>
+        <string name="skill_onion_knight_t2_desc">Быстрая атака из 2 ударов, наносящая умеренный физический урон.</string>
+        <string name="skill_onion_knight_t3_name">Луковый повелитель</string>
+        <string name="skill_onion_knight_t3_desc">Высвобождает мощный физический и магический всплеск, наносящий 300%% высшего урона!</string>
+
+        <!-- Mime Skills -->
+        <string name="skill_mime_t1_name">Подражание</string>
+        <string name="skill_mime_t1_desc">Повторяет способность предыдущего союзника.</string>
+        <string name="skill_mime_t2_name">Великое подражание</string>
+        <string name="skill_mime_t2_desc">Повторяет предыдущую способность с увеличенной на 150%% силой.</string>
+        <string name="skill_mime_t3_name">Идеальное эхо</string>
+        <string name="skill_mime_t3_desc">Повторяет сильнейшую способность отряда, поражая ВСЕ цели!</string>
+
+        <!-- Necromancer Skills -->
+        <string name="skill_necromancer_t1_name">Поглощение жизни</string>
+        <string name="skill_necromancer_t1_desc">Высасывает HP из целевого врага для собственного исцеления.</string>
+        <string name="skill_necromancer_t2_name">Сифон душ</string>
+        <string name="skill_necromancer_t2_desc">Высасывает HP из врага и распределяет исцеление между ВСЕМИ дееспособными союзниками.</string>
+        <string name="skill_necromancer_t3_name">Загробный шторм</string>
+        <string name="skill_necromancer_t3_desc">Призывает темный шторм, наносящий темную магию ВСЕМ и исцеляющий группу!</string>
+
+        <!-- Blue Mage Skills -->
+        <string name="skill_blue_mage_t1_name">Удар гоблина</string>
+        <string name="skill_blue_mage_t1_desc">Физический навык, изученный в битвах с монстрами.</string>
+        <string name="skill_blue_mage_t2_name">Белый ветер</string>
+        <string name="skill_blue_mage_t2_desc">Исцеляет группу пропорционально текущему HP Синего мага.</string>
+        <string name="skill_blue_mage_t3_name">Могучая защита</string>
+        <string name="skill_blue_mage_t3_desc">Дарует огромные баффы DEF и Magic DEF ВСЕМ союзникам и применяет магию статусов по области!</string>
+    </resources>

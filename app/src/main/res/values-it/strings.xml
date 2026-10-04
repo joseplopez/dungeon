@@ -847,4 +847,153 @@
 
     <string name="ability_blue_mage_name">Sapienza Mostri</string>
     <string name="ability_blue_mage_desc">Utiliza la magia blu appresa dai mostri per adattarsi alla battaglia ogni 3 turni.</string>
-</resources>
+
+        <!-- Job Ability Progression -->
+        <string name="job_ability_progression_title">⚡ Progressione Abilità Classe</string>
+        <string name="job_ability_unlocked">✅ Sbloccato</string>
+        <string name="job_ability_unlocks_at">🔒 Si sblocca al Liv.%1$d</string>
+
+        <!-- Freelancer Skills -->
+        <string name="skill_freelancer_t1_name">Primo Soccorso</string>
+        <string name="skill_freelancer_t1_desc">Ripristina i propri PV con la medicina da campo base.</string>
+        <string name="skill_freelancer_t2_name">Carica di Concentrazione</string>
+        <string name="skill_freelancer_t2_desc">Aumenta i danni fisici e magici per il turno successivo.</string>
+        <string name="skill_freelancer_t3_name">Jolly</string>
+        <string name="skill_freelancer_t3_desc">Mette a segno un colpo equilibrato che ricarica all\'istante la barra abilità.</string>
+
+        <!-- Warrior Skills -->
+        <string name="skill_warrior_t1_name">Colpo Pesante</string>
+        <string name="skill_warrior_t1_desc">Infligge il 150%% di pesanti danni fisici a un singolo nemico.</string>
+        <string name="skill_warrior_t2_name">Spezza-Armatura</string>
+        <string name="skill_warrior_t2_desc">Infligge il 180%% di danni fisici e riduce la difesa del bersaglio.</string>
+        <string name="skill_warrior_t3_name">Fendente dell\'Ascia Gigante</string>
+        <string name="skill_warrior_t3_desc">Colpisce TUTTI i nemici con il 220%% di massicci danni fisici.</string>
+
+        <!-- White Mage Skills -->
+        <string name="skill_white_mage_t1_name">Energia</string>
+        <string name="skill_white_mage_t1_desc">Ripristina una quantità moderata di PV al singolo alleato con i PV più bassi.</string>
+        <string name="skill_white_mage_t2_name">Scudo Curaja</string>
+        <string name="skill_white_mage_t2_desc">Cura abbondantemente l\'alleato con meno PV e conferisce una barriera protettiva al gruppo.</string>
+        <string name="skill_white_mage_t3_name">Cura di Gruppo Curaga</string>
+        <string name="skill_white_mage_t3_desc">Ripristina enormi quantità di PV a TUTTI i membri coscienti del gruppo!</string>
+
+        <!-- Black Mage Skills -->
+        <string name="skill_black_mage_t1_name">Palla di Fuoco</string>
+        <string name="skill_black_mage_t1_desc">Infligge il 140%% di danni magici a un singolo nemico.</string>
+        <string name="skill_black_mage_t2_name">Fulmine a Catena</string>
+        <string name="skill_black_mage_t2_desc">Infligge il 170%% di danni magici elementali colpendo fino a 2 nemici.</string>
+        <string name="skill_black_mage_t3_name">Tempesta di Meteore</string>
+        <string name="skill_black_mage_t3_desc">Evoca meteore che infliggono il 220%% di massicci danni magici a TUTTI i nemici!</string>
+
+        <!-- Thief Skills -->
+        <string name="skill_thief_t1_name">Pugnale Rapido</string>
+        <string name="skill_thief_t1_desc">Attacco veloce con un\'alta probabilità di colpo critico.</string>
+        <string name="skill_thief_t2_name">Saccheggio d\'Ombra</string>
+        <string name="skill_thief_t2_desc">Colpisce il bersaglio e ruba Gil e Magicite extra dal nemico.</string>
+        <string name="skill_thief_t3_name">Miraggio Fantasma</string>
+        <string name="skill_thief_t3_desc">Attacco di assassinio a colpi multipli che infligge enormi danni critici.</string>
+
+        <!-- Monk Skills -->
+        <string name="skill_monk_t1_name">Chakra</string>
+        <string name="skill_monk_t1_desc">Ripristina il 35%% dei propri PV massimi e aumenta la potenza d\'attacco.</string>
+        <string name="skill_monk_t2_name">Triplo Pugno</string>
+        <string name="skill_monk_t2_desc">Esegue una combo fisica da 3 colpi su un singolo bersaglio.</string>
+        <string name="skill_monk_t3_name">Cento Pugni</string>
+        <string name="skill_monk_t3_desc">Rapida raffica di pugni che infligge pesanti danni fisici a TUTTI i nemici!</string>
+
+        <!-- Knight Skills -->
+        <string name="skill_knight_t1_name">Colpo di Scudo</string>
+        <string name="skill_knight_t1_desc">Infligge danni fisici basati sulla DEF a 1 nemico.</string>
+        <string name="skill_knight_t2_name">Copertura della Sentinella</string>
+        <string name="skill_knight_t2_desc">Riduce notevolmente i danni subiti dal gruppo per 2 turni.</string>
+        <string name="skill_knight_t3_name">Giudizio dell\'Egida</string>
+        <string name="skill_knight_t3_desc">Potente colpo sacro che danneggia il bersaglio e protegge il gruppo.</string>
+
+        <!-- Paladin Skills -->
+        <string name="skill_paladin_t1_name">Fendente Sacro</string>
+        <string name="skill_paladin_t1_desc">Danni fisici sacri al bersaglio e cura leggermente l\'alleato con meno PV.</string>
+        <string name="skill_paladin_t2_name">Santuario Divino</string>
+        <string name="skill_paladin_t2_desc">Cura moderatamente il gruppo e aumenta la DEF e la DEF Magica del gruppo.</string>
+        <string name="skill_paladin_t3_name">Purificazione Sacra</string>
+        <string name="skill_paladin_t3_desc">Infligge il 200%% di danni sacri a TUTTI i nemici e ripristina completamente i PV del gruppo!</string>
+
+        <!-- Red Mage Skills -->
+        <string name="skill_red_mage_t1_name">Doppia Magia: Fuoco &amp; Energia</string>
+        <string name="skill_red_mage_t1_desc">Lancia Fuoco sul bersaglio ed Energia sull\'alleato con meno PV in 1 turno.</string>
+        <string name="skill_red_mage_t2_name">Esplosione Arcana</string>
+        <string name="skill_red_mage_t2_desc">Infligge magia elementale doppia di fuoco e ghiaccio al nemico bersaglio.</string>
+        <string name="skill_red_mage_t3_name">Tempesta d\'Incantesimi a Catena</string>
+        <string name="skill_red_mage_t3_desc">Scatena 3 incantesimi elementali consecutivi su tutti i nemici e cura il gruppo.</string>
+
+        <!-- Summoner Skills -->
+        <string name="skill_summoner_t1_name">Richiamo dello Spirito</string>
+        <string name="skill_summoner_t1_desc">Evoca uno spirito elementale che infligge danni magici ad area (AoE).</string>
+        <string name="skill_summoner_t2_name">Saetta del Giudizio</string>
+        <string name="skill_summoner_t2_desc">Evoca Ramuh per colpire tutti i nemici con fulmini.</string>
+        <string name="skill_summoner_t3_name">Megafiammata</string>
+        <string name="skill_summoner_t3_desc">Evoca il Re dei Draghi Bahamut infliggendo il 250%% di colossali danni magici a TUTTI!</string>
+
+        <!-- Ninja Skills -->
+        <string name="skill_ninja_t1_name">Lancio dello Shuriken</string>
+        <string name="skill_ninja_t1_desc">Attacco fisico a distanza che perfora l\'armatura del bersaglio.</string>
+        <string name="skill_ninja_t2_name">Immagine d\'Ombra</string>
+        <string name="skill_ninja_t2_desc">Colpo a impatti multipli con il 100%% di colpo critico garantito.</string>
+        <string name="skill_ninja_t3_name">Fendente dell\'Oblio</string>
+        <string name="skill_ninja_t3_desc">Letale attacco d\'assassinio che infligge enormi danni a un singolo bersaglio!</string>
+
+        <!-- Dragoon Skills -->
+        <string name="skill_dragoon_t1_name">Attacco in Salto</string>
+        <string name="skill_dragoon_t1_desc">Salta in aria e piomba in picchiata infliggendo il 180%% di danni fisici.</string>
+        <string name="skill_dragoon_t2_name">Lancia del Drago</string>
+        <string name="skill_dragoon_t2_desc">Perfora l\'armatura nemica per il 220%% di danni fisici.</string>
+        <string name="skill_dragoon_t3_name">Nova del Salto Alto</string>
+        <string name="skill_dragoon_t3_desc">Ascende alle altezze dei draghi ed esplode con un\'onda d\'urto ad area che colpisce TUTTI!</string>
+
+        <!-- Bard Skills -->
+        <string name="skill_bard_t1_name">Ballata del Menestrello</string>
+        <string name="skill_bard_t1_desc">Rigenera i PV del gruppo a ogni turno.</string>
+        <string name="skill_bard_t2_name">Minuetto della Potenza</string>
+        <string name="skill_bard_t2_desc">Aumenta l\'ATT e la MAG del gruppo del 25%%.</string>
+        <string name="skill_bard_t3_name">Inno Eroico</string>
+        <string name="skill_bard_t3_desc">Canta un inno ispiratore che potenzia TUTTE le statistiche del gruppo e lo cura!</string>
+
+        <!-- Samurai Skills -->
+        <string name="skill_samurai_t1_name">Fendente Iai</string>
+        <string name="skill_samurai_t1_desc">Colpo di spada di precisione con un alto tasso di colpo critico.</string>
+        <string name="skill_samurai_t2_name">Zeninage</string>
+        <string name="skill_samurai_t2_desc">Lancia Gil per infliggere pesanti danni fisici a TUTTI i nemici.</string>
+        <string name="skill_samurai_t3_name">Esecuzione Bushido</string>
+        <string name="skill_samurai_t3_desc">Maestosa tecnica di katana che infligge massicci danni critici a TUTTI i nemici!</string>
+
+        <!-- Onion Knight Skills -->
+        <string name="skill_onion_knight_t1_name">Stoccata Cipolla</string>
+        <string name="skill_onion_knight_t1_desc">Una modesta stoccata che infligge lievi danni fisici.</string>
+        <string name="skill_onion_knight_t2_name">Carica Cipolla</string>
+        <string name="skill_onion_knight_t2_desc">Rapido attacco a 2 colpi che infligge moderati danni fisici.</string>
+        <string name="skill_onion_knight_t3_name">Sovrano Cipolla</string>
+        <string name="skill_onion_knight_t3_desc">Scatena un\'ondata ultra fisica e magica che infligge il 300%% di danni supremi!</string>
+
+        <!-- Mime Skills -->
+        <string name="skill_mime_t1_name">Mimo</string>
+        <string name="skill_mime_t1_desc">Replica l\'abilità utilizzata dall\'alleato precedente.</string>
+        <string name="skill_mime_t2_name">Grande Mimica</string>
+        <string name="skill_mime_t2_desc">Replica l\'abilità precedente con una potenza aumentata del 150%%.</string>
+        <string name="skill_mime_t3_name">Eco Perfetto</string>
+        <string name="skill_mime_t3_desc">Replica l\'abilità più forte del gruppo influenzando TUTTI i bersagli!</string>
+
+        <!-- Necromancer Skills -->
+        <string name="skill_necromancer_t1_name">Sottrazione di Vita</string>
+        <string name="skill_necromancer_t1_desc">Sottrae PV dal nemico bersaglio per curare se stesso.</string>
+        <string name="skill_necromancer_t2_name">Sifone dell\'Anima</string>
+        <string name="skill_necromancer_t2_desc">Sottrae PV dal nemico e distribuisce la cura a TUTTI gli alleati coscienti.</string>
+        <string name="skill_necromancer_t3_name">Tempesta Sepolcrale</string>
+        <string name="skill_necromancer_t3_desc">Evoca una tempesta d\'ombra che infligge magia oscura a TUTTI &amp; cura il gruppo!</string>
+
+        <!-- Blue Mage Skills -->
+        <string name="skill_blue_mage_t1_name">Pugno Goblin</string>
+        <string name="skill_blue_mage_t1_desc">Abilità fisica appresa dagli scontri con i mostri.</string>
+        <string name="skill_blue_mage_t2_name">Vento Bianco</string>
+        <string name="skill_blue_mage_t2_desc">Cura il gruppo proporzionalmente ai PV attuali del Mago Blu.</string>
+        <string name="skill_blue_mage_t3_name">Guardia Possente</string>
+        <string name="skill_blue_mage_t3_desc">Conferisce enormi potenziamenti alla DEF e DEF Magica a TUTTI gli alleati e applica magia di stato ad area!</string>
+    </resources>

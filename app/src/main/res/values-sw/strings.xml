@@ -847,4 +847,154 @@
 
     <string name="ability_blue_mage_name">Ujuzi wa Majini</string>
     <string name="ability_blue_mage_desc">Hutumia uchawi wa buluu uliojifunza kutoka kwa majini kukabili vita.</string>
-</resources>
+
+        <!-- Job Ability Progression -->
+        <string name="job_ability_progression_title">⚡ Maendeleo ya Uwezo wa Kazi</string>
+        <string name="job_ability_unlocked">✅ Imefunguliwa</string>
+        <string name="job_ability_unlocks_at">🔒 Inafunguliwa kwenye Kiwango %1$d</string>
+
+        <!-- Freelancer Skills -->
+        <string name="skill_freelancer_t1_name">Huduma ya Kwanza</string>
+        <string name="skill_freelancer_t1_desc">Hurejesha afya (HP) ya binafsi kwa kutumia dawa za msingi za uwanjani.</string>
+        <string name="skill_freelancer_t2_name">Chaji ya Uzingativu</string>
+        <string name="skill_freelancer_t2_desc">Huongeza uharibifu wa kimwili na wa kiuchawi kwa mzunguko unaofuata.</string>
+        <string name="skill_freelancer_t3_name">Kadi ya Pori</string>
+        <string name="skill_freelancer_t3_desc">Hutoa pigo lenye uwiano linalojaza mara moja kipimo cha uwezo.</string>
+
+        <!-- Warrior Skills -->
+        <string name="skill_warrior_t1_name">Pigo Zito</string>
+        <string name="skill_warrior_t1_desc">Husababisha 150%% ya uharibifu mzito wa kimwili kwa adui mmoja.</string>
+        <string name="skill_warrior_t2_name">Kuvunja Silaha</string>
+        <string name="skill_warrior_t2_desc">Husababisha 180%% ya uharibifu wa kimwili na kupunguza ulinzi wa lengo.</string>
+        <string name="skill_warrior_t3_name">Kata ya Shoka Kubwa</string>
+        <string name="skill_warrior_t3_desc">Hukata MAADUI WOTE kwa 220%% ya uharibifu mkubwa wa kimwili.</string>
+
+        <!-- White Mage Skills -->
+        <string name="skill_white_mage_t1_name">Ponya</string>
+        <string name="skill_white_mage_t1_desc">Hurejesha HP ya kiasi kwa mshirika mmoja mwenye HP ya chini zaidi.</string>
+        <string name="skill_white_mage_t2_name">Ngao ya Kuraja</string>
+        <string name="skill_white_mage_t2_desc">Huponya mshirika mwenye HP ya chini kwa kiasi kikubwa na kutoa kizuizi cha uharibifu kwa kundi.</string>
+        <string name="skill_white_mage_t3_name">Ponyo la Kundi la Curaga</string>
+        <string name="skill_white_mage_t3_desc">Hurejesha HP kubwa kwa wanachama WOTE wa kundi waliopo timamu!</string>
+
+        <!-- Black Mage Skills -->
+        <string name="skill_black_mage_t1_name">Mpira wa Moto</string>
+        <string name="skill_black_mage_t1_desc">Husababisha 140%% ya uharibifu wa kiuchawi kwa adui mmoja.</string>
+        <string name="skill_black_mage_t2_name">Umeme wa Mlolongo</string>
+        <string name="skill_black_mage_t2_desc">Husababisha 170%% ya uharibifu wa uchawi wa kiasili ukipiga hadi maadui 2.</string>
+        <string name="skill_black_mage_t3_name">Tufani ya Vimondo</string>
+        <string name="skill_black_mage_t3_desc">Huita vimondo vinavyosababisha 220%% ya uharibifu mkubwa wa kiuchawi kwa MAADUI WOTE!</string>
+
+        <!-- Thief Skills -->
+        <string name="skill_thief_t1_name">Jambia la Haraka</string>
+        <string name="skill_thief_t1_desc">Shambulio la haraka lenye nafasi kubwa ya pigo hatari (critical).</string>
+        <string name="skill_thief_t2_name">Uporaji wa Kivuli</string>
+        <string name="skill_thief_t2_desc">Hupiga lengo na kuiba Gil na Magicite ya ziada kutoka kwa adui.</string>
+        <string name="skill_thief_t3_name">Mazigazi ya Kivuli</string>
+        <string name="skill_thief_t3_desc">Shambulio la mauaji la mapigo mengi linalosababisha uharibifu mkubwa wa critical.</string>
+
+        <!-- Monk Skills -->
+        <string name="skill_monk_t1_name">Chakra</string>
+        <string name="skill_monk_t1_desc">Hurejesha 35%% ya HP ya juu zaidi ya nafsi na kuongeza nguvu ya shambulio.</string>
+        <string name="skill_monk_t2_name">Kipigo cha Mara Tatu</string>
+        <string name="skill_monk_t2_desc">Hutoa mfululizo wa mapigo 3 ya kimwili kwa lengo moja.</string>
+        <string name="skill_monk_t3_name">Ngumi Mia Moja</string>
+        <string name="skill_monk_t3_desc">Mfululizo wa haraka wa mapigo yanayosababisha uharibifu mzito wa kimwili kwa MAADUI WOTE!</string>
+
+        <!-- Knight Skills -->
+        <string name="skill_knight_t1_name">Pigo la Ngao</string>
+        <string name="skill_knight_t1_desc">Husababisha uharibifu wa kimwili unaolingana na DEF kwa adui 1.</string>
+        <string name="skill_knight_t2_name">Ulinzi wa Mlinzi</string>
+        <string name="skill_knight_t2_desc">Hupunguza sana uharibifu unaoingia kwa kundi kwa mizunguko 2.</string>
+        <string name="skill_knight_t3_name">Hukumu ya Aegis</string>
+        <string name="skill_knight_t3_desc">Pigo lenye nguvu takatifu linalodhuru lengo na kulinda kundi.</string>
+
+        <!-- Paladin Skills -->
+        <string name="skill_paladin_t1_name">Kata Takatifu</string>
+        <string name="skill_paladin_t1_desc">Uharibifu wa kimwili takatifu kwa lengo na huponya kidogo mshirika mwenye HP ya chini zaidi.</string>
+        <string name="skill_paladin_t2_name">Patakatifu pa Mungu</string>
+        <string name="skill_paladin_t2_desc">Huponya kundi kwa kiasi na kuongeza DEF na DEF ya Kiuchawi ya kundi.</string>
+        <string name="skill_paladin_t3_name">Utakasaji Takatifu</string>
+        <string name="skill_paladin_t3_desc">Husababisha 200%% ya uharibifu takatifu kwa MAADUI WOTE na kurejesha kabisa HP ya kundi!</string>
+
+        <!-- Red Mage Skills -->
+        <string name="skill_red_mage_t1_name">Uchawi Maradufu: Moto &amp; Ponya</string>
+        <string name="skill_red_mage_t1_desc">Hupiga Moto kwa lengo na Ponya kwa mshirika mwenye HP ya chini katika mzunguko 1.</string>
+        <string name="skill_red_mage_t2_name">Mluko wa Kiuchawi</string>
+        <string name="skill_red_mage_t2_desc">Husababisha uchawi wa kiasili wa moto na barafu kwa adui aliyelengwa.</string>
+        <string name="skill_red_mage_t3_name">Tufani ya Mlolongo wa Aina za Uchawi</string>
+        <string name="skill_red_mage_t3_desc">Hutoa mfululizo wa speli 3 za kiasili kwa maadui wote na kuponya kundi.</string>
+
+        <!-- Summoner Skills -->
+        <string name="skill_summoner_t1_name">Wito wa Roho</string>
+        <string name="skill_summoner_t1_desc">Huita roho ya kiasili inayosababisha uharibifu wa kiuchawi wa eneo (AoE).</string>
+        <string name="skill_summoner_t2_name">Rai ya Hukumu</string>
+        <string name="skill_summoner_t2_desc">Huita Ramuh kupiga maadui wote kwa umeme.</string>
+        <string name="skill_summoner_t3_name">Megaflare</string>
+        <string name="skill_summoner_t3_desc">Huita Mfalme Dragoni Bahamut akisababisha 250%% ya uharibifu mkubwa wa kiuchawi kwa WOTE!</string>
+
+        <!-- Ninja Skills -->
+        <string name="skill_ninja_t1_name">Rusha Shuriken</string>
+        <string name="skill_ninja_t1_desc">Pigo la kimwili la mbali linalotoboa ulinzi kwa lengo.</string>
+        <string name="skill_ninja_t2_name">Picha ya Kivuli</string>
+        <string name="skill_ninja_t2_desc">Shambulio la mapigo mengi lenye uhakika wa 100%% wa pigo la critical.</string>
+        <string name="skill_ninja_t3_name">Kata ya Unyonge</string>
+        <string name="skill_ninja_t3_desc">Shambulio la mauaji la hatari linalosababisha uharibifu mkubwa kwa lengo mmoja!</string>
+
+        <!-- Dragoon Skills -->
+        <string name="skill_dragoon_t1_name">Pigo la Kuruka</string>
+        <string name="skill_dragoon_t1_desc">Huruqa angani na kuanguka chini akisababisha 180%% ya uharibifu wa kimwili.</string>
+        <string name="skill_dragoon_t2_name">Mkuki wa Dragoni</string>
+        <string name="skill_dragoon_t2_desc">Hutoboa ulinzi wa adui kwa 220%% ya uharibifu wa kimwili.</string>
+        <string name="skill_dragoon_t3_name">Nova ya Ruka Juu</string>
+        <string name="skill_dragoon_t3_desc">Hupanda hadi kimo cha dragoni na kulipuka kwa wimbi la mshtuko la AoE linalopiga MAADUI WOTE!</string>
+
+        <!-- Bard Skills -->
+        <string name="skill_bard_t1_name">Wimbo wa Mshairi</string>
+        <string name="skill_bard_t1_desc">Hurejesha HP ya kundi kila mzunguko.</string>
+        <string name="skill_bard_t2_name">Minuet ya Nguvu</string>
+        <string name="skill_bard_t2_desc">Huongeza ATK na MAG ya kundi kwa 25%%.</string>
+        <string name="skill_bard_t3_name">Wimbo wa Shujaa</string>
+        <string name="skill_bard_t3_desc">Huimba wimbo wa kuhamasisha unaoongeza takwimu ZOTE za kundi na kuponya kundi!</string>
+
+        <!-- Samurai Skills -->
+        <string name="skill_samurai_t1_name">Kata ya Iai</string>
+        <string name="skill_samurai_t1_desc">Pigo sahihi la Upanga lenye kiwango cha juu cha pigo la critical.</string>
+        <string name="skill_samurai_t2_name">Zeninage</string>
+        <string name="skill_samurai_t2_desc">Hurusha Gil ili kusababisha uharibifu mzito wa kimwili kwa MAADUI WOTE.</string>
+        <string name="skill_samurai_t3_name">Utekelezaji wa Bushido</string>
+        <string name="skill_samurai_t3_desc">Mbinu ya ustadi ya katana inayosababisha uharibifu mkubwa wa critical kwa MAADUI WOTE!</string>
+
+        <!-- Onion Knight Skills -->
+        <string name="skill_onion_knight_t1_name">Doko la Kitunguu</string>
+        <string name="skill_onion_knight_t1_desc">Pigo dogo la unyenyekevu linalosababisha uharibifu mdogo wa kimwili.</string>
+        <string name="skill_onion_knight_t2_name">Mbio za Kitunguu</string>
+        <string name="skill_onion_knight_t2_desc">Shambulio la haraka la mapigo 2 linalosababisha uharibifu wa kiasi wa kimwili.</string>
+        <string name="skill_onion_knight_t3_name">Mfalme Kitunguu</string>
+        <string name="skill_onion_knight_t3_desc">Hutoa mfuriko wa hali ya juu wa kimwili na kiuchawi ukisababisha 300%% ya uharibifu wa juu kabisa!</string>
+
+        <!-- Mime Skills -->
+        <string name="skill_mime_t1_name">Igiza</string>
+        <string name="skill_mime_t1_desc">Huiga uwezo uliotumiwa na mshirika aliyetangulia.</string>
+        <string name="skill_mime_t2_name">Uigizaji Mkuu</string>
+        <string name="skill_mime_t2_desc">Huiga uwezo uliotangulia ukiwa na ongezeko la nguvu la 150%%.</string>
+        <string name="skill_mime_t3_name">Mwangwi Kamilifu</string>
+        <string name="skill_mime_t3_desc">Huiga uwezo wenye nguvu zaidi wa kundi ukiathiri MALENGO YOTE!</string>
+
+        <!-- Necromancer Skills -->
+        <string name="skill_necromancer_t1_name">Kuvuta Uzima</string>
+        <string name="skill_necromancer_t1_desc">Huvuta HP kutoka kwa adui aliyelengwa ili kujiponya.</string>
+        <string name="skill_necromancer_t2_name">Mnyonyo wa Roho</string>
+        <string name="skill_necromancer_t2_desc">Huvuta HP kutoka kwa adui na kugawa ponya hiyo kwa washirika WOTE waliopo timamu.</string>
+        <string name="skill_necromancer_t3_name">Tufani ya Kaburi</string>
+        <string name="skill_necromancer_t3_desc">Huita tufani ya kivuli inayosababisha uchawi wa giza kwa WOTE &amp; kuponya kundi!</string>
+
+        <!-- Blue Mage Skills -->
+        <string name="skill_blue_mage_t1_name">Ngumi ya Goblin</string>
+        <string name="skill_blue_mage_t1_desc">Uwezo wa kimwili uliojifunza kutokana na kukutana na majini.</string>
+        <string name="skill_blue_mage_t2_name">Upepo Mweupe</string>
+        <string name="skill_blue_mage_t2_desc">Huponya kundi kulingana na HP ya sasa ya Mchawi wa Bluu.</string>
+        <string name="skill_blue_mage_t3_name">Ulinzi Mkuu</string>
+        <string name="skill_blue_mage_t3_desc">Hutoa ongezeko kubwa la DEF na DEF ya Kiuchawi kwa washirika WOTE na kusababisha uchawi wa hali ya eneo!</string>
+    </resources>
+

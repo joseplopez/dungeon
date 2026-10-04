@@ -847,4 +847,153 @@
 
     <string name="ability_blue_mage_name">ศาสตร์แห่งมอนสเตอร์</string>
     <string name="ability_blue_mage_desc">ใช้มนตร์น้ำเงินที่เรียนรู้จากมอนสเตอร์เพื่อปรับตัวให้เข้ากับสถานการณ์</string>
-</resources>
+
+     <!-- Job Ability Progression -->
+        <string name="job_ability_progression_title">⚡ ความก้าวหน้าความสามารถอาชีพ</string>
+        <string name="job_ability_unlocked">✅ ปลดล็อกแล้ว</string>
+        <string name="job_ability_unlocks_at">🔒 ปลดล็อกที่ เลเวล %1$d</string>
+
+        <!-- Freelancer Skills -->
+        <string name="skill_freelancer_t1_name">ปฐมพยาบาล</string>
+        <string name="skill_freelancer_t1_desc">ฟื้นฟู HP ตัวเองด้วยเวชพันธ์สนามระดับพื้นฐาน</string>
+        <string name="skill_freelancer_t2_name">ชาร์จสมาธิ</string>
+        <string name="skill_freelancer_t2_desc">เพิ่มความเสียหายกายภาพและเวทมนตร์สำหรับตาถัดไป</string>
+        <string name="skill_freelancer_t3_name">ไวด์การ์ด</string>
+        <string name="skill_freelancer_t3_desc">โจมตีอย่างสมดุลที่รีชาร์จเกจความสามารถทันที</string>
+
+        <!-- Warrior Skills -->
+        <string name="skill_warrior_t1_name">จู่โจมหนักหน่วง</string>
+        <string name="skill_warrior_t1_desc">สร้างความเสียหายกายภาพหนัก 150%% ใส่ศัตรูเดี่ยว</string>
+        <string name="skill_warrior_t2_name">ทำลายเกราะ</string>
+        <string name="skill_warrior_t2_desc">สร้างความเสียหายกายภาพ 180%% และลดพลังป้องกันของเป้าหมาย</string>
+        <string name="skill_warrior_t3_name">ขวานยักษ์ผ่าปฐพี</string>
+        <string name="skill_warrior_t3_desc">ฟันศัตรูทั้งหมดด้วยความเสียหายกายภาพมหาศาล 220%%</string>
+
+        <!-- White Mage Skills -->
+        <string name="skill_white_mage_t1_name">คีวร์</string>
+        <string name="skill_white_mage_t1_desc">ฟื้นฟู HP ปานกลางแก่เพื่อนร่วมทีมเดี่ยวที่มี HP ต่ำที่สุด</string>
+        <string name="skill_white_mage_t2_name">เกราะเคอราจา</string>
+        <string name="skill_white_mage_t2_desc">รักษาเพื่อนร่วมทีมที่มี HP ต่ำสุดอย่างมากและมอบบาเรียกันความเสียหายให้ทีม</string>
+        <string name="skill_white_mage_t3_name">คูราก้าฮีลหมู่</string>
+        <string name="skill_white_mage_t3_desc">ฟื้นฟู HP มหาศาลแก่สมาชิกทีมทุกคนที่มีสติอยู่!</string>
+
+        <!-- Black Mage Skills -->
+        <string name="skill_black_mage_t1_name">ลูกไฟ</string>
+        <string name="skill_black_mage_t1_desc">สร้างความเสียหายเวทมนตร์ 140%% ใส่ศัตรูเดี่ยว</string>
+        <string name="skill_black_mage_t2_name">สายฟ้าต่อเนื่อง</string>
+        <string name="skill_black_mage_t2_desc">สร้างความเสียหายเวทธาตุ 170%% โจมตีศัตรูสูงสุด 2 ตัว</string>
+        <string name="skill_black_mage_t3_name">พายุอุกกาบาต</string>
+        <string name="skill_black_mage_t3_desc">เรียกอุกกาบาตถล่มใส่ศัตรูทั้งหมดสร้างความเสียหายเวทมหาศาล 220%%!</string>
+
+        <!-- Thief Skills -->
+        <string name="skill_thief_t1_name">มีดสั้นว่องไว</string>
+        <string name="skill_thief_t1_desc">โจมตีรวดเร็วด้วยอัตราคริติคอลสูง</string>
+        <string name="skill_thief_t2_name">ปล้นเงา</string>
+        <string name="skill_thief_t2_desc">โจมตีเป้าหมายและขโมย Gil รวมถึง Magicite เพิ่มเติมจากศัตรู</string>
+        <string name="skill_thief_t3_name">เงาลวงตา</string>
+        <string name="skill_thief_t3_desc">การโจมตีสังหารหลายครั้งสร้างความเสียหายคริติคอลรุนแรงมหาศาล</string>
+
+        <!-- Monk Skills -->
+        <string name="skill_monk_t1_name">จักระ</string>
+        <string name="skill_monk_t1_desc">ฟื้นฟู 35%% ของ HP สูงสุดของตัวเองและเพิ่มพลังโจมตี</string>
+        <string name="skill_monk_t2_name">หมัดรัวสามชุด</string>
+        <string name="skill_monk_t2_desc">โจมตีคอมโบกายภาพ 3 ครั้งใส่เป้าหมายเดียว</string>
+        <string name="skill_monk_t3_name">หมัดร้อยชุด</string>
+        <string name="skill_monk_t3_desc">ระดมหมัดรัวสร้างความเสียหายกายภาพหนักหน่วงใส่ศัตรูทั้งหมด!</string>
+
+        <!-- Knight Skills -->
+        <string name="skill_knight_t1_name">กระแทกด้วยโล่</string>
+        <string name="skill_knight_t1_desc">สร้างความเสียหายกายภาพตามค่า DEF ใส่ศัตรู 1 ตัว</string>
+        <string name="skill_knight_t2_name">ผู้คุ้มกันอารักขา</string>
+        <string name="skill_knight_t2_desc">ลดความเสียหายที่ทีมได้รับลงอย่างมากเป็นเวลา 2 ตา</string>
+        <string name="skill_knight_t3_name">คำพิพากษาแห่งเอจิส</string>
+        <string name="skill_knight_t3_desc">การโจมตีศักดิ์สิทธิ์อันทรงพลังที่สร้างความเสียหายใส่เป้าหมายและปกป้องทีม</string>
+
+        <!-- Paladin Skills -->
+        <string name="skill_paladin_t1_name">ดาบศักดิ์สิทธิ์</string>
+        <string name="skill_paladin_t1_desc">สร้างความเสียหายกายภาพศักดิ์สิทธิ์ใส่เป้าหมายและรักษาเพื่อนร่วมทีมที่มี HP ต่ำสุดเล็กน้อย</string>
+        <string name="skill_paladin_t2_name">วิหารศักดิ์สิทธิ์</string>
+        <string name="skill_paladin_t2_desc">รักษาปาร์ตี้ปานกลางและเพิ่ม DEF และ DEF เวทมนตร์ของปาร์ตี้</string>
+        <string name="skill_paladin_t3_name">ชำระล้างศักดิ์สิทธิ์</string>
+        <string name="skill_paladin_t3_desc">สร้างความเสียหายศักดิ์สิทธิ์ 200%% ใส่ศัตรูทั้งหมดและฟื้นฟู HP ปาร์ตี้เต็มสมบูรณ์!</string>
+
+        <!-- Red Mage Skills -->
+        <string name="skill_red_mage_t1_name">ร่ายคู่: ไฟ &amp; คีวร์</string>
+        <string name="skill_red_mage_t1_desc">ร่ายไฟใส่เป้าหมายและคีวร์ใส่เพื่อนร่วมทีมที่มี HP ต่ำสุดใน 1 ตา</string>
+        <string name="skill_red_mage_t2_name">เวทลึกลับระเบิด</string>
+        <string name="skill_red_mage_t2_desc">สร้างความเสียหายเวทสองธาตุ ไฟและน้ำแข็ง ใส่ศัตรูเป้าหมาย</string>
+        <string name="skill_red_mage_t3_name">พายุคาถาลูกซ้อน</string>
+        <string name="skill_red_mage_t3_desc">ปลดปล่อยเวทมนตร์ธาตุ 3 ครั้งติดต่อกันใส่ศัตรูทั้งหมดและรักษาทีม</string>
+
+        <!-- Summoner Skills -->
+        <string name="skill_summoner_t1_name">อัญเชิญวิญญาณ</string>
+        <string name="skill_summoner_t1_desc">อัญเชิญวิญญาณธาตุสร้างความเสียหายเวทเป็นวงกว้าง (AoE)</string>
+        <string name="skill_summoner_t2_name">อสนีบาตพิพากษา</string>
+        <string name="skill_summoner_t2_desc">อัญเชิญผ่าสายฟ้าใส่ศัตรูทั้งหมดโดย รามูห์</string>
+        <string name="skill_summoner_t3_name">เมก้าเฟลร์</string>
+        <string name="skill_summoner_t3_desc">อัญเชิญราชามังกรบาฮามุทสร้างความเสียหายเวทมหึมา 250%% ใส่ทุกคน!</string>
+
+        <!-- Ninja Skills -->
+        <string name="skill_ninja_t1_name">ขว้างดาวกระจาย</string>
+        <string name="skill_ninja_t1_desc">โจมตีกายภาพระยะไกลทะลวงเกราะใส่เป้าหมาย</string>
+        <string name="skill_ninja_t2_name">ร่างเงาลวงตา</string>
+        <string name="skill_ninja_t2_desc">โจมตีหลายครั้งพร้อมรับประกันการติดคริติคอล 100%%</string>
+        <string name="skill_ninja_t3_name">ฟันลบล้าง</string>
+        <string name="skill_ninja_t3_desc">การโจมตีสังหารอันรุนแรงสร้างความเสียหายมหาศาลใส่เป้าหมายเดียว!</string>
+
+        <!-- Dragoon Skills -->
+        <string name="skill_dragoon_t1_name">กระโดดแทง</string>
+        <string name="skill_dragoon_t1_desc">กระโดดขึ้นสู่อากาศและพุ่งลงมาสร้างความเสียหายกายภาพ 180%%</string>
+        <string name="skill_dragoon_t2_name">หอกมังกร</string>
+        <string name="skill_dragoon_t2_desc">แทงทะลุเกราะศัตรูสร้างความเสียหายกายภาพ 220%%</string>
+        <string name="skill_dragoon_t3_name">โนว่าไฮจัมพ์</string>
+        <string name="skill_dragoon_t3_desc">ทะยานสู่ความสูงระดับมังกรและระเบิดคลื่นกระแทก AoE ใส่ศัตรูทั้งหมด!</string>
+
+        <!-- Bard Skills -->
+        <string name="skill_bard_t1_name">เพลงขับขานกวี</string>
+        <string name="skill_bard_t1_desc">ฟื้นฟู HP ปาร์ตี้ทุกตา</string>
+        <string name="skill_bard_t2_name">เพลงมิเนวเอทแห่งพลัง</string>
+        <string name="skill_bard_t2_desc">เพิ่มค่า ATK และ MAG ของปาร์ตี้ 25%%</string>
+        <string name="skill_bard_t3_name">เพลงสรรเสริญวีรบุรุษ</string>
+        <string name="skill_bard_t3_desc">ขับร้องเพลงสรรเสริญสร้างแรงบันดาลใจ เพิ่มสเตตัสทั้งหมดของทีมและรักษาทีม!</string>
+
+        <!-- Samurai Skills -->
+        <string name="skill_samurai_t1_name">ฟันดาบอิไอ</string>
+        <string name="skill_samurai_t1_desc">โจมตีด้วยดาบอย่างแม่นยำพร้อมอัตราคริติคอลสูง</string>
+        <string name="skill_samurai_t2_name">เซนินาเงะ</string>
+        <string name="skill_samurai_t2_desc">ขว้าง Gil เพื่อสร้างความเสียหายกายภาพหนักหน่วงใส่ศัตรูทั้งหมด</string>
+        <string name="skill_samurai_t3_name">ประหารชีวิตบูชิโด</string>
+        <string name="skill_samurai_t3_desc">เทคนิคคาตานะระดับชั้นครูสร้างความเสียหายคริติคอลมหาศาลใส่ศัตรูทั้งหมด!</string>
+
+        <!-- Onion Knight Skills -->
+        <string name="skill_onion_knight_t1_name">หัวหอมจิ้ม</string>
+        <string name="skill_onion_knight_t1_desc">การจิ้มแบบถ่อมตนสร้างความเสียหายกายภาพเบาบาง</string>
+        <string name="skill_onion_knight_t2_name">หัวหอมถล่ม</string>
+        <string name="skill_onion_knight_t2_desc">โจมตีรวดเร็ว 2 ครั้งสร้างความเสียหายกายภาพปานกลาง</string>
+        <string name="skill_onion_knight_t3_name">จอมราชันหัวหอม</string>
+        <string name="skill_onion_knight_t3_desc">ปลดปล่อยพลังคลื่นกายภาพและเวทระดับอัลตราสร้างความเสียหายสูงสุด 300%%!</string>
+
+        <!-- Mime Skills -->
+        <string name="skill_mime_t1_name">เลียนแบบ</string>
+        <string name="skill_mime_t1_desc">เลียนแบบความสามารถของเพื่อนร่วมทีมคนก่อนหน้า</string>
+        <string name="skill_mime_t2_name">มหาเลียนแบบ</string>
+        <string name="skill_mime_t2_desc">เลียนแบบความสามารถก่อนหน้าด้วยพลังที่เพิ่มขึ้น 150%%</string>
+        <string name="skill_mime_t3_name">เสียงสะท้อนสมบูรณ์แบบ</string>
+        <string name="skill_mime_t3_desc">เลียนแบบความสามารถที่แข็งแกร่งที่สุดของปาร์ตี้ส่งผลต่อเป้าหมายทั้งหมด!</string>
+
+        <!-- Necromancer Skills -->
+        <string name="skill_necromancer_t1_name">สูบวิญญาณชีวิต</string>
+        <string name="skill_necromancer_t1_desc">ดูด HP จากศัตรูเป้าหมายเพื่อรักษาตัวเอง</string>
+        <string name="skill_necromancer_t2_name">กะรันสูบวิญญาณ</string>
+        <string name="skill_necromancer_t2_desc">ดูด HP จากศัตรูและกระจายการรักษาให้เพื่อนร่วมทีมทุกคนที่มีสติ</string>
+        <string name="skill_necromancer_t3_name">พายุสุสาน</string>
+        <string name="skill_necromancer_t3_desc">เรียกพายุเงาสร้างความเสียหายเวทมืดใส่ทุกคน &amp; รักษาทีม!</string>
+
+        <!-- Blue Mage Skills -->
+        <string name="skill_blue_mage_t1_name">หมัดก็อบลิน</string>
+        <string name="skill_blue_mage_t1_desc">ทักษะกายภาพที่เรียนรู้จากการเผชิญหน้ากับมอนสเตอร์</string>
+        <string name="skill_blue_mage_t2_name">ลมสีขาว</string>
+        <string name="skill_blue_mage_t2_desc">รักษาปาร์ตี้ตามสัดส่วน HP ปัจจุบันของนักเวทสีฟ้า</string>
+        <string name="skill_blue_mage_t3_name">การคุ้มกันอันทรงพลัง</string>
+        <string name="skill_blue_mage_t3_desc">มอบบัฟ DEF และ DEF เวทมหาศาลแก่เพื่อนร่วมทีมทุกคนและใช้เวทสถานะแบบ AoE!</string>
+    </resources>

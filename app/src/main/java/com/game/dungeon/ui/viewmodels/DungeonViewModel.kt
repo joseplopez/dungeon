@@ -49,6 +49,7 @@ class DungeonViewModel @Inject constructor(
   data class AbilityAnimationInfo(
     val id: String = java.util.UUID.randomUUID().toString(),
     val heroClass: HeroClass? = null,
+    val abilityNameRes: Int? = null,
     val isSummon: Boolean = false,
     val summonName: String? = null,
     val isEnemyAttack: Boolean = false,
@@ -134,6 +135,7 @@ class DungeonViewModel @Inject constructor(
                 mpBonus = newMpBonus
                 critChance = stats["CRIT_CHANCE"] ?: 5
                 critDamage = stats["CRIT_DAMAGE"] ?: 50
+                jobMasteryLevel = relics.jobMasteryLevels[hero.heroClass] ?: 0
             }
         }
 
@@ -325,6 +327,7 @@ class DungeonViewModel @Inject constructor(
           val hero = battleState.value.heroes.find { h -> h.id == event.heroId }
           val animInfo = AbilityAnimationInfo(
               heroClass = hero?.heroClass ?: HeroClass.WARRIOR,
+              abilityNameRes = event.nameRes,
               attackerId = event.heroId,
               durationMs = 450L
           )
@@ -479,6 +482,7 @@ class DungeonViewModel @Inject constructor(
       is FFBattleEvent.BardSong -> {
           val animInfo = AbilityAnimationInfo(
               heroClass = HeroClass.BARD,
+              abilityNameRes = event.songRes,
               attackerId = event.heroId,
               durationMs = 450L
           )

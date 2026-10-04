@@ -130,7 +130,8 @@ class FFBattleEngine(private val context: Context) {
                 totalMagicite += magiciteEarned
                 
                 if (bossTemplate != null) {
-                    onEvent(FFBattleEvent.BossDefeated(context.getString(bossTemplate.nameRes), currentFloor >= maxFloor))
+                    val bossName = runCatching { context.getString(bossTemplate.nameRes) }.getOrNull() ?: context.resources.getString(bossTemplate.nameRes)
+                    onEvent(FFBattleEvent.BossDefeated(bossName, currentFloor >= maxFloor))
                 }
                 
                 // CRITICAL: Remove dead heroes so they don't reappear on the next floor or in the event
@@ -154,7 +155,14 @@ class FFBattleEngine(private val context: Context) {
 
     private fun executeHeroTurn(hero: Hero, allies: List<Hero>, enemies: MutableList<Enemy>, relicBonuses: RelicBonuses, getLastAbility: () -> HeroClass?, setLastAbility: (HeroClass) -> Unit, onEvent: (FFBattleEvent)->Unit) {
         onEvent(FFBattleEvent.TurnStart(hero.id, hero.name))
-        hero.abilityCharge++
+        val masteryLvl = relicBonuses.jobMasteryLevels[hero.heroClass] ?: 0
+        hero.jobMasteryLevel = masteryLvl
+        val activeSkill = JobAbilityData.getActiveAbilityForLevel(hero.heroClass, masteryLvl)
+        if (activeSkill != null) {
+            hero.abilityCharge++
+        } else {
+            hero.abilityCharge = 0
+        }
         val useAbility = hero.abilityCharge >= 3
 
         if (useAbility) {
@@ -178,27 +186,39 @@ class FFBattleEngine(private val context: Context) {
                 }
             }
             AIPriority.MAGIC -> {
-                val target = enemies.filter { it.currentHp > 0 }.maxByOrNull { it.currentHp } ?: return
-                val (dmg, isCrit) = calcMagicDamage(hero, target)
-                target.currentHp -= dmg
-                onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, true, isCrit))
-                
-                if (target.currentHp <= 0) {
-                    val exp = ((target.floor * 2) * relicBonuses.expMultiplier).toInt()
-                    onEvent(FFBattleEvent.EnemyDefeated(target.id, target.gilDropped, target.magiciteDropped, exp))
-                    awardExpToParty(allies, exp, onEvent)
+                if (masteryLvl >= 1) {
+                    val target = enemies.filter { it.currentHp > 0 }.maxByOrNull { it.currentHp } ?: return
+                    val (dmg, isCrit) = calcMagicDamage(hero, target)
+                    target.currentHp -= dmg
+                    onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, true, isCrit))
+                    
+                    if (target.currentHp <= 0) {
+                        val exp = ((target.floor * 2) * relicBonuses.expMultiplier).toInt()
+                        onEvent(FFBattleEvent.EnemyDefeated(target.id, target.gilDropped, target.magiciteDropped, exp))
+                        awardExpToParty(allies, exp, onEvent)
+                    }
+                } else {
+                    val target = enemies.filter { it.currentHp > 0 }.minByOrNull { it.currentHp } ?: return
+                    val (dmg, isCrit) = calcPhysicalDamage(hero, target)
+                    target.currentHp -= dmg
+                    onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, isCrit))
+                    if (target.currentHp <= 0) {
+                        val exp = ((target.floor * 2) * relicBonuses.expMultiplier).toInt()
+                        onEvent(FFBattleEvent.EnemyDefeated(target.id, target.gilDropped, target.magiciteDropped, exp))
+                        awardExpToParty(allies, exp, onEvent)
+                    }
                 }
             }
             AIPriority.HEAL -> {
                 val wounded = allies.filter { it.isAlive && it.currentHp < it.maxHp * 0.6f }
                     .minByOrNull { it.currentHp }
-                if (wounded != null && hero.currentMp >= 10) {
+                if (masteryLvl >= 1 && wounded != null && hero.currentMp >= 10) {
                     val healAmt = (hero.magic * 2.5f + wounded.maxHp * 0.20f + 20).toInt()
                     wounded.currentHp = minOf(wounded.currentHp + healAmt, wounded.maxHp)
                     hero.currentMp -= 10
                     onEvent(FFBattleEvent.HealCast(hero.id, wounded.id, healAmt))
                 } else {
-                    // No one to heal — attack instead
+                    // No heal unlocked or no one to heal — attack instead
                     val target = enemies.filter { it.currentHp > 0 }.minByOrNull { it.currentHp } ?: return
                     val (dmg, isCrit) = calcPhysicalDamage(hero, target)
                     target.currentHp -= dmg
@@ -212,8 +232,18 @@ class FFBattleEngine(private val context: Context) {
             }
             AIPriority.DEFEND -> {
                 val target = allies.filter { it.isAlive }.minByOrNull { it.currentHp }
-                if (target != null && target.id != hero.id) {
+                if (masteryLvl >= 1 && target != null && target.id != hero.id) {
                     onEvent(FFBattleEvent.AbilityUsed(hero.id, R.string.ability_cover_name, R.string.ability_cover_desc, listOf(target.name)))
+                } else {
+                    val enemyTarget = enemies.filter { it.currentHp > 0 }.minByOrNull { it.currentHp } ?: return
+                    val (dmg, isCrit) = calcPhysicalDamage(hero, enemyTarget)
+                    enemyTarget.currentHp -= dmg
+                    onEvent(FFBattleEvent.DamageDealt(hero.id, enemyTarget.id, dmg, false, isCrit))
+                    if (enemyTarget.currentHp <= 0) {
+                        val exp = ((enemyTarget.floor * 2) * relicBonuses.expMultiplier).toInt()
+                        onEvent(FFBattleEvent.EnemyDefeated(enemyTarget.id, enemyTarget.gilDropped, enemyTarget.magiciteDropped, exp))
+                        awardExpToParty(allies, exp, onEvent)
+                    }
                 }
             }
         }
@@ -223,33 +253,55 @@ class FFBattleEngine(private val context: Context) {
         if (hero.heroClass != HeroClass.MIME) {
             setLastAbility(hero.heroClass)
         }
+        val masteryLvl = relicBonuses.jobMasteryLevels[hero.heroClass] ?: 0
+        val activeSkill =
+            JobAbilityData.getActiveAbilityForLevel(hero.heroClass, masteryLvl) ?: return
+        onEvent(FFBattleEvent.AbilityUsed(hero.id, activeSkill.nameRes, activeSkill.descRes, listOf(hero.name)))
+
         when (hero.heroClass) {
+            HeroClass.FREELANCER -> {
+                val healAmt = (hero.maxHp * 0.25f + hero.attack * 0.5f).toInt()
+                hero.currentHp = minOf(hero.currentHp + healAmt, hero.maxHp)
+                onEvent(FFBattleEvent.HealCast(hero.id, hero.id, healAmt))
+            }
             HeroClass.WARRIOR -> {
-                val target = enemies.filter { it.currentHp > 0 }.maxByOrNull { it.currentHp } ?: return
-                val (baseDmg, _) = calcPhysicalDamage(hero, target)
-                val dmg = (baseDmg * 2f).toInt()
-                target.currentHp -= dmg
-                onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, true))
-                if (target.currentHp <= 0) {
-                    val exp = ((target.floor * 2) * relicBonuses.expMultiplier).toInt()
-                    onEvent(FFBattleEvent.EnemyDefeated(target.id, target.gilDropped, target.magiciteDropped, exp))
-                    awardExpToParty(allies, exp, onEvent)
+                val targetEnemies = if (masteryLvl >= 25) enemies.filter { it.currentHp > 0 } else listOfNotNull(enemies.filter { it.currentHp > 0 }.maxByOrNull { it.currentHp })
+                val mult = when { masteryLvl >= 25 -> 2.2f; masteryLvl >= 10 -> 1.8f; else -> 1.5f }
+                targetEnemies.forEach { target ->
+                    val (baseDmg, _) = calcPhysicalDamage(hero, target)
+                    val dmg = (baseDmg * mult).toInt()
+                    target.currentHp -= dmg
+                    onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, true))
+                    if (target.currentHp <= 0) {
+                        val exp = ((target.floor * 2) * relicBonuses.expMultiplier).toInt()
+                        onEvent(FFBattleEvent.EnemyDefeated(target.id, target.gilDropped, target.magiciteDropped, exp))
+                        awardExpToParty(allies, exp, onEvent)
+                    }
                 }
             }
             HeroClass.WHITE_MAGE -> {
-                val amounts = mutableMapOf<String, Int>()
-                allies.filter { it.isAlive }.forEach { ally ->
-                    val heal = (hero.magic * 3f + ally.maxHp * 0.35f + 40).toInt()
-                    ally.currentHp = minOf(ally.currentHp + heal, ally.maxHp)
-                    amounts[ally.id] = heal
+                if (masteryLvl >= 25) {
+                    val amounts = mutableMapOf<String, Int>()
+                    allies.filter { it.isAlive }.forEach { ally ->
+                        val heal = (hero.magic * 3.5f + ally.maxHp * 0.40f + 50).toInt()
+                        ally.currentHp = minOf(ally.currentHp + heal, ally.maxHp)
+                        amounts[ally.id] = heal
+                    }
+                    onEvent(FFBattleEvent.GroupHeal(hero.id, amounts))
+                } else {
+                    val target = allies.filter { it.isAlive }.minByOrNull { it.currentHp.toFloat() / it.maxHp } ?: hero
+                    val healMult = if (masteryLvl >= 10) 2.8f else 2.0f
+                    val heal = (hero.magic * healMult + target.maxHp * 0.30f + 30).toInt()
+                    target.currentHp = minOf(target.currentHp + heal, target.maxHp)
+                    onEvent(FFBattleEvent.HealCast(hero.id, target.id, heal))
                 }
-                onEvent(FFBattleEvent.AbilityUsed(hero.id, R.string.ability_curaga_name, R.string.ability_curaga_desc, listOf(hero.name)))
-                onEvent(FFBattleEvent.GroupHeal(hero.id, amounts))
             }
             HeroClass.BLACK_MAGE -> {
-                enemies.filter { it.currentHp > 0 }.forEach { enemy ->
+                val targetEnemies = if (masteryLvl >= 25) enemies.filter { it.currentHp > 0 } else if (masteryLvl >= 10) enemies.filter { it.currentHp > 0 }.take(2) else listOfNotNull(enemies.filter { it.currentHp > 0 }.firstOrNull())
+                val mult = when { masteryLvl >= 25 -> 2.2f; masteryLvl >= 10 -> 1.8f; else -> 1.4f }
+                targetEnemies.forEach { enemy ->
                     val (baseDmg, _) = calcMagicDamage(hero, enemy)
-                    val dmg = (baseDmg * 1.8f).toInt()
+                    val dmg = (baseDmg * mult).toInt()
                     enemy.currentHp -= dmg
                     onEvent(FFBattleEvent.DamageDealt(hero.id, enemy.id, dmg, true, true))
                     if (enemy.currentHp <= 0) {
@@ -262,10 +314,11 @@ class FFBattleEngine(private val context: Context) {
             HeroClass.THIEF -> {
                 val target = enemies.filter { it.currentHp > 0 }.firstOrNull() ?: return
                 val (dmg, isCrit) = calcPhysicalDamage(hero, target)
-                target.currentHp -= dmg
-                onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, isCrit))
-                if (target.magiciteDropped > 0 && hero.hasRansack) {
-                    onEvent(FFBattleEvent.AbilityUsed(hero.id, R.string.ability_ransack_name, R.string.log_magicite_stolen, listOf(hero.name, target.magiciteDropped)))
+                val mult = when { masteryLvl >= 25 -> 2.0f; masteryLvl >= 10 -> 1.5f; else -> 1.2f }
+                val finalDmg = (dmg * mult).toInt()
+                target.currentHp -= finalDmg
+                onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, finalDmg, false, isCrit))
+                if (target.magiciteDropped > 0 && (hero.hasRansack || masteryLvl >= 10)) {
                     onEvent(FFBattleEvent.MagiciteStolen(hero.id, target.magiciteDropped))
                 }
                 if (target.currentHp <= 0) {
@@ -278,21 +331,25 @@ class FFBattleEngine(private val context: Context) {
                 val selfHeal = (hero.maxHp * 0.35f + hero.magic * 1.5f).toInt()
                 hero.currentHp = minOf(hero.currentHp + selfHeal, hero.maxHp)
                 onEvent(FFBattleEvent.HealCast(hero.id, hero.id, selfHeal))
-                val target = enemies.filter { it.currentHp > 0 }.firstOrNull() ?: return
-                val (baseDmg, isCrit) = calcPhysicalDamage(hero, target)
-                val dmg = (baseDmg * 1.5f).toInt()
-                target.currentHp -= dmg
-                onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, isCrit))
-                if (target.currentHp <= 0) {
-                    val exp = ((target.floor * 2) * relicBonuses.expMultiplier).toInt()
-                    onEvent(FFBattleEvent.EnemyDefeated(target.id, target.gilDropped, target.magiciteDropped, exp))
-                    awardExpToParty(allies, exp, onEvent)
+                val targetEnemies = if (masteryLvl >= 25) enemies.filter { it.currentHp > 0 } else listOfNotNull(enemies.filter { it.currentHp > 0 }.firstOrNull())
+                val mult = when { masteryLvl >= 25 -> 2.0f; masteryLvl >= 10 -> 1.8f; else -> 1.4f }
+                targetEnemies.forEach { target ->
+                    val (baseDmg, isCrit) = calcPhysicalDamage(hero, target)
+                    val dmg = (baseDmg * mult).toInt()
+                    target.currentHp -= dmg
+                    onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, isCrit))
+                    if (target.currentHp <= 0) {
+                        val exp = ((target.floor * 2) * relicBonuses.expMultiplier).toInt()
+                        onEvent(FFBattleEvent.EnemyDefeated(target.id, target.gilDropped, target.magiciteDropped, exp))
+                        awardExpToParty(allies, exp, onEvent)
+                    }
                 }
             }
             HeroClass.KNIGHT -> {
                 val target = enemies.filter { it.currentHp > 0 }.maxByOrNull { it.currentHp } ?: return
                 val (baseDmg, _) = calcPhysicalDamage(hero, target)
-                val dmg = (baseDmg * 1.8f).toInt()
+                val mult = when { masteryLvl >= 25 -> 2.2f; masteryLvl >= 10 -> 1.8f; else -> 1.5f }
+                val dmg = (baseDmg * mult).toInt()
                 target.currentHp -= dmg
                 onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, true))
                 if (target.currentHp <= 0) {
@@ -302,10 +359,13 @@ class FFBattleEngine(private val context: Context) {
                 }
             }
             HeroClass.PALADIN -> {
-                enemies.filter { it.currentHp > 0 }.forEach { enemy ->
+                val targetEnemies = if (masteryLvl >= 25) enemies.filter { it.currentHp > 0 } else listOfNotNull(enemies.filter { it.currentHp > 0 }.firstOrNull())
+                targetEnemies.forEach { enemy ->
                     val (dmg, isCrit) = calcPhysicalDamage(hero, enemy)
-                    enemy.currentHp -= dmg
-                    onEvent(FFBattleEvent.DamageDealt(hero.id, enemy.id, dmg, false, isCrit))
+                    val mult = when { masteryLvl >= 25 -> 2.0f; masteryLvl >= 10 -> 1.6f; else -> 1.3f }
+                    val finalDmg = (dmg * mult).toInt()
+                    enemy.currentHp -= finalDmg
+                    onEvent(FFBattleEvent.DamageDealt(hero.id, enemy.id, finalDmg, false, isCrit))
                     if (enemy.currentHp <= 0) {
                         val exp = ((enemy.floor * 2) * relicBonuses.expMultiplier).toInt()
                         onEvent(FFBattleEvent.EnemyDefeated(enemy.id, enemy.gilDropped, enemy.magiciteDropped, exp))
@@ -313,12 +373,13 @@ class FFBattleEngine(private val context: Context) {
                     }
                 }
                 allies.filter { it.isAlive }.forEach { ally ->
-                    val healAmt = (hero.magic * 1.5f + ally.maxHp * 0.20f).toInt()
+                    val healAmt = (hero.magic * 1.8f + ally.maxHp * (if (masteryLvl >= 25) 0.35f else 0.20f)).toInt()
                     ally.currentHp = minOf(ally.currentHp + healAmt, ally.maxHp)
                 }
             }
             HeroClass.RED_MAGE -> {
-                repeat(2) {
+                val hits = if (masteryLvl >= 25) 3 else 2
+                repeat(hits) {
                     val target = enemies.filter { it.currentHp > 0 }.firstOrNull() ?: return@repeat
                     val (dmg, isCrit) = calcMagicDamage(hero, target)
                     target.currentHp -= dmg
@@ -332,8 +393,8 @@ class FFBattleEngine(private val context: Context) {
             }
             HeroClass.SUMMONER -> {
                 val summons = listOf(
-                    Triple("Ifrit", "🔥", 1.5f), Triple("Shiva", "❄️", 1.5f),
-                    Triple("Ramuh", "⚡", 1.5f), Triple("Bahamut", "🐉", 2.5f)
+                    Triple("Ifrit", "🔥", 1.8f), Triple("Shiva", "❄️", 1.8f),
+                    Triple("Ramuh", "⚡", 2.0f), Triple("Bahamut", "🐉", 2.5f)
                 )
                 val (name, _, mult) = summons.random()
                 var totalDmg = 0
@@ -353,7 +414,8 @@ class FFBattleEngine(private val context: Context) {
             }
             HeroClass.NINJA -> {
                 val target = enemies.filter { it.currentHp > 0 }.maxByOrNull { it.currentHp } ?: return
-                val dmg = (hero.attack * 2.2f).toInt()
+                val mult = when { masteryLvl >= 25 -> 2.8f; masteryLvl >= 10 -> 2.2f; else -> 1.8f }
+                val dmg = (hero.attack * mult).toInt()
                 target.currentHp -= dmg
                 onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, true))
                 if (target.currentHp <= 0) {
@@ -363,7 +425,19 @@ class FFBattleEngine(private val context: Context) {
                 }
             }
             HeroClass.DRAGOON -> {
-                onEvent(FFBattleEvent.AbilityUsed(hero.id, R.string.ability_jump_name, R.string.ability_jump_desc, listOf(hero.name)))
+                val targetEnemies = if (masteryLvl >= 25) enemies.filter { it.currentHp > 0 } else listOfNotNull(enemies.filter { it.currentHp > 0 }.firstOrNull())
+                val mult = when { masteryLvl >= 25 -> 2.5f; masteryLvl >= 10 -> 2.0f; else -> 1.6f }
+                targetEnemies.forEach { target ->
+                    val (baseDmg, isCrit) = calcPhysicalDamage(hero, target)
+                    val dmg = (baseDmg * mult).toInt()
+                    target.currentHp -= dmg
+                    onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, isCrit))
+                    if (target.currentHp <= 0) {
+                        val exp = ((target.floor * 2) * relicBonuses.expMultiplier).toInt()
+                        onEvent(FFBattleEvent.EnemyDefeated(target.id, target.gilDropped, target.magiciteDropped, exp))
+                        awardExpToParty(allies, exp, onEvent)
+                    }
+                }
             }
             HeroClass.BARD -> {
                 val songs = listOf(
@@ -372,12 +446,12 @@ class FFBattleEngine(private val context: Context) {
                     Triple(R.string.song_minuet, R.string.song_minuet_effect, "Minuet"),
                     Triple(R.string.song_ballad, R.string.song_ballad_effect, "Ballad")
                 )
-                val (songRes, effectRes, songName) = songs.random()
+                val (songRes, effectRes, _) = songs.random()
                 onEvent(FFBattleEvent.BardSong(hero.id, songRes, effectRes))
-                onEvent(FFBattleEvent.AbilityUsed(hero.id, songRes, R.string.log_generic, listOf(songName)))
             }
             HeroClass.SAMURAI -> {
-                val dmg = (hero.attack * 2f).toInt()
+                val mult = when { masteryLvl >= 25 -> 2.5f; masteryLvl >= 10 -> 2.0f; else -> 1.5f }
+                val dmg = (hero.attack * mult).toInt()
                 enemies.filter { it.currentHp > 0 }.forEach { enemy ->
                     enemy.currentHp -= dmg
                     onEvent(FFBattleEvent.DamageDealt(hero.id, enemy.id, dmg, false, true))
@@ -387,36 +461,63 @@ class FFBattleEngine(private val context: Context) {
                         awardExpToParty(allies, exp, onEvent)
                     }
                 }
-                onEvent(FFBattleEvent.AbilityUsed(hero.id, R.string.ability_zeninage_name, R.string.ability_zeninage_desc, listOf(hero.name)))
             }
             HeroClass.MIME -> {
-                onEvent(FFBattleEvent.AbilityUsed(hero.id, R.string.ability_mimic_name, R.string.ability_mimic_desc, listOf(hero.name)))
                 val lastAbility = getLastAbility()
                 if (lastAbility != null) {
                     executeJobAbility(hero.copy(heroClass = lastAbility), allies, enemies, relicBonuses, getLastAbility, setLastAbility, onEvent)
                 }
             }
             HeroClass.NECROMANCER -> {
-                onEvent(FFBattleEvent.AbilityUsed(hero.id, R.string.ability_souldrain_name, R.string.ability_souldrain_desc, listOf(hero.name)))
-                val target = enemies.filter { it.currentHp > 0 }.firstOrNull() ?: return
-                val (baseDmg, isCrit) = calcMagicDamage(hero, target)
-                val dmg = (baseDmg * 2f).toInt()
-                target.currentHp -= dmg
-                onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, true, isCrit))
-                val healAmt = (dmg * 0.5f).toInt()
-                val amounts = mutableMapOf<String, Int>()
-                allies.filter { it.isAlive }.forEach { ally ->
-                    ally.currentHp = minOf(ally.currentHp + healAmt, ally.maxHp)
-                    amounts[ally.id] = healAmt
+                val targetEnemies = if (masteryLvl >= 25) enemies.filter { it.currentHp > 0 } else listOfNotNull(enemies.filter { it.currentHp > 0 }.firstOrNull())
+                targetEnemies.forEach { target ->
+                    val (baseDmg, isCrit) = calcMagicDamage(hero, target)
+                    val mult = when { masteryLvl >= 25 -> 2.2f; masteryLvl >= 10 -> 1.8f; else -> 1.4f }
+                    val dmg = (baseDmg * mult).toInt()
+                    target.currentHp -= dmg
+                    onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, true, isCrit))
+                    val healAmt = (dmg * 0.5f).toInt()
+                    val amounts = mutableMapOf<String, Int>()
+                    allies.filter { it.isAlive }.forEach { ally ->
+                        ally.currentHp = minOf(ally.currentHp + healAmt, ally.maxHp)
+                        amounts[ally.id] = healAmt
+                    }
+                    onEvent(FFBattleEvent.GroupHeal(hero.id, amounts))
+                    if (target.currentHp <= 0) {
+                        val exp = ((target.floor * 2) * relicBonuses.expMultiplier).toInt()
+                        onEvent(FFBattleEvent.EnemyDefeated(target.id, target.gilDropped, target.magiciteDropped, exp))
+                        awardExpToParty(allies, exp, onEvent)
+                    }
                 }
-                onEvent(FFBattleEvent.GroupHeal(hero.id, amounts))
+            }
+            HeroClass.BLUE_MAGE -> {
+                val targetEnemies = if (masteryLvl >= 25) enemies.filter { it.currentHp > 0 } else listOfNotNull(enemies.filter { it.currentHp > 0 }.firstOrNull())
+                val mult = when { masteryLvl >= 25 -> 2.2f; masteryLvl >= 10 -> 1.8f; else -> 1.5f }
+                targetEnemies.forEach { target ->
+                    val (baseDmg, isCrit) = calcMagicDamage(hero, target)
+                    val dmg = (baseDmg * mult).toInt()
+                    target.currentHp -= dmg
+                    onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, true, isCrit))
+                    if (target.currentHp <= 0) {
+                        val exp = ((target.floor * 2) * relicBonuses.expMultiplier).toInt()
+                        onEvent(FFBattleEvent.EnemyDefeated(target.id, target.gilDropped, target.magiciteDropped, exp))
+                        awardExpToParty(allies, exp, onEvent)
+                    }
+                }
+            }
+            HeroClass.ONION_KNIGHT -> {
+                val mult = when { masteryLvl >= 25 -> 3.0f; masteryLvl >= 10 -> 2.0f; else -> 1.2f }
+                val target = enemies.filter { it.currentHp > 0 }.firstOrNull() ?: return
+                val (baseDmg, isCrit) = calcPhysicalDamage(hero, target)
+                val dmg = (baseDmg * mult).toInt()
+                target.currentHp -= dmg
+                onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, isCrit))
                 if (target.currentHp <= 0) {
                     val exp = ((target.floor * 2) * relicBonuses.expMultiplier).toInt()
                     onEvent(FFBattleEvent.EnemyDefeated(target.id, target.gilDropped, target.magiciteDropped, exp))
                     awardExpToParty(allies, exp, onEvent)
                 }
             }
-            else -> { /* Freelancer: no special ability */ }
         }
     }
 

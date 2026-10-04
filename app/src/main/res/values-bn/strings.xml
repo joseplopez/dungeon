@@ -848,4 +848,153 @@
 
     <string name="ability_blue_mage_name">দানব জ্ঞান</string>
     <string name="ability_blue_mage_desc">দানবের কাছ থেকে শেখা নীল জাদু ব্যবহার করে যুদ্ধের সাথে খাপ খাইয়ে নেয়।</string>
-</resources>
+
+        <!-- Job Ability Progression -->
+        <string name="job_ability_progression_title">⚡ জব এবিলিটি প্রগ্রেস</string>
+        <string name="job_ability_unlocked">✅ আনলক করা হয়েছে</string>
+        <string name="job_ability_unlocks_at">🔒 লেভেল %1$d-এ আনলক হবে</string>
+
+        <!-- Freelancer Skills -->
+        <string name="skill_freelancer_t1_name">ফার্স্ট এইড</string>
+        <string name="skill_freelancer_t1_desc">প্রাথমিক চিকিৎসার মাধ্যমে নিজের HP পুনঃরুদ্ধার করে।</string>
+        <string name="skill_freelancer_t2_name">ফোকাস চার্জ</string>
+        <string name="skill_freelancer_t2_desc">পরবর্তী টার্নের জন্য শারীরিক ও ম্যাজিক ড্যামেজ বৃদ্ধি করে।</string>
+        <string name="skill_freelancer_t3_name">ওয়াইল্ড কার্ড</string>
+        <string name="skill_freelancer_t3_desc">একটি ভারসাম্যপূর্ণ আঘাত হানে যা সাথে সাথে এবিলিটি গেজ রিচার্জ করে।</string>
+
+        <!-- Warrior Skills -->
+        <string name="skill_warrior_t1_name">হেভি স্ট্রাইক</string>
+        <string name="skill_warrior_t1_desc">একক শত্রুকে ১৫০%% ভারী শারীরিক ড্যামেজ দেয়।</string>
+        <string name="skill_warrior_t2_name">আর্মার ব্রেক</string>
+        <string name="skill_warrior_t2_desc">১৮০%% শারীরিক ড্যামেজ দেয় এবং লক্ষ্যের ডিফেন্স হ্রাস করে।</string>
+        <string name="skill_warrior_t3_name">জায়ান্ট্যাক্স ক্লিভ</string>
+        <string name="skill_warrior_t3_desc">সকল শত্রুকে ২২০%% বিশাল শারীরিক ড্যামেজে আঘাত করে।</string>
+
+        <!-- White Mage Skills -->
+        <string name="skill_white_mage_t1_name">কিউর</string>
+        <string name="skill_white_mage_t1_desc">সবচেয়ে কম HP থাকা একক সহযোগীর মাঝারি পরিমাণ HP পুনঃরুদ্ধার করে।</string>
+        <string name="skill_white_mage_t2_name">কিউরাজা শিল্ড</string>
+        <string name="skill_white_mage_t2_desc">সবচেয়ে কম HP থাকা সহযোগীকে প্রচুর হিল করে এবং পার্টিকে ড্যামেজ ব্যারিয়ার দেয়।</string>
+        <string name="skill_white_mage_t3_name">কিউরাগা পার্টি হিল</string>
+        <string name="skill_white_mage_t3_desc">দলের সমস্ত জীবিত সদস্যদের প্রচুর HP পুনঃরুদ্ধার করে!</string>
+
+        <!-- Black Mage Skills -->
+        <string name="skill_black_mage_t1_name">ফায়ারবল</string>
+        <string name="skill_black_mage_t1_desc">একক শত্রুকে ১৪০%% ম্যাজিক ড্যামেজ দেয়।</string>
+        <string name="skill_black_mage_t2_name">চেইন লাইটনিং</string>
+        <string name="skill_black_mage_t2_desc">সর্বোচ্চ ২ জন শত্রুকে ১৭০%% এলিমেন্টাল ম্যাজিক ড্যামেজ দেয়।</string>
+        <string name="skill_black_mage_t3_name">মিটিওর টেমপেস্ট</string>
+        <string name="skill_black_mage_t3_desc">উল্কাপাত ঘটিয়ে সকল শত্রুকে ২২০%% বিশাল ম্যাজিক ড্যামেজ দেয়!</string>
+
+        <!-- Thief Skills -->
+        <string name="skill_thief_t1_name">কুইক ড্যাগার</string>
+        <string name="skill_thief_t1_desc">উচ্চ ক্রিটিক্যাল হিটের সুযোগসহ দ্রুত আক্রমণ।</string>
+        <string name="skill_thief_t2_name">শ্যাডো র্যানস্যাক</string>
+        <string name="skill_thief_t2_desc">লক্ষ্যবস্তুকে আঘাত করে এবং শত্রু থেকে অতিরিক্ত গিল ও ম্যাজিসাইট চুরি করে।</string>
+        <string name="skill_thief_t3_name">ফ্যান্টম মিরাজ</string>
+        <string name="skill_thief_t3_desc">মাল্টি-হিট গুপ্তহত্যার আঘাত যা বিশাল ক্রিটিক্যাল ড্যামেজ দেয়।</string>
+
+        <!-- Monk Skills -->
+        <string name="skill_monk_t1_name">চক্র</string>
+        <string name="skill_monk_t1_desc">নিজের সর্বোচ্চ HP-র ৩৫%% পুনঃরুদ্ধার করে এবং অ্যাটাক পাওয়ার বাড়ায়।</string>
+        <string name="skill_monk_t2_name">ট্রিপল পামেল</string>
+        <string name="skill_monk_t2_desc">একক লক্ষ্যবস্তুতে ৩-হিটের শারীরিক কম্বো প্রদান করে।</string>
+        <string name="skill_monk_t3_name">হানড্রেড ফিস্টস</string>
+        <string name="skill_monk_t3_desc">দ্রুত ঘুসি বর্ষণ যা সকল শত্রুকে ভারী শারীরিক ড্যামেজ দেয়!</string>
+
+        <!-- Knight Skills -->
+        <string name="skill_knight_t1_name">শিল্ড ব্যাশ</string>
+        <string name="skill_knight_t1_desc">১ জন শত্রুকে DEF-স্কেলিং শারীরিক ড্যামেজ দেয়।</string>
+        <string name="skill_knight_t2_name">সেন্টিনেল কভার</string>
+        <string name="skill_knight_t2_desc">২ টার্নের জন্য দলের ওপর আসা ড্যামেজ অনেকটাই কমিয়ে দেয়।</string>
+        <string name="skill_knight_t3_name">এইজিস জাজমেন্ট</string>
+        <string name="skill_knight_t3_desc">শক্তিশালী পবিত্র আঘাত যা লক্ষ্যকে ড্যামেজ দেয় এবং দলকে রক্ষা করে।</string>
+
+        <!-- Paladin Skills -->
+        <string name="skill_paladin_t1_name">হোলি স্ল্যাশ</string>
+        <string name="skill_paladin_t1_desc">লক্ষ্যবস্তুকে পবিত্র শারীরিক ড্যামেজ দেয় এবং সর্বনিম্ন HP-র সহযোগীকে সামান্য হিল করে।</string>
+        <string name="skill_paladin_t2_name">ডিভাইন স্যাঙ্কচুয়ারি</string>
+        <string name="skill_paladin_t2_desc">দলকে মাঝারিভাবে হিল করে এবং দলের DEF ও ম্যাজিক DEF বাড়ায়।</string>
+        <string name="skill_paladin_t3_name">সেক্রেড ক্লিনসিং</string>
+        <string name="skill_paladin_t3_desc">সকল শত্রুকে ২০০%% পবিত্র ড্যামেজ দেয় এবং দলের HP সম্পূর্ণ পুনঃরুদ্ধার করে!</string>
+
+        <!-- Red Mage Skills -->
+        <string name="skill_red_mage_t1_name">ডুয়াল কাস্ট: ফায়ার &amp; কিউর</string>
+        <string name="skill_red_mage_t1_desc">১ টার্নে লক্ষ্যবস্তুতে ফায়ার এবং সর্বনিম্ন HP থাকা সহযোগীকে কিউর করে।</string>
+        <string name="skill_red_mage_t2_name">আরকেন বার্স্ট</string>
+        <string name="skill_red_mage_t2_desc">লক্ষ্য শত্রুকে ডুয়াল এলিমেন্টাল ফায়ার ও আইস ম্যাজিক ড্যামেজ দেয়।</string>
+        <string name="skill_red_mage_t3_name">চেইন স্পেল টেমপেস্ট</string>
+        <string name="skill_red_mage_t3_desc">সব শত্রুর ওপর পরপর ৩টি এলিমেন্টাল স্পেল ছাড়ে এবং দলকে হিল করে।</string>
+
+        <!-- Summoner Skills -->
+        <string name="skill_summoner_t1_name">স্পিরিট কল</string>
+        <string name="skill_summoner_t1_desc">এলিমেন্টাল স্পিরিট তলব করে যা AoE ম্যাজিক ড্যামেজ দেয়।</string>
+        <string name="skill_summoner_t2_name">জাজমেন্ট বোল্ট</string>
+        <string name="skill_summoner_t2_desc">সব শত্রুকে বজ্রপাতে আঘাত করতে রামুহ-কে তলব করে।</string>
+        <string name="skill_summoner_t3_name">মেগাফ্লেয়ার</string>
+        <string name="skill_summoner_t3_desc">ড্রাগন কিং বাহামুতকে তলব করে যা সকলকে ২৫০%% বিশাল ম্যাজিক ড্যামেজ দেয়!</string>
+
+        <!-- Ninja Skills -->
+        <string name="skill_ninja_t1_name">শুরিঙ্কেন টস</string>
+        <string name="skill_ninja_t1_desc">লক্ষ্যবস্তুতে দূরের আর্মার-পিয়ার্সিং শারীরিক আঘাত।</string>
+        <string name="skill_ninja_t2_name">শ্যাডো ইমেজ</string>
+        <string name="skill_ninja_t2_desc">১০০%% গ্যারান্টিযুক্ত ক্রিটিক্যাল হিটসহ মাল্টি-হিট অ্যাটাক।</string>
+        <string name="skill_ninja_t3_name">অবলিভিয়ন স্ল্যাশ</string>
+        <string name="skill_ninja_t3_desc">মারাত্মক গুপ্তহত্যার আঘাত যা একক লক্ষ্যে প্রচুর ড্যামেজ দেয়!</string>
+
+        <!-- Dragoon Skills -->
+        <string name="skill_dragoon_t1_name">জাম্প স্ট্রাইক</string>
+        <string name="skill_dragoon_t1_desc">শূন্যে লাফিয়ে উঠে নিচে আছড়ে পড়ে ১৮০%% শারীরিক ড্যামেজ দেয়।</string>
+        <string name="skill_dragoon_t2_name">ড্রাগন ল্যান্স</string>
+        <string name="skill_dragoon_t2_desc">২২০%% শারীরিক ড্যামেজের মাধ্যমে শত্রুর আর্মার ভেদ করে।</string>
+        <string name="skill_dragoon_t3_name">হাই জাম্প নোভা</string>
+        <string name="skill_dragoon_t3_desc">ড্রাগনের মতো উঁচুতে উঠে AoE শকওয়েভে বিস্ফোরণ ঘটায় যা সকল শত্রুকে আঘাত করে!</string>
+
+        <!-- Bard Skills -->
+        <string name="skill_bard_t1_name">মিনস্ট্রেল ব্যালাড</string>
+        <string name="skill_bard_t1_desc">প্রতি টার্নে দলের HP পুনরুজ্জীবিত করে।</string>
+        <string name="skill_bard_t2_name">মিনুয়েট অব মাইট</string>
+        <string name="skill_bard_t2_desc">দলের ATK এবং MAG ২৫%% বৃদ্ধি করে।</string>
+        <string name="skill_bard_t3_name">হিরোইক অ্যানথেম</string>
+        <string name="skill_bard_t3_desc">একটি অনুপ্রেরণামূলক গান গায় যা দলের সমস্ত স্ট্যাটস বাড়ায় এবং হিল করে!</string>
+
+        <!-- Samurai Skills -->
+        <string name="skill_samurai_t1_name">আইয়াই স্ল্যাশ</string>
+        <string name="skill_samurai_t1_desc">উচ্চ ক্রিটিক্যাল রেটসহ নিখুঁত তরবারির আঘাত।</string>
+        <string name="skill_samurai_t2_name">জেনিনাগে</string>
+        <string name="skill_samurai_t2_desc">সকল শত্রুকে ভারী শারীরিক ড্যামেজ দিতে গিল ছুড়ে মারে।</string>
+        <string name="skill_samurai_t3_name">বুশিডো এক্সেকিউশন</string>
+        <string name="skill_samurai_t3_desc">মাস্টার কাটানা কৌশল যা সকল শত্রুকে বিশাল ক্রিটিক্যাল ড্যামেজ দেয়!</string>
+
+        <!-- Onion Knight Skills -->
+        <string name="skill_onion_knight_t1_name">অনিয়ন পোক</string>
+        <string name="skill_onion_knight_t1_desc">একটি সামান্য খোঁচা যা হালকা শারীরিক ড্যামেজ দেয়।</string>
+        <string name="skill_onion_knight_t2_name">অনিয়ন রাশ</string>
+        <string name="skill_onion_knight_t2_desc">দ্রুত ২-হিটের আক্রমণ যা মাঝারি শারীরিক ড্যামেজ দেয়।</string>
+        <string name="skill_onion_knight_t3_name">অনিয়ন ওভারলর্ড</string>
+        <string name="skill_onion_knight_t3_desc">আল্ট্রা ফিজিক্যাল ও ম্যাজিক সার্জ ঘটায় যা ৩০০%% সর্বোচ্চ ড্যামেজ দেয়!</string>
+
+        <!-- Mime Skills -->
+        <string name="skill_mime_t1_name">মিমিক</string>
+        <string name="skill_mime_t1_desc">পূর্ববর্তী সহযোগীর এবিলিটি হুবহু অনুকরণ করে।</string>
+        <string name="skill_mime_t2_name">গ্র্যান্ড মিমিগ্রি</string>
+        <string name="skill_mime_t2_desc">১৫০%% বর্ধিত ক্ষমতাসহ পূর্ববর্তী এবিলিটি অনুকরণ করে।</string>
+        <string name="skill_mime_t3_name">পারফেক্ট ইকো</string>
+        <string name="skill_mime_t3_desc">দলের সবচেয়ে শক্তিশালী এবিলিটি অনুকরণ করে যা সকল লক্ষ্যবস্তুকে প্রভাবিত করে!</string>
+
+        <!-- Necromancer Skills -->
+        <string name="skill_necromancer_t1_name">লাইফ ড্রেন</string>
+        <string name="skill_necromancer_t1_desc">নিজেকে হিল করতে লক্ষ্য শত্রু থেকে HP শুষে নেয়।</string>
+        <string name="skill_necromancer_t2_name">সোল সাইফন</string>
+        <string name="skill_necromancer_t2_desc">শত্রু থেকে HP শুষে নেয় এবং জীবিত সহযোগীদের মধ্যে হিল বণ্টন করে।</string>
+        <string name="skill_necromancer_t3_name">গ্রেভ টেমপেস্ট</string>
+        <string name="skill_necromancer_t3_desc">শ্যাডো টেমপেস্ট তলব করে যা সকলকে ডার্ক ম্যাজিক ড্যামেজ দেয় এবং দলকে হিল করে!</string>
+
+        <!-- Blue Mage Skills -->
+        <string name="skill_blue_mage_t1_name">গবলিন পাঞ্চ</string>
+        <string name="skill_blue_mage_t1_desc">দানবদের বিরুদ্ধে লড়াই থেকে শেখা শারীরিক দক্ষতা।</string>
+        <string name="skill_blue_mage_t2_name">হোয়াইট উইন্ড</string>
+        <string name="skill_blue_mage_t2_desc">ব্লু মেজের বর্তমান HP-র অনুপাতে দলকে হিল করে।</string>
+        <string name="skill_blue_mage_t3_name">মাইটি গার্ড</string>
+        <string name="skill_blue_mage_t3_desc">সমস্ত সহযোগীকে প্রচুর DEF ও ম্যাজিক DEF বাফ দেয় এবং AoE স্ট্যাটাস ম্যাজিক দেয়!</string>
+    </resources>

@@ -848,4 +848,154 @@
 
     <string name="ability_blue_mage_name">معرفة الوحوش</string>
     <string name="ability_blue_mage_desc">يستخدم السحر الأزرق المتخصص للترجمات والتكيف مع المعركة كل 3 أدوار.</string>
-</resources>
+
+        <!-- Job Ability Progression -->
+        <string name="job_ability_progression_title">⚡ Sınıf Becerisi İlerlemesi</string>
+        <string name="job_ability_unlocked">✅ Kilit Açıldı</string>
+        <string name="job_ability_unlocks_at">🔒 Seviye %1$d olduğunda açılır</string>
+
+        <!-- Freelancer Skills -->
+        <string name="skill_freelancer_t1_name">İlk Yardım</string>
+        <string name="skill_freelancer_t1_desc">Temel saha tıbbı ile kendi canını (HP) tazeler.</string>
+        <string name="skill_freelancer_t2_name">Odak Yüklemesi</string>
+        <string name="skill_freelancer_t2_desc">Sonraki tur için fiziksel ve büyü hasarını artırır.</string>
+        <string name="skill_freelancer_t3_name">Joker Kartı</string>
+        <string name="skill_freelancer_t3_desc">Beceri göstergesini anında dolduran dengeli bir vuruş yapar.</string>
+
+        <!-- Warrior Skills -->
+        <string name="skill_warrior_t1_name">Ağır Darbe</string>
+        <string name="skill_warrior_t1_desc">Tek bir düşmana %%150 ağır fiziksel hasar verir.</string>
+        <string name="skill_warrior_t2_name">Zırh Kırma</string>
+        <string name="skill_warrior_t2_desc">%%180 fiziksel hasar verir ve hedefin savunmasını azaltır.</string>
+        <string name="skill_warrior_t3_name">Dev Balta Yarılması</string>
+        <string name="skill_warrior_t3_desc">TÜM düşmanlara %%220 muazzam fiziksel hasar savurur.</string>
+
+        <!-- White Mage Skills -->
+        <string name="skill_white_mage_t1_name">Şifa</string>
+        <string name="skill_white_mage_t1_desc">En düşük cana sahip tek müttefiğin canını orta miktarda tazeler.</string>
+        <string name="skill_white_mage_t2_name">Curaja Kalkanı</string>
+        <string name="skill_white_mage_t2_desc">En düşük canlı müttefiği yüksek oranda iyileştirir ve gruba hasar bariyeri verir.</string>
+        <string name="skill_white_mage_t3_name">Curaga Grup Şifası</string>
+        <string name="skill_white_mage_t3_desc">Bilinçli TÜM grup üyelerinin canını devasa oranda tazeler!</string>
+
+        <!-- Black Mage Skills -->
+        <string name="skill_black_mage_t1_name">Ateş Topu</string>
+        <string name="skill_black_mage_t1_desc">Tek bir düşmana %%140 büyü hasarı verir.</string>
+        <string name="skill_black_mage_t2_name">Zincirleme Yıldırım</string>
+        <string name="skill_black_mage_t2_desc">En fazla 2 düşmana vurarak %%170 element büyü hasarı verir.</string>
+        <string name="skill_black_mage_t3_name">Gök Taşı Fırtınası</string>
+        <string name="skill_black_mage_t3_desc">TÜM düşmanlara %%220 devasa büyü hasarı veren gök taşları yağdırır!</string>
+
+        <!-- Thief Skills -->
+        <string name="skill_thief_t1_name">Hızlı Hançer</string>
+        <string name="skill_thief_t1_desc">Yüksek kritik vuruş şansına sahip hızlı saldırı.</string>
+        <string name="skill_thief_t2_name">Gölge Yağması</string>
+        <string name="skill_thief_t2_desc">Hedefe vurur ve düşmandan ekstra Gil ile Magicite çalar.</string>
+        <string name="skill_thief_t3_name">Hayalet Serabı</string>
+        <string name="skill_thief_t3_desc">Devasa kritik hasar veren çoklu vuruşlu suikast saldırısı.</string>
+
+        <!-- Monk Skills -->
+        <string name="skill_monk_t1_name">Çakra</string>
+        <string name="skill_monk_t1_desc">Maksimum canının %%35\'ini tazeler ve saldırı gücünü artırır.</string>
+        <string name="skill_monk_t2_name">Üçlü Yumruk</string>
+        <string name="skill_monk_t2_desc">Tek bir hedefe 3 vuruşluk fiziksel kombo uygular.</string>
+        <string name="skill_monk_t3_name">Yüz Yumruk</string>
+        <string name="skill_monk_t3_desc">TÜM düşmanlara ağır fiziksel hasar veren hızlı yumruk sağanağı!</string>
+
+        <!-- Knight Skills -->
+        <string name="skill_knight_t1_name">Kalkan Darbesi</string>
+        <string name="skill_knight_t1_desc">1 düşmana DEF ölçekli fiziksel hasar verir.</string>
+        <string name="skill_knight_t2_name">Muhafız Koruması</string>
+        <string name="skill_knight_t2_desc">2 tur boyunca gruba gelen hasarı büyük ölçüde azaltır.</string>
+        <string name="skill_knight_t3_name">Aegis Yargısı</string>
+        <string name="skill_knight_t3_desc">Hedefe hasar veren ve grubu koruyan güçlü kutsal vuruş.</string>
+
+        <!-- Paladin Skills -->
+        <string name="skill_paladin_t1_name">Kutsal Kesik</string>
+        <string name="skill_paladin_t1_desc">Hedefe kutsal fiziksel hasar verir ve en düşük canlı müttefiği hafifçe iyileştirir.</string>
+        <string name="skill_paladin_t2_name">İlahi Sığınak</string>
+        <string name="skill_paladin_t2_desc">Grubu orta düzeyde iyileştirir, grubun DEF ve Büyü DEF değerlerini artırır.</string>
+        <string name="skill_paladin_t3_name">Kutsal Arınma</string>
+        <string name="skill_paladin_t3_desc">TÜM düşmanlara %%200 kutsal hasar verir ve grubun canını tamamen tazeler!</string>
+
+        <!-- Red Mage Skills -->
+        <string name="skill_red_mage_t1_name">Çift Büyü: Ateş &amp; Şifa</string>
+        <string name="skill_red_mage_t1_desc">1 turda hedefe Ateş, en düşük canlı müttefiğe Şifa büyüsü atar.</string>
+        <string name="skill_red_mage_t2_name">Gizemli Patlama</string>
+        <string name="skill_red_mage_t2_desc">Hedef düşmana çift elementli ateş ve buz büyüsü uygular.</string>
+        <string name="skill_red_mage_t3_name">Zincir Büyü Fırtınası</string>
+        <string name="skill_red_mage_t3_desc">Tüm düşmanlara peş peşe 3 element büyüsü yağdırır ve grubu iyileştirir.</string>
+
+        <!-- Summoner Skills -->
+        <string name="skill_summoner_t1_name">Ruh Çağrısı</string>
+        <string name="skill_summoner_t1_desc">Alan (AoE) büyü hasarı veren element ruhu çağırır.</string>
+        <string name="skill_summoner_t2_name">Yargı Yıldırımı</string>
+        <string name="skill_summoner_t2_desc">Tüm düşmanlara yıldırım çarpması için Ramuh\'u çağırır.</string>
+        <string name="skill_summoner_t3_name">Mega Parlama</string>
+        <string name="skill_summoner_t3_desc">HERKESE %%250 kolosal büyü hasarı veren Ejderha Kralı Bahamut\'u çağırır!</string>
+
+        <!-- Ninja Skills -->
+        <string name="skill_ninja_t1_name">Shuriken Fırlatma</string>
+        <string name="skill_ninja_t1_desc">Hedefe zırh delen menzilli fiziksel vuruş yapma.</string>
+        <string name="skill_ninja_t2_name">Gölge Yansıması</string>
+        <string name="skill_ninja_t2_desc">%%100 garantili kritik vuruş içeren çoklu darbe.</string>
+        <string name="skill_ninja_t3_name">Unutuluş Kesiği</string>
+        <string name="skill_ninja_t3_desc">Tek bir hedefe muazzam hasar veren ölümcül suikast vuruşu!</string>
+
+        <!-- Dragoon Skills -->
+        <string name="skill_dragoon_t1_name">Sıçrayış Vuruşu</string>
+        <string name="skill_dragoon_t1_desc">Havaya sıçrar ve yere çakılarak %%180 fiziksel hasar verir.</string>
+        <string name="skill_dragoon_t2_name">Ejderha Mızrağı</string>
+        <string name="skill_dragoon_t2_desc">%%220 fiziksel hasar vererek düşman zırhını deler.</string>
+        <string name="skill_dragoon_t3_name">Yüksek Sıçrayış Süpernovası</string>
+        <string name="skill_dragoon_t3_desc">Ejderha yüksekliklerine tırmanır ve TÜM düşmanlara vuran bir AoE şok dalgası patlatır!</string>
+
+        <!-- Bard Skills -->
+        <string name="skill_bard_t1_name">Ozan Balladı</string>
+        <string name="skill_bard_t1_desc">Her tur grubun canını yeniler.</string>
+        <string name="skill_bard_t2_name">Güç Minüeti</string>
+        <string name="skill_bard_t2_desc">Grubun SALDIRI (ATK) ve BÜYÜ (MAG) gücünü %%25 artırır.</string>
+        <string name="skill_bard_t3_name">Kahramanlık Marşı</string>
+        <string name="skill_bard_t3_desc">Grubun TÜM istatistiklerini artıran ve grubu iyileştiren ilham verici bir marş söyler!</string>
+
+        <!-- Samurai Skills -->
+        <string name="skill_samurai_t1_name">Iai Kesiği</string>
+        <string name="skill_samurai_t1_desc">Yüksek kritik vuruş oranına sahip hassas kılıç darbesi.</string>
+        <string name="skill_samurai_t2_name">Zeninage</string>
+        <string name="skill_samurai_t2_desc">TÜM düşmanlara ağır fiziksel hasar vermek için Gil fırlatır.</string>
+        <string name="skill_samurai_t3_name">Bushido İnfazı</string>
+        <string name="skill_samurai_t3_desc">TÜM düşmanlara masif kritik hasar veren ustalık işi katana tekniği!</string>
+
+        <!-- Onion Knight Skills -->
+        <string name="skill_onion_knight_t1_name">Soğan Dürtmesi</string>
+        <string name="skill_onion_knight_t1_desc">Hafif fiziksel hasar veren mütevazı bir dürtme.</string>
+        <string name="skill_onion_knight_t2_name">Soğan Hücumu</string>
+        <string name="skill_onion_knight_t2_desc">Orta düzeyde fiziksel hasar veren hızlı 2 vuruşlu saldırı.</string>
+        <string name="skill_onion_knight_t3_name">Soğan Derebeyi</string>
+        <string name="skill_onion_knight_t3_desc">%%300 yüce hasar veren ultra fiziksel ve büyü dalgası başlatır!</string>
+
+        <!-- Mime Skills -->
+        <string name="skill_mime_t1_name">Taklit</string>
+        <string name="skill_mime_t1_desc">Önceki müttefiğin becerisini kopyalar.</string>
+        <string name="skill_mime_t2_name">Yüce Taklit</string>
+        <string name="skill_mime_t2_desc">Önceki beceriyi %%150 artırılmış güçle kopyalar.</string>
+        <string name="skill_mime_t3_name">Kusursuz Yankı</string>
+        <string name="skill_mime_t3_desc">TÜM hedefleri etkileyen en güçlü grup becerisini kopyalar!</string>
+
+        <!-- Necromancer Skills -->
+        <string name="skill_necromancer_t1_name">Yaşam Emilimi</string>
+        <string name="skill_necromancer_t1_desc">Kendi canını tazelemek için hedef düşmandan can çeker.</string>
+        <string name="skill_necromancer_t2_name">Ruh Sifonu</string>
+        <string name="skill_necromancer_t2_desc">Düşmandan can çeker ve iyileşmeyi bilinçli TÜM müttefiklere dağıtır.</string>
+
+        <string name="skill_necromancer_t3_name">Mezar Fırtınası</string>
+        <string name="skill_necromancer_t3_desc">HERKESE karanlık büyü yapan &amp; grubu iyileştiren gölge fırtınası çağırır!</string>
+
+        <!-- Blue Mage Skills -->
+        <string name="skill_blue_mage_t1_name">Goblin Yumruğu</string>
+        <string name="skill_blue_mage_t1_desc">Canavar karşılaşmalarından öğrenilen fiziksel beceri.</string>
+        <string name="skill_blue_mage_t2_name">Beyaz Rüzgar</string>
+        <string name="skill_blue_mage_t2_desc">Mavi Büyücünün mevcut canıyla orantılı olarak grubu iyileştirir.</string>
+        <string name="skill_blue_mage_t3_name">Görkemli Muhafız</string>
+        <string name="skill_blue_mage_t3_desc">TÜM müttefiklere devasa DEF ve Büyü DEF güçlendirmeleri verir ve alan durum büyüsü uygular!</string>
+    </resources>

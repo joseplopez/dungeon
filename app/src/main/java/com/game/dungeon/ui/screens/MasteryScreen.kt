@@ -1,6 +1,7 @@
 package com.game.dungeon.ui.screens
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
@@ -139,7 +140,12 @@ fun JobMasteryTab(gs: GameState, onSelectJob: (HeroClass) -> Unit = {}) {
                             Text(safeStringResource(job.nameRes), style = PixelBody, color = GoldBright)
                             Text(safeStringResource(R.string.relic_level_format, level), style = PixelBody, color = SystemCyan)
                         }
-                        Spacer(Modifier.height(4.dp))
+                        val activeSkill = JobAbilityData.getActiveAbilityForLevel(job, level)
+                        activeSkill?.let {
+                            Text("${activeSkill.icon} ${safeStringResource(activeSkill.nameRes)}", style = PixelSmall, color = GoldBright)
+                            Spacer(Modifier.height(4.dp))
+                        }
+
                         // EXP Bar
                         Box(Modifier.fillMaxWidth().height(8.dp).background(BgDarkest)) {
                             Box(Modifier.fillMaxWidth(exp.toFloat() / nextExp.coerceAtLeast(1).toFloat()).fillMaxHeight().background(SystemCyan))
@@ -343,6 +349,9 @@ fun JobDetailFullScreenView(
                         }
                     }
 
+                    // Job Ability Progression (3 Tiers) Panel
+                    JobAbilityProgressionPanel(job, level)
+
                     // Mastery Status & Party Bonus Panel
                     PixelPanel(Modifier.fillMaxWidth(), borderColor = HpGreen) {
                         Column(Modifier.padding(10.dp)) {
@@ -393,6 +402,68 @@ fun JobDetailFullScreenView(
                                 )
                             }
                         }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@Composable
+private fun JobAbilityProgressionPanel(job: HeroClass, currentLevel: Int) {
+    val abilities = JobAbilityData.getAbilitiesForJob(job)
+    PixelPanel(Modifier.fillMaxWidth(), borderColor = GoldBright) {
+        Column(Modifier.padding(10.dp)) {
+            Text(
+                safeStringResource(R.string.job_ability_progression_title),
+                style = PixelBody,
+                color = GoldBright,
+                fontWeight = FontWeight.Bold
+            )
+            Spacer(Modifier.height(6.dp))
+
+            abilities.forEach { spec ->
+                val isUnlocked = currentLevel >= spec.unlockLevel
+                val statusText = if (isUnlocked) {
+                    safeStringResource(R.string.job_ability_unlocked)
+                } else {
+                    safeStringResource(R.string.job_ability_unlocks_at, spec.unlockLevel)
+                }
+                val borderColor = if (isUnlocked) GoldBright else StoneGray
+                val textColor = if (isUnlocked) Color.White else StoneGray
+
+                Box(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 3.dp)
+                        .background(if (isUnlocked) BgMedium else BgDarkest)
+                        .border(1.dp, borderColor)
+                        .padding(6.dp)
+                ) {
+                    Column {
+                        Row(
+                            Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                "${spec.icon} ${safeStringResource(spec.nameRes)}",
+                                style = PixelBody,
+                                color = if (isUnlocked) GoldBright else StoneGray,
+                                fontWeight = FontWeight.Bold
+                            )
+                            Text(
+                                statusText,
+                                style = PixelSmall,
+                                color = if (isUnlocked) HpGreen else StoneGray
+                            )
+                        }
+                        Spacer(Modifier.height(2.dp))
+                        Text(
+                            safeStringResource(spec.descRes),
+                            style = PixelSmall,
+                            color = textColor
+                        )
                     }
                 }
             }
