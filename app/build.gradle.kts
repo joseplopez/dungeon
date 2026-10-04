@@ -32,7 +32,7 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField("long", "INITIAL_GIL", "10000000L")
+            buildConfigField("long", "INITIAL_GIL", "1000000000L")
             buildConfigField("int", "INITIAL_MAGICITE", "100000")
             manifestPlaceholders["admobAppId"] = "ca-app-pub-3940256099942544~3347511713"
             buildConfigField("String", "REWARDED_AD_UNIT_ID", "\"ca-app-pub-3940256099942544/5224354917\"")

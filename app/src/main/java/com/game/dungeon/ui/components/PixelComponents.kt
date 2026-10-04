@@ -485,18 +485,33 @@ fun PixelMagiciteDisplay(
 ) = PixelMagiciteDisplay(amount.toLong(), modifier, style, iconSize)
 
 fun formatAmount(n: Long): String {
+    if (n == Long.MAX_VALUE) return "∞"
     val absN = kotlin.math.abs(n)
     val formatted = when {
-        absN >= 1_000_000 -> {
+        absN >= 1_000_000_000_000L -> {
+            val v = absN / 1_000_000_000_000.0
+            val s = String.format(java.util.Locale.US, "%.1f", v)
+                .dropLastWhile { it == '0' }
+                .removeSuffix(".")
+            "${s}T"
+        }
+        absN >= 1_000_000_000L -> {
+            val v = absN / 1_000_000_000.0
+            val s = String.format(java.util.Locale.US, "%.1f", v)
+                .dropLastWhile { it == '0' }
+                .removeSuffix(".")
+            "${s}B"
+        }
+        absN >= 1_000_000L -> {
             val v = absN / 1_000_000.0
-            val s = String.format(java.util.Locale.US, "%.3f", v)
+            val s = String.format(java.util.Locale.US, "%.1f", v)
                 .dropLastWhile { it == '0' }
                 .removeSuffix(".")
             "${s}M"
         }
-        absN >= 1_000 -> {
+        absN >= 1_000L -> {
             val v = absN / 1_000.0
-            val s = String.format(java.util.Locale.US, "%.3f", v)
+            val s = String.format(java.util.Locale.US, "%.1f", v)
                 .dropLastWhile { it == '0' }
                 .removeSuffix(".")
             "${s}K"

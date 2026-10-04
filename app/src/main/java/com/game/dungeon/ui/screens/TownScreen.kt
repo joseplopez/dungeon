@@ -131,7 +131,7 @@ fun TownScreen(
                                     horizontalArrangement = Arrangement.spacedBy(4.dp)
                                 ) {
                                     PixelGoldDisplay(amount = gil)
-                                    if (gs != null) {
+                                    if (gs != null && gs!!.maxGil < Long.MAX_VALUE) {
                                         Text("/${formatGold(gs!!.maxGil)}", style = PixelSmall, color = StoneGray)
                                     }
                                     AdRewardIconButton(

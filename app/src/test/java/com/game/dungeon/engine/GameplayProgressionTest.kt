@@ -490,4 +490,22 @@ class GameplayProgressionTest {
         assertTrue("Dim 5 max boss ATK must be balanced (< 15,000)", neoExdeath.attack < 15000)
         assertTrue("Dim 5 max boss HP must be balanced (< 250,000)", neoExdeath.maxHp < 250000)
     }
+
+    @Test
+    fun testVaultAtMaxLevelHasNoGilCap() {
+        val gsNormal = GameState(vaultLevel = 5)
+        assertTrue("Sub-max vault must have finite gil cap", gsNormal.maxGil < Long.MAX_VALUE)
+
+        val gsMaxVault = GameState(vaultLevel = UpgradeType.VAULT.maxLevel)
+        assertEquals("Max level vault must have no gil cap (Long.MAX_VALUE)", Long.MAX_VALUE, gsMaxVault.maxGil)
+    }
+
+    @Test
+    fun testFormatAmountUsesAtMostOneDecimal() {
+        assertEquals("15.1K", com.game.dungeon.ui.components.formatAmount(15079L))
+        assertEquals("15K", com.game.dungeon.ui.components.formatAmount(15000L))
+        assertEquals("1.5M", com.game.dungeon.ui.components.formatAmount(1500000L))
+        assertEquals("2.5B", com.game.dungeon.ui.components.formatAmount(2500000000L))
+        assertEquals("∞", com.game.dungeon.ui.components.formatAmount(Long.MAX_VALUE))
+    }
 }

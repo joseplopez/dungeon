@@ -69,8 +69,13 @@ data class GameState(
     val lastPartyClasses: List<HeroClass> = emptyList()
 ) {
     val maxGil: Long get() =
-        if (vaultLevel<10) 10_000L + (vaultLevel * 50_000L)
-        else 10_000L + (vaultLevel * vaultLevel * 5_000L)
+        if (vaultLevel >= UpgradeType.VAULT.maxLevel) {
+            Long.MAX_VALUE
+        } else if (vaultLevel < 10) {
+            10_000L + (vaultLevel * 50_000L)
+        } else {
+            10_000L + (vaultLevel * vaultLevel * 5_000L)
+        }
 
     val upgradeDiscount: Float get() = planningLevel * 0.05f
     val restDiscount: Float get() = clinicLevel * 0.10f

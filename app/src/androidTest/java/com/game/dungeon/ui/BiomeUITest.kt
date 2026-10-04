@@ -6,6 +6,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.test.*
 import androidx.compose.ui.test.junit4.createComposeRule
+import androidx.room.Ignore
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.game.dungeon.data.models.BiomeType
 import com.game.dungeon.ui.components.DungeonBackground
@@ -28,7 +29,7 @@ class BiomeUITest {
         }
         composeTestRule.waitForIdle()
         composeTestRule.onNodeWithTag(tag).assertIsDisplayed()
-        Thread.sleep(5000)
+        //Thread.sleep(5000)
     }
 
     @Test
