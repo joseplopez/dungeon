@@ -15,6 +15,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.game.dungeon.data.models.MonsterType
 
 // --- CATEGORIZED MONSTER & BOSS LISTS ---
 
@@ -24,9 +25,9 @@ val regularMonsters = listOf(
     "Toad", "Hellhound"
 )
 
-val ff1AndFF2Bosses = listOf(
+val ff1AndFF2Bosses = listOf("Emperor Mateus",
     "Garland", "Astos", "Lich", "Marilith", "Kraken", "Tiamat", "Chaos",
-    "Leon", "Borghen", "Gottos", "Roundworm", "Cyclone", "Emperor"
+    "Leon", "Borghen", "Gottos", "Roundworm", "Cyclone"
 )
 
 val ff3AndFF4Bosses = listOf(
@@ -50,148 +51,55 @@ val ff9AndFF10Bosses = listOf(
 )
 
 @Composable
-fun MonsterSpriteItem(monsterName: String, modifier: Modifier = Modifier) {
-    Card(
-        modifier = modifier.padding(6.dp),
-        colors = CardDefaults.cardColors(containerColor = Color(0xFF1F1B24))
+fun MonsterSpriteItem() {
+
+    LazyVerticalGrid(
+        columns = GridCells.Fixed(12),
+        modifier = Modifier.fillMaxSize()
     ) {
-        Column(
-            horizontalAlignment = Alignment.CenterHorizontally,
-            verticalArrangement = Arrangement.Center,
-            modifier = Modifier.padding(8.dp)
+    for (monster in MonsterType.entries) {
+        item {
+        Card(
+            modifier = Modifier.fillMaxWidth().padding(6.dp),
+            colors = CardDefaults.cardColors(containerColor = Color(0xFF1F1B24))
         ) {
-            Box(
-                modifier = Modifier
-                    .size(96.dp)
-                    .background(Color(0xFF2E2342))
-                    .padding(8.dp),
-                contentAlignment = Alignment.Center
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.Center,
+                modifier = Modifier.padding(8.dp)
             ) {
-                EnemySprite(
-                    enemyName = monsterName,
-                    modifier = Modifier.fillMaxSize()
+                Box(
+                    modifier = Modifier
+                        .size(96.dp)
+                        .background(Color(0xFF2E2342))
+                        .padding(8.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    EnemySprite(
+                        monster,
+                        modifier = Modifier.fillMaxSize()
+                    )
+                }
+                Spacer(modifier = Modifier.height(4.dp))
+                Text(
+                    text = monster.name,
+                    color = Color.White,
+                    fontSize = 10.sp
                 )
             }
-            Spacer(modifier = Modifier.height(4.dp))
-            Text(
-                text = monsterName,
-                color = Color.White,
-                fontSize = 10.sp
-            )
         }
+        }
+    }
     }
 }
 
-@Composable
-fun MonsterGridPreview(title: String, monsters: List<String>) {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color(0xFF121212))
-            .padding(12.dp)
-    ) {
-        Text(
-            text = title,
-            color = Color(0xFFFFD700),
-            fontSize = 16.sp,
-            modifier = Modifier.padding(bottom = 8.dp, start = 6.dp)
-        )
-        LazyVerticalGrid(
-            columns = GridCells.Fixed(4),
-            modifier = Modifier.fillMaxSize()
-        ) {
-            items(monsters) { monsterName ->
-                MonsterSpriteItem(monsterName = monsterName)
-            }
-        }
-    }
-}
 
 // --- FOCUSED CATEGORIZED PREVIEWS ---
 
-@Preview(name = "1. Regular Monsters", widthDp = 640, heightDp = 750)
+
+@Preview(name = "ALL", widthDp = 2000, heightDp = 3000)
 @Composable
-fun RegularMonstersPreview() {
-    MonsterGridPreview(
-        title = "Regular Monsters (19 Sprites)",
-        monsters = regularMonsters
-    )
+fun RegularMonstersALLPreview() {
+    MonsterSpriteItem()
 }
 
-@Preview(name = "2. FF1 & FF2 Bosses", widthDp = 640, heightDp = 580)
-@Composable
-fun FF1AndFF2BossesPreview() {
-    MonsterGridPreview(
-        title = "FF1 & FF2 Bosses (13 Sprites)",
-        monsters = ff1AndFF2Bosses
-    )
-}
-
-@Preview(name = "3. FF3 & FF4 Bosses", widthDp = 640, heightDp = 680)
-@Composable
-fun FF3AndFF4BossesPreview() {
-    MonsterGridPreview(
-        title = "FF3 & FF4 Bosses (16 Sprites)",
-        monsters = ff3AndFF4Bosses
-    )
-}
-
-@Preview(name = "4. FF5 & FF6 Bosses", widthDp = 640, heightDp = 720)
-@Composable
-fun FF5AndFF6BossesPreview() {
-    MonsterGridPreview(
-        title = "FF5 & FF6 Bosses (17 Sprites)",
-        monsters = ff5AndFF6Bosses
-    )
-}
-
-@Preview(name = "5. FF7 & FF8 Bosses", widthDp = 640, heightDp = 650)
-@Composable
-fun FF7AndFF8BossesPreview() {
-    MonsterGridPreview(
-        title = "FF7 & FF8 Bosses (15 Sprites)",
-        monsters = ff7AndFF8Bosses
-    )
-}
-
-@Preview(name = "6. FF9 & FF10 Bosses", widthDp = 640, heightDp = 680)
-@Composable
-fun FF9AndFF10BossesPreview() {
-    MonsterGridPreview(
-        title = "FF9 & FF10 Bosses (16 Sprites)",
-        monsters = ff9AndFF10Bosses
-    )
-}
-
-@Preview(name = "7. Pirate Monster", widthDp = 640, heightDp = 640)
-@Composable
-fun PirateSpritePreview() {
-    Box(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(Color(0xFF121212))
-            .padding(16.dp),
-        contentAlignment = Alignment.Center
-    ) {
-        Column(horizontalAlignment = Alignment.CenterHorizontally) {
-            Text(
-                text = "Pirate Monster Sprite",
-                color = Color(0xFFFFD700),
-                fontSize = 18.sp,
-                modifier = Modifier.padding(bottom = 12.dp)
-            )
-            Box(
-                modifier = Modifier
-                    .size(200.dp)
-                    .background(Color(0xFF2E2342))
-                    .padding(16.dp),
-                contentAlignment = Alignment.Center
-            ) {
-                EnemySprite(
-                    enemyName = "Pirate",
-                    modifier = Modifier.fillMaxSize()
-                )
-            }
-        }
-    }
-}
