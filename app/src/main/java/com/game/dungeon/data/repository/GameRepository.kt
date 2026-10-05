@@ -82,6 +82,26 @@ class GameRepository @Inject constructor(
         ))
     }
 
+    suspend fun recordBossDefeat(bossName: String) {
+        if (bossName.isBlank()) return
+        val current = database.gameStateDao.getGameStateOnce() ?: GameState()
+        val uniqueEntry = "${bossName}_${System.currentTimeMillis()}_${java.util.UUID.randomUUID().toString().take(8)}"
+        database.gameStateDao.upsert(current.copy(
+            bossesDefeatedNames = current.bossesDefeatedNames + uniqueEntry
+        ))
+    }
+
+    suspend fun recordBossDefeats(bossNames: Set<String>) {
+        if (bossNames.isEmpty()) return
+        val current = database.gameStateDao.getGameStateOnce() ?: GameState()
+        val uniqueEntries = bossNames.map { bossName ->
+            "${bossName}_${System.currentTimeMillis()}_${java.util.UUID.randomUUID().toString().take(8)}"
+        }.toSet()
+        database.gameStateDao.upsert(current.copy(
+            bossesDefeatedNames = current.bossesDefeatedNames + uniqueEntries
+        ))
+    }
+
     // Heroes
     fun getRoster(): Flow<List<Hero>> = database.heroDao.getAllHeroes()
     fun getParty(): Flow<List<Hero>> = database.heroDao.getParty()

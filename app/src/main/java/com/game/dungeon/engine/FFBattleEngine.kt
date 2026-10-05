@@ -130,7 +130,9 @@ class FFBattleEngine(private val context: Context) {
                 totalMagicite += magiciteEarned
                 
                 if (bossTemplate != null) {
-                    val bossName = runCatching { context.getString(bossTemplate.nameRes) }.getOrNull() ?: context.resources.getString(bossTemplate.nameRes)
+                    val bossName = runCatching { context.getString(bossTemplate.nameRes) }.getOrNull()
+                        ?: runCatching { context.resources?.getString(bossTemplate.nameRes) }.getOrNull()
+                        ?: "Boss"
                     onEvent(FFBattleEvent.BossDefeated(bossName, currentFloor >= maxFloor))
                 }
                 

@@ -670,7 +670,7 @@ class GameplayProgressionTest {
                     heroes = listOf(level0Hero),
                     dimension = FFDimensionData.getDimension(1),
                     startFloor = 1,
-                    speed = BattleSpeed.FAST,
+                    speed = BattleSpeed.INSTANT,
                     relicBonuses = RelicBonuses.from(GameState(jobMasteryLevels = emptyMap())),
                     isPaused = { false },
                     onEvent = { eventsLevel0.add(it) }
@@ -711,7 +711,7 @@ class GameplayProgressionTest {
                         heroes = listOf(hero),
                         dimension = FFDimensionData.getDimension(1),
                         startFloor = 1,
-                        speed = BattleSpeed.FAST,
+                        speed = BattleSpeed.INSTANT,
                         relicBonuses = RelicBonuses.from(GameState(jobMasteryLevels = mapOf(job to masteryLvl))),
                         isPaused = { false },
                         onEvent = { emittedEvents.add(it) }

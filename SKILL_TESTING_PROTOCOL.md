@@ -4,11 +4,8 @@ This document defines the mandatory testing strategy for all new features and mo
 
 ## 🧪 Testing Protocol
 
-1.  **Mandatory UI Tests**: Every new screen or major UI feature MUST have corresponding instrumented UI tests in `app/src/androidTest/java/com/game/dungeon/ui/`.
-    *   Tests should verify initial state, navigation, and core interactions.
-    *   Use `composeTestRule` to interact with UI elements.
-    *   Prefer `onNodeWithText` or `onNodeWithTag` (if tags are implemented).
-    *   Handle horizontal scrolling explicitly if the feature is in a scrollable container.
+1.  **Mandatory Unit Tests**
+    * For each new functionality create a new unit test
 
 2.  **Mandatory Migration Tests**: Every database schema change MUST be verified with a migration test in `app/src/androidTest/java/com/game/dungeon/data/db/MigrationTest.kt`.
     *   Ensure data integrity is preserved during migration.
@@ -16,7 +13,7 @@ This document defines the mandatory testing strategy for all new features and mo
     *   If specific data migrations are complex, add a dedicated test case using `MigrationTestHelper`.
 
 3.  **Continuous Validation**: Before finalizing any task, the agent MUST run the existing test suite to ensure no regressions were introduced.
-    *   Command: `./gradlew connectedDebugAndroidTest`
+    *   Command: `./gradlew app:testDebugUnitTest`
     *   Iterate and fix until all tests are GREEN.
 
 ## 🛠️ Testing Tools & Patterns

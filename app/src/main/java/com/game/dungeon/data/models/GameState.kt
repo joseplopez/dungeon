@@ -158,7 +158,7 @@ data class GameState(
             HeroClass.ONION_KNIGHT -> jobMasteryLevels.values.sum() >= 100
             HeroClass.MIME -> currentDimension >= 4
             HeroClass.NECROMANCER -> lifetimeHighestFloor >= 1000
-            HeroClass.BLUE_MAGE -> bossesDefeatedNames.size >= 10
+            HeroClass.BLUE_MAGE -> bossesDefeatedNames.size >= 100
             else -> false
         }
     }

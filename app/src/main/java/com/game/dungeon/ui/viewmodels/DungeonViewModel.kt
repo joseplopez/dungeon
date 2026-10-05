@@ -78,6 +78,7 @@ class DungeonViewModel @Inject constructor(
     val gilLostToPenalty: Long = 0,
     val itemsFoundThisRun: List<Item> = emptyList(),
     val bossesKilledThisRun: Int = 0,
+    val defeatedBossNamesThisRun: Set<String> = emptySet(),
     val fallenHeroes: List<Hero> = emptyList(),
     val dyingHeroIds: Set<String> = emptySet(),
     val originalPartySize: Int = 0,
@@ -439,13 +440,12 @@ class DungeonViewModel @Inject constructor(
             showBossBanner = true,
             bossBannerText = event.bossName,
             battleLog = (state.battleLog + FFLogEntry(R.string.log_boss_defeated, listOf(event.bossName), LogType.BOSS)).takeLast(25),
-            bossesKilledThisRun = state.bossesKilledThisRun + 1
+            bossesKilledThisRun = state.bossesKilledThisRun + 1,
+            defeatedBossNamesThisRun = state.defeatedBossNamesThisRun + event.bossName
           )
         }
         viewModelScope.launch {
-            val currentGs = repo.getGameStateOnce() ?: GameState()
-            val nextGs = currentGs.copy(bossesDefeatedNames = currentGs.bossesDefeatedNames + event.bossName)
-            repo.saveGameState(nextGs)
+            repo.recordBossDefeat(event.bossName)
             delay(3000)
             battleState.update { it.copy(showBossBanner=false) }
         }
@@ -561,6 +561,7 @@ class DungeonViewModel @Inject constructor(
           items = currentState.itemsFoundThisRun.size,
           bosses = currentState.bossesKilledThisRun
       )
+      repo.recordBossDefeats(currentState.defeatedBossNamesThisRun)
       
       // Permadeath for those who really died
       currentState.pendingFallenHeroIds.forEach { heroId ->
@@ -621,6 +622,7 @@ class DungeonViewModel @Inject constructor(
           items = battleState.value.itemsFoundThisRun.size,
           bosses = battleState.value.bossesKilledThisRun
       )
+      repo.recordBossDefeats(battleState.value.defeatedBossNamesThisRun)
       
       // Save current state of surviving heroes and remove dead ones
       battleState.value.heroes.forEach { hero ->

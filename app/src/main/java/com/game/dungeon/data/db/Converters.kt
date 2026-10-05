@@ -88,13 +88,14 @@ class Converters {
     }
 
     @TypeConverter
-    fun fromStringSet(value: Set<String>?): String? {
-        return Gson().toJson(value)
+    fun fromStringSet(value: Set<String>?): String {
+        return gson.toJson(value ?: emptySet<String>())
     }
 
     @TypeConverter
-    fun toStringSet(value: String?): Set<String>? {
+    fun toStringSet(value: String?): Set<String> {
+        if (value.isNullOrEmpty()) return emptySet()
         val type = object : TypeToken<Set<String>>() {}.type
-        return Gson().fromJson(value, type)
+        return gson.fromJson(value, type) ?: emptySet()
     }
 }

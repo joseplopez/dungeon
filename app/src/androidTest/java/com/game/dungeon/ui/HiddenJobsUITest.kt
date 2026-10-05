@@ -105,7 +105,7 @@ class HiddenJobsUITest {
                 unlockedJobs = standardJobs + HeroClass.FREELANCER,
                 lifetimeHighestFloor = 1000, // Necromancer discovered
                 currentDimension = 4,        // Mime discovered
-                bossesDefeatedNames = (1..10).map { "Boss $it" }.toSet(), // Blue Mage discovered
+                bossesDefeatedNames = (1..100).map { "Boss $it" }.toSet(), // Blue Mage discovered
                 jobMasteryLevels = mapOf(HeroClass.WARRIOR to 100), // Onion Knight discovered
                 gold = 50000, // Enough to buy all
                 barracksLevel = 2, // Party size 5
