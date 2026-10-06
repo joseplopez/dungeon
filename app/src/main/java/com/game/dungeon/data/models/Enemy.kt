@@ -71,7 +71,7 @@ data class Enemy(
                     val floorQtyBonus = if (floor >= 300) 1 else 0
                     1 + dimQtyBonus + floorQtyBonus
                 } else 0
-            }/2
+            }
 
             val enemyName = try { context.getString(template.nameRes) } catch (_: Exception) { null } ?: "Monster"
 

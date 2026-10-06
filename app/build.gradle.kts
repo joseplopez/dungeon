@@ -19,6 +19,7 @@ android {
         testInstrumentationRunner = "com.game.dungeon.HiltTestRunner"
         buildConfigField("long", "INITIAL_GIL", "0L")
         buildConfigField("int", "INITIAL_MAGICITE", "0")
+        buildConfigField("int", "INITIAL_MASTERY_LEVEL", "20")
     }
 
     signingConfigs {
@@ -34,6 +35,7 @@ android {
         debug {
             buildConfigField("long", "INITIAL_GIL", "1000000000L")
             buildConfigField("int", "INITIAL_MAGICITE", "100000")
+            buildConfigField("int", "INITIAL_MASTERY_LEVEL", "30")
             manifestPlaceholders["admobAppId"] = "ca-app-pub-3940256099942544~3347511713"
             buildConfigField("String", "REWARDED_AD_UNIT_ID", "\"ca-app-pub-3940256099942544/5224354917\"")
         }

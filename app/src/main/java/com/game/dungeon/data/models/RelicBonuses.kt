@@ -56,7 +56,13 @@ data class RelicBonuses(
             magnetBonus = gs.magnetBonus,
             pocketsBonus = gs.pocketsBonus,
             doubleLootChance = gs.doubleLootChance,
-            jobMasteryLevels = gs.jobMasteryLevels,
+            jobMasteryLevels = if (com.game.dungeon.BuildConfig.INITIAL_MASTERY_LEVEL > 0) {
+                HeroClass.entries.associateWith { job ->
+                    maxOf(gs.jobMasteryLevels[job] ?: 0, com.game.dungeon.BuildConfig.INITIAL_MASTERY_LEVEL)
+                }
+            } else {
+                gs.jobMasteryLevels
+            },
             selectedPet = gs.selectedPet,
             bossesDefeatedCount = gs.bossesDefeatedNames.size
         )

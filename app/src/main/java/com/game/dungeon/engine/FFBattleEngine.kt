@@ -374,9 +374,14 @@ class FFBattleEngine(private val context: Context) {
                         awardExpToParty(allies, exp, onEvent)
                     }
                 }
+                val amounts = mutableMapOf<String, Int>()
                 allies.filter { it.isAlive }.forEach { ally ->
                     val healAmt = (hero.magic * 1.8f + ally.maxHp * (if (masteryLvl >= 25) 0.35f else 0.20f)).toInt()
                     ally.currentHp = minOf(ally.currentHp + healAmt, ally.maxHp)
+                    amounts[ally.id] = healAmt
+                }
+                if (amounts.isNotEmpty()) {
+                    onEvent(FFBattleEvent.GroupHeal(hero.id, amounts))
                 }
             }
             HeroClass.RED_MAGE -> {
@@ -394,11 +399,11 @@ class FFBattleEngine(private val context: Context) {
                 }
             }
             HeroClass.SUMMONER -> {
-                val summons = listOf(
-                    Triple("Ifrit", "🔥", 1.8f), Triple("Shiva", "❄️", 1.8f),
-                    Triple("Ramuh", "⚡", 2.0f), Triple("Bahamut", "🐉", 2.5f)
-                )
-                val (name, _, mult) = summons.random()
+                val (name, mult) = when {
+                    masteryLvl >= 25 -> "Bahamut" to 2.5f
+                    masteryLvl >= 10 -> "Ramuh" to 2.0f
+                    else -> "Ifrit" to 1.8f
+                }
                 var totalDmg = 0
                 enemies.filter { it.currentHp > 0 }.forEach { enemy ->
                     val (baseDmg, isCrit) = calcMagicDamage(hero, enemy)
@@ -442,13 +447,11 @@ class FFBattleEngine(private val context: Context) {
                 }
             }
             HeroClass.BARD -> {
-                val songs = listOf(
-                    Triple(R.string.song_paeon, R.string.song_paeon_effect, "Paeon"),
-                    Triple(R.string.song_minne, R.string.song_minne_effect, "Minne"),
-                    Triple(R.string.song_minuet, R.string.song_minuet_effect, "Minuet"),
-                    Triple(R.string.song_ballad, R.string.song_ballad_effect, "Ballad")
-                )
-                val (songRes, effectRes, _) = songs.random()
+                val (songRes, effectRes) = when {
+                    masteryLvl >= 25 -> R.string.song_ballad to R.string.song_ballad_effect
+                    masteryLvl >= 10 -> R.string.song_minuet to R.string.song_minuet_effect
+                    else -> R.string.song_paeon to R.string.song_paeon_effect
+                }
                 onEvent(FFBattleEvent.BardSong(hero.id, songRes, effectRes))
             }
             HeroClass.SAMURAI -> {
