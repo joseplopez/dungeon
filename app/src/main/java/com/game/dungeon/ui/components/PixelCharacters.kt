@@ -3894,6 +3894,196 @@ fun DrawScope.drawIfrit() {
     drawMonsterMatrix(matrix, palette)
 }
 
+fun DrawScope.drawShiva() {
+    val matrix = arrayOf(
+        "........................................", // 0
+        "........................................", // 1
+        ".....................BBBt0..............", // 2
+        ".................0DDP0SSDU0B............", // 3
+        "................DDCNNPSTQBSD............", // 4
+        "...............DDAKKKDCQ2QSPN...........", // 5
+        "...............DDKSSKSA1CSTSN...........", // 6
+        "..............DDKDWDKDPDS0SKNN..........", // 7
+        ".............DDNDTSKDNPBSTSK1N..........", // 8
+        ".............DDKNWSDKN1KDSKNPK..........", // 9
+        "............DDDDWTDNKCP0DKKANND.........", // 10
+        "...........DDASWWSB0KPSS0KK1NAD.........", // 11
+        "...........N1NTWWSSTK1DSS0D1N1D.........", // 12
+        "..........DD2DWWTBmTK1DTWT0CN1D.........", // 13
+        "..........DPDSWWSSSIDQSWTWSDKPD.........", // 14
+        "..........DPNWWW0TIBPPVTSTT0KP1.........", // 15
+        "...........DNIT0mSDD2DB0BV0DKNN.........", // 16
+        ".............II0mDKD2AD0m0BDNNND........", // 17
+        ".............D0mIKKD2DSTTSK1CTDN........", // 18
+        ".............DSTDDDN2PmTT0K1C..D........", // 19
+        ".............DISKSKKCQSTmBKD2...........", // 20
+        "...............DDWTDN2STTBDK2P..........", // 21
+        "...............DWWS0N2SWT0DKAP..........", // 22
+        "............0.....D0SAQTTISDNEP.........", // 23
+        "............00D.DI0USDQSd00DNE..........", // 24
+        "............0D..DB0VTDQSUI0SKDE.........", // 25
+        "...........D00...D0VTSSPST0SDDQP........", // 26
+        "..........00U0....BITTDSSS0SSDC.........", // 27
+        "..........0VBD....DBSTSDTTPPPQ..PP......", // 28
+        "..........DUD.....D0TWSDDQTTTPDD1F......", // 29
+        "...........D......DBmWTD0DDD....DPE.....", // 30
+        "...................DmWT0SSD.......D.QP..", // 31
+        "...................DVTWIISD........DDND.", // 32
+        "....................0TWS0S..............", // 33
+        "....................DSWT0...............", // 34
+        "....................DDTT0...............", // 35
+        "..................DI.DTTV.DD............", // 36
+        "...................DDDSV00N.............", // 37
+        "...................DDUU0DD..............", // 38
+        "....................DVVDDD..............", // 39
+        "....................DdUD0D..............", // 40
+        "...................DUdDBDD..............", // 41
+        "...................DUUDSD...............", // 42
+        "...................DV0DUD...............", // 43
+        "...................DUD00D...............", // 44
+        "...................D0DSD................", // 45
+        "..................DBDD0D................", // 46
+        "..................00BD0D................", // 47
+        "..................0UBD0N................", // 48
+        "..................DU0DDN................", // 49
+        "..................DV0DDN................", // 50
+        "..................DU0D0N................", // 51
+        "...................DDDSK................", // 52
+        "....................D0VDD...............", // 53
+        "....................D000D...............", // 54
+        ".....................0DD................", // 55
+        "......................D.................", // 56
+        "........................................", // 57
+        "........................................", // 58
+        "........................................", // 59
+        "........................................", // 60
+        "........................................", // 61
+        "........................................", // 62
+        "........................................" // 63
+    )
+
+    val palette = mapOf(
+        '0' to Color(0xFF2D4691),
+        '1' to Color(0xFFB4820F),
+        '2' to Color(0xFFE6B414),
+        'A' to Color(0xFF823719),
+        'B' to Color(0xFF1E3782),
+        'C' to Color(0xFFAF501E),
+        'D' to Color(0xFF4B4B4B),
+        'E' to Color(0xFFFAC382),
+        'F' to Color(0xFFFFE1AF),
+        'I' to Color(0xFF7346AF),
+        'K' to Color(0xFF141414),
+        'N' to Color(0xFF502314),
+        'P' to Color(0xFFBE6E41),
+        'Q' to Color(0xFFE19B5F),
+        'S' to Color(0xFF8C8C8C),
+        'T' to Color(0xFFC8C8C8),
+        'U' to Color(0xFF2D5ABE),
+        'V' to Color(0xFF5A91EB),
+        'W' to Color(0xFFFFFFFF),
+        'd' to Color(0xFF5AD2CD),
+        'm' to Color(0xFFA578D7),
+        't' to Color(0xFF0A6469)
+    )
+
+    drawMonsterMatrix(matrix, palette)
+}
+
+fun DrawScope.drawRamuh() {
+    val matrix = arrayOf(
+        ".........................D..GKG.K..33...................", // 0
+        "........................DlDDUDUDlD......................", // 1
+        ".........................D22UAAGN..4....................", // 2
+        "..........................DDAAAD....4...................", // 3
+        ".........................4..GKG....4.4..................", // 4
+        ".............................DKDD.4.....................", // 5
+        "............................DDSS.D......................", // 6
+        "...........................D.DDP.D......................", // 7
+        ".............DGGG...........GKDP..DD....................", // 8
+        "............DDSDDD............DGD.NlD...................", // 9
+        "...........D...DGGD..........DDDKDDD....................", // 10
+        "..........DD..D...D..........DTGDGDG3...................", // 11
+        "..........D.PG..D.D..DGGG...GDTGDDDG.43.................", // 12
+        "..........D.D....D..D...DD.D.DTSGGDDD.34................", // 13
+        "..........D.K..D...D.DP...DD.DTSKDDDK.3.................", // 14
+        "..........D..D.GDDGG.PDD.D.D.....DDD233.................", // 15
+        "..........D..D.GSSGNPNT.N.N..D..D2DDDK2.................", // 16
+        "...........D..DGSTD2NDDD.D.D.D..2AGDDDDD................", // 17
+        "............D..GKTD2NNS..DPDNDD.32GDDDDDDD..............", // 18
+        ".............D..PDKNDS..NDNSPGDD.DlN2232S.DD............", // 19
+        ".............DKP......PGDDDPSGDD..DKDDDD3D..G...........", // 20
+        "............DDDGDP.Q.DGDDPSDSDGDD..DDDDG3DD..D..........", // 21
+        "............GDDDGGGGGDDDTPTDPSGDDDD.DDG23SDD.D..........", // 22
+        "...........DDDSSDSSDDKDSFSFSKSPGD22D3DDDDGSD..D.........", // 23
+        "...........DSSDSTDTTDGTSFSFSKDSG3DSSSDDDDUGDD.G.........", // 24
+        "..........DDSDDDSTSTDKTSFSFSDGSGD23TTDDDDUGDD.G.........", // 25
+        ".........DDDSSSDDDDSSGSFFQFSDKTGDDD33TDDDDUGDG..........", // 26
+        ".........DSSSDSDDDDDSGSFSFFSDKTGDDDST43DDGDGDG..........", // 27
+        "........DDTSDSDSSSSDDKTFSFSSKDTGDDDDSTTDDDKlKDD.........", // 28
+        "........DDTSSSTTSDGSGKSFFTFSKSTGDDSDSSTDDDD3DGG.........", // 29
+        "........GDSSTTSSGKDGDKSFFSTDDTSGDDSSDSTTDDD3SDGD........", // 30
+        "........GDDSSSTGDDDGDGDFSFFGTSSKDDDSTSSTDD2STSDG........", // 31
+        "........GDDDDTTGDDDDKKDTSFSGTTGDDSDSTTDSS2DSTTSG........", // 32
+        "........GSDDDSTGKKDSTDKTSFSGFSGDDSDDSTTD2DDDSSD.........", // 33
+        "........GSDDDDTGDDKSSSGSSFSGFDDDDDSDSTTT3DDGGG..........", // 34
+        "........DDSDDDSGDGDTSSGSFFSGTDDDDSSSDmWTS2DDD...........", // 35
+        ".........DDSDDSDKKDFPTDSFTSGSSGDSDTSDSWWDD3DG...........", // 36
+        "..........DDDDDSK0GDGSGSFSTGSSGDSSSTDDTSKGGD23..........", // 37
+        "..........DDDDDSKUUGDGDSFSTGPSGDSSDSTDTDDKTD33.4........", // 38
+        "...........DDDDSDGUGDKDSFTFPKSGDSSDDTTDGDSDTDDD3........", // 39
+        "...........GDSSDSGDKDKDSFFFSKSPKSSSDSTTSKSTDDDD.........", // 40
+        "...........DDSTDSDGGDKSSSFTSKDSGDSSDSTWTTDDG.DDD........", // 41
+        "............GDTTDDKKDKSSSFSFDNSDKSSDSSTWiTD..DDD........", // 42
+        "............GDDTSDDGDKSFSFSFSGSSKSSDDSTTTDG...DD........", // 43
+        "............GDDDSSDGDKSFSFSFSGDSKDSDDSTTKDK...DDD2......", // 44
+        "...........DDGDDDSSDKDSFSFSFSPDPDDSDDDSSKDDD..DDD.4.....", // 45
+        "...........DSGDSDDSDKSSSSFSFSSGDPGSDDDSGDDDG...DDD.4....", // 46
+        "...........DSDGDSDDDKSSSFFSSFSDGPNDSDDSGDDS.G..DDA3.....", // 47
+        "..........DDTSGDTSDDKSFSFSSSFSSGPPGSSDDKDD..K...DAC.....", // 48
+        "..........DSTSGDSTSDKSFSFSSSQPSKDDGSSSSDKD..K..4DAA....4", // 49
+        ".........DDSiSGSDTSDKSFSFSSPSPSDGDGSSTTSSDD..D.3.DAP..4.", // 50
+        "........DDSTWDDSDSDGDTSSPSSPSSFPKDKDSTTTSSG..D..3DAC..3.", // 51
+        ".......DDDSTTDDSSDDGSFPFPSSSSPFSKDKDDSTiTTGD.D...DA333..", // 52
+        "......DDDDmiSGDTSDDKTTSFPSSSSPSSDKDDSTSTiTSG.G....DCC2..", // 53
+        "....DD.DDSTTSGDTTSGDFSFSSSPSSPPTPGDDSTTTiTTGG.....DAA2..", // 54
+        "..DD.m.......GDTTSGTSFFSSSPSPSPSPGDDDSTiTTTGG......DAC..", // 55
+        "GG..........DGDTSGDSSFTPSSPSPSPPSSGDDDSTWTSD.......DCA.3", // 56
+        ".DGD........DGSSGDSSFFDSSDPSPPSDDSGDDSTTTSDGD.....4.DA..", // 57
+        "..DGD.......DGSGKDSFTDDSPPSPPDPDDDDGDDDDDDGKGD....3.DAP.", // 58
+        "...DGKD....DKDDGDSTSDDSDDDDPDDDDDDKDKGKGGGGG......4..DA.", // 59
+        "....GGKKKKDKKDKSSSDDKDDKDDDPDKNDKDKGKKKKGK..3...33.4.DAC", // 60
+        ".......GGGGGKGDDDGGGKDGKDGKDKKDGDKKKKKKG.....43.3..34DAA", // 61
+        "............GGGGGGGGGGKKKKGKKKKKGKKGGGGG....3.........DA", // 62
+        "......................DKGKKGKKGKKGG....................." // 63
+    )
+
+    val palette = mapOf(
+        '0' to Color(0xFF2D4691),
+        '2' to Color(0xFFE6B414),
+        '3' to Color(0xFFFFDC23),
+        '4' to Color(0xFFFFF56E),
+        'A' to Color(0xFF823719),
+        'C' to Color(0xFFAF501E),
+        'D' to Color(0xFF4B4B4B),
+        'F' to Color(0xFFFFE1AF),
+        'G' to Color(0xFF0F5019),
+        'K' to Color(0xFF141414),
+        'N' to Color(0xFF502314),
+        'P' to Color(0xFFBE6E41),
+        'Q' to Color(0xFFE19B5F),
+        'S' to Color(0xFF8C8C8C),
+        'T' to Color(0xFFC8C8C8),
+        'U' to Color(0xFF2D5ABE),
+        'W' to Color(0xFFFFFFFF),
+        'i' to Color(0xFFD2B4F0),
+        'l' to Color(0xFF96DC37),
+        'm' to Color(0xFFA578D7)
+    )
+
+    drawMonsterMatrix(matrix, palette)
+}
+
 fun DrawScope.drawOmega() {
     val matrix = arrayOf(
         "........KKKKKK..........", // 0
@@ -4044,80 +4234,91 @@ fun DrawScope.drawHellhound() {
 
 fun DrawScope.drawJenova() {
     val matrix = arrayOf(
-        ".......DNNN.............................KDKD....................", // 0
-        "......DNNN..............................DKDKK...................", // 1
-        "......KNNN...............DN..............KKDKKD.................", // 2
-        "......NNND..............DDD...............KKDKK.................", // 3
-        "......NNNN..........NNNDDD................DKKDKK................", // 4
-        "......NNNN.........KNNDDD............KKK...KKDDKK...............", // 5
-        ".......DNNN.......KNNDDD..............KKKD.DKDDKKD..............", // 6
-        ".......DDDNND...DKNNDDD.......D.......DKKK..KKDKKKD.............", // 7
-        "..D...DDDSSNNNNNNNNDDDDD.....KK........KKKK.KKKKKKK.............", // 8
-        ".DKKKDDDSSSTSSDDSSSDDDDD....KKK........KKK..KKKKKKK.............", // 9
-        ".KKDDDSSSSSSTTTTTSSDDDN....KKKKD......KKKK..DKKKKKK.............", // 10
-        ".KKKDDDDSSSSSSTTTSSDDNND..KKKKKDD....DKKKK...DDDDDKDDDDDD.......", // 11
-        ".DKKKNDDDDDSSSSSSSSDSNNN..DKDDDDD...KDDKKKK.DDDDDDDDDDDNNNNKD...", // 12
-        "....KKDDDDDDDDDDSSSSSDNNNNNDDSDD....KDDDDDNKDDDDDDDDDDDDDNKK....", // 13
-        "....NDDDDDDDNDDDDSSSSDNNNNNNDSSD....DSDDNKKNDSSSSDDDDDDDKKKK....", // 14
-        "...DDDDDDNNNNNDDDDDDDDDNNNNNNNNN...DDDNNNKNDSSSSDDDDDDNKKKKD....", // 15
-        "..DDDDDDD.NNDDDNNDDDDDSSNNNDNNNNNNNNNNNNNNDDDDDDDDDDDNKK........", // 16
-        ".KDDDD.....NDDDNNKDDDDDSSDDDNKDDDNANNNNDDSDDDDNNNNKKK...........", // 17
-        "...D.......NDDDDDDDNDDDSSSDNKKDDNAADDDSSSSDDDDDD................", // 18
-        "...........NDDDD.....DDDSSDKKDDDADDSSTTSSDDDDD..................", // 19
-        "...........NDDDD.....NDDDSDKDDDADSSSSSSSDD......................", // 20
-        "...........DDDD......DNDDDNDDDDDSSSSDSDD........................", // 21
-        "............NDD.......DDDNNDDDDSSDDDDD.........D................", // 22
-        "............NDD..........DKDDDSDNKNNDD....DKD...................", // 23
-        "............NDD.........KKDDDSSNKKKKKKKKKD......................", // 24
-        "............KK........KKKNDDDSSDDDKDTSSS.............D..........", // 25
-        "............KK......DDDDDSDKKNNDD..KGDDDDD...........D..........", // 26
-        "............KK.....DD000DDKKDNDD.....D..............KD..........", // 27
-        "...........DKD....DDD0DKDSS.DKDD....................KD..........", // 28
-        ".........K.DK....DKB0DKT...TKKDDDD.................KKD..........", // 29
-        ".........DKKD...DKD0DKT....SDKDDDDD................KKD..........", // 30
-        "..........D.....KDBDKT.....DDNDDDDD...............DKKD..........", // 31
-        "...............DKBBKT.....SDDNDDDDDN..............KKK...........", // 32
-        "...............KKDBS.....TDDNDDSDDDDN.............KKK...........", // 33
-        "...............DKDBS.....SDDNDSSDDDDDD............DKK.......NKD.", // 34
-        "................KKBD.....SIDDSSSDDDSDN...........DDKK......KNNK.", // 35
-        "................KKBD.....DIDSTSSDDDSSDD...K......DDKK......KNNKN", // 36
-        "................KKDD....TIIDSTSSDDDSSDD...DKD....DDKD.....NNNKKD", // 37
-        "................KDDS....DIIMSSSDDDDSSSDD...KKD.DDDKK......KNNKKD", // 38
-        "................DDK....TDIIISSSDDDDSSSSDD..KKKKKKKK......DKKKKK.", // 39
-        "................DDS....SIImIDDDDDDDSSSSDD..DKKKKKKD......KKKKKK.", // 40
-        "...............DDKT....DIImIDDDDDDDDDDDDDD.KKKKDDD......NKKKKKK.", // 41
-        "...............DDD....TDIIm0DDDDDDDDDDDDDDDDKKKKDDII...NNNKKKKK.", // 42
-        "...............DKT....SMIIIDDDDDDDDDDDDDDDDDDKKKKDIID.NNNNKKKK..", // 43
-        "..............KKS.....DMIIIDDDDDDDDDDDDDDDDDDDKKKKDDDDDNNNKKK...", // 44
-        ".............DKD.....SDBMIIDDDDDDDDDDDDDDDDDDDDKKKKKDDNNNNKK....", // 45
-        ".............KD.....TDDBMIIDDDDDDDDDDDDDDDDDSSDDKKKKKKKNNKK.....", // 46
-        ".............KT....TDKDDBM0DKKDDDDDDDDDDDDSSSSSSKKKKKKKKKKD.....", // 47
-        ".....KKKKKN.........DKDDDMMKKKKDDDDDDDDDDSSSSSSSKKKKKKKKKD......", // 48
-        "....KKKNKKK.........DKKKDMBKKKKKNDKKDDDDDSSSSSSSKKKKKKKKK.......", // 49
-        "....KKKNNKKK........DKKKKBDKKKKKKKKKKDDDDDDSSDDDKKKKKKKKKD......", // 50
-        "....KKKKNNNKK.......KKKKKDKKKKKKKKKKKKDDDDDDDDDDKKKKKKKKD.......", // 51
-        ".....KKKKNNNNNND.....KKKKKKKKKKKKKKKKNDDDDDDDDKKKKKKKKKK........", // 52
-        ".......KKKKNNDDDNND...DKKKKDSSSKKKKNDDDDDDDDDKKKKKKKKKKKD.......", // 53
-        ".........KKKKNNNNDDDDNDDNNDSSSSSDDDDDDDDDDDDDKKKKKKKKKKK........", // 54
-        "............DNKKNNNNDDDDDDDDDDDDDDDDDDDDDDDDDDKKKKKKKKD.........", // 55
-        ".................DKKNNNNDDDDDDDDDDDDDDDDDDD.....................", // 56
-        "..........................DDDDDDDDDDD..........................." // 57
+        ".................................................", // 0
+        ".................................................", // 1
+        "........................D........................", // 2
+        "........................DD.......................", // 3
+        "....................DKK..DKKD....................", // 4
+        "...................D.KK..DDD.D.......KKK.........", // 5
+        ".................DKDDK0...VK0DKD....DgS.D........", // 6
+        "................KDDKDV0...0VDKDDK.DDDDKKDD.......", // 7
+        "................KSDDSSD..0DSSDDSK.DDDD...........", // 8
+        "................KSS00D0...DDD0SSK.DDDD...........", // 9
+        ".................DSSDD.....DDSSD..DDDD...........", // 10
+        "..................DSS.dprrdVS0D....DDD...........", // 11
+        "...........DNND....D...rRrVSSD......DgK..........", // 12
+        ".....DDDDD...NAD..KKKKK..MKKKKK.....DgK.....DDD..", // 13
+        ".....DMIS.....NN.DDDKD.DDDSDKDDD....DgK.....GK...", // 14
+        "....MMMMMIM...KA.D00KD0..00DK00D....DgK....DG....", // 15
+        "...D.MDDDM.D..KAKK0SKDK...KDK00KM.DGDgD...DDD....", // 16
+        "..DIMKd.dKMIDKKKAKDDKT0..V0TDDDKKKGggg...GDK.....", // 17
+        "..DMK.....KMSMKKKrrDKVdd.VVVKDrrKGggGD.DDD.......", // 18
+        "...D......KMIIIMKrDKKDVV..VDKKDrrKDDKK.DK........", // 19
+        "...........DMIIIDDD0SDD...DDS0DDDKKKKGDG.........", // 20
+        "............MMIIDDSVTSD0.0DSVVSDKDDDDGGK...NNp...", // 21
+        ".............DMMKTddTVSDKDSVTddTKMMMMKKKKNAAD....", // 22
+        ".............KKKKTdTTdTVSVTdTTdTKMMMImmIDNNK.....", // 23
+        "...........DMDGKSVVVdddddddddVVVSKKKKDIIIM.......", // 24
+        "...........DDDGKVV00TddTTTddT00VVKNNNKDDMI.......", // 25
+        "........DDKDDGDDVSDDSTTVVVTTSDDSVDDNNKTTMMIM.....", // 26
+        "......DDggGGGKDSV0DDMSVVVVVSMDD0VSDKKD..TMMID....", // 27
+        ".....DgDGGKKKKDSSDDDKMSSVSSMKDDKSSDGGGG..TDMmD...", // 28
+        "....KgDGKK...DSS0KDrKSVVVVVSKANK0VVDS.KG..dKmID..", // 29
+        "..dDgDK......0TSKDrMKSVVVVVSKNrDKTTDS..DD...KID..", // 30
+        "...KgG..........KMMDDVTVVVVSDDDMKSTS........KID..", // 31
+        "...KgKd....D..VDKrDDSTTVVTVVSDNAKMS..D...d..KM...", // 32
+        "...DgK.....DV..KKrDDSTTTTVVTSDDAKD...D......KD...", // 33
+        "....KgK...KV.VDKKKDSVSVVVVVTTSDKK.....K...dKK....", // 34
+        ".....K....0...KKKK0VVMSVVVSTTSDD..D...0..........", // 35
+        ".....d.....V..KKKK0VTSMSSSSTTS0D..D..............", // 36
+        "........dK..V.KKKK0VTSMDMSTTTT0D..D.V..Kd........", // 37
+        "........dKVK0DKKKK0VTSSDDSTTTS0KK.DD0K.Kd........", // 38
+        "........dKSKKKKKMKDSTTSDDSTTTSDKK..KKKVKd........", // 39
+        "........dK0KT..0SKDSTTSDDVTTTDNAAK...KVKd........", // 40
+        "..........KKTTDSS0D0TTSDSTTTVDKNAK...KK..........", // 41
+        "..............MS0DKDVTSDSTTTSDSTNN...............", // 42
+        ".............D.VDSDDSVVDSTTT0...KAK..............", // 43
+        ".............D.VK.TD0VVDSTdTD...DAN..............", // 44
+        "...........DD.V0K..TDVSD0VTVK....KAN.............", // 45
+        "...........DD..K...TK00KDSV0K....KAN.............", // 46
+        "...........DD..K...TKMMDD0S0K....KAN.............", // 47
+        "............0D.K...TKM0DD0SSK....KN..............", // 48
+        ".............D.K....MMMKDSSSK....NK..............", // 49
+        ".............D.0.....KMKDSSSK...KAD..............", // 50
+        "..............0.K....KMDDSS0K...KK...............", // 51
+        "..............D0.DT...0MD0SKd....................", // 52
+        "...............D0MST.S0MD0SK.....................", // 53
+        "................DDDS.KMDD0SK.....................", // 54
+        "................DDD..KSDD00K.....................", // 55
+        ".....................KMDD0SK.....................", // 56
+        ".....................KSDDVVK.....................", // 57
+        "......................DKDVVK.....................", // 58
+        ".......................D0VVK.....................", // 59
+        "........................0VSK.....................", // 60
+        "........................0SMD.....................", // 61
+        ".........................KK......................", // 62
+        "................................................." // 63
     )
 
     val palette = mapOf(
-        '0' to Color(0xFF2D4691),
-        'A' to Color(0xFF823719),
-        'B' to Color(0xFF1E3782),
-        'D' to Color(0xFF4B4B4B),
-        'G' to Color(0xFF0F5019),
-        'I' to Color(0xFF7346AF),
-        'K' to Color(0xFF141414),
-        'M' to Color(0xFF46238C),
-        'N' to Color(0xFF502314),
-        'S' to Color(0xFF8C8C8C),
-        'T' to Color(0xFFC8C8C8),
-        'W' to Color(0xFFFFFFFF),
-        'm' to Color(0xFFA578D7)
+        '0' to Color(0xFF304D6E),
+        'A' to Color(0xFF844A3E),
+        'D' to Color(0xFF3E3948),
+        'G' to Color(0xFF264E3B),
+        'I' to Color(0xFF6C488A),
+        'K' to Color(0xFF18151F),
+        'M' to Color(0xFF44305C),
+        'N' to Color(0xFF582E2A),
+        'R' to Color(0xFF8A2639),
+        'S' to Color(0xFF69677A),
+        'T' to Color(0xFF989BB2),
+        'V' to Color(0xFF628EA8),
+        'W' to Color(0xFFC6E2EB),
+        'd' to Color(0xFF90B9CB),
+        'g' to Color(0xFF3E7A58),
+        'm' to Color(0xFF9870B6),
+        'p' to Color(0xFFAF5282),
+        'r' to Color(0xFF80345E)
     )
 
     drawMonsterMatrix(matrix, palette)
@@ -7398,87 +7599,100 @@ fun DrawScope.drawGuardScorpion() {
 fun DrawScope.drawAirbuster() {
     val matrix = arrayOf(
         ".................................................", // 0
-        ".....................NKKN........................", // 1
-        "....................DKKKK........................", // 2
-        "....................NKKKK........................", // 3
-        "....................NKKKK........................", // 4
-        "....................NKKKK........................", // 5
-        "....................NKKKK........................", // 6
-        "....................NKKKKD.........P.............", // 7
-        ".............K......NKKKKD.......DNC.............", // 8
-        ".............KNK....KKKKK........NNA.............", // 9
-        "............DNAA....KKKKKKK......DKND............", // 10
-        "............KNAD....KKNNKKK.......KNN............", // 11
-        ".........D..KNN.....KKKDKDDD......KKK.KD.........", // 12
-        "......DKKKK.KNN....KKGGGKNND......KKK.KKKD.......", // 13
-        ".....KKKKDD.KKN...DKKGGGKNND.......KK.KKKKK......", // 14
-        ".....KKKKDKKKK...DDKKKGKKDKD.......KKDKKGKKD.....", // 15
-        ".....KKKKDKKKNDD.DKKKKKKKKKD.DDKK..KKKKKGKKG.....", // 16
-        "....DKKKKKKKKKKD.DKDDKKKKKKKKKKKK..KKKKKKDKGD....", // 17
-        "....KKKKKKKKKKKDDDKGDKKKGGDGGGDKKD.KKKKKKDKKG....", // 18
-        "....KKKKKKKKKKKNDDKKKKKGGKKGGGGKKD.KKKKKKDKKK....", // 19
-        "....KKKKKKKKKKKNDDKKKKKKGKKGGKKKKDDKKKKKKDKKK....", // 20
-        "...DKKKKKKKKKKKKDKKKKKKKKKKKKKKKKDDKKKKKKGKKK....", // 21
-        "...DKKKKKKKKKDNKKKKKKKNNKKKNKKKNDDDKKKKKKKKKK....", // 22
-        "...KKKKKKKKKKSDKKKKKKKKNKKKNKKKNNDDSKKDDKKKKK....", // 23
-        "...DKKKKKNDKKTSKKKKKKKKKKKKNKKKKNGDTNDDDKKKKK....", // 24
-        "....KKKKKNDDDWWKKKKKKKKKKKKNKKKKKGSWKKDDKKKK.....", // 25
-        ".....KKKKKKDTWWDKKKKKKKKKKKKKKKKKGTWSKDDKKK......", // 26
-        "......KDKKKDWWWSKKKKKKKKKKKKKKKKKKTWWKKKKD.......", // 27
-        ".......DKKKKTWWSKKKKKKKKKKKKKKKKKKTWWKKKDD.......", // 28
-        ".......DDKKKTWWSKKKKKKKKKKKKKKKKKKKSWKKDS........", // 29
-        "......KDDSSDWWWSKKKKKKKKKKKKKKKKKKKDWKDS.........", // 30
-        ".....KKDSSSSWSSKKKKKKKKKKKKKKKDDDDDDTKND.........", // 31
-        ".....KKDSSSSTSDDKKKKKKKDDDDDDDDDDDDD.KKD..D......", // 32
-        ".....KDDSSSSTSKDKKKKKKKDDDDDDDDDDDD..NKDDDD......", // 33
-        ".....KDDKDSSWSKTDKKKKKKKDDDDDDDDDKK..DKNNN.D.....", // 34
-        ".....DSSSDSSTSSWDKKKKKKKKDDDDDDDKKK...NKDDDD.....", // 35
-        ".....DSSSSNDSTWWSKKKKKKKKKKKKKKKK.D.....KDD......", // 36
-        "......DDDDDDDDSWWTTKKKKKKKKKKKKKK......DDSD......", // 37
-        ".......DDDDDDDSWWWWKKKKKKKKKKKKKD........DD......", // 38
-        "........DDDDKDSWWWTKKKKKKKKKKKKK.......DDD.......", // 39
-        ".........DSDKDWWSDKKKKKKKKKKKKKK.................", // 40
-        "...........DKDWWKKKKKKKKKKKKKKKK.................", // 41
-        "............KDWTKKKDKKKKKKKKKKKK.................", // 42
-        "............KDWDKSTTKKKKKKKKKKKK.................", // 43
-        "............DSTKTWKKKKKKKKKKKKKK.................", // 44
-        "............KSSKDDKKKKKKKKKKKKKKD................", // 45
-        "............KKKKKKKKKKKKKKKKKKGGD................", // 46
-        "...........DKKKKKKKKKKKKKKKKKKGGGD...............", // 47
-        "...........KKKKKKKKKKKKKKKKKKGDDDGKD.............", // 48
-        "........DKKKKKKKGGGGGKKKKKKKGDDGDDKKK............", // 49
-        "........KKKKKKKGGKGGGGKKKKKKKDDDGDDKKGD..........", // 50
-        ".......KKKKKKKKDGKGGGKKKKKKKKGDDDGDIDKGKK........", // 51
-        "......DKKKKKKKDDKGGGGKKKKKKKKKGDDGDDDDKKK........", // 52
-        "......KKKKKKDD0DKGGGGKKKKKKKKKKGDDGGDKKKK........", // 53
-        "......KKKKKKDDDKGGGGKKKKKKKKKDGGDDDDKDKKK........", // 54
-        "......KKKKKKKKKGGGGGGGKKKKDKKGDDDDDKDNKKK........", // 55
-        "......KKKKKKKKKKKGGGGGGKKKKKKKKKDDDKNKKKD........", // 56
-        "......KKKKKKKKKKKKKKKKKKKKKKKNNNNNNKKKKD.........", // 57
-        "......KKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKKD..........", // 58
-        ".......DKKKKKKKKKKKKKKKKKKKKKKKKKKKKKK...........", // 59
-        "..........KKKKKKKKKKKKKKKKKKKKKKKKKKK............", // 60
-        "............DKKKKKKKKKKKKKKKKKKKKKKD.............", // 61
-        "...............KKKKKKKKKKKDDD....................", // 62
-        "................................................." // 63
+        ".................................................", // 1
+        ".......................3333......................", // 2
+        "......................3xEDnE.....................", // 3
+        "......................3EAAnOE....................", // 4
+        "......................3EAAnOOE...................", // .
+        "......................3DAAEOOD...................", // 6
+        "......................EAAADEOD...................", // 7
+        "......................EAAADEOD...................", // 8
+        "......................EAAADEOO4.3DD1.............", // 9
+        "......................DDDDDOOO3.DFFD.............", // 10
+        "......................22DDAAOO3.DFFE3............", // 11
+        "..........3AA2..........1OOEEO3.DnoE3aag3........", // 12
+        "..........1AAA......aa132FFFEO363EoEDaa1111......", // 13
+        "..........DExD......aaaaa2221D263EFEDaaaaaaa3....", // 14
+        "........43DFnA.....41a211bbb2a13.DED12a22baag2...", // 1.
+        ".......112AFnA.....31E211bKb211g22Dg1abbbba111...", // 16
+        "......3111AnEA.....3OZO11aKba1133A11aaa2bbC1113..", // 17
+        "......gC20ADEA221122122a1a211124x1a1baaab2C1113..", // 18
+        ".....31a2A1DD143aaag11a1gggaaa34D1a12aaaa2C111g..", // 19
+        ".....11a1122124a22a1gg1g11aa2144R1a112aaaaa11113.", // 20
+        ".....g1211aa1331aaa2222222aaa133R1aa12a111a11111.", // 21
+        "....411a11aa13311ab222b2222a1g33RA1ag12111aa1111.", // 22
+        "....211ag1aag33ga2aa222ab222ag33RA111g2a111a1111.", // 23
+        "....211ag111g311a211121A1a222123RRg111aa1111aaa1.", // 24
+        "....211aA111g2ARgaDOAaAOR1222a12DRA2331211agggg2.", // 2.
+        ".....g1aA321gAOOgAOO1aDSR122a112DRR13311aa1ggg2..", // 26
+        ".....3gaA2332AORgASOgaDOR12a11112DD2211gagggg2...", // 27
+        "......313A122AORgASR1aDOR12a1111g2.621111gA24....", // 28
+        "........41111AOR1AORAaROR12a1111g3433443aa1......", // 29
+        ".......322211ARRg1RRAaARR12111a2a234.466311......", // 30
+        ".....23466.2g1RA11RR11gRA12111343.23.66.311......", // 31
+        "....24.666441122ggA2a1AD2111a3v313..2..4314......", // 32
+        "...2.34664431a11a132aa13aaa2a332..4.A44332.......", // 33
+        "..4a2.3.44321aa22aa222aaaaaC14423334A34222.......", // 34
+        "..223331432211CCaaaaaaaCCC1C1332..44A2332........", // 3.
+        ".3.433212222211aaaaaaaaa111C132433331221.........", // 36
+        ".3332331a23.3111aaaaaaaCCCCC143243332111.........", // 37
+        "..243A321...31a2AAAAAA1111111124.4234a31.........", // 38
+        "..3342133....3..AAJJJJDDAAAAAAA133...a21.........", // 39
+        "...233124.......41DJJJJJDAAAAg24.....121.........", // 40
+        "....224..........4AAAAAAAAA011ggA3...121.........", // 41
+        "...................11g11112111g121a..a21.........", // 42
+        "...................1111111a111gg1a13.a21.........", // 43
+        "...................11111111111444111.221.........", // 44
+        "...................3111112111g113.113423.........", // 4.
+        "...................12222221111111131a433.........", // 46
+        ".................311222222112211111g123a.........", // 47
+        "...............411g1111231g1a11a22a1g111.........", // 48
+        ".............11ga112A1A1111a2222222aag11.........", // 49
+        "............222111212111223222222122a11g3........", // .0
+        ".........42ga21a12112121223222212A1222a1g2.......", // .1
+        ".........11111a112A21222233222212A12222a1a.......", // .2
+        ".........g21aaa1211211122332222223312222113......", // .3
+        ".........12a1a22221312222332222212a12221111......", // .4
+        ".........112211a11222322233222222211111222A......", // ..
+        ".........g1a222222a11112222222111a22221111A......", // .6
+        ".........31a222222222322221112222221111111A......", // .7
+        "..........112222222222222222222222a1111111A......", // .8
+        "..........412222222222222222222222a111111g4......", // .9
+        "...........3111aa2222222222222222a111g1aa4.......", // 60
+        ".............442g111a2222222222211A0244..........", // 61
+        "...................43331111a11g133...............", // 62
+        "..........................4223..................." // 63
     )
 
     val palette = mapOf(
-        '0' to Color(0xFF2D4691),
-        'A' to Color(0xFF823719),
-        'C' to Color(0xFFAF501E),
-        'D' to Color(0xFF4B4B4B),
-        'G' to Color(0xFF0F5019),
-        'I' to Color(0xFF7346AF),
-        'K' to Color(0xFF141414),
-        'N' to Color(0xFF502314),
-        'P' to Color(0xFFBE6E41),
-        'S' to Color(0xFF8C8C8C),
-        'T' to Color(0xFFC8C8C8),
-        'W' to Color(0xFFFFFFFF)
+        '0' to Color(0xFF0C0C10),
+        '1' to Color(0xFF262630),
+        '2' to Color(0xFF484855),
+        '3' to Color(0xFF737684),
+        '4' to Color(0xFFA2A6B4),
+        '5' to Color(0xFFD0D4E0),
+        '6' to Color(0xFFFAFAFF),
+        'A' to Color(0xFF301C12),
+        'C' to Color(0xFF0F3444),
+        'D' to Color(0xFF58301C),
+        'E' to Color(0xFF844E2D),
+        'F' to Color(0xFFB27648),
+        'J' to Color(0xFF70520C),
+        'K' to Color(0xFF4E8080),
+        'O' to Color(0xFF762A0C),
+        'R' to Color(0xFF5C0F16),
+        'S' to Color(0xFF941C26),
+        'Z' to Color(0xFFD02A30),
+        'a' to Color(0xFF204444),
+        'b' to Color(0xFF346262),
+        'g' to Color(0xFF122626),
+        'n' to Color(0xFFB24816),
+        'o' to Color(0xFFE47020),
+        'v' to Color(0xFF76A8A8),
+        'x' to Color(0xFF8E4E3E)
     )
 
-    drawMonsterMatrix(matrix, palette)
+    drawMonsterMatrix(flip(matrix), palette)
 }
 
 fun DrawScope.drawRufus() {
@@ -8562,97 +8776,7 @@ fun DrawScope.drawPlantBrain() {
     drawMonsterMatrix(matrix, palette)
 }
 
-fun DrawScope.drawBlackWaltz() {
-    val matrix = arrayOf(
-        ".....................QQ...................................", // 0
-        ".....................PP...................................", // 1
-        ".....................PPP..................................", // 2
-        ".....................PPAD.......AAP.......................", // 3
-        "..............PPACP.QPPCN.......NNCP......................", // 4
-        "............EP......PPPCN.........PP......................", // 5
-        "............P.......APCA...........PP.....................", // 6
-        "...........P........APCA...........PA.....................", // 7
-        "...........P........AAAA..........PCA.......B0............", // 8
-        "..........PPEQQ.....NNAA...QPQE...PA....00BBB.00..........", // 9
-        "..........PPPPPAA..AAAAAADAPQPCAAAAA....0UU0U000B.........", // 10
-        ".........DADBDPAN..NANNNNNAS...rAAD....00BBBBBBB0.........", // 11
-        "........DDD0000DNNDNNNNNNNKNP.........U000BBBBBBBB........", // 12
-        ".......0B0000BB0NNNNNNNNNNKNNAP......000SSU0B00B0BBD......", // 13
-        ".......IBBBBBBB0DNNNNNNNNNKNNNA........00BBBDDBBBBKK......", // 14
-        "......0BB000B000SNNCAANNNKKKNNA.....00BBBBBBDBBBKKKKD.....", // 15
-        ".....DKBBBBBD0DDNNKKNNNANNNKNNND...0BB000BBBBBB0DBKK......", // 16
-        "....DKKKBKB0BDNKKKDDKNSDKKNNNNNA..0t000BBBBB0KB0KKDDD.....", // 17
-        ".....DKKKDB0DNNKKKKKKKKKKKKDTSDA..tttBBB00BB0KKBSDTSPP....", // 18
-        ".....NDKBKBBKBBBDDKKKKKKDDDDSTT.DttBB0BKtUBBBKKB...DSPP...", // 19
-        "....A.DD..BBKB0DDDDKKKKKDDKDDDDDtttBBtBKKBBBKBKK..DB..PQ..", // 20
-        "...AP.D...DKDDDDKDDKKKKKDDKDDDDDDttGB00BKKBDKBDD..DD...C..", // 21
-        "..PP..DB..DKDDDDDDKKKKKKDDDDDDSDDDtBBKKBKBKSKKD...K....AD.", // 22
-        ".DP....B....DDDDDDDDDDDDDDDDDDDDDDttBK..KKKSDK....D....DC.", // 23
-        ".NA....DD...DDDDDDDDDDDDDDDDDDDDDD...D...DDSSK.........PP.", // 24
-        ".PA.....D...KDDDDDDDSDDDDDDKDDDDDD.........D.K............", // 25
-        "..P.........KDDDSDDDDDDDSDKKKDDDDD...........D............", // 26
-        "..............KDSDD00DDSSGKDDKKKDD........................", // 27
-        "..............DDSDDDDDDSDDKS.TDDDKD.......................", // 28
-        "..............KDDDDDDDDDDKKS..TDKDD.......................", // 29
-        ".............DKKSDDDDDDDDGKS...TDDD.......................", // 30
-        ".............DDDTDDDDDDDDDKS....SDDD......................", // 31
-        "............DDDD.DDDDDDGDDKS.....DDDD.....................", // 32
-        "...........DGDDS.KDDDKDDDGGKT....DDDDD....................", // 33
-        "..........DDDDDSSKDDDKDDDDGKD....KDDDD....................", // 34
-        ".........DDDDDDTDGDDDKDDDDDKKS...DDDDDD...................", // 35
-        "........D.DSDDDTKDDDDKDDDDDKKKT..DDSSDD...................", // 36
-        ".......DD.DSSDSSDDDDDDDDDtDDGKD..DSSSDDD..................", // 37
-        "......DD.D..DDSDDDtDDDDDDtDDDDDS.DSDSDDD..................", // 38
-        "..........DDDDSDDDDDDDDDDDDDDDDDTDSDDDDD..................", // 39
-        "..........DDDSDDDDDD0D00DDDDDDDDSDDSSDSD..................", // 40
-        "....D......DDSDDDDD00D00DDDDDDDDDDSSSSS...D...............", // 41
-        ".....KD......DDDStD00DD00DtSDDDDDDSSSS..DKD...............", // 42
-        "......DDD....DDDDDD0DDD00DtDDDDDDSSSS.DKKKKKD.............", // 43
-        ".......D..KGDDDStDS0DDD0SDDtSD0DDSSDDDDNKKKK..............", // 44
-        "..........DKDDDSDDS0DDD000DtDSDDDSSDDDSSDKD...............", // 45
-        "............DDStDD0DDDD000DtDDSDDSSDSSSSS.................", // 46
-        ".............DtDD00DDDDDD0DDDtDDDSSDSSSS..................", // 47
-        "........D...DDDDD00DDDDDD00DDDDtDDDDSSS...................", // 48
-        ".........D..DDDD00DDDDDDD000DDDDDDDDDS....................", // 49
-        "............DDDD0DDDDDDDDD00DDDDDDDDD.....................", // 50
-        "............DDDDDDDDSSDDDDDDDDDDDDDD......................", // 51
-        "............DDDDDDDDSSSSDDDDDDDDDDDD......................", // 52
-        ".............DDDDDDDSSSSSDDDDDDDDDDD......................", // 53
-        ".............DDDDDDSTSSTSDDDDDDDDDDD......................", // 54
-        ".............DDDDDDSSSSTSDDDDDDDDDDD......................", // 55
-        ".............DDDDDSSKSSTTSDDDDDDDDD.......................", // 56
-        "..............DDDDSSNTSNTSDDDDGDSSD.......................", // 57
-        "................DDDNDTSKDTSDDDDSSD........................", // 58
-        ".............KND..DKKDKKKSDDSSTSDDD.D.....................", // 59
-        ".............K.....DKKKKKKKNKNKKKKKDDK....................", // 60
-        "......................NKKKKKKKKKK.........................", // 61
-        "........................DKKKKKD...........................", // 62
-        "...........................KD............................." // 63
-    )
 
-    val palette = mapOf(
-        '0' to Color(0xFF2D4691),
-        'A' to Color(0xFF823719),
-        'B' to Color(0xFF1E3782),
-        'C' to Color(0xFFAF501E),
-        'D' to Color(0xFF4B4B4B),
-        'E' to Color(0xFFFAC382),
-        'G' to Color(0xFF0F5019),
-        'I' to Color(0xFF7346AF),
-        'K' to Color(0xFF141414),
-        'N' to Color(0xFF502314),
-        'P' to Color(0xFFBE6E41),
-        'Q' to Color(0xFFE19B5F),
-        'S' to Color(0xFF8C8C8C),
-        'T' to Color(0xFFC8C8C8),
-        'U' to Color(0xFF2D5ABE),
-        'W' to Color(0xFFFFFFFF),
-        'r' to Color(0xFF961950),
-        't' to Color(0xFF0A6469)
-    )
-
-    drawMonsterMatrix(flip(matrix), palette)
-}
 
 fun DrawScope.drawRalvurahva() {
     val matrix = arrayOf(
@@ -11236,4 +11360,93 @@ fun DrawScope.drawDragon() {
     )
 
     drawMonsterMatrix(matrix, palette)
+}
+
+
+fun DrawScope.drawBlackWaltz() {
+    val matrix = arrayOf(
+        "................................................................", // 0
+        "..................................x.............................", // 1
+        ".................................3F.............................", // 2
+        "................................3yx.............................", // 3
+        "................................FFx.............................", // .
+        "...............................xyEx.............................", // .
+        ".......................bb......xxE3......aaaa3..................", // .
+        ".......................Ca.....3FFx3......2ccccab................", // 7
+        "......................37C2....EFxD2.......cCg7a82v..............", // 8
+        "......................27gC....FxDAD.......C7gg0g8c3.............", // 9
+        "......................170Ca..3xFyxD.......Cgg00gggc3............", // 10
+        "......................CgggC2.DxFxxD3......cgggggg7gc3...........", // 11
+        "......................a7g01DxFyFxEDA.....2a777gggCC7a3..........", // 12
+        "......................3gDEFFxwyFwFxxE3..aC77gg0gC7CCg1..........", // 13
+        ".......................70AE0DDAxxEyFxxD1g7770ggCCaC1g7..........", // 1.
+        ".......................000000YAAYAAEExEEDg7gC00aaagg0Ca.........", // 1.
+        ".......................0gg0100000021020g77gg0000g1C70ga.........", // 1.
+        "........................g0g12000127g77g0g0g0g00g0g7gC0a2........", // 17
+        "........................00g1110027gCCCCg0g0000000C7C7g0C........", // 18
+        "........................1ggaC10g7Ccag71C00g0g0g0777a7C01b.......", // 19
+        "........................30ggCa0CCaaag1g0g00g00007gaCCC031.......", // 20
+        "........................100ggC1gaga0ggga0g0000007ga0ag02........", // 21
+        "........................1107ggQ1177g0gCcCg000g0g0gC1g0g0........", // 22
+        "..........................0777Q1777g000CCg3g.b000g0100001.......", // 23
+        "..........................7Cg7QQ77C70g0gCCa3..0g0g0g000032......", // 2.
+        ".........................C8CgC12C87g2.20gaa2..13gg0g00gg3.2.....", // 2.
+        "........................2877Ca12CCC723DDg8c2....00g000gga.......", // 2.
+        "......................3322Qg82Q12787013.28Ky3...00g000ggg.......", // 27
+        "......................3y2Q7C82DQ287C7a..32by22..20gg00g00a......", // 28
+        "......................22ADCc2AE22ccgC73..Q23yx3.3100g0g000v.....", // 29
+        ".....................32xAg8822DF12caCa1..2F1QDE.330000g0g31.....", // 30
+        "..............3......DAQgc82A21g12bcCaa1.EANWI22.320000031.2....", // 31
+        "............3E...F2JD310cc21227Q221c878a..2233x3..303g0g.3......", // 32
+        "............wJ33FFE3..38ab1322Q2Q222cc78a3x322x2...0.g0g2.2.....", // 33
+        "...........FEEFFJ32...a7b13zy222a22D2cacCv2..x22...g.1001.......", // 3.
+        "..........wwFFF2.....2aa21wz32Q2222F22cC82...221...3.3g303......", // 3.
+        "........FwFEEFE3.....aC201yw3133222332a8CCa.2.2.......g0.g......", // 3.
+        ".......FEE..xYF3....3721g0233222a222322777C1..........3g..3.....", // 37
+        ".....3F2....wF3.....202g0g13w22Q272A2120Cgg7...........32.......", // 38
+        "....3......wE3......a1203233w32Q12212217C7C11...........3.......", // 39
+        "........2FF3.........02....3.32227212212gC13....................", // .0
+        ".....................32...3x222120231122122.....................", // .1
+        "......................2.....11221323.x123.3.....................", // .2
+        "...........................2xD1.2.33.331........................", // .3
+        ".........................32x213.................................", // 44
+        ".........................DEDx3..................................", // 45
+        "..........................323...................................", // 46
+        "................................................................" // 47
+    )
+
+    val palette = mapOf(
+        '0' to Color(0xFF0C0C10),
+        '1' to Color(0xFF262630),
+        '2' to Color(0xFF484855),
+        '3' to Color(0xFF737684),
+        '4' to Color(0xFFA2A6B4),
+        '5' to Color(0xFFD0D4E0),
+        '6' to Color(0xFFFAFAFF),
+        '7' to Color(0xFF121C44),
+        '8' to Color(0xFF203A7A),
+        'A' to Color(0xFF301C12),
+        'C' to Color(0xFF0F3444),
+        'D' to Color(0xFF58301C),
+        'E' to Color(0xFF844E2D),
+        'F' to Color(0xFFB27648),
+        'I' to Color(0xFF55267A),
+        'J' to Color(0xFF70520C),
+        'K' to Color(0xFF4E8080),
+        'N' to Color(0xFF8E2058),
+        'Q' to Color(0xFF301644),
+        'W' to Color(0xFF8444B6),
+        'Y' to Color(0xFFDAAC20),
+        'a' to Color(0xFF204444),
+        'b' to Color(0xFF346262),
+        'c' to Color(0xFF1C5C70),
+        'g' to Color(0xFF122626),
+        'v' to Color(0xFF76A8A8),
+        'w' to Color(0xFFDAA270),
+        'x' to Color(0xFF8E4E3E),
+        'y' to Color(0xFFC0765C),
+        'z' to Color(0xFFEBA284)
+    )
+
+    drawMonsterMatrix(flip(matrix), palette)
 }

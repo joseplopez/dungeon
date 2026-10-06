@@ -19,6 +19,9 @@ This tool automates the pixel-by-pixel transcription required by `SKILL_HERO_SPR
 To manually convert sprites and update `PixelCharacters.kt`:
 
 python3 -m pip install opencv-python numpy
+python3 -m venv path/to/venv
+source path/to/venv/bin/activate
+python3 -m pip install xyz
 
 1. **Place your PNG image(s)** into the `sprites/` directory in the project root (e.g., `sprites/Djinn.png`, `sprites/Borghen.png`, `sprites/BlackMage.png`).
 2. **Execute the script** from the project root in your terminal:
