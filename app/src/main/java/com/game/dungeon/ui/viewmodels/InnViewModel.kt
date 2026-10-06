@@ -185,7 +185,7 @@ class InnViewModel @Inject constructor(
     fun advanceDimension() {
         val gs = gameState.value ?: return
         val requiredFloor = gs.currentDimension * 100
-        if (gs.highestFloor >= requiredFloor) {
+        if (gs.currentDimension < 11 && gs.highestFloor >= requiredFloor) {
             viewModelScope.launch {
                 // Remove all heroes from party
                 _hiredHeroes.value.forEach { repository.removeHero(it) }

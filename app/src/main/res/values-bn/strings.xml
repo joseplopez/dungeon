@@ -238,6 +238,11 @@
     <string name="biome_bevelle_temple">বেভেল মন্দির</string>
     <string name="biome_omega_ruins">ওমেগা ধ্বংসাবশেষ</string>
     <string name="biome_sin_interior">সিনের ভেতরে</string>
+
+    <!-- Dimension 11 Strings -->
+    <string name="dim11_title">অসীম শূন্যতা</string>
+    <string name="dim11_subtitle">ফাইন্যাল ফ্যান্টাসি ফরএভার</string>
+    <string name="dim11_story">মাত্রার সীমানা অসীমে ভেঙ্গে পড়ে। স্থান-কালের সমস্ত বসের মহাজাগতিক সমাবেশের মুখোমুখি হন।</string>
     <string name="biome_dream_zanarkand">স্বপ্নের জানারকান্ড</string>
     <string name="enemy_dingo">ডিঙ্গো</string>
     <string name="enemy_water_flan">ওয়াটার ফ্ল্যান</string>

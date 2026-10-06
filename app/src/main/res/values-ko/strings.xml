@@ -238,6 +238,11 @@
     <string name="biome_bevelle_temple">베벨 사원</string>
     <string name="biome_omega_ruins">오메가 유적</string>
     <string name="biome_sin_interior">신의 내부</string>
+
+    <!-- Dimension 11 Strings -->
+    <string name="dim11_title">무한의 허무</string>
+    <string name="dim11_subtitle">파이널 판타지 포에버</string>
+    <string name="dim11_story">차원의 경계가 무한으로 깨어진다. 시공간을 넘어 모든 보스의 우주적 수렴에 맞서라.</string>
     <string name="biome_dream_zanarkand">꿈의 자나르카나드</string>
     <string name="enemy_dingo">딩고</string>
     <string name="enemy_water_flan">워터 푸딩</string>

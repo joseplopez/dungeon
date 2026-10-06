@@ -37,7 +37,7 @@ class FFBattleEngine(private val context: Context) {
         onEvent: (FFBattleEvent) -> Unit
     ) {
         var currentFloor = startFloor
-        val maxFloor = dimension.number * 100
+        val maxFloor = dimension.maxFloor
         val aliveHeroes = heroes.map { it.copy() }.toMutableList()
         var totalGil = 0L
         var totalMagicite = 0

@@ -82,8 +82,8 @@ fun InnScreen(
                 onOpenSupport = { showSupportDialog = true }
             )
             
-            // Dimension Advance Banner (Only shows if dimension max floor reached)
-            if (highestFloor >= currentDimension * 100) {
+            // Dimension Advance Banner (Only shows if dimension max floor reached, and not in Dimension 11+)
+            if (currentDimension < 11 && highestFloor >= currentDimension * 100) {
                 DimensionAdvanceBanner(currentDimension) { showDimensionResetDialog = true }
             }
 

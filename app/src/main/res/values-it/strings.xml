@@ -238,6 +238,11 @@
     <string name="biome_bevelle_temple">Tempio di Bevelle</string>
     <string name="biome_omega_ruins">Rovine di Omega</string>
     <string name="biome_sin_interior">Dentro Sin</string>
+
+    <!-- Dimension 11 Strings -->
+    <string name="dim11_title">Il Vuoto Infinito</string>
+    <string name="dim11_subtitle">Final Fantasy Per Sempre</string>
+    <string name="dim11_story">Il confine delle dimensioni si frantuma all\'infinito. Affronta la convergenza cosmica di tutti i boss.</string>
     <string name="biome_dream_zanarkand">Zanarkand del Sogno</string>
     <string name="enemy_dingo">Dingo</string>
     <string name="enemy_water_flan">Elemental d\'Acqua</string>

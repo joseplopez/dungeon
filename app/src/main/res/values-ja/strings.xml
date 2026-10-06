@@ -238,6 +238,11 @@
     <string name="biome_bevelle_temple">Храм Бевелл</string>
     <string name="biome_omega_ruins">Руїни Омега</string>
     <string name="biome_sin_interior">Усередині Гріха</string>
+
+    <!-- Dimension 11 Strings -->
+    <string name="dim11_title">無限の虚無</string>
+    <string name="dim11_subtitle">ファイナルファンタジー フォーエバー</string>
+    <string name="dim11_story">次元の境界が無限へと砕け散る。時空を超えたすべてのボスの宇宙的収束に立ち向かえ。</string>
     <string name="biome_dream_zanarkand">Занарканд Снів</string>
     <string name="enemy_dingo">Дінго</string>
     <string name="enemy_water_flan">Водяний флан</string>

@@ -3,7 +3,7 @@ package com.game.dungeon.data.models
 import com.game.dungeon.R
 
 object FFDimensionData {
-    val dimensions = listOf(
+    private val baseDimensions = listOf(
 
         // ================================================================
         // DIMENSION 1 — FINAL FANTASY I: Warriors of Light
@@ -499,29 +499,57 @@ object FFDimensionData {
         )
     )
 
-    fun getDimension(number: Int): FFDimension {
-        val base = dimensions.getOrElse((number - 1).coerceAtLeast(0)) { dimensions.last() }
-        if (number <= dimensions.size) return base
-        // Dynamic dimension above 10: scale biomes and enemies to number * 100 max floor
-        val maxFloor = number * 100
-        return base.copy(
-            number = number,
-            biomes = base.biomes.map { it.copy(floorRange = it.floorRange.first..(if (it.floorRange.last >= 100) maxFloor else it.floorRange.last)) },
-            enemies = base.enemies.map { enemy ->
-                if (enemy.isBoss) {
-                    if (enemy.minFloor % 100 == 0) enemy.copy(minFloor = maxFloor, maxFloor = maxFloor)
-                    else enemy
-                } else {
-                    enemy.copy(maxFloor = (maxFloor - 1).coerceAtLeast(enemy.minFloor))
-                }
-            }
+    private val dim11: FFDimension by lazy {
+        val allRegs = baseDimensions.flatMap { d -> d.enemies.filter { !it.isBoss } }
+            .distinctBy { it.type }
+            .map { it.copy(minFloor = 1, maxFloor = 99999999) }
+        val allBosses = baseDimensions.flatMap { d -> d.enemies.filter { it.isBoss } }
+
+        FFDimension(
+            number = 11,
+            titleRes = R.string.dim11_title,
+            subtitleRes = R.string.dim11_subtitle,
+            mainColor = 0xFF0A1F2A,
+            accentColor = 0xFF00FFCC,
+            storyRes = R.string.dim11_story,
+            biomes = listOf(FFBiome(R.string.dim11_title, 1..999999, BiomeType.CHAOS_SHRINE)),
+            enemies = allRegs + allBosses
         )
     }
 
+    val dimensions: List<FFDimension> get() = baseDimensions + dim11
+
+    fun isMajorBoss(type: MonsterType): Boolean {
+        return when (type) {
+            MonsterType.CHAOS,
+            MonsterType.EMPEROR,
+            MonsterType.CLOUD_OF_DARKNESS,
+            MonsterType.ZEROMUS,
+            MonsterType.NEO_EXDEATH,
+            MonsterType.KEFKA,
+            MonsterType.SEPHIROT,
+            MonsterType.ULTIMECIA,
+            MonsterType.NECRON,
+            MonsterType.SIN,
+            MonsterType.PENANCE,
+            MonsterType.YU_YEVON -> true
+            else -> false
+        }
+    }
+
+    fun getDimension(number: Int): FFDimension {
+        if (number >= 11) return dimensions.last()
+        val index = (number - 1).coerceIn(0, dimensions.size - 1)
+        return dimensions[index]
+    }
+
     fun getEnemiesForFloor(dimension: FFDimension, floor: Int): List<FFEnemyTemplate> {
+        if (dimension.number >= 11) {
+            val nonBosses = dimension.enemies.filter { !it.isBoss }
+            if (nonBosses.isNotEmpty()) return nonBosses
+        }
         val matches = dimension.enemies.filter { !it.isBoss && floor in it.minFloor..it.maxFloor }
         if (matches.isNotEmpty()) return matches
-        // Fallback: return non-boss enemies sorted by maxFloor descending so we never return empty list
         val nonBosses = dimension.enemies.filter { !it.isBoss }
         if (nonBosses.isNotEmpty()) {
             val highestAvailable = nonBosses.maxByOrNull { it.maxFloor }
@@ -531,6 +559,24 @@ object FFDimensionData {
     }
 
     fun getBossForFloor(dimension: FFDimension, floor: Int): FFEnemyTemplate? {
+        if (dimension.number >= 11) {
+            if (floor % 100 == 0) {
+                val majorBosses = dimension.enemies.filter { it.isBoss && isMajorBoss(it.type) }
+                val pool = if (majorBosses.isNotEmpty()) majorBosses else dimension.enemies.filter { it.isBoss }
+                if (pool.isNotEmpty()) {
+                    val index = (((floor / 100) - 1).coerceAtLeast(0)) % pool.size
+                    return pool[index]
+                }
+            } else if (floor % 50 == 0) {
+                val miniBosses = dimension.enemies.filter { it.isBoss && !isMajorBoss(it.type) }
+                val pool = if (miniBosses.isNotEmpty()) miniBosses else dimension.enemies.filter { it.isBoss }
+                if (pool.isNotEmpty()) {
+                    val index = (((floor / 50) - 1).coerceAtLeast(0)) % pool.size
+                    return pool[index]
+                }
+            }
+            return null
+        }
         val maxFloor = dimension.number * 100
         val explicitBoss = dimension.bosses().find { floor == it.minFloor }
         if (explicitBoss != null) return explicitBoss

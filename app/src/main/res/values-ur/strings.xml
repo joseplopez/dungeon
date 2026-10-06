@@ -238,6 +238,11 @@
     <string name="biome_bevelle_temple">بیویل مندر</string>
     <string name="biome_omega_ruins">امیگا کے کھنڈرات</string>
     <string name="biome_sin_interior">سن کے اندر</string>
+
+    <!-- Dimension 11 Strings -->
+    <string name="dim11_title">لا محدود خلا</string>
+    <string name="dim11_subtitle">فائنل فینٹسی ہمیشہ کے لیے</string>
+    <string name="dim11_story">جہتوں کی حد لا محدودیت میں بکھر جاتی ہے۔ تمام باسز کے کائناتی ملاپ کا سامنا کریں۔</string>
     <string name="biome_dream_zanarkand">خواب کا زانارکانڈ</string>
     <string name="enemy_dingo">ڈنگو</string>
     <string name="enemy_water_flan">پانی کا فلین</string>

@@ -238,6 +238,11 @@
     <string name="biome_bevelle_temple">معبد بيفيل</string>
     <string name="biome_omega_ruins">أطلال أوميغا</string>
     <string name="biome_sin_interior">داخل سين</string>
+
+    <!-- Dimension 11 Strings -->
+    <string name="dim11_title">الفراغ اللانهائي</string>
+    <string name="dim11_subtitle">فاينل فانتسي إلى الأبد</string>
+    <string name="dim11_story">تتحطم حدود الأبعاد إلى اللانهاية. واجه التقاء الزمان والمكان لجميع الزعماء.</string>
     <string name="biome_dream_zanarkand">زاناركاند الأحلام</string>
     <string name="enemy_dingo">دينغو</string>
     <string name="enemy_water_flan">هلام الماء</string>

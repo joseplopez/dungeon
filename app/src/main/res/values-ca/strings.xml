@@ -238,6 +238,11 @@
     <string name="biome_bevelle_temple">Temple de Bevelle</string>
     <string name="biome_omega_ruins">Ruïnes d\'Omega</string>
     <string name="biome_sin_interior">Dins de Sin</string>
+
+    <!-- Dimension 11 Strings -->
+    <string name="dim11_title">El Buit Infinit</string>
+    <string name="dim11_subtitle">Final Fantasy Per Sempre</string>
+    <string name="dim11_story">El límit de les dimensions es trenca en l\'infinit. Enfronta\'t a la convergència còsmica de tots els caps.</string>
     <string name="biome_dream_zanarkand">Zanarkand dels Somnis</string>
     <string name="enemy_dingo">Dingo</string>
     <string name="enemy_water_flan">Flan d\'Aigua</string>

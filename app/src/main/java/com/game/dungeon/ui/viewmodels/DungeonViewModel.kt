@@ -154,7 +154,7 @@ class DungeonViewModel @Inject constructor(
 
         battleState.value = FFBattleState(
             currentFloor = startFloor.coerceAtLeast(1),
-            currentBiome = dimension.biomes.find { startFloor.coerceAtLeast(1) in it.floorRange },
+            currentBiome = dimension.getBiomeForFloor(startFloor.coerceAtLeast(1)),
             dimension = dimension,
             heroes = partyWithStats,
             originalPartySize = party.size,
@@ -180,7 +180,7 @@ class DungeonViewModel @Inject constructor(
   private fun handleEvent(event: FFBattleEvent) {
     when (event) {
       is FFBattleEvent.FloorStart -> {
-          val biome = battleState.value.dimension?.biomes?.find { event.floor in it.floorRange }
+          val biome = battleState.value.dimension?.getBiomeForFloor(event.floor)
           battleState.update { it.copy(enemies = event.enemies, currentFloor = event.floor, currentBiome = biome ?: it.currentBiome) }
       }
       is FFBattleEvent.DamageDealt -> {
@@ -350,8 +350,8 @@ class DungeonViewModel @Inject constructor(
       is FFBattleEvent.FloorComplete -> {
         var isBiomeChange = false
         battleState.update { state ->
-          val newBiome = state.dimension?.biomes?.find { event.floor + 1 in it.floorRange }
-          isBiomeChange = newBiome != null && (newBiome != state.currentBiome || event.floor + 1 == newBiome.floorRange.first)
+          val newBiome = state.dimension?.getBiomeForFloor(event.floor + 1)
+          isBiomeChange = newBiome != null && (newBiome.backgroundType != state.currentBiome?.backgroundType || event.floor + 1 == newBiome.floorRange.first)
           
           analytics.logFloorReached(event.floor + 1)
 

@@ -238,6 +238,11 @@
     <string name="biome_bevelle_temple">Bevelle Tapınağı</string>
     <string name="biome_omega_ruins">Omega Harabeleri</string>
     <string name="biome_sin_interior">Sin\'in İçinde</string>
+
+    <!-- Dimension 11 Strings -->
+    <string name="dim11_title">Sonsuz Boşluk</string>
+    <string name="dim11_subtitle">Sonsuza Kadar Final Fantasy</string>
+    <string name="dim11_story">Boyutların sınırı sonsuzluğa parçalanıyor. Tüm patronların kozmik birleşimiyle yüzleşin.</string>
     <string name="biome_dream_zanarkand">Rüya Zanarkand</string>
     <string name="enemy_dingo">Dingo</string>
     <string name="enemy_water_flan">Su Flanı</string>

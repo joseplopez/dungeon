@@ -238,6 +238,11 @@
     <string name="biome_bevelle_temple">Hekalu la Bevelle</string>
     <string name="biome_omega_ruins">Magofu ya Omega</string>
     <string name="biome_sin_interior">Ndani ya Sin</string>
+
+    <!-- Dimension 11 Strings -->
+    <string name="dim11_title">Uchaguzi Usio na Kikomo</string>
+    <string name="dim11_subtitle">Final Fantasy Milele</string>
+    <string name="dim11_story">Mpakani mwa vipimo unapasuka hadi milele. Kabiliana na mkusanyiko wa mabosi wote.</string>
     <string name="biome_dream_zanarkand">Zanarkand ya Ndoto</string>
     <string name="enemy_dingo">Dingo</string>
     <string name="enemy_water_flan">Flan wa Maji</string>

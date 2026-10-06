@@ -45,13 +45,17 @@ data class Enemy(
             }
 
             // Enhanced stat scaling with floor depth and dimension level
-            val baseHp = (20 + floor * 12) * template.hpMult * difficultyMult * totalDimMult * bossLateGameDampener
-            val baseAtk = (5 + floor * 2.2f) * template.atkMult * difficultyMult * totalDimMult * bossLateGameDampener
-            val baseDef = (1 + floor / 2.5f) * template.defMult * difficultyMult * totalDimMult * bossLateGameDampener
+            val rawHp = (20.0 + floor.toDouble() * 12.0) * template.hpMult * difficultyMult * totalDimMult * bossLateGameDampener
+            val rawAtk = (5.0 + floor.toDouble() * 2.2) * template.atkMult * difficultyMult * totalDimMult * bossLateGameDampener
+            val rawDef = (1.0 + floor.toDouble() / 2.5) * template.defMult * difficultyMult * totalDimMult * bossLateGameDampener
+
+            val safeHp = rawHp.coerceIn(10.0, Int.MAX_VALUE.toDouble()).toInt()
+            val safeAtk = rawAtk.coerceIn(1.0, (Int.MAX_VALUE / 2).toDouble()).toInt()
+            val safeDef = rawDef.coerceIn(0.0, (Int.MAX_VALUE / 4).toDouble()).toInt()
 
             // Gil scaling with floor level and difficulty (sub-linear curve to prevent high floor inflation)
-            val floorGilMult = 1f + (floor * 0.02f) + (kotlin.math.sqrt(floor.toFloat()) * 0.15f)
-            val scaledGil = (template.gilReward * floorGilMult * (1f + (difficultyMult - 1f) * 0.5f)).toInt().coerceAtLeast(template.gilReward)
+            val floorGilMult = 1.0 + (floor.toDouble() * 0.02) + (kotlin.math.sqrt(floor.toDouble()) * 0.15)
+            val scaledGil = (template.gilReward * floorGilMult * (1.0 + (difficultyMult - 1.0) * 0.5)).coerceIn(template.gilReward.toDouble(), Int.MAX_VALUE.toDouble()).toInt()
 
             // Magicite scaling: Bosses grant scaling magicite payouts per dimension; regular monsters drop quantity scales in late dimensions
             val magiciteQuantity = if (template.isBoss) {
@@ -79,11 +83,11 @@ data class Enemy(
                 type = template.type,
                 name = enemyName,
                 emoji = template.emoji,
-                maxHp = baseHp.toInt(),
-                currentHp = baseHp.toInt(),
-                attack = baseAtk.toInt(),
-                defense = baseDef.toInt(),
-                magicDefense = (baseDef * 0.8f).toInt(),
+                maxHp = safeHp,
+                currentHp = safeHp,
+                attack = safeAtk,
+                defense = safeDef,
+                magicDefense = (safeDef * 0.8f).toInt(),
                 speed = 5 + (floor / 8) + (dimension.number - 1),
                 gilReward = scaledGil,
                 magiciteDropped = magiciteQuantity,

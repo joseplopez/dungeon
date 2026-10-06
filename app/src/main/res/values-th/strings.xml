@@ -238,6 +238,11 @@
     <string name="biome_bevelle_temple">วิหารเบเวลล์</string>
     <string name="biome_omega_ruins">ซากปรักหักพังโอเมกา</string>
     <string name="biome_sin_interior">ภายในซิน</string>
+
+    <!-- Dimension 11 Strings -->
+    <string name="dim11_title">ความว่างเปล่าไร้ขีดจำกัด</string>
+    <string name="dim11_subtitle">ไฟนอลแฟนตาซี ฟอร์เอเวอร์</string>
+    <string name="dim11_story">ขอบเขตแห่งมิติทะลายสู่ความอนันต์ เผชิญหน้ากับการรวมตัวแห่งจักรวาลของบอสทุกตัว</string>
     <string name="biome_dream_zanarkand">ซานาร์คันด์แห่งความฝัน</string>
     <string name="enemy_dingo">ดิงโก</string>
     <string name="enemy_water_flan">พุดดิ้งน้ำ</string>

@@ -238,6 +238,11 @@
     <string name="biome_bevelle_temple">Храм Бевелл</string>
     <string name="biome_omega_ruins">Руїни Омега</string>
     <string name="biome_sin_interior">Усередині Гріха</string>
+
+    <!-- Dimension 11 Strings -->
+    <string name="dim11_title">Нескінченна Безодня</string>
+    <string name="dim11_subtitle">Final Fantasy Назавжди</string>
+    <string name="dim11_story">Межа вимірів розпадається в нескінченність. Зійдіться в битві з космічною конвергенцією всіх босів.</string>
     <string name="biome_dream_zanarkand">Занарканд Снів</string>
     <string name="enemy_dingo">Дінго</string>
     <string name="enemy_water_flan">Водяний флан</string>

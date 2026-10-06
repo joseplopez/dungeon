@@ -167,6 +167,47 @@ class GameplayProgressionTest {
     }
 
     @Test
+    fun testDimension11_InfiniteVoidPropertiesAndBossPacing() {
+        val dim11 = FFDimensionData.getDimension(11)
+        assertEquals(11, dim11.number)
+        assertEquals(99999999, dim11.maxFloor)
+        assertNotEquals(0, dim11.titleRes)
+        assertNotEquals(0, dim11.subtitleRes)
+
+        // Test regular enemies for high floors
+        val regularEnemiesHighFloor = FFDimensionData.getEnemiesForFloor(dim11, 5000)
+        assertTrue("Dimension 11 floor 5000 must have regular enemies", regularEnemiesHighFloor.isNotEmpty())
+
+        // Test mini-boss on floor 50
+        val miniBoss50 = FFDimensionData.getBossForFloor(dim11, 50)
+        assertNotNull("Floor 50 in Dim 11 must have a mini-boss", miniBoss50)
+        assertTrue("Mini-boss must be marked as boss", miniBoss50!!.isBoss)
+        assertFalse("Floor 50 should be mini-boss, not major final boss", FFDimensionData.isMajorBoss(miniBoss50.type))
+
+        // Test major boss on floor 100
+        val majorBoss100 = FFDimensionData.getBossForFloor(dim11, 100)
+        assertNotNull("Floor 100 in Dim 11 must have a major boss", majorBoss100)
+        assertTrue("Major boss must be marked as boss", majorBoss100!!.isBoss)
+        assertTrue("Floor 100 should be a major final boss", FFDimensionData.isMajorBoss(majorBoss100.type))
+
+        // Test major boss on floor 200
+        val majorBoss200 = FFDimensionData.getBossForFloor(dim11, 200)
+        assertNotNull("Floor 200 in Dim 11 must have a major boss", majorBoss200)
+        assertTrue("Floor 200 should be a major final boss", FFDimensionData.isMajorBoss(majorBoss200!!.type))
+
+        // Test dynamic biome cycling
+        val biome1 = dim11.getBiomeForFloor(5)
+        val biome2 = dim11.getBiomeForFloor(15)
+        assertNotEquals("Biomes should cycle every 10 floors", biome1.backgroundType, biome2.backgroundType)
+
+        // Test high floor Enemy stat calculation safety
+        val highFloorEnemy = Enemy.fromTemplate(regularEnemiesHighFloor.first(), floor = 99999999, context = mockContext, dimension = dim11)
+        assertTrue("HP must be positive on floor 99999999", highFloorEnemy.maxHp > 0)
+        assertTrue("Attack must be positive on floor 99999999", highFloorEnemy.attack > 0)
+        assertTrue("Gil reward must be positive on floor 99999999", highFloorEnemy.gilReward > 0)
+    }
+
+    @Test
     fun testEnemyStatAndRewardScaling() {
         val template = FFEnemyTemplate(
             nameRes = 1,
