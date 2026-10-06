@@ -332,6 +332,9 @@
 
     <!-- Dungeon Screen -->
     <string name="retreat_button">◀ ОТСТУПЛЕНИЕ</string>
+    <string name="pause_button">ПАУЗА</string>
+    <string name="resume_button">ПРОДОЛЖИТЬ</string>
+    <string name="battle_paused">ПАУЗА</string>
     <string name="floor_format">ЭТАЖ %1$d</string>
     <string name="boss_floor_warning">⚠ ЭТАЖ С БОССОМ</string>
     <string name="entering_biome_format">Вход в %1$s...</string>

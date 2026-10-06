@@ -332,6 +332,9 @@
 
     <!-- Dungeon Screen -->
     <string name="retreat_button">◀ 후퇴</string>
+    <string name="pause_button">일시정지</string>
+    <string name="resume_button">재개</string>
+    <string name="battle_paused">일시정지됨</string>
     <string name="floor_format">%1$d층</string>
     <string name="boss_floor_warning">⚠ 보스 층</string>
     <string name="entering_biome_format">%1$s 입장 중...</string>

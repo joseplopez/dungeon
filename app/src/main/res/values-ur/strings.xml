@@ -332,6 +332,9 @@
 
     <!-- Dungeon Screen -->
     <string name="retreat_button">◀ پسپائی</string>
+    <string name="pause_button">روکیں</string>
+    <string name="resume_button">دوبارہ شروع کریں</string>
+    <string name="battle_paused">روکا گیا</string>
     <string name="floor_format">فلور %1$d</string>
     <string name="boss_floor_warning">⚠ باس فلور</string>
     <string name="entering_biome_format">%1$s میں داخل ہو رہے ہیں...</string>

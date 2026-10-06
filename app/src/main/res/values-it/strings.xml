@@ -332,6 +332,9 @@
 
     <!-- Dungeon Screen -->
     <string name="retreat_button">◀ RITIRATA</string>
+    <string name="pause_button">PAUSA</string>
+    <string name="resume_button">RIPRENDI</string>
+    <string name="battle_paused">IN PAUSA</string>
     <string name="floor_format">PIANO %1$d</string>
     <string name="boss_floor_warning">⚠ PIANO DEL BOSS</string>
     <string name="entering_biome_format">Ingresso in %1$s...</string>

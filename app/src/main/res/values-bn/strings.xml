@@ -332,6 +332,9 @@
 
     <!-- Dungeon Screen -->
     <string name="retreat_button">◀ পিছু হটা</string>
+    <string name="pause_button">পজ</string>
+    <string name="resume_button">পুনরায় শুরু</string>
+    <string name="battle_paused">পজ করা হয়েছে</string>
     <string name="floor_format">তলা %1$d</string>
     <string name="boss_floor_warning">⚠ বসের তলা</string>
     <string name="entering_biome_format">%1$s এ প্রবেশ করা হচ্ছে...</string>

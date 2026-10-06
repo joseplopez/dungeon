@@ -332,6 +332,9 @@
 
     <!-- Dungeon Screen -->
     <string name="retreat_button">◀ RÜCKZUG</string>
+    <string name="pause_button">PAUSE</string>
+    <string name="resume_button">FORTSETZEN</string>
+    <string name="battle_paused">PAUSIERT</string>
     <string name="floor_format">EBENE %1$d</string>
     <string name="boss_floor_warning">⚠ BOSS-EBENE</string>
     <string name="entering_biome_format">Betrete %1$s...</string>

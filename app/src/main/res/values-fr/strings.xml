@@ -332,6 +332,9 @@
 
     <!-- Dungeon Screen -->
     <string name="retreat_button">◀ RETRAITE</string>
+    <string name="pause_button">PAUSE</string>
+    <string name="resume_button">REPRENDRE</string>
+    <string name="battle_paused">EN PAUSE</string>
     <string name="floor_format">ÉTAGE %1$d</string>
     <string name="boss_floor_warning">⚠ ÉTAGE DU BOSS</string>
     <string name="entering_biome_format">Arrivée dans %1$s...</string>

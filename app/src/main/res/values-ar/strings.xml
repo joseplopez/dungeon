@@ -332,6 +332,9 @@
 
     <!-- Dungeon Screen -->
     <string name="retreat_button">◀ تراجع</string>
+    <string name="pause_button">إيقاف مؤقت</string>
+    <string name="resume_button">استئناف</string>
+    <string name="battle_paused">متوقف مؤقتاً</string>
     <string name="floor_format">الطابق %1$d</string>
     <string name="boss_floor_warning">⚠ طابق الزعيم</string>
     <string name="entering_biome_format">دخول %1$s...</string>

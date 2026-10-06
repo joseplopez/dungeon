@@ -332,6 +332,9 @@
 
     <!-- Dungeon Screen -->
     <string name="retreat_button">◀ GERİ ÇEKİL</string>
+    <string name="pause_button">DURAKLAT</string>
+    <string name="resume_button">DEVAM ET</string>
+    <string name="battle_paused">DURAKLATILDI</string>
     <string name="floor_format">KAT %1$d</string>
     <string name="boss_floor_warning">⚠ PATRON KATI</string>
     <string name="entering_biome_format">%1$s bölgesine giriliyor...</string>

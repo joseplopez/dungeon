@@ -332,6 +332,9 @@
 
     <!-- Dungeon Screen -->
     <string name="retreat_button">◀ ถอยทัพ</string>
+    <string name="pause_button">หยุดชั่วคราว</string>
+    <string name="resume_button">เล่นต่อ</string>
+    <string name="battle_paused">หยุดชั่วคราว</string>
     <string name="floor_format">ชั้น %1$d</string>
     <string name="boss_floor_warning">⚠ ชั้นบอส</string>
     <string name="entering_biome_format">กำลังเข้าสู่ %1$s...</string>

@@ -332,6 +332,9 @@
 
     <!-- Dungeon Screen -->
     <string name="retreat_button">◀ REJEA NYUMA</string>
+    <string name="pause_button">ACHA</string>
+    <string name="resume_button">ENDELEA</string>
+    <string name="battle_paused">IMESIMAMISHWA</string>
     <string name="floor_format">GHOROFA %1$d</string>
     <string name="boss_floor_warning">⚠ GHOROFA YA BOSS</string>
     <string name="entering_biome_format">Kuingia %1$s...</string>

@@ -76,6 +76,8 @@ fun DungeonScreen(
                 onRetreat = { viewModel.retreat() },
                 speed = state.speed,
                 onSpeedChange = { viewModel.setSpeed(it) },
+                isPaused = state.isPaused,
+                onTogglePause = { viewModel.togglePause() },
                 isMuted = isMuted,
                 onToggleMusic = onToggleMusic,
                 boostFloorsRemaining = state.boostFloorsRemaining,
@@ -106,9 +108,32 @@ fun DungeonScreen(
                         modifier = Modifier.fillMaxSize()
                     )
                 }
+
+                androidx.compose.animation.AnimatedVisibility(
+                    visible = state.isPaused && !state.runComplete && !state.showReviveDialog,
+                    enter = fadeIn() + slideInVertically(),
+                    exit = fadeOut() + slideOutVertically(),
+                    modifier = Modifier.align(Alignment.TopCenter).padding(top = 8.dp)
+                ) {
+                    Box(
+                        Modifier
+                            .background(BgDarkest.copy(alpha = 0.85f))
+                            .border(1.dp, GoldBright)
+                            .padding(horizontal = 12.dp, vertical = 4.dp)
+                    ) {
+                        Text(
+                            safeStringResource(R.string.battle_paused),
+                            style = PixelSmall,
+                            color = GoldBright
+                        )
+                    }
+                }
             }
 
-            BattleLogPanel(state.battleLog)
+            BattleLogPanel(
+                battleLog = state.battleLog,
+                isPaused = state.isPaused
+            )
         }
 
         // Biome Transition Banner / Floor Complete
@@ -251,6 +276,8 @@ fun DungeonTopBar(
     onRetreat: () -> Unit,
     speed: BattleSpeed,
     onSpeedChange: (BattleSpeed) -> Unit,
+    isPaused: Boolean = false,
+    onTogglePause: () -> Unit = {},
     isMuted: Boolean,
     onToggleMusic: () -> Unit,
     boostFloorsRemaining: Int,
@@ -313,6 +340,7 @@ fun DungeonTopBar(
                         Text(formatMagicite(magiciteTotal), style = PixelGold)
                     }
                 }
+                PauseToggleButton(isPaused = isPaused, onToggle = onTogglePause)
                 SupportIconButton(onClick = onOpenSupport)
                 MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
             }
@@ -750,14 +778,27 @@ fun UnitHitParticles(isCritical: Boolean) {
 data class ParticleState(val x: Float, val y: Float, val vx: Float, val vy: Float, val size: androidx.compose.ui.unit.Dp)
 
 @Composable
-fun BattleLogPanel(battleLog: List<DungeonViewModel.FFLogEntry>) {
+fun BattleLogPanel(
+    battleLog: List<DungeonViewModel.FFLogEntry>,
+    isPaused: Boolean = false
+) {
     GoldenBorderBox(Modifier.fillMaxWidth().height(100.dp).background(BgDarkest.copy(alpha = 0.9f))) {
         val listState = rememberLazyListState()
-        LaunchedEffect(battleLog.size) { if (battleLog.isNotEmpty()) listState.animateScrollToItem(battleLog.size - 1) }
+        
+        LaunchedEffect(battleLog.size, isPaused) {
+            if (battleLog.isNotEmpty() && !isPaused) {
+                listState.animateScrollToItem(battleLog.size - 1)
+            }
+        }
         
         val context = androidx.compose.ui.platform.LocalContext.current
 
-        LazyColumn(state = listState, modifier = Modifier.fillMaxSize().padding(8.dp)) {
+        LazyColumn(
+            state = listState,
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 8.dp, vertical = 6.dp)
+        ) {
             items(battleLog) { entry ->
                 val color = when (entry.type) {
                     DungeonViewModel.LogType.HERO_ATTACK -> HeroBlue

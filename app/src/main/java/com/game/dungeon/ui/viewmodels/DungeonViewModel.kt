@@ -568,6 +568,14 @@ class DungeonViewModel @Inject constructor(
     }
   }
 
+  fun togglePause() {
+    battleState.update { it.copy(isPaused = !it.isPaused) }
+  }
+
+  fun setPaused(paused: Boolean) {
+    battleState.update { it.copy(isPaused = paused) }
+  }
+
   fun setSpeed(speed: BattleSpeed) {
     battleState.update { it.copy(speed=speed) }
     viewModelScope.launch {

@@ -332,6 +332,9 @@
 
     <!-- Dungeon Screen -->
     <string name="retreat_button">◀ RETIRADA</string>
+    <string name="pause_button">PAUSAR</string>
+    <string name="resume_button">REANUDAR</string>
+    <string name="battle_paused">PAUSADO</string>
     <string name="floor_format">PISO %1$d</string>
     <string name="boss_floor_warning">⚠ PISO DE JEFE</string>
     <string name="entering_biome_format">Entrando a %1$s...</string>

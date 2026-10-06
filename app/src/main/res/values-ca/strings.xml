@@ -332,6 +332,9 @@
 
     <!-- Dungeon Screen -->
     <string name="retreat_button">◀ RETIRADA</string>
+    <string name="pause_button">PAUSA</string>
+    <string name="resume_button">REPRENDRE</string>
+    <string name="battle_paused">EN PAUSA</string>
     <string name="floor_format">PIS %1$d</string>
     <string name="boss_floor_warning">⚠ PIS DE CAP</string>
     <string name="entering_biome_format">Entrant a %1$s...</string>
