@@ -157,7 +157,7 @@ class FFBattleEngine(private val context: Context) {
 
     private fun executeHeroTurn(hero: Hero, allies: List<Hero>, enemies: MutableList<Enemy>, relicBonuses: RelicBonuses, getLastAbility: () -> HeroClass?, setLastAbility: (HeroClass) -> Unit, onEvent: (FFBattleEvent)->Unit) {
         onEvent(FFBattleEvent.TurnStart(hero.id, hero.name))
-        val masteryLvl = relicBonuses.jobMasteryLevels[hero.heroClass] ?: 0
+        val masteryLvl = relicBonuses.getMasteryLevel(hero.heroClass)
         hero.jobMasteryLevel = masteryLvl
         val activeSkill = JobAbilityData.getActiveAbilityForLevel(hero.heroClass, masteryLvl)
         if (activeSkill != null) {
@@ -255,7 +255,7 @@ class FFBattleEngine(private val context: Context) {
         if (hero.heroClass != HeroClass.MIME) {
             setLastAbility(hero.heroClass)
         }
-        val masteryLvl = relicBonuses.jobMasteryLevels[hero.heroClass] ?: 0
+        val masteryLvl = relicBonuses.getMasteryLevel(hero.heroClass)
         val activeSkill =
             JobAbilityData.getActiveAbilityForLevel(hero.heroClass, masteryLvl) ?: return
         onEvent(FFBattleEvent.AbilityUsed(hero.id, activeSkill.nameRes, activeSkill.descRes, listOf(hero.name)))

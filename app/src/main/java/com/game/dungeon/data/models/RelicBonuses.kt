@@ -24,8 +24,12 @@ data class RelicBonuses(
     val selectedPet: PetType?,
     val bossesDefeatedCount: Int
 ) {
+    fun getMasteryLevel(heroClass: HeroClass): Int {
+        return jobMasteryLevels[heroClass] ?: 0
+    }
+
     fun getMasteryBonus(heroClass: HeroClass, stat: StatType): Int {
-        val level = jobMasteryLevels[heroClass] ?: 0
+        val level = getMasteryLevel(heroClass)
         return if (heroClass.masteryStatType == stat) level * heroClass.masteryBonusPerLevel else 0
     }
 
@@ -56,13 +60,7 @@ data class RelicBonuses(
             magnetBonus = gs.magnetBonus,
             pocketsBonus = gs.pocketsBonus,
             doubleLootChance = gs.doubleLootChance,
-            jobMasteryLevels = if (com.game.dungeon.BuildConfig.INITIAL_MASTERY_LEVEL > 0) {
-                HeroClass.entries.associateWith { job ->
-                    maxOf(gs.jobMasteryLevels[job] ?: 0, com.game.dungeon.BuildConfig.INITIAL_MASTERY_LEVEL)
-                }
-            } else {
-                gs.jobMasteryLevels
-            },
+            jobMasteryLevels = gs.jobMasteryLevels,
             selectedPet = gs.selectedPet,
             bossesDefeatedCount = gs.bossesDefeatedNames.size
         )

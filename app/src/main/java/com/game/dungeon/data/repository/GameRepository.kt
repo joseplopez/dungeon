@@ -16,7 +16,13 @@ class GameRepository @Inject constructor(
     fun getGameState(): Flow<GameState?> = database.gameStateDao.getGameState()
     suspend fun getGameStateOnce(): GameState? = database.gameStateDao.getGameStateOnce()
     suspend fun saveGameState(state: GameState) = database.gameStateDao.upsert(state)
-    fun newGame(): GameState = GameState()
+    fun newGame(): GameState = GameState(
+        jobMasteryLevels = if (com.game.dungeon.BuildConfig.INITIAL_MASTERY_LEVEL > 0) {
+            com.game.dungeon.data.models.HeroClass.entries.associateWith { com.game.dungeon.BuildConfig.INITIAL_MASTERY_LEVEL }
+        } else {
+            emptyMap()
+        }
+    )
 
     suspend fun addGil(amount: Long, bypassCap: Boolean = false) {
         val current = database.gameStateDao.getGameStateOnce() ?: GameState()

@@ -58,11 +58,7 @@ data class GameState(
     val doubleLootRelic: Int = 0,   // +5% boss double drop chance
 
     // Global Job Masteries & Pets
-    val jobMasteryLevels: Map<HeroClass, Int> = if (BuildConfig.INITIAL_MASTERY_LEVEL > 0) {
-        HeroClass.entries.associateWith { BuildConfig.INITIAL_MASTERY_LEVEL }
-    } else {
-        emptyMap()
-    },
+    val jobMasteryLevels: Map<HeroClass, Int> = emptyMap(),
     val jobMasteryExp: Map<HeroClass, Int> = emptyMap(),
     val unlockedPets: Set<PetType> = emptySet(),
     val selectedPet: PetType? = null,
@@ -93,7 +89,7 @@ data class GameState(
     val doubleLootChance: Int get() = doubleLootRelic * 5
 
     // Mastery Helpers
-    fun getMasteryLevel(heroClass: HeroClass): Int = maxOf(jobMasteryLevels[heroClass] ?: 0, BuildConfig.INITIAL_MASTERY_LEVEL)
+    fun getMasteryLevel(heroClass: HeroClass): Int = jobMasteryLevels[heroClass] ?: 0
     fun getMasteryBonus(heroClass: HeroClass): Int = getMasteryLevel(heroClass) * heroClass.masteryBonusPerLevel
     fun getMasteryExp(heroClass: HeroClass): Int = jobMasteryExp[heroClass] ?: 0
     fun getMasteryNextLevelExp(heroClass: HeroClass): Int = (getMasteryLevel(heroClass) + 1) * 100

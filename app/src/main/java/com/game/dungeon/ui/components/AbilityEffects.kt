@@ -678,7 +678,6 @@ private fun DrawScope.drawSummonEffect(
         )
         inset(left = boxLeft, top = boxTop, right = boxRight, bottom = boxBottom) {
             when (summonName) {
-                "Shiva" -> drawShiva()
                 "Ramuh" -> drawRamuh()
                 "Bahamut" -> drawDarkBahamut()
                 else -> drawIfrit()
@@ -688,42 +687,62 @@ private fun DrawScope.drawSummonEffect(
     }
 
     when (summonName) {
-        "Shiva" -> {
-            val rng = Random(111)
-            val count = 25 * lvl
-            repeat(count) {
-                val px = enemyX - 120f + rng.nextFloat() * 240f
-                val py = centerY - 80f + rng.nextFloat() * 200f
-                drawRect(Color.White.copy(alpha = alpha), topLeft = Offset(px, py), size = Size(8f, 8f))
+        "Ramuh" -> {
+            val boltCount = 3 + lvl * 2
+            val lightningRng = Random(777 + (progress * 10).toInt())
+
+            repeat(boltCount) { i ->
+                val startX = (enemyX - 120f) + (i * (240f / (boltCount - 1).coerceAtLeast(1)))
+                val segments = 8
+                val segmentHeight = h / segments
+
+                val path = Path()
+                var currentX = startX
+                var currentY = 0f
+                path.moveTo(currentX, currentY)
+
+                var forkPath: Path? = null
+
+                repeat(segments) { seg ->
+                    currentY += segmentHeight
+                    val maxOffset = if (seg == segments - 1) 0f else (lightningRng.nextFloat() - 0.5f) * (50f + lvl * 10f)
+                    currentX += maxOffset
+                    path.lineTo(currentX, currentY)
+
+                    if (seg == 3 && lightningRng.nextBoolean()) {
+                        forkPath = Path().apply {
+                            moveTo(currentX, currentY)
+                            lineTo(currentX + (if (i % 2 == 0) 35f else -35f), currentY + segmentHeight * 1.5f)
+                        }
+                    }
+                }
+
+                val outerColor = if (i % 2 == 0) Color(0xFF00E5FF) else GoldBright
+                drawPath(
+                    path = path,
+                    color = outerColor.copy(alpha = alpha * 0.85f),
+                    style = Stroke(width = 10f + lvl * 2f, cap = StrokeCap.Round, join = StrokeJoin.Round)
+                )
+                drawPath(
+                    path = path,
+                    color = Color.White.copy(alpha = alpha),
+                    style = Stroke(width = 4f + lvl, cap = StrokeCap.Round, join = StrokeJoin.Round)
+                )
+
+                forkPath?.let { f ->
+                    drawPath(f, outerColor.copy(alpha = alpha * 0.6f), style = Stroke(width = 5f))
+                    drawPath(f, Color.White.copy(alpha = alpha * 0.8f), style = Stroke(width = 2f))
+                }
             }
 
             repeat(lvl) { i ->
-                val offX = (i - (lvl - 1) / 2f) * 30f
-                drawLine(
-                    color = Color.Cyan.copy(alpha = alpha),
-                    start = Offset(enemyX + 60f + offX, centerY - 150f),
-                    end = Offset(enemyX - 60f + offX, centerY + 150f),
-                    strokeWidth = 12f + lvl * 2f
+                drawCircle(
+                    color = Color(0xFF00E5FF).copy(alpha = alpha * (0.8f - i * 0.2f)),
+                    radius = (progress * (100f + lvl * 30f)) - (i * 20f),
+                    center = Offset(enemyX, centerY + 40f),
+                    style = Stroke(width = (6f - i).coerceAtLeast(2f))
                 )
             }
-        }
-        "Ramuh" -> {
-            val boltCount = 3 + lvl * 2
-            repeat(boltCount) { i ->
-                val x = (enemyX - 100f) + (i * (200f / boltCount.coerceAtLeast(1)))
-                drawLine(
-                    color = GoldBright.copy(alpha = alpha),
-                    start = Offset(x, 0f),
-                    end = Offset(x - 25f, h),
-                    strokeWidth = 8f + lvl * 2f
-                )
-            }
-            drawCircle(
-                color = Color(0xFF00FFFF).copy(alpha = alpha * 0.7f),
-                radius = progress * (80f + lvl * 30f),
-                center = Offset(enemyX, centerY),
-                style = Stroke(width = 6f)
-            )
         }
         "Bahamut" -> {
             val radius = progress * (200f + lvl * 60f)
@@ -744,20 +763,87 @@ private fun DrawScope.drawSummonEffect(
             }
         }
         else -> { // Ifrit
-            val rng = Random(222)
-            val emberCount = 30 * lvl
-            repeat(emberCount) {
-                val px = enemyX - 120f + (rng.nextFloat() * 240f)
-                val py = h - (progress * h * 0.95f)
-                drawRect(GoldBright.copy(alpha = alpha), topLeft = Offset(px, py), size = Size(10f + lvl * 2f, 10f + lvl * 2f))
+            val fireRng = Random(222 + (progress * 5).toInt())
+
+            val pillarCount = 3 + lvl * 2
+            repeat(pillarCount) { i ->
+                val basePillarX = enemyX - 100f + (i * (200f / (pillarCount - 1).coerceAtLeast(1)))
+                val pillarWidth = 35f + lvl * 10f
+                val flameHeight = (180f + lvl * 50f) * (0.7f + fireRng.nextFloat() * 0.6f)
+                val startY = centerY + 100f
+                val endY = startY - (flameHeight * progress)
+
+                val flamePath = Path().apply {
+                    moveTo(basePillarX - pillarWidth / 2f, startY)
+                    quadraticTo(
+                        basePillarX - pillarWidth * (0.8f + fireRng.nextFloat() * 0.4f),
+                        startY - flameHeight * 0.5f,
+                        basePillarX + (fireRng.nextFloat() - 0.5f) * 30f,
+                        endY
+                    )
+                    quadraticTo(
+                        basePillarX + pillarWidth * (0.8f + fireRng.nextFloat() * 0.4f),
+                        startY - flameHeight * 0.5f,
+                        basePillarX + pillarWidth / 2f,
+                        startY
+                    )
+                    close()
+                }
+
+                drawPath(
+                    path = flamePath,
+                    brush = Brush.verticalGradient(
+                        colors = listOf(
+                            Color.Yellow.copy(alpha = alpha),
+                            EnemyRed.copy(alpha = alpha * 0.9f),
+                            GoldDark.copy(alpha = alpha * 0.7f),
+                            Color.Transparent
+                        ),
+                        startY = endY,
+                        endY = startY
+                    )
+                )
+
+                val corePath = Path().apply {
+                    moveTo(basePillarX - pillarWidth / 4f, startY)
+                    quadraticTo(
+                        basePillarX + (fireRng.nextFloat() - 0.5f) * 15f,
+                        startY - flameHeight * 0.4f,
+                        basePillarX,
+                        endY + flameHeight * 0.2f
+                    )
+                    quadraticTo(
+                        basePillarX + (fireRng.nextFloat() - 0.5f) * 15f,
+                        startY - flameHeight * 0.4f,
+                        basePillarX + pillarWidth / 4f,
+                        startY
+                    )
+                    close()
+                }
+                drawPath(
+                    path = corePath,
+                    brush = Brush.verticalGradient(
+                        colors = listOf(Color.White.copy(alpha = alpha), GoldBright.copy(alpha = alpha * 0.8f), Color.Transparent),
+                        startY = endY,
+                        endY = startY
+                    )
+                )
             }
 
-            repeat(lvl) { i ->
-                val pillarX = enemyX - 60f + i * 60f
+            val emberCount = 35 * lvl
+            repeat(emberCount) {
+                val px = enemyX - 120f + (fireRng.nextFloat() * 240f)
+                val py = (centerY + 100f) - (progress * h * 0.85f) - (fireRng.nextFloat() * 60f)
+                val emberSize = 6f + fireRng.nextFloat() * (8f + lvl * 2f)
+                val col = when (fireRng.nextInt(3)) {
+                    0 -> Color.Yellow
+                    1 -> GoldBright
+                    else -> EnemyRed
+                }
                 drawRect(
-                    brush = Brush.verticalGradient(listOf(EnemyRed.copy(alpha = alpha), GoldBright.copy(alpha = alpha * 0.5f), Color.Transparent)),
-                    topLeft = Offset(pillarX - 20f, centerY - 100f),
-                    size = Size(40f, 200f)
+                    color = col.copy(alpha = alpha),
+                    topLeft = Offset(px, py),
+                    size = Size(emberSize, emberSize)
                 )
             }
         }
