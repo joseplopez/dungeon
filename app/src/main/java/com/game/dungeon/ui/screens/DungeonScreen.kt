@@ -418,7 +418,7 @@ private fun HeroesSide(
     totalHeight: androidx.compose.ui.unit.Dp
 ) {
     val baseHeroWidth = 80.dp
-    val baseHeroHeight = 140.dp
+    val baseHeroHeight = 150.dp
     val spacing = 4.dp
     val heroCount = heroes.size
 
@@ -592,6 +592,12 @@ fun HeroUnitDisplay(hero: Hero, isAttacking: Boolean, isHit: Boolean, isCritical
             .testTag("HeroUnit_${hero.heroClass.name}")
     ) {
         if (!isDying) {
+            Text(
+                text = safeStringResource(R.string.relic_level_format, hero.level),
+                style = PixelSmall.copy(fontSize = 10.sp),
+                color = GoldBright
+            )
+            Spacer(Modifier.height(2.dp))
             PixelHpBar(hero.currentHp, hero.maxHp, Modifier.width(64.dp).height(10.dp))
             Spacer(Modifier.height(4.dp))
             PixelExpBar(hero.exp, hero.expToNextLevel, Modifier.width(64.dp).height(6.dp))

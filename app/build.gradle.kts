@@ -14,12 +14,12 @@ android {
         applicationId = "com.centelles.dungeon"
         minSdk = 26
         targetSdk = 37
-        versionCode = 26
-        versionName = "0.3"
+        versionCode = 27
+        versionName = "0.3.1"
         testInstrumentationRunner = "com.game.dungeon.HiltTestRunner"
         buildConfigField("long", "INITIAL_GIL", "0L")
         buildConfigField("int", "INITIAL_MAGICITE", "0")
-        buildConfigField("int", "INITIAL_MASTERY_LEVEL", "20")
+        buildConfigField("int", "INITIAL_MASTERY_LEVEL", "0")
     }
 
     signingConfigs {

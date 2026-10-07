@@ -33,7 +33,7 @@ data class GameState(
     val vaultLevel: Int = 0,         // Gil cap increase (Max 10)
     val pathfinderLevel: Int = 0,    // allows choosing starting floor (Max 4)
     val trainingLevel: Int = 0,      // +10% EXP gained (Max 10)
-    val planningLevel: Int = 0,      // -5% upgrade costs (Max 5)
+    val planningLevel: Int = 0,      // -2% upgrade costs (Max 20)
     val clinicLevel: Int = 0,        // -10% rest cost (Max 10)
     val lastSaveTime: Long = 0,      // Track last activity
     val playerId: String? = null,    // Firebase UID
@@ -77,7 +77,7 @@ data class GameState(
             10_000L + (vaultLevel * vaultLevel * 5_000L)
         }
 
-    val upgradeDiscount: Float get() = planningLevel * 0.05f
+    val upgradeDiscount: Float get() = planningLevel * 0.02f
     val restDiscount: Float get() = clinicLevel * 0.10f
     val expMultiplier: Float get() = (1.0f + (trainingLevel * 0.10f)) * 
             (if (selectedPet == PetType.MOOGLE) 1.0f + getPetBonusValue(PetType.MOOGLE) else 1.0f)
