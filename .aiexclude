@@ -1,0 +1,46 @@
+# Build outputs
+build/
+**/build/
+bin/
+out/
+
+# Generated Code (Hilt, Room, BuildConfig, etc.)
+**/build/generated/
+**/generated/
+**/*_Hilt*.kt
+**/*_Factory.java
+**/*_Impl.java
+**/*_MembersInjector.java
+
+# IDE & Gradle Caches
+.gradle/
+.idea/
+.kotlin/
+.artifacts/
+.venv/
+venv/
+*.iml
+
+# Raw Assets, Textures & Media
+app/src/main/res/raw/
+app/src/main/res/drawable/
+app/src/main/res/mipmap*
+sprites/
+icon.jpeg
+*.png
+*.jpg
+*.jpeg
+*.webp
+*.wav
+*.mp3
+*.ogg
+
+# Test Fixtures & Test Code
+app/src/test/
+app/src/androidTest/
+**/test/
+**/androidTest/
+
+# Secrets & Binary Files
+*.jks
+*.keystore
