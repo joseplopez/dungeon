@@ -1005,4 +1005,25 @@
         <string name="skill_blue_mage_t2_desc">Mavi Büyücünün mevcut canıyla orantılı olarak grubu iyileştirir.</string>
         <string name="skill_blue_mage_t3_name">Görkemli Muhafız</string>
         <string name="skill_blue_mage_t3_desc">TÜM müttefiklere devasa DEF ve Büyü DEF güçlendirmeleri verir ve alan durum büyüsü uygular!</string>
-    </resources>
+        <!-- Upgrades Section Tabs & Advanced Upgrades -->
+    <string name="tab_basic_upgrades">TEMEL</string>
+    <string name="tab_advanced_upgrades">GELIŞMIŞ</string>
+    <string name="badge_advanced_upgrade">ENDGAME</string>
+
+    <string name="upgrade_alchemist_name">Simyacı Laboratuvarı</string>
+    <string name="upgrade_alchemist_desc">Seviye başına +%10 Magisit düşme şansı ve +%10 Magisit verimi.</string>
+    <string name="upgrade_library_name">Büyük Kütüphane</string>
+    <string name="upgrade_library_desc">Seviye başına savaşta +%20 Meslek Ustalığı TP kazanımı.</string>
+    <string name="upgrade_forge_name">Efsanevi Demirhane</string>
+    <string name="upgrade_forge_desc">Seviye başına +%5 Efsanevi ekipman düşme şansı ve +%10 özellik bonusu.</string>
+    <string name="upgrade_war_room_name">Savaş Odası</string>
+    <string name="upgrade_war_room_desc">Seviye başına +%15 Grup Kritik Hasarı ve +%5 Beceri Şarj hızı.</string>
+    <string name="upgrade_spire_name">Aetherium Kulesi</string>
+    <string name="upgrade_spire_desc">Seviye başına sıfırlamada +%5 Gil koruma ve Boyut tamamlamada +%20 Magisit.</string>
+
+    <string name="bulletin_perk_alchemist">🧪 Simyacı: +%1%%% Magisit Düşüşü</string>
+    <string name="bulletin_perk_library">📚 Kütüphane: +%1%%% Ustalık TP</string>
+    <string name="bulletin_perk_forge">⚒️ Demirhane: +%1%%% Efsanevi Şans</string>
+    <string name="bulletin_perk_war_room">⚔️ Savaş Odası: +%1%%% Kritik Hasar</string>
+    <string name="bulletin_perk_spire">🌌 Kule: +%1%%% Boyut Magisiti</string>
+</resources>

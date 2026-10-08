@@ -22,7 +22,14 @@ data class RelicBonuses(
     // Masteries & Pets
     val jobMasteryLevels: Map<HeroClass, Int>,
     val selectedPet: PetType?,
-    val bossesDefeatedCount: Int
+    val bossesDefeatedCount: Int,
+    // Advanced Town Upgrades
+    val magiciteYieldBonus: Float = 1.0f,
+    val alchemistDropChanceBonus: Float = 0.0f,
+    val mythicDropBonus: Float = 0.0f,
+    val mythicStatBonus: Float = 0.0f,
+    val warRoomCritBonus: Int = 0,
+    val warRoomAbilityChargeBonus: Float = 0.0f
 ) {
     fun getMasteryLevel(heroClass: HeroClass): Int {
         return jobMasteryLevels[heroClass] ?: 0
@@ -62,7 +69,13 @@ data class RelicBonuses(
             doubleLootChance = gs.doubleLootChance,
             jobMasteryLevels = gs.jobMasteryLevels,
             selectedPet = gs.selectedPet,
-            bossesDefeatedCount = gs.bossesDefeatedNames.size
+            bossesDefeatedCount = gs.bossesDefeatedNames.size,
+            magiciteYieldBonus = gs.magiciteYieldBonus,
+            alchemistDropChanceBonus = gs.alchemistDropChanceBonus,
+            mythicDropBonus = gs.mythicDropBonus,
+            mythicStatBonus = gs.mythicStatBonus,
+            warRoomCritBonus = gs.warRoomCritBonus.toInt(),
+            warRoomAbilityChargeBonus = gs.warRoomAbilityChargeBonus
         )
     }
 }

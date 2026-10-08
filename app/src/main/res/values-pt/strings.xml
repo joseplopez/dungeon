@@ -1005,4 +1005,25 @@
         <string name="skill_blue_mage_t2_desc">Cura o grupo proporcionalmente à vida atual do Mago Azul.</string>
         <string name="skill_blue_mage_t3_name">Guarda Poderosa</string>
         <string name="skill_blue_mage_t3_desc">Concede grandes bônus de DEF e DEF MAG a TODOS os aliados e causa magia de status em área!</string>
-    </resources>
+        <!-- Upgrades Section Tabs & Advanced Upgrades -->
+    <string name="tab_basic_upgrades">BÁSICO</string>
+    <string name="tab_advanced_upgrades">AVANÇADO</string>
+    <string name="badge_advanced_upgrade">ENDGAME</string>
+
+    <string name="upgrade_alchemist_name">Laboratório do Alquimista</string>
+    <string name="upgrade_alchemist_desc">+10% de chance de Magicita e +10% de rendimento de Magicita por nível.</string>
+    <string name="upgrade_library_name">Grande Biblioteca</string>
+    <string name="upgrade_library_desc">+20% de EXP de Maestria de Classe em batalha por nível.</string>
+    <string name="upgrade_forge_name">Forja Mítica</string>
+    <string name="upgrade_forge_desc">+5% de chance de equipamento Mítico e +10% de bônus de atributos por nível.</string>
+    <string name="upgrade_war_room_name">Sala de Guerra</string>
+    <string name="upgrade_war_room_desc">+15% de Dano Crítico do grupo e +5% de velocidade de Carga por nível.</string>
+    <string name="upgrade_spire_name">Pináculo de Aetherium</string>
+    <string name="upgrade_spire_desc">Retei +5% de Gil no reset e +20% de Magicita ao concluir Dimensão por nível.</string>
+
+    <string name="bulletin_perk_alchemist">🧪 Alquimista: +%1%%% Magicita</string>
+    <string name="bulletin_perk_library">📚 Biblioteca: +%1%%% EXP Maestria</string>
+    <string name="bulletin_perk_forge">⚒️ Forja Mítica: +%1%%% Prob. Mítica</string>
+    <string name="bulletin_perk_war_room">⚔️ Sala de Guerra: +%1%%% Dano Crítico</string>
+    <string name="bulletin_perk_spire">🌌 Pináculo: +%1%%% Magicita Dimensão</string>
+</resources>

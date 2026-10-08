@@ -17,7 +17,11 @@ fun safeStringResource(@StringRes id: Int, vararg args: Any): String {
         }
         
         try {
-            if (args.isEmpty()) rawString else String.format(sanitizeFormatString(rawString), *args)
+            if (args.isEmpty()) {
+                rawString.replace("%%", "%")
+            } else {
+                String.format(sanitizeFormatString(rawString), *args)
+            }
         } catch (e: Exception) {
             formatFallback(rawString, args.toList())
         }
@@ -32,7 +36,11 @@ fun formatSafeLogEntry(context: android.content.Context, entry: DungeonViewModel
     }
 
     return try {
-        if (entry.args.isEmpty()) rawString else String.format(sanitizeFormatString(rawString), *entry.args.toTypedArray())
+        if (entry.args.isEmpty()) {
+            rawString.replace("%%", "%")
+        } else {
+            String.format(sanitizeFormatString(rawString), *entry.args.toTypedArray())
+        }
     } catch (e: Exception) {
         formatFallback(rawString, entry.args)
     }
@@ -41,12 +49,18 @@ fun formatSafeLogEntry(context: android.content.Context, entry: DungeonViewModel
 private fun sanitizeFormatString(rawString: String): String {
     if (!rawString.contains("%")) return rawString
 
+    // Normalize multiple consecutive '%' that are not valid format specifiers
+    var cleaned = rawString
+    while (cleaned.contains("%%%")) {
+        cleaned = cleaned.replace("%%%", "%%")
+    }
+
     val specifierRegex = Regex("%(?:[0-9]+\\$)?[-+0, '(#_]*[0-9]*(?:\\.[0-9]+)?[a-zA-Z%n]")
     val sb = StringBuilder()
     var i = 0
-    while (i < rawString.length) {
-        if (rawString[i] == '%') {
-            val match = specifierRegex.matchAt(rawString, i)
+    while (i < cleaned.length) {
+        if (cleaned[i] == '%') {
+            val match = specifierRegex.matchAt(cleaned, i)
             if (match != null) {
                 sb.append(match.value)
                 i += match.value.length
@@ -55,7 +69,7 @@ private fun sanitizeFormatString(rawString: String): String {
                 i++
             }
         } else {
-            sb.append(rawString[i])
+            sb.append(cleaned[i])
             i++
         }
     }

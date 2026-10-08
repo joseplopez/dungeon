@@ -1004,5 +1004,26 @@
         <string name="skill_blue_mage_t2_desc">Huponya kundi kulingana na HP ya sasa ya Mchawi wa Bluu.</string>
         <string name="skill_blue_mage_t3_name">Ulinzi Mkuu</string>
         <string name="skill_blue_mage_t3_desc">Hutoa ongezeko kubwa la DEF na DEF ya Kiuchawi kwa washirika WOTE na kusababisha uchawi wa hali ya eneo!</string>
-    </resources>
+        <!-- Upgrades Section Tabs & Advanced Upgrades -->
+    <string name="tab_basic_upgrades">MISINGI</string>
+    <string name="tab_advanced_upgrades">SURA MBORESHA</string>
+    <string name="badge_advanced_upgrade">ENDGAME</string>
+
+    <string name="upgrade_alchemist_name">Maabara ya Mwanaalchimia</string>
+    <string name="upgrade_alchemist_desc">+10% nafasi ya kuangusha Majisaiti na +10% mavuno kwa kila kiwango.</string>
+    <string name="upgrade_library_name">Maktaba Kuu</string>
+    <string name="upgrade_library_desc">+20% EXP ya ustadi wa kazi vitani kwa kila kiwango.</string>
+    <string name="upgrade_forge_name">Kiwanda cha Hadithi</string>
+    <string name="upgrade_forge_desc">+5% nafasi ya vifaa vya Hadithi na +10% bonasi ya takwimu kwa kila kiwango.</string>
+    <string name="upgrade_war_room_name">Chumba cha Vita</string>
+    <string name="upgrade_war_room_desc">+15% madhara ya Critical na +5% kasi ya chaji kwa kila kiwango.</string>
+    <string name="upgrade_spire_name">Mnara wa Aetherium</string>
+    <string name="upgrade_spire_desc">Hifadhi +5% ya Gil wakati wa kuweka upya na +20% Majisaiti kwa kila kiwango.</string>
+
+    <string name="bulletin_perk_alchemist">🧪 Alchemist: +%1%%% Majisaiti</string>
+    <string name="bulletin_perk_library">📚 Maktaba: +%1%%% EXP ya Ustadi</string>
+    <string name="bulletin_perk_forge">⚒️ Kiwanda cha Hadithi: +%1%%% Vifaa vya Hadithi</string>
+    <string name="bulletin_perk_war_room">⚔️ Chumba cha Vita: +%1%%% Madhara Critical</string>
+    <string name="bulletin_perk_spire">🌌 Mnara: +%1%%% Majisaiti ya Dimensheni</string>
+</resources>
 

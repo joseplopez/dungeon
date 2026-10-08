@@ -1005,4 +1005,25 @@
         <string name="skill_blue_mage_t2_desc">Cura el grup de manera proporcional a la salut actual del Mag Blau.</string>
         <string name="skill_blue_mage_t3_name">Guàrdia Poderosa</string>
         <string name="skill_blue_mage_t3_desc">Atorga millores massives de defensa i defensa màgica a TOTS els aliats i aplica màgia d\'estat en àrea!</string>
-    </resources>
+        <!-- Upgrades Section Tabs & Advanced Upgrades -->
+    <string name="tab_basic_upgrades">BÀSIC</string>
+    <string name="tab_advanced_upgrades">AVANÇAT</string>
+    <string name="badge_advanced_upgrade">ENDGAME</string>
+
+    <string name="upgrade_alchemist_name">Laboratori d\'Alquimista</string>
+    <string name="upgrade_alchemist_desc">+10% probabilitat de Magicita i +10% rendiment de Magicita per nivell.</string>
+    <string name="upgrade_library_name">Gran Biblioteca</string>
+    <string name="upgrade_library_desc">+20% de EXP de Maestria de Treball en batalla per nivell.</string>
+    <string name="upgrade_forge_name">Forja Mítica</string>
+    <string name="upgrade_forge_desc">+5% probabilitat d\'equip Mític i +10% de bonificació per nivell.</string>
+    <string name="upgrade_war_room_name">Sala de Guerra</string>
+    <string name="upgrade_war_room_desc">+15% de Dany Crític del grup i +5% de velocitat de Càrrega per nivell.</string>
+    <string name="upgrade_spire_name">Espira d\'Aetherium</string>
+    <string name="upgrade_spire_desc">Conserva +5% de Gil en reiniciar i +20% de Magicita en completar Dimensió per nivell.</string>
+
+    <string name="bulletin_perk_alchemist">🧪 Alquimista: +%1$d%%% Magicita</string>
+    <string name="bulletin_perk_library">📚 Biblioteca: +%1$d%%% EXP Maestria</string>
+    <string name="bulletin_perk_forge">⚒️ Forja Mítica: +%1$d%%% Prob. Mítica</string>
+    <string name="bulletin_perk_war_room">⚔️ Sala de Guerra: +%1$d%%% Dany Crític</string>
+    <string name="bulletin_perk_spire">🌌 Espira: +%1$d%%% Magicita Dimensió</string>
+</resources>

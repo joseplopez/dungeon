@@ -115,13 +115,15 @@ class TownViewModel @Inject constructor(
             UpgradeType.PLANNING -> gs.planningLevel
             UpgradeType.CLINIC -> gs.clinicLevel
             UpgradeType.PATHFINDER -> gs.pathfinderLevel
+            UpgradeType.ALCHEMIST -> gs.alchemistLevel
+            UpgradeType.LIBRARY -> gs.libraryLevel
+            UpgradeType.FORGE -> gs.forgeLevel
+            UpgradeType.WAR_ROOM -> gs.warRoomLevel
         }
 
         if (currentLevel >= type.maxLevel) return
 
-        val rawCost =
-            if (currentLevel<10) type.baseCost * (currentLevel + 1)
-            else type.baseCost * (currentLevel*currentLevel)
+        val rawCost = type.getCost(currentLevel)
 
         val discount = gs.upgradeDiscount
         val finalCost = (rawCost * (1f - discount)).toLong()
@@ -140,6 +142,10 @@ class TownViewModel @Inject constructor(
                         UpgradeType.PLANNING -> currentGs.copy(planningLevel = currentGs.planningLevel + 1)
                         UpgradeType.CLINIC -> currentGs.copy(clinicLevel = currentGs.clinicLevel + 1)
                         UpgradeType.PATHFINDER -> currentGs.copy(pathfinderLevel = currentGs.pathfinderLevel + 1)
+                        UpgradeType.ALCHEMIST -> currentGs.copy(alchemistLevel = currentGs.alchemistLevel + 1)
+                        UpgradeType.LIBRARY -> currentGs.copy(libraryLevel = currentGs.libraryLevel + 1)
+                        UpgradeType.FORGE -> currentGs.copy(forgeLevel = currentGs.forgeLevel + 1)
+                        UpgradeType.WAR_ROOM -> currentGs.copy(warRoomLevel = currentGs.warRoomLevel + 1)
                     }
                     analytics.logTownUpgrade(type.name, currentLevel + 1)
                     repository.saveGameState(nextGs.copy(gold = currentGs.gold - finalCost))

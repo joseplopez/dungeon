@@ -1004,4 +1004,25 @@
         <string name="skill_blue_mage_t2_desc">รักษาปาร์ตี้ตามสัดส่วน HP ปัจจุบันของนักเวทสีฟ้า</string>
         <string name="skill_blue_mage_t3_name">การคุ้มกันอันทรงพลัง</string>
         <string name="skill_blue_mage_t3_desc">มอบบัฟ DEF และ DEF เวทมหาศาลแก่เพื่อนร่วมทีมทุกคนและใช้เวทสถานะแบบ AoE!</string>
-    </resources>
+        <!-- Upgrades Section Tabs & Advanced Upgrades -->
+    <string name="tab_basic_upgrades">พื้นฐาน</string>
+    <string name="tab_advanced_upgrades">ขั้นสูง</string>
+    <string name="badge_advanced_upgrade">ENDGAME</string>
+
+    <string name="upgrade_alchemist_name">ห้องทดลองนักแปรธาตุ</string>
+    <string name="upgrade_alchemist_desc">+10% โอกาสดรอปและผลผลิตเมจิไซต์ต่อระดับ</string>
+    <string name="upgrade_library_name">หอสมุดใหญ่</string>
+    <string name="upgrade_library_desc">+20% EXP ความชำนาญอาชีพในการต่อสู้ต่อระดับ</string>
+    <string name="upgrade_forge_name">โรงตีเหล็กตำนาน</string>
+    <string name="upgrade_forge_desc">+5% โอกาสดรอปอุปกรณ์ตำนานและ +10% โบนัสโบนัสสเตตัสต่อระดับ</string>
+    <string name="upgrade_war_room_name">ห้องยุทธการ</string>
+    <string name="upgrade_war_room_desc">+15% ความแรงคริติคอลของทีมและ +5% ความเร็วการชาร์จสกิลต่อระดับ</string>
+    <string name="upgrade_spire_name">หอคอยเอเธอเรียม</string>
+    <string name="upgrade_spire_desc">คงเหลือ +5% กิลเมื่อรีเซ็ตและ +20% เมจิไซต์เมื่อผ่านมิติต่อระดับ</string>
+
+    <string name="bulletin_perk_alchemist">🧪 นักแปรธาตุ: +%1%%% ดรอปเมจิไซต์</string>
+    <string name="bulletin_perk_library">📚 หอสมุด: +%1%%% EXP ความชำนาญ</string>
+    <string name="bulletin_perk_forge">⚒️ โรงตีเหล็ก: +%1%%% โอกาสตำนาน</string>
+    <string name="bulletin_perk_war_room">⚔️ ห้องยุทธการ: +%1%%% ความแรงคริ</string>
+    <string name="bulletin_perk_spire">🌌 หอคอย: +%1%%% เมจิไซต์มิติ</string>
+</resources>

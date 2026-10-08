@@ -1017,5 +1017,26 @@
         <string name="skill_blue_mage_t2_desc">بلیو میج کی موجودہ HP کے تناسب سے پارٹی کو شفاء دیتا ہے۔</string>
         <string name="skill_blue_mage_t3_name">طاقتور محافظ</string>
         <string name="skill_blue_mage_t3_desc">تمام ساتھیوں کو شدید DEF اور جادوئی DEF کے ساتھ باافس دیتا ہے اور ایریا اسٹیٹس جادو کرتا ہے!</string>
-    </resources>
+        <!-- Upgrades Section Tabs & Advanced Upgrades -->
+    <string name="tab_basic_upgrades">بنیادی</string>
+    <string name="tab_advanced_upgrades">اعلیٰ</string>
+    <string name="badge_advanced_upgrade">اینڈ گیم</string>
+
+    <string name="upgrade_alchemist_name">کیمیا گر کی لیب</string>
+    <string name="upgrade_alchemist_desc">فی لیول +10% میجیسائٹ گرنے کے امکانات اور +10% حاصل۔</string>
+    <string name="upgrade_library_name">بڑی لائبریری</string>
+    <string name="upgrade_library_desc">فی لیول جنگ میں حاصل کردہ جاب ماسٹری EXP کا +20%۔</string>
+    <string name="upgrade_forge_name">میتھک بھٹی</string>
+    <string name="upgrade_forge_desc">فی لیول میتھک سامان کا +5% چانس اور میتھک سامان پر +10% بونس۔</string>
+    <string name="upgrade_war_room_name">وار روم</string>
+    <string name="upgrade_war_room_desc">فی لیول +15% پارٹی کریٹیکل نقصان اور +5% اہلیت کی چارج اسپیڈ۔</string>
+    <string name="upgrade_spire_name">ایتھیریم مینار</string>
+    <string name="upgrade_spire_desc">فی لیول ری سیٹ پر +5% گل اور ڈائمینشن کلیئر پر +20% میجیسائٹ محفوظ رکھے۔</string>
+
+    <string name="bulletin_perk_alchemist">🧪 کیمیا گر: +%1$d%%% میجیسائٹ ڈراپ</string>
+    <string name="bulletin_perk_library">📚 لائبریری: +%1$d%%% ماسٹری EXP</string>
+    <string name="bulletin_perk_forge">⚒️ میتھک بھٹی: +%1$d%%% میتھک امکانات</string>
+    <string name="bulletin_perk_war_room">⚔️ وار روم: +%1$d%%% کریٹ نقصان</string>
+    <string name="bulletin_perk_spire">🌌 مینار: +%1$d%%% ڈائمینشن میجیسائٹ</string>
+</resources>
 

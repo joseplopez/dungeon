@@ -58,7 +58,8 @@ data class Enemy(
             val scaledGil = (template.gilReward * floorGilMult * (1.0 + (difficultyMult - 1.0) * 0.5)).coerceIn(template.gilReward.toDouble(), Int.MAX_VALUE.toDouble()).toInt()
 
             // Magicite scaling: Bosses grant scaling magicite payouts per dimension; regular monsters drop quantity scales in late dimensions
-            val magiciteQuantity = if (template.isBoss) {
+            val yieldMult = relicBonuses?.magiciteYieldBonus ?: 1.0f
+            val rawMagicite = if (template.isBoss) {
                 val baseBossMagicite = 3f + kotlin.math.sqrt(floor.toFloat()) * 0.75f
                 val dimMagiciteMult = 1f + (dimension.number - 1) * 0.50f
                 val maxCap = 20 + (dimension.number - 1) * 15
@@ -66,9 +67,9 @@ data class Enemy(
             } else {
                 val dimChanceBonus = (dimension.number - 1) * 0.015f
                 val baseChance = template.magiciteChance + (floor / 1000f) + dimChanceBonus
-                val bonusChance = (relicBonuses?.magiciteChanceBonus ?: 0f) + (relicBonuses?.magnetBonus ?: 0f)
+                val bonusChance = (relicBonuses?.magiciteChanceBonus ?: 0f) + (relicBonuses?.magnetBonus ?: 0f) + (relicBonuses?.alchemistDropChanceBonus ?: 0f)
                 val rawChance = baseChance + bonusChance
-                val maxChanceCap = (0.25f + (dimension.number - 1) * 0.02f).coerceAtMost(0.50f)
+                val maxChanceCap = (0.25f + (dimension.number - 1) * 0.02f + (relicBonuses?.alchemistDropChanceBonus ?: 0f)).coerceAtMost(0.75f)
                 val finalChance = if (rawChance > 0f) (rawChance / (rawChance + 0.25f)).coerceAtMost(maxChanceCap) else 0f
                 if (Math.random() < finalChance) {
                     val dimQtyBonus = ((dimension.number - 1) * 0.5f).toInt()
@@ -76,6 +77,7 @@ data class Enemy(
                     1 + dimQtyBonus + floorQtyBonus
                 } else 0
             }
+            val magiciteQuantity = if (rawMagicite > 0) (rawMagicite * yieldMult).toInt().coerceAtLeast(1) else 0
 
             val enemyName = try { context.getString(template.nameRes) } catch (_: Exception) { null } ?: "Monster"
 

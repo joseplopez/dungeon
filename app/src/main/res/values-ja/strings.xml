@@ -1004,4 +1004,25 @@
         <string name="skill_blue_mage_t2_desc">青魔道士の現在のHPに比例してパーティを回復する。</string>
         <string name="skill_blue_mage_t3_name">マイティガード</string>
         <string name="skill_blue_mage_t3_desc">味方全員の防御力と魔法防御力を大幅に強化し、範囲状態変化を放つ！</string>
-    </resources>
+        <!-- Upgrades Section Tabs & Advanced Upgrades -->
+    <string name="tab_basic_upgrades">基本</string>
+    <string name="tab_advanced_upgrades">上級</string>
+    <string name="badge_advanced_upgrade">エンドゲーム</string>
+
+    <string name="upgrade_alchemist_name">錬金術研究所</string>
+    <string name="upgrade_alchemist_desc">レベル毎に魔石ドロップ率+10%、ドロップ量+10%。</string>
+    <string name="upgrade_library_name">大図書館</string>
+    <string name="upgrade_library_desc">レベル毎に戦闘中のジョブマスターEXP+20%。</string>
+    <string name="upgrade_forge_name">神話の鍛冶場</string>
+    <string name="upgrade_forge_desc">レベル毎に神話装備ドロップ率+5%、神話ステータス+10%。</string>
+    <string name="upgrade_war_room_name">作戦司令室</string>
+    <string name="upgrade_war_room_desc">レベル毎にパーティのクリティカル威力+15%、チャージ速度+5%。</string>
+    <string name="upgrade_spire_name">エーテル尖塔</string>
+    <string name="upgrade_spire_desc">レベル毎にリセット時のギル保持+5%、ファンタジー消去時の魔石+20%。</string>
+
+    <string name="bulletin_perk_alchemist">🧪 錬金術: 魔石ドロップ+%1%%%</string>
+    <string name="bulletin_perk_library">📚 大図書館: マスターEXP+%1%%%</string>
+    <string name="bulletin_perk_forge">⚒️ 神話の鍛冶場: 神話確率+%1%%%</string>
+    <string name="bulletin_perk_war_room">⚔️ 作戦司令室: クリティカル威力+%1%%%</string>
+    <string name="bulletin_perk_spire">🌌 エーテル尖塔: ファンタジー魔石+%1%%%</string>
+</resources>

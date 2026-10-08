@@ -765,4 +765,66 @@ class GameplayProgressionTest {
             }
         }
     }
+
+    @Test
+    fun testUpgradeCostFormulasAndDiscount() {
+        // Basic Upgrade Cost Formula: BaseCost * (Level + 1) for Lvl < 10
+        assertEquals(300L, UpgradeType.VAULT.getCost(0))
+        assertEquals(600L, UpgradeType.VAULT.getCost(1))
+        assertEquals(3000L, UpgradeType.VAULT.getCost(9))
+        // Basic Upgrade Cost Formula: BaseCost * Level^2 for Lvl >= 10
+        assertEquals(30000L, UpgradeType.VAULT.getCost(10))
+
+        // Advanced Upgrade Cost Formula: BaseCost * (Level + 1)^2
+        assertEquals(500000L, UpgradeType.ALCHEMIST.getCost(0))
+        assertEquals(2000000L, UpgradeType.ALCHEMIST.getCost(1))
+        assertEquals(50000000L, UpgradeType.ALCHEMIST.getCost(9))
+
+        assertEquals(2500000L, UpgradeType.FORGE.getCost(0))
+        assertEquals(10000000L, UpgradeType.FORGE.getCost(1))
+        assertEquals(250000000L, UpgradeType.FORGE.getCost(9))
+
+        // Discount calculation test (Planning Lvl 10 = 20% discount)
+        val gsDiscount = GameState(planningLevel = 10)
+        assertEquals(0.20f, gsDiscount.upgradeDiscount, 0.001f)
+        val rawCost = UpgradeType.ALCHEMIST.getCost(0)
+        val discountedCost = (rawCost * (1f - gsDiscount.upgradeDiscount)).toLong()
+        assertEquals(400000L, discountedCost)
+    }
+
+    @Test
+    fun testAdvancedUpgradeStatMultipliers() {
+        val gs = GameState(
+            trainingLevel = 5,
+            alchemistLevel = 5,
+            libraryLevel = 5,
+            forgeLevel = 5,
+            warRoomLevel = 5
+        )
+
+        // Alchemist: +10% Magicite drop & +10% Magicite yield per level (Lvl 5 -> +50% yield)
+        assertEquals(1.50f, gs.magiciteYieldBonus, 0.001f)
+        assertEquals(0.50f, gs.alchemistDropChanceBonus, 0.001f)
+
+        // Library: +20% Job Mastery EXP gain per level (+ Training Grounds +10% per level)
+        // Lvl 5 Training (+50%) + Lvl 5 Library (+100%) = 2.50x
+        assertEquals(2.50f, gs.masteryExpMultiplier, 0.001f)
+
+        // Forge: +5% Mythic drop & +10% Mythic stats per level
+        assertEquals(0.25f, gs.mythicDropBonus, 0.001f)
+        assertEquals(0.50f, gs.mythicStatBonus, 0.001f)
+
+        // War Room: +15% Crit DMG & +5% Ability Charge per level
+        assertEquals(75f, gs.warRoomCritBonus, 0.001f)
+        assertEquals(0.25f, gs.warRoomAbilityChargeBonus, 0.001f)
+
+        // RelicBonuses mapping check
+        val relics = RelicBonuses.from(gs)
+        assertEquals(1.50f, relics.magiciteYieldBonus, 0.001f)
+        assertEquals(0.50f, relics.alchemistDropChanceBonus, 0.001f)
+        assertEquals(0.25f, relics.mythicDropBonus, 0.001f)
+        assertEquals(0.50f, relics.mythicStatBonus, 0.001f)
+        assertEquals(75, relics.warRoomCritBonus)
+        assertEquals(0.25f, relics.warRoomAbilityChargeBonus, 0.001f)
+    }
 }

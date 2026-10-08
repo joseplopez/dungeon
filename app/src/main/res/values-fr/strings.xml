@@ -1004,4 +1004,25 @@
         <string name="skill_blue_mage_t2_desc">Soigne l\'équipe proportionnellement aux PV actuels du Mage Bleu.</string>
         <string name="skill_blue_mage_t3_name">Garde Puissante</string>
         <string name="skill_blue_mage_t3_desc">Octroie d\'énormes bonus de DEF physique et magique à TOUS les alliés et applique une magie d\'état en zone !</string>
-    </resources>
+        <!-- Upgrades Section Tabs & Advanced Upgrades -->
+    <string name="tab_basic_upgrades">DE BASE</string>
+    <string name="tab_advanced_upgrades">AVANCÉES</string>
+    <string name="badge_advanced_upgrade">FIN DE JEU</string>
+
+    <string name="upgrade_alchemist_name">Laboratoire d\'alchimiste</string>
+    <string name="upgrade_alchemist_desc">+10% de chances de Magicite et +10% de rendement par niveau.</string>
+    <string name="upgrade_library_name">Grande bibliothèque</string>
+    <string name="upgrade_library_desc">+20% d\'EXP de maîtrise de métier en combat par niveau.</string>
+    <string name="upgrade_forge_name">Forge mythique</string>
+    <string name="upgrade_forge_desc">+5% de chances de trouver de l\'équipement mythique et +10% de bonus par niveau.</string>
+    <string name="upgrade_war_room_name">Salle de guerre</string>
+    <string name="upgrade_war_room_desc">+15% de dégâts critiques pour l\'équipe et +5% de vitesse de charge par niveau.</string>
+    <string name="upgrade_spire_name">Flèche d\'ætherium</string>
+    <string name="upgrade_spire_desc">Conserve +5% de gils à la réinitialisation et +20% de Magicite à la fin par niveau.</string>
+
+    <string name="bulletin_perk_alchemist">🧪 Alchimiste : +%1$d%%% Magicite</string>
+    <string name="bulletin_perk_library">📚 Bibliothèque : +%1$d%%% EXP Maîtrise</string>
+    <string name="bulletin_perk_forge">⚒️ Forge mythique : +%1$d%%% Chance Mythique</string>
+    <string name="bulletin_perk_war_room">⚔️ Salle de guerre : +%1$d%%% Dégâts Crit</string>
+    <string name="bulletin_perk_spire">🌌 Flèche : +%1$d%%% Magicite Dimension</string>
+</resources>

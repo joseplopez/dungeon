@@ -35,6 +35,13 @@ data class GameState(
     val trainingLevel: Int = 0,      // +10% EXP gained (Max 10)
     val planningLevel: Int = 0,      // -2% upgrade costs (Max 20)
     val clinicLevel: Int = 0,        // -10% rest cost (Max 10)
+
+    // Advanced Endgame Upgrades
+    val alchemistLevel: Int = 0,     // +10% Magicite drop & yield (Max 10)
+    val libraryLevel: Int = 0,       // +20% Job Mastery EXP gain (Max 10)
+    val forgeLevel: Int = 0,         // +5% Mythic drop & +10% Mythic stats (Max 10)
+    val warRoomLevel: Int = 0,       // +15% Crit DMG & +5% Ability Charge (Max 10)
+
     val lastSaveTime: Long = 0,      // Track last activity
     val playerId: String? = null,    // Firebase UID
     val playerName: String = "Stranger", // Player display name
@@ -82,6 +89,16 @@ data class GameState(
     val expMultiplier: Float get() = (1.0f + (trainingLevel * 0.10f)) * 
             (if (selectedPet == PetType.MOOGLE) 1.0f + getPetBonusValue(PetType.MOOGLE) else 1.0f)
     val itemStatBonus: Float get() = armoryLevel * 0.05f
+
+    // Advanced Upgrade Helpers
+    val magiciteYieldBonus: Float get() = 1f + (alchemistLevel * 0.10f)
+    val alchemistDropChanceBonus: Float get() = alchemistLevel * 0.10f
+    val masteryExpMultiplier: Float get() = (1.0f + (trainingLevel * 0.10f) + (libraryLevel * 0.20f)) * 
+            (if (selectedPet == PetType.MOOGLE) 1.0f + getPetBonusValue(PetType.MOOGLE) else 1.0f)
+    val mythicDropBonus: Float get() = forgeLevel * 0.05f
+    val mythicStatBonus: Float get() = forgeLevel * 0.10f
+    val warRoomCritBonus: Float get() = warRoomLevel * 15f
+    val warRoomAbilityChargeBonus: Float get() = warRoomLevel * 0.05f
 
     // Bonus getters for ascended relics
     val magnetBonus: Float get() = magnetRelic * 0.05f
@@ -174,18 +191,37 @@ data class GameState(
 enum class UpgradeType(
     @StringRes val nameRes: Int,
     @StringRes val descRes: Int,
-    val baseCost: Int,
+    val baseCost: Long,
     val maxLevel: Int,
-    val emoji: String
+    val emoji: String,
+    val isAdvanced: Boolean = false
 ) {
-    INN(R.string.upgrade_inn_name, R.string.upgrade_inn_desc, 5000, 1, "🍺"),
-    BARRACKS(R.string.upgrade_barracks_name, R.string.upgrade_barracks_desc, 3000, 2, "🏕"),
-    VAULT(R.string.upgrade_vault_name, R.string.upgrade_vault_desc, 300, 40, "🏦"),
-    ARMORY(R.string.upgrade_armory_name, R.string.upgrade_armory_desc, 400, 40, "🛡️"),
-    MAGIC_SHOP(R.string.upgrade_magic_shop_name, R.string.upgrade_magic_shop_desc, 600, 40, "🔮"),
-    TRAINING(R.string.upgrade_training_name, R.string.upgrade_training_desc, 500, 30, "📈"),
-    PLANNING(R.string.upgrade_planning_name, R.string.upgrade_planning_desc, 1000, 20, "🏗"),
-    CLINIC(R.string.upgrade_clinic_name, R.string.upgrade_clinic_desc, 200, 20, "🏥"),
-    PATHFINDER(R.string.upgrade_pathfinder_name, R.string.upgrade_pathfinder_desc, 800, 4, "🧭")
+    INN(R.string.upgrade_inn_name, R.string.upgrade_inn_desc, 5000L, 1, "🍺"),
+    BARRACKS(R.string.upgrade_barracks_name, R.string.upgrade_barracks_desc, 3000L, 2, "🏕"),
+    VAULT(R.string.upgrade_vault_name, R.string.upgrade_vault_desc, 300L, 40, "🏦"),
+    ARMORY(R.string.upgrade_armory_name, R.string.upgrade_armory_desc, 400L, 40, "🛡️"),
+    MAGIC_SHOP(R.string.upgrade_magic_shop_name, R.string.upgrade_magic_shop_desc, 600L, 40, "🔮"),
+    TRAINING(R.string.upgrade_training_name, R.string.upgrade_training_desc, 500L, 30, "📈"),
+    PLANNING(R.string.upgrade_planning_name, R.string.upgrade_planning_desc, 1000L, 20, "🏗"),
+    CLINIC(R.string.upgrade_clinic_name, R.string.upgrade_clinic_desc, 200L, 20, "🏥"),
+    PATHFINDER(R.string.upgrade_pathfinder_name, R.string.upgrade_pathfinder_desc, 800L, 4, "🧭"),
+
+    // Advanced Endgame Upgrades
+    ALCHEMIST(R.string.upgrade_alchemist_name, R.string.upgrade_alchemist_desc, 500000L, 10, "🧪", isAdvanced = true),
+    LIBRARY(R.string.upgrade_library_name, R.string.upgrade_library_desc, 1000000L, 10, "📚", isAdvanced = true),
+    FORGE(R.string.upgrade_forge_name, R.string.upgrade_forge_desc, 2500000L, 10, "⚒️", isAdvanced = true),
+    WAR_ROOM(R.string.upgrade_war_room_name, R.string.upgrade_war_room_desc, 2000000L, 10, "⚔️", isAdvanced = true);
+
+    fun getCost(currentLevel: Int): Long {
+        return if (isAdvanced) {
+            baseCost * (currentLevel + 1L) * (currentLevel + 1L)
+        } else {
+            if (currentLevel < 10) {
+                baseCost * (currentLevel + 1L)
+            } else {
+                baseCost * (currentLevel.toLong() * currentLevel.toLong())
+            }
+        }
+    }
 }
 

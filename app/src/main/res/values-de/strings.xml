@@ -1004,4 +1004,25 @@
         <string name="skill_blue_mage_t2_desc">Heilt die Gruppe proportional zu den aktuellen KP des Blaumagiers.</string>
         <string name="skill_blue_mage_t3_name">Mächtige Schutzwehr</string>
         <string name="skill_blue_mage_t3_desc">Gewährt ALLEN Verbündeten massive DEF- &amp; MAG-DEF-Buffs und wirkt Flächen-Zustandsmagie!</string>
-    </resources>
+        <!-- Upgrades Section Tabs & Advanced Upgrades -->
+    <string name="tab_basic_upgrades">STANDARD</string>
+    <string name="tab_advanced_upgrades">ERWEITERT</string>
+    <string name="badge_advanced_upgrade">ENDGAME</string>
+
+    <string name="upgrade_alchemist_name">Alchemistenlabor</string>
+    <string name="upgrade_alchemist_desc">+10% Magizit-Dropchance und +10% Magizit-Ertrag pro Stufe.</string>
+    <string name="upgrade_library_name">Große Bibliothek</string>
+    <string name="upgrade_library_desc">+20% Job-Meisterschafts-EXP im Kampf pro Stufe.</string>
+    <string name="upgrade_forge_name">Mythische Schmiede</string>
+    <string name="upgrade_forge_desc">+5% Dropchance für mythische Ausrüstung und +10% Wertebonus pro Stufe.</string>
+    <string name="upgrade_war_room_name">Kriegsraum</string>
+    <string name="upgrade_war_room_desc">+15% Kritischer Gruppenschaden und +5% Aufladegeschwindigkeit pro Stufe.</string>
+    <string name="upgrade_spire_name">Aetherium-Turm</string>
+    <string name="upgrade_spire_desc">Behält +5% Gil bei Reset und +20% Magizit bei Dimensionsabschluss pro Stufe.</string>
+
+    <string name="bulletin_perk_alchemist">🧪 Alchemist: +%1%%% Magizit-Drops</string>
+    <string name="bulletin_perk_library">📚 Bibliothek: +%1%%% Meisterschafts-EXP</string>
+    <string name="bulletin_perk_forge">⚒️ Schmiede: +%1%%% Mythisch-Chance</string>
+    <string name="bulletin_perk_war_room">⚔️ Kriegsraum: +%1%%% Krit-Schaden</string>
+    <string name="bulletin_perk_spire">🌌 Turm: +%1%%% Dimensions-Magizit</string>
+</resources>

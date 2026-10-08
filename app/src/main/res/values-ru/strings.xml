@@ -1004,4 +1004,25 @@
         <string name="skill_blue_mage_t2_desc">Исцеляет группу пропорционально текущему HP Синего мага.</string>
         <string name="skill_blue_mage_t3_name">Могучая защита</string>
         <string name="skill_blue_mage_t3_desc">Дарует огромные баффы DEF и Magic DEF ВСЕМ союзникам и применяет магию статусов по области!</string>
-    </resources>
+        <!-- Upgrades Section Tabs & Advanced Upgrades -->
+    <string name="tab_basic_upgrades">Базовые</string>
+    <string name="tab_advanced_upgrades">Продвинутые</string>
+    <string name="badge_advanced_upgrade">ENDGAME</string>
+
+    <string name="upgrade_alchemist_name">Лаборатория алхимика</string>
+    <string name="upgrade_alchemist_desc">+10% к шансу и +10% к добыче магицита за уровень.</string>
+    <string name="upgrade_library_name">Великая библиотека</string>
+    <string name="upgrade_library_desc">+20% опыта мастерства классов в бою за уровень.</string>
+    <string name="upgrade_forge_name">Мифическая кузница</string>
+    <string name="upgrade_forge_desc">+5% к шансу мифического снаряжения и +10% к бонусам за уровень.</string>
+    <string name="upgrade_war_room_name">Зал войны</string>
+    <string name="upgrade_war_room_desc">+15% к крит. урону отряда и +5% к скорости зарядки навыков за уровень.</string>
+    <string name="upgrade_spire_name">Шпиль этериума</string>
+    <string name="upgrade_spire_desc">Сохраняет +5% гилей при сбросе и +20% магицита за измерение за уровень.</string>
+
+    <string name="bulletin_perk_alchemist">🧪 Алхимик: +%1%%% к добыче магицита</string>
+    <string name="bulletin_perk_library">📚 Библиотека: +%1%%% опыта мастерства</string>
+    <string name="bulletin_perk_forge">⚒️ Кузница: +%1%%% шанс мифических вещей</string>
+    <string name="bulletin_perk_war_room">⚔️ Зал войны: +%1%%% крит. урона</string>
+    <string name="bulletin_perk_spire">🌌 Шпиль: +%1%%% магицита измерения</string>
+</resources>

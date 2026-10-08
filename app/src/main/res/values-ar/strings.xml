@@ -1006,4 +1006,25 @@
         <string name="skill_blue_mage_t2_desc">Mavi Büyücünün mevcut canıyla orantılı olarak grubu iyileştirir.</string>
         <string name="skill_blue_mage_t3_name">Görkemli Muhafız</string>
         <string name="skill_blue_mage_t3_desc">TÜM müttefiklere devasa DEF ve Büyü DEF güçlendirmeleri verir ve alan durum büyüsü uygular!</string>
-    </resources>
+        <!-- Upgrades Section Tabs & Advanced Upgrades -->
+    <string name="tab_basic_upgrades">أساسي</string>
+    <string name="tab_advanced_upgrades">متقدم</string>
+    <string name="badge_advanced_upgrade">ENDGAME</string>
+
+    <string name="upgrade_alchemist_name">مختبر الكيميائي</string>
+    <string name="upgrade_alchemist_desc">+10% فرصة سقوط و+10% إنتاج ماجيسيت لكل مستوى.</string>
+    <string name="upgrade_library_name">المكتبة الكبرى</string>
+    <string name="upgrade_library_desc">+20% خبرة إتقان الوظائف في المعارك لكل مستوى.</string>
+    <string name="upgrade_forge_name">المرجل الأسطوري</string>
+    <string name="upgrade_forge_desc">+5% فرصة معدات أسطورية و+10% مكافأة إحصائيات لكل مستوى.</string>
+    <string name="upgrade_war_room_name">غرفة الحرب</string>
+    <string name="upgrade_war_room_desc">+15% ضرر حرج للفريق و+5% سرعة شحن المهارة لكل مستوى.</string>
+    <string name="upgrade_spire_name">برج الإيثيريوم</string>
+    <string name="upgrade_spire_desc">يحتفظ بـ +5% جيل عند الإعادة و+20% ماجيسيت عند إنهاء البعد لكل مستوى.</string>
+
+    <string name="bulletin_perk_alchemist">🧪 كيميائي: +%1%%% إسقاط ماجيسيت</string>
+    <string name="bulletin_perk_library">📚 مكتبة: +%1%%% خبرة إتقان</string>
+    <string name="bulletin_perk_forge">⚒️ مرجل: +%1%%% فرصة أسطورية</string>
+    <string name="bulletin_perk_war_room">⚔️ غرفة الحرب: +%1%%% ضرر حرج</string>
+    <string name="bulletin_perk_spire">🌌 برج: +%1%%% ماجيسيت أبعاد</string>
+</resources>

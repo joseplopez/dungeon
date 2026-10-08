@@ -162,6 +162,9 @@ class FFBattleEngine(private val context: Context) {
         val activeSkill = JobAbilityData.getActiveAbilityForLevel(hero.heroClass, masteryLvl)
         if (activeSkill != null) {
             hero.abilityCharge++
+            if (relicBonuses.warRoomAbilityChargeBonus > 0f && Math.random() < relicBonuses.warRoomAbilityChargeBonus) {
+                hero.abilityCharge++
+            }
         } else {
             hero.abilityCharge = 0
         }

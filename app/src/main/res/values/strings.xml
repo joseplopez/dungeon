@@ -1009,4 +1009,26 @@
     <string name="skill_blue_mage_t2_desc">Heals party proportional to Blue Mage\'s current HP.</string>
     <string name="skill_blue_mage_t3_name">Mighty Guard</string>
     <string name="skill_blue_mage_t3_desc">Grants massive DEF &amp; MAG DEF buffs to ALL allies and deals AoE status magic!</string>
+
+    <!-- Upgrades Section Tabs & Advanced Upgrades -->
+    <string name="tab_basic_upgrades">BASIC</string>
+    <string name="tab_advanced_upgrades">ADVANCED</string>
+    <string name="badge_advanced_upgrade">ENDGAME</string>
+
+    <string name="upgrade_alchemist_name">Alchemist\'s Lab</string>
+    <string name="upgrade_alchemist_desc">+10% Magicite drop chance and +10% Magicite yield per level.</string>
+    <string name="upgrade_library_name">Grand Library</string>
+    <string name="upgrade_library_desc">+20% Job Mastery EXP earned in battle per level.</string>
+    <string name="upgrade_forge_name">Mythic Forge</string>
+    <string name="upgrade_forge_desc">+5% Mythic gear drop chance and +10% stat boost on Mythic equipment per level.</string>
+    <string name="upgrade_war_room_name">War Room</string>
+    <string name="upgrade_war_room_desc">+15% Party Critical Damage and +5% Ability Charge speed per level.</string>
+    <string name="upgrade_spire_name">Aetherium Spire</string>
+    <string name="upgrade_spire_desc">Retains +5% Gil on reset and +20% Magicite on Dimension clear per level.</string>
+
+    <string name="bulletin_perk_alchemist">🧪 Alchemist: +%1$d%%% Magicite Drops</string>
+    <string name="bulletin_perk_library">📚 Library: +%1$d%%% Mastery EXP</string>
+    <string name="bulletin_perk_forge">⚒️ Mythic Forge: +%1$d%%% Mythic Odds</string>
+    <string name="bulletin_perk_war_room">⚔️ War Room: +%1$d%%% Crit Dmg</string>
+    <string name="bulletin_perk_spire">🌌 Spire: +%1$d%%% Dimension Magicite</string>
 </resources>

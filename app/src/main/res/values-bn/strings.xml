@@ -1005,4 +1005,25 @@
         <string name="skill_blue_mage_t2_desc">ব্লু মেজের বর্তমান HP-র অনুপাতে দলকে হিল করে।</string>
         <string name="skill_blue_mage_t3_name">মাইটি গার্ড</string>
         <string name="skill_blue_mage_t3_desc">সমস্ত সহযোগীকে প্রচুর DEF ও ম্যাজিক DEF বাফ দেয় এবং AoE স্ট্যাটাস ম্যাজিক দেয়!</string>
-    </resources>
+        <!-- Upgrades Section Tabs & Advanced Upgrades -->
+    <string name="tab_basic_upgrades">মৌলিক</string>
+    <string name="tab_advanced_upgrades">উন্নত</string>
+    <string name="badge_advanced_upgrade">ENDGAME</string>
+
+    <string name="upgrade_alchemist_name">এলকেমিস্টের ল্যাব</string>
+    <string name="upgrade_alchemist_desc">স্তর প্রতি +১০% ম্যাজিসাইট প্রাপ্তির সম্ভাবনা এবং +১০% ম্যাজিসাইট সংগ্রহ।</string>
+    <string name="upgrade_library_name">গ্র্যান্ড লাইব্রেরি</string>
+    <string name="upgrade_library_desc">স্তর প্রতি যুদ্ধে অর্জিত +২০% কাজের দক্ষতা EXP।</string>
+    <string name="upgrade_forge_name">মিথিক কামারশালা</string>
+    <string name="upgrade_forge_desc">স্তর প্রতি +৫% মিথিক সরঞ্জাম পাওয়ার সম্ভাবনা এবং +১০% মিথিক পরিসংখ্যান বোনাস।</string>
+    <string name="upgrade_war_room_name">যুদ্ধ কক্ষ</string>
+    <string name="upgrade_war_room_desc">স্তর প্রতি +১৫% দলের ক্রিটিক্যাল ক্ষতি এবং +৫% ক্ষমতার চার্জ গতি।</string>
+    <string name="upgrade_spire_name">ইথারিয়াম স্পায়ার</string>
+    <string name="upgrade_spire_desc">স্তর প্রতি রিসেটে +৫% গিল সংরক্ষণ এবং মাত্রা শেষ করলে +২০% ম্যাজিসাইট।</string>
+
+    <string name="bulletin_perk_alchemist">🧪 এলকেমিস্ট: +%1%%% ম্যাজিসাইট ড্রপ</string>
+    <string name="bulletin_perk_library">📚 লাইব্রেরি: +%1%%% দক্ষতা EXP</string>
+    <string name="bulletin_perk_forge">⚒️ মিথিক কামারশালা: +%1%%% মিথিক সম্ভাবনা</string>
+    <string name="bulletin_perk_war_room">⚔️ যুদ্ধ কক্ষ: +%1%%% ক্রিটিক্যাল ক্ষতি</string>
+    <string name="bulletin_perk_spire">🌌 স্পায়ার: +%1%%% মাত্রা ম্যাজিসাইট</string>
+</resources>

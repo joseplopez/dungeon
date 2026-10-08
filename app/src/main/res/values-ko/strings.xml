@@ -1006,4 +1006,25 @@
         <string name="skill_blue_mage_t2_desc">청마도사의 현재 HP에 비례하여 파티를 회복합니다.</string>
         <string name="skill_blue_mage_t3_name">마이티 가드</string>
         <string name="skill_blue_mage_t3_desc">모든 아군에게 대폭적인 DEF 및 마법 DEF 버프를 부여하고 범위 상태 마법을 적용합니다!</string>
-    </resources>
+        <!-- Upgrades Section Tabs & Advanced Upgrades -->
+    <string name="tab_basic_upgrades">기본</string>
+    <string name="tab_advanced_upgrades">고급</string>
+    <string name="badge_advanced_upgrade">엔드게임</string>
+
+    <string name="upgrade_alchemist_name">연금술 연구소</string>
+    <string name="upgrade_alchemist_desc">레벨당 마석 드랍률 +10% 및 마석 획득량 +10%.</string>
+    <string name="upgrade_library_name">대도서관</string>
+    <string name="upgrade_library_desc">레벨당 전투 중 직업 마스터리 경험치 +20%.</string>
+    <string name="upgrade_forge_name">신화 대장간</string>
+    <string name="upgrade_forge_desc">레벨당 신화 장비 드랍률 +5% 및 스탯 보너스 +10%.</string>
+    <string name="upgrade_war_room_name">작전회의실</string>
+    <string name="upgrade_war_room_desc">레벨당 파티 치명타 피해 +15% 및 스킬 충전 속도 +5%.</string>
+    <string name="upgrade_spire_name">에테리움 첨탑</string>
+    <string name="upgrade_spire_desc">레벨당 리셋 시 길 보존 +5% 및 차원 클리어 마석 +20%.</string>
+
+    <string name="bulletin_perk_alchemist">🧪 연금술: 마석 드랍 +%1%%%</string>
+    <string name="bulletin_perk_library">📚 대도서관: 마스터리 EXP +%1%%%</string>
+    <string name="bulletin_perk_forge">⚒️ 신화 대장간: 신화 확률 +%1%%%</string>
+    <string name="bulletin_perk_war_room">⚔️ 작전회의실: 치명타 피해 +%1%%%</string>
+    <string name="bulletin_perk_spire">🌌 첨탑: 차원 마석 +%1%%%</string>
+</resources>

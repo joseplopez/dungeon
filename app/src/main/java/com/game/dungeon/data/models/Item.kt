@@ -61,8 +61,9 @@ data class Item(
             dimension: Int = 1
         ): Item {
             val msLevel = relicBonuses?.magicShopLevel ?: 0
+            val mythicDropBoost = ((relicBonuses?.mythicDropBonus ?: 0f) * 100).toInt()
             val dimRarityBoost = (dimension - 1) * 2
-            val totalBoost = msLevel + dimRarityBoost
+            val totalBoost = msLevel + dimRarityBoost + mythicDropBoost
 
             val roll = (1..100).random()
             val rarity = calculateRarity(roll, totalBoost, minRarity)
@@ -91,9 +92,10 @@ data class Item(
                 Rarity.LEGENDARY -> 4.0f
             }
             
+            val mythicStatMult = if (rarity == Rarity.LEGENDARY) (1f + (relicBonuses?.mythicStatBonus ?: 0f)) else 1f
             val statBonus = 1f + (relicBonuses?.itemStatBonus ?: 0f)
             val dimBonus = 1f + (dimension - 1) * 0.12f
-            val finalMult = bonusMult * statBonus * dimBonus
+            val finalMult = bonusMult * statBonus * dimBonus * mythicStatMult
 
             val (critChance, critDmg) = calculateCritBonuses(rarity)
             val baseWeaponStat = ((2 + floor / 8) * finalMult).toInt()

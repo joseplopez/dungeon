@@ -8,6 +8,9 @@ import androidx.compose.animation.core.*
 import androidx.compose.foundation.*
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.items
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
@@ -478,6 +481,10 @@ fun BulletinBoardDialog(
                     if (gs.vaultLevel > 0) perks.add(safeStringResource(R.string.bulletin_perk_vault, gs.vaultLevel * 5))
                     if (gs.pathfinderLevel > 0) perks.add(safeStringResource(R.string.bulletin_perk_pathfinder, gs.pathfinderLevel * 5))
                     if (gs.planningLevel > 0) perks.add(safeStringResource(R.string.bulletin_perk_planning, (gs.upgradeDiscount * 100).toInt()))
+                    if (gs.alchemistLevel > 0) perks.add(safeStringResource(R.string.bulletin_perk_alchemist, gs.alchemistLevel * 10))
+                    if (gs.libraryLevel > 0) perks.add(safeStringResource(R.string.bulletin_perk_library, gs.libraryLevel * 20))
+                    if (gs.forgeLevel > 0) perks.add(safeStringResource(R.string.bulletin_perk_forge, gs.forgeLevel * 5))
+                    if (gs.warRoomLevel > 0) perks.add(safeStringResource(R.string.bulletin_perk_war_room, gs.warRoomLevel * 15))
 
                     if (perks.isEmpty()) {
                         Text(
@@ -618,75 +625,160 @@ fun CrystalShopRow(
     }
 }
 
+private fun getUpgradeLevel(gs: GameState, type: UpgradeType): Int {
+    return when (type) {
+        UpgradeType.INN -> gs.innLevel
+        UpgradeType.BARRACKS -> gs.barracksLevel
+        UpgradeType.VAULT -> gs.vaultLevel
+        UpgradeType.ARMORY -> gs.armoryLevel
+        UpgradeType.MAGIC_SHOP -> gs.magicShopLevel
+        UpgradeType.TRAINING -> gs.trainingLevel
+        UpgradeType.PLANNING -> gs.planningLevel
+        UpgradeType.CLINIC -> gs.clinicLevel
+        UpgradeType.PATHFINDER -> gs.pathfinderLevel
+        UpgradeType.ALCHEMIST -> gs.alchemistLevel
+        UpgradeType.LIBRARY -> gs.libraryLevel
+        UpgradeType.FORGE -> gs.forgeLevel
+        UpgradeType.WAR_ROOM -> gs.warRoomLevel
+    }
+}
+
 @Composable
 fun UpgradesDialog(
     gs: GameState,
     onUpgrade: (UpgradeType) -> Unit,
     onDismiss: () -> Unit
 ) {
+    var selectedTab by remember { mutableIntStateOf(0) }
+    val basicUpgrades = remember { UpgradeType.entries.filter { !it.isAdvanced } }
+    val advancedUpgrades = remember { UpgradeType.entries.filter { it.isAdvanced } }
+
+    val basicMaxed = basicUpgrades.count { getUpgradeLevel(gs, it) >= it.maxLevel }
+    val advancedMaxed = advancedUpgrades.count { getUpgradeLevel(gs, it) >= it.maxLevel }
+
+    val activeList = if (selectedTab == 0) basicUpgrades else advancedUpgrades
+
     Dialog(
         onDismissRequest = onDismiss,
         properties = DialogProperties(usePlatformDefaultWidth = false)
     ) {
         GoldenBorderBox(
             Modifier
-                .fillMaxWidth(0.92f)
-                .widthIn(max = 520.dp)
-                .fillMaxHeight(0.85f)
+                .fillMaxSize()
                 .background(BgDarkest)
         ) {
             Column(Modifier.fillMaxSize().padding(16.dp)) {
+                // Top Header Bar
                 Row(
                     Modifier.fillMaxWidth().padding(bottom = 8.dp),
-                    horizontalArrangement = Arrangement.SpaceBetween, 
+                    horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = CenterVertically
                 ) {
-                    Column {
-                        Text(safeStringResource(R.string.town_upgrades), style = PixelHeading)
+                    Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(16.dp)) {
+                        Text(safeStringResource(R.string.town_upgrades), style = PixelHeading, fontSize = 20.sp)
+                        Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
+                            PixelGoldDisplay(amount = gs.gold)
+                            PixelMagiciteDisplay(amount = gs.magicite)
+                        }
+                    }
+                    Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
                         if (gs.planningLevel > 0) {
                             Text(safeStringResource(R.string.upgrade_discount, (gs.upgradeDiscount * 100).toInt()), style = PixelSmall, color = HpGreen)
                         }
+                        PixelButton(
+                            label = "X",
+                            onClick = onDismiss,
+                            modifier = Modifier.size(36.dp),
+                            horizontalPadding = 0.dp,
+                            verticalPadding = 0.dp
+                        )
                     }
+                }
+
+                PixelDivider()
+                Spacer(Modifier.height(8.dp))
+
+                // Navigation Tabs
+                Row(
+                    Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.spacedBy(8.dp)
+                ) {
                     PixelButton(
-                        label = "X",
-                        onClick = onDismiss,
-                        modifier = Modifier.size(36.dp),
-                        horizontalPadding = 0.dp,
-                        verticalPadding = 0.dp
+                        label = "${safeStringResource(R.string.tab_basic_upgrades)} ($basicMaxed/${basicUpgrades.size})",
+                        onClick = { selectedTab = 0 },
+                        active = selectedTab == 0,
+                        modifier = Modifier.weight(1f).height(38.dp)
+                    )
+                    PixelButton(
+                        label = "✨ ${safeStringResource(R.string.tab_advanced_upgrades)} ($advancedMaxed/${advancedUpgrades.size})",
+                        onClick = { selectedTab = 1 },
+                        active = selectedTab == 1,
+                        modifier = Modifier.weight(1f).height(38.dp)
                     )
                 }
-                PixelDivider()
+
                 Spacer(Modifier.height(12.dp))
-                LazyColumn(
-                    modifier = Modifier.weight(1f).padding(horizontal = 4.dp),
-                    verticalArrangement = Arrangement.spacedBy(12.dp)
+
+                // 2-Column Responsive Card Grid
+                LazyVerticalGrid(
+                    columns = GridCells.Fixed(2),
+                    horizontalArrangement = Arrangement.spacedBy(12.dp),
+                    verticalArrangement = Arrangement.spacedBy(12.dp),
+                    modifier = Modifier.weight(1f).fillMaxWidth()
                 ) {
-                    items(UpgradeType.entries) { type ->
-                        val currentLevel = when (type) {
-                            UpgradeType.INN -> gs.innLevel
-                            UpgradeType.BARRACKS -> gs.barracksLevel
-                            UpgradeType.VAULT -> gs.vaultLevel
-                            UpgradeType.ARMORY -> gs.armoryLevel
-                            UpgradeType.MAGIC_SHOP -> gs.magicShopLevel
-                            UpgradeType.TRAINING -> gs.trainingLevel
-                            UpgradeType.PLANNING -> gs.planningLevel
-                            UpgradeType.CLINIC -> gs.clinicLevel
-                            UpgradeType.PATHFINDER -> gs.pathfinderLevel
-                        }
-                        
+                    items(activeList) { type ->
+                        val currentLevel = getUpgradeLevel(gs, type)
                         val isMax = currentLevel >= type.maxLevel
-                        val rawCost =  if (currentLevel<10) type.baseCost * (currentLevel + 1)
-                        else type.baseCost * (currentLevel*currentLevel)
+                        val rawCost = type.getCost(currentLevel)
                         val finalCost = (rawCost * (1f - gs.upgradeDiscount)).toLong()
                         val canAfford = gs.gold >= finalCost
 
-                        PixelPanel(Modifier.fillMaxWidth().wrapContentHeight(), borderColor = if(isMax) StoneGray else GoldDark) {
-                            Column(Modifier.fillMaxWidth().padding(4.dp)) {
-                                Row(Modifier.fillMaxWidth(), verticalAlignment = CenterVertically) {
-                                    Text(type.emoji, fontSize = 24.sp)
-                                    Spacer(Modifier.width(16.dp))
-                                    Column(Modifier.weight(1f)) {
-                                        Text(safeStringResource(type.nameRes), style = PixelBody, color = if(isMax) StoneGray else GoldBright)
+                        PixelPanel(
+                            modifier = Modifier.fillMaxWidth(),
+                            borderColor = if (isMax) StoneGray else if (type.isAdvanced) GoldBright else GoldDark
+                        ) {
+                            Column(
+                                Modifier.fillMaxWidth().padding(10.dp),
+                                verticalArrangement = Arrangement.spacedBy(8.dp)
+                            ) {
+                                // Card Top Row: Emoji + Name + Level / Badge
+                                Row(
+                                    Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.SpaceBetween,
+                                    verticalAlignment = CenterVertically
+                                ) {
+                                    Row(
+                                        verticalAlignment = CenterVertically,
+                                        horizontalArrangement = Arrangement.spacedBy(8.dp),
+                                        modifier = Modifier.weight(1f)
+                                    ) {
+                                        Text(type.emoji, fontSize = 22.sp)
+                                        Text(
+                                            safeStringResource(type.nameRes),
+                                            style = PixelBody,
+                                            color = if (isMax) StoneGray else GoldBright,
+                                            maxLines = 1
+                                        )
+                                    }
+                                    Row(
+                                        verticalAlignment = CenterVertically,
+                                        horizontalArrangement = Arrangement.spacedBy(6.dp)
+                                    ) {
+                                        if (type.isAdvanced) {
+                                            Box(
+                                                Modifier
+                                                    .background(GoldBright, RoundedCornerShape(3.dp))
+                                                    .border(1.dp, GoldDark, RoundedCornerShape(3.dp))
+                                                    .padding(horizontal = 6.dp, vertical = 2.dp)
+                                            ) {
+                                                Text(
+                                                    safeStringResource(R.string.badge_advanced_upgrade),
+                                                    style = PixelSmall,
+                                                    color = BgDarkest,
+                                                    fontSize = 9.sp
+                                                )
+                                            }
+                                        }
                                         val levelText = if (type == UpgradeType.PATHFINDER) {
                                             val maxStart = (gs.highestFloor * (currentLevel * 0.25f)).toInt().coerceIn(1, gs.highestFloor.coerceAtLeast(1))
                                             safeStringResource(R.string.pathfinder_level_format, currentLevel, type.maxLevel, maxStart)
@@ -695,26 +787,55 @@ fun UpgradesDialog(
                                         }
                                         Text(levelText, style = PixelSmall, color = GoldDark)
                                     }
-                                    Spacer(Modifier.width(12.dp))
+                                }
+
+                                // Level Progress Bar
+                                Box(
+                                    Modifier
+                                        .fillMaxWidth()
+                                        .height(6.dp)
+                                        .background(BgDark, RoundedCornerShape(3.dp))
+                                ) {
+                                    val progressFraction = (currentLevel.toFloat() / type.maxLevel.toFloat()).coerceIn(0f, 1f)
+                                    Box(
+                                        Modifier
+                                            .fillMaxHeight()
+                                            .fillMaxWidth(progressFraction)
+                                            .background(if (isMax) HpGreen else GoldBright, RoundedCornerShape(3.dp))
+                                    )
+                                }
+
+                                // Description Text - Unconstrained vertical height and high-contrast text color
+                                Text(
+                                    safeStringResource(type.descRes),
+                                    style = PixelSmall,
+                                    color = Color(0xFFE0E0E0),
+                                    lineHeight = 15.sp,
+                                    modifier = Modifier.fillMaxWidth()
+                                )
+
+                                // Upgrade Cost Button or MAX
+                                Row(
+                                    Modifier.fillMaxWidth(),
+                                    horizontalArrangement = Arrangement.End,
+                                    verticalAlignment = CenterVertically
+                                ) {
                                     if (isMax) {
-                                        Text(safeStringResource(R.string.max_level), style = PixelBody, color = HpGreen, modifier = Modifier.width(80.dp), textAlign = TextAlign.Center)
+                                        Text(
+                                            safeStringResource(R.string.max_level),
+                                            style = PixelBody,
+                                            color = HpGreen,
+                                            textAlign = TextAlign.Center
+                                        )
                                     } else {
                                         PixelButton(
-                                            "${finalCost}G", 
-                                            onClick = { onUpgrade(type) }, 
-                                            enabled = canAfford, 
-                                            modifier = Modifier.width(80.dp).height(40.dp)
+                                            label = "${formatGold(finalCost)}G",
+                                            onClick = { onUpgrade(type) },
+                                            enabled = canAfford,
+                                            modifier = Modifier.width(110.dp).height(36.dp)
                                         )
                                     }
                                 }
-                                Spacer(Modifier.height(8.dp))
-                                Text(
-                                    safeStringResource(type.descRes),
-                                    style = PixelSmall, 
-                                    color = StoneGray,
-                                    lineHeight = 16.sp,
-                                    modifier = Modifier.fillMaxWidth()
-                                )
                             }
                         }
                     }

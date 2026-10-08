@@ -1004,4 +1004,25 @@
         <string name="skill_blue_mage_t2_desc">Cura il gruppo proporzionalmente ai PV attuali del Mago Blu.</string>
         <string name="skill_blue_mage_t3_name">Guardia Possente</string>
         <string name="skill_blue_mage_t3_desc">Conferisce enormi potenziamenti alla DEF e DEF Magica a TUTTI gli alleati e applica magia di stato ad area!</string>
-    </resources>
+        <!-- Upgrades Section Tabs & Advanced Upgrades -->
+    <string name="tab_basic_upgrades">BASE</string>
+    <string name="tab_advanced_upgrades">AVANZATI</string>
+    <string name="badge_advanced_upgrade">ENDGAME</string>
+
+    <string name="upgrade_alchemist_name">Laboratorio Alchimista</string>
+    <string name="upgrade_alchemist_desc">+10% probabilità e +10% rendimento Magicite per livello.</string>
+    <string name="upgrade_library_name">Grande Biblioteca</string>
+    <string name="upgrade_library_desc">+20% EXP Maestria Lavoro in battaglia per livello.</string>
+    <string name="upgrade_forge_name">Forgia Mitica</string>
+    <string name="upgrade_forge_desc">+5% probabilità equipaggiamento Mitico e +10% bonus statistiche per livello.</string>
+    <string name="upgrade_war_room_name">Sala della Guerra</string>
+    <string name="upgrade_war_room_desc">+15% Danno Critico gruppo e +5% velocità Carica Abilità per livello.</string>
+    <string name="upgrade_spire_name">Guglia di Aetherium</string>
+    <string name="upgrade_spire_desc">Mantiene +5% Gil al reset e +20% Magicite al completamento Dimensione per livello.</string>
+
+    <string name="bulletin_perk_alchemist">🧪 Alchimista: +%1%%% Magicite</string>
+    <string name="bulletin_perk_library">📚 Biblioteca: +%1%%% EXP Maestria</string>
+    <string name="bulletin_perk_forge">⚒️ Forgia Mitica: +%1%%% Prob. Mitica</string>
+    <string name="bulletin_perk_war_room">⚔️ Sala della Guerra: +%1%%% Danno Critico</string>
+    <string name="bulletin_perk_spire">🌌 Guglia: +%1%%% Magicite Dimensione</string>
+</resources>

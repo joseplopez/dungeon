@@ -1005,5 +1005,25 @@
     <string name="skill_blue_mage_t3_name">Barrera Total</string>
     <string name="skill_blue_mage_t3_desc">¡Otorga mejoras masivas de DEF y DEF MAG a TODOS los aliados e inflige magia de estado en área!</string>
 
+    <!-- Upgrades Section Tabs & Advanced Upgrades -->
+    <string name="tab_basic_upgrades">BÁSICO</string>
+    <string name="tab_advanced_upgrades">AVANZADO</string>
+    <string name="badge_advanced_upgrade">ENDGAME</string>
 
+    <string name="upgrade_alchemist_name">Laboratorio de Alquimia</string>
+    <string name="upgrade_alchemist_desc">+10% de probabilidad y +10% de producción de Magicit por nivel.</string>
+    <string name="upgrade_library_name">Gran Biblioteca</string>
+    <string name="upgrade_library_desc">+20% de EXP de Maestría de Trabajo en batalla por nivel.</string>
+    <string name="upgrade_forge_name">Forja Mítica</string>
+    <string name="upgrade_forge_desc">+5% de probabilidad de equipo Mítico y +10% de bonificación por nivel.</string>
+    <string name="upgrade_war_room_name">Sala de Guerra</string>
+    <string name="upgrade_war_room_desc">+15% de Daño Crítico del grupo y +5% de velocidad de carga por nivel.</string>
+    <string name="upgrade_spire_name">Espira de Aetherium</string>
+    <string name="upgrade_spire_desc">Conserva +5% de Gil al reiniciar y +20% de Magicit al completar la Dimensión por nivel.</string>
+
+    <string name="bulletin_perk_alchemist">🧪 Alquimista: +%1$d%%% Magicit</string>
+    <string name="bulletin_perk_library">📚 Biblioteca: +%1$d%%% EXP Maestría</string>
+    <string name="bulletin_perk_forge">⚒️ Forja Mítica: +%1$d%%% Prob. Mítica</string>
+    <string name="bulletin_perk_war_room">⚔️ Sala de Guerra: +%1$d%%% Daño Crítico</string>
+    <string name="bulletin_perk_spire">🌌 Espira: +%1$d%%% Magicit Dimensión</string>
 </resources>
