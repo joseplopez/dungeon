@@ -107,7 +107,8 @@ class DungeonViewModel @Inject constructor(
     val boostFloorsRemaining: Int = 0,
     val reviveUsedThisRun: Boolean = false,
     val showReviveDialog: Boolean = false,
-    val pendingFallenHeroIds: Set<String> = emptySet()
+    val pendingFallenHeroIds: Set<String> = emptySet(),
+    val materialsFoundThisRun: Map<String, Int> = emptyMap()
   )
 
   data class FFLogEntry(
@@ -269,6 +270,20 @@ class DungeonViewModel @Inject constructor(
                   enemies = state.enemies.filter { it.id != event.enemyId },
                   battleLog = (state.battleLog + FFLogEntry(R.string.log_victory_xp, listOf(enemy?.name ?: "?", event.expDropped), LogType.SYSTEM)).takeLast(25)
               )
+          }
+      }
+      is FFBattleEvent.MaterialDropped -> {
+          battleState.update { state ->
+              val currentCount = state.materialsFoundThisRun[event.materialId] ?: 0
+              val mat = MaterialCatalog.getMaterial(event.materialId)
+              val matName = runCatching { context.getString(mat.nameRes) }.getOrNull() ?: mat.id
+              state.copy(
+                  materialsFoundThisRun = state.materialsFoundThisRun + (event.materialId to (currentCount + event.amount)),
+                  battleLog = (state.battleLog + FFLogEntry(R.string.log_generic, listOf("${mat.emoji} $matName +${event.amount}"), LogType.SYSTEM)).takeLast(25)
+              )
+          }
+          viewModelScope.launch {
+              repo.addMaterial(event.materialId, event.amount)
           }
       }
       is FFBattleEvent.HealCast -> {

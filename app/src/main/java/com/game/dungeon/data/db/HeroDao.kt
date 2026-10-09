@@ -18,6 +18,9 @@ interface HeroDao {
     @Query("SELECT * FROM heroes WHERE isInParty = 1 AND currentHp > 0 ORDER BY partyPosition ASC")
     suspend fun getPartyOnce(): List<Hero>
 
+    @Query("SELECT * FROM heroes WHERE id = :id")
+    suspend fun getHeroById(id: String): Hero?
+
     @Upsert
     suspend fun upsert(hero: Hero)
 

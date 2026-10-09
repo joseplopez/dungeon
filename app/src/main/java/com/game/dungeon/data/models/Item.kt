@@ -37,11 +37,22 @@ data class Item(
     val critDamageBonus: Int = 0,
     val emoji: String,
     val floorFound: Int,
-    val ownerId: String? = null // To track who is wearing it, or if it's in inventory
+    val ownerId: String? = null, // To track who is wearing it, or if it's in inventory
+    val enhancementLevel: Int = 0,
+    val sockets: List<SocketSlot> = emptyList()
 ) {
     val sellValue: Long get() = (floorFound * 5L + rarity.ordinal * 20L).coerceAtLeast(5L)
 
-    val powerScore: Int get() = attackBonus + defenseBonus + magicBonus + (hpBonus / 5) + (mpBonus / 2) + (critChanceBonus * 2) + (critDamageBonus / 2)
+    val basePowerScore: Int get() = attackBonus + defenseBonus + magicBonus + (hpBonus / 5) + (mpBonus / 2) + (critChanceBonus * 2) + (critDamageBonus / 2)
+
+    val socketBonus: Int get() = sockets.sumOf { it.socketedGem?.powerScore ?: 0 }
+
+    val powerScore: Int get() = (basePowerScore * (1.0 + enhancementLevel.coerceIn(0, 10) * 0.05)).toInt() + socketBonus
+
+    val effectiveAttackBonus: Int get() = (attackBonus * (1.0 + enhancementLevel.coerceIn(0, 10) * 0.05)).toInt() + sockets.sumOf { it.socketedGem?.attackBonus ?: 0 }
+    val effectiveDefenseBonus: Int get() = (defenseBonus * (1.0 + enhancementLevel.coerceIn(0, 10) * 0.05)).toInt() + sockets.sumOf { it.socketedGem?.defenseBonus ?: 0 }
+    val effectiveMagicBonus: Int get() = (magicBonus * (1.0 + enhancementLevel.coerceIn(0, 10) * 0.05)).toInt() + sockets.sumOf { it.socketedGem?.magicBonus ?: 0 }
+    val effectiveHpBonus: Int get() = (hpBonus * (1.0 + enhancementLevel.coerceIn(0, 10) * 0.05)).toInt() + sockets.sumOf { it.socketedGem?.hpBonus ?: 0 }
 
     companion object {
         fun random(

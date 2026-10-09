@@ -34,6 +34,7 @@ import androidx.navigation.compose.rememberNavController
 import com.game.dungeon.audio.MusicManager
 import com.game.dungeon.ui.components.BottomPixelNav
 import com.game.dungeon.ui.components.MusicToggleButton
+import com.game.dungeon.ui.screens.CraftingScreen
 import com.game.dungeon.ui.screens.DungeonScreen
 import com.game.dungeon.ui.screens.EquipmentScreen
 import com.game.dungeon.ui.screens.InnScreen
@@ -43,6 +44,7 @@ import com.game.dungeon.ui.screens.RelicsScreen
 import com.game.dungeon.ui.screens.TownScreen
 import com.game.dungeon.ui.theme.BgDarkest
 import com.game.dungeon.ui.theme.PixelTheme
+import com.game.dungeon.ui.viewmodels.CraftingViewModel
 import com.game.dungeon.ui.viewmodels.DungeonViewModel
 import com.game.dungeon.ui.viewmodels.EquipmentViewModel
 import com.game.dungeon.ui.viewmodels.InnViewModel
@@ -194,6 +196,13 @@ class MainActivity : ComponentActivity() {
                                     navController = navController,
                                     isMuted = isMuted,
                                     onToggleMusic = { isMuted = !isMuted }
+                                )
+                            }
+                            composable("crafting") {
+                                val craftingViewModel: CraftingViewModel = hiltViewModel()
+                                CraftingScreen(
+                                    viewModel = craftingViewModel,
+                                    onBack = { navController.popBackStack() }
                                 )
                             }
                         }

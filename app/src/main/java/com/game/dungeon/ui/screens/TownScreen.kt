@@ -198,7 +198,20 @@ fun TownScreen(
                             onClick = { showUpgrades = true }
                         )
 
-                        // 3. Relics Sanctuary (Center-Right)
+                        // 3. Blacksmith / Forge (Center)
+                        TownBuilding(
+                            name = safeStringResource(R.string.building_blacksmith_title),
+                            tag = "BLACKSMITH",
+                            animTime = animTime,
+                            onClick = {
+                                navController.navigate("crafting") {
+                                    launchSingleTop = true
+                                    restoreState = true
+                                }
+                            }
+                        )
+
+                        // 4. Relics Sanctuary (Center-Right)
                         TownBuilding(
                             name = safeStringResource(R.string.building_relics),
                             tag = "RELICS",
@@ -378,6 +391,7 @@ fun TownBuilding(
                     "BARRACKS" -> drawDetailedBarracks(animTime)
                     "RELICS" -> drawDetailedPortal(animTime)
                     "COLOSSEUM" -> drawDetailedColosseum(animTime)
+                    "BLACKSMITH" -> drawDetailedBlacksmith(animTime)
                 }
             }
 

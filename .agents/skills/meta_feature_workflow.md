@@ -42,3 +42,10 @@ Before inspecting code, map the request to its corresponding contract file:
 - **Changes Applied**: `[File1.kt]`, `[File2.kt]`
 - **Invariants Checked**: `[Verified rule]`
 - **Skill Updated**: `[Yes/No - Name of updated skill]`
+
+---
+
+## 5. Free-Tier Token Conservation (Atomic Step Mandate)
+- NEVER attempt full multi-layer feature implementations (Model + DB + Repo + Engine + UI) in a single turn.
+- ALWAYS divide feature delivery into atomic 1-to-2 file steps.
+- Complete execution step-by-step to prevent token truncation errors.

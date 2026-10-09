@@ -9,14 +9,26 @@ import com.game.dungeon.data.models.GameState
 import com.game.dungeon.data.models.Hero
 import com.game.dungeon.data.models.Item
 
-@Database(entities = [GameState::class, Hero::class, Item::class], version = 26, exportSchema = true)
+@Database(entities = [GameState::class, Hero::class, Item::class, MaterialEntity::class], version = 27, exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class GameDatabase : RoomDatabase() {
     abstract val gameStateDao: GameStateDao
     abstract val heroDao: HeroDao
     abstract val itemDao: ItemDao
+    abstract val materialDao: MaterialDao
 
     companion object {
+        val MIGRATION_26_27 = object : Migration(26, 27) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                try {
+                    db.execSQL("CREATE TABLE IF NOT EXISTS `materials` (`id` TEXT NOT NULL, `amount` INTEGER NOT NULL DEFAULT 0, PRIMARY KEY(`id`))")
+                    ensureColumn(db, "items", "enhancementLevel", "INTEGER NOT NULL DEFAULT 0")
+                    ensureColumn(db, "items", "sockets", "TEXT NOT NULL DEFAULT '[]'")
+                } catch (e: Exception) {
+                    wipeDatabase(db)
+                }
+            }
+        }
         val MIGRATION_25_26 = object : Migration(25, 26) {
             override fun migrate(db: SupportSQLiteDatabase) {
                 try {
@@ -344,6 +356,7 @@ abstract class GameDatabase : RoomDatabase() {
             db.execSQL("DELETE FROM game_state")
             db.execSQL("DELETE FROM heroes")
             db.execSQL("DELETE FROM items")
+            try { db.execSQL("DELETE FROM materials") } catch (_: Exception) {}
         }
     }
 }

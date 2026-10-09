@@ -12,6 +12,9 @@ interface ItemDao {
     @Query("SELECT * FROM items WHERE ownerId IS NULL")
     fun getInventory(): Flow<List<Item>>
 
+    @Query("SELECT * FROM items WHERE ownerId IS NOT NULL")
+    fun getEquippedItems(): Flow<List<Item>>
+
     @Query("SELECT * FROM items WHERE ownerId = :heroId")
     fun getItemsForHeroFlow(heroId: String): Flow<List<Item>>
 
@@ -20,6 +23,9 @@ interface ItemDao {
 
     @Query("SELECT * FROM items")
     suspend fun getAllItemsOnce(): List<Item>
+
+    @Query("SELECT * FROM items WHERE id = :id")
+    suspend fun getItemById(id: String): Item?
 
     @Upsert
     suspend fun upsert(item: Item)

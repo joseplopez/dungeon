@@ -1,8 +1,8 @@
 {
   "formatVersion": 1,
   "database": {
-    "version": 26,
-    "identityHash": "379476be054360d13b31be12873ed521",
+    "version": 27,
+    "identityHash": "41617f24028579ceb549da123f1a03dc",
     "entities": [
       {
         "tableName": "game_state",
@@ -547,11 +547,35 @@
             "id"
           ]
         }
+      },
+      {
+        "tableName": "materials",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` TEXT NOT NULL, `amount` INTEGER NOT NULL, PRIMARY KEY(`id`))",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "TEXT",
+            "notNull": true
+          },
+          {
+            "fieldPath": "amount",
+            "columnName": "amount",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "autoGenerate": false,
+          "columnNames": [
+            "id"
+          ]
+        }
       }
     ],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '379476be054360d13b31be12873ed521')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '41617f24028579ceb549da123f1a03dc')"
     ]
   }
 }

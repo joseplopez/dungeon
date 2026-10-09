@@ -1,24 +1,26 @@
-# Skill: Relics & Town Upgrades
+# Skill: Crafting, Material Drops & Gear Socketing
 
 ## Core Anchors
-- ViewModels: `@RelicsViewModel.kt`, `@TownViewModel.kt`
-- Models & Repo: `@RelicType.kt`, `@RelicBonuses.kt`, `@GameState.kt`, `@GameRepository.kt`
-- UI: `@RelicsScreen.kt`, `@TownScreen.kt`
+- Models: `@Material.kt`, `@Item.kt`, `@MaterialInventoryEntity.kt`
+- Engine & Repo: `@FFBattleEngine.kt`, `@GameRepository.kt`
+- DAOs: `@MaterialDao.kt`, `@ItemDao.kt`
+- ViewModels & UI: `@CraftingViewModel.kt`, `@EquipmentViewModel.kt`, `@CraftingScreen.kt`
 
-## Data Flow & Feature Coupling
-- Currency Coupling: Relics cost **Magicite** (`cost = (level + 1) * 10`); Town upgrades & Crystals cost **Gold**. Gold exchanges to Magicite via `exchangeGoldForMagicite()`.
-- Combat & Loot Scaling: `RelicBonuses.from(GameState)` maps Relic levels into combat multipliers passed to `FFBattleEngine` (`attackBonus`, quadratic `hpBonus`, `goldMultiplier`, `magiciteChanceBonus`).
-- Ascended Relics (Tier 2):
-  - `MAGNET`: Boosts high-tier item quality rolls.
-  - `POCKETS`: Retains gold percentage on Dimension Advance (`gold * pocketsBonus`).
-  - `DOUBLE_LOOT`: Adds logarithmic chance (`effectiveDoubleLootChance`, max 75%) for extra boss drops.
+## Data Flow & Cross-Feature Coupling
+- Loot Generation: Slain enemies/bosses in `FFBattleEngine` evaluate material drop tables based on `floor` and `MonsterType`, emitting `MaterialDrop` events directly to `GameRepository.addMaterials()`.
+- Gear Enhancement: Upgrading gear (`+1` to `+10`) consumes Gold + Materials from `MaterialDao`, recalculating item stats and `PowerScore` without altering base item identity.
+- Gem Socketing & Fusion: Sockets are added to items using Ores + Gold. Inserting/Fusing crafted Gems updates item `sockets` and recalculates effective hero stats in `FFBattleEngine`.
+- Hero Breakthrough: Reaching max Job Level queries `MaterialDao` for required Boss Trophies to unlock higher level caps.
 
 ## Key Signatures & Execution Steps
-1. `RelicsViewModel.upgradeRelic(type: RelicType)`: Validates `magicite >= cost`, deducts magicite, increments relic level, and saves `GameState`.
-2. `TownViewModel.upgradeBuilding(type: UpgradeType)`: Validates `gold >= cost`, deducts gold, increments building level, updating town bonuses.
-3. `RelicBonuses.from(gs: GameState)`: Aggregates base relic levels, town multipliers, and pet bonuses into an immutable combat configuration.
+1. `enhanceEquipment(item: Item): Result<Item>`: Deducts required ores/gold, increments `enhancementLevel`, scales stats (`base * (1 + level * 0.05)`), and saves item.
+2. `addSocketSlot(item: Item): Result<Item>`: Verifies slot limits (Max 3 weapons/armor, Max 1 accessory), deducts materials, appends `SocketSlot`.
+3. `craftGem(recipeId: String): Result<Material>`: Deducts required essences/parts, grants target gem material to inventory.
+4. `fuseGems(gemId: String, amount: Int = 3): Result<Material>`: Consumes 3 lower-tier gems to produce 1 higher-tier gem.
+5. `uncapHeroLevel(heroId: String): Result<Unit>`: Validates max job level and required boss trophies, increments `maxLevelCap`.
 
 ## Feature Invariants
-- Relic Cost Invariant: Relic upgrade cost is strictly `(currentLevel + 1) * 10` Magicite.
-- Currency Distinction: Relics strictly cost Magicite; Town buildings strictly cost Gold.
-- Prestige Safety: Relic levels and Town facility unlocks are persistent and MUST NOT reset on Dimension Advance.
+- Item Integrity: Enhancing or socketing gear MUST preserve original item IDs, equipped state, and `ownerId`.
+- Socket Capacity Rules: Weapons and Armor cannot exceed 3 sockets. Accessories cannot exceed 1 socket.
+- Material Non-Negativity: Material inventory quantities can never drop below 0. Transactions must validate sufficient material counts prior to state mutation.
+- Enhancement Cap: Equipment cannot exceed `+10` enhancement level.

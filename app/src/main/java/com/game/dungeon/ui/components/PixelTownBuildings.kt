@@ -871,3 +871,119 @@ fun DrawScope.drawDetailedColosseum(animTime: Float = 0f) {
         drawCircle(Color(0xFFF1C40F), radius = 2f * s, center = Offset(bx * s, (flameY - 0.8f) * s))
     }
 }
+
+/**
+ * 6. BLACKSMITH / MYTHIC FORGE (Equipment Enhancement & Gem Socketing)
+ * - Heavy stone masonry & red brick forge chimney.
+ * - Open furnace hearth with flickering fire & floating sparks.
+ * - Heavy steel anvil on a wooden stump pedestal in front.
+ * - Water cooling bucket with steam wisps.
+ * - Hanging iron signboard with golden anvil icon.
+ */
+fun DrawScope.drawDetailedBlacksmith(animTime: Float = 0f) {
+    val W = size.width
+    val s = W / 100f
+
+    // === 1. Heavy Stone Base & Red Brick Building Walls ===
+    pxRect(12f, 40f, 76f, 54f, Color(0xFF37474F)) // Dark slate stone walls
+    pxRect(8f, 92f, 84f, 4f, Color(0xFF263238))   // Heavy foundation ledge
+
+    // Brick texture details
+    for (row in 0..3) {
+        val y = 46f + row * 11f
+        pxRect(12f, y, 76f, 1f, Color(0xFF263238))
+        for (col in 0..5) {
+            val x = 12f + col * 13f + (if (row % 2 == 0) 0f else 6.5f)
+            pxRect(x, y, 1f, 11f, Color(0xFF263238))
+        }
+    }
+
+    // === 2. Red Brick Chimney & Animated Sparks (Right Side Peak) ===
+    pxRect(66f, 8f, 14f, 32f, Color(0xFF78281F)) // Brick chimney
+    pxRect(64f, 6f, 18f, 3f, Color(0xFF4A120B))  // Chimney cap molding
+
+    // Rising fiery sparks from chimney
+    repeat(4) { i ->
+        val sparkPhase = ((animTime + i * 180f) * 0.002f) % 1f
+        val sparkY = 6f - sparkPhase * 25f
+        val sparkX = 73f + sin(sparkPhase * 6.28f + i) * 4f
+        val sparkAlpha = (1f - sparkPhase) * 0.9f
+        drawCircle(
+            Color(0xFFFF9800).copy(alpha = sparkAlpha),
+            radius = (1.2f + (1f - sparkPhase) * 1.5f) * s,
+            center = Offset(sparkX * s, sparkY * s)
+        )
+    }
+
+    // === 3. Pitched Iron Roof ===
+    val roofPath = Path().apply {
+        moveTo(6f * s, 42f * s)
+        lineTo(48f * s, 18f * s)
+        lineTo(90f * s, 42f * s)
+        close()
+    }
+    drawPath(roofPath, Color(0xFF263238)) // Iron roof fill
+    drawPath(roofPath, Color(0xFF102027), style = Stroke(2.5f * s))
+
+    // === 4. Glowing Forge Hearth (Center Entrance) ===
+    val hearthArch = Path().apply {
+        moveTo(36f * s, 94f * s)
+        lineTo(36f * s, 64f * s)
+        quadraticTo(50f * s, 52f * s, 64f * s, 64f * s)
+        lineTo(64f * s, 94f * s)
+        close()
+    }
+    drawPath(hearthArch, Color(0xFF1B0000)) // Dark interior
+    drawPath(hearthArch, Color(0xFF37474F), style = Stroke(2.5f * s))
+
+    // Flickering Forge Hearth Fire
+    val fireFlicker = 0.8f + sin(animTime * 0.008f) * 0.2f
+    val fireY = 75f
+
+    // Outer hearth aura glow
+    drawCircle(Color(0xFFE65100).copy(alpha = 0.5f * fireFlicker), radius = 10f * s, center = Offset(50f * s, fireY * s))
+    drawCircle(Color(0xFFFF5722).copy(alpha = 0.8f * fireFlicker), radius = 6f * s, center = Offset(50f * s, fireY * s))
+    drawCircle(Color(0xFFFF9800).copy(alpha = fireFlicker), radius = 3.5f * s, center = Offset(50f * s, (fireY - 1f) * s))
+    drawCircle(Color(0xFFFFEB3B).copy(alpha = fireFlicker), radius = 1.8f * s, center = Offset(50f * s, (fireY - 2f) * s))
+
+    // === 5. Heavy Steel Anvil on Wooden Stump (Left Front Outside) ===
+    // Wooden stump pedestal
+    pxRect(20f, 78f, 10f, 15f, Color(0xFF5D4037))
+    pxRect(18f, 77f, 14f, 2f, Color(0xFF3E2723))
+
+    // Steel Anvil
+    val anvilBody = Path().apply {
+        moveTo(21f * s, 77f * s)  // Base left
+        lineTo(29f * s, 77f * s)  // Base right
+        lineTo(28f * s, 72f * s)  // Waist right
+        lineTo(34f * s, 70f * s)  // Horn right
+        lineTo(20f * s, 70f * s)  // Face top left
+        lineTo(17f * s, 72f * s)  // Horn tip left
+        lineTo(22f * s, 72f * s)  // Waist left
+        close()
+    }
+    drawPath(anvilBody, Color(0xFF37474F))
+    drawPath(anvilBody, Color(0xFFECEFF1), style = Stroke(1f * s)) // Metallic highlight
+
+    // === 6. Water Cooling Bucket & Steam (Right Front Outside) ===
+    pxRect(72f, 82f, 8f, 11f, Color(0xFF4E342E)) // Wooden bucket
+    drawRect(Color(0xFF3E2723), Offset(72f * s, 82f * s), Size(8f * s, 11f * s), style = Stroke(1.2f * s))
+    pxRect(73f, 83f, 6f, 2f, Color(0xFF0288D1))  // Water top
+
+    // Steam wisps
+    repeat(2) { i ->
+        val steamPhase = ((animTime + i * 300f) * 0.0015f) % 1f
+        val steamY = 82f - steamPhase * 12f
+        val steamX = 75f + sin(steamPhase * 6.28f + i) * 2f
+        val steamAlpha = (1f - steamPhase) * 0.4f
+        drawCircle(Color.White.copy(alpha = steamAlpha), radius = 2f * s, center = Offset(steamX * s, steamY * s))
+    }
+
+    // === 7. Hanging Golden Anvil Signboard ===
+    pxRect(16f, 44f, 12f, 10f, Color(0xFF37474F)) // Signboard
+    drawRect(Color(0xFF102027), Offset(16f * s, 44f * s), Size(12f * s, 10f * s), style = Stroke(1.2f * s))
+    drawLine(Color(0xFF263238), Offset(12f * s, 44f * s), Offset(16f * s, 44f * s), strokeWidth = 2f * s) // Bracket
+
+    // Golden Anvil Icon on Signboard
+    drawCircle(Color(0xFFFFD700), radius = 2.5f * s, center = Offset(22f * s, 49f * s))
+}

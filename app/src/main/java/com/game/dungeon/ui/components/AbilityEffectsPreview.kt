@@ -243,18 +243,6 @@ fun SummonsGalleryPreview() {
         )
 
         AbilityEffectVisualCard(
-            title = "Summon Shiva (Diamond Dust)",
-            animInfo = AbilityAnimationInfo(
-                heroClass = HeroClass.SUMMONER,
-                isSummon = true,
-                summonName = "Shiva",
-                abilityLevel = 2,
-                attackerId = "h4",
-                targetId = "e1"
-            )
-        )
-
-        AbilityEffectVisualCard(
             title = "Summon Ramuh (Judgment Bolt)",
             animInfo = AbilityAnimationInfo(
                 heroClass = HeroClass.SUMMONER,

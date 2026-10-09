@@ -267,6 +267,9 @@
     <string name="building_barracks">BARRACKS</string>
     <string name="building_relics">RELICS</string>
     <string name="building_colosseum">COLOSSEUM</string>
+    <string name="building_blacksmith">BLACKSMITH</string>
+    <string name="building_blacksmith_title">Blacksmith</string>
+    <string name="building_blacksmith_desc">Enhance equipment, add sockets, fuse gems, and uncap hero levels.</string>
     <string name="crystal_shop_subtitle">Unlock new job classes</string>
     <string name="unlocks_job_format">Unlocks %1$s</string>
     <string name="owned_status">✓ OWNED</string>
@@ -1031,4 +1034,115 @@
     <string name="bulletin_perk_forge">⚒️ Mythic Forge: +%1$d%%% Mythic Odds</string>
     <string name="bulletin_perk_war_room">⚔️ War Room: +%1$d%%% Crit Dmg</string>
     <string name="bulletin_perk_spire">🌌 Spire: +%1$d%%% Dimension Magicite</string>
+
+    <!-- Materials -->
+    <string name="mat_iron_ore_name">Iron Ore</string>
+    <string name="mat_iron_ore_desc">Basic ore for low-level enhancement.</string>
+    <string name="mat_mithril_ore_name">Mithril Ore</string>
+    <string name="mat_mithril_ore_desc">Magical ore for mid-level gear enhancement.</string>
+    <string name="mat_adamantite_ore_name">Adamantite Ore</string>
+    <string name="mat_adamantite_ore_desc">Durable ore for high-level gear enhancement.</string>
+    <string name="mat_orichalcum_ore_name">Orichalcum Ore</string>
+    <string name="mat_orichalcum_ore_desc">Mythical ore for peak gear enhancement.</string>
+
+    <string name="mat_beast_fang_name">Beast Fang</string>
+    <string name="mat_beast_fang_desc">Sharp tooth from dungeon beasts.</string>
+    <string name="mat_monster_bone_name">Monster Bone</string>
+    <string name="mat_monster_bone_desc">Sturdy bone from dungeon monsters.</string>
+    <string name="mat_dragon_scale_name">Dragon Scale</string>
+    <string name="mat_dragon_scale_desc">Thick scale radiating ancient dragon power.</string>
+    <string name="mat_demon_horn_name">Demon Horn</string>
+    <string name="mat_demon_horn_desc">Curved horn filled with fiendish energy.</string>
+
+    <string name="mat_fire_essence_name">Fire Essence</string>
+    <string name="mat_fire_essence_desc">Glowing core of fiery magic.</string>
+    <string name="mat_ice_essence_name">Ice Essence</string>
+    <string name="mat_ice_essence_desc">Frosty core of ice magic.</string>
+    <string name="mat_lightning_essence_name">Lightning Essence</string>
+    <string name="mat_lightning_essence_desc">Crackling core of storm magic.</string>
+    <string name="mat_dark_essence_name">Dark Essence</string>
+    <string name="mat_dark_essence_desc">Shadowy core of dark magic.</string>
+
+    <string name="mat_ruby_gem_1_name">Minor Ruby</string>
+    <string name="mat_ruby_gem_1_desc">+5 Attack Bonus</string>
+    <string name="mat_ruby_gem_2_name">Ruby Gem</string>
+    <string name="mat_ruby_gem_2_desc">+15 Attack Bonus</string>
+    <string name="mat_ruby_gem_3_name">Flawless Ruby</string>
+    <string name="mat_ruby_gem_3_desc">+35 Attack Bonus</string>
+
+    <string name="mat_sapphire_gem_1_name">Minor Sapphire</string>
+    <string name="mat_sapphire_gem_1_desc">+5 Magic Bonus</string>
+    <string name="mat_sapphire_gem_2_name">Sapphire Gem</string>
+    <string name="mat_sapphire_gem_2_desc">+15 Magic Bonus</string>
+    <string name="mat_sapphire_gem_3_name">Flawless Sapphire</string>
+    <string name="mat_sapphire_gem_3_desc">+35 Magic Bonus</string>
+
+    <string name="mat_emerald_gem_1_name">Minor Emerald</string>
+    <string name="mat_emerald_gem_1_desc">+5 Defense Bonus</string>
+    <string name="mat_emerald_gem_2_name">Emerald Gem</string>
+    <string name="mat_emerald_gem_2_desc">+15 Defense Bonus</string>
+    <string name="mat_emerald_gem_3_name">Flawless Emerald</string>
+    <string name="mat_emerald_gem_3_desc">+35 Defense Bonus</string>
+
+    <string name="mat_topaz_gem_1_name">Minor Topaz</string>
+    <string name="mat_topaz_gem_1_desc">+25 HP Bonus</string>
+    <string name="mat_topaz_gem_2_name">Topaz Gem</string>
+    <string name="mat_topaz_gem_2_desc">+75 HP Bonus</string>
+    <string name="mat_topaz_gem_3_name">Flawless Topaz</string>
+    <string name="mat_topaz_gem_3_desc">+175 HP Bonus</string>
+
+    <string name="mat_boss_trophy_1_name">Goblin King Crown</string>
+    <string name="mat_boss_trophy_1_desc">Proof of defeating the Goblin King.</string>
+    <string name="mat_boss_trophy_2_name">Hydra Skull</string>
+    <string name="mat_boss_trophy_2_desc">Proof of defeating the Fearsome Hydra.</string>
+    <string name="mat_boss_trophy_3_name">Demon Lord Horn</string>
+    <string name="mat_boss_trophy_3_desc">Proof of conquering the Dark Citadel.</string>
+
+    <string name="mat_unknown_material_name">Unknown Material</string>
+    <string name="mat_unknown_material_desc">A mysterious material found in the dungeon.</string>
+
+    <!-- Crafting & Socketing User Messages -->
+    <string name="craft_msg_enhance_success">Equipment enhanced successfully!</string>
+    <string name="craft_msg_socket_success">Socket added successfully!</string>
+    <string name="craft_msg_gem_inserted">Gem inserted successfully!</string>
+    <string name="craft_msg_gem_crafted">Gem crafted successfully!</string>
+    <string name="craft_msg_gem_fused">Gems fused successfully!</string>
+    <string name="craft_msg_hero_uncapped">Hero level cap increased!</string>
+    <string name="craft_err_no_item_selected">No item selected.</string>
+    <string name="craft_err_insufficient_materials">Insufficient materials.</string>
+    <string name="craft_err_insufficient_gold">Insufficient Gil.</string>
+    <string name="craft_err_max_enhancement">Item is already at maximum enhancement (+10).</string>
+    <string name="craft_err_max_sockets">Item has reached maximum socket capacity.</string>
+    <string name="craft_err_invalid_socket">Invalid socket slot.</string>
+    <string name="craft_err_operation_failed">Crafting operation failed.</string>
+
+    <!-- Crafting Screen UI Strings -->
+    <string name="crafting_title">FORGE &amp; CRAFTING</string>
+    <string name="craft_tab_enhance">ENHANCE</string>
+    <string name="craft_tab_socket">SOCKETS</string>
+    <string name="craft_tab_gem_fusion">GEM FUSION</string>
+    <string name="craft_tab_breakthrough">BREAKTHROUGH</string>
+    <string name="craft_btn_enhance">ENHANCE (+%1$d)</string>
+    <string name="craft_btn_add_socket">ADD SOCKET SLOT</string>
+    <string name="craft_btn_insert_gem">INSERT GEM</string>
+    <string name="craft_btn_fuse_gems">FUSE GEMS (3x)</string>
+    <string name="craft_btn_uncap_level">UNCAP LEVEL (+5)</string>
+    <string name="craft_label_select_item">Select Item:</string>
+    <string name="craft_label_stat_preview">Stat Enhancement (+5%%/lvl):</string>
+    <string name="craft_label_cost">Cost:</string>
+    <string name="craft_label_required_materials">Required Materials:</string>
+    <string name="craft_label_sockets">Sockets:</string>
+    <string name="craft_label_empty_slot">Empty Socket</string>
+    <string name="craft_label_owned_gems">Owned Gems:</string>
+    <string name="craft_label_no_items">No items available.</string>
+    <string name="craft_label_no_gems">No gems available.</string>
+    <string name="craft_label_max_level_reached">MAX LEVEL (+10)</string>
+    <string name="craft_format_level">+%1$d</string>
+    <string name="craft_format_gold">%1$d Gil</string>
+    <string name="craft_format_quantity">x%1$d</string>
+    <string name="craft_format_stat">%1$s: %2$d ➔ %3$d</string>
+    <string name="craft_format_equipped_tag">(Equipped)</string>
+    <string name="craft_format_hero_level">Lvl %1$d</string>
+    <string name="craft_label_hero_breakthrough">Hero Level Breakthrough:</string>
+    <string name="btn_ok">OK</string>
 </resources>

@@ -49,10 +49,17 @@ object AppModule {
             GameDatabase.MIGRATION_22_23,
             GameDatabase.MIGRATION_23_24,
             GameDatabase.MIGRATION_24_25,
-            GameDatabase.MIGRATION_25_26
+            GameDatabase.MIGRATION_25_26,
+            GameDatabase.MIGRATION_26_27
         )
         .fallbackToDestructiveMigration(true) // Keep as safety, but explicit migrations prioritized
         .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideMaterialDao(database: GameDatabase): com.game.dungeon.data.db.MaterialDao {
+        return database.materialDao
     }
 
     @Provides

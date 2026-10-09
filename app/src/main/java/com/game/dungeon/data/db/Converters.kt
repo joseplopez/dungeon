@@ -98,4 +98,16 @@ class Converters {
         val type = object : TypeToken<Set<String>>() {}.type
         return gson.fromJson(value, type) ?: emptySet()
     }
+
+    @TypeConverter
+    fun fromSocketSlotList(value: List<com.game.dungeon.data.models.SocketSlot>?): String {
+        return gson.toJson(value ?: emptyList<com.game.dungeon.data.models.SocketSlot>())
+    }
+
+    @TypeConverter
+    fun toSocketSlotList(value: String?): List<com.game.dungeon.data.models.SocketSlot> {
+        if (value.isNullOrEmpty()) return emptyList()
+        val type = object : TypeToken<List<com.game.dungeon.data.models.SocketSlot>>() {}.type
+        return gson.fromJson(value, type) ?: emptyList()
+    }
 }

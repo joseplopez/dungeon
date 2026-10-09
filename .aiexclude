@@ -36,10 +36,10 @@ icon.jpeg
 *.ogg
 
 # Test Fixtures & Test Code
-app/src/test/
-app/src/androidTest/
-**/test/
-**/androidTest/
+# app/src/test/
+# app/src/androidTest/
+# **/test/
+# **/androidTest/
 
 # Secrets & Binary Files
 *.jks
