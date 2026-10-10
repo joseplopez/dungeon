@@ -46,21 +46,24 @@ class FFBattleEngine(private val context: Context) {
 
         while (aliveHeroes.any { it.isAlive } && currentFloor <= maxFloor) {
             while (isPaused()) { delay(200) }
+
+            // Track all heroes that level up during the entire floor duration
+            val floorLeveledUpHeroIds = mutableSetOf<String>()
+
             // Spawn enemies for this floor
             val bossTemplate = FFDimensionData.getBossForFloor(dimension, currentFloor)
             val enemies = if (bossTemplate != null) {
-                mutableListOf(Enemy.fromTemplate(bossTemplate, currentFloor, context, relicBonuses = relicBonuses,  dimension = dimension))
+                mutableListOf(Enemy.fromTemplate(bossTemplate, currentFloor, context, relicBonuses = relicBonuses, dimension = dimension))
             } else {
                 spawnEnemies(dimension, currentFloor, context, relicBonuses).toMutableList()
             }
-            
+
             onEvent(FFBattleEvent.FloorStart(currentFloor, enemies))
 
             // Floor battle loop
             while (enemies.any { it.currentHp > 0 } && aliveHeroes.any { it.isAlive }) {
-                // Build turn order — sort by speed descending
-                val turnOrder = (aliveHeroes.filter { it.isAlive } as List<Any> + enemies.filter { it.currentHp > 0 })
-                    .sortedByDescending { 
+                val turnOrder = (aliveHeroes.filter { it.isAlive } + enemies.filter { it.currentHp > 0 })
+                    .sortedByDescending {
                         when (it) {
                             is Hero -> it.speed
                             is Enemy -> it.speed
@@ -71,16 +74,25 @@ class FFBattleEngine(private val context: Context) {
                 for (actor in turnOrder) {
                     while (isPaused()) { delay(200) }
                     if (!enemies.any { it.currentHp > 0 } || !aliveHeroes.any { it.isAlive }) break
-                    
+
                     when (actor) {
                         is Hero -> {
-                            if (actor.isAlive) executeHeroTurn(actor, aliveHeroes, enemies, dimension, relicBonuses, { lastAbilityClass }, { lastAbilityClass = it }, onEvent)
+                            if (actor.isAlive) {
+                                executeHeroTurn(
+                                    actor, aliveHeroes, enemies, dimension, relicBonuses,
+                                    floorLeveledUpHeroIds, { lastAbilityClass }, { lastAbilityClass = it }, onEvent
+                                )
+                                delay(speed.delayMs)
+                            }
                         }
                         is Enemy -> {
-                            if (actor.currentHp > 0) executeEnemyTurn(actor, aliveHeroes, onEvent)
+                            // STRICT CHECK: Only execute turn AND delay if enemy is actually alive
+                            if (actor.currentHp > 0) {
+                                executeEnemyTurn(actor, aliveHeroes, onEvent)
+                                delay(speed.delayMs)
+                            }
                         }
                     }
-                    delay(speed.delayMs)
                 }
             }
 
@@ -88,36 +100,35 @@ class FFBattleEngine(private val context: Context) {
             if (aliveHeroes.any { it.isAlive }) {
                 val gilEarned = (enemies.sumOf { it.gilDropped }.toLong() * relicBonuses.goldMultiplier).toLong()
                 val magiciteEarned = enemies.sumOf { it.magiciteDropped }
-                
+
                 // Award completion XP
                 val completionExp = ((5 + (currentFloor / 2)) * relicBonuses.expMultiplier).toInt()
-                val leveledUpHeroIds = mutableListOf<String>()
                 aliveHeroes.filter { it.isAlive }.forEach { hero ->
                     val result = hero.addExperience(completionExp)
-                    if (result) leveledUpHeroIds.add(hero.id)
+                    if (result) floorLeveledUpHeroIds.add(hero.id)
                     onEvent(FFBattleEvent.ExpGained(hero.id, completionExp, result, hero.level))
                 }
-                
+
                 // Loot chance
                 val itemsFound = mutableListOf<Item>()
                 val rawDropChance = if (bossTemplate != null) 100f else 10f * (1f + relicBonuses.petItemFindBonus)
                 val finalDropChance = if (bossTemplate != null) 100f else (100f * (rawDropChance / (rawDropChance + 85f))).coerceAtMost(85f)
-                
+
                 if (Random.nextFloat() * 100 < finalDropChance) {
                     itemsFound.add(
                         Item.random(
-                            floor = currentFloor, 
+                            floor = currentFloor,
                             context = context,
                             relicBonuses = relicBonuses,
                             minRarity = if (bossTemplate != null) Rarity.RARE else Rarity.COMMON,
                             dimension = dimension.number
                         )
                     )
-                    // Double Loot Relic: +5% boss double drop chance per level (logarithmic curve capped at 75%)
+                    // Double Loot Relic
                     if (bossTemplate != null && Random.nextFloat() * 100f < relicBonuses.effectiveDoubleLootChance) {
                         itemsFound.add(
                             Item.random(
-                                floor = currentFloor, 
+                                floor = currentFloor,
                                 context = context,
                                 relicBonuses = relicBonuses,
                                 minRarity = Rarity.RARE,
@@ -129,18 +140,20 @@ class FFBattleEngine(private val context: Context) {
 
                 totalGil += gilEarned
                 totalMagicite += magiciteEarned
-                
+
                 if (bossTemplate != null) {
                     val bossName = runCatching { context.getString(bossTemplate.nameRes) }.getOrNull()
                         ?: runCatching { context.resources?.getString(bossTemplate.nameRes) }.getOrNull()
                         ?: "Boss"
                     onEvent(FFBattleEvent.BossDefeated(bossName, currentFloor >= maxFloor))
                 }
-                
-                // CRITICAL: Remove dead heroes so they don't reappear on the next floor or in the event
+
                 aliveHeroes.removeAll { !it.isAlive }
 
-                onEvent(FFBattleEvent.FloorComplete(currentFloor, gilEarned, magiciteEarned, itemsFound, aliveHeroes.map { it.copy() }, leveledUpHeroIds))
+                onEvent(FFBattleEvent.FloorComplete(
+                    currentFloor, gilEarned, magiciteEarned, itemsFound,
+                    aliveHeroes.map { it.copy() }, floorLeveledUpHeroIds.toList()
+                ))
 
                 currentFloor++
             }
@@ -161,6 +174,7 @@ class FFBattleEngine(private val context: Context) {
         dimension: FFDimension,
         relicBonuses: RelicBonuses,
         allies: List<Hero>,
+        levelUpTracker: MutableSet<String>,
         onEvent: (FFBattleEvent) -> Unit
     ) {
         val exp = ((enemy.floor * 2) * relicBonuses.expMultiplier).toInt()
@@ -169,7 +183,7 @@ class FFBattleEngine(private val context: Context) {
         materials.forEach { (matId, amt) ->
             onEvent(FFBattleEvent.MaterialDropped(matId, amt))
         }
-        awardExpToParty(allies, exp, onEvent)
+        awardExpToParty(allies, exp, levelUpTracker, onEvent)
     }
 
     internal fun calculateMaterialDrops(
@@ -181,7 +195,7 @@ class FFBattleEngine(private val context: Context) {
         val drops = mutableMapOf<String, Int>()
         val relicMultiplier = 1f + relicBonuses.alchemistDropChanceBonus + (relicBonuses.magnetBonus * 0.05f)
 
-        // Uses enemy.isBoss strictly (removes the floor % 10 == 0 bug)
+        // Strictly uses enemy.isBoss — NO floor % 10 check
         val dropRules = MonsterLootTable.getDropsForMonster(enemy.type, enemy.isBoss)
 
         dropRules.forEach { rule ->
@@ -201,48 +215,17 @@ class FFBattleEngine(private val context: Context) {
         return drops
     }
 
-    internal fun selectMaterialForRegularEnemy(monsterType: MonsterType, floor: Int): String {
-        val name = monsterType.name
-
-        val isPartType = name.contains("WOLF") || name.contains("BEHEMOTH") || name.contains("RAT") ||
-                name.contains("DRAGON") || name.contains("SNAKE") || name.contains("BEAST") ||
-                name.contains("FANG") || name.contains("ANTLION") || name.contains("COCKATRICE") ||
-                name.contains("TOAD") || name.contains("SAHAGIN") || name.contains("BUG")
-
-        val isEssenceType = name.contains("BOMB") || name.contains("FLAN") || name.contains("SLIME") ||
-                name.contains("IMP") || name.contains("MAGIC") || name.contains("MAGE") ||
-                name.contains("STOKER") || name.contains("DARK") || name.contains("MIST") ||
-                name.contains("ELEMENT") || name.contains("CYCLONE")
-
-        return when {
-            isPartType -> {
-                when {
-                    floor >= 60 -> if (Random.nextBoolean()) "dragon_scale" else "demon_horn"
-                    floor >= 25 -> if (Random.nextBoolean()) "demon_horn" else "beast_fang"
-                    else -> if (Random.nextBoolean()) "beast_fang" else "monster_bone"
-                }
-            }
-            isEssenceType -> {
-                when {
-                    name.contains("FIRE") || name.contains("BOMB") || name.contains("RED") || name.contains("STOKER") -> "fire_essence"
-                    name.contains("ICE") || name.contains("WATER") || name.contains("BLUE") -> "ice_essence"
-                    name.contains("LIGHTNING") || name.contains("THUNDER") || name.contains("ELEC") -> "lightning_essence"
-                    name.contains("DARK") || floor >= 50 -> "dark_essence"
-                    else -> listOf("fire_essence", "ice_essence", "lightning_essence").random()
-                }
-            }
-            else -> {
-                when {
-                    floor >= 90 -> "orichalcum_ore"
-                    floor >= 50 -> "adamantite_ore"
-                    floor >= 20 -> "mithril_ore"
-                    else -> "iron_ore"
-                }
-            }
-        }
-    }
-
-    private fun executeHeroTurn(hero: Hero, allies: List<Hero>, enemies: MutableList<Enemy>, dimension: FFDimension, relicBonuses: RelicBonuses, getLastAbility: () -> HeroClass?, setLastAbility: (HeroClass) -> Unit, onEvent: (FFBattleEvent)->Unit) {
+    private fun executeHeroTurn(
+        hero: Hero,
+        allies: List<Hero>,
+        enemies: MutableList<Enemy>,
+        dimension: FFDimension,
+        relicBonuses: RelicBonuses,
+        levelUpTracker: MutableSet<String>,
+        getLastAbility: () -> HeroClass?,
+        setLastAbility: (HeroClass) -> Unit,
+        onEvent: (FFBattleEvent) -> Unit
+    ) {
         onEvent(FFBattleEvent.TurnStart(hero.id, hero.name))
         val masteryLvl = relicBonuses.getMasteryLevel(hero.heroClass)
         hero.jobMasteryLevel = masteryLvl
@@ -259,20 +242,19 @@ class FFBattleEngine(private val context: Context) {
 
         if (useAbility) {
             hero.abilityCharge = 0
-            executeJobAbility(hero, allies, enemies, dimension, relicBonuses, getLastAbility, setLastAbility, onEvent)
+            executeJobAbility(hero, allies, enemies, dimension, relicBonuses, levelUpTracker, getLastAbility, setLastAbility, onEvent)
             return
         }
 
-        // Normal turn based on AIPriority
         when (hero.aiPriority) {
             AIPriority.ATTACK -> {
                 val target = enemies.filter { it.currentHp > 0 }.minByOrNull { it.currentHp } ?: return
                 val (dmg, isCrit) = calcPhysicalDamage(hero, target)
                 target.currentHp -= dmg
                 onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, isCrit))
-                
+
                 if (target.currentHp <= 0) {
-                    handleEnemyDefeated(target, dimension, relicBonuses, allies, onEvent)
+                    handleEnemyDefeated(target, dimension, relicBonuses, allies, levelUpTracker, onEvent)
                 }
             }
             AIPriority.MAGIC -> {
@@ -281,9 +263,9 @@ class FFBattleEngine(private val context: Context) {
                     val (dmg, isCrit) = calcMagicDamage(hero, target)
                     target.currentHp -= dmg
                     onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, true, isCrit))
-                    
+
                     if (target.currentHp <= 0) {
-                        handleEnemyDefeated(target, dimension, relicBonuses, allies, onEvent)
+                        handleEnemyDefeated(target, dimension, relicBonuses, allies, levelUpTracker, onEvent)
                     }
                 } else {
                     val target = enemies.filter { it.currentHp > 0 }.minByOrNull { it.currentHp } ?: return
@@ -291,7 +273,7 @@ class FFBattleEngine(private val context: Context) {
                     target.currentHp -= dmg
                     onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, isCrit))
                     if (target.currentHp <= 0) {
-                        handleEnemyDefeated(target, dimension, relicBonuses, allies, onEvent)
+                        handleEnemyDefeated(target, dimension, relicBonuses, allies, levelUpTracker, onEvent)
                     }
                 }
             }
@@ -304,13 +286,12 @@ class FFBattleEngine(private val context: Context) {
                     hero.currentMp -= 10
                     onEvent(FFBattleEvent.HealCast(hero.id, wounded.id, healAmt))
                 } else {
-                    // No heal unlocked or no one to heal — attack instead
                     val target = enemies.filter { it.currentHp > 0 }.minByOrNull { it.currentHp } ?: return
                     val (dmg, isCrit) = calcPhysicalDamage(hero, target)
                     target.currentHp -= dmg
                     onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, isCrit))
                     if (target.currentHp <= 0) {
-                        handleEnemyDefeated(target, dimension, relicBonuses, allies, onEvent)
+                        handleEnemyDefeated(target, dimension, relicBonuses, allies, levelUpTracker, onEvent)
                     }
                 }
             }
@@ -324,20 +305,29 @@ class FFBattleEngine(private val context: Context) {
                     enemyTarget.currentHp -= dmg
                     onEvent(FFBattleEvent.DamageDealt(hero.id, enemyTarget.id, dmg, false, isCrit))
                     if (enemyTarget.currentHp <= 0) {
-                        handleEnemyDefeated(enemyTarget, dimension, relicBonuses, allies, onEvent)
+                        handleEnemyDefeated(enemyTarget, dimension, relicBonuses, allies, levelUpTracker, onEvent)
                     }
                 }
             }
         }
     }
 
-    private fun executeJobAbility(hero: Hero, allies: List<Hero>, enemies: MutableList<Enemy>, dimension: FFDimension, relicBonuses: RelicBonuses, getLastAbility: () -> HeroClass?, setLastAbility: (HeroClass) -> Unit, onEvent: (FFBattleEvent)->Unit) {
+    private fun executeJobAbility(
+        hero: Hero,
+        allies: List<Hero>,
+        enemies: MutableList<Enemy>,
+        dimension: FFDimension,
+        relicBonuses: RelicBonuses,
+        levelUpTracker: MutableSet<String>,
+        getLastAbility: () -> HeroClass?,
+        setLastAbility: (HeroClass) -> Unit,
+        onEvent: (FFBattleEvent) -> Unit
+    ) {
         if (hero.heroClass != HeroClass.MIME) {
             setLastAbility(hero.heroClass)
         }
         val masteryLvl = relicBonuses.getMasteryLevel(hero.heroClass)
-        val activeSkill =
-            JobAbilityData.getActiveAbilityForLevel(hero.heroClass, masteryLvl) ?: return
+        val activeSkill = JobAbilityData.getActiveAbilityForLevel(hero.heroClass, masteryLvl) ?: return
         onEvent(FFBattleEvent.AbilityUsed(hero.id, activeSkill.nameRes, activeSkill.descRes, listOf(hero.name)))
 
         when (hero.heroClass) {
@@ -355,7 +345,7 @@ class FFBattleEngine(private val context: Context) {
                     target.currentHp -= dmg
                     onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, true))
                     if (target.currentHp <= 0) {
-                        handleEnemyDefeated(target, dimension, relicBonuses, allies, onEvent)
+                        handleEnemyDefeated(target, dimension, relicBonuses, allies, levelUpTracker, onEvent)
                     }
                 }
             }
@@ -385,7 +375,7 @@ class FFBattleEngine(private val context: Context) {
                     enemy.currentHp -= dmg
                     onEvent(FFBattleEvent.DamageDealt(hero.id, enemy.id, dmg, true, true))
                     if (enemy.currentHp <= 0) {
-                        handleEnemyDefeated(enemy, dimension, relicBonuses, allies, onEvent)
+                        handleEnemyDefeated(enemy, dimension, relicBonuses, allies, levelUpTracker, onEvent)
                     }
                 }
             }
@@ -398,10 +388,10 @@ class FFBattleEngine(private val context: Context) {
                 onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, finalDmg, false, isCrit))
                 if (target.magiciteDropped > 0 && (hero.hasRansack || masteryLvl >= 10)) {
                     onEvent(FFBattleEvent.MagiciteStolen(hero.id, target.magiciteDropped))
-                    target.magiciteDropped = 0 // Prevents double-stealing / double-counting
+                    target.magiciteDropped = 0 // Zero out stolen magicite so it's not double-counted
                 }
                 if (target.currentHp <= 0) {
-                    handleEnemyDefeated(target, dimension, relicBonuses, allies, onEvent)
+                    handleEnemyDefeated(target, dimension, relicBonuses, allies, levelUpTracker, onEvent)
                 }
             }
             HeroClass.MONK -> {
@@ -416,7 +406,7 @@ class FFBattleEngine(private val context: Context) {
                     target.currentHp -= dmg
                     onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, isCrit))
                     if (target.currentHp <= 0) {
-                        handleEnemyDefeated(target, dimension, relicBonuses, allies, onEvent)
+                        handleEnemyDefeated(target, dimension, relicBonuses, allies, levelUpTracker, onEvent)
                     }
                 }
             }
@@ -428,7 +418,7 @@ class FFBattleEngine(private val context: Context) {
                 target.currentHp -= dmg
                 onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, true))
                 if (target.currentHp <= 0) {
-                    handleEnemyDefeated(target, dimension, relicBonuses, allies, onEvent)
+                    handleEnemyDefeated(target, dimension, relicBonuses, allies, levelUpTracker, onEvent)
                 }
             }
             HeroClass.PALADIN -> {
@@ -440,7 +430,7 @@ class FFBattleEngine(private val context: Context) {
                     enemy.currentHp -= finalDmg
                     onEvent(FFBattleEvent.DamageDealt(hero.id, enemy.id, finalDmg, false, isCrit))
                     if (enemy.currentHp <= 0) {
-                        handleEnemyDefeated(enemy, dimension, relicBonuses, allies, onEvent)
+                        handleEnemyDefeated(enemy, dimension, relicBonuses, allies, levelUpTracker, onEvent)
                     }
                 }
                 val amounts = mutableMapOf<String, Int>()
@@ -461,7 +451,7 @@ class FFBattleEngine(private val context: Context) {
                     target.currentHp -= dmg
                     onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, true, isCrit))
                     if (target.currentHp <= 0) {
-                        handleEnemyDefeated(target, dimension, relicBonuses, allies, onEvent)
+                        handleEnemyDefeated(target, dimension, relicBonuses, allies, levelUpTracker, onEvent)
                     }
                 }
             }
@@ -479,7 +469,7 @@ class FFBattleEngine(private val context: Context) {
                     totalDmg += dmg
                     onEvent(FFBattleEvent.DamageDealt(hero.id, enemy.id, dmg, true, isCrit || mult > 2f))
                     if (enemy.currentHp <= 0) {
-                        handleEnemyDefeated(enemy, dimension, relicBonuses, allies, onEvent)
+                        handleEnemyDefeated(enemy, dimension, relicBonuses, allies, levelUpTracker, onEvent)
                     }
                 }
                 onEvent(FFBattleEvent.SummonUsed(hero.id, name, totalDmg))
@@ -491,7 +481,7 @@ class FFBattleEngine(private val context: Context) {
                 target.currentHp -= dmg
                 onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, true))
                 if (target.currentHp <= 0) {
-                    handleEnemyDefeated(target, dimension, relicBonuses, allies, onEvent)
+                    handleEnemyDefeated(target, dimension, relicBonuses, allies, levelUpTracker, onEvent)
                 }
             }
             HeroClass.DRAGOON -> {
@@ -503,7 +493,7 @@ class FFBattleEngine(private val context: Context) {
                     target.currentHp -= dmg
                     onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, isCrit))
                     if (target.currentHp <= 0) {
-                        handleEnemyDefeated(target, dimension, relicBonuses, allies, onEvent)
+                        handleEnemyDefeated(target, dimension, relicBonuses, allies, levelUpTracker, onEvent)
                     }
                 }
             }
@@ -522,14 +512,14 @@ class FFBattleEngine(private val context: Context) {
                     enemy.currentHp -= dmg
                     onEvent(FFBattleEvent.DamageDealt(hero.id, enemy.id, dmg, false, true))
                     if (enemy.currentHp <= 0) {
-                        handleEnemyDefeated(enemy, dimension, relicBonuses, allies, onEvent)
+                        handleEnemyDefeated(enemy, dimension, relicBonuses, allies, levelUpTracker, onEvent)
                     }
                 }
             }
             HeroClass.MIME -> {
                 val lastAbility = getLastAbility()
                 if (lastAbility != null) {
-                    executeJobAbility(hero.copy(heroClass = lastAbility), allies, enemies, dimension, relicBonuses, getLastAbility, setLastAbility, onEvent)
+                    executeJobAbility(hero.copy(heroClass = lastAbility), allies, enemies, dimension, relicBonuses, levelUpTracker, getLastAbility, setLastAbility, onEvent)
                 }
             }
             HeroClass.NECROMANCER -> {
@@ -548,7 +538,7 @@ class FFBattleEngine(private val context: Context) {
                     }
                     onEvent(FFBattleEvent.GroupHeal(hero.id, amounts))
                     if (target.currentHp <= 0) {
-                        handleEnemyDefeated(target, dimension, relicBonuses, allies, onEvent)
+                        handleEnemyDefeated(target, dimension, relicBonuses, allies, levelUpTracker, onEvent)
                     }
                 }
             }
@@ -561,7 +551,7 @@ class FFBattleEngine(private val context: Context) {
                     target.currentHp -= dmg
                     onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, true, isCrit))
                     if (target.currentHp <= 0) {
-                        handleEnemyDefeated(target, dimension, relicBonuses, allies, onEvent)
+                        handleEnemyDefeated(target, dimension, relicBonuses, allies, levelUpTracker, onEvent)
                     }
                 }
             }
@@ -573,15 +563,16 @@ class FFBattleEngine(private val context: Context) {
                 target.currentHp -= dmg
                 onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, dmg, false, isCrit))
                 if (target.currentHp <= 0) {
-                    handleEnemyDefeated(target, dimension, relicBonuses, allies, onEvent)
+                    handleEnemyDefeated(target, dimension, relicBonuses, allies, levelUpTracker, onEvent)
                 }
             }
         }
     }
 
-    private fun awardExpToParty(heroes: List<Hero>, amount: Int, onEvent: (FFBattleEvent) -> Unit) {
+    private fun awardExpToParty(heroes: List<Hero>, amount: Int, tracker: MutableSet<String>, onEvent: (FFBattleEvent) -> Unit) {
         heroes.filter { it.isAlive }.forEach { hero ->
             val result = hero.addExperience(amount)
+            if (result) tracker.add(hero.id)
             onEvent(FFBattleEvent.ExpGained(hero.id, amount, result, hero.level))
         }
     }
@@ -596,7 +587,7 @@ class FFBattleEngine(private val context: Context) {
     }
 
     private fun calcMagicDamage(attacker: Hero, target: Enemy): Pair<Int, Boolean> {
-        val isCrit = Random.nextInt(100) < (attacker.critChance / 2) // Magic crit is half as likely but possible
+        val isCrit = Random.nextInt(100) < (attacker.critChance / 2)
         val critMult = 1.0f + (attacker.critDamage / 100f)
         val totalMag = attacker.magic
         val baseDmg = maxOf(1, (totalMag * 1.5f - target.magicDefense * 0.5f + Random.nextInt(-2, 3)).toInt())
@@ -604,23 +595,22 @@ class FFBattleEngine(private val context: Context) {
         return finalDmg to isCrit
     }
 
-    private fun executeEnemyTurn(enemy: Enemy, heroes: MutableList<Hero>, onEvent: (FFBattleEvent)->Unit) {
+    private fun executeEnemyTurn(enemy: Enemy, heroes: MutableList<Hero>, onEvent: (FFBattleEvent) -> Unit) {
         val aliveHeroes = heroes.filter { it.isAlive }
         if (aliveHeroes.isEmpty()) return
 
-        // Option 3: Weighted Random (Bias towards highest Defense)
-        // We assign weights based on defense. Higher defense = more likely to be hit.
-        val totalDefense = aliveHeroes.sumOf { it.defense }.coerceAtLeast(1)
+        // Aggro calculation: ensures zero-defense heroes maintain a minimum weight of 1
+        val totalDefense = aliveHeroes.sumOf { maxOf(1, it.defense) }
         var roll = Random.nextInt(totalDefense)
-        
-        var target = aliveHeroes.last() // Fallback
+
+        var target = aliveHeroes.last()
         for (hero in aliveHeroes) {
-            val hDef = hero.defense
-            if (roll < hDef) {
+            val weight = maxOf(1, hero.defense)
+            if (roll < weight) {
                 target = hero
                 break
             }
-            roll -= hDef
+            roll -= weight
         }
 
         val k = 150f + enemy.floor * 0.8f

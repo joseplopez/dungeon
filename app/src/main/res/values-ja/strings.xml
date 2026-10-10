@@ -1027,4 +1027,165 @@
     <string name="bulletin_perk_forge">⚒️ 神話の鍛冶場: 神話確率+%1%%%</string>
     <string name="bulletin_perk_war_room">⚔️ 作戦司令室: クリティカル威力+%1%%%</string>
     <string name="bulletin_perk_spire">🌌 エーテル尖塔: ファンタジー魔石+%1%%%</string>
-</resources>
+
+        <string name="building_blacksmith">鍛冶屋</string>
+        <string name="building_blacksmith_title">鍛冶屋</string>
+        <string name="building_blacksmith_desc">装備の強化、ソケットの追加、宝石の合成、ヒーローレベルの上限解放を行います。</string>
+        <string name="building_library">図鑑</string>
+        <string name="building_library_title">図鑑</string>
+        <string name="building_library_desc">モンスター図鑑や素材の入手先を確認し、達成報酬を解放します。</string>
+
+        <string name="codex_title">図鑑＆怪物図鑑</string>
+        <string name="codex_tab_bestiary">怪物図鑑</string>
+        <string name="codex_tab_materials">素材</string>
+        <string name="codex_tab_milestones">マイルストーン</string>
+        <string name="codex_kills_label">討伐数: %1$d</string>
+        <string name="codex_undiscovered">\?\?\?</string>
+        <string name="codex_completion">達成率: %1$.1f%%</string>
+        <string name="codex_search_hint">図鑑と素材を検索...</string>
+        <string name="codex_no_results">一致する項目が見つかりません。</string>
+        <string name="codex_milestone_title">マイルストーンティア</string>
+        <string name="codex_active_bonuses">発動中のボーナス:</string>
+        <string name="codex_threshold_label">ランク: %1$s</string>
+        <string name="codex_drop_sources">入手先: %1$s</string>
+        <string name="codex_drops_label">ドロップ: %1$s</string>
+
+        <!-- Materials -->
+        <string name="mat_iron_ore_name">鉄鉱石</string>
+        <string name="mat_iron_ore_desc">低レベル強化用の基本的な鉱石。</string>
+        <string name="mat_mithril_ore_name">ミスリル鉱石</string>
+        <string name="mat_mithril_ore_desc">中レベル装備強化用の魔法の鉱石。</string>
+        <string name="mat_adamantite_ore_name">アダマンタイト鉱石</string>
+        <string name="mat_adamantite_ore_desc">高レベル装備強化用の頑丈な鉱石。</string>
+        <string name="mat_orichalcum_ore_name">オリハルコン鉱石</string>
+        <string name="mat_orichalcum_ore_desc">最高峰の装備強化用の神話の鉱石。</string>
+
+        <string name="mat_beast_fang_name">獣の牙</string>
+        <string name="mat_beast_fang_desc">ダンジョンの魔獣から採取した鋭い牙。</string>
+        <string name="mat_monster_bone_name">魔物の骨</string>
+        <string name="mat_monster_bone_desc">ダンジョンの魔物から採取した頑丈な骨。</string>
+        <string name="mat_dragon_scale_name">竜の鱗</string>
+        <string name="mat_dragon_scale_desc">古代竜の力を放つ分厚い鱗。</string>
+        <string name="mat_demon_horn_name">悪魔の角</string>
+        <string name="mat_demon_horn_desc">邪悪なエネルギーが宿る曲がった角。</string>
+
+        <string name="mat_fire_essence_name">炎のエッセンス</string>
+        <string name="mat_fire_essence_desc">炎の魔法が宿る輝くコア。</string>
+        <string name="mat_ice_essence_name">氷のエッセンス</string>
+        <string name="mat_ice_essence_desc">氷の魔法が宿る冷たいコア。</string>
+        <string name="mat_lightning_essence_name">雷のエッセンス</string>
+        <string name="mat_lightning_essence_desc">嵐の魔法が宿るバチバチと鳴るコア。</string>
+        <string name="mat_dark_essence_name">闇のエッセンス</string>
+        <string name="mat_dark_essence_desc">闇の魔法が宿る影のコア。</string>
+
+        <string name="mat_ruby_gem_1_name">ルビー（小）</string>
+        <string name="mat_ruby_gem_1_desc">+5 攻撃ボーナス</string>
+        <string name="mat_ruby_gem_2_name">ルビー</string>
+        <string name="mat_ruby_gem_2_desc">+15 攻撃ボーナス</string>
+        <string name="mat_ruby_gem_3_name">極上ルビー</string>
+        <string name="mat_ruby_gem_3_desc">+35 攻撃ボーナス</string>
+
+        <string name="mat_sapphire_gem_1_name">サファイア（小）</string>
+        <string name="mat_sapphire_gem_1_desc">+5 魔法ボーナス</string>
+        <string name="mat_sapphire_gem_2_name">サファイア</string>
+        <string name="mat_sapphire_gem_2_desc">+15 魔法ボーナス</string>
+        <string name="mat_sapphire_gem_3_name">極上サファイア</string>
+        <string name="mat_sapphire_gem_3_desc">+35 魔法ボーナス</string>
+
+        <string name="mat_emerald_gem_1_name">エメラルド（小）</string>
+        <string name="mat_emerald_gem_1_desc">+5 防御ボーナス</string>
+        <string name="mat_emerald_gem_2_name">エメラルド</string>
+        <string name="mat_emerald_gem_2_desc">+15 防御ボーナス</string>
+        <string name="mat_emerald_gem_3_name">極上エメラルド</string>
+        <string name="mat_emerald_gem_3_desc">+35 防御ボーナス</string>
+
+        <string name="mat_topaz_gem_1_name">トパーズ（小）</string>
+        <string name="mat_topaz_gem_1_desc">+25 HPボーナス</string>
+        <string name="mat_topaz_gem_2_name">トパーズ</string>
+        <string name="mat_topaz_gem_2_desc">+75 HPボーナス</string>
+        <string name="mat_topaz_gem_3_name">極上トパーズ</string>
+        <string name="mat_topaz_gem_3_desc">+175 HPボーナス</string>
+
+        <string name="mat_boss_trophy_1_name">ゴブリンキングの王冠</string>
+        <string name="mat_boss_trophy_1_desc">ゴブリンキングを撃破した証。</string>
+        <string name="mat_boss_trophy_2_name">ヒドラの頭骨</string>
+        <string name="mat_boss_trophy_2_desc">恐ろしいヒドラを撃破した証。</string>
+        <string name="mat_boss_trophy_3_name">魔王の角</string>
+        <string name="mat_boss_trophy_3_desc">闇の城塞を攻略した証。</string>
+
+        <string name="mat_unknown_material_name">未知の素材</string>
+        <string name="mat_unknown_material_desc">ダンジョンで見つかった謎の素材。</string>
+
+        <!-- Crafting & Socketing User Messages -->
+        <string name="craft_msg_enhance_success">装備の強化に成功しました！</string>
+        <string name="craft_msg_socket_success">ソケットの追加に成功しました！</string>
+        <string name="craft_msg_gem_inserted">宝石の装着に成功しました！</string>
+        <string name="craft_msg_gem_crafted">宝石の作成に成功しました！</string>
+        <string name="craft_msg_gem_fused">宝石の合成に成功しました！</string>
+        <string name="craft_msg_hero_uncapped">ヒーローのレベル上限が解放されました！</string>
+        <string name="craft_err_hero_not_at_cap">ヒーローが現在の最大レベルに達していません。</string>
+        <string name="craft_status_reach_cap_to_uncap">現在の最大レベル: Lv %1$d（上限到達で解放可能）</string>
+        <string name="craft_status_ready_for_breakthrough">現在の最大レベル: Lv %1$d（限界突破準備完了！）</string>
+        <string name="craft_err_no_item_selected">アイテムが選択されていません。</string>
+        <string name="craft_err_insufficient_materials">素材が不足しています。</string>
+        <string name="craft_err_insufficient_gold">ギルが不足しています。</string>
+        <string name="craft_err_max_enhancement">このアイテムは既に最大強化（+10）されています。</string>
+        <string name="craft_err_max_sockets">ソケット数が上限に達しています。</string>
+        <string name="craft_err_invalid_socket">無効なソケットスロットです。</string>
+        <string name="craft_err_operation_failed">クラフト操作に失敗しました。</string>
+
+        <!-- Crafting Screen UI Strings -->
+        <string name="crafting_title">鍛冶＆クラフト</string>
+        <string name="craft_tab_enhance">強化</string>
+        <string name="craft_tab_socket">ソケット</string>
+        <string name="craft_tab_gem_fusion">宝石合成</string>
+        <string name="craft_tab_breakthrough">限界突破</string>
+        <string name="craft_btn_enhance">強化 (+%1$d)</string>
+        <string name="craft_btn_add_socket">ソケット追加</string>
+        <string name="craft_btn_insert_gem">宝石装着</string>
+        <string name="craft_btn_fuse_gems">宝石合成 (3x)</string>
+        <string name="craft_btn_uncap_level">上限解放 (+20)</string>
+        <string name="craft_label_select_item">アイテム選択:</string>
+        <string name="craft_label_stat_preview">ステータス強化 (+5%%/Lv):</string>
+        <string name="craft_label_cost">費用:</string>
+        <string name="craft_label_required_materials">必要素材:</string>
+        <string name="craft_label_sockets">ソケット:</string>
+        <string name="craft_label_empty_slot">空きソケット</string>
+        <string name="craft_label_owned_gems">所持している宝石:</string>
+        <string name="craft_label_no_items">利用可能なアイテムがありません。</string>
+        <string name="craft_label_no_gems">利用可能な宝石がありません。</string>
+        <string name="craft_label_max_level_reached">最大レベル (+10)</string>
+        <string name="craft_format_level">+%1$d</string>
+        <string name="craft_format_gold">%1$d ギル</string>
+        <string name="craft_format_quantity">x%1$d</string>
+        <string name="craft_format_stat">%1$s: %2$d ➔ %3$d</string>
+        <string name="craft_format_equipped_tag">(装備中)</string>
+        <string name="craft_format_hero_level">Lv %1$d</string>
+        <string name="craft_label_hero_breakthrough">ヒーローレベル限界突破:</string>
+        <string name="btn_ok">OK</string>
+
+        <!-- Codex & Compendium Extensions -->
+        <string name="codex_milestone_tier">ティア %1$d%%</string>
+        <string name="codex_status_unlocked">解放済み</string>
+        <string name="codex_status_locked">ロック中</string>
+        <string name="stat_magicite_find">マギサイトドロップ率</string>
+        <string name="threshold_undiscovered">未発見</string>
+        <string name="threshold_sighted">目撃</string>
+        <string name="threshold_analyzed">解明</string>
+        <string name="threshold_mastered">極めた</string>
+        <string name="mat_cat_ore">鉱石</string>
+        <string name="mat_cat_monster_part">魔物の部位</string>
+        <string name="mat_cat_essence">エッセンス</string>
+        <string name="mat_cat_boss_trophy">ボストロフィー</string>
+        <string name="craft_slot_locked">[ ロックスロット %1$d ]</string>
+        <string name="craft_socket_ratio">%1$d / 3</string>
+        <string name="craft_trophy_ratio">(%1$d / 1)</string>
+        <string name="codex_kills_format">討伐数: %1$d</string>
+        <string name="codex_completion_format">達成率: %1$.1f%%</string>
+
+        <!-- Hero Breakthrough Strings -->
+        <string name="hero_level_cap">Lv %1$d / %2$d (最大)</string>
+        <string name="hero_level_normal">Lv %1$d / %2$d</string>
+        <string name="hero_breakthrough_button">限界突破</string>
+        <string name="hero_breakthrough_req">必要: 1x %1$s</string>
+    </resources>

@@ -1028,4 +1028,164 @@
     <string name="bulletin_perk_forge">⚒️ Forja Mítica: +%1$d%%% Prob. Mítica</string>
     <string name="bulletin_perk_war_room">⚔️ Sala de Guerra: +%1$d%%% Daño Crítico</string>
     <string name="bulletin_perk_spire">🌌 Espira: +%1$d%%% Magicit Dimensión</string>
-</resources>
+        <string name="building_blacksmith">HERRERÍA</string>
+        <string name="building_blacksmith_title">Herrería</string>
+        <string name="building_blacksmith_desc">Mejora equipamiento, añade engastes, fusiona gemas y desbloquea el límite de nivel de los héroes.</string>
+        <string name="building_library">BIBLIOTECA</string>
+        <string name="building_library_title">Compendio</string>
+        <string name="building_library_desc">Consulta el bestiario de monstruos, fuentes de materiales y desbloquea hitos de progreso.</string>
+
+        <string name="codex_title">COMPENDIO Y BESTIARIO</string>
+        <string name="codex_tab_bestiary">Bestiario</string>
+        <string name="codex_tab_materials">Materiales</string>
+        <string name="codex_tab_milestones">Hitos</string>
+        <string name="codex_kills_label">Bajas: %1$d</string>
+        <string name="codex_undiscovered">\?\?\?</string>
+        <string name="codex_completion">Progreso: %1$.1f%%</string>
+        <string name="codex_search_hint">Buscar en bestiario y materiales...</string>
+        <string name="codex_no_results">No se encontraron coincidencias.</string>
+        <string name="codex_milestone_title">Niveles de hito</string>
+        <string name="codex_active_bonuses">Bonificaciones activas:</string>
+        <string name="codex_threshold_label">Rango: %1$s</string>
+        <string name="codex_drop_sources">Fuentes: %1$s</string>
+        <string name="codex_drops_label">Objetos: %1$s</string>
+
+        <!-- Materials -->
+        <string name="mat_iron_ore_name">Mineral de hierro</string>
+        <string name="mat_iron_ore_desc">Mineral básico para mejoras de nivel bajo.</string>
+        <string name="mat_mithril_ore_name">Mineral de mithril</string>
+        <string name="mat_mithril_ore_desc">Mineral mágico para mejoras de equipamiento de nivel medio.</string>
+        <string name="mat_adamantite_ore_name">Mineral de adamantita</string>
+        <string name="mat_adamantite_ore_desc">Mineral resistente para mejoras de equipamiento de nivel alto.</string>
+        <string name="mat_orichalcum_ore_name">Mineral de oricalco</string>
+        <string name="mat_orichalcum_ore_desc">Mineral mítico para la mejora máxima de equipamiento.</string>
+
+        <string name="mat_beast_fang_name">Colmillo de bestia</string>
+        <string name="mat_beast_fang_desc">Diente afilado de bestias de la mazmorra.</string>
+        <string name="mat_monster_bone_name">Hueso de monstruo</string>
+        <string name="mat_monster_bone_desc">Hueso resistente de monstruos de la mazmorra.</string>
+        <string name="mat_dragon_scale_name">Escama de dragón</string>
+        <string name="mat_dragon_scale_desc">Escama gruesa que irradia el antiguo poder de los dragones.</string>
+        <string name="mat_demon_horn_name">Cuerno de demonio</string>
+        <string name="mat_demon_horn_desc">Cuerno curvo lleno de energía demoníaca.</string>
+
+        <string name="mat_fire_essence_name">Esencia de fuego</string>
+        <string name="mat_fire_essence_desc">Núcleo brillante de magia de fuego.</string>
+        <string name="mat_ice_essence_name">Esencia de hielo</string>
+        <string name="mat_ice_essence_desc">Núcleo helado de magia de hielo.</string>
+        <string name="mat_lightning_essence_name">Esencia del rayo</string>
+        <string name="mat_lightning_essence_desc">Núcleo chispeante de magia de tormenta.</string>
+        <string name="mat_dark_essence_name">Esencia oscura</string>
+        <string name="mat_dark_essence_desc">Núcleo sombrío de magia oscura.</string>
+
+        <string name="mat_ruby_gem_1_name">Rubí menor</string>
+        <string name="mat_ruby_gem_1_desc">+5 Bonificación de ataque</string>
+        <string name="mat_ruby_gem_2_name">Rubí</string>
+        <string name="mat_ruby_gem_2_desc">+15 Bonificación de ataque</string>
+        <string name="mat_ruby_gem_3_name">Rubí perfecto</string>
+        <string name="mat_ruby_gem_3_desc">+35 Bonificación de ataque</string>
+
+        <string name="mat_sapphire_gem_1_name">Zafiro menor</string>
+        <string name="mat_sapphire_gem_1_desc">+5 Bonificación de magia</string>
+        <string name="mat_sapphire_gem_2_name">Zafiro</string>
+        <string name="mat_sapphire_gem_2_desc">+15 Bonificación de magia</string>
+        <string name="mat_sapphire_gem_3_name">Zafiro perfecto</string>
+        <string name="mat_sapphire_gem_3_desc">+35 Bonificación de magia</string>
+
+        <string name="mat_emerald_gem_1_name">Esmeralda menor</string>
+        <string name="mat_emerald_gem_1_desc">+5 Bonificación de defensa</string>
+        <string name="mat_emerald_gem_2_name">Esmeralda</string>
+        <string name="mat_emerald_gem_2_desc">+15 Bonificación de defensa</string>
+        <string name="mat_emerald_gem_3_name">Esmeralda perfecta</string>
+        <string name="mat_emerald_gem_3_desc">+35 Bonificación de defensa</string>
+
+        <string name="mat_topaz_gem_1_name">Topacio menor</string>
+        <string name="mat_topaz_gem_1_desc">+25 Bonificación de PV</string>
+        <string name="mat_topaz_gem_2_name">Topacio</string>
+        <string name="mat_topaz_gem_2_desc">+75 Bonificación de PV</string>
+        <string name="mat_topaz_gem_3_name">Topacio perfecto</string>
+        <string name="mat_topaz_gem_3_desc">+175 Bonificación de PV</string>
+
+        <string name="mat_boss_trophy_1_name">Corona del Rey Goblin</string>
+        <string name="mat_boss_trophy_1_desc">Prueba de haber derrotado al Rey Goblin.</string>
+        <string name="mat_boss_trophy_2_name">Calavera de hidra</string>
+        <string name="mat_boss_trophy_2_desc">Prueba de haber derrotado a la temible Hidra.</string>
+        <string name="mat_boss_trophy_3_name">Cuerno del Señor Demonio</string>
+        <string name="mat_boss_trophy_3_desc">Prueba de haber conquistado la Ciudadela Oscura.</string>
+
+        <string name="mat_unknown_material_name">Material desconocido</string>
+        <string name="mat_unknown_material_desc">Un misterioso material encontrado en la mazmorra.</string>
+
+        <!-- Crafting & Socketing User Messages -->
+        <string name="craft_msg_enhance_success">¡Equipamiento mejorado con éxito!</string>
+        <string name="craft_msg_socket_success">¡Engaste añadido con éxito!</string>
+        <string name="craft_msg_gem_inserted">¡Gema incrustada con éxito!</string>
+        <string name="craft_msg_gem_crafted">¡Gema fabricada con éxito!</string>
+        <string name="craft_msg_gem_fused">¡Gemas fusionadas con éxito!</string>
+        <string name="craft_msg_hero_uncapped">¡Límite de nivel del héroe aumentado!</string>
+        <string name="craft_err_hero_not_at_cap">El héroe aún no ha alcanzado el nivel máximo actual.</string>
+        <string name="craft_status_reach_cap_to_uncap">Nivel máx. actual: Nivel %1$d (Alcanza el límite para aumentar)</string>
+        <string name="craft_status_ready_for_breakthrough">Nivel máx. actual: Nivel %1$d (¡Listo para la ruptura!)</string>
+        <string name="craft_err_no_item_selected">Ningún objeto seleccionado.</string>
+        <string name="craft_err_insufficient_materials">Materiales insuficientes.</string>
+        <string name="craft_err_insufficient_gold">Gil insuficiente.</string>
+        <string name="craft_err_max_enhancement">El objeto ya está en la mejora máxima (+10).</string>
+        <string name="craft_err_max_sockets">El objeto ha alcanzado la capacidad máxima de engastes.</string>
+        <string name="craft_err_invalid_socket">Ranura de engaste no válida.</string>
+        <string name="craft_err_operation_failed">La operación de fabricación ha fallado.</string>
+
+        <!-- Crafting Screen UI Strings -->
+        <string name="crafting_title">FORJA Y FABRICACIÓN</string>
+        <string name="craft_tab_enhance">MEJORAR</string>
+        <string name="craft_tab_socket">ENGASTES</string>
+        <string name="craft_tab_gem_fusion">FUSIÓN DE GEMAS</string>
+        <string name="craft_tab_breakthrough">RUPTURA DE LÍMITE</string>
+        <string name="craft_btn_enhance">MEJORAR (+%1$d)</string>
+        <string name="craft_btn_add_socket">AÑADIR ENGASTE</string>
+        <string name="craft_btn_insert_gem">INSERTAR GEMA</string>
+        <string name="craft_btn_fuse_gems">FUSIONAR GEMAS (3x)</string>
+        <string name="craft_btn_uncap_level">AUMENTAR LÍMITE DE NIVEL (+20)</string>
+        <string name="craft_label_select_item">Seleccionar objeto:</string>
+        <string name="craft_label_stat_preview">Mejora de atributos (+5%%/nv):</string>
+        <string name="craft_label_cost">Coste:</string>
+        <string name="craft_label_required_materials">Materiales requeridos:</string>
+        <string name="craft_label_sockets">Engastes:</string>
+        <string name="craft_label_empty_slot">Engaste vacío</string>
+        <string name="craft_label_owned_gems">Gemas en posesión:</string>
+        <string name="craft_label_no_items">No hay objetos disponibles.</string>
+        <string name="craft_label_no_gems">No hay gemas disponibles.</string>
+        <string name="craft_label_max_level_reached">NIVEL MÁXIMO (+10)</string>
+        <string name="craft_format_level">+%1$d</string>
+        <string name="craft_format_gold">%1$d Gil</string>
+        <string name="craft_format_quantity">x%1$d</string>
+        <string name="craft_format_stat">%1$s: %2$d ➔ %3$d</string>
+        <string name="craft_format_equipped_tag">(Equipado)</string>
+        <string name="craft_format_hero_level">Nvl %1$d</string>
+        <string name="craft_label_hero_breakthrough">Ruptura de límite de héroe:</string>
+        <string name="btn_ok">Aceptar</string>
+
+        <!-- Codex & Compendium Extensions -->
+        <string name="codex_milestone_tier">NIVEL %1$d%%</string>
+        <string name="codex_status_unlocked">DESBLOQUEADO</string>
+        <string name="codex_status_locked">BLOQUEADO</string>
+        <string name="stat_magicite_find">HALLAZGO DE MAGICITA</string>
+        <string name="threshold_undiscovered">NO DESCUBIERTO</string>
+        <string name="threshold_sighted">AVISTADO</string>
+        <string name="threshold_analyzed">ANALIZADO</string>
+        <string name="threshold_mastered">DOMINADO</string>
+        <string name="mat_cat_ore">Mineral</string>
+        <string name="mat_cat_monster_part">Parte de monstruo</string>
+        <string name="mat_cat_essence">Esencia</string>
+        <string name="mat_cat_boss_trophy">Trofeo de jefe</string>
+        <string name="craft_slot_locked">[ Ranura bloqueada %1$d ]</string>
+        <string name="craft_socket_ratio">%1$d / 3</string>
+        <string name="craft_trophy_ratio">(%1$d / 1)</string>
+        <string name="codex_kills_format">Bajas: %1$d</string>
+        <string name="codex_completion_format">Progreso: %1$.1f%%</string>
+
+        <!-- Hero Breakthrough Strings -->
+        <string name="hero_level_cap">Nvl %1$d / %2$d (MÁX)</string>
+        <string name="hero_level_normal">Nvl %1$d / %2$d</string>
+        <string name="hero_breakthrough_button">RUPTURA</string>
+        <string name="hero_breakthrough_req">Requiere 1x %1$s</string>
+    </resources>

@@ -1028,4 +1028,165 @@
     <string name="bulletin_perk_forge">⚒️ মিথিক কামারশালা: +%1%%% মিথিক সম্ভাবনা</string>
     <string name="bulletin_perk_war_room">⚔️ যুদ্ধ কক্ষ: +%1%%% ক্রিটিক্যাল ক্ষতি</string>
     <string name="bulletin_perk_spire">🌌 স্পায়ার: +%1%%% মাত্রা ম্যাজিসাইট</string>
-</resources>
+
+        <string name="building_blacksmith">কামারশাল</string>
+        <string name="building_blacksmith_title">কামারশাল</string>
+        <string name="building_blacksmith_desc">উপকরণ উন্নত করুন, সকেট যোগ করুন, রত্ন ফিউজ করুন এবং বীরের সর্বোচ্চ স্তর বৃদ্ধি করুন।</string>
+        <string name="building_library">গ্রন্থাগার</string>
+        <string name="building_library_title">সংকলন</string>
+        <string name="building_library_desc">দানবকোষ পর্যবেক্ষণ করুন, উপাদানের উৎস জানুন এবং অগ্রগতির মাইলফলক আনলক করুন।</string>
+
+        <string name="codex_title">সংকলন ও দানবকোষ</string>
+        <string name="codex_tab_bestiary">দানবকোষ</string>
+        <string name="codex_tab_materials">উপাদানসমূহ</string>
+        <string name="codex_tab_milestones">মাইলফলক</string>
+        <string name="codex_kills_label">নিহত: %1$d</string>
+        <string name="codex_undiscovered">\?\?\?</string>
+        <string name="codex_completion">সম্পূর্ণতা: %1$.1f%%</string>
+        <string name="codex_search_hint">দানবকোষ ও উপাদানে অনুসন্ধান করুন...</string>
+        <string name="codex_no_results">কোনো মিল পাওয়া যায়নি।</string>
+        <string name="codex_milestone_title">মাইলফলক স্তরসমূহ</string>
+        <string name="codex_active_bonuses">সক্রিয় বোনাসসমূহ:</string>
+        <string name="codex_threshold_label">র‍্যাংক: %1$s</string>
+        <string name="codex_drop_sources">উৎস: %1$s</string>
+        <string name="codex_drops_label">ড্রপ: %1$s</string>
+
+        <!-- Materials -->
+        <string name="mat_iron_ore_name">লোহা আকরিক</string>
+        <string name="mat_iron_ore_desc">নিম্ন স্তরের উন্নতির জন্য সাধারণ আকরিক।</string>
+        <string name="mat_mithril_ore_name">মিথ্রিল আকরিক</string>
+        <string name="mat_mithril_ore_desc">মধ্যম স্তরের গিয়ার উন্নতির জন্য জাদুকরী আকরিক।</string>
+        <string name="mat_adamantite_ore_name">অ্যাডামানটাইট আকরিক</string>
+        <string name="mat_adamantite_ore_desc">উচ্চ স্তরের গিয়ার উন্নতির জন্য টেকসই আকরিক।</string>
+        <string name="mat_orichalcum_ore_name">অরিক্যালক্যাম আকরিক</string>
+        <string name="mat_orichalcum_ore_desc">সর্বোচ্চ গিয়ার উন্নতির জন্য পৌরাণিক আকরিক।</string>
+
+        <string name="mat_beast_fang_name">পশুর দাঁত</string>
+        <string name="mat_beast_fang_desc">কারাগারের পশুর ধারালো দাঁত।</string>
+        <string name="mat_monster_bone_name">দানবের হাড়</string>
+        <string name="mat_monster_bone_desc">কারাগারের দানবের শক্ত হাড়।</string>
+        <string name="mat_dragon_scale_name">ড্রাগনের আঁশ</string>
+        <string name="mat_dragon_scale_desc">প্রাচীন ড্রাগনের শক্তি বিকিরণকারী ঘন আঁশ।</string>
+        <string name="mat_demon_horn_name">শয়তানের শিং</string>
+        <string name="mat_demon_horn_desc">দৈত্যাকৃতির শক্তিতে ভরা বাঁকানো শিং।</string>
+
+        <string name="mat_fire_essence_name">অগ্নি এসেন্স</string>
+        <string name="mat_fire_essence_desc">অগ্নি জাদুর উজ্জ্বল কেন্দ্র।</string>
+        <string name="mat_ice_essence_name">তুষার এসেন্স</string>
+        <string name="mat_ice_essence_desc">তুষার জাদুর শীতল কেন্দ্র।</string>
+        <string name="mat_lightning_essence_name">বিদ্যুৎ এসেন্স</string>
+        <string name="mat_lightning_essence_desc">ঝড়ের জাদুর চমকপ্রদ কেন্দ্র।</string>
+        <string name="mat_dark_essence_name">আধার এসেন্স</string>
+        <string name="mat_dark_essence_desc">কালো জাদুর ছায়াময় কেন্দ্র।</string>
+
+        <string name="mat_ruby_gem_1_name">ছোট রুবি</string>
+        <string name="mat_ruby_gem_1_desc">+5 অ্যাটাক বোনাস</string>
+        <string name="mat_ruby_gem_2_name">রুবি রত্ন</string>
+        <string name="mat_ruby_gem_2_desc">+15 অ্যাটাক বোনাস</string>
+        <string name="mat_ruby_gem_3_name">নিখুঁত রুবি</string>
+        <string name="mat_ruby_gem_3_desc">+35 অ্যাটাক বোনাস</string>
+
+        <string name="mat_sapphire_gem_1_name">ছোট স্যাফায়ার</string>
+        <string name="mat_sapphire_gem_1_desc">+5 ম্যাজিক বোনাস</string>
+        <string name="mat_sapphire_gem_2_name">স্যাফায়ার রত্ন</string>
+        <string name="mat_sapphire_gem_2_desc">+15 ম্যাজিক বোনাস</string>
+        <string name="mat_sapphire_gem_3_name">নিখুঁত স্যাফায়ার</string>
+        <string name="mat_sapphire_gem_3_desc">+35 ম্যাজিক বোনাস</string>
+
+        <string name="mat_emerald_gem_1_name">ছোট ইমারেল্ড</string>
+        <string name="mat_emerald_gem_1_desc">+5 ডিফেন্স বোনাস</string>
+        <string name="mat_emerald_gem_2_name">ইমারেল্ড রত্ন</string>
+        <string name="mat_emerald_gem_2_desc">+15 ডিফেন্স বোনাস</string>
+        <string name="mat_emerald_gem_3_name">নিখুঁত ইমারেল্ড</string>
+        <string name="mat_emerald_gem_3_desc">+35 ডিফেন্স বোনাস</string>
+
+        <string name="mat_topaz_gem_1_name">ছোট টোপাজ</string>
+        <string name="mat_topaz_gem_1_desc">+25 এইচপি বোনাস</string>
+        <string name="mat_topaz_gem_2_name">টোপাজ রত্ন</string>
+        <string name="mat_topaz_gem_2_desc">+75 এইচপি বোনাস</string>
+        <string name="mat_topaz_gem_3_name">নিখুঁত টোপাজ</string>
+        <string name="mat_topaz_gem_3_desc">+175 এইচপি বোনাস</string>
+
+        <string name="mat_boss_trophy_1_name">গবলিন রাজার মুকুট</string>
+        <string name="mat_boss_trophy_1_desc">গবলিন রাজাকে পরাজিত করার প্রমাণ।</string>
+        <string name="mat_boss_trophy_2_name">হাইড্রার মাথার খুলি</string>
+        <string name="mat_boss_trophy_2_desc">ভয়ঙ্কর হাইড্রাকে পরাজিত করার প্রমাণ।</string>
+        <string name="mat_boss_trophy_3_name">শয়তান প্রভুর শিং</string>
+        <string name="mat_boss_trophy_3_desc">আধার দুর্গ জয়ের প্রমাণ।</string>
+
+        <string name="mat_unknown_material_name">অজানা উপাদান</string>
+        <string name="mat_unknown_material_desc">কারাগারে পাওয়া এক রহস্যময় উপাদান।</string>
+
+        <!-- Crafting & Socketing User Messages -->
+        <string name="craft_msg_enhance_success">উপকরণ সফলভাবে উন্নত করা হয়েছে!</string>
+        <string name="craft_msg_socket_success">সকেট সফলভাবে যোগ করা হয়েছে!</string>
+        <string name="craft_msg_gem_inserted">রত্ন সফলভাবে বসানো হয়েছে!</string>
+        <string name="craft_msg_gem_crafted">রত্ন সফলভাবে তৈরি করা হয়েছে!</string>
+        <string name="craft_msg_gem_fused">রত্ন সফলভাবে ফিউজ করা হয়েছে!</string>
+        <string name="craft_msg_hero_uncapped">বীরের সর্বোচ্চ স্তর সীমা বৃদ্ধি পেয়েছে!</string>
+        <string name="craft_err_hero_not_at_cap">বীর এখনও বর্তমান সর্বোচ্চ স্তরে পৌঁছায়নি।</string>
+        <string name="craft_status_reach_cap_to_uncap">বর্তমান সর্বোচ্চ স্তর: Lvl %1$d (সীমা অতিক্রম করতে সর্বোচ্চ স্তরে পৌঁছান)</string>
+        <string name="craft_status_ready_for_breakthrough">বর্তমান সর্বোচ্চ স্তর: Lvl %1$d (সীমা অতিক্রমের জন্য প্রস্তুত!)</string>
+        <string name="craft_err_no_item_selected">কোনো আইটেম নির্বাচন করা হয়নি।</string>
+        <string name="craft_err_insufficient_materials">অপর্যাপ্ত উপাদান।</string>
+        <string name="craft_err_insufficient_gold">অপর্যাপ্ত গিল।</string>
+        <string name="craft_err_max_enhancement">আইটেমটি ইতিমধ্যেই সর্বোচ্চ উন্মোচনে রয়েছে (+10)।</string>
+        <string name="craft_err_max_sockets">আইটেমটি সর্বোচ্চ সকেট ধারণক্ষমতায় পৌঁছেছে।</string>
+        <string name="craft_err_invalid_socket">অকার্যকর সকেট স্লট।</string>
+        <string name="craft_err_operation_failed">তৈরি করার প্রক্রিয়া ব্যর্থ হয়েছে।</string>
+
+        <!-- Crafting Screen UI Strings -->
+        <string name="crafting_title">কামারশাল ও নির্মাণ</string>
+        <string name="craft_tab_enhance">উন্নত করুন</string>
+        <string name="craft_tab_socket">সকেট</string>
+        <string name="craft_tab_gem_fusion">রত্ন ফিউশন</string>
+        <string name="craft_tab_breakthrough">সীমা অতিক্রম</string>
+        <string name="craft_btn_enhance">উন্নত করুন (+%1$d)</string>
+        <string name="craft_btn_add_socket">সকেট স্লট যোগ করুন</string>
+        <string name="craft_btn_insert_gem">রত্ন বসান</string>
+        <string name="craft_btn_fuse_gems">রত্ন ফিউজ করুন (3x)</string>
+        <string name="craft_btn_uncap_level">স্তর সীমা বৃদ্ধি (+20)</string>
+        <string name="craft_label_select_item">আইটেম নির্বাচন করুন:</string>
+        <string name="craft_label_stat_preview">অ্যাট্রিবিউট উন্নতি (+5%%/স্তর):</string>
+        <string name="craft_label_cost">খরচ:</string>
+        <string name="craft_label_required_materials">প্রয়োজনীয় উপাদান:</string>
+        <string name="craft_label_sockets">সকেটসমূহ:</string>
+        <string name="craft_label_empty_slot">খালি সকেট</string>
+        <string name="craft_label_owned_gems">মালিকানাধীন রত্ন:</string>
+        <string name="craft_label_no_items">কোনো আইটেম পাওয়া যায়নি।</string>
+        <string name="craft_label_no_gems">কোনো রত্ন পাওয়া যায়নি।</string>
+        <string name="craft_label_max_level_reached">সর্বোচ্চ স্তর (+10)</string>
+        <string name="craft_format_level">+%1$d</string>
+        <string name="craft_format_gold">%1$d গিল</string>
+        <string name="craft_format_quantity">x%1$d</string>
+        <string name="craft_format_stat">%1$s: %2$d ➔ %3$d</string>
+        <string name="craft_format_equipped_tag">( সজ্জিত )</string>
+        <string name="craft_format_hero_level">Lvl %1$d</string>
+        <string name="craft_label_hero_breakthrough">বীর স্তর সীমা অতিক্রম:</string>
+        <string name="btn_ok">ঠিক আছে</string>
+
+        <!-- Codex & Compendium Extensions -->
+        <string name="codex_milestone_tier">স্তর %1$d%%</string>
+        <string name="codex_status_unlocked">আনলক করা হয়েছে</string>
+        <string name="codex_status_locked">লক করা হয়েছে</string>
+        <string name="stat_magicite_find">ম্যাজিসাইট অনুসন্ধান</string>
+        <string name="threshold_undiscovered">আবিষ্কৃত হয়নি</string>
+        <string name="threshold_sighted">দেখা গেছে</string>
+        <string name="threshold_analyzed">বিশ্লেষিত</string>
+        <string name="threshold_mastered">আয়ত্ত করা হয়েছে</string>
+        <string name="mat_cat_ore">আকরিক</string>
+        <string name="mat_cat_monster_part">দানবের অংশ</string>
+        <string name="mat_cat_essence">এসেন্স</string>
+        <string name="mat_cat_boss_trophy">বস ট্রফি</string>
+        <string name="craft_slot_locked">[ লক করা স্লট %1$d ]</string>
+        <string name="craft_socket_ratio">%1$d / 3</string>
+        <string name="craft_trophy_ratio">(%1$d / 1)</string>
+        <string name="codex_kills_format">নিহত: %1$d</string>
+        <string name="codex_completion_format">সম্পূর্ণতা: %1$.1f%%</string>
+
+        <!-- Hero Breakthrough Strings -->
+        <string name="hero_level_cap">Lvl %1$d / %2$d (সর্বোচ্চ)</string>
+        <string name="hero_level_normal">Lvl %1$d / %2$d</string>
+        <string name="hero_breakthrough_button">সীমা অতিক্রম</string>
+        <string name="hero_breakthrough_req">প্রয়োজন 1x %1$s</string>
+    </resources>

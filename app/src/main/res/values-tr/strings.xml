@@ -1028,4 +1028,165 @@
     <string name="bulletin_perk_forge">⚒️ Demirhane: +%1%%% Efsanevi Şans</string>
     <string name="bulletin_perk_war_room">⚔️ Savaş Odası: +%1%%% Kritik Hasar</string>
     <string name="bulletin_perk_spire">🌌 Kule: +%1%%% Boyut Magisiti</string>
-</resources>
+
+        <string name="building_blacksmith">DEMİRCİ</string>
+        <string name="building_blacksmith_title">Demirci</string>
+        <string name="building_blacksmith_desc">Ekipmanları güçlendirin, yuva ekleyin, mücevherleri birleştirin ve kahraman seviye sınırını kaldırın.</string>
+        <string name="building_library">KÜTÜPHANE</string>
+        <string name="building_library_title">Derleme</string>
+        <string name="building_library_desc">Canavar atlasını, malzeme kaynaklarını takip edin ve tamamlama kilitlerini açın.</string>
+
+        <string name="codex_title">DERLEME VE CANAVAR ATLASI</string>
+        <string name="codex_tab_bestiary">Canavar Atlası</string>
+        <string name="codex_tab_materials">Malzemeler</string>
+        <string name="codex_tab_milestones">Kilometre Taşları</string>
+        <string name="codex_kills_label">Öldürme: %1$d</string>
+        <string name="codex_undiscovered">\?\?\?</string>
+        <string name="codex_completion">Tamamlama: %1$.1f%%</string>
+        <string name="codex_search_hint">Atlas ve malzemelerde ara...</string>
+        <string name="codex_no_results">Eşleşen sonuç bulunamadı.</string>
+        <string name="codex_milestone_title">Kilometre Taşı Seviyeleri</string>
+        <string name="codex_active_bonuses">Aktif Bonuslar:</string>
+        <string name="codex_threshold_label">Rütbe: %1$s</string>
+        <string name="codex_drop_sources">Kaynaklar: %1$s</string>
+        <string name="codex_drops_label">Düşenler: %1$s</string>
+
+        <!-- Materials -->
+        <string name="mat_iron_ore_name">Demir Cevheri</string>
+        <string name="mat_iron_ore_desc">Düşük seviyeli güçlendirmeler için temel cevher.</string>
+        <string name="mat_mithril_ore_name">Mitril Cevheri</string>
+        <string name="mat_mithril_ore_desc">Orta seviye ekipman güçlendirmeleri için büyülü cevher.</string>
+        <string name="mat_adamantite_ore_name">Adamantit Cevheri</string>
+        <string name="mat_adamantite_ore_desc">Yüksek seviye ekipman güçlendirmeleri için dayanıklı cevher.</string>
+        <string name="mat_orichalcum_ore_name">Orihalkum Cevheri</string>
+        <string name="mat_orichalcum_ore_desc">En üst seviye ekipman güçlendirmeleri için efsanevi cevher.</string>
+
+        <string name="mat_beast_fang_name">Canavar Dişi</string>
+        <string name="mat_beast_fang_desc">Zindan canavarlarından alınan keskin diş.</string>
+        <string name="mat_monster_bone_name">Canavar Kemiği</string>
+        <string name="mat_monster_bone_desc">Zindan canavarlarından alınan sağlam kemik.</string>
+        <string name="mat_dragon_scale_name">Ejderha Pulı</string>
+        <string name="mat_dragon_scale_desc">Kadim ejderha gücü yayan kalın pul.</string>
+        <string name="mat_demon_horn_name">İblis Boynuzu</string>
+        <string name="mat_demon_horn_desc">Kötücül enerjiyle dolu kıvrık boynuz.</string>
+
+        <string name="mat_fire_essence_name">Ateş Özü</string>
+        <string name="mat_fire_essence_desc">Ateş büyüsünün parlayan çekirdeği.</string>
+        <string name="mat_ice_essence_name">Buz Özü</string>
+        <string name="mat_ice_essence_desc">Buz büyüsünün dondurucu çekirdeği.</string>
+        <string name="mat_lightning_essence_name">Yıldırım Özü</string>
+        <string name="mat_lightning_essence_desc">Fırtına büyüsünün kıvılcımlı çekirdeği.</string>
+        <string name="mat_dark_essence_name">Karanlık Özü</string>
+        <string name="mat_dark_essence_desc">Karanlık büyünün gölgeli çekirdeği.</string>
+
+        <string name="mat_ruby_gem_1_name">Küçük Yakut</string>
+        <string name="mat_ruby_gem_1_desc">+5 Saldırı Bonusu</string>
+        <string name="mat_ruby_gem_2_name">Yakut Mücevheri</string>
+        <string name="mat_ruby_gem_2_desc">+15 Saldırı Bonusu</string>
+        <string name="mat_ruby_gem_3_name">Kusursuz Yakut</string>
+        <string name="mat_ruby_gem_3_desc">+35 Saldırı Bonusu</string>
+
+        <string name="mat_sapphire_gem_1_name">Küçük Safir</string>
+        <string name="mat_sapphire_gem_1_desc">+5 Büyü Bonusu</string>
+        <string name="mat_sapphire_gem_2_name">Safir Mücevheri</string>
+        <string name="mat_sapphire_gem_2_desc">+15 Büyü Bonusu</string>
+        <string name="mat_sapphire_gem_3_name">Kusursuz Safir</string>
+        <string name="mat_sapphire_gem_3_desc">+35 Büyü Bonusu</string>
+
+        <string name="mat_emerald_gem_1_name">Küçük Zümrüt</string>
+        <string name="mat_emerald_gem_1_desc">+5 Savunma Bonusu</string>
+        <string name="mat_emerald_gem_2_name">Zümrüt Mücevheri</string>
+        <string name="mat_emerald_gem_2_desc">+15 Savunma Bonusu</string>
+        <string name="mat_emerald_gem_3_name">Kusursuz Zümrüt</string>
+        <string name="mat_emerald_gem_3_desc">+35 Savunma Bonusu</string>
+
+        <string name="mat_topaz_gem_1_name">Küçük Topaz</string>
+        <string name="mat_topaz_gem_1_desc">+25 Can Bonusu</string>
+        <string name="mat_topaz_gem_2_name">Topaz Mücevheri</string>
+        <string name="mat_topaz_gem_2_desc">+75 Can Bonusu</string>
+        <string name="mat_topaz_gem_3_name">Kusursuz Topaz</string>
+        <string name="mat_topaz_gem_3_desc">+175 Can Bonusu</string>
+
+        <string name="mat_boss_trophy_1_name">Goblin Kralı Tacı</string>
+        <string name="mat_boss_trophy_1_desc">Goblin Kralı\'nı yenmenin kanıtı.</string>
+        <string name="mat_boss_trophy_2_name">Hidra Kafatası</string>
+        <string name="mat_boss_trophy_2_desc">Korkunç Hidra\'yı yenmenin kanıtı.</string>
+        <string name="mat_boss_trophy_3_name">İblis Lordu Boynuzu</string>
+        <string name="mat_boss_trophy_3_desc">Karanlık Hisar\'ı fethetmenin kanıtı.</string>
+
+        <string name="mat_unknown_material_name">Bilinmeyen Malzeme</string>
+        <string name="mat_unknown_material_desc">Zindanda bulunan gizemli bir malzeme.</string>
+
+        <!-- Crafting & Socketing User Messages -->
+        <string name="craft_msg_enhance_success">Ekipman başarıyla güçlendirildi!</string>
+        <string name="craft_msg_socket_success">Yuva başarıyla eklendi!</string>
+        <string name="craft_msg_gem_inserted">Mücevher başarıyla takıldı!</string>
+        <string name="craft_msg_gem_crafted">Mücevher başarıyla üretildi!</string>
+        <string name="craft_msg_gem_fused">Mücevherler başarıyla birleştirildi!</string>
+        <string name="craft_msg_hero_uncapped">Kahraman seviye sınırı artırıldı!</string>
+        <string name="craft_err_hero_not_at_cap">Kahraman henüz mevcut maksimum seviyeye ulaşmadı.</string>
+        <string name="craft_status_reach_cap_to_uncap">Mevcut Maks Seviye: Sev %1$d (Sınırı kaldırmak için seviye sınırına ulaşın)</string>
+        <string name="craft_status_ready_for_breakthrough">Mevcut Maks Seviye: Sev %1$d (Sınır aşımı için hazır!)</string>
+        <string name="craft_err_no_item_selected">Öğe seçilmedi.</string>
+        <string name="craft_err_insufficient_materials">Yetersiz malzeme.</string>
+        <string name="craft_err_insufficient_gold">Yetersiz Gil.</string>
+        <string name="craft_err_max_enhancement">Öğe zaten maksimum güçlendirmede (+10).</string>
+        <string name="craft_err_max_sockets">Öğe maksimum yuva kapasitesine ulaştı.</string>
+        <string name="craft_err_invalid_socket">Geçersiz yuva.</string>
+        <string name="craft_err_operation_failed">Üretim işlemi başarısız oldu.</string>
+
+        <!-- Crafting Screen UI Strings -->
+        <string name="crafting_title">DEMİRCİ VE ÜRETİM</string>
+        <string name="craft_tab_enhance">GÜÇLENDİR</string>
+        <string name="craft_tab_socket">YUVALAR</string>
+        <string name="craft_tab_gem_fusion">MÜCEVHER BİRLEŞTİRME</string>
+        <string name="craft_tab_breakthrough">SINIR AŞIMI</string>
+        <string name="craft_btn_enhance">GÜÇLENDİR (+%1$d)</string>
+        <string name="craft_btn_add_socket">YUVA EKLE</string>
+        <string name="craft_btn_insert_gem">MÜCEVHER TAK</string>
+        <string name="craft_btn_fuse_gems">MÜCEVHER BİRLEŞTİR (3x)</string>
+        <string name="craft_btn_uncap_level">SEVİYE SINIRINI KALDIR (+20)</string>
+        <string name="craft_label_select_item">Öğe Seç:</string>
+        <string name="craft_label_stat_preview">Nitelik Güçlendirmesi (+5%%/sev):</string>
+        <string name="craft_label_cost">Maliyet:</string>
+        <string name="craft_label_required_materials">Gerekli Malzemeler:</string>
+        <string name="craft_label_sockets">Yuvalar:</string>
+        <string name="craft_label_empty_slot">Boş Yuva</string>
+        <string name="craft_label_owned_gems">Sahip Olunan Mücevherler:</string>
+        <string name="craft_label_no_items">Kullanılabilir öğe yok.</string>
+        <string name="craft_label_no_gems">Kullanılabilir mücevher yok.</string>
+        <string name="craft_label_max_level_reached">MAKSİMUM SEVİYE (+10)</string>
+        <string name="craft_format_level">+%1$d</string>
+        <string name="craft_format_gold">%1$d Gil</string>
+        <string name="craft_format_quantity">x%1$d</string>
+        <string name="craft_format_stat">%1$s: %2$d ➔ %3$d</string>
+        <string name="craft_format_equipped_tag">(Kuşanıldı)</string>
+        <string name="craft_format_hero_level">Sev %1$d</string>
+        <string name="craft_label_hero_breakthrough">Kahraman Seviye Sınır Aşımı:</string>
+        <string name="btn_ok">Tamam</string>
+
+        <!-- Codex & Compendium Extensions -->
+        <string name="codex_milestone_tier">SEVİYE %1$d%%</string>
+        <string name="codex_status_unlocked">KİLİT AÇILDI</string>
+        <string name="codex_status_locked">KİLİTLİ</string>
+        <string name="stat_magicite_find">BÜYÜTAŞI BULMA</string>
+        <string name="threshold_undiscovered">KEŞFEDİLMEMİŞ</string>
+        <string name="threshold_sighted">GÖRÜLDÜ</string>
+        <string name="threshold_analyzed">ANALİZ EDİLDİ</string>
+        <string name="threshold_mastered">USTALAŞILDI</string>
+        <string name="mat_cat_ore">Cevher</string>
+        <string name="mat_cat_monster_part">Canavar Parçası</string>
+        <string name="mat_cat_essence">Öz</string>
+        <string name="mat_cat_boss_trophy">Patron Ganimeti</string>
+        <string name="craft_slot_locked">[ Kilitli Yuva %1$d ]</string>
+        <string name="craft_socket_ratio">%1$d / 3</string>
+        <string name="craft_trophy_ratio">(%1$d / 1)</string>
+        <string name="codex_kills_format">Öldürme: %1$d</string>
+        <string name="codex_completion_format">Tamamlama: %1$.1f%%</string>
+
+        <!-- Hero Breakthrough Strings -->
+        <string name="hero_level_cap">Sev %1$d / %2$d (MAKS)</string>
+        <string name="hero_level_normal">Sev %1$d / %2$d</string>
+        <string name="hero_breakthrough_button">SINIR AŞIMI</string>
+        <string name="hero_breakthrough_req">1x %1$s Gerektirir</string>
+    </resources>

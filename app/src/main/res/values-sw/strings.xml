@@ -1027,5 +1027,166 @@
     <string name="bulletin_perk_forge">⚒️ Kiwanda cha Hadithi: +%1%%% Vifaa vya Hadithi</string>
     <string name="bulletin_perk_war_room">⚔️ Chumba cha Vita: +%1%%% Madhara Critical</string>
     <string name="bulletin_perk_spire">🌌 Mnara: +%1%%% Majisaiti ya Dimensheni</string>
+
+        <string name="building_blacksmith">UHUNDI</string>
+        <string name="building_blacksmith_title">Mhunzi</string>
+        <string name="building_blacksmith_desc">Imarisha zana, ongeza mianya, unganisha gemu na uongeze kikomo cha kiwango cha shujaa.</string>
+        <string name="building_library">MAKTABA</string>
+        <string name="building_library_title">Muhtasari</string>
+        <string name="building_library_desc">Fuatilia orodha ya wanyama, vyanzo vya vifaa na ufungue hatua kuu za ukamilishaji.</string>
+
+        <string name="codex_title">MUHTASARI NA ORODHA YA WANYAMA</string>
+        <string name="codex_tab_bestiary">Orodha ya Wanyama</string>
+        <string name="codex_tab_materials">Vifaa</string>
+        <string name="codex_tab_milestones">Hatua Kuu</string>
+        <string name="codex_kills_label">Waliouawa: %1$d</string>
+        <string name="codex_undiscovered">\?\?\?</string>
+        <string name="codex_completion">Ukamilishaji: %1$.1f%%</string>
+        <string name="codex_search_hint">Tafuta wanyama na vifaa...</string>
+        <string name="codex_no_results">Hakuna matokeo yaliyopatikana.</string>
+        <string name="codex_milestone_title">Viwango vya Hatua Kuu</string>
+        <string name="codex_active_bonuses">Bonasi Zinazofanya Kazi:</string>
+        <string name="codex_threshold_label">Cheo: %1$s</string>
+        <string name="codex_drop_sources">Vyanzo: %1$s</string>
+        <string name="codex_drops_label">Zawadi: %1$s</string>
+
+        <!-- Materials -->
+        <string name="mat_iron_ore_name">Mawe ya Chuma</string>
+        <string name="mat_iron_ore_desc">Mawe ya msingi kwa ajili ya uimarishaji wa kiwango cha chini.</string>
+        <string name="mat_mithril_ore_name">Mawe ya Mithril</string>
+        <string name="mat_mithril_ore_desc">Mawe ya kiuchawi kwa uimarishaji wa zana za kiwango cha kati.</string>
+        <string name="mat_adamantite_ore_name">Mawe ya Adamantite</string>
+        <string name="mat_adamantite_ore_desc">Mawe imara kwa uimarishaji wa zana za kiwango cha juu.</string>
+        <string name="mat_orichalcum_ore_name">Mawe ya Orichalcum</string>
+        <string name="mat_orichalcum_ore_desc">Mawe ya kithadhibu kwa uimarishaji wa juu zaidi wa zana.</string>
+
+        <string name="mat_beast_fang_name">Jino la Mnyama</string>
+        <string name="mat_beast_fang_desc">Jino lenye makali kutoka kwa wanyama wa pango.</string>
+        <string name="mat_monster_bone_name">Mfupa wa Jini</string>
+        <string name="mat_monster_bone_desc">Mfupa imara kutoka kwa majini ya pango.</string>
+        <string name="mat_dragon_scale_name">Bamba la Dragoni</string>
+        <string name="mat_dragon_scale_desc">Bamba nene linalotoa nguvu za kale za dragoni.</string>
+        <string name="mat_demon_horn_name">Pembe ya Pepo</string>
+        <string name="mat_demon_horn_desc">Pembe iliyopinda yenye nguvu za kipepo.</string>
+
+        <string name="mat_fire_essence_name">Esensi ya Moto</string>
+        <string name="mat_fire_essence_desc">Moyo unaowaka wa uchawi wa moto.</string>
+        <string name="mat_ice_essence_name">Esensi ya Barafu</string>
+        <string name="mat_ice_essence_desc">Moyo wa baridi wa uchawi wa barafu.</string>
+        <string name="mat_lightning_essence_name">Esensi ya Umeme</string>
+        <string name="mat_lightning_essence_desc">Moyo unaotoa Cheche wa uchawi wa dhoruba.</string>
+        <string name="mat_dark_essence_name">Esensi ya Giza</string>
+        <string name="mat_dark_essence_desc">Moyo wa kivuli wa uchawi mweusi.</string>
+
+        <string name="mat_ruby_gem_1_name">Rubi Ndogo</string>
+        <string name="mat_ruby_gem_1_desc">+5 Bonasi ya Shambulio</string>
+        <string name="mat_ruby_gem_2_name">Gemu ya Rubi</string>
+        <string name="mat_ruby_gem_2_desc">+15 Bonasi ya Shambulio</string>
+        <string name="mat_ruby_gem_3_name">Rubi Safi</string>
+        <string name="mat_ruby_gem_3_desc">+35 Bonasi ya Shambulio</string>
+
+        <string name="mat_sapphire_gem_1_name">Safira Ndogo</string>
+        <string name="mat_sapphire_gem_1_desc">+5 Bonasi ya Uchawi</string>
+        <string name="mat_sapphire_gem_2_name">Gemu ya Safira</string>
+        <string name="mat_sapphire_gem_2_desc">+15 Bonasi ya Uchawi</string>
+        <string name="mat_sapphire_gem_3_name">Safira Safi</string>
+        <string name="mat_sapphire_gem_3_desc">+35 Bonasi ya Uchawi</string>
+
+        <string name="mat_emerald_gem_1_name">Zumaridi Ndogo</string>
+        <string name="mat_emerald_gem_1_desc">+5 Bonasi ya Ulinzi</string>
+        <string name="mat_emerald_gem_2_name">Gemu ya Zumaridi</string>
+        <string name="mat_emerald_gem_2_desc">+15 Bonasi ya Ulinzi</string>
+        <string name="mat_emerald_gem_3_name">Zumaridi Safi</string>
+        <string name="mat_emerald_gem_3_desc">+35 Bonasi ya Ulinzi</string>
+
+        <string name="mat_topaz_gem_1_name">Topazi Ndogo</string>
+        <string name="mat_topaz_gem_1_desc">+25 Bonasi ya PV</string>
+        <string name="mat_topaz_gem_2_name">Gemu ya Topazi</string>
+        <string name="mat_topaz_gem_2_desc">+75 Bonasi ya PV</string>
+        <string name="mat_topaz_gem_3_name">Topazi Safi</string>
+        <string name="mat_topaz_gem_3_desc">+175 Bonasi ya PV</string>
+
+        <string name="mat_boss_trophy_1_name">Taji la Mfalme Goblin</string>
+        <string name="mat_boss_trophy_1_desc">Ushahidi wa kumshinda Mfalme Goblin.</string>
+        <string name="mat_boss_trophy_2_name">Kichwa cha Hydra</string>
+        <string name="mat_boss_trophy_2_desc">Ushahidi wa kumshinda Hydra Anayetisha.</string>
+        <string name="mat_boss_trophy_3_name">Pembe ya Bwana Pepo</string>
+        <string name="mat_boss_trophy_3_desc">Ushahidi wa kuteka Ngome ya Giza.</string>
+
+        <string name="mat_unknown_material_name">Kifaa Kisichojulikana</string>
+        <string name="mat_unknown_material_desc">Kifaa cha ajabu kilichopatikana pangoni.</string>
+
+        <!-- Crafting & Socketing User Messages -->
+        <string name="craft_msg_enhance_success">Zana imeimarishwa kikamilifu!</string>
+        <string name="craft_msg_socket_success">Manya umeongezwa kikamilifu!</string>
+        <string name="craft_msg_gem_inserted">Gemu imeingizwa kikamilifu!</string>
+        <string name="craft_msg_gem_crafted">Gemu imetengenezwa kikamilifu!</string>
+        <string name="craft_msg_gem_fused">Gemu zimeunganishwa kikamilifu!</string>
+        <string name="craft_msg_hero_uncapped">Kikomo cha kiwango cha shujaa kimeongezwa!</string>
+        <string name="craft_err_hero_not_at_cap">Shujaa hajafikia kiwango cha juu cha sasa.</string>
+        <string name="craft_status_reach_cap_to_uncap">Kiwango cha Juu cha Sasa: Kiw %1$d (Fikia kikomo ili kuongeza)</string>
+        <string name="craft_status_ready_for_breakthrough">Kiwango cha Juu cha Sasa: Kiw %1$d (Yupo tayari kuvunja kikomo!)</string>
+        <string name="craft_err_no_item_selected">Hakuna kifaa kilichochaguliwa.</string>
+        <string name="craft_err_insufficient_materials">Vifaa havitoshi.</string>
+        <string name="craft_err_insufficient_gold">Gil haitoshi.</string>
+        <string name="craft_err_max_enhancement">Kifaa tayari kipo kwenye uimarishaji wa juu zaidi (+10).</string>
+        <string name="craft_err_max_sockets">Kifaa kimefikia idadi ya juu zaidi ya mianya.</string>
+        <string name="craft_err_invalid_socket">Nafasi ya mianya sio sahihi.</string>
+        <string name="craft_err_operation_failed">Shughuli ya utengenezaji imefeli.</string>
+
+        <!-- Crafting Screen UI Strings -->
+        <string name="crafting_title">UFUASI NA UTENGENEZAJI</string>
+        <string name="craft_tab_enhance">IMARISHA</string>
+        <string name="craft_tab_socket">MIANYA</string>
+        <string name="craft_tab_gem_fusion">UNGANISHA GEMU</string>
+        <string name="craft_tab_breakthrough">VUNJA KIKOMO</string>
+        <string name="craft_btn_enhance">IMARISHA (+%1$d)</string>
+        <string name="craft_btn_add_socket">ONGEZA MIANYA</string>
+        <string name="craft_btn_insert_gem">INGIZA GEMU</string>
+        <string name="craft_btn_fuse_gems">UNGANISHA GEMU (3x)</string>
+        <string name="craft_btn_uncap_level">ONGEZA KIKOMO (+20)</string>
+        <string name="craft_label_select_item">Chagua Kifaa:</string>
+        <string name="craft_label_stat_preview">Uimarishaji wa Sifa (+5%%/kiw):</string>
+        <string name="craft_label_cost">Gharama:</string>
+        <string name="craft_label_required_materials">Vifaa Vinavyohitajika:</string>
+        <string name="craft_label_sockets">Mianya:</string>
+    <string name="craft_label_empty_slot">Mianya Wazi</string>
+    <string name="craft_label_owned_gems">Gemu Unazomiliki:</string>
+    <string name="craft_label_no_items">Hakuna vifaa vinavyopatikana.</string>
+    <string name="craft_label_no_gems">Hakuna gemu zinazopatikana.</string>
+    <string name="craft_label_max_level_reached">KIWANGO CHA JUU (+10)</string>
+    <string name="craft_format_level">+%1$d</string>
+    <string name="craft_format_gold">%1$d Gil</string>
+    <string name="craft_format_quantity">x%1$d</string>
+    <string name="craft_format_stat">%1$s: %2$d ➔ %3$d</string>
+    <string name="craft_format_equipped_tag">(Imevalishwa)</string>
+    <string name="craft_format_hero_level">Kiw %1$d</string>
+    <string name="craft_label_hero_breakthrough">Uvunjaji Kikomo cha Shujaa:</string>
+    <string name="btn_ok">Sawa</string>
+
+    <!-- Codex & Compendium Extensions -->
+    <string name="codex_milestone_tier">DARAJA %1$d%%</string>
+    <string name="codex_status_unlocked">IMEHOFOGOLEWA</string>
+    <string name="codex_status_locked">IMEFFUNGWA</string>
+    <string name="stat_magicite_find">UROPOTAJI WA MAGICITE</string>
+    <string name="threshold_undiscovered">HAJAGUNDULIWA</string>
+    <string name="threshold_sighted">AMEONEKANA</string>
+    <string name="threshold_analyzed">AMECHUNGUZWA</string>
+    <string name="threshold_mastered">AMEMASTERIWAPO</string>
+    <string name="mat_cat_ore">Mawe</string>
+    <string name="mat_cat_monster_part">Sehemu ya Jini</string>
+    <string name="mat_cat_essence">Esensi</string>
+    <string name="mat_cat_boss_trophy">Tuzo ya Mkuu</string>
+    <string name="craft_slot_locked">[ Nafasi Iliyofungwa %1$d ]</string>
+    <string name="craft_socket_ratio">%1$d / 3</string>
+    <string name="craft_trophy_ratio">(%1$d / 1)</string>
+    <string name="codex_kills_format">Waliouawa: %1$d</string>
+    <string name="codex_completion_format">Ukamilishaji: %1$.1f%%</string>
+
+    <!-- Hero Breakthrough Strings -->
+    <string name="hero_level_cap">Kiw %1$d / %2$d (MÁX)</string>
+    <string name="hero_level_normal">Kiw %1$d / %2$d</string>
+    <string name="hero_breakthrough_button">VUNJA KIKOMO</string>
+    <string name="hero_breakthrough_req">Inahitaji 1x %1$s</string>
 </resources>
 

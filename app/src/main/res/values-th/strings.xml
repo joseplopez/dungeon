@@ -1027,4 +1027,165 @@
     <string name="bulletin_perk_forge">⚒️ โรงตีเหล็ก: +%1%%% โอกาสตำนาน</string>
     <string name="bulletin_perk_war_room">⚔️ ห้องยุทธการ: +%1%%% ความแรงคริ</string>
     <string name="bulletin_perk_spire">🌌 หอคอย: +%1%%% เมจิไซต์มิติ</string>
-</resources>
+
+        <string name="building_blacksmith">โรงตีเหล็ก</string>
+        <string name="building_blacksmith_title">โรงตีเหล็ก</string>
+        <string name="building_blacksmith_desc">อัปเกรดอุปกรณ์ เพิ่มช่องอัญมณี ผสานอัญมณี และปลดล็อกขีดจำกัดเลเวลฮีโร่</string>
+        <string name="building_library">หอสมุด</string>
+        <string name="building_library_title">สารานุกรม</string>
+        <string name="building_library_desc">ติดตามสมุดภาพอสูร แหล่งวัตถุดิบ และปลดล็อกความสำเร็จ</string>
+
+        <string name="codex_title">สารานุกรม &amp; สมุดภาพอสูร</string>
+        <string name="codex_tab_bestiary">สมุดภาพอสูร</string>
+        <string name="codex_tab_materials">วัตถุดิบ</string>
+        <string name="codex_tab_milestones">หมุดหมาย</string>
+        <string name="codex_kills_label">สังหาร: %1$d</string>
+        <string name="codex_undiscovered">\?\?\?</string>
+        <string name="codex_completion">ความคืบหน้า: %1$.1f%%</string>
+        <string name="codex_search_hint">ค้นหาสมุดภาพอสูร &amp; วัตถุดิบ...</string>
+        <string name="codex_no_results">ไม่พบข้อมูลที่ตรงกัน</string>
+        <string name="codex_milestone_title">ระดับความสำเร็จ</string>
+        <string name="codex_active_bonuses">โบนัสที่ใช้งานอยู่:</string>
+        <string name="codex_threshold_label">อันดับ: %1$s</string>
+        <string name="codex_drop_sources">แหล่งวัตถุดิบ: %1$s</string>
+        <string name="codex_drops_label">ดรอป: %1$s</string>
+
+        <!-- Materials -->
+        <string name="mat_iron_ore_name">แร่เหล็ก</string>
+        <string name="mat_iron_ore_desc">แร่พื้นฐานสำหรับการอัปเกรดระดับต่ำ</string>
+        <string name="mat_mithril_ore_name">แร่มิธริล</string>
+        <string name="mat_mithril_ore_desc">แร่เวทมนตร์สำหรับการอัปเกรดอุปกรณ์ระดับกลาง</string>
+        <string name="mat_adamantite_ore_name">แร่อดามันไทต์</string>
+        <string name="mat_adamantite_ore_desc">แร่ความทนทานสูงสำหรับการอัปเกรดอุปกรณ์ระดับสูง</string>
+        <string name="mat_orichalcum_ore_name">แร่ออริคัลคัม</string>
+        <string name="mat_orichalcum_ore_desc">แร่ในตำนานสำหรับการอัปเกรดอุปกรณ์ระดับสูงสุด</string>
+
+        <string name="mat_beast_fang_name">เขี้ยวอสูร</string>
+        <string name="mat_beast_fang_desc">เขี้ยวแหลมคมจากสัตว์ร้ายในดันเจี้ยน</string>
+        <string name="mat_monster_bone_name">กระดูกมอนสเตอร์</string>
+        <string name="mat_monster_bone_desc">กระดูกแข็งแกร่งจากมอนสเตอร์ในดันเจี้ยน</string>
+        <string name="mat_dragon_scale_name">เกล็ดมังกร</string>
+        <string name="mat_dragon_scale_desc">เกล็ดหนาที่เปล่งพลังมังกรโบราณ</string>
+        <string name="mat_demon_horn_name">เขาปีศาจ</string>
+        <string name="mat_demon_horn_desc">เขาโค้งที่เต็มไปด้วยพลังปีศาจ</string>
+
+        <string name="mat_fire_essence_name">แก่นแท้แห่งไฟ</string>
+        <string name="mat_fire_essence_desc">แกนกลางส่องสว่างแห่งเวทมนตร์เพลิง</string>
+        <string name="mat_ice_essence_name">แก่นแท้แห่งน้ำแข็ง</string>
+        <string name="mat_ice_essence_desc">แกนกลางเยือกเย็นแห่งเวทมนตร์น้ำแข็ง</string>
+        <string name="mat_lightning_essence_name">แก่นแท้แห่งสายฟ้า</string>
+        <string name="mat_lightning_essence_desc">แกนกลางเปรี้ยงปร้างแห่งเวทมนตร์พายุ</string>
+        <string name="mat_dark_essence_name">แก่นแท้แห่งความมืด</string>
+        <string name="mat_dark_essence_desc">แกนกลางเงามืดแห่งเวทมนตร์ดำ</string>
+
+        <string name="mat_ruby_gem_1_name">ทับทิมขนาดเล็ก</string>
+        <string name="mat_ruby_gem_1_desc">+5 โบนัสพลังโจมตี</string>
+        <string name="mat_ruby_gem_2_name">อัญมณีทับทิม</string>
+        <string name="mat_ruby_gem_2_desc">+15 โบนัสพลังโจมตี</string>
+        <string name="mat_ruby_gem_3_name">ทับทิมไร้ที่ติ</string>
+        <string name="mat_ruby_gem_3_desc">+35 โบนัสพลังโจมตี</string>
+
+        <string name="mat_sapphire_gem_1_name">ไพลินขนาดเล็ก</string>
+        <string name="mat_sapphire_gem_1_desc">+5 โบนัสพลังเวท</string>
+        <string name="mat_sapphire_gem_2_name">อัญมณีไพลิน</string>
+        <string name="mat_sapphire_gem_2_desc">+15 โบนัสพลังเวท</string>
+        <string name="mat_sapphire_gem_3_name">ไพลินไร้ที่ติ</string>
+        <string name="mat_sapphire_gem_3_desc">+35 โบนัสพลังเวท</string>
+
+        <string name="mat_emerald_gem_1_name">มรกตขนาดเล็ก</string>
+        <string name="mat_emerald_gem_1_desc">+5 โบนัสพลังป้องกัน</string>
+        <string name="mat_emerald_gem_2_name">อัญมณีมรกต</string>
+        <string name="mat_emerald_gem_2_desc">+15 โบนัสพลังป้องกัน</string>
+        <string name="mat_emerald_gem_3_name">มรกตไร้ที่ติ</string>
+        <string name="mat_emerald_gem_3_desc">+35 โบนัสพลังป้องกัน</string>
+
+        <string name="mat_topaz_gem_1_name">บุษราคัมขนาดเล็ก</string>
+        <string name="mat_topaz_gem_1_desc">+25 โบนัสพลังชีวิต</string>
+        <string name="mat_topaz_gem_2_name">อัญมณีบุษราคัม</string>
+        <string name="mat_topaz_gem_2_desc">+75 โบนัสพลังชีวิต</string>
+        <string name="mat_topaz_gem_3_name">บุษราคัมไร้ที่ติ</string>
+        <string name="mat_topaz_gem_3_desc">+175 โบนัสพลังชีวิต</string>
+
+        <string name="mat_boss_trophy_1_name">มงกุฎราชาก็อบลิน</string>
+        <string name="mat_boss_trophy_1_desc">หลักฐานการเอาชนะราชาก็อบลิน</string>
+        <string name="mat_boss_trophy_2_name">กะโหลกไฮดรา</string>
+        <string name="mat_boss_trophy_2_desc">หลักฐานการเอาชนะไฮดราน่าหวาดกลัว</string>
+        <string name="mat_boss_trophy_3_name">เขาจอมมารปีศาจ</string>
+        <string name="mat_boss_trophy_3_desc">หลักฐานการพิชิตป้อมปราการความมืด</string>
+
+        <string name="mat_unknown_material_name">วัตถุดิบไม่ทราบชนิด</string>
+        <string name="mat_unknown_material_desc">วัตถุดิบลึกลับที่พบในดันเจี้ยน</string>
+
+        <!-- Crafting & Socketing User Messages -->
+        <string name="craft_msg_enhance_success">อัปเกรดอุปกรณ์สำเร็จแล้ว!</string>
+        <string name="craft_msg_socket_success">เพิ่มช่องอัญมณีสำเร็จแล้ว!</string>
+        <string name="craft_msg_gem_inserted">ใส่อัญมณีสำเร็จแล้ว!</string>
+        <string name="craft_msg_gem_crafted">สร้างอัญมณีสำเร็จแล้ว!</string>
+        <string name="craft_msg_gem_fused">ผสานอัญมณีสำเร็จแล้ว!</string>
+        <string name="craft_msg_hero_uncapped">เพิ่มขีดจำกัดเลเวลฮีโร่แล้ว!</string>
+        <string name="craft_err_hero_not_at_cap">ฮีโร่ยับไม่ถึงเลเวลสูงสุดปัจจุบัน</string>
+        <string name="craft_status_reach_cap_to_uncap">เลเวลสูงสุดปัจจุบัน: Lv %1$d (ต้องถึงขีดจำกัดเพื่อปลดล็อก)</string>
+        <string name="craft_status_ready_for_breakthrough">เลเวลสูงสุดปัจจุบัน: Lv %1$d (พร้อมสำหรับการทะลวงขีดจำกัด!)</string>
+        <string name="craft_err_no_item_selected">ไม่ได้เลือกไอเทม</string>
+        <string name="craft_err_insufficient_materials">วัตถุดิบไม่เพียงพอ</string>
+        <string name="craft_err_insufficient_gold">Gil ไม่เพียงพอ</string>
+        <string name="craft_err_max_enhancement">ไอเทมได้รับการอัปเกรดสูงสุดแล้ว (+10)</string>
+        <string name="craft_err_max_sockets">ไอเทมมีจำนวนช่องอัญมณีสูงสุดแล้ว</string>
+        <string name="craft_err_invalid_socket">ช่องอัญมณีไม่ถูกต้อง</string>
+        <string name="craft_err_operation_failed">การสร้างล้มเหลว</string>
+
+        <!-- Crafting Screen UI Strings -->
+        <string name="crafting_title">โรงตีเหล็ก &amp; การสร้าง</string>
+        <string name="craft_tab_enhance">อัปเกรด</string>
+        <string name="craft_tab_socket">ช่องอัญมณี</string>
+        <string name="craft_tab_gem_fusion">ผสานอัญมณี</string>
+        <string name="craft_tab_breakthrough">ทะลวงขีดจำกัด</string>
+        <string name="craft_btn_enhance">อัปเกรด (+%1$d)</string>
+        <string name="craft_btn_add_socket">เพิ่มช่องอัญมณี</string>
+        <string name="craft_btn_insert_gem">ใส่อัญมณี</string>
+        <string name="craft_btn_fuse_gems">ผสานอัญมณี (3x)</string>
+        <string name="craft_btn_uncap_level">เพิ่มขีดจำกัด (+20)</string>
+        <string name="craft_label_select_item">เลือกไอเทม:</string>
+        <string name="craft_label_stat_preview">เพิ่มค่าสถานะ (+5%%/Lv):</string>
+        <string name="craft_label_cost">ค่าใช้จ่าย:</string>
+        <string name="craft_label_required_materials">วัตถุดิบที่ต้องการ:</string>
+        <string name="craft_label_sockets">ช่องอัญมณี:</string>
+        <string name="craft_label_empty_slot">ช่องว่าง</string>
+        <string name="craft_label_owned_gems">อัญมณีที่มีอยู่:</string>
+        <string name="craft_label_no_items">ไม่มีไอเทมที่ใช้งานได้</string>
+        <string name="craft_label_no_gems">ไม่มีอัญมณีที่ใช้งานได้</string>
+        <string name="craft_label_max_level_reached">เลเวลสูงสุด (+10)</string>
+        <string name="craft_format_level">+%1$d</string>
+        <string name="craft_format_gold">%1$d Gil</string>
+        <string name="craft_format_quantity">x%1$d</string>
+        <string name="craft_format_stat">%1$s: %2$d ➔ %3$d</string>
+        <string name="craft_format_equipped_tag">(สวมใส่อยู่)</string>
+        <string name="craft_format_hero_level">Lv %1$d</string>
+        <string name="craft_label_hero_breakthrough">การทะลวงขีดจำกัดเลเวลฮีโร่:</string>
+        <string name="btn_ok">ตกลง</string>
+
+        <!-- Codex & Compendium Extensions -->
+        <string name="codex_milestone_tier">ระดับ %1$d%%</string>
+        <string name="codex_status_unlocked">ปลดล็อกแล้ว</string>
+        <string name="codex_status_locked">ล็อกอยู่</string>
+        <string name="stat_magicite_find">อัตราค้นพบเมจิไซต์</string>
+        <string name="threshold_undiscovered">ยังไม่ค้นพบ</string>
+        <string name="threshold_sighted">เคยพบเห็น</string>
+        <string name="threshold_analyzed">วิเคราะห์แล้ว</string>
+        <string name="threshold_mastered">เชี่ยวชาญแล้ว</string>
+        <string name="mat_cat_ore">แร่</string>
+        <string name="mat_cat_monster_part">ชิ้นส่วนมอนสเตอร์</string>
+        <string name="mat_cat_essence">แก่นแท้</string>
+        <string name="mat_cat_boss_trophy">ถ้วยรางวัลบอส</string>
+        <string name="craft_slot_locked">[ ช่องล็อกอยู่ %1$d ]</string>
+        <string name="craft_socket_ratio">%1$d / 3</string>
+        <string name="craft_trophy_ratio">(%1$d / 1)</string>
+        <string name="codex_kills_format">สังหาร: %1$d</string>
+        <string name="codex_completion_format">ความคืบหน้า: %1$.1f%%</string>
+
+        <!-- Hero Breakthrough Strings -->
+        <string name="hero_level_cap">Lv %1$d / %2$d (สูงสุด)</string>
+        <string name="hero_level_normal">Lv %1$d / %2$d</string>
+        <string name="hero_breakthrough_button">ทะลวงขีดจำกัด</string>
+        <string name="hero_breakthrough_req">ต้องการ 1x %1$s</string>
+    </resources>

@@ -1040,5 +1040,166 @@
     <string name="bulletin_perk_forge">⚒️ میتھک بھٹی: +%1$d%%% میتھک امکانات</string>
     <string name="bulletin_perk_war_room">⚔️ وار روم: +%1$d%%% کریٹ نقصان</string>
     <string name="bulletin_perk_spire">🌌 مینار: +%1$d%%% ڈائمینشن میجیسائٹ</string>
-</resources>
+
+        <string name="building_blacksmith">لوہار خانہ</string>
+        <string name="building_blacksmith_title">لوہار</string>
+        <string name="building_blacksmith_desc">سامان کو بہتر بنائیں، ساکٹ شامل کریں، جواہرات ملایں اور ہیرو کے لیول کی حد بڑھائیں۔</string>
+        <string name="building_library">کتب خانہ</string>
+        <string name="building_library_title">جامع کتاب</string>
+        <string name="building_library_desc">بلاؤں کی فہرست، سامان کے ذرائع دیکھیں اور پیشرفت کے سنگ میل انلاک کریں۔</string>
+
+        <string name="codex_title">جامع کتاب اور درندوں کی فہرست</string>
+        <string name="codex_tab_bestiary">درندوں کی فہرست</string>
+        <string name="codex_tab_materials">سامان</string>
+        <string name="codex_tab_milestones">سنگ میل</string>
+        <string name="codex_kills_label">ہلاکتیں: %1$d</string>
+        <string name="codex_undiscovered">\?\?\?</string>
+        <string name="codex_completion">مکمل: %1$.1f%%</string>
+        <string name="codex_search_hint">فہرست اور سامان میں تلاش کریں...</string>
+        <string name="codex_no_results">کوئی نتائج نہیں ملے۔</string>
+        <string name="codex_milestone_title">سنگ میل کے درجے</string>
+        <string name="codex_active_bonuses">فعال بونس:</string>
+        <string name="codex_threshold_label">رتبہ: %1$s</string>
+        <string name="codex_drop_sources">ذرائع: %1$s</string>
+        <string name="codex_drops_label">حاصل شدہ: %1$s</string>
+
+        <!-- Materials -->
+        <string name="mat_iron_ore_name">لوہے کی کچی دھات</string>
+        <string name="mat_iron_ore_desc">کم لیول کی بہتری کے لیے بنیادی دھات۔</string>
+        <string name="mat_mithril_ore_name">مِتھرل کچی دھات</string>
+        <string name="mat_mithril_ore_desc">درمیانے لیول کی بہتری کے لیے جادوئی دھات۔</string>
+        <string name="mat_adamantite_ore_name">ایڈامنٹائٹ کچی دھات</string>
+        <string name="mat_adamantite_ore_desc">اعلیٰ لیول کی بہتری کے لیے پائیدار دھات۔</string>
+        <string name="mat_orichalcum_ore_name">اوریکالکم کچی دھات</string>
+        <string name="mat_orichalcum_ore_desc">انتہائی اعلیٰ بہتری کے لیے نایاب دھات۔</string>
+
+        <string name="mat_beast_fang_name">درندے کا دانت</string>
+        <string name="mat_beast_fang_desc">غار کے درندے کا تیز دانت۔</string>
+        <string name="mat_monster_bone_name">بلا کی ہڈی</string>
+        <string name="mat_monster_bone_desc">غار کی بلا کی مضبوط ہڈی۔</string>
+        <string name="mat_dragon_scale_name">اژدھے کا چھلکا</string>
+        <string name="mat_dragon_scale_desc">قدیم اژدھے کی طاقت سے چمکتا ہوا موٹا چھلکا۔</string>
+        <string name="mat_demon_horn_name">دیو کا سنگھ</string>
+        <string name="mat_demon_horn_desc">شیطانی توانائی سے بھرا ہوا مڑا ہوا سنگھ۔</string>
+
+        <string name="mat_fire_essence_name">آگ کا جوہر</string>
+        <string name="mat_fire_essence_desc">آتشیں جادو کا چمکتا ہوا مرکز۔</string>
+        <string name="mat_ice_essence_name">برف کا جوہر</string>
+        <string name="mat_ice_essence_desc">برفانی جادو کا ٹھنڈا مرکز۔</string>
+        <string name="mat_lightning_essence_name">بجلی کا جوہر</string>
+        <string name="mat_lightning_essence_desc">طوفانی جادو کا چمکتا ہوا مرکز۔</string>
+        <string name="mat_dark_essence_name">تاریکی کا جوہر</string>
+        <string name="mat_dark_essence_desc">کالے جادو کا تاریک مرکز۔</string>
+
+        <string name="mat_ruby_gem_1_name">چھوٹا یاقوت</string>
+        <string name="mat_ruby_gem_1_desc">+5 حملہ بونس</string>
+        <string name="mat_ruby_gem_2_name">یاقوت کا نگینہ</string>
+        <string name="mat_ruby_gem_2_desc">+15 حملہ بونس</string>
+        <string name="mat_ruby_gem_3_name">بے عیب یاقوت</string>
+        <string name="mat_ruby_gem_3_desc">+35 حملہ بونس</string>
+
+        <string name="mat_sapphire_gem_1_name">چھوٹا نیلم</string>
+        <string name="mat_sapphire_gem_1_desc">+5 جادو بونس</string>
+        <string name="mat_sapphire_gem_2_name">نیلم کا نگینہ</string>
+        <string name="mat_sapphire_gem_2_desc">+15 جادو بونس</string>
+        <string name="mat_sapphire_gem_3_name">بے عیب نیلم</string>
+        <string name="mat_sapphire_gem_3_desc">+35 جادو بونس</string>
+
+        <string name="mat_emerald_gem_1_name">چھوٹا زمرد</string>
+        <string name="mat_emerald_gem_1_desc">+5 دفاع بونس</string>
+        <string name="mat_emerald_gem_2_name">زمرد کا نگینہ</string>
+        <string name="mat_emerald_gem_2_desc">+15 دفاع بونس</string>
+        <string name="mat_emerald_gem_3_name">بے عیب زمرد</string>
+        <string name="mat_emerald_gem_3_desc">+35 دفاع بونس</string>
+
+        <string name="mat_topaz_gem_1_name">چھوٹا پکھراج</string>
+        <string name="mat_topaz_gem_1_desc">+25 صحت بونس</string>
+        <string name="mat_topaz_gem_2_name">پکھراج کا نگینہ</string>
+        <string name="mat_topaz_gem_2_desc">+75 صحت بونس</string>
+        <string name="mat_topaz_gem_3_name">بے عیب پکھراج</string>
+        <string name="mat_topaz_gem_3_desc">+175 صحت بونس</string>
+
+        <string name="mat_boss_trophy_1_name">گوبلن بادشاہ کا تاج</string>
+        <string name="mat_boss_trophy_1_desc">گوبلن بادشاہ کو ہرا کا ثبوت۔</string>
+        <string name="mat_boss_trophy_2_name">ہائیڈرا کی کھوپڑی</string>
+        <string name="mat_boss_trophy_2_desc">خوفناک ہائیڈرا کو ہرانے کا ثبوت۔</string>
+        <string name="mat_boss_trophy_3_name">شیطان کے سردار کا سنگھ</string>
+        <string name="mat_boss_trophy_3_desc">تاریک قلعے کو فتح کرنے کا ثبوت۔</string>
+
+        <string name="mat_unknown_material_name">نا معلوم سامان</string>
+        <string name="mat_unknown_material_desc">غار سے ملا ہوا ایک پرسرار سامان۔</string>
+
+        <!-- Crafting & Socketing User Messages -->
+        <string name="craft_msg_enhance_success">سامان کامیابی سے بہتر ہو گیا!</string>
+        <string name="craft_msg_socket_success">ساکٹ کامیابی سے شامل کر دیا گیا!</string>
+        <string name="craft_msg_gem_inserted">نگینہ کامیابی سے لگا دیا گیا!</string>
+        <string name="craft_msg_gem_crafted">نگینہ کامیابی سے بنا لیا گیا!</string>
+        <string name="craft_msg_gem_fused">جواہرات کامیابی سے ملا دیے گئے!</string>
+        <string name="craft_msg_hero_uncapped">ہیرو کے لیول کی حد بڑھا دی گئی!</string>
+        <string name="craft_err_hero_not_at_cap">ہیرو ابھی موجودہ زیادہ سے زیادہ لیول پر نہیں پہنچا۔</string>
+        <string name="craft_status_reach_cap_to_uncap">موجودہ زیادہ سے زیادہ لیول: %1$d (حد توڑنے کے لیے زیادہ سے زیادہ لیول تک پہنچیں)</string>
+        <string name="craft_status_ready_for_breakthrough">موجودہ زیادہ سے زیادہ لیول: %1$d (حد توڑنے کے لیے تیار!)</string>
+        <string name="craft_err_no_item_selected">کوئی چیز منتخب نہیں کی گئی۔</string>
+        <string name="craft_err_insufficient_materials">سامان ناکافی ہے۔</string>
+        <string name="craft_err_insufficient_gold">گل ناکافی ہیں۔</string>
+        <string name="craft_err_max_enhancement">چیز پہلے ہی زیادہ سے زیادہ بہتری (+10) پر ہے۔</string>
+        <string name="craft_err_max_sockets">چیز میں زیادہ سے زیادہ ساکٹس کی گنجائش ہو چکی ہے۔</string>
+        <string name="craft_err_invalid_socket">غلط ساکٹ۔</string>
+        <string name="craft_err_operation_failed">بنانے کا عمل ناکام ہو گیا۔</string>
+
+        <!-- Crafting Screen UI Strings -->
+        <string name="crafting_title">لوہار خانہ اور ساخت</string>
+        <string name="craft_tab_enhance">بہتری</string>
+        <string name="craft_tab_socket">ساکٹس</string>
+        <string name="craft_tab_gem_fusion">جواہرات کا ملاپ</string>
+        <string name="craft_tab_breakthrough">حد توڑنا</string>
+        <string name="craft_btn_enhance">بہتری (+%1$d)</string>
+        <string name="craft_btn_add_socket">ساکٹ شامل کریں</string>
+        <string name="craft_btn_insert_gem">نگینہ لگائیں</string>
+        <string name="craft_btn_fuse_gems">جواہرات ملائیں (3x)</string>
+        <string name="craft_btn_uncap_level">لیول کی حد بڑھائیں (+20)</string>
+        <string name="craft_label_select_item">چیز منتخب کریں:</string>
+        <string name="craft_label_stat_preview">صلاحیت کی بہتری (+5%%/لیول):</string>
+        <string name="craft_label_cost">قیمت:</string>
+        <string name="craft_label_required_materials">مطلوبہ سامان:</string>
+        <string name="craft_label_sockets">ساکٹس:</string>
+        <string name="craft_label_empty_slot">خالی ساکٹ</string>
+        <string name="craft_label_owned_gems">ملکیتی جواہرات:</string>
+        <string name="craft_label_no_items">کوئی چیز دستیاب نہیں۔</string>
+        <string name="craft_label_no_gems">کوئی نگینہ دستیاب نہیں۔</string>
+        <string name="craft_label_max_level_reached">زیادہ سے زیادہ لیول (+10)</string>
+        <string name="craft_format_level">+%1$d</string>
+        <string name="craft_format_gold">%1$d گل</string>
+        <string name="craft_format_quantity">x%1$d</string>
+        <string name="craft_format_stat">%1$s: %2$d ➔ %3$d</string>
+        <string name="craft_format_equipped_tag">(زیب تن)</string>
+        <string name="craft_format_hero_level">لیول %1$d</string>
+        <string name="craft_label_hero_breakthrough">ہیرو کے لیول کی حد توڑنا:</string>
+        <string name="btn_ok">ٹھیک ہے</string>
+
+        <!-- Codex & Compendium Extensions -->
+        <string name="codex_milestone_tier">درجہ %1$d%%</string>
+        <string name="codex_status_unlocked">انلاک شدہ</string>
+        <string name="codex_status_locked">لاکر شدہ</string>
+        <string name="stat_magicite_find">میجیسائٹ کی تلاش</string>
+        <string name="threshold_undiscovered">غیر دریافت شدہ</string>
+        <string name="threshold_sighted">دیکھا گیا</string>
+        <string name="threshold_analyzed">تجزیہ شدہ</string>
+        <string name="threshold_mastered">مہارت حاصل شدہ</string>
+        <string name="mat_cat_ore">کچی دھات</string>
+        <string name="mat_cat_monster_part">بلا کا حصہ</string>
+        <string name="mat_cat_essence">جوہر</string>
+        <string name="mat_cat_boss_trophy">سردار کی ٹرافی</string>
+        <string name="craft_slot_locked">[ لاک شدہ ساکٹ %1$d ]</string>
+        <string name="craft_socket_ratio">%1$d / 3</string>
+        <string name="craft_trophy_ratio">(%1$d / 1)</string>
+        <string name="codex_kills_format">ہلاکتیں: %1$d</string>
+        <string name="codex_completion_format">مکمل: %1$.1f%%</string>
+
+        <!-- Hero Breakthrough Strings -->
+        <string name="hero_level_cap">لیول %1$d / %2$d (زیادہ سے زیادہ)</string>
+        <string name="hero_level_normal">لیول %1$d / %2$d</string>
+        <string name="hero_breakthrough_button">حد توڑیں</string>
+        <string name="hero_breakthrough_req">ضرورت 1x %1$s</string>
+    </resources>
 

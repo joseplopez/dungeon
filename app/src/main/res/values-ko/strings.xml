@@ -1029,4 +1029,165 @@
     <string name="bulletin_perk_forge">⚒️ 신화 대장간: 신화 확률 +%1%%%</string>
     <string name="bulletin_perk_war_room">⚔️ 작전회의실: 치명타 피해 +%1%%%</string>
     <string name="bulletin_perk_spire">🌌 첨탑: 차원 마석 +%1%%%</string>
-</resources>
+
+        <string name="building_blacksmith">대장간</string>
+        <string name="building_blacksmith_title">대장간</string>
+        <string name="building_blacksmith_desc">장비를 강화하고 소켓을 추가하며 보석을 합성하고 영웅 레벨 제한을 해제하세요.</string>
+        <string name="building_library">도감</string>
+        <string name="building_library_title">도감</string>
+        <string name="building_library_desc">몬스터 도감과 재료 수급처를 확인하고 달성 보상을 해제하세요.</string>
+
+        <string name="codex_title">도감 및 마수 도감</string>
+        <string name="codex_tab_bestiary">마수 도감</string>
+        <string name="codex_tab_materials">재료</string>
+        <string name="codex_tab_milestones">업적</string>
+        <string name="codex_kills_label">처치 수: %1$d</string>
+        <string name="codex_undiscovered">\?\?\?</string>
+        <string name="codex_completion">달성도: %1$.1f%%</string>
+        <string name="codex_search_hint">도감 및 재료 검색...</string>
+        <string name="codex_no_results">일치하는 항목이 없습니다.</string>
+        <string name="codex_milestone_title">업적 단계</string>
+        <string name="codex_active_bonuses">적용 중인 보너스:</string>
+        <string name="codex_threshold_label">등급: %1$s</string>
+        <string name="codex_drop_sources">수급처: %1$s</string>
+        <string name="codex_drops_label">드롭 아이템: %1$s</string>
+
+        <!-- Materials -->
+        <string name="mat_iron_ore_name">철광석</string>
+        <string name="mat_iron_ore_desc">초반 강화에 사용되는 기본 광석.</string>
+        <string name="mat_mithril_ore_name">미스릴 광석</string>
+        <string name="mat_mithril_ore_desc">중반 장비 강화에 사용되는 마법 광석.</string>
+        <string name="mat_adamantite_ore_name">아다만타이트 광석</string>
+        <string name="mat_adamantite_ore_desc">후반 장비 강화에 사용되는 단단한 광석.</string>
+        <string name="mat_orichalcum_ore_name">오리하르콘 광석</string>
+        <string name="mat_orichalcum_ore_desc">최고 등급 장비 강화에 사용되는 신화의 광석.</string>
+
+        <string name="mat_beast_fang_name">야수의 송곳니</string>
+        <string name="mat_beast_fang_desc">던전 야수에게서 채집한 날카로운 송곳니.</string>
+        <string name="mat_monster_bone_name">몬스터의 뼈</string>
+        <string name="mat_monster_bone_desc">던전 몬스터에게서 채집한 단단한 뼈.</string>
+        <string name="mat_dragon_scale_name">드래곤의 비늘</string>
+        <string name="mat_dragon_scale_desc">고대 드래곤의 힘이 깃든 두꺼운 비늘.</string>
+        <string name="mat_demon_horn_name">악마의 뿔</string>
+        <string name="mat_demon_horn_desc">사악한 에너지가 감도는 휘어진 뿔.</string>
+
+        <string name="mat_fire_essence_name">화염의 정수</string>
+        <string name="mat_fire_essence_desc">화염 마법의 빛나는 핵심.</string>
+        <string name="mat_ice_essence_name">얼음의 정수</string>
+        <string name="mat_ice_essence_desc">얼음 마법의 차가운 핵심.</string>
+        <string name="mat_lightning_essence_name">번개의 정수</string>
+        <string name="mat_lightning_essence_desc">폭풍 마법의 번뜩이는 핵심.</string>
+        <string name="mat_dark_essence_name">어둠의 정수</string>
+        <string name="mat_dark_essence_desc">암흑 마법의 그림자 핵심.</string>
+
+        <string name="mat_ruby_gem_1_name">하급 루비</string>
+        <string name="mat_ruby_gem_1_desc">+5 공격력 보너스</string>
+        <string name="mat_ruby_gem_2_name">루비 보석</string>
+        <string name="mat_ruby_gem_2_desc">+15 공격력 보너스</string>
+        <string name="mat_ruby_gem_3_name">최상급 루비</string>
+        <string name="mat_ruby_gem_3_desc">+35 공격력 보너스</string>
+
+        <string name="mat_sapphire_gem_1_name">하급 사파이어</string>
+        <string name="mat_sapphire_gem_1_desc">+5 마력 보너스</string>
+        <string name="mat_sapphire_gem_2_name">사파이어 보석</string>
+        <string name="mat_sapphire_gem_2_desc">+15 마력 보너스</string>
+        <string name="mat_sapphire_gem_3_name">최상급 사파이어</string>
+        <string name="mat_sapphire_gem_3_desc">+35 마력 보너스</string>
+
+        <string name="mat_emerald_gem_1_name">하급 에메랄드</string>
+        <string name="mat_emerald_gem_1_desc">+5 방어력 보너스</string>
+        <string name="mat_emerald_gem_2_name">에메랄드 보석</string>
+        <string name="mat_emerald_gem_2_desc">+15 방어력 보너스</string>
+        <string name="mat_emerald_gem_3_name">최상급 에메랄드</string>
+        <string name="mat_emerald_gem_3_desc">+35 방어력 보너스</string>
+
+        <string name="mat_topaz_gem_1_name">하급 토파즈</string>
+        <string name="mat_topaz_gem_1_desc">+25 체력 보너스</string>
+        <string name="mat_topaz_gem_2_name">토파즈 보석</string>
+        <string name="mat_topaz_gem_2_desc">+75 체력 보너스</string>
+        <string name="mat_topaz_gem_3_name">최상급 토파즈</string>
+        <string name="mat_topaz_gem_3_desc">+175 체력 보너스</string>
+
+        <string name="mat_boss_trophy_1_name">고블린 왕의 왕관</string>
+        <string name="mat_boss_trophy_1_desc">고블린 왕을 처치했다는 증표.</string>
+        <string name="mat_boss_trophy_2_name">히드라의 해골</string>
+        <string name="mat_boss_trophy_2_desc">무시무시한 히드라를 처치했다는 증표.</string>
+        <string name="mat_boss_trophy_3_name">마왕의 뿔</string>
+        <string name="mat_boss_trophy_3_desc">어둠의 요새를 정복했다는 증표.</string>
+
+        <string name="mat_unknown_material_name">알 수 없는 재료</string>
+        <string name="mat_unknown_material_desc">던전에서 발견된 의문의 재료.</string>
+
+        <!-- Crafting & Socketing User Messages -->
+        <string name="craft_msg_enhance_success">장비 강화에 성공했습니다!</string>
+        <string name="craft_msg_socket_success">소켓 추가에 성공했습니다!</string>
+        <string name="craft_msg_gem_inserted">보석 장착에 성공했습니다!</string>
+        <string name="craft_msg_gem_crafted">보석 제작에 성공했습니다!</string>
+        <string name="craft_msg_gem_fused">보석 합성으로 성공했습니다!</string>
+        <string name="craft_msg_hero_uncapped">영웅 레벨 제한이 증가했습니다!</string>
+        <string name="craft_err_hero_not_at_cap">영웅이 아직 현재 최대 레벨에 도달하지 않았습니다.</string>
+        <string name="craft_status_reach_cap_to_uncap">현재 최대 레벨: Lv %1$d (최대 레벨 도달 시 해제 가능)</string>
+        <string name="craft_status_ready_for_breakthrough">현재 최대 레벨: Lv %1$d (한계 돌파 가능!)</string>
+        <string name="craft_err_no_item_selected">선택된 아이템이 없습니다.</string>
+        <string name="craft_err_insufficient_materials">재료가 부족합니다.</string>
+        <string name="craft_err_insufficient_gold">길이 부족합니다.</string>
+        <string name="craft_err_max_enhancement">이미 최고 강화 단계(+10)에 도달했습니다.</string>
+        <string name="craft_err_max_sockets">소켓 확장 슬롯이 최대치에 도달했습니다.</string>
+        <string name="craft_err_invalid_socket">유효하지 않은 소켓입니다.</string>
+        <string name="craft_err_operation_failed">제작 작업에 실패했습니다.</string>
+
+        <!-- Crafting Screen UI Strings -->
+        <string name="crafting_title">대장간 및 제작</string>
+        <string name="craft_tab_enhance">강화</string>
+        <string name="craft_tab_socket">소켓</string>
+        <string name="craft_tab_gem_fusion">보석 합성</string>
+        <string name="craft_tab_breakthrough">한계 돌파</string>
+        <string name="craft_btn_enhance">강화 (+%1$d)</string>
+        <string name="craft_btn_add_socket">소켓 슬롯 추가</string>
+        <string name="craft_btn_insert_gem">보석 장착</string>
+        <string name="craft_btn_fuse_gems">보석 합성 (3개)</string>
+        <string name="craft_btn_uncap_level">레벨 제한 해제 (+20)</string>
+        <string name="craft_label_select_item">아이템 선택:</string>
+        <string name="craft_label_stat_preview">능력치 증가 (+5%%/Lv):</string>
+        <string name="craft_label_cost">비용:</string>
+        <string name="craft_label_required_materials">필요 재료:</string>
+        <string name="craft_label_sockets">소켓:</string>
+        <string name="craft_label_empty_slot">빈 소켓</string>
+        <string name="craft_label_owned_gems">보유 보석:</string>
+        <string name="craft_label_no_items">사용 가능한 아이템이 없습니다.</string>
+        <string name="craft_label_no_gems">사용 가능한 보석이 없습니다.</string>
+        <string name="craft_label_max_level_reached">최대 레벨 (+10)</string>
+        <string name="craft_format_level">+%1$d</string>
+        <string name="craft_format_gold">%1$d 길</string>
+        <string name="craft_format_quantity">x%1$d</string>
+        <string name="craft_format_stat">%1$s: %2$d ➔ %3$d</string>
+        <string name="craft_format_equipped_tag">(장착 중)</string>
+        <string name="craft_format_hero_level">Lv %1$d</string>
+        <string name="craft_label_hero_breakthrough">영웅 레벨 한계 돌파:</string>
+        <string name="btn_ok">확인</string>
+
+        <!-- Codex & Compendium Extensions -->
+        <string name="codex_milestone_tier">티어 %1$d%%</string>
+        <string name="codex_status_unlocked">해제됨</string>
+        <string name="codex_status_locked">잠김</string>
+        <string name="stat_magicite_find">마지사이트 획득률</string>
+        <string name="threshold_undiscovered">미발견</string>
+        <string name="threshold_sighted">목격함</string>
+        <string name="threshold_analyzed">분석 완료</string>
+        <string name="threshold_mastered">마스터함</string>
+        <string name="mat_cat_ore">광석</string>
+        <string name="mat_cat_monster_part">몬스터 부위</string>
+        <string name="mat_cat_essence">정수</string>
+        <string name="mat_cat_boss_trophy">보스 전리품</string>
+        <string name="craft_slot_locked">[ 잠긴 슬롯 %1$d ]</string>
+        <string name="craft_socket_ratio">%1$d / 3</string>
+        <string name="craft_trophy_ratio">(%1$d / 1)</string>
+        <string name="codex_kills_format">처치 수: %1$d</string>
+        <string name="codex_completion_format">달성도: %1$.1f%%</string>
+
+        <!-- Hero Breakthrough Strings -->
+        <string name="hero_level_cap">Lv %1$d / %2$d (최대)</string>
+        <string name="hero_level_normal">Lv %1$d / %2$d</string>
+        <string name="hero_breakthrough_button">한계 돌파</string>
+        <string name="hero_breakthrough_req">필요: 1x %1$s</string>
+    </resources>

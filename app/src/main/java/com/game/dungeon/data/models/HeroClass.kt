@@ -22,7 +22,7 @@ enum class HeroClass(
 ) {
     // TIER 1 — BASIC JOBS (Classic FF1 Archetypes)
     FREELANCER(R.string.class_freelancer, 1, CrystalColor.CLEAR, 0, "👤",
-        R.string.class_freelancer_desc, 60, 15, 8, 8, 6, 10, AIPriority.ATTACK, 0xFFDDDDDD,
+        R.string.class_freelancer_desc, 70, 15, 12, 8, 6, 10, AIPriority.ATTACK, 0xFFDDDDDD,
         StatType.HP, 10, R.string.ability_freelancer_name, R.string.ability_freelancer_desc),
     WARRIOR(R.string.class_warrior, 1, CrystalColor.RED, 100, "⚔️",
         R.string.class_warrior_desc, 130, 10, 18, 5, 14, 8, AIPriority.ATTACK, 0xFFFF4444,

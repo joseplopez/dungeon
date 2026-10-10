@@ -1027,4 +1027,165 @@
     <string name="bulletin_perk_forge">⚒️ Кузница: +%1%%% шанс мифических вещей</string>
     <string name="bulletin_perk_war_room">⚔️ Зал войны: +%1%%% крит. урона</string>
     <string name="bulletin_perk_spire">🌌 Шпиль: +%1%%% магицита измерения</string>
-</resources>
+
+        <string name="building_blacksmith">КУЗНИЦА</string>
+        <string name="building_blacksmith_title">Кузница</string>
+        <string name="building_blacksmith_desc">Улучшайте снаряжение, добавляйте гнезда, объединяйте самоцветы и снимайте ограничение уровня героев.</string>
+        <string name="building_library">БИБЛИОТЕКА</string>
+        <string name="building_library_title">Справочник</string>
+        <string name="building_library_desc">Отслеживайте бестиарий монстров, источники материалов и открывайте достижения.</string>
+
+        <string name="codex_title">СПРАВОЧНИК И БЕСТИАРИЙ</string>
+        <string name="codex_tab_bestiary">Бестиарий</string>
+        <string name="codex_tab_materials">Материалы</string>
+        <string name="codex_tab_milestones">Достижения</string>
+        <string name="codex_kills_label">Убито: %1$d</string>
+        <string name="codex_undiscovered">\?\?\?</string>
+        <string name="codex_completion">Прогресс: %1$.1f%%</string>
+        <string name="codex_search_hint">Поиск по бестиарию и материалам...</string>
+        <string name="codex_no_results">Совпадений не найдено.</string>
+        <string name="codex_milestone_title">Уровни достижений</string>
+        <string name="codex_active_bonuses">Активные бонусы:</string>
+        <string name="codex_threshold_label">Ранг: %1$s</string>
+        <string name="codex_drop_sources">Источники: %1$s</string>
+        <string name="codex_drops_label">Добыча: %1$s</string>
+
+        <!-- Materials -->
+        <string name="mat_iron_ore_name">Железная руда</string>
+        <string name="mat_iron_ore_desc">Базовая руда для улучшения начального уровня.</string>
+        <string name="mat_mithril_ore_name">Мифриловая руда</string>
+        <string name="mat_mithril_ore_desc">Магическая руда для улучшения снаряжения среднего уровня.</string>
+        <string name="mat_adamantite_ore_name">Адамантитовая руда</string>
+        <string name="mat_adamantite_ore_desc">Прочная руда для улучшения снаряжения высокого уровня.</string>
+        <string name="mat_orichalcum_ore_name">Орихалковая руда</string>
+        <string name="mat_orichalcum_ore_desc">Мифическая руда для максимального улучшения снаряжения.</string>
+
+        <string name="mat_beast_fang_name">Клык зверя</string>
+        <string name="mat_beast_fang_desc">Острый зуб зверей из подземелья.</string>
+        <string name="mat_monster_bone_name">Кость монстра</string>
+        <string name="mat_monster_bone_desc">Прочная кость монстров из подземелья.</string>
+        <string name="mat_dragon_scale_name">Чешуя дракона</string>
+        <string name="mat_dragon_scale_desc">Толстая чешуя, излучающая древнюю силу дракона.</string>
+        <string name="mat_demon_horn_name">Рог демона</string>
+        <string name="mat_demon_horn_desc">Изогнутый рог, наполненный демонической энергией.</string>
+
+        <string name="mat_fire_essence_name">Эссенция огня</string>
+        <string name="mat_fire_essence_desc">Светящееся ядро огненной магии.</string>
+        <string name="mat_ice_essence_name">Эссенция льда</string>
+        <string name="mat_ice_essence_desc">Ледяное ядро магии льда.</string>
+        <string name="mat_lightning_essence_name">Эссенция молнии</string>
+        <string name="mat_lightning_essence_desc">Искрящееся ядро магии шторма.</string>
+        <string name="mat_dark_essence_name">Эссенция тьмы</string>
+        <string name="mat_dark_essence_desc">Теневое ядро темной магии.</string>
+
+        <string name="mat_ruby_gem_1_name">Малый рубин</string>
+        <string name="mat_ruby_gem_1_desc">+5 к атаке</string>
+        <string name="mat_ruby_gem_2_name">Рубин</string>
+        <string name="mat_ruby_gem_2_desc">+15 к атаке</string>
+        <string name="mat_ruby_gem_3_name">Безупречный рубин</string>
+        <string name="mat_ruby_gem_3_desc">+35 к атаке</string>
+
+        <string name="mat_sapphire_gem_1_name">Малый сапфир</string>
+        <string name="mat_sapphire_gem_1_desc">+5 к магии</string>
+        <string name="mat_sapphire_gem_2_name">Сапфир</string>
+        <string name="mat_sapphire_gem_2_desc">+15 к магии</string>
+        <string name="mat_sapphire_gem_3_name">Безупречный сапфир</string>
+        <string name="mat_sapphire_gem_3_desc">+35 к магии</string>
+
+        <string name="mat_emerald_gem_1_name">Малый изумруд</string>
+        <string name="mat_emerald_gem_1_desc">+5 к защите</string>
+        <string name="mat_emerald_gem_2_name">Изумруд</string>
+        <string name="mat_emerald_gem_2_desc">+15 к защите</string>
+        <string name="mat_emerald_gem_3_name">Безупречный изумруд</string>
+        <string name="mat_emerald_gem_3_desc">+35 к защите</string>
+
+        <string name="mat_topaz_gem_1_name">Малый топаз</string>
+        <string name="mat_topaz_gem_1_desc">+25 к здоровье</string>
+        <string name="mat_topaz_gem_2_name">Топаз</string>
+        <string name="mat_topaz_gem_2_desc">+75 к здоровье</string>
+        <string name="mat_topaz_gem_3_name">Безупречный топаз</string>
+        <string name="mat_topaz_gem_3_desc">+175 к здоровье</string>
+
+        <string name="mat_boss_trophy_1_name">Корона Короля Гоблинов</string>
+        <string name="mat_boss_trophy_1_desc">Доказательство победы над Королем Гоблинов.</string>
+        <string name="mat_boss_trophy_2_name">Череп Гидры</string>
+        <string name="mat_boss_trophy_2_desc">Доказательство победы над Грозной Гидрой.</string>
+        <string name="mat_boss_trophy_3_name">Рог Владыки Демонов</string>
+        <string name="mat_boss_trophy_3_desc">Доказательство покорения Темной Цитадели.</string>
+
+        <string name="mat_unknown_material_name">Неизвестный материал</string>
+        <string name="mat_unknown_material_desc">Загадочный материал, найденный в подземелье.</string>
+
+        <!-- Crafting & Socketing User Messages -->
+        <string name="craft_msg_enhance_success">Снаряжение успешно улучшено!</string>
+        <string name="craft_msg_socket_success">Гнездо успешно добавлено!</string>
+        <string name="craft_msg_gem_inserted">Самоцвет успешно вставлен!</string>
+        <string name="craft_msg_gem_crafted">Самоцвет успешно создан!</string>
+        <string name="craft_msg_gem_fused">Самоцветы успешно объединены!</string>
+        <string name="craft_msg_hero_uncapped">Максимальный уровень героя увеличен!</string>
+        <string name="craft_err_hero_not_at_cap">Герой еще не достиг текущего максимального уровня.</string>
+        <string name="craft_status_reach_cap_to_uncap">Текущий макс. уровень: %1$d ур. (Достигните предела для снятия)</string>
+        <string name="craft_status_ready_for_breakthrough">Текущий макс. уровень: %1$d ур. (Готов к прорыву!)</string>
+        <string name="craft_err_no_item_selected">Предмет не выбран.</string>
+        <string name="craft_err_insufficient_materials">Недостаточно материалов.</string>
+        <string name="craft_err_insufficient_gold">Недостаточно гилей.</string>
+        <string name="craft_err_max_enhancement">Предмет уже на максимальном уровне улучшения (+10).</string>
+        <string name="craft_err_max_sockets">Предмет достиг максимального количества гнезд.</string>
+        <string name="craft_err_invalid_socket">Недопустимое гнездо.</string>
+        <string name="craft_err_operation_failed">Ошибка создания.</string>
+
+        <!-- Crafting Screen UI Strings -->
+        <string name="crafting_title">КУЗНИЦА И СОЗДАНИЕ</string>
+        <string name="craft_tab_enhance">УЛУЧШЕНИЕ</string>
+        <string name="craft_tab_socket">ГНЕЗДА</string>
+        <string name="craft_tab_gem_fusion">СЛИЯНИЕ САМОЦВЕТОВ</string>
+        <string name="craft_tab_breakthrough">ПРОРЫВ</string>
+        <string name="craft_btn_enhance">УЛУЧШИТЬ (+%1$d)</string>
+        <string name="craft_btn_add_socket">ДОБАВИТЬ ГНЕЗДО</string>
+        <string name="craft_btn_insert_gem">ВСТАВИТЬ САМОЦВЕТ</string>
+        <string name="craft_btn_fuse_gems">ОБЪЕДИНИТЬ САМОЦВЕТЫ (3x)</string>
+        <string name="craft_btn_uncap_level">СНЯТЬ ОГРАНИЧЕНИЕ (+20)</string>
+        <string name="craft_label_select_item">Выберите предмет:</string>
+        <string name="craft_label_stat_preview">Прирост характеристик (+5%%/ур.):</string>
+        <string name="craft_label_cost">Стоимость:</string>
+        <string name="craft_label_required_materials">Требуемые материалы:</string>
+        <string name="craft_label_sockets">Гнезда:</string>
+        <string name="craft_label_empty_slot">Пустое гнездо</string>
+        <string name="craft_label_owned_gems">Имеющиеся самоцветы:</string>
+        <string name="craft_label_no_items">Нет доступных предметов.</string>
+        <string name="craft_label_no_gems">Нет доступных самоцветов.</string>
+        <string name="craft_label_max_level_reached">МАКС. УРОВЕНЬ (+10)</string>
+        <string name="craft_format_level">+%1$d</string>
+        <string name="craft_format_gold">%1$d Гил</string>
+        <string name="craft_format_quantity">x%1$d</string>
+        <string name="craft_format_stat">%1$s: %2$d ➔ %3$d</string>
+        <string name="craft_format_equipped_tag">(Экипировано)</string>
+        <string name="craft_format_hero_level">%1$d ур.</string>
+        <string name="craft_label_hero_breakthrough">Прорыв уровня героя:</string>
+        <string name="btn_ok">ОК</string>
+
+        <!-- Codex & Compendium Extensions -->
+        <string name="codex_milestone_tier">УРОВЕНЬ %1$d%%</string>
+        <string name="codex_status_unlocked">РАЗБЛОКИРОВАНО</string>
+        <string name="codex_status_locked">ЗАБЛОКИРОВАНО</string>
+        <string name="stat_magicite_find">ПОИСК МАДЖИЦИТА</string>
+        <string name="threshold_undiscovered">НЕ ИССЛЕДОВАНО</string>
+        <string name="threshold_sighted">ОБНАРУЖЕНО</string>
+        <string name="threshold_analyzed">ИЗУЧЕНО</string>
+        <string name="threshold_mastered">ОСВОЕНО</string>
+        <string name="mat_cat_ore">Руда</string>
+        <string name="mat_cat_monster_part">Часть монстра</string>
+        <string name="mat_cat_essence">Эссенция</string>
+        <string name="mat_cat_boss_trophy">Трофей босса</string>
+        <string name="craft_slot_locked">[ Заблокированное гнездо %1$d ]</string>
+        <string name="craft_socket_ratio">%1$d / 3</string>
+        <string name="craft_trophy_ratio">(%1$d / 1)</string>
+        <string name="codex_kills_format">Убито: %1$d</string>
+        <string name="codex_completion_format">Прогресс: %1$.1f%%</string>
+
+        <!-- Hero Breakthrough Strings -->
+        <string name="hero_level_cap">%1$d / %2$d ур. (МАКС)</string>
+        <string name="hero_level_normal">%1$d / %2$d ур.</string>
+        <string name="hero_breakthrough_button">ПРОРЫВ</string>
+        <string name="hero_breakthrough_req">Требуется 1x %1$s</string>
+    </resources>
