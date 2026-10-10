@@ -224,6 +224,19 @@ fun TownScreen(
                             }
                         )
 
+                        // 5. Library / Compendium (Center-Right)
+                        TownBuilding(
+                            name = safeStringResource(R.string.building_library_title),
+                            tag = "LIBRARY",
+                            animTime = animTime,
+                            onClick = {
+                                navController.navigate("codex") {
+                                    launchSingleTop = true
+                                    restoreState = true
+                                }
+                            }
+                        )
+
                         // 4. Inn Building & Bulletin Board (Right)
                         TownBuilding(
                             name = safeStringResource(R.string.building_inn),
@@ -392,6 +405,7 @@ fun TownBuilding(
                     "RELICS" -> drawDetailedPortal(animTime)
                     "COLOSSEUM" -> drawDetailedColosseum(animTime)
                     "BLACKSMITH" -> drawDetailedBlacksmith(animTime)
+                    "LIBRARY" -> drawDetailedLibrary(animTime)
                 }
             }
 

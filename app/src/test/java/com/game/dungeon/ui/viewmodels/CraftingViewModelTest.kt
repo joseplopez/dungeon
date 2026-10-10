@@ -8,6 +8,8 @@ import com.game.dungeon.data.models.Hero
 import com.game.dungeon.data.models.HeroClass
 import com.game.dungeon.data.models.Item
 import com.game.dungeon.data.models.ItemSlot
+import com.game.dungeon.data.models.MaterialCatalog
+import com.game.dungeon.data.models.MaterialInventoryItem
 import com.game.dungeon.data.models.Rarity
 import com.game.dungeon.data.models.SocketSlot
 import com.game.dungeon.data.repository.GameRepository
@@ -57,6 +59,7 @@ class CraftingViewModelTest {
     private val inventoryFlow = MutableStateFlow<List<Item>>(emptyList())
     private val equippedFlow = MutableStateFlow<List<Item>>(emptyList())
     private val materialsFlow = MutableStateFlow<List<MaterialEntity>>(emptyList())
+    private val materialInventoryFlow = MutableStateFlow<List<MaterialInventoryItem>>(emptyList())
     private val rosterFlow = MutableStateFlow<List<Hero>>(emptyList())
 
     @Before
@@ -65,6 +68,7 @@ class CraftingViewModelTest {
         whenever(repository.getInventory()).thenReturn(inventoryFlow)
         whenever(repository.getEquippedItems()).thenReturn(equippedFlow)
         whenever(repository.getMaterials()).thenReturn(materialsFlow)
+        whenever(repository.getMaterialInventory()).thenReturn(materialInventoryFlow)
         whenever(repository.getRoster()).thenReturn(rosterFlow)
 
         viewModel = CraftingViewModel(repository)
@@ -90,13 +94,12 @@ class CraftingViewModelTest {
         )
     }
 
-    private suspend fun awaitStateWithMessage(
-        turbine: TurbineTestContext<CraftingUiState>,
+    private suspend fun TurbineTestContext<CraftingUiState>.awaitStateWithMessage(
         expectedMsgRes: Int,
     ): CraftingUiState {
-        var state = turbine.awaitItem()
+        var state = awaitItem()
         while (state.userMessageRes != expectedMsgRes) {
-            state = turbine.awaitItem()
+            state = awaitItem()
         }
         return state
     }
@@ -110,12 +113,12 @@ class CraftingViewModelTest {
         val sword = createTestItem(id = "sword_1", name = "Iron Sword")
         val armor = createTestItem(id = "armor_1", name = "Leather Armor", slot = ItemSlot.ARMOR)
 
-        val activeMaterial = MaterialEntity(id = "iron_ore", amount = 10)
-        val emptyMaterial = MaterialEntity(id = "mithril_ore", amount = 0)
+        val activeMaterial = MaterialInventoryItem(material = MaterialCatalog.getMaterial("iron_ore"), amount = 10)
+        val emptyMaterial = MaterialInventoryItem(material = MaterialCatalog.getMaterial("mithril_ore"), amount = 0)
 
         inventoryFlow.value = listOf(sword)
         equippedFlow.value = listOf(armor)
-        materialsFlow.value = listOf(activeMaterial, emptyMaterial)
+        materialInventoryFlow.value = listOf(activeMaterial, emptyMaterial)
 
         viewModel.uiState.test {
             val state = awaitItem()
@@ -129,6 +132,10 @@ class CraftingViewModelTest {
             // Only materials with amount > 0 should be mapped and emitted
             assertEquals(1, state.materials.size)
             assertEquals("iron_ore", state.materials.first().id)
+
+            assertEquals(1, state.materialInventory.size)
+            assertEquals("iron_ore", state.materialInventory.first().material.id)
+            assertEquals(10, state.materialInventory.first().amount)
 
             assertEquals(CraftingTab.ENHANCE, state.selectedTab)
             assertNull(state.selectedItem)
@@ -222,10 +229,7 @@ class CraftingViewModelTest {
         val enhancedItem = item.copy(enhancementLevel = 3)
 
         inventoryFlow.value = listOf(item)
-        whenever(repository.enhanceEquipment(any<Item>())).thenAnswer {
-            inventoryFlow.value = listOf(enhancedItem)
-            Result.success(enhancedItem)
-        }
+        whenever(repository.enhanceEquipment(any<Item>())).thenReturn(Result.success(enhancedItem))
 
         viewModel.selectItem(item)
 
@@ -339,10 +343,7 @@ class CraftingViewModelTest {
         val socketedWeapon = weapon.copy(sockets = listOf(SocketSlot("s1")))
 
         inventoryFlow.value = listOf(weapon)
-        whenever(repository.addSocketSlot(any<Item>())).thenAnswer {
-            inventoryFlow.value = listOf(socketedWeapon)
-            Result.success(socketedWeapon)
-        }
+        whenever(repository.addSocketSlot(any<Item>())).thenReturn(Result.success(socketedWeapon))
 
         viewModel.selectItem(weapon)
 
@@ -422,10 +423,7 @@ class CraftingViewModelTest {
         val socketedWeapon = weapon.copy(sockets = listOf(SocketSlot("s1")))
 
         inventoryFlow.value = listOf(weapon)
-        whenever(repository.insertGem(any(), any(), any())).thenAnswer {
-            inventoryFlow.value = listOf(socketedWeapon)
-            Result.success(socketedWeapon)
-        }
+        whenever(repository.insertGem(any(), any(), any())).thenReturn(Result.success(socketedWeapon))
 
         viewModel.selectItem(weapon)
 
@@ -447,10 +445,13 @@ class CraftingViewModelTest {
             id = "hero_1",
             heroClass = HeroClass.WARRIOR,
             name = "Cecil",
+            level = 20,
+            maxLevel = 20,
             currentHp = 200,
             currentMp = 50,
             aiPriority = AIPriority.ATTACK,
         )
+        rosterFlow.value = listOf(hero)
 
         whenever(repository.uncapHeroLevel(any())).thenReturn(Result.success(hero))
 
@@ -461,6 +462,32 @@ class CraftingViewModelTest {
             val state = awaitStateWithMessage(R.string.craft_msg_hero_uncapped)
 
             assertEquals(R.string.craft_msg_hero_uncapped, state.userMessageRes)
+
+            cancelAndIgnoreRemainingEvents()
+        }
+    }
+
+    @Test
+    fun `test uncapHero when hero below cap sets not at cap error`() = runTest {
+        val hero = Hero(
+            id = "hero_1",
+            heroClass = HeroClass.WARRIOR,
+            name = "Edgar",
+            currentHp = 200,
+            currentMp = 50,
+            level = 22,
+            maxLevel = 40,
+            aiPriority = AIPriority.ATTACK,
+        )
+        rosterFlow.value = listOf(hero)
+
+        viewModel.uiState.test {
+            awaitItem()
+
+            viewModel.uncapHero("hero_1")
+            val state = awaitStateWithMessage(R.string.craft_err_hero_not_at_cap)
+
+            assertEquals(R.string.craft_err_hero_not_at_cap, state.userMessageRes)
 
             cancelAndIgnoreRemainingEvents()
         }

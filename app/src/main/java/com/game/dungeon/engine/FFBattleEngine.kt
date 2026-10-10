@@ -16,7 +16,7 @@ sealed class FFBattleEvent {
     data class GroupHeal(val casterId: String, val amounts: Map<String, Int>) : FFBattleEvent()
     data class AbilityUsed(val heroId: String, @StringRes val nameRes: Int, @StringRes val descRes: Int, val args: List<Any> = emptyList()) : FFBattleEvent()
     data class ExpGained(val heroId: String, val amount: Int, val leveledUp: Boolean, val newLevel: Int) : FFBattleEvent()
-    data class EnemyDefeated(val enemyId: String, val gilDropped: Int, val magiciteDropped: Int, val expDropped: Int, val materialsDropped: Map<String, Int> = emptyMap()) : FFBattleEvent()
+    data class EnemyDefeated(val enemyId: String, val monsterType: MonsterType = MonsterType.GOBLIN, val gilDropped: Int, val magiciteDropped: Int, val expDropped: Int, val materialsDropped: Map<String, Int> = emptyMap()) : FFBattleEvent()
     data class HeroFell(val heroId: String, val heroName: String, val heroClass: HeroClass) : FFBattleEvent()
     data class MagiciteStolen(val heroId: String, val amount: Int) : FFBattleEvent()
     data class SummonUsed(val heroId: String, val summonName: String, val totalDamage: Int) : FFBattleEvent()
@@ -165,7 +165,7 @@ class FFBattleEngine(private val context: Context) {
     ) {
         val exp = ((enemy.floor * 2) * relicBonuses.expMultiplier).toInt()
         val materials = calculateMaterialDrops(enemy, enemy.floor, dimension, relicBonuses)
-        onEvent(FFBattleEvent.EnemyDefeated(enemy.id, enemy.gilDropped, enemy.magiciteDropped, exp, materials))
+        onEvent(FFBattleEvent.EnemyDefeated(enemy.id, enemy.type, enemy.gilDropped, enemy.magiciteDropped, exp, materials))
         materials.forEach { (matId, amt) ->
             onEvent(FFBattleEvent.MaterialDropped(matId, amt))
         }
@@ -179,56 +179,22 @@ class FFBattleEngine(private val context: Context) {
         relicBonuses: RelicBonuses
     ): Map<String, Int> {
         val drops = mutableMapOf<String, Int>()
+        val relicMultiplier = 1f + relicBonuses.alchemistDropChanceBonus + (relicBonuses.magnetBonus * 0.05f)
 
-        if (enemy.isBoss || floor % 10 == 0) {
-            // Guaranteed Boss Trophy Drop
-            val trophyId = when {
-                floor <= 30 -> "boss_trophy_1"
-                floor <= 70 -> "boss_trophy_2"
-                else -> "boss_trophy_3"
-            }
-            val trophyQty = 1 + if (dimension.number > 2) 1 else 0
-            drops[trophyId] = trophyQty
+        // Uses enemy.isBoss strictly (removes the floor % 10 == 0 bug)
+        val dropRules = MonsterLootTable.getDropsForMonster(enemy.type, enemy.isBoss)
 
-            // Scaled High-Tier Material Drops for Bosses
-            val bonusDropMult = 1f + relicBonuses.alchemistDropChanceBonus + (relicBonuses.pocketsBonus * 0.1f)
-            val stackCount = Random.nextInt(2, 5)
-
-            val highTierOres = listOf("adamantite_ore", "orichalcum_ore")
-            val highTierParts = listOf("dragon_scale", "demon_horn")
-            val highTierEssences = listOf("dark_essence", "fire_essence", "ice_essence", "lightning_essence")
-            val gems = listOf("ruby_gem_2", "sapphire_gem_2", "emerald_gem_2", "topaz_gem_2")
-
-            repeat(stackCount) {
-                val pool = when (Random.nextInt(1, 5)) {
-                    1 -> highTierOres
-                    2 -> highTierParts
-                    3 -> highTierEssences
-                    else -> gems
-                }
-                val selectedMat = pool.random()
-                val baseQty = when {
-                    floor >= 80 -> Random.nextInt(2, 5)
-                    floor >= 40 -> Random.nextInt(1, 4)
-                    else -> Random.nextInt(1, 3)
-                }
-                val finalQty = (baseQty * bonusDropMult).toInt().coerceAtLeast(1)
-                drops[selectedMat] = (drops[selectedMat] ?: 0) + finalQty
-            }
-        } else {
-            // Regular Enemy Drops
-            val baseChance = 0.25f + (floor / 500f) + ((dimension.number - 1) * 0.02f)
-            val bonusChance = relicBonuses.alchemistDropChanceBonus + (relicBonuses.magnetBonus * 0.05f)
-            val rawChance = baseChance + bonusChance
-            val maxChanceCap = (0.50f + (dimension.number - 1) * 0.02f + relicBonuses.alchemistDropChanceBonus).coerceAtMost(0.80f)
-            val finalChance = (rawChance / (rawChance + 0.25f)).coerceAtMost(maxChanceCap)
+        dropRules.forEach { rule ->
+            val rawChance = rule.baseDropChance * relicMultiplier
+            val maxCap = if (rule.isBossTrophy) 0.50f else 0.20f
+            val finalChance = rawChance.coerceAtMost(maxCap)
 
             if (Random.nextFloat() < finalChance) {
-                val matId = selectMaterialForRegularEnemy(enemy.type, floor)
-                val baseAmount = 1
+                val matId = rule.materialId
+                val baseAmount = rule.minQuantity
                 val extraYieldChance = (relicBonuses.pocketsBonus * 0.2f) + (if (floor >= 50) 0.2f else 0.0f)
                 val qty = if (Random.nextFloat() < extraYieldChance) baseAmount + 1 else baseAmount
-                drops[matId] = qty
+                drops[matId] = (drops[matId] ?: 0) + qty
             }
         }
 
@@ -432,6 +398,7 @@ class FFBattleEngine(private val context: Context) {
                 onEvent(FFBattleEvent.DamageDealt(hero.id, target.id, finalDmg, false, isCrit))
                 if (target.magiciteDropped > 0 && (hero.hasRansack || masteryLvl >= 10)) {
                     onEvent(FFBattleEvent.MagiciteStolen(hero.id, target.magiciteDropped))
+                    target.magiciteDropped = 0 // Prevents double-stealing / double-counting
                 }
                 if (target.currentHp <= 0) {
                     handleEnemyDefeated(target, dimension, relicBonuses, allies, onEvent)

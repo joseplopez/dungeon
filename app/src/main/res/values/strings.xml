@@ -270,6 +270,24 @@
     <string name="building_blacksmith">BLACKSMITH</string>
     <string name="building_blacksmith_title">Blacksmith</string>
     <string name="building_blacksmith_desc">Enhance equipment, add sockets, fuse gems, and uncap hero levels.</string>
+    <string name="building_library">LIBRARY</string>
+    <string name="building_library_title">Compendium</string>
+    <string name="building_library_desc">Track monster bestiary, material sources, and unlock completion milestones.</string>
+
+    <string name="codex_title">COMPENDIUM &amp; BESTIARY</string>
+    <string name="codex_tab_bestiary">Bestiary</string>
+    <string name="codex_tab_materials">Materials</string>
+    <string name="codex_tab_milestones">Milestones</string>
+    <string name="codex_kills_label">Kills: %1$d</string>
+    <string name="codex_undiscovered">\?\?\?</string>
+    <string name="codex_completion">Completion: %1$.1f%%</string>
+    <string name="codex_search_hint">Search bestiary &amp; materials...</string>
+    <string name="codex_no_results">No matching entries found.</string>
+    <string name="codex_milestone_title">Milestone Tiers</string>
+    <string name="codex_active_bonuses">Active Bonuses:</string>
+    <string name="codex_threshold_label">Rank: %1$s</string>
+    <string name="codex_drop_sources">Sources: %1$s</string>
+    <string name="codex_drops_label">Drops: %1$s</string>
     <string name="crystal_shop_subtitle">Unlock new job classes</string>
     <string name="unlocks_job_format">Unlocks %1$s</string>
     <string name="owned_status">✓ OWNED</string>
@@ -355,6 +373,7 @@
     <string name="wipe_penalty">WIPE PENALTY</string>
     <string name="fallen_warriors">FALLEN WARRIORS</string>
     <string name="loot_collected">LOOT COLLECTED</string>
+    <string name="materials_collected">MATERIALS &amp; GEMS</string>
 
     <!-- Battle Log & Events -->
     <string name="log_entering_floor">Entering Floor...</string>
@@ -367,6 +386,7 @@
     <string name="log_heal_format">%1$s heals %2$s for %3$d</string>
     <string name="log_group_heal">%1$s heals the party!</string>
     <string name="log_boss_defeated">⚔️ BOSS DEFEATED: %1$s!</string>
+    <string name="log_material_dropped">Looted: %1$s x%2$d</string>
     <string name="log_summon_format">🌟 %1$s summons %2$s! Total: %3$d damage!</string>
     <string name="log_magicite_stolen">%1$s stole %2$d Magicite!</string>
     <string name="log_bard_song">🎵 %1$s: %2$s</string>
@@ -1108,6 +1128,9 @@
     <string name="craft_msg_gem_crafted">Gem crafted successfully!</string>
     <string name="craft_msg_gem_fused">Gems fused successfully!</string>
     <string name="craft_msg_hero_uncapped">Hero level cap increased!</string>
+    <string name="craft_err_hero_not_at_cap">Hero has not reached current max level.</string>
+    <string name="craft_status_reach_cap_to_uncap">Current Max Level: Lvl %1$d (Reach level cap to uncap)</string>
+    <string name="craft_status_ready_for_breakthrough">Current Max Level: Lvl %1$d (Ready for breakthrough!)</string>
     <string name="craft_err_no_item_selected">No item selected.</string>
     <string name="craft_err_insufficient_materials">Insufficient materials.</string>
     <string name="craft_err_insufficient_gold">Insufficient Gil.</string>
@@ -1126,7 +1149,7 @@
     <string name="craft_btn_add_socket">ADD SOCKET SLOT</string>
     <string name="craft_btn_insert_gem">INSERT GEM</string>
     <string name="craft_btn_fuse_gems">FUSE GEMS (3x)</string>
-    <string name="craft_btn_uncap_level">UNCAP LEVEL (+5)</string>
+    <string name="craft_btn_uncap_level">UNCAP LEVEL (+20)</string>
     <string name="craft_label_select_item">Select Item:</string>
     <string name="craft_label_stat_preview">Stat Enhancement (+5%%/lvl):</string>
     <string name="craft_label_cost">Cost:</string>
@@ -1145,4 +1168,29 @@
     <string name="craft_format_hero_level">Lvl %1$d</string>
     <string name="craft_label_hero_breakthrough">Hero Level Breakthrough:</string>
     <string name="btn_ok">OK</string>
+
+    <!-- Codex & Compendium Extensions -->
+    <string name="codex_milestone_tier">TIER %1$d%%</string>
+    <string name="codex_status_unlocked">UNLOCKED</string>
+    <string name="codex_status_locked">LOCKED</string>
+    <string name="stat_magicite_find">MAGICITE FIND</string>
+    <string name="threshold_undiscovered">UNDISCOVERED</string>
+    <string name="threshold_sighted">SIGHTED</string>
+    <string name="threshold_analyzed">ANALYZED</string>
+    <string name="threshold_mastered">MASTERED</string>
+    <string name="mat_cat_ore">Ore</string>
+    <string name="mat_cat_monster_part">Monster Part</string>
+    <string name="mat_cat_essence">Essence</string>
+    <string name="mat_cat_boss_trophy">Boss Trophy</string>
+    <string name="craft_slot_locked">[ Locked Slot %1$d ]</string>
+    <string name="craft_socket_ratio">%1$d / 3</string>
+    <string name="craft_trophy_ratio">(%1$d / 1)</string>
+    <string name="codex_kills_format">Kills: %1$d</string>
+    <string name="codex_completion_format">Completion: %1$.1f%%</string>
+
+    <!-- Hero Breakthrough Strings -->
+    <string name="hero_level_cap">Lvl %1$d / %2$d (MAX)</string>
+    <string name="hero_level_normal">Lvl %1$d / %2$d</string>
+    <string name="hero_breakthrough_button">BREAKTHROUGH</string>
+    <string name="hero_breakthrough_req">Requires 1x %1$s</string>
 </resources>

@@ -9,15 +9,41 @@ import com.game.dungeon.data.models.GameState
 import com.game.dungeon.data.models.Hero
 import com.game.dungeon.data.models.Item
 
-@Database(entities = [GameState::class, Hero::class, Item::class, MaterialEntity::class], version = 27, exportSchema = true)
+@Database(entities = [GameState::class, Hero::class, Item::class, MaterialEntity::class, CodexEntity::class], version = 29, exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class GameDatabase : RoomDatabase() {
     abstract val gameStateDao: GameStateDao
     abstract val heroDao: HeroDao
     abstract val itemDao: ItemDao
     abstract val materialDao: MaterialDao
+    abstract val codexDao: CodexDao
 
     companion object {
+        val MIGRATION_28_29 = object : Migration(28, 29) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                try {
+                    ensureColumn(db, "heroes", "maxLevel", "INTEGER NOT NULL DEFAULT 20")
+                } catch (e: Exception) {
+                    wipeDatabase(db)
+                }
+            }
+        }
+        val MIGRATION_27_28 = object : Migration(27, 28) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                try {
+                    db.execSQL(
+                        "CREATE TABLE IF NOT EXISTS `codex_entries` (" +
+                        "`entryId` TEXT NOT NULL, " +
+                        "`category` TEXT NOT NULL, " +
+                        "`isDiscovered` INTEGER NOT NULL DEFAULT 0, " +
+                        "`killCount` INTEGER NOT NULL DEFAULT 0, " +
+                        "PRIMARY KEY(`entryId`))",
+                    )
+                } catch (_: Exception) {
+                    wipeDatabase(db)
+                }
+            }
+        }
         val MIGRATION_26_27 = object : Migration(26, 27) {
             override fun migrate(db: SupportSQLiteDatabase) {
                 try {
@@ -357,6 +383,7 @@ abstract class GameDatabase : RoomDatabase() {
             db.execSQL("DELETE FROM heroes")
             db.execSQL("DELETE FROM items")
             try { db.execSQL("DELETE FROM materials") } catch (_: Exception) {}
+            try { db.execSQL("DELETE FROM codex_entries") } catch (_: Exception) {}
         }
     }
 }

@@ -987,3 +987,114 @@ fun DrawScope.drawDetailedBlacksmith(animTime: Float = 0f) {
     // Golden Anvil Icon on Signboard
     drawCircle(Color(0xFFFFD700), radius = 2.5f * s, center = Offset(22f * s, 49f * s))
 }
+
+/**
+ * 7. GRAND LIBRARY & COMPENDIUM (Bestiary & Knowledge Archives)
+ * - Majestic marble-and-slate library hall with classical pillars and golden architraves.
+ * - Deep navy/indigo domed roof topped with an illuminated golden Tome crest.
+ * - Grand arched stained window showcasing an open glowing book symbol.
+ * - Dual warm scholars' braziers flanking the wooden double entrance door.
+ * - Floating mystical knowledge runes and book particles.
+ */
+fun DrawScope.drawDetailedLibrary(animTime: Float = 0f) {
+    val W = size.width
+    val s = W / 100f
+
+    // === 1. Classical Slate & Marble Base Foundation ===
+    pxRect(12f, 38f, 76f, 56f, Color(0xFF1F2937)) // Dark slate building body
+    pxRect(8f, 92f, 84f, 4f, Color(0xFF111827))   // Heavy foundation ledge
+
+    // Vertical Classical Marble Pillars
+    listOf(14f, 32f, 60f, 78f).forEach { px ->
+        pxRect(px, 38f, 8f, 56f, Color(0xFF374151))
+        pxRect(px - 1f, 38f, 10f, 3f, Color(0xFFD97706)) // Golden pillar capital top
+        pxRect(px - 1f, 89f, 10f, 3f, Color(0xFFD97706)) // Golden pillar base bottom
+        // Pillar fluting vertical groove
+        pxRect(px + 3.5f, 41f, 1f, 48f, Color(0xFF111827))
+    }
+
+    // === 2. Grand Navy/Indigo Domed Roof & Golden Tome Crest ===
+    val roofDome = Path().apply {
+        moveTo(10f * s, 38f * s)
+        quadraticTo(50f * s, 10f * s, 90f * s, 38f * s)
+        close()
+    }
+    drawPath(roofDome, Color(0xFF1E1B4B)) // Deep indigo roof dome
+    drawPath(roofDome, Color(0xFFD97706), style = Stroke(2.5f * s)) // Golden roof rim
+
+    // Golden Tome/Book Crest on Dome Peak
+    val crestPulse = 0.85f + sin(animTime * 0.005f) * 0.15f
+    val crestY = 16f
+    drawCircle(Color(0xFFF59E0B).copy(alpha = crestPulse * 0.4f), radius = 8f * s, center = Offset(50f * s, crestY * s))
+
+    // Open Book Icon
+    val leftPage = Path().apply {
+        moveTo(50f * s, crestY * s)
+        lineTo(43f * s, (crestY - 3f) * s)
+        lineTo(43f * s, (crestY + 4f) * s)
+        lineTo(50f * s, (crestY + 6f) * s)
+        close()
+    }
+    val rightPage = Path().apply {
+        moveTo(50f * s, crestY * s)
+        lineTo(57f * s, (crestY - 3f) * s)
+        lineTo(57f * s, (crestY + 4f) * s)
+        lineTo(50f * s, (crestY + 6f) * s)
+        close()
+    }
+    drawPath(leftPage, Color(0xFFFDE68A))
+    drawPath(rightPage, Color(0xFFFCD34D))
+    drawPath(leftPage, Color(0xFFB45309), style = Stroke(1f * s))
+    drawPath(rightPage, Color(0xFFB45309), style = Stroke(1f * s))
+
+    // === 3. Stained Window with Illuminated Book Symbol (Center Upper Floor) ===
+    val windowPath = Path().apply {
+        moveTo(42f * s, 62f * s)
+        lineTo(42f * s, 48f * s)
+        quadraticTo(50f * s, 40f * s, 58f * s, 48f * s)
+        lineTo(58f * s, 62f * s)
+        close()
+    }
+    drawPath(windowPath, Color(0xFF312E81)) // Dark blue window fill
+    val windowGlow = 0.6f + sin(animTime * 0.004f) * 0.25f
+    drawPath(windowPath, Color(0xFF818CF8).copy(alpha = windowGlow)) // Soft magic aura
+    drawPath(windowPath, Color(0xFFF59E0B), style = Stroke(1.8f * s))
+
+    // Window Cross Grille
+    drawLine(Color(0xFFF59E0B), Offset(50f * s, 41f * s), Offset(50f * s, 62f * s), strokeWidth = 1.2f * s)
+    drawLine(Color(0xFFF59E0B), Offset(42f * s, 52f * s), Offset(58f * s, 52f * s), strokeWidth = 1.2f * s)
+
+    // === 4. Dark Wooden Entrance Doorway ===
+    val doorPath = Path().apply {
+        moveTo(43f * s, 94f * s)
+        lineTo(43f * s, 68f * s)
+        quadraticTo(50f * s, 62f * s, 57f * s, 68f * s)
+        lineTo(57f * s, 94f * s)
+        close()
+    }
+    drawPath(doorPath, Color(0xFF371B04))
+    drawPath(doorPath, Color(0xFFD97706), style = Stroke(2f * s))
+    drawCircle(Color(0xFFF59E0B), radius = 1.8f * s, center = Offset(54f * s, 81f * s))
+
+    // === 5. Dual Wall Lanterns (Flanking Door) ===
+    listOf(38f, 62f).forEach { lx ->
+        pxRect(lx - 1f, 70f, 2f, 5f, Color(0xFF111827))
+        val lanternPulse = 0.8f + sin(animTime * 0.006f + lx) * 0.2f
+        drawCircle(Color(0xFFF59E0B).copy(alpha = lanternPulse), radius = 3.5f * s, center = Offset(lx * s, 75f * s))
+        drawCircle(Color.White.copy(alpha = lanternPulse), radius = 1.8f * s, center = Offset(lx * s, 75f * s))
+    }
+
+    // === 6. Floating Mystical Knowledge Sparkles ===
+    repeat(4) { i ->
+        val sparkPhase = ((animTime + i * 250f) * 0.0016f) % 1f
+        val sparkY = 88f - sparkPhase * 60f
+        val sparkX = 22f + i * 18f + sin(sparkPhase * 6.28f + i) * 3f
+        val sparkAlpha = (1f - sparkPhase) * 0.8f
+        drawCircle(
+            Color(0xFFC084FC).copy(alpha = sparkAlpha),
+            radius = 1.5f * s,
+            center = Offset(sparkX * s, sparkY * s)
+        )
+    }
+}
+

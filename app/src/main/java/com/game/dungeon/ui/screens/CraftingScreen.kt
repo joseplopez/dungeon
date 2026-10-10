@@ -23,10 +23,16 @@ import com.game.dungeon.R
 import com.game.dungeon.data.models.Hero
 import com.game.dungeon.data.models.Item
 import com.game.dungeon.data.models.ItemSlot
-import com.game.dungeon.data.models.Material
 import com.game.dungeon.data.models.MaterialCatalog
 import com.game.dungeon.data.models.MaterialCategory
+import com.game.dungeon.data.models.MaterialInventoryItem
 import com.game.dungeon.data.models.Rarity
+import com.game.dungeon.ui.components.GoldenBorderBox
+import com.game.dungeon.ui.components.MusicToggleButton
+import com.game.dungeon.ui.components.PixelButton
+import com.game.dungeon.ui.components.SupportDialog
+import com.game.dungeon.ui.components.SupportIconButton
+import com.game.dungeon.ui.components.safeStringResource
 import com.game.dungeon.ui.theme.*
 import com.game.dungeon.ui.viewmodels.CraftingTab
 import com.game.dungeon.ui.viewmodels.CraftingUiState
@@ -35,10 +41,13 @@ import com.game.dungeon.ui.viewmodels.CraftingViewModel
 @Composable
 fun CraftingScreen(
     viewModel: CraftingViewModel = hiltViewModel(),
+    isMuted: Boolean = false,
+    onToggleMusic: () -> Unit = {},
     onBack: () -> Unit = {}
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val roster by viewModel.roster.collectAsStateWithLifecycle()
+    var showSupportDialog by remember { mutableStateOf(false) }
 
     PixelTheme {
         Box(
@@ -49,7 +58,12 @@ fun CraftingScreen(
         ) {
             Column(modifier = Modifier.fillMaxSize()) {
                 // Screen Header
-                CraftingHeader(onBack = onBack)
+                CraftingHeader(
+                    onBack = onBack,
+                    isMuted = isMuted,
+                    onToggleMusic = onToggleMusic,
+                    onOpenSupport = { showSupportDialog = true }
+                )
 
                 Spacer(modifier = Modifier.height(8.dp))
 
@@ -92,47 +106,65 @@ fun CraftingScreen(
                             onInsertGem = { index, gemId -> viewModel.insertGemIntoSelectedItem(index, gemId) }
                         )
                         CraftingTab.GEM_FUSION -> GemFusionSection(
-                            materials = uiState.materials,
+                            materialInventory = uiState.materialInventory,
                             isProcessing = uiState.isProcessing,
                             onFuse = { srcId, tgtId -> viewModel.craftOrFuseGem(srcId, tgtId) }
                         )
                         CraftingTab.BREAKTHROUGH -> BreakthroughSection(
                             roster = roster,
-                            materials = uiState.materials,
+                            materialInventory = uiState.materialInventory,
                             isProcessing = uiState.isProcessing,
                             onUncap = { viewModel.uncapHero(it) }
                         )
                     }
                 }
             }
+
+            if (showSupportDialog) {
+                SupportDialog(onDismiss = { showSupportDialog = false })
+            }
         }
     }
 }
 
 @Composable
-private fun CraftingHeader(onBack: () -> Unit) {
-    Row(
+private fun CraftingHeader(
+    onBack: () -> Unit,
+    isMuted: Boolean,
+    onToggleMusic: () -> Unit,
+    onOpenSupport: () -> Unit
+) {
+    GoldenBorderBox(
         modifier = Modifier
             .fillMaxWidth()
-            .background(BgMedium, RoundedCornerShape(8.dp))
-            .border(1.dp, GoldBright, RoundedCornerShape(8.dp))
-            .padding(horizontal = 12.dp, vertical = 8.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
+            .height(52.dp)
+            .background(BgDarkest)
     ) {
-        Text(
-            text = stringResource(R.string.crafting_title),
-            style = PixelTitle,
-            color = GoldBright
-        )
-        Button(
-            onClick = onBack,
-            colors = ButtonDefaults.buttonColors(containerColor = StoneGray)
+        Row(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 12.dp),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.SpaceBetween
         ) {
-            Text(
-                text = stringResource(R.string.btn_ok),
-                color = Color.White
+            PixelButton(
+                label = safeStringResource(R.string.back_button),
+                onClick = onBack,
+                modifier = Modifier.height(34.dp)
             )
+
+            Text(
+                text = safeStringResource(R.string.crafting_title),
+                style = PixelHeading
+            )
+
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp)
+            ) {
+                SupportIconButton(onClick = onOpenSupport)
+                MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
+            }
         }
     }
 }
@@ -260,7 +292,7 @@ private fun ItemListSelector(
                     ) {
                         Column {
                             Text(
-                                text = "${item.emoji} ${item.name}",
+                                text = stringResource(R.string.item_name_template, item.emoji, item.name),
                                 color = rarityColor,
                                 fontWeight = FontWeight.Bold,
                                 fontSize = 12.sp
@@ -326,7 +358,7 @@ private fun EnhanceSection(
             } else {
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(
-                        text = "${item.emoji} ${item.name}",
+                        text = stringResource(R.string.item_name_template, item.emoji, item.name),
                         style = PixelHeading,
                         color = GoldBright
                     )
@@ -399,7 +431,7 @@ private fun EnhanceSection(
                             color = Color.Yellow
                         )
                         Text(
-                            text = "${stringResource(oreRes)} x$nextLevel",
+                            text = stringResource(R.string.item_name_template, stringResource(oreRes), stringResource(R.string.craft_format_quantity, nextLevel)),
                             style = PixelSmall,
                             color = Color.Cyan
                         )
@@ -474,7 +506,7 @@ private fun SocketSection(
                 val maxSockets = if (item.slot == ItemSlot.ACCESSORY) 1 else 3
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(
-                        text = "${item.emoji} ${item.name}",
+                        text = stringResource(R.string.item_name_template, item.emoji, item.name),
                         style = PixelHeading,
                         color = GoldBright
                     )
@@ -511,14 +543,14 @@ private fun SocketSection(
                             ) {
                                 if (!isSlotUnlocked) {
                                     Text(
-                                        text = "[ Locked Slot ${i + 1} ]",
+                                        text = stringResource(R.string.craft_slot_locked, i + 1),
                                         color = Color.Gray,
                                         fontSize = 11.sp
                                     )
                                 } else if (slot?.socketedGem != null) {
                                     val gem = slot.socketedGem
                                     Text(
-                                        text = "${gem.emoji} ${stringResource(gem.nameRes)}",
+                                        text = stringResource(R.string.item_name_template, gem.emoji, stringResource(gem.nameRes)),
                                         color = GoldBright,
                                         fontSize = 11.sp
                                     )
@@ -575,7 +607,7 @@ private fun SocketSection(
                                         .padding(6.dp)
                                 ) {
                                     Text(
-                                        text = "${gem.emoji} ${stringResource(gem.nameRes)}",
+                                        text = stringResource(R.string.item_name_template, gem.emoji, stringResource(gem.nameRes)),
                                         color = if (isSelected) BgDarkest else Color.White,
                                         fontSize = 10.sp
                                     )
@@ -627,12 +659,12 @@ private fun SocketSection(
 
 @Composable
 private fun GemFusionSection(
-    materials: List<Material>,
+    materialInventory: List<MaterialInventoryItem>,
     isProcessing: Boolean,
     onFuse: (String, String) -> Unit
 ) {
-    val gemCounts = remember(materials) {
-        materials.groupBy { it.id }.mapValues { it.value.size }
+    val gemCounts = remember(materialInventory) {
+        materialInventory.associate { item -> item.material.id to item.amount }
     }
 
     val fusionPairs = remember {
@@ -682,7 +714,7 @@ private fun GemFusionSection(
                             color = Color.White
                         )
                         Text(
-                            text = stringResource(R.string.craft_format_quantity, count) + " / 3",
+                            text = stringResource(R.string.craft_socket_ratio, count),
                             style = PixelSmall,
                             color = if (canFuse) HpGreen else Color.Gray
                         )
@@ -709,18 +741,15 @@ private fun GemFusionSection(
 @Composable
 private fun BreakthroughSection(
     roster: List<Hero>,
-    materials: List<Material>,
+    materialInventory: List<MaterialInventoryItem>,
     isProcessing: Boolean,
     onUncap: (String) -> Unit
 ) {
     var selectedHeroId by remember { mutableStateOf<String?>(roster.firstOrNull()?.id) }
-    val trophyCount = remember(materials) {
-        materials.count { it.id == "boss_trophy_1" }
-    }
 
     Column(modifier = Modifier.fillMaxSize()) {
         Text(
-            text = stringResource(R.string.craft_label_hero_breakthrough),
+            text = safeStringResource(R.string.craft_label_hero_breakthrough),
             style = PixelHeading,
             color = GoldBright,
             modifier = Modifier.padding(bottom = 8.dp)
@@ -760,7 +789,7 @@ private fun BreakthroughSection(
                                 fontSize = 12.sp
                             )
                             Text(
-                                text = stringResource(R.string.craft_format_hero_level, hero.level),
+                                text = safeStringResource(R.string.hero_level_normal, hero.level, hero.maxLevel),
                                 color = Color.White,
                                 fontSize = 10.sp
                             )
@@ -776,20 +805,28 @@ private fun BreakthroughSection(
                     .fillMaxHeight(),
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
-                val selectedHero = roster.find { it.id == selectedHeroId }
+                val selectedHero = roster.find { it.id == selectedHeroId } ?: roster.firstOrNull()
                 if (selectedHero == null) {
                     Box(
                         modifier = Modifier.fillMaxSize(),
                         contentAlignment = Alignment.Center
                     ) {
                         Text(
-                            text = stringResource(R.string.craft_label_select_item),
+                            text = safeStringResource(R.string.craft_label_select_item),
                             style = PixelBody,
                             color = Color.Gray
                         )
                     }
                 } else {
-                    val trophyMat = MaterialCatalog.getMaterial("boss_trophy_1")
+                    val isAtLevelCap = selectedHero.level >= selectedHero.maxLevel
+                    val requiredTrophyId = when {
+                        selectedHero.maxLevel <= 20 -> "boss_trophy_1"
+                        selectedHero.maxLevel <= 40 -> "boss_trophy_2"
+                        else -> "boss_trophy_3"
+                    }
+                    val trophyMat = MaterialCatalog.getMaterial(requiredTrophyId)
+                    val trophyCount = materialInventory.find { it.material.id == requiredTrophyId }?.amount ?: 0
+
                     Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                         Text(
                             text = selectedHero.name,
@@ -797,20 +834,34 @@ private fun BreakthroughSection(
                             color = GoldBright
                         )
                         Text(
-                            text = stringResource(R.string.craft_format_hero_level, selectedHero.level),
+                            text = safeStringResource(R.string.hero_level_normal, selectedHero.level, selectedHero.maxLevel),
                             style = PixelBody,
                             color = Color.White
+                        )
+
+                        Text(
+                            text = if (isAtLevelCap) {
+                                safeStringResource(R.string.craft_status_ready_for_breakthrough, selectedHero.maxLevel)
+                            } else {
+                                safeStringResource(R.string.craft_status_reach_cap_to_uncap, selectedHero.maxLevel)
+                            },
+                            style = PixelSmall,
+                            color = if (isAtLevelCap) HpGreen else GoldAccent
                         )
 
                         Spacer(modifier = Modifier.height(8.dp))
 
                         Text(
-                            text = stringResource(R.string.craft_label_required_materials),
+                            text = safeStringResource(R.string.craft_label_required_materials),
                             style = PixelSmall,
                             color = GoldAccent
                         )
                         Text(
-                            text = "${trophyMat.emoji} ${stringResource(trophyMat.nameRes)} (${trophyCount}/1)",
+                            text = safeStringResource(
+                                R.string.item_name_template,
+                                "${trophyMat.emoji} ${safeStringResource(trophyMat.nameRes)}",
+                                safeStringResource(R.string.craft_trophy_ratio, trophyCount)
+                            ),
                             style = PixelBody,
                             color = if (trophyCount >= 1) HpGreen else HpRed
                         )
@@ -818,12 +869,12 @@ private fun BreakthroughSection(
 
                     Button(
                         onClick = { onUncap(selectedHero.id) },
-                        enabled = !isProcessing && trophyCount >= 1,
+                        enabled = !isProcessing && isAtLevelCap && trophyCount >= 1,
                         modifier = Modifier.fillMaxWidth(),
                         colors = ButtonDefaults.buttonColors(containerColor = GoldAccent)
                     ) {
                         Text(
-                            text = stringResource(R.string.craft_btn_uncap_level),
+                            text = safeStringResource(R.string.craft_btn_uncap_level),
                             color = BgDarkest,
                             fontWeight = FontWeight.Bold
                         )

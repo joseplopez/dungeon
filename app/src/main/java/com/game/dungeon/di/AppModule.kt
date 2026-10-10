@@ -50,7 +50,9 @@ object AppModule {
             GameDatabase.MIGRATION_23_24,
             GameDatabase.MIGRATION_24_25,
             GameDatabase.MIGRATION_25_26,
-            GameDatabase.MIGRATION_26_27
+            GameDatabase.MIGRATION_26_27,
+            GameDatabase.MIGRATION_27_28,
+            GameDatabase.MIGRATION_28_29
         )
         .fallbackToDestructiveMigration(true) // Keep as safety, but explicit migrations prioritized
         .build()
@@ -64,8 +66,18 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideGameRepository(database: GameDatabase, leaderboardRepository: LeaderboardRepository): GameRepository {
-        return GameRepository(database, leaderboardRepository)
+    fun provideCodexDao(database: GameDatabase): com.game.dungeon.data.db.CodexDao {
+        return database.codexDao
+    }
+
+    @Provides
+    @Singleton
+    fun provideGameRepository(
+        database: GameDatabase,
+        leaderboardRepository: LeaderboardRepository,
+        codexDao: com.game.dungeon.data.db.CodexDao
+    ): GameRepository {
+        return GameRepository(database, leaderboardRepository, codexDao)
     }
 
     @Provides

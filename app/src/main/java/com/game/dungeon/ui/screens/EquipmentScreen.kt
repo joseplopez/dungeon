@@ -26,26 +26,38 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import android.widget.Toast
+import androidx.compose.ui.platform.LocalContext
+import androidx.hilt.navigation.compose.hiltViewModel
 import com.game.dungeon.R
 import com.game.dungeon.data.models.Hero
 import com.game.dungeon.data.models.Item
 import com.game.dungeon.data.models.ItemSlot
+import com.game.dungeon.data.models.MaterialCatalog
 import com.game.dungeon.ui.components.*
 import com.game.dungeon.ui.theme.*
 import com.game.dungeon.ui.viewmodels.EquipmentViewModel
+import com.game.dungeon.ui.viewmodels.HeroItemUiState
+import com.game.dungeon.ui.viewmodels.HeroViewModel
 
 @Composable
 fun EquipmentScreen(
     heroId: String,
     viewModel: EquipmentViewModel,
+    heroViewModel: HeroViewModel = hiltViewModel(),
     isMuted: Boolean,
     onToggleMusic: () -> Unit,
     onBack: () -> Unit
 ) {
+    val context = LocalContext.current
     val hero by viewModel.selectedHero.collectAsState()
     val equipped by viewModel.equippedItems.collectAsState()
     val inventory by viewModel.inventory.collectAsState()
     val relicBonuses by viewModel.relicBonuses.collectAsState()
+
+    val heroUiState by heroViewModel.uiState.collectAsState()
+    val currentHeroItemState = heroUiState.heroes.find { it.hero.id == heroId }
+        ?: heroUiState.selectedHero
 
     var selectedItemForDetail by remember { mutableStateOf<Item?>(null) }
     var showSellAllConfirmation by remember { mutableStateOf(false) }
@@ -64,6 +76,14 @@ fun EquipmentScreen(
 
     LaunchedEffect(heroId) {
         viewModel.selectHero(heroId)
+        heroViewModel.selectHero(heroId)
+    }
+
+    LaunchedEffect(heroUiState.userMessageRes, heroUiState.errorMessageRes) {
+        heroUiState.userMessageRes?.let { msgRes ->
+            Toast.makeText(context, context.getString(msgRes), Toast.LENGTH_SHORT).show()
+            heroViewModel.clearUserMessage()
+        }
     }
 
     PixelTheme {
@@ -109,6 +129,10 @@ fun EquipmentScreen(
                             onQuickEquip = { viewModel.quickEquip() },
                             onSelectSlot = { selectedItemForDetail = it },
                             animTime = animTime,
+                            heroItemState = currentHeroItemState,
+                            onBreakthrough = {
+                                heroViewModel.breakthroughHero(h.id)
+                            },
                             modifier = Modifier.weight(0.44f)
                         )
                     } ?: Spacer(Modifier.weight(0.44f))
@@ -309,8 +333,21 @@ private fun HeroPlatformArea(
     onQuickEquip: () -> Unit,
     onSelectSlot: (Item) -> Unit,
     modifier: Modifier = Modifier,
-    animTime: Float = 0f
+    animTime: Float = 0f,
+    heroItemState: HeroItemUiState? = null,
+    onBreakthrough: () -> Unit = {}
 ) {
+    val isCapped = heroItemState?.isCapped ?: hero.isCapped
+    val maxLevel = heroItemState?.maxLevel ?: hero.maxLevel
+    val requiredTrophyId = heroItemState?.requiredTrophyId ?: hero.requiredTrophyId
+    val hasRequiredTrophy = heroItemState?.hasRequiredTrophy ?: false
+
+    val levelText = if (isCapped) {
+        safeStringResource(R.string.hero_level_cap, hero.level, maxLevel)
+    } else {
+        safeStringResource(R.string.hero_level_normal, hero.level, maxLevel)
+    }
+
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -365,20 +402,56 @@ private fun HeroPlatformArea(
             drawPath(hexPlatform, color = Color.Black, style = Stroke(1.5.dp.toPx()))
         }
 
-        // Hero Sprite & Equipment Slots
+        // Hero Sprite & Level Display & Equipment Slots
         Column(
             modifier = Modifier
                 .fillMaxWidth()
                 .align(Alignment.TopCenter)
-                .padding(top = 16.dp),
+                .padding(top = 8.dp),
             horizontalAlignment = Alignment.CenterHorizontally
         ) {
             HeroSprite(
                 heroClass = hero.heroClass,
-                modifier = Modifier.size(80.dp)
+                modifier = Modifier.size(64.dp)
             )
 
-            Spacer(modifier = Modifier.height(30.dp))
+            Spacer(modifier = Modifier.height(2.dp))
+
+            Text(
+                text = levelText,
+                color = if (isCapped) OrnateGoldLight else Color.White,
+                fontSize = 11.sp,
+                fontWeight = FontWeight.Bold
+            )
+
+            if (isCapped) {
+                Spacer(modifier = Modifier.height(2.dp))
+                val trophyMat = MaterialCatalog.getMaterial(requiredTrophyId)
+                val trophyName = safeStringResource(trophyMat.nameRes)
+                val countStr = if (hasRequiredTrophy) "(1/1)" else "(0/1)"
+                val reqText = safeStringResource(R.string.hero_breakthrough_req, trophyName)
+                val btnLabel = "${trophyMat.emoji} " + safeStringResource(R.string.hero_breakthrough_button) + " $countStr"
+
+                PixelButton(
+                    label = btnLabel,
+                    onClick = onBreakthrough,
+                    active = hasRequiredTrophy,
+                    modifier = Modifier.height(28.dp)
+                )
+
+                Spacer(modifier = Modifier.height(2.dp))
+
+                Text(
+                    text = reqText,
+                    color = if (hasRequiredTrophy) Color(0xFF44FF88) else Color(0xFFFF6666),
+                    fontSize = 8.sp,
+                    fontWeight = FontWeight.Medium
+                )
+
+                Spacer(modifier = Modifier.height(4.dp))
+            } else {
+                Spacer(modifier = Modifier.height(18.dp))
+            }
 
             // 5 Equipment Slots
             Row(

@@ -37,7 +37,7 @@ class GameRepositoryCraftingTest {
             .allowMainThreadQueries()
             .build()
         leaderboardRepository = Mockito.mock(LeaderboardRepository::class.java)
-        repository = GameRepository(database, leaderboardRepository)
+        repository = GameRepository(database, leaderboardRepository, database.codexDao)
     }
 
     @After
@@ -310,7 +310,8 @@ class GameRepositoryCraftingTest {
             name = "Warrior",
             currentHp = 100,
             currentMp = 20,
-            level = 50,
+            level = 20,
+            maxLevel = 20,
             aiPriority = AIPriority.ATTACK,
         )
         database.heroDao.upsert(hero)
@@ -321,11 +322,51 @@ class GameRepositoryCraftingTest {
         assertTrue(result.isSuccess)
         val updatedHero = result.getOrNull()
         assertNotNull(updatedHero)
-        assertEquals(55, updatedHero?.level) // level 50 + 5 = 55
+        assertEquals(40, updatedHero?.maxLevel) // maxLevel 20 + 20 = 40
 
         // Check trophy deducted
         val remainingTrophies = database.materialDao.getMaterialById("boss_trophy_1")?.amount ?: 0
         assertEquals(0, remainingTrophies)
+    }
+
+    @Test
+    fun testLevelUpHeroRejectsWhenCapped() = runBlocking {
+        val hero = Hero(
+            id = "hero_1",
+            heroClass = HeroClass.WARRIOR,
+            name = "Warrior",
+            currentHp = 100,
+            currentMp = 20,
+            level = 20,
+            maxLevel = 20,
+            aiPriority = AIPriority.ATTACK,
+        )
+        database.heroDao.upsert(hero)
+
+        val result = repository.levelUpHero("hero_1")
+
+        assertTrue(result.isFailure)
+        assertTrue(result.exceptionOrNull()?.message?.contains("capped") == true)
+    }
+
+    @Test
+    fun testLevelUpHeroSuccessWhenNotCapped() = runBlocking {
+        val hero = Hero(
+            id = "hero_1",
+            heroClass = HeroClass.WARRIOR,
+            name = "Warrior",
+            currentHp = 100,
+            currentMp = 20,
+            level = 10,
+            maxLevel = 20,
+            aiPriority = AIPriority.ATTACK,
+        )
+        database.heroDao.upsert(hero)
+
+        val result = repository.levelUpHero("hero_1")
+
+        assertTrue(result.isSuccess)
+        assertEquals(11, result.getOrNull()?.level)
     }
 
     // --- craftGem Test ---

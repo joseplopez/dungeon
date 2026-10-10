@@ -10,6 +10,7 @@ import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.lazy.rememberLazyListState
 import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Text
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -30,6 +31,7 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
@@ -42,6 +44,7 @@ import com.game.dungeon.data.models.*
 import com.game.dungeon.ui.components.*
 import com.game.dungeon.ui.theme.*
 import com.game.dungeon.ui.viewmodels.DungeonViewModel
+import kotlinx.coroutines.coroutineScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.math.cos
@@ -96,7 +99,9 @@ fun DungeonScreen(
                     hitHeroId = state.hitHeroId,
                     isCritical = state.isCriticalHit,
                     dimension = dimension,
-                    floor = state.currentFloor
+                    floor = state.currentFloor,
+                    floatingLootEffects = state.floatingLootEffects,
+                    onRemoveLootEffect = { viewModel.removeFloatingLootEffect(it) }
                 )
 
                 state.activeAbilityAnimation?.let { animInfo ->
@@ -194,14 +199,16 @@ fun DungeonScreen(
 
         // Run Complete Overlay
         if (state.runComplete) {
+            val summary = state.runSummary
             RunCompleteOverlay(
-                currentFloor = state.currentFloor,
-                gilEarnedThisRun = state.gilEarnedThisRun,
-                magiciteEarnedThisRun = state.magiciteEarnedThisRun,
-                gilLostToPenalty = state.gilLostToPenalty,
-                fallenHeroes = state.fallenHeroes,
-                itemsFoundThisRun = state.itemsFoundThisRun,
-                originalPartySize = state.originalPartySize,
+                currentFloor = summary?.currentFloor ?: state.currentFloor,
+                gilEarnedThisRun = summary?.gilEarnedThisRun ?: state.gilEarnedThisRun,
+                magiciteEarnedThisRun = summary?.magiciteEarnedThisRun ?: state.magiciteEarnedThisRun,
+                gilLostToPenalty = summary?.gilLostToPenalty ?: state.gilLostToPenalty,
+                fallenHeroes = summary?.fallenHeroes ?: state.fallenHeroes,
+                itemsFoundThisRun = summary?.itemsFoundThisRun ?: state.itemsFoundThisRun,
+                materialsEarned = summary?.materialsEarned ?: state.materialsFoundThisRun,
+                originalPartySize = summary?.originalPartySize ?: state.originalPartySize,
                 onReturn = {
                     navController?.navigate("inn") {
                         popUpTo("inn") { inclusive = true }
@@ -359,7 +366,9 @@ fun BattleArea(
     hitHeroId: String?,
     isCritical: Boolean,
     dimension: FFDimension?,
-    floor: Int
+    floor: Int,
+    floatingLootEffects: List<DungeonViewModel.FloatingLootEffect> = emptyList(),
+    onRemoveLootEffect: (Long) -> Unit = {}
 ) {
     BoxWithConstraints(modifier.fillMaxSize()) {
         val totalWidth = maxWidth
@@ -402,6 +411,28 @@ fun BattleArea(
                     sideWidth = sideWidth,
                     totalHeight = totalHeight
                 )
+
+                if (floatingLootEffects.isNotEmpty()) {
+                    floatingLootEffects.forEach { effect ->
+                        key(effect.id) {
+                            val xOffset = when (effect.enemySlotIndex % 3) {
+                                0 -> (-40).dp
+                                1 -> 0.dp
+                                else -> 40.dp
+                            }
+                            Box(
+                                modifier = Modifier
+                                    .align(Center)
+                                    .offset(x = xOffset, y = (-20).dp)
+                            ) {
+                                FloatingLootItem(
+                                    effect = effect,
+                                    onDismiss = onRemoveLootEffect
+                                )
+                            }
+                        }
+                    }
+                }
             }
         }
     }
@@ -784,6 +815,61 @@ fun UnitHitParticles(isCritical: Boolean) {
 data class ParticleState(val x: Float, val y: Float, val vx: Float, val vy: Float, val size: androidx.compose.ui.unit.Dp)
 
 @Composable
+fun FloatingLootItem(
+    effect: DungeonViewModel.FloatingLootEffect,
+    onDismiss: (Long) -> Unit
+) {
+    val offsetY = remember { Animatable(0f) }
+    val alpha = remember { Animatable(1f) }
+
+    LaunchedEffect(effect.id) {
+        coroutineScope {
+            launch {
+                offsetY.animateTo(
+                    targetValue = -40f,
+                    animationSpec = tween(durationMillis = 1500, easing = LinearOutSlowInEasing)
+                )
+            }
+            launch {
+                delay(700) // Stay visible for 1.5s
+                alpha.animateTo(
+                    targetValue = 0f,
+                    animationSpec = tween(durationMillis = 1500, easing = FastOutLinearInEasing)
+                )
+            }
+        }
+        onDismiss(effect.id)
+    }
+
+    val material = MaterialCatalog.getMaterial(effect.materialId)
+    val textColor = Color(material.rarity.color)
+
+    Row(
+        modifier = Modifier
+            .offset(y = offsetY.value.dp)
+            .graphicsLayer(alpha = alpha.value)
+            .background(BgDarkest.copy(alpha = 0.85f * alpha.value), shape = RoundedCornerShape(4.dp))
+            .border(1.dp, textColor.copy(alpha = alpha.value), shape = RoundedCornerShape(4.dp))
+            .padding(horizontal = 6.dp, vertical = 2.dp),
+        verticalAlignment = CenterVertically,
+        horizontalArrangement = Arrangement.spacedBy(4.dp)
+    ) {
+        Text(
+            text = material.emoji,
+            fontSize = 14.sp
+        )
+        Text(
+            text = "+${effect.amount}",
+            style = PixelSmall.copy(
+                fontSize = 12.sp,
+                fontWeight = FontWeight.Bold
+            ),
+            color = textColor
+        )
+    }
+}
+
+@Composable
 fun BattleLogPanel(
     battleLog: List<DungeonViewModel.FFLogEntry>,
     isPaused: Boolean = false
@@ -811,6 +897,7 @@ fun BattleLogPanel(
                     DungeonViewModel.LogType.ENEMY_ATTACK -> EnemyRed
                     DungeonViewModel.LogType.ABILITY, DungeonViewModel.LogType.SUMMON -> GoldBright
                     DungeonViewModel.LogType.HEAL -> HpGreen
+                    DungeonViewModel.LogType.LOOT -> Color(0xFF2ECC71)
                     DungeonViewModel.LogType.BOSS -> Color.Magenta
                     DungeonViewModel.LogType.HERO_FELL -> StoneGray
                     else -> Color.White
@@ -834,6 +921,7 @@ fun RunCompleteOverlay(
     gilLostToPenalty: Long,
     fallenHeroes: List<Hero>,
     itemsFoundThisRun: List<Item>,
+    materialsEarned: Map<String, Int> = emptyMap(),
     originalPartySize: Int,
     onReturn: () -> Unit
 ) {
@@ -961,6 +1049,44 @@ fun RunCompleteOverlay(
                                                 .size(36.dp)
                                                 .align(Center)
                                         )
+                                    }
+                                }
+                            }
+                        }
+                    }
+
+                    if (materialsEarned.isNotEmpty()) {
+                        Text(safeStringResource(R.string.materials_collected), style = PixelHeading, color = GoldBright)
+                        val matEntries = materialsEarned.entries.toList()
+                        val matRows = matEntries.chunked(3)
+                        matRows.forEach { rowMats ->
+                            Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                                rowMats.forEach { (matId, amount) ->
+                                    val mat = MaterialCatalog.getMaterial(matId)
+                                    Box(
+                                        Modifier
+                                            .background(BgPanel)
+                                            .border(1.dp, Color(mat.rarity.color))
+                                            .padding(horizontal = 8.dp, vertical = 6.dp)
+                                    ) {
+                                        Row(
+                                            verticalAlignment = CenterVertically,
+                                            horizontalArrangement = Arrangement.spacedBy(4.dp)
+                                        ) {
+                                            Text(mat.emoji, fontSize = 16.sp)
+                                            Text(
+                                                safeStringResource(mat.nameRes),
+                                                style = PixelSmall,
+                                                color = Color.White,
+                                                maxLines = 1,
+                                                overflow = TextOverflow.Ellipsis
+                                            )
+                                            Text(
+                                                safeStringResource(R.string.craft_format_quantity, amount),
+                                                style = PixelSmall,
+                                                color = GoldBright
+                                            )
+                                        }
                                     }
                                 }
                             }

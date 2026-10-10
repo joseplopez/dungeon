@@ -15,7 +15,7 @@ data class Enemy(
     val magicDefense: Int = 0,
     val speed: Int = 5,
     val gilReward: Int,
-    val magiciteDropped: Int = 0,
+    var magiciteDropped: Int = 0,
     val floor: Int,
     val isBoss: Boolean = false
 ) {

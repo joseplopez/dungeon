@@ -352,6 +352,7 @@
     <string name="wipe_penalty">নিশ্চিহ্ন জরিমানা</string>
     <string name="fallen_warriors">পতিত যোদ্ধা</string>
     <string name="loot_collected">লুট সংগ্রহ করা হয়েছে</string>
+    <string name="materials_collected">উপাদান এবং রত্ন</string>
 
     <!-- Battle Log & Events -->
     <string name="log_entering_floor">তলায় প্রবেশ করা হচ্ছে...</string>
@@ -364,6 +365,7 @@
     <string name="log_heal_format">%1$s %2$s কে %3$d এর জন্য সুস্থ করেছে</string>
     <string name="log_group_heal">%1$s দলকে সুস্থ করেছে!</string>
     <string name="log_boss_defeated">⚔️ বস পরাজিত: %1$s!</string>
+    <string name="log_material_dropped">লুট করা হয়েছে: %1$s x%2$d</string>
     <string name="log_summon_format">🌟 %1$s %2$s কে ডেকেছে! মোট: %3$d ক্ষতি!</string>
     <string name="log_magicite_stolen">%1$s %2$d ম্যাজিসাইট চুরি করেছে!</string>
     <string name="log_bard_song">🎵 %1$s: %2$s</string>

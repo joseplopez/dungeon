@@ -14,6 +14,7 @@ class Hero(
     var currentHp: Int,
     var currentMp: Int,
     var level: Int = 1,           // Starting level is 1
+    var maxLevel: Int = 20,       // Max level cap (default 20 for newly recruited heroes)
     var exp: Int = 0,             // Current experience
     var expToNextLevel: Int = 10, // XP needed for next level
     var abilityCharge: Int = 0,   // 0-3, triggers special at 3
@@ -42,6 +43,7 @@ class Hero(
         currentHp: Int = this.currentHp,
         currentMp: Int = this.currentMp,
         level: Int = this.level,
+        maxLevel: Int = this.maxLevel,
         exp: Int = this.exp,
         expToNextLevel: Int = this.expToNextLevel,
         abilityCharge: Int = this.abilityCharge,
@@ -61,6 +63,7 @@ class Hero(
             currentHp = currentHp,
             currentMp = currentMp,
             level = level,
+            maxLevel = maxLevel,
             exp = exp,
             expToNextLevel = expToNextLevel,
             abilityCharge = abilityCharge,
@@ -93,6 +96,7 @@ class Hero(
                 currentHp == other.currentHp &&
                 currentMp == other.currentMp &&
                 level == other.level &&
+                maxLevel == other.maxLevel &&
                 exp == other.exp &&
                 expToNextLevel == other.expToNextLevel &&
                 abilityCharge == other.abilityCharge &&
@@ -121,6 +125,7 @@ class Hero(
         result = 31 * result + currentHp
         result = 31 * result + currentMp
         result = 31 * result + level
+        result = 31 * result + maxLevel
         result = 31 * result + exp
         result = 31 * result + expToNextLevel
         result = 31 * result + abilityCharge
@@ -144,7 +149,7 @@ class Hero(
     }
 
     override fun toString(): String {
-        return "Hero(id='$id', heroClass=$heroClass, name='$name', currentHp=$currentHp, currentMp=$currentMp, level=$level, exp=$exp, expToNextLevel=$expToNextLevel, abilityCharge=$abilityCharge, aiPriority=$aiPriority, weaponId=$weaponId, armorId=$armorId, shieldId=$shieldId, accessory1Id=$accessory1Id, accessory2Id=$accessory2Id, isInParty=$isInParty, partyPosition=$partyPosition, attackBonus=$attackBonus, defenseBonus=$defenseBonus, magicBonus=$magicBonus, hpBonus=$hpBonus, mpBonus=$mpBonus, critChance=$critChance, critDamage=$critDamage, jobMasteryLevel=$jobMasteryLevel)"
+        return "Hero(id='$id', heroClass=$heroClass, name='$name', currentHp=$currentHp, currentMp=$currentMp, level=$level, maxLevel=$maxLevel, exp=$exp, expToNextLevel=$expToNextLevel, abilityCharge=$abilityCharge, aiPriority=$aiPriority, weaponId=$weaponId, armorId=$armorId, shieldId=$shieldId, accessory1Id=$accessory1Id, accessory2Id=$accessory2Id, isInParty=$isInParty, partyPosition=$partyPosition, attackBonus=$attackBonus, defenseBonus=$defenseBonus, magicBonus=$magicBonus, hpBonus=$hpBonus, mpBonus=$mpBonus, critChance=$critChance, critDamage=$critDamage, jobMasteryLevel=$jobMasteryLevel)"
     }
 
     @get:Ignore
@@ -152,6 +157,15 @@ class Hero(
 
     @get:Ignore
     val nickname: String get() = name
+
+    val isCapped: Boolean get() = level >= maxLevel
+
+    val requiredTrophyId: String
+        get() = when {
+            maxLevel <= 20 -> "boss_trophy_1"
+            maxLevel <= 40 -> "boss_trophy_2"
+            else -> "boss_trophy_3"
+        }
 
     val hasSpecialAbility: Boolean get() = JobAbilityData.getActiveAbilityForLevel(heroClass, jobMasteryLevel) != null
 
@@ -169,7 +183,7 @@ class Hero(
 
         exp += amount
         var leveledUp = false
-        while (exp >= expToNextLevel) {
+        while (exp >= expToNextLevel && level < maxLevel) {
             exp -= expToNextLevel
             level++
             expToNextLevel = (expToNextLevel * 1.5).toInt()

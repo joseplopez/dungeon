@@ -352,6 +352,7 @@
     <string name="wipe_penalty">ADHABU YA WIPE</string>
     <string name="fallen_warriors">MASHUJAA WALIANGUKA</string>
     <string name="loot_collected">LOOT ZILIZOKUSANYWA</string>
+    <string name="materials_collected">NYENZO NA VITO</string>
 
     <!-- Battle Log & Events -->
     <string name="log_entering_floor">Kuingia Ghorofa...</string>
@@ -364,6 +365,7 @@
     <string name="log_heal_format">%1$s anponya %2$s kwa %3$d</string>
     <string name="log_group_heal">%1$s anaponya kundi!</string>
     <string name="log_boss_defeated">⚔️ BOSS AMESHINDWA: %1$s!</string>
+    <string name="log_material_dropped">Umekusanya: %1$s x%2$d</string>
     <string name="log_summon_format">🌟 %1$s anamwita %2$s! Jumla: %3$d uharibifu!</string>
     <string name="log_magicite_stolen">%1$s ameiba %2$d Magicite!</string>
     <string name="log_bard_song">🎵 %1$s: %2$s</string>

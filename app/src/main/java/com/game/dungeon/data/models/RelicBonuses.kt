@@ -29,7 +29,8 @@ data class RelicBonuses(
     val mythicDropBonus: Float = 0.0f,
     val mythicStatBonus: Float = 0.0f,
     val warRoomCritBonus: Int = 0,
-    val warRoomAbilityChargeBonus: Float = 0.0f
+    val warRoomAbilityChargeBonus: Float = 0.0f,
+    val codexBonuses: CodexBonuses = CodexBonuses()
 ) {
     fun getMasteryLevel(heroClass: HeroClass): Int {
         return jobMasteryLevels[heroClass] ?: 0
@@ -51,18 +52,18 @@ data class RelicBonuses(
     }
 
     companion object {
-        fun from(gs: GameState) = RelicBonuses(
-            attackBonus = gs.attackRelic * 2,
+        fun from(gs: GameState, codexBonuses: CodexBonuses = CodexBonuses()) = RelicBonuses(
+            attackBonus = (gs.attackRelic * 2 * (1f + codexBonuses.attackMultiplierBonus)).toInt(),
             hpBonus = gs.hpRelic * 60 + (gs.hpRelic * gs.hpRelic * 2),
             mpBonus = gs.mpRelic * 10,
             magicBonus = gs.magicRelic * 2,
             defenseBonus = gs.defenseRelic * 8 + (gs.defenseRelic * gs.defenseRelic),
-            goldMultiplier = (1f + gs.goldRelic * 0.05f) + (if (gs.selectedPet == PetType.CAT) PetType.CAT.bonusValue else 0f),
-            magiciteChanceBonus = gs.magiciteRelic * 0.01f,
+            goldMultiplier = (1f + gs.goldRelic * 0.05f) + (if (gs.selectedPet == PetType.CAT) PetType.CAT.bonusValue else 0f) + codexBonuses.goldMultiplierBonus,
+            magiciteChanceBonus = gs.magiciteRelic * 0.01f + codexBonuses.magiciteChanceBonus,
             expMultiplier = gs.expMultiplier,
             itemStatBonus = gs.itemStatBonus,
             magicShopLevel = gs.magicShopLevel,
-            critChanceBonus = gs.critChanceRelic,
+            critChanceBonus = gs.critChanceRelic + codexBonuses.critChanceBonus,
             critDamageBonus = gs.critDamageRelic * 5,
             magnetBonus = gs.magnetBonus,
             pocketsBonus = gs.pocketsBonus,
@@ -75,7 +76,8 @@ data class RelicBonuses(
             mythicDropBonus = gs.mythicDropBonus,
             mythicStatBonus = gs.mythicStatBonus,
             warRoomCritBonus = gs.warRoomCritBonus.toInt(),
-            warRoomAbilityChargeBonus = gs.warRoomAbilityChargeBonus
+            warRoomAbilityChargeBonus = gs.warRoomAbilityChargeBonus,
+            codexBonuses = codexBonuses
         )
     }
 }

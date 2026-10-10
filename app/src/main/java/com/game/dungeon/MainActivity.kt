@@ -34,6 +34,7 @@ import androidx.navigation.compose.rememberNavController
 import com.game.dungeon.audio.MusicManager
 import com.game.dungeon.ui.components.BottomPixelNav
 import com.game.dungeon.ui.components.MusicToggleButton
+import com.game.dungeon.ui.screens.CodexScreen
 import com.game.dungeon.ui.screens.CraftingScreen
 import com.game.dungeon.ui.screens.DungeonScreen
 import com.game.dungeon.ui.screens.EquipmentScreen
@@ -202,6 +203,14 @@ class MainActivity : ComponentActivity() {
                                 val craftingViewModel: CraftingViewModel = hiltViewModel()
                                 CraftingScreen(
                                     viewModel = craftingViewModel,
+                                    onBack = { navController.popBackStack() }
+                                )
+                            }
+                            composable("codex") {
+                                CodexScreen(
+                                    navController = navController,
+                                    isMuted = isMuted,
+                                    onToggleMusic = { isMuted = !isMuted },
                                     onBack = { navController.popBackStack() }
                                 )
                             }

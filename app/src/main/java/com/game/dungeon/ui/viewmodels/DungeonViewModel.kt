@@ -14,6 +14,7 @@ import com.game.dungeon.engine.*
 import com.game.dungeon.monetization.AdManager
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.flow.*
@@ -72,6 +73,25 @@ class DungeonViewModel @Inject constructor(
     }
   }
 
+  data class FloatingLootEffect(
+      val id: Long = System.currentTimeMillis(),
+      val materialId: String,
+      val amount: Int,
+      val enemySlotIndex: Int = 0,
+      val startTimestamp: Long = System.currentTimeMillis()
+  )
+
+  data class RunSummary(
+    val currentFloor: Int = 1,
+    val gilEarnedThisRun: Long = 0,
+    val magiciteEarnedThisRun: Int = 0,
+    val gilLostToPenalty: Long = 0,
+    val itemsFoundThisRun: List<Item> = emptyList(),
+    val materialsEarned: Map<String, Int> = emptyMap(),
+    val fallenHeroes: List<Hero> = emptyList(),
+    val originalPartySize: Int = 0
+  )
+
   data class FFBattleState(
     val currentFloor: Int = 1,
     val currentBiome: FFBiome? = null,
@@ -83,6 +103,7 @@ class DungeonViewModel @Inject constructor(
     val isRunning: Boolean = false,
     val isPaused: Boolean = false,
     val runComplete: Boolean = false,
+    val runSummary: RunSummary? = null,
     val gilEarnedThisRun: Long = 0,
     val magiciteEarnedThisRun: Int = 0,
     val lastFloorGil: Long = 0,
@@ -108,7 +129,9 @@ class DungeonViewModel @Inject constructor(
     val reviveUsedThisRun: Boolean = false,
     val showReviveDialog: Boolean = false,
     val pendingFallenHeroIds: Set<String> = emptySet(),
-    val materialsFoundThisRun: Map<String, Int> = emptyMap()
+    val materialsFoundThisRun: Map<String, Int> = emptyMap(),
+    val lastDefeatedSlotIndex: Int = 0,
+    val floatingLootEffects: List<FloatingLootEffect> = emptyList()
   )
 
   data class FFLogEntry(
@@ -117,15 +140,16 @@ class DungeonViewModel @Inject constructor(
     val type: LogType,
     val timestamp: Long = System.currentTimeMillis()
   )
-  enum class LogType { HERO_ATTACK, ENEMY_ATTACK, ABILITY, SUMMON, HEAL, SYSTEM, BOSS, HERO_FELL }
+  enum class LogType { HERO_ATTACK, ENEMY_ATTACK, ABILITY, SUMMON, HEAL, SYSTEM, BOSS, HERO_FELL, LOOT }
 
   fun startRun(party: List<Hero>, startFloor: Int = 1) {
     battleJob?.cancel()
     val gs = gameState.value ?: GameState()
     val dimension = FFDimensionData.getDimension(gs.currentDimension)
-    val relics = RelicBonuses.from(gs)
 
     viewModelScope.launch {
+        val codexBonuses = repo.getCodexBonuses()
+        val relics = RelicBonuses.from(gs, codexBonuses)
         val savedSpeed = userPreferencesRepo.battleSpeed.first()
 
         // Fetch items for all heroes to bake stats
@@ -265,11 +289,16 @@ class DungeonViewModel @Inject constructor(
       }
       is FFBattleEvent.EnemyDefeated -> {
           battleState.update { state ->
+              val slotIndex = state.enemies.indexOfFirst { it.id == event.enemyId }.coerceAtLeast(0)
               val enemy = state.enemies.find { it.id == event.enemyId }
               state.copy(
+                  lastDefeatedSlotIndex = slotIndex,
                   enemies = state.enemies.filter { it.id != event.enemyId },
                   battleLog = (state.battleLog + FFLogEntry(R.string.log_victory_xp, listOf(enemy?.name ?: "?", event.expDropped), LogType.SYSTEM)).takeLast(25)
               )
+          }
+          viewModelScope.launch(Dispatchers.IO) {
+              repo.recordMonsterKill(event.monsterType.name)
           }
       }
       is FFBattleEvent.MaterialDropped -> {
@@ -277,13 +306,25 @@ class DungeonViewModel @Inject constructor(
               val currentCount = state.materialsFoundThisRun[event.materialId] ?: 0
               val mat = MaterialCatalog.getMaterial(event.materialId)
               val matName = runCatching { context.getString(mat.nameRes) }.getOrNull() ?: mat.id
+              val materialNameWithEmoji = "${mat.emoji} $matName"
+              val lootEffect = FloatingLootEffect(
+                  materialId = event.materialId,
+                  amount = event.amount,
+                  enemySlotIndex = state.lastDefeatedSlotIndex
+              )
               state.copy(
                   materialsFoundThisRun = state.materialsFoundThisRun + (event.materialId to (currentCount + event.amount)),
-                  battleLog = (state.battleLog + FFLogEntry(R.string.log_generic, listOf("${mat.emoji} $matName +${event.amount}"), LogType.SYSTEM)).takeLast(25)
+                  floatingLootEffects = state.floatingLootEffects + lootEffect,
+                  battleLog = (state.battleLog + FFLogEntry(
+                      messageRes = R.string.log_material_dropped,
+                      args = listOf(materialNameWithEmoji, event.amount),
+                      type = LogType.LOOT
+                  )).takeLast(25)
               )
           }
-          viewModelScope.launch {
+          viewModelScope.launch(Dispatchers.IO) {
               repo.addMaterial(event.materialId, event.amount)
+              repo.discoverMaterial(event.materialId)
           }
       }
       is FFBattleEvent.HealCast -> {
@@ -533,7 +574,8 @@ class DungeonViewModel @Inject constructor(
                   showReviveDialog = false,
                   reviveUsedThisRun = true,
                   isRunning = true,
-                  runComplete = false
+                  runComplete = false,
+                  runSummary = null
               ) }
 
               // Restart the battle from the same floor
@@ -571,11 +613,23 @@ class DungeonViewModel @Inject constructor(
           }
       }
       
+      val summary = RunSummary(
+          currentFloor = floor,
+          gilEarnedThisRun = netGil,
+          magiciteEarnedThisRun = magicite,
+          gilLostToPenalty = penalty.toLong(),
+          itemsFoundThisRun = currentState.itemsFoundThisRun,
+          materialsEarned = currentState.materialsFoundThisRun,
+          fallenHeroes = currentState.fallenHeroes,
+          originalPartySize = currentState.originalPartySize
+      )
+      
       battleState.update { it.copy(
           isRunning = false, 
           runComplete = true, 
           showReviveDialog = false,
           gilLostToPenalty = penalty.toLong(),
+          runSummary = summary,
           battleLog = (it.battleLog + FFLogEntry(if (penalty > 0) R.string.log_total_wipe else R.string.retreat_button, emptyList(), LogType.HERO_FELL)).takeLast(25)
       ) }
       
@@ -598,12 +652,13 @@ class DungeonViewModel @Inject constructor(
     }
     val gs = gameState.value ?: return
     val dimension = battleState.value.dimension ?: return
-    val relics = RelicBonuses.from(gs)
     val currentParty = battleState.value.heroes
     val currentFloor = battleState.value.currentFloor
     
     battleJob?.cancel()
     battleJob = viewModelScope.launch {
+        val codexBonuses = repo.getCodexBonuses()
+        val relics = RelicBonuses.from(gs, codexBonuses)
         engine.runBattle(
             heroes = currentParty,
             dimension = dimension,
@@ -649,9 +704,31 @@ class DungeonViewModel @Inject constructor(
           }
       }
 
-      battleState.update { it.copy(isRunning=false, runComplete=true) }
+      val currentState = battleState.value
+      val summary = RunSummary(
+          currentFloor = currentState.currentFloor,
+          gilEarnedThisRun = currentState.gilEarnedThisRun,
+          magiciteEarnedThisRun = currentState.magiciteEarnedThisRun,
+          gilLostToPenalty = 0,
+          itemsFoundThisRun = currentState.itemsFoundThisRun,
+          materialsEarned = currentState.materialsFoundThisRun,
+          fallenHeroes = currentState.fallenHeroes,
+          originalPartySize = currentState.originalPartySize
+      )
+
+      battleState.update { it.copy(
+          isRunning=false, 
+          runComplete=true,
+          runSummary = summary
+      ) }
       repo.triggerFirebaseUpload()
     }
+  }
+
+  fun removeFloatingLootEffect(id: Long) {
+      battleState.update { state ->
+          state.copy(floatingLootEffects = state.floatingLootEffects.filter { it.id != id })
+      }
   }
 
   private fun findName(state: FFBattleState, id: String): String {
