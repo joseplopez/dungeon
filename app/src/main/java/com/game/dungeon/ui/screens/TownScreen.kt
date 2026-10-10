@@ -27,6 +27,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.compose.ui.window.Dialog
@@ -172,37 +173,44 @@ fun TownScreen(
                         .fillMaxWidth()
                         .horizontalScroll(scrollState)
                 ) {
-                    // Buildings Row
+                    // Buildings Row - Aligned precisely to the bottom so nameplates match perfectly horizontally
                     Row(
                         modifier = Modifier
                             .padding(bottom = 10.dp)
                             .align(Alignment.BottomStart),
-                        horizontalArrangement = Arrangement.spacedBy(60.dp),
+                        horizontalArrangement = Arrangement.Start,
                         verticalAlignment = Alignment.Bottom
                     ) {
-                        Spacer(Modifier.width(120.dp)) // Left margin
+                        Spacer(Modifier.width(100.dp)) // Left margin
 
-                        // 1. Crystal / Alchemist Shop (Left)
                         TownBuilding(
                             name = safeStringResource(R.string.building_crystal_shop),
                             tag = "CRYSTAL SHOP",
                             animTime = animTime,
+                            buildingWidth = 180.dp,
+                            buildingHeight = 120.dp,
                             onClick = { showCrystalShop = true }
                         )
 
-                        // 2. Training Hall / Barracks (Center-Left)
+                        Spacer(Modifier.width(40.dp))
+
                         TownBuilding(
                             name = safeStringResource(R.string.building_barracks),
                             tag = "BARRACKS",
                             animTime = animTime,
+                            buildingWidth = 240.dp,
+                            buildingHeight = 150.dp,
                             onClick = { showUpgrades = true }
                         )
 
-                        // 3. Blacksmith / Forge (Center)
+                        Spacer(Modifier.width(50.dp))
+
                         TownBuilding(
                             name = safeStringResource(R.string.building_blacksmith_title),
                             tag = "BLACKSMITH",
                             animTime = animTime,
+                            buildingWidth = 180.dp,
+                            buildingHeight = 140.dp,
                             onClick = {
                                 navController.navigate("crafting") {
                                     launchSingleTop = true
@@ -211,11 +219,15 @@ fun TownScreen(
                             }
                         )
 
-                        // 4. Relics Sanctuary (Center-Right)
+                        Spacer(Modifier.width(50.dp))
+
+                        // Tall, dramatic Wizard Spire
                         TownBuilding(
                             name = safeStringResource(R.string.building_relics),
                             tag = "RELICS",
                             animTime = animTime,
+                            buildingWidth = 140.dp,
+                            buildingHeight = 240.dp,
                             onClick = {
                                 navController.navigate("relics") {
                                     launchSingleTop = true
@@ -224,11 +236,14 @@ fun TownScreen(
                             }
                         )
 
-                        // 5. Library / Compendium (Center-Right)
+                        Spacer(Modifier.width(60.dp))
+
                         TownBuilding(
                             name = safeStringResource(R.string.building_library_title),
                             tag = "LIBRARY",
                             animTime = animTime,
+                            buildingWidth = 200.dp,
+                            buildingHeight = 180.dp,
                             onClick = {
                                 navController.navigate("codex") {
                                     launchSingleTop = true
@@ -237,12 +252,15 @@ fun TownScreen(
                             }
                         )
 
-                        // 4. Inn Building & Bulletin Board (Right)
+                        Spacer(Modifier.width(50.dp))
+
                         TownBuilding(
                             name = safeStringResource(R.string.building_inn),
                             tag = "THE INN",
                             animTime = animTime,
-                            onClick = { 
+                            buildingWidth = 190.dp,
+                            buildingHeight = 160.dp,
+                            onClick = {
                                 navController.navigate("inn") {
                                     launchSingleTop = true
                                     popUpTo("inn") { saveState = true }
@@ -252,11 +270,14 @@ fun TownScreen(
                             onBulletinClick = { showBulletinDialog = true }
                         )
 
-                        // 5. Colosseum / Rankings Building (Far Right)
+                        Spacer(Modifier.width(60.dp))
+
                         TownBuilding(
                             name = safeStringResource(R.string.building_colosseum),
                             tag = "COLOSSEUM",
                             animTime = animTime,
+                            buildingWidth = 240.dp,
+                            buildingHeight = 160.dp,
                             onClick = {
                                 navController.navigate("leaderboard") {
                                     launchSingleTop = true
@@ -268,14 +289,14 @@ fun TownScreen(
                         Spacer(Modifier.width(200.dp)) // Right margin
                     }
 
-                    // Walking NPCs inside the SAME scrollable Box
+                    // Walking NPCs inside the SAME scrollable Box (Adjusted X coordinates for wider town)
                     val npcs = remember {
                         listOf(
-                            NpcState("scholar", "Scholar", startXDp = 200f, walkRangeDp = 120f, speed = 0.001f, tipRes = R.string.npc_tip_scholar),
-                            NpcState("guard", "Guard", startXDp = 480f, walkRangeDp = 160f, speed = 0.0012f, tipRes = R.string.npc_tip_guard),
-                            NpcState("adventurer", "Hero", startXDp = 750f, walkRangeDp = 160f, speed = 0.0015f, tipRes = R.string.npc_tip_adventurer),
-                            NpcState("merchant", "Merchant", startXDp = 1020f, walkRangeDp = 120f, speed = 0.0009f, tipRes = R.string.npc_tip_merchant),
-                            NpcState("gladiator", "Gladiator", startXDp = 1320f, walkRangeDp = 140f, speed = 0.0011f, tipRes = R.string.npc_tip_gladiator)
+                            NpcState("scholar", "Scholar", startXDp = 250f, walkRangeDp = 120f, speed = 0.001f, tipRes = R.string.npc_tip_scholar),
+                            NpcState("guard", "Guard", startXDp = 580f, walkRangeDp = 160f, speed = 0.0012f, tipRes = R.string.npc_tip_guard),
+                            NpcState("adventurer", "Hero", startXDp = 920f, walkRangeDp = 160f, speed = 0.0015f, tipRes = R.string.npc_tip_adventurer),
+                            NpcState("merchant", "Merchant", startXDp = 1250f, walkRangeDp = 120f, speed = 0.0009f, tipRes = R.string.npc_tip_merchant),
+                            NpcState("gladiator", "Gladiator", startXDp = 1600f, walkRangeDp = 140f, speed = 0.0011f, tipRes = R.string.npc_tip_gladiator)
                         )
                     }
 
@@ -287,7 +308,7 @@ fun TownScreen(
 
                         Box(
                             Modifier
-                                .offset(x = offsetX.dp, y = (-20 - walkBounce).dp)
+                                .offset(x = offsetX.dp, y = (-50 - walkBounce).dp)
                                 .align(Alignment.BottomStart)
                                 .clickable {
                                     activeSpeechNpcId = npc.id
@@ -383,18 +404,19 @@ fun TownBuilding(
     name: String,
     tag: String,
     animTime: Float,
+    buildingWidth: Dp,
+    buildingHeight: Dp,
     onClick: () -> Unit,
     onBulletinClick: (() -> Unit)? = null
 ) {
     Column(
         horizontalAlignment = CenterHorizontally,
         modifier = Modifier
-            .width(220.dp)
+            .wrapContentWidth()
             .clickable { onClick() }
     ) {
         Box(
-            modifier = Modifier
-                .size(200.dp, 150.dp),
+            modifier = Modifier.size(width = buildingWidth, height = buildingHeight),
             contentAlignment = Alignment.BottomCenter
         ) {
             Canvas(Modifier.fillMaxSize()) {
@@ -405,7 +427,7 @@ fun TownBuilding(
                     "RELICS" -> drawDetailedPortal(animTime)
                     "COLOSSEUM" -> drawDetailedColosseum(animTime)
                     "BLACKSMITH" -> drawDetailedBlacksmith(animTime)
-                    "LIBRARY" -> drawDetailedLibrary(animTime)
+                    "LIBRARY" -> drawDetailedLibrary(animTime/3f)
                 }
             }
 
@@ -415,14 +437,14 @@ fun TownBuilding(
                     Modifier
                         .align(Alignment.BottomEnd)
                         .padding(end = 12.dp, bottom = 12.dp)
-                        .size(50.dp, 35.dp)
+                        .size(60.dp, 50.dp)
                         .clickable { onBulletinClick() }
                 )
             }
         }
-        
+
         Spacer(Modifier.height(16.dp))
-        
+
         // Golden Border Badge Label
         GoldenBorderBox(
             modifier = Modifier
@@ -872,5 +894,3 @@ fun UpgradesDialog(
         }
     }
 }
-
-
