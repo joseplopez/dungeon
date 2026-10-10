@@ -13,6 +13,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
@@ -30,6 +31,7 @@ import com.game.dungeon.data.models.Rarity
 import com.game.dungeon.ui.components.GoldenBorderBox
 import com.game.dungeon.ui.components.MusicToggleButton
 import com.game.dungeon.ui.components.PixelButton
+import com.game.dungeon.ui.components.PixelGoldDisplay
 import com.game.dungeon.ui.components.SupportDialog
 import com.game.dungeon.ui.components.SupportIconButton
 import com.game.dungeon.ui.components.safeStringResource
@@ -47,7 +49,22 @@ fun CraftingScreen(
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val roster by viewModel.roster.collectAsStateWithLifecycle()
+
     var showSupportDialog by remember { mutableStateOf(false) }
+
+    val snackbarHostState = remember { SnackbarHostState() }
+
+    // 1. Resolve the string outside the LaunchedEffect using Compose's stringResource
+    val currentMessageRes = uiState.userMessageRes
+    val snackbarMessage = currentMessageRes?.let { stringResource(it) }
+
+    // 2. Trigger the effect using the resource ID as the key
+    LaunchedEffect(currentMessageRes) {
+        if (snackbarMessage != null) {
+            snackbarHostState.showSnackbar(snackbarMessage)
+            viewModel.clearUserMessage()
+        }
+    }
 
     PixelTheme {
         Box(
@@ -59,6 +76,7 @@ fun CraftingScreen(
             Column(modifier = Modifier.fillMaxSize()) {
                 // Screen Header
                 CraftingHeader(
+                    gold = uiState.gold, // Added gold display support
                     onBack = onBack,
                     isMuted = isMuted,
                     onToggleMusic = onToggleMusic,
@@ -74,15 +92,6 @@ fun CraftingScreen(
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
-
-                // User Message / Error Banner
-                uiState.userMessageRes?.let { msgRes ->
-                    UserMessageBanner(
-                        messageRes = msgRes,
-                        onDismiss = { viewModel.clearUserMessage() }
-                    )
-                    Spacer(modifier = Modifier.height(8.dp))
-                }
 
                 // Main Tab Content Area
                 Box(
@@ -120,6 +129,12 @@ fun CraftingScreen(
                 }
             }
 
+            // Non-intrusive Snackbar messages layered over the bottom
+            SnackbarHost(
+                hostState = snackbarHostState,
+                modifier = Modifier.align(Alignment.BottomCenter)
+            )
+
             if (showSupportDialog) {
                 SupportDialog(onDismiss = { showSupportDialog = false })
             }
@@ -129,6 +144,7 @@ fun CraftingScreen(
 
 @Composable
 private fun CraftingHeader(
+    gold: Long,
     onBack: () -> Unit,
     isMuted: Boolean,
     onToggleMusic: () -> Unit,
@@ -162,6 +178,9 @@ private fun CraftingHeader(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
+                // Now shows the player's current Gil balance
+                PixelGoldDisplay(amount = gold)
+
                 SupportIconButton(onClick = onOpenSupport)
                 MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
             }
@@ -207,35 +226,6 @@ private fun CraftingTabBar(
                     fontSize = 12.sp
                 )
             }
-        }
-    }
-}
-
-@Composable
-private fun UserMessageBanner(
-    messageRes: Int,
-    onDismiss: () -> Unit
-) {
-    Row(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(BgMedium, RoundedCornerShape(6.dp))
-            .border(1.dp, GoldBright, RoundedCornerShape(6.dp))
-            .padding(8.dp),
-        verticalAlignment = Alignment.CenterVertically,
-        horizontalArrangement = Arrangement.SpaceBetween
-    ) {
-        Text(
-            text = stringResource(messageRes),
-            color = Color.White,
-            style = PixelBody,
-            modifier = Modifier.weight(1f)
-        )
-        TextButton(onClick = onDismiss) {
-            Text(
-                text = stringResource(R.string.btn_ok),
-                color = GoldBright
-            )
         }
     }
 }
@@ -356,6 +346,9 @@ private fun EnhanceSection(
                     )
                 }
             } else {
+                var canAffordGold = false
+                var canAffordMaterials = false
+
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(
                         text = stringResource(R.string.item_name_template, item.emoji, item.name),
@@ -414,12 +407,20 @@ private fun EnhanceSection(
 
                     if (item.enhancementLevel < 10) {
                         val goldCost = (nextLevel * 100L * item.floorFound.coerceAtLeast(1)).coerceAtLeast(100L)
-                        val oreRes = when (item.rarity) {
-                            Rarity.COMMON -> R.string.mat_iron_ore_name
-                            Rarity.RARE -> R.string.mat_mithril_ore_name
-                            Rarity.EPIC -> R.string.mat_adamantite_ore_name
-                            Rarity.LEGENDARY -> R.string.mat_orichalcum_ore_name
+                        val (oreRes, oreId) = when (item.rarity) {
+                            Rarity.COMMON -> Pair(R.string.mat_iron_ore_name, "iron_ore")
+                            Rarity.RARE -> Pair(R.string.mat_mithril_ore_name, "mithril_ore")
+                            Rarity.EPIC -> Pair(R.string.mat_adamantite_ore_name, "adamantite_ore")
+                            Rarity.LEGENDARY -> Pair(R.string.mat_orichalcum_ore_name, "orichalcum_ore")
                         }
+
+                        // Determine costs and availability
+                        val requiredOres = nextLevel
+                        val ownedOres = uiState.materialInventory.find { it.material.id == oreId }?.amount ?: 0
+
+                        canAffordGold = uiState.gold >= goldCost
+                        canAffordMaterials = ownedOres >= requiredOres
+
                         Text(
                             text = stringResource(R.string.craft_label_cost),
                             style = PixelSmall,
@@ -428,21 +429,32 @@ private fun EnhanceSection(
                         Text(
                             text = stringResource(R.string.craft_format_gold, goldCost),
                             style = PixelSmall,
-                            color = Color.Yellow
+                            color = if (canAffordGold) Color.Yellow else HpRed
                         )
                         Text(
-                            text = stringResource(R.string.item_name_template, stringResource(oreRes), stringResource(R.string.craft_format_quantity, nextLevel)),
+                            text = stringResource(
+                                R.string.item_name_template,
+                                stringResource(oreRes),
+                                "$requiredOres / $ownedOres"
+                            ),
                             style = PixelSmall,
-                            color = Color.Cyan
+                            color = if (canAffordMaterials) Color.Cyan else HpRed
                         )
                     }
                 }
 
                 Button(
                     onClick = onEnhance,
-                    enabled = !uiState.isProcessing && item.enhancementLevel < 10,
+                    // Disabled if max level, processing, or missing materials/gold
+                    enabled = !uiState.isProcessing &&
+                            item.enhancementLevel < 10 &&
+                            canAffordGold &&
+                            canAffordMaterials,
                     modifier = Modifier.fillMaxWidth(),
-                    colors = ButtonDefaults.buttonColors(containerColor = GoldAccent)
+                    colors = ButtonDefaults.buttonColors(
+                        containerColor = GoldAccent,
+                        disabledContainerColor = StoneGray
+                    )
                 ) {
                     val btnText = if (item.enhancementLevel >= 10) {
                         stringResource(R.string.craft_label_max_level_reached)
@@ -451,7 +463,7 @@ private fun EnhanceSection(
                     }
                     Text(
                         text = btnText,
-                        color = BgDarkest,
+                        color = if (item.enhancementLevel >= 10 || !canAffordGold || !canAffordMaterials) Color.LightGray else BgDarkest,
                         fontWeight = FontWeight.Bold
                     )
                 }

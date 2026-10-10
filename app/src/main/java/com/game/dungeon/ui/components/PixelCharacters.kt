@@ -9874,7 +9874,7 @@ fun DrawScope.drawSin() {
     }
 }
 
-private fun DrawScope.drawMonsterSprite(monsterType: MonsterType) {
+fun DrawScope.drawMonsterSprite(monsterType: MonsterType) {
     when (monsterType) {
         MonsterType.GARLAND, MonsterType.ASTOS, MonsterType.LICH, MonsterType.MARILITH, MonsterType.MALIRIS,
         MonsterType.KRAKEN, MonsterType.TIAMAT, MonsterType.CHAOS, MonsterType.LEON, MonsterType.BORGHEN,

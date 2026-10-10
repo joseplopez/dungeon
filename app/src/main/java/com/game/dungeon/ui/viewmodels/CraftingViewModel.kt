@@ -3,6 +3,7 @@ package com.game.dungeon.ui.viewmodels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.game.dungeon.R
+import com.game.dungeon.data.models.GameState
 import com.game.dungeon.data.models.Item
 import com.game.dungeon.data.models.ItemSlot
 import com.game.dungeon.data.models.Material
@@ -33,7 +34,8 @@ data class CraftingUiState(
     val selectedItem: Item? = null,
     val selectedTab: CraftingTab = CraftingTab.ENHANCE,
     val isProcessing: Boolean = false,
-    val userMessageRes: Int? = null
+    val userMessageRes: Int? = null,
+    val gold: Long = 0L // Added gold to support the UI header
 )
 
 @HiltViewModel
@@ -52,6 +54,9 @@ class CraftingViewModel @Inject constructor(
         items.filter { it.amount > 0 }
     }
 
+    // Fetch game state to track the player's gold
+    private val _gameState = repository.getGameState()
+
     val roster: StateFlow<List<com.game.dungeon.data.models.Hero>> = repository.getRoster()
         .stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
 
@@ -62,7 +67,8 @@ class CraftingViewModel @Inject constructor(
         _selectedItem,
         _selectedTab,
         _isProcessing,
-        _userMessageRes
+        _userMessageRes,
+        _gameState // Added to the combine block
     ) { flows ->
         @Suppress("UNCHECKED_CAST")
         val inventoryItems = flows[0] as List<Item>
@@ -76,6 +82,7 @@ class CraftingViewModel @Inject constructor(
         val selectedTab = flows[4] as CraftingTab
         val isProcessing = flows[5] as Boolean
         val userMessageRes = flows[6] as Int?
+        val gameState = flows[7] as? GameState // Safe cast
 
         val refreshedSelectedItem = selectedItem?.let { current ->
             val found = (inventoryItems + equippedItems).find { it.id == current.id }
@@ -93,7 +100,8 @@ class CraftingViewModel @Inject constructor(
             selectedItem = refreshedSelectedItem,
             selectedTab = selectedTab,
             isProcessing = isProcessing,
-            userMessageRes = userMessageRes
+            userMessageRes = userMessageRes,
+            gold = gameState?.gold ?: 0L // Map the gold value from GameState
         )
     }.stateIn(
         scope = viewModelScope,

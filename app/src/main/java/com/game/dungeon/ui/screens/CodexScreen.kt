@@ -1,5 +1,7 @@
+// CodexScreen.kt
 package com.game.dungeon.ui.screens
 
+import androidx.compose.foundation.Canvas
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
@@ -42,7 +44,7 @@ fun KillThreshold.getNameRes(): Int = when (this) {
 
 fun MaterialCategory.getNameRes(): Int = when (this) {
     MaterialCategory.ORE -> R.string.mat_cat_ore
-    MaterialCategory.MONSTER_PART -> R.string.mat_cat_monster_part
+    MaterialCategory.MONSTER_PART -> R.string.mat_cat_essence
     MaterialCategory.ESSENCE -> R.string.mat_cat_essence
     MaterialCategory.BOSS_TROPHY -> R.string.mat_cat_boss_trophy
 }
@@ -246,10 +248,18 @@ fun MonsterCodexCard(detail: MonsterCodexDetail) {
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.spacedBy(8.dp)
                 ) {
-                    Text(
-                        text = if (detail.isDiscovered) (template?.emoji ?: "👾") else "❓",
-                        fontSize = 22.sp
-                    )
+                    if (detail.isDiscovered) {
+                        Canvas(modifier = Modifier.size(32.dp)) {
+                            // This now cleanly calls the public method from PixelCharacters.kt
+                            drawMonsterSprite(detail.monsterType)
+                        }
+                    } else {
+                        Text(
+                            text = "❓",
+                            fontSize = 22.sp
+                        )
+                    }
+
                     Text(
                         text = if (detail.isDiscovered) {
                             safeStringResource(template?.nameRes ?: R.string.enemy_goblin)
