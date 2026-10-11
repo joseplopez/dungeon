@@ -483,7 +483,6 @@ class DungeonViewModel @Inject constructor(
           )
         }
         viewModelScope.launch {
-            repo.recordBossDefeat(event.bossName)
             delay(3000)
             battleState.update { it.copy(showBossBanner=false) }
         }
