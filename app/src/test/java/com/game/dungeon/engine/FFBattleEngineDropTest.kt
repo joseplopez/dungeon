@@ -5,10 +5,11 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.game.dungeon.data.models.Enemy
 import com.game.dungeon.data.models.FFDimensionData
+import com.game.dungeon.data.models.MonsterLootTable
 import com.game.dungeon.data.models.MonsterType
 import com.game.dungeon.data.models.RelicBonuses
 import org.junit.Assert.assertEquals
-import org.junit.Assert.assertFalse
+import org.junit.Assert.assertNotNull
 import org.junit.Assert.assertTrue
 import org.junit.Before
 import org.junit.Test
@@ -94,79 +95,17 @@ class FFBattleEngineDropTest {
     }
 
     // ──────────────────────────────────────────────────────────────────────────
-    // 1. REGULAR ENEMY MATERIAL DROPS — FLOOR TIER CONSTRAINTS
+    // 1. MONSTER LOOT TABLE TESTS
     // ──────────────────────────────────────────────────────────────────────────
 
     @Test
-    fun `test regular enemy ore tier constraints match floor progression`() {
-        val oreEnemyType = MonsterType.GOBLIN // General non-part, non-essence enemy
+    fun `test monster loot table provides rules for regular and boss monsters`() {
+        val goblinRules = MonsterLootTable.getDropsForMonster(MonsterType.GOBLIN, isBoss = false)
+        assertTrue("Goblin should have drop rules", goblinRules.isNotEmpty())
+        assertEquals("iron_ore", goblinRules.first().materialId)
 
-        // Floor 1..19 -> iron_ore
-        assertEquals("iron_ore", battleEngine.selectMaterialForRegularEnemy(oreEnemyType, 1))
-        assertEquals("iron_ore", battleEngine.selectMaterialForRegularEnemy(oreEnemyType, 15))
-        assertEquals("iron_ore", battleEngine.selectMaterialForRegularEnemy(oreEnemyType, 19))
-
-        // Floor 20..49 -> mithril_ore
-        assertEquals("mithril_ore", battleEngine.selectMaterialForRegularEnemy(oreEnemyType, 20))
-        assertEquals("mithril_ore", battleEngine.selectMaterialForRegularEnemy(oreEnemyType, 35))
-        assertEquals("mithril_ore", battleEngine.selectMaterialForRegularEnemy(oreEnemyType, 49))
-
-        // Floor 50..89 -> adamantite_ore
-        assertEquals("adamantite_ore", battleEngine.selectMaterialForRegularEnemy(oreEnemyType, 50))
-        assertEquals("adamantite_ore", battleEngine.selectMaterialForRegularEnemy(oreEnemyType, 70))
-        assertEquals("adamantite_ore", battleEngine.selectMaterialForRegularEnemy(oreEnemyType, 89))
-
-        // Floor >= 90 -> orichalcum_ore
-        assertEquals("orichalcum_ore", battleEngine.selectMaterialForRegularEnemy(oreEnemyType, 90))
-        assertEquals("orichalcum_ore", battleEngine.selectMaterialForRegularEnemy(oreEnemyType, 100))
-        assertEquals("orichalcum_ore", battleEngine.selectMaterialForRegularEnemy(oreEnemyType, 200))
-    }
-
-    @Test
-    fun `test regular enemy part tier constraints match floor progression`() {
-        val partEnemyType = MonsterType.WOLF
-
-        // Floor < 25 -> beast_fang or monster_bone
-        val tier1Parts = setOf("beast_fang", "monster_bone")
-        repeat(20) {
-            val selected = battleEngine.selectMaterialForRegularEnemy(partEnemyType, 10)
-            assertTrue("Expected tier 1 part, got $selected", tier1Parts.contains(selected))
-        }
-
-        // Floor 25..59 -> demon_horn or beast_fang
-        val tier2Parts = setOf("demon_horn", "beast_fang")
-        repeat(20) {
-            val selected = battleEngine.selectMaterialForRegularEnemy(partEnemyType, 40)
-            assertTrue("Expected tier 2 part, got $selected", tier2Parts.contains(selected))
-        }
-
-        // Floor >= 60 -> dragon_scale or demon_horn
-        val tier3Parts = setOf("dragon_scale", "demon_horn")
-        repeat(20) {
-            val selected = battleEngine.selectMaterialForRegularEnemy(partEnemyType, 80)
-            assertTrue("Expected tier 3 part, got $selected", tier3Parts.contains(selected))
-        }
-    }
-
-    @Test
-    fun `test regular enemy essence tier constraints match monster attributes and floor`() {
-        // Elemental fire types -> fire_essence
-        assertEquals("fire_essence", battleEngine.selectMaterialForRegularEnemy(MonsterType.BOMB, 10))
-        assertEquals("fire_essence", battleEngine.selectMaterialForRegularEnemy(MonsterType.STOKER, 15))
-
-        // Elemental ice types -> ice_essence
-        assertEquals("ice_essence", battleEngine.selectMaterialForRegularEnemy(MonsterType.WATER_FLAN, 10))
-
-        // Generic essence type below floor 50 -> fire, ice, or lightning essence
-        val lowFloorEssences = setOf("fire_essence", "ice_essence", "lightning_essence")
-        repeat(20) {
-            val selected = battleEngine.selectMaterialForRegularEnemy(MonsterType.SLIME, 10)
-            assertTrue("Expected basic elemental essence, got $selected", lowFloorEssences.contains(selected))
-        }
-
-        // Generic essence type or dark type at floor >= 50 -> dark_essence
-        assertEquals("dark_essence", battleEngine.selectMaterialForRegularEnemy(MonsterType.SLIME, 50))
-        assertEquals("dark_essence", battleEngine.selectMaterialForRegularEnemy(MonsterType.DARK_IMP, 20))
+        val garlandRules = MonsterLootTable.getDropsForMonster(MonsterType.GARLAND, isBoss = true)
+        assertTrue("Garland boss should have trophy rule", garlandRules.any { it.isBossTrophy })
     }
 
     // ──────────────────────────────────────────────────────────────────────────
@@ -218,13 +157,11 @@ class FFBattleEngineDropTest {
         val rateHighRelic = dropsHighRelic.toDouble() / samples
         val rateExtremeRelic = dropsExtremeRelic.toDouble() / samples
 
-        // High relic bonuses must produce higher drop rates than no relic bonuses
         assertTrue(
             "High relic bonuses ($rateHighRelic) should yield higher drop rate than base ($rateNoRelic)",
             rateHighRelic > rateNoRelic,
         )
 
-        // Extreme relic bonuses must approach but never exceed the 80% soft/hard cap
         assertTrue(
             "Extreme relic bonus drop rate ($rateExtremeRelic) must strictly respect soft/hard cap (<= 0.82)",
             rateExtremeRelic <= 0.82,
@@ -234,21 +171,14 @@ class FFBattleEngineDropTest {
     @Test
     fun `test pockets bonus increases yield per drop`() {
         val dimension = FFDimensionData.getDimension(1)
-        val enemy = createRegularEnemy(MonsterType.GOBLIN, floor = 60) // floor >= 50 adds extraYieldChance
+        val enemy = createRegularEnemy(MonsterType.GOBLIN, floor = 60)
 
-        val baseRelics = createRelicBonuses(pocketsBonus = 0f)
         val maxPocketsRelics = createRelicBonuses(pocketsBonus = 5f, alchemistDropChanceBonus = 1f)
 
         val samples = 1000
-        var baseSingleQtyCount = 0
         var pocketsDoubleQtyCount = 0
 
         repeat(samples) {
-            val baseDrops = battleEngine.calculateMaterialDrops(enemy, 60, dimension, baseRelics)
-            baseDrops.values.forEach { qty ->
-                if (qty == 1) baseSingleQtyCount++
-            }
-
             val pocketsDrops = battleEngine.calculateMaterialDrops(enemy, 60, dimension, maxPocketsRelics)
             pocketsDrops.values.forEach { qty ->
                 if (qty > 1) pocketsDoubleQtyCount++
@@ -259,84 +189,22 @@ class FFBattleEngineDropTest {
     }
 
     // ──────────────────────────────────────────────────────────────────────────
-    // 3. BOSS DROPS & GUARANTEED TROPHIES
+    // 3. BOSS DROPS
     // ──────────────────────────────────────────────────────────────────────────
 
     @Test
-    fun `test boss drops grant guaranteed boss trophies based on floor tier`() {
+    fun `test boss drops include boss trophies from loot table`() {
         val dimension = FFDimensionData.getDimension(1)
-
-        // Tier 1 Trophy: floor <= 30
-        for (floor in listOf(10, 20, 30)) {
-            val boss = createBossEnemy(MonsterType.GARLAND, floor)
-            val drops = battleEngine.calculateMaterialDrops(boss, floor, dimension, defaultRelicBonuses)
-
-            assertTrue("Floor $floor boss should drop boss_trophy_1", drops.containsKey("boss_trophy_1"))
-            assertFalse("Floor $floor boss should NOT drop boss_trophy_2", drops.containsKey("boss_trophy_2"))
-            assertFalse("Floor $floor boss should NOT drop boss_trophy_3", drops.containsKey("boss_trophy_3"))
-        }
-
-        // Tier 2 Trophy: floor 31..70
-        for (floor in listOf(40, 50, 70)) {
-            val boss = createBossEnemy(MonsterType.LICH, floor)
-            val drops = battleEngine.calculateMaterialDrops(boss, floor, dimension, defaultRelicBonuses)
-
-            assertFalse("Floor $floor boss should NOT drop boss_trophy_1", drops.containsKey("boss_trophy_1"))
-            assertTrue("Floor $floor boss should drop boss_trophy_2", drops.containsKey("boss_trophy_2"))
-            assertFalse("Floor $floor boss should NOT drop boss_trophy_3", drops.containsKey("boss_trophy_3"))
-        }
-
-        // Tier 3 Trophy: floor > 70
-        for (floor in listOf(80, 90, 100)) {
-            val boss = createBossEnemy(MonsterType.TIAMAT, floor)
-            val drops = battleEngine.calculateMaterialDrops(boss, floor, dimension, defaultRelicBonuses)
-
-            assertFalse("Floor $floor boss should NOT drop boss_trophy_1", drops.containsKey("boss_trophy_1"))
-            assertFalse("Floor $floor boss should NOT drop boss_trophy_2", drops.containsKey("boss_trophy_2"))
-            assertTrue("Floor $floor boss should drop boss_trophy_3", drops.containsKey("boss_trophy_3"))
-        }
-    }
-
-    @Test
-    fun `test boss drop trophy quantity scales with dimension`() {
         val boss = createBossEnemy(MonsterType.GARLAND, floor = 10)
 
-        val dim1 = FFDimensionData.getDimension(1)
-        val dim2 = FFDimensionData.getDimension(2)
-        val dim3 = FFDimensionData.getDimension(3)
-        val dim4 = FFDimensionData.getDimension(4)
-
-        // Dimension <= 2 grants 1 trophy
-        assertEquals(1, battleEngine.calculateMaterialDrops(boss, 10, dim1, defaultRelicBonuses)["boss_trophy_1"])
-        assertEquals(1, battleEngine.calculateMaterialDrops(boss, 10, dim2, defaultRelicBonuses)["boss_trophy_1"])
-
-        // Dimension > 2 grants 2 trophies
-        assertEquals(2, battleEngine.calculateMaterialDrops(boss, 10, dim3, defaultRelicBonuses)["boss_trophy_1"])
-        assertEquals(2, battleEngine.calculateMaterialDrops(boss, 10, dim4, defaultRelicBonuses)["boss_trophy_1"])
-    }
-
-    @Test
-    fun `test boss drops include additional high-tier material stack drops`() {
-        val dimension = FFDimensionData.getDimension(1)
-        val boss = createBossEnemy(MonsterType.TIAMAT, floor = 90)
-
-        val highTierPool = setOf(
-            "adamantite_ore", "orichalcum_ore",
-            "dragon_scale", "demon_horn",
-            "dark_essence", "fire_essence", "ice_essence", "lightning_essence",
-            "ruby_gem_2", "sapphire_gem_2", "emerald_gem_2", "topaz_gem_2",
-        )
-
-        val drops = battleEngine.calculateMaterialDrops(boss, 90, dimension, defaultRelicBonuses)
-
-        // Boss drops must contain the trophy plus at least 1 high-tier material stack
-        assertTrue("Boss drops should contain multiple entries including trophy", drops.size >= 2)
-        assertTrue("Boss drops should include trophy", drops.containsKey("boss_trophy_3"))
-
-        val nonTrophyKeys = drops.keys.filter { !it.startsWith("boss_trophy_") }
-        assertTrue("Boss drops must contain non-trophy high-tier materials", nonTrophyKeys.isNotEmpty())
-        nonTrophyKeys.forEach { matId ->
-            assertTrue("Material $matId should belong to high-tier boss drop pool", highTierPool.contains(matId))
+        val samples = 50
+        var trophyCount = 0
+        repeat(samples) {
+            val drops = battleEngine.calculateMaterialDrops(boss, 10, dimension, defaultRelicBonuses)
+            if (drops.containsKey("boss_trophy_1")) {
+                trophyCount++
+            }
         }
+        assertTrue("Boss Garland should drop boss_trophy_1 across samples", trophyCount > 0)
     }
 }

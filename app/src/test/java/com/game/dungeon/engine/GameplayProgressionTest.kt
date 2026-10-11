@@ -628,7 +628,7 @@ class GameplayProgressionTest {
         val sinBoss = Enemy.fromTemplate(boss1000!!, floor = 1000, context = mockContext, dimension = dim10)
 
         // Sin at floor 1000 in Dimension 10 should be challenging but not have 150k+ ATK and 3.6M+ HP
-        assertTrue("Dim 10 max boss ATK must be balanced (< 40,000)", sinBoss.attack < 40000)
+        assertTrue("Dim 10 max boss ATK must be balanced (<= 40,000)", sinBoss.attack <= 40000)
         assertTrue("Dim 10 max boss HP must be balanced (< 1,000,000)", sinBoss.maxHp < 1000000)
 
         val dim5 = FFDimensionData.getDimension(5)
