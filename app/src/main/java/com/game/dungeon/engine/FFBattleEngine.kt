@@ -203,14 +203,14 @@ class FFBattleEngine(private val context: Context) {
         relicBonuses: RelicBonuses
     ): Map<String, Int> {
         val drops = mutableMapOf<String, Int>()
-        val relicMultiplier = 1f + relicBonuses.alchemistDropChanceBonus + (relicBonuses.magnetBonus * 0.05f)
+        val relicMultiplier = 1f + relicBonuses.alchemistDropChanceBonus + (relicBonuses.magnetBonus * 0.10f)
 
         // Strictly uses enemy.isBoss — NO floor % 10 check
         val dropRules = MonsterLootTable.getDropsForMonster(enemy.type, enemy.isBoss)
 
         dropRules.forEach { rule ->
             val rawChance = rule.baseDropChance * relicMultiplier
-            val maxCap = if (rule.isBossTrophy) 0.50f else 0.20f
+            val maxCap = if (rule.isBossTrophy) 0.50f else 0.25f
             val finalChance = rawChance.coerceAtMost(maxCap)
 
             if (Random.nextFloat() < finalChance) {

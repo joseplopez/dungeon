@@ -163,9 +163,43 @@ class FFBattleEngineDropTest {
         )
 
         assertTrue(
+            "Base drop rate without relics ($rateNoRelic) should be reduced and controlled (<= 0.18)",
+            rateNoRelic <= 0.18,
+        )
+
+        assertTrue(
             "Extreme relic bonus drop rate ($rateExtremeRelic) must strictly respect soft/hard cap (<= 0.82)",
             rateExtremeRelic <= 0.82,
         )
+    }
+
+    @Test
+    fun `test reduced base drop chance and relic scaling`() {
+        val dimension = FFDimensionData.getDimension(1)
+        val goblin = createRegularEnemy(MonsterType.GOBLIN, floor = 1)
+
+        val noRelics = createRelicBonuses()
+        val medRelics = createRelicBonuses(alchemistDropChanceBonus = 0.5f, magnetBonus = 1.0f)
+
+        val samples = 5000
+        var noRelicDrops = 0
+        var medRelicDrops = 0
+
+        repeat(samples) {
+            if (battleEngine.calculateMaterialDrops(goblin, 1, dimension, noRelics).isNotEmpty()) {
+                noRelicDrops++
+            }
+            if (battleEngine.calculateMaterialDrops(goblin, 1, dimension, medRelics).isNotEmpty()) {
+                medRelicDrops++
+            }
+        }
+
+        val noRelicRate = noRelicDrops.toDouble() / samples
+        val medRelicRate = medRelicDrops.toDouble() / samples
+
+        // Primary base drop is 0.08, secondary is 0.04 -> combined chance ~ 11.68%
+        assertTrue("Base drop rate ($noRelicRate) should be between 8% and 15%", noRelicRate in 0.08..0.15)
+        assertTrue("Medium relics drop rate ($medRelicRate) should scale up higher than base ($noRelicRate)", medRelicRate > noRelicRate)
     }
 
     @Test
