@@ -642,6 +642,38 @@ class GameplayProgressionTest {
     }
 
     @Test
+    fun testDimension11AndHighFloorMonsterScaling() {
+        val dim11 = FFDimensionData.getDimension(11)
+        assertEquals("Dimension 11 number must be preserved as 11", 11, dim11.number)
+
+        val bossTemplate = FFDimensionData.getBossForFloor(dim11, 10000) ?: dim11.enemies.first { it.isBoss }
+        val boss10000 = Enemy.fromTemplate(bossTemplate, floor = 10000, context = mockContext, dimension = dim11)
+
+        // Dim 11 Floor 10,000 boss must be a formidable threat without late-game dampeners
+        assertTrue("Dim 11 Floor 10,000 boss HP must be formidable (> 2,000,000)", boss10000.maxHp > 2000000)
+        assertTrue("Dim 11 Floor 10,000 boss ATK must be formidable (> 100,000)", boss10000.attack > 1000000 || boss10000.attack > 100000)
+
+        val regularTemplate = dim11.enemies.first { !it.isBoss }
+        val regMonster = Enemy.fromTemplate(regularTemplate, floor = 10000, context = mockContext, dimension = dim11)
+        assertTrue("Floor 10,000 regular mob HP must be scaled (> 500,000)", regMonster.maxHp > 500000)
+        assertTrue("Floor 10,000 regular mob ATK must be scaled (> 100,000)", regMonster.attack > 100000)
+    }
+
+    @Test
+    fun testEndgameEquipmentItemStatNerf() {
+        val floor10000Item = Item.random(
+            floor = 10000,
+            context = mockContext,
+            minRarity = Rarity.LEGENDARY,
+            dimension = 11
+        )
+
+        // Single legendary item at floor 10,000 must be soft-capped (DEF < 10,000, HP < 30,000) instead of 100k+
+        assertTrue("Endgame item DEF bonus must be soft-capped (< 10,000)", floor10000Item.defenseBonus < 10000)
+        assertTrue("Endgame item HP bonus must be soft-capped (< 30,000)", floor10000Item.hpBonus < 30000)
+    }
+
+    @Test
     fun testVaultAtMaxLevelHasNoGilCap() {
         val gsNormal = GameState(vaultLevel = 5)
         assertTrue("Sub-max vault must have finite gil cap", gsNormal.maxGil < Long.MAX_VALUE)

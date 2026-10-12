@@ -761,18 +761,22 @@ class FFBattleEngine(private val context: Context) {
     private fun calcPhysicalDamage(attacker: Hero, target: Enemy): Pair<Int, Boolean> {
         val isCrit = Random.nextInt(100) < attacker.critChance
         val critMult = 1.0f + (attacker.critDamage / 100f)
-        val totalAtk = attacker.attack
-        val baseDmg = maxOf(1, totalAtk - target.defense + Random.nextInt(-3, 4))
-        val finalDmg = if (isCrit) (baseDmg * critMult).toInt() else baseDmg
+        val totalAtk = attacker.attack.toFloat()
+        val defK = 500f + target.floor * 2.0f
+        val mitigation = (target.defense.toFloat() / (target.defense.toFloat() + defK)).coerceAtMost(0.85f)
+        val baseDmg = maxOf(1f, totalAtk * (1f - mitigation) + Random.nextInt(-2, 3))
+        val finalDmg = if (isCrit) (baseDmg * critMult).toInt() else baseDmg.toInt()
         return finalDmg to isCrit
     }
 
     private fun calcMagicDamage(attacker: Hero, target: Enemy): Pair<Int, Boolean> {
         val isCrit = Random.nextInt(100) < (attacker.critChance / 2)
         val critMult = 1.0f + (attacker.critDamage / 100f)
-        val totalMag = attacker.magic
-        val baseDmg = maxOf(1, (totalMag * 1.5f - target.magicDefense * 0.5f + Random.nextInt(-2, 3)).toInt())
-        val finalDmg = if (isCrit) (baseDmg * critMult).toInt() else baseDmg
+        val totalMag = attacker.magic.toFloat() * 1.5f
+        val mdefK = 400f + target.floor * 1.5f
+        val mitigation = (target.magicDefense.toFloat() / (target.magicDefense.toFloat() + mdefK)).coerceAtMost(0.85f)
+        val baseDmg = maxOf(1f, totalMag * (1f - mitigation) + Random.nextInt(-2, 3))
+        val finalDmg = if (isCrit) (baseDmg * critMult).toInt() else baseDmg.toInt()
         return finalDmg to isCrit
     }
 
@@ -795,11 +799,15 @@ class FFBattleEngine(private val context: Context) {
         }
 
         val k = 150f + enemy.floor * 0.8f
-        val mitigation = (target.defense / (target.defense + k)).coerceAtMost(0.85f)
-        val rawDmg = maxOf(1f, enemy.attack.toFloat() + Random.nextInt(-2, 3))
+        val mitigation = (target.defense.toFloat() / (target.defense.toFloat() + k)).coerceAtMost(0.85f)
+        
+        val isCrit = Random.nextInt(100) < (if (enemy.isBoss) 20 else if (enemy.floor >= 200) 10 else 0)
+        val critMult = if (isCrit) 1.5f else 1.0f
+
+        val rawDmg = maxOf(1f, (enemy.attack.toFloat() + Random.nextInt(-2, 3)) * critMult)
         val dmg = maxOf(1, (rawDmg * (1f - mitigation)).toInt())
         target.currentHp -= dmg
-        onEvent(FFBattleEvent.DamageDealt(enemy.id, target.id, dmg, false, false))
+        onEvent(FFBattleEvent.DamageDealt(enemy.id, target.id, dmg, false, isCrit))
         if (target.currentHp <= 0) {
             target.currentHp = 0
             onEvent(FFBattleEvent.HeroFell(target.id, target.name, target.heroClass))

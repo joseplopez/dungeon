@@ -538,7 +538,7 @@ object FFDimensionData {
     }
 
     fun getDimension(number: Int): FFDimension {
-        if (number >= 11) return dimensions.last()
+        if (number >= 11) return dim11.copy(number = number)
         val index = (number - 1).coerceIn(0, dimensions.size - 1)
         return dimensions[index]
     }

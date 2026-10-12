@@ -108,14 +108,21 @@ data class Item(
             val dimBonus = 1f + (dimension - 1) * 0.12f
             val finalMult = bonusMult * statBonus * dimBonus * mythicStatMult
 
+            // Soften floor scaling for item generation above floor 200 to prevent multi-million stat inflations
+            val effectiveItemFloor = if (floor <= 200) {
+                floor.toFloat()
+            } else {
+                200f + Math.sqrt((floor - 200).toDouble()).toFloat() * 8f
+            }
+
             val (critChance, critDmg) = calculateCritBonuses(rarity)
-            val baseWeaponStat = ((2 + floor / 8) * finalMult).toInt()
+            val baseWeaponStat = ((2f + effectiveItemFloor / 8f) * finalMult).toInt()
 
             val atkBonus = if (slot == ItemSlot.WEAPON && !gearCategory.isMagicalWeapon) baseWeaponStat else 0
-            val defBonus = if (slot == ItemSlot.ARMOR || slot == ItemSlot.SHIELD) ((2 + floor / 6) * finalMult).toInt() else 0
+            val defBonus = if (slot == ItemSlot.ARMOR || slot == ItemSlot.SHIELD) ((2f + effectiveItemFloor / 6f) * finalMult).toInt() else 0
             val magBonus = when {
                 slot == ItemSlot.WEAPON && gearCategory.isMagicalWeapon -> baseWeaponStat
-                slot == ItemSlot.ACCESSORY -> ((1 + floor / 12) * finalMult).toInt()
+                slot == ItemSlot.ACCESSORY -> ((1f + effectiveItemFloor / 12f) * finalMult).toInt()
                 else -> 0
             }
 
@@ -127,8 +134,8 @@ data class Item(
                 attackBonus = atkBonus,
                 defenseBonus = defBonus,
                 magicBonus = magBonus,
-                hpBonus = ((5 + floor * 0.5f) * finalMult).toInt(),
-                mpBonus = if (slot == ItemSlot.ACCESSORY) ((2 + floor / 15) * finalMult).toInt() else 0,
+                hpBonus = ((5f + effectiveItemFloor * 0.5f) * finalMult).toInt(),
+                mpBonus = if (slot == ItemSlot.ACCESSORY) ((2f + effectiveItemFloor / 15f) * finalMult).toInt() else 0,
                 critChanceBonus = critChance,
                 critDamageBonus = critDmg,
                 emoji = emoji,

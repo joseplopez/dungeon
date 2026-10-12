@@ -32,17 +32,23 @@ data class Enemy(
             dimension: FFDimension = FFDimensionData.getDimension(1)
         ): Enemy {
             // ── DIMENSION SCALING ──
-            // Dim 1 = 0.75x (easier for starter Freelancers), scaling up +0.25x per dimension (Dim 10 = 3.0x)
-            val dimMult = 0.75f + (dimension.number - 1) * 0.25f
-            val bossDimExtra = if (template.isBoss) 1f + (dimension.number - 1) * 0.02f else 1f
+            // Dim 1-10: 0.75x to 3.0x. Dim 11+: accelerated scaling (+0.80x per dim past 10)
+            val dimMult = if (dimension.number <= 10) {
+                0.75f + (dimension.number - 1) * 0.25f
+            } else {
+                3.0f + (dimension.number - 10) * 0.80f
+            }
+            val bossDimExtra = if (template.isBoss) {
+                if (dimension.number <= 10) 1f + (dimension.number - 1) * 0.02f else 1f + (dimension.number - 1) * 0.05f
+            } else 1f
             val totalDimMult = dimMult * bossDimExtra
 
             // ── EARLY FLOOR ONBOARDING RAMP (Floors 1–20) ──
             // Scales monster stats from 60% on Floor 1 up to 100% by Floor 20
             val floorRamp = (0.60f + (floor / 20.0f) * 0.40f).coerceAtMost(1.0f)
 
-            // Softened dampener for bosses past floor 100
-            val bossLateGameDampener = if (template.isBoss && floor > 100) {
+            // Boss dampener only for story dimensions (Dim 1-10 <= floor 1000). Dim 11+ bosses are undampened!
+            val bossLateGameDampener = if (template.isBoss && dimension.number <= 10 && floor > 100) {
                 1f / (1f + (floor - 100) * 0.0006f)
             } else {
                 1f
@@ -50,12 +56,20 @@ data class Enemy(
 
             // ── STAT TUNING ──
             val mobHpBonus = if (template.isBoss) 1.0 else 1.40
-            val globalAtkBoost = 1.35
+            val globalAtkBoost = 1.25
 
-            // Enhanced stat scaling with onboarding ramp and dimension multiplier
-            val rawHp = (25.0 + floor.toDouble() * 16.0) * template.hpMult * mobHpBonus * difficultyMult * totalDimMult * floorRamp * bossLateGameDampener
-            val rawAtk = (7.0 + floor.toDouble() * 3.0) * template.atkMult * globalAtkBoost * difficultyMult * totalDimMult * floorRamp * bossLateGameDampener
-            val rawDef = (1.0 + floor.toDouble() / 2.5) * template.defMult * difficultyMult * totalDimMult * floorRamp * bossLateGameDampener
+            // Non-linear floor scaling for high floors (Floors > 200 / Dimension 11+)
+            val baseHp = 25.0 + floor.toDouble() * 16.0
+            val baseAtk = 7.0 + floor.toDouble() * 2.1
+            val baseDef = 1.0 + floor.toDouble() / 2.5
+
+            val floorHpBonus = if (floor > 200) Math.pow((floor - 200).toDouble() / 15.0, 1.25) * 8.0 else 0.0
+            val floorAtkBonus = if (floor > 200) Math.pow((floor - 200).toDouble() / 20.0, 1.20) * 1.8 else 0.0
+            val floorDefBonus = if (floor > 200) Math.pow((floor - 200).toDouble() / 25.0, 1.18) * 1.0 else 0.0
+
+            val rawHp = (baseHp + floorHpBonus) * template.hpMult * mobHpBonus * difficultyMult * totalDimMult * floorRamp * bossLateGameDampener
+            val rawAtk = (baseAtk + floorAtkBonus) * template.atkMult * globalAtkBoost * difficultyMult * totalDimMult * floorRamp * bossLateGameDampener
+            val rawDef = (baseDef + floorDefBonus) * template.defMult * difficultyMult * totalDimMult * floorRamp * bossLateGameDampener
 
             val safeHp = rawHp.coerceIn(10.0, Int.MAX_VALUE.toDouble()).toInt()
             val safeAtk = rawAtk.coerceIn(1.0, (Int.MAX_VALUE / 2).toDouble()).toInt()
@@ -98,7 +112,7 @@ data class Enemy(
                 attack = safeAtk,
                 defense = safeDef,
                 magicDefense = (safeDef * 0.8f).toInt(),
-                speed = (5 + (floor / 20) + (dimension.number - 1)).coerceAtMost(35),
+                speed = (5 + (floor / 20) + (dimension.number - 1)).coerceAtMost(50),
                 gilReward = scaledGil,
                 magiciteDropped = magiciteQuantity,
                 floor = floor,
