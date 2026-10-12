@@ -61,6 +61,7 @@ class CraftingViewModelTest {
     private val materialsFlow = MutableStateFlow<List<MaterialEntity>>(emptyList())
     private val materialInventoryFlow = MutableStateFlow<List<MaterialInventoryItem>>(emptyList())
     private val rosterFlow = MutableStateFlow<List<Hero>>(emptyList())
+    private val gameStateFlow = MutableStateFlow<com.game.dungeon.data.models.GameState?>(com.game.dungeon.data.models.GameState(id = 1))
 
     @Before
     fun setUp() {
@@ -70,6 +71,7 @@ class CraftingViewModelTest {
         whenever(repository.getMaterials()).thenReturn(materialsFlow)
         whenever(repository.getMaterialInventory()).thenReturn(materialInventoryFlow)
         whenever(repository.getRoster()).thenReturn(rosterFlow)
+        whenever(repository.getGameState()).thenReturn(gameStateFlow)
 
         viewModel = CraftingViewModel(repository)
     }
@@ -505,6 +507,86 @@ class CraftingViewModelTest {
             viewModel.clearUserMessage()
             val clearedState = awaitItem()
             assertNull(clearedState.userMessageRes)
+
+            cancelAndIgnoreRemainingEvents()
+        }
+    }
+
+    // ──────────────────────────────────────────────────────────────────────────
+    // 7. CRAFT MYTHIC SELECTED ITEM
+    // ──────────────────────────────────────────────────────────────────────────
+
+    @Test
+    fun `test craftMythicSelectedItem with no item selected sets no item error`() = runTest {
+        val mockContext = mock<android.content.Context>()
+        viewModel.uiState.test {
+            awaitItem()
+
+            viewModel.craftMythicSelectedItem(mockContext)
+            val state = awaitStateWithMessage(R.string.craft_err_no_item_selected)
+
+            assertEquals(R.string.craft_err_no_item_selected, state.userMessageRes)
+
+            cancelAndIgnoreRemainingEvents()
+        }
+    }
+
+    @Test
+    fun `test craftMythicSelectedItem with non legendary plus 10 item sets requires level 10 error`() = runTest {
+        val mockContext = mock<android.content.Context>()
+        val nonLegItem = createTestItem(enhancementLevel = 10) // Rarity.COMMON
+        viewModel.selectItem(nonLegItem)
+
+        viewModel.uiState.test {
+            awaitItem()
+
+            viewModel.craftMythicSelectedItem(mockContext)
+            val state = awaitStateWithMessage(R.string.craft_err_requires_level_10_legendary)
+
+            assertEquals(R.string.craft_err_requires_level_10_legendary, state.userMessageRes)
+
+            cancelAndIgnoreRemainingEvents()
+        }
+    }
+
+    @Test
+    fun `test craftMythicSelectedItem success updates selected item and emits success message`() = runTest {
+        val mockContext = mock<android.content.Context>()
+        val legItem = createTestItem(enhancementLevel = 10).copy(rarity = Rarity.LEGENDARY)
+        val mythicItem = legItem.copy(rarity = Rarity.MYTHIC, setId = "set_crystal")
+
+        whenever(repository.craftMythicEquipment(any<Item>(), any())).thenReturn(Result.success(mythicItem))
+        viewModel.selectItem(legItem)
+
+        viewModel.uiState.test {
+            awaitItem()
+
+            viewModel.craftMythicSelectedItem(mockContext)
+            val state = awaitStateWithMessage(R.string.craft_msg_mythic_forge_success)
+
+            assertEquals(Rarity.MYTHIC, state.selectedItem?.rarity)
+            assertEquals(R.string.craft_msg_mythic_forge_success, state.userMessageRes)
+
+            cancelAndIgnoreRemainingEvents()
+        }
+    }
+
+    @Test
+    fun `test craftMythicSelectedItem failure with insufficient materials sets error message`() = runTest {
+        val mockContext = mock<android.content.Context>()
+        val legItem = createTestItem(enhancementLevel = 10).copy(rarity = Rarity.LEGENDARY)
+
+        whenever(repository.craftMythicEquipment(any<Item>(), any()))
+            .thenReturn(Result.failure(Exception("Insufficient Mythic Shards")))
+        viewModel.selectItem(legItem)
+
+        viewModel.uiState.test {
+            awaitItem()
+
+            viewModel.craftMythicSelectedItem(mockContext)
+            val state = awaitStateWithMessage(R.string.craft_err_insufficient_materials)
+
+            assertEquals(R.string.craft_err_insufficient_materials, state.userMessageRes)
 
             cancelAndIgnoreRemainingEvents()
         }

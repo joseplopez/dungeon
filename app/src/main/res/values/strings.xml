@@ -1149,11 +1149,17 @@
     <string name="craft_tab_socket">SOCKETS</string>
     <string name="craft_tab_gem_fusion">GEM FUSION</string>
     <string name="craft_tab_breakthrough">BREAKTHROUGH</string>
+    <string name="craft_tab_mythic_forge">MYTHIC FORGE</string>
     <string name="craft_btn_enhance">ENHANCE (+%1$d)</string>
     <string name="craft_btn_add_socket">ADD SOCKET SLOT</string>
     <string name="craft_btn_insert_gem">INSERT GEM</string>
     <string name="craft_btn_fuse_gems">FUSE GEMS (3x)</string>
     <string name="craft_btn_uncap_level">UNCAP LEVEL (+20)</string>
+    <string name="craft_btn_forge_mythic">FORGE MYTHIC GEAR</string>
+    <string name="craft_msg_mythic_forge_success">Mythic Gear forged successfully!</string>
+    <string name="craft_err_requires_level_10_legendary">Requires a +10 Legendary item matching the slot.</string>
+    <string name="craft_label_mythic_recipe">Mythic Forge Recipe:</string>
+    <string name="set_bonus_active_banner">✨ Set Bonus Active ✨</string>
     <string name="craft_label_select_item">Select Item:</string>
     <string name="craft_label_stat_preview">Stat Enhancement (+5%/lvl):</string>
     <string name="craft_label_cost">Cost:</string>
@@ -1197,4 +1203,46 @@
     <string name="hero_level_normal">Lvl %1$d / %2$d</string>
     <string name="hero_breakthrough_button">BREAKTHROUGH</string>
     <string name="hero_breakthrough_req">Requires 1x %1$s</string>
+
+    <!-- Mythic Gear & Sets -->
+    <string name="item_rarity_mythic">Mythic</string>
+
+    <!-- Knight: Cloud Strife (FFVII) -->
+    <string name="set_crystal">Strife\'s Legacy</string>
+
+    <!-- Black Mage: Vivi Ornitier (FFIX) -->
+    <string name="set_magus">Vivi\'s Memories</string>
+
+    <!-- White Mage: Aerith Gainsborough (FFVII) -->
+    <string name="set_devout">Aerith\'s Blessing</string>
+
+    <!-- Ninja/Thief: Yuffie Kisaragi (FFVII) or Shadow (FFVI) -->
+    <string name="set_shadow">Yuffie\'s Defiance</string>
+
+    <!-- Monk: Tifa Lockhart (FFVII) -->
+    <string name="set_chakra">Tifa\'s Final Heaven</string>
+
+    <!-- Dragoon: Kain Highwind (FFIV) -->
+    <string name="set_wyvern">Kain\'s Atonement</string>
+
+    <!-- Red Mage: Alisaie Leveilleur (FFXIV) or Celes Chere (FFVI) -->
+    <string name="set_crimson">Alisaie\'s Resolve</string>
+
+    <!-- Summoner: Yuna (FFX) -->
+    <string name="set_evoker">Yuna\'s Sending</string>
+
+    <!-- Bard: Edward Chris von Muir (FFIV) -->
+    <string name="set_apollo">Edward\'s Melody</string>
+
+    <!-- Samurai: Auron (FFX) -->
+    <string name="set_genji">Auron\'s Bushido</string>
+
+    <!-- Paladin: Cecil Harvey (FFIV) -->
+    <string name="set_aegis">Cecil\'s Redemption</string>
+
+    <!-- Onion Knight: Luneth (FFIII) -->
+    <string name="set_onion">Luneth\'s Destiny</string>
+
+    <string name="mat_mythic_shard_name">Mythic Shard</string>
+    <string name="mat_mythic_shard_desc">Radiant shard of ancient mythic power found in deep floors.</string>
 </resources>

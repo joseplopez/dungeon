@@ -1,6 +1,7 @@
 package com.game.dungeon.data.models
 
 import android.content.Context
+import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.game.dungeon.R
@@ -13,7 +14,8 @@ enum class Rarity(val color: Long) {
     COMMON(0xFF888888),
     RARE(0xFF4488FF),
     EPIC(0xFFAA44FF),
-    LEGENDARY(0xFFFFAA00)
+    LEGENDARY(0xFFFFAA00),
+    MYTHIC(0xFFFF2255)
 }
 
 private data class ItemCategorySpec(
@@ -39,7 +41,8 @@ data class Item(
     val floorFound: Int,
     val ownerId: String? = null, // To track who is wearing it, or if it's in inventory
     val enhancementLevel: Int = 0,
-    val sockets: List<SocketSlot> = emptyList()
+    val sockets: List<SocketSlot> = emptyList(),
+    @ColumnInfo(defaultValue = "NULL") val setId: String? = null
 ) {
     val sellValue: Long get() = (floorFound * 5L + rarity.ordinal * 20L).coerceAtLeast(5L)
 
@@ -69,7 +72,8 @@ data class Item(
             context: Context,
             relicBonuses: RelicBonuses? = null,
             minRarity: Rarity = Rarity.COMMON,
-            dimension: Int = 1
+            dimension: Int = 1,
+            forcedSlot: ItemSlot? = null
         ): Item {
             val msLevel = relicBonuses?.magicShopLevel ?: 0
             val mythicDropBoost = ((relicBonuses?.mythicDropBonus ?: 0f) * 100).toInt()
@@ -79,7 +83,7 @@ data class Item(
             val roll = (1..100).random()
             val rarity = calculateRarity(roll, totalBoost, minRarity)
             
-            val slot = ItemSlot.entries.random()
+            val slot = forcedSlot ?: ItemSlot.entries.random()
             val id = UUID.randomUUID().toString()
             val gearCategory = getGearCategory(slot, dimension)
 
@@ -91,6 +95,7 @@ data class Item(
                 Rarity.RARE -> R.string.item_rarity_rare
                 Rarity.EPIC -> R.string.item_rarity_epic
                 Rarity.LEGENDARY -> R.string.item_rarity_legendary
+                Rarity.MYTHIC -> R.string.item_rarity_mythic
             }
             
             val rarityStr = try { context.getString(rarityRes) } catch (_: Exception) { null } ?: rarity.name
@@ -101,9 +106,10 @@ data class Item(
                 Rarity.RARE -> 1.5f
                 Rarity.EPIC -> 2.5f
                 Rarity.LEGENDARY -> 4.0f
+                Rarity.MYTHIC -> 6.0f
             }
             
-            val mythicStatMult = if (rarity == Rarity.LEGENDARY) (1f + (relicBonuses?.mythicStatBonus ?: 0f)) else 1f
+            val mythicStatMult = if (rarity == Rarity.LEGENDARY || rarity == Rarity.MYTHIC) (1f + (relicBonuses?.mythicStatBonus ?: 0f)) else 1f
             val statBonus = 1f + (relicBonuses?.itemStatBonus ?: 0f)
             val dimBonus = 1f + (dimension - 1) * 0.12f
             val finalMult = bonusMult * statBonus * dimBonus * mythicStatMult
@@ -126,6 +132,12 @@ data class Item(
                 else -> 0
             }
 
+            val setId = if (rarity == Rarity.MYTHIC) {
+                MythicSet.entries.random().id
+            } else {
+                null
+            }
+
             return Item(
                 id = id,
                 name = fullName,
@@ -139,7 +151,8 @@ data class Item(
                 critChanceBonus = critChance,
                 critDamageBonus = critDmg,
                 emoji = emoji,
-                floorFound = floor
+                floorFound = floor,
+                setId = setId
             )
         }
 
@@ -164,7 +177,7 @@ data class Item(
                     critChance = when (rarity) {
                         Rarity.RARE -> Random.nextInt(2, 5)
                         Rarity.EPIC -> Random.nextInt(4, 8)
-                        Rarity.LEGENDARY -> Random.nextInt(6, 11)
+                        Rarity.LEGENDARY, Rarity.MYTHIC -> Random.nextInt(6, 11)
                         else -> 0
                     }
                 }
@@ -172,7 +185,7 @@ data class Item(
                     critDmg = when (rarity) {
                         Rarity.RARE -> Random.nextInt(5, 11)
                         Rarity.EPIC -> Random.nextInt(10, 19)
-                        Rarity.LEGENDARY -> Random.nextInt(18, 31)
+                        Rarity.LEGENDARY, Rarity.MYTHIC -> Random.nextInt(18, 31)
                         else -> 0
                     }
                 }

@@ -388,4 +388,105 @@ class GameRepositoryCraftingTest {
         assertEquals(3, database.materialDao.getMaterialById("iron_ore")?.amount) // 5 - 2
         assertEquals(1, database.materialDao.getMaterialById("ruby_gem_1")?.amount)
     }
+
+    // --- craftMythicEquipment Tests ---
+
+    @Test
+    fun testCraftMythicEquipmentFailsWhenItemIsNotLegendaryPlus10() = runBlocking {
+        val context = ApplicationProvider.getApplicationContext<Context>()
+
+        // Test rare level 10
+        val rareItem = Item(
+            id = "rare_item",
+            name = "Rare Blade",
+            slot = ItemSlot.WEAPON,
+            rarity = Rarity.RARE,
+            enhancementLevel = 10,
+            emoji = "⚔️",
+            floorFound = 100
+        )
+        database.itemDao.upsert(rareItem)
+
+        val result1 = repository.craftMythicEquipment("rare_item", context)
+        assertTrue(result1.isFailure)
+        assertTrue(result1.exceptionOrNull()?.message?.contains("requires a +10 Legendary item") == true)
+
+        // Test legendary level 9
+        val legItemUnderleveled = Item(
+            id = "leg_item_9",
+            name = "Legendary Blade",
+            slot = ItemSlot.WEAPON,
+            rarity = Rarity.LEGENDARY,
+            enhancementLevel = 9,
+            emoji = "⚔️",
+            floorFound = 100
+        )
+        database.itemDao.upsert(legItemUnderleveled)
+
+        val result2 = repository.craftMythicEquipment("leg_item_9", context)
+        assertTrue(result2.isFailure)
+        assertTrue(result2.exceptionOrNull()?.message?.contains("requires a +10 Legendary item") == true)
+    }
+
+    @Test
+    fun testCraftMythicEquipmentFailsWhenMaterialsAreInsufficient() = runBlocking {
+        val context = ApplicationProvider.getApplicationContext<Context>()
+        val legItem = Item(
+            id = "leg_item_10",
+            name = "Legendary Sword",
+            slot = ItemSlot.WEAPON,
+            rarity = Rarity.LEGENDARY,
+            enhancementLevel = 10,
+            emoji = "⚔️",
+            floorFound = 100
+        )
+        database.itemDao.upsert(legItem)
+
+        // Missing mythic_shard
+        database.materialDao.addMaterial("boss_trophy_3", 5)
+        val result1 = repository.craftMythicEquipment("leg_item_10", context)
+        assertTrue(result1.isFailure)
+        assertTrue(result1.exceptionOrNull()?.message?.contains("Insufficient Mythic Shards") == true)
+
+        // Add mythic shards, but missing boss_trophy_3
+        database.materialDao.addMaterial("mythic_shard", 50)
+        database.materialDao.deductMaterial("boss_trophy_3", 5) // reset to 0
+        val result2 = repository.craftMythicEquipment("leg_item_10", context)
+        assertTrue(result2.isFailure)
+        assertTrue(result2.exceptionOrNull()?.message?.contains("Insufficient Boss Trophies") == true)
+    }
+
+    @Test
+    fun testCraftMythicEquipmentSuccessConsumesMaterialsAndReplacesBaseItem() = runBlocking {
+        val context = ApplicationProvider.getApplicationContext<Context>()
+        val legItem = Item(
+            id = "base_leg_sword",
+            name = "Base Legendary Sword",
+            slot = ItemSlot.WEAPON,
+            rarity = Rarity.LEGENDARY,
+            enhancementLevel = 10,
+            emoji = "⚔️",
+            floorFound = 100
+        )
+        database.itemDao.upsert(legItem)
+        database.materialDao.addMaterial("mythic_shard", 50)
+        database.materialDao.addMaterial("boss_trophy_3", 5)
+
+        val result = repository.craftMythicEquipment(legItem, context)
+
+        assertTrue(result.isSuccess)
+        val mythicItem = result.getOrNull()
+        assertNotNull(mythicItem)
+        assertEquals(Rarity.MYTHIC, mythicItem?.rarity)
+        assertEquals(ItemSlot.WEAPON, mythicItem?.slot)
+        assertNotNull(mythicItem?.setId)
+
+        // Check materials deducted
+        assertEquals(0, database.materialDao.getMaterialById("mythic_shard")?.amount ?: 0)
+        assertEquals(0, database.materialDao.getMaterialById("boss_trophy_3")?.amount ?: 0)
+
+        // Check base item replaced in DB
+        org.junit.Assert.assertNull(database.itemDao.getItemById("base_leg_sword"))
+        assertNotNull(database.itemDao.getItemById(mythicItem!!.id))
+    }
 }

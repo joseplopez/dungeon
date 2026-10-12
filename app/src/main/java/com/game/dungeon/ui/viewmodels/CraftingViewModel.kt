@@ -1,5 +1,6 @@
 package com.game.dungeon.ui.viewmodels
 
+import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.game.dungeon.R
@@ -23,7 +24,8 @@ enum class CraftingTab {
     ENHANCE,
     SOCKET,
     GEM_FUSION,
-    BREAKTHROUGH
+    BREAKTHROUGH,
+    MYTHIC_FORGE
 }
 
 data class CraftingUiState(
@@ -108,6 +110,13 @@ class CraftingViewModel @Inject constructor(
         started = SharingStarted.WhileSubscribed(5000),
         initialValue = CraftingUiState()
     )
+
+    // Add this to your CraftingViewModel
+    fun triggerDebugMythicSeed(context: Context) {
+        viewModelScope.launch {
+            repository.seedDebugMythicCrafting(context)
+        }
+    }
 
     fun selectTab(tab: CraftingTab) {
         _selectedTab.value = tab
@@ -308,6 +317,46 @@ class CraftingViewModel @Inject constructor(
                                     ex.message?.contains("required", ignoreCase = true) == true -> R.string.craft_err_insufficient_materials
                             ex.message?.contains("max level", ignoreCase = true) == true ||
                                     ex.message?.contains("cap", ignoreCase = true) == true -> R.string.craft_err_hero_not_at_cap
+                            else -> R.string.craft_err_operation_failed
+                        }
+                        _userMessageRes.value = msgRes
+                    }
+                )
+            } finally {
+                _isProcessing.value = false
+            }
+        }
+    }
+
+    fun craftMythicSelectedItem(targetSetId: String, context: android.content.Context) {
+
+        val item = _selectedItem.value ?: run {
+            _userMessageRes.value = R.string.craft_err_no_item_selected
+            return
+        }
+
+        if (item.rarity != com.game.dungeon.data.models.Rarity.LEGENDARY || item.enhancementLevel < 10) {
+            _userMessageRes.value = R.string.craft_err_requires_level_10_legendary
+            return
+        }
+
+        viewModelScope.launch {
+            _isProcessing.value = true
+            _userMessageRes.value = null
+            try {
+                val result = repository.craftMythicEquipment(item, targetSetId, context)
+                result.fold(
+                    onSuccess = { updatedItem ->
+                        _selectedItem.value = updatedItem
+                        _userMessageRes.value = R.string.craft_msg_mythic_forge_success
+                    },
+                    onFailure = { ex ->
+                        val msgRes = when {
+                            ex.message?.contains("Shards", ignoreCase = true) == true ||
+                                    ex.message?.contains("Trophies", ignoreCase = true) == true ||
+                                    ex.message?.contains("material", ignoreCase = true) == true ||
+                                    ex.message?.contains("Insufficient", ignoreCase = true) == true -> R.string.craft_err_insufficient_materials
+                            ex.message?.contains("Legendary", ignoreCase = true) == true -> R.string.craft_err_requires_level_10_legendary
                             else -> R.string.craft_err_operation_failed
                         }
                         _userMessageRes.value = msgRes

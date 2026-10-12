@@ -146,6 +146,21 @@ class FFBattleEngine(private val context: Context) {
                     }
                 }
 
+                if (currentFloor >= 100) {
+                    val mythicChance = if (bossTemplate != null) 0.25f else 0.01f
+                    if (Random.nextFloat() * 100f < mythicChance) {
+                        itemsFound.add(
+                            Item.random(
+                                floor = currentFloor,
+                                context = context,
+                                relicBonuses = relicBonuses,
+                                minRarity = Rarity.MYTHIC,
+                                dimension = dimension.number
+                            )
+                        )
+                    }
+                }
+
                 totalGil += gilEarned
                 totalMagicite += magiciteEarned
 
@@ -220,6 +235,10 @@ class FFBattleEngine(private val context: Context) {
                 val qty = if (Random.nextFloat() < extraYieldChance) baseAmount + 1 else baseAmount
                 drops[matId] = (drops[matId] ?: 0) + qty
             }
+        }
+
+        if (floor >= 100 && enemy.isBoss) {
+            drops["mythic_shard"] = (drops["mythic_shard"] ?: 0) + 1
         }
 
         return drops

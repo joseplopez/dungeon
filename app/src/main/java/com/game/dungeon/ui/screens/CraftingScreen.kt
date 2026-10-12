@@ -1,5 +1,6 @@
 package com.game.dungeon.ui.screens
 
+import android.content.Context
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
@@ -20,6 +21,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import com.game.dungeon.BuildConfig
 import com.game.dungeon.R
 import com.game.dungeon.data.models.Hero
 import com.game.dungeon.data.models.Item
@@ -27,7 +29,9 @@ import com.game.dungeon.data.models.ItemSlot
 import com.game.dungeon.data.models.MaterialCatalog
 import com.game.dungeon.data.models.MaterialCategory
 import com.game.dungeon.data.models.MaterialInventoryItem
+import com.game.dungeon.data.models.MythicSet
 import com.game.dungeon.data.models.Rarity
+import com.game.dungeon.ui.components.EquipmentSprite
 import com.game.dungeon.ui.components.GoldenBorderBox
 import com.game.dungeon.ui.components.MusicToggleButton
 import com.game.dungeon.ui.components.PixelButton
@@ -125,6 +129,12 @@ fun CraftingScreen(
                             isProcessing = uiState.isProcessing,
                             onUncap = { viewModel.uncapHero(it) }
                         )
+                        CraftingTab.MYTHIC_FORGE -> MythicForgeSection(
+                            uiState = uiState,
+                            onSelectItem = { viewModel.selectItem(it) },
+                            onForgeMythic = { setId, ctx -> viewModel.craftMythicSelectedItem(setId, ctx) }, // UPDATED
+                            viewModel = viewModel
+                        )
                     }
                 }
             }
@@ -204,6 +214,7 @@ private fun CraftingTabBar(
                 CraftingTab.SOCKET -> R.string.craft_tab_socket
                 CraftingTab.GEM_FUSION -> R.string.craft_tab_gem_fusion
                 CraftingTab.BREAKTHROUGH -> R.string.craft_tab_breakthrough
+                CraftingTab.MYTHIC_FORGE -> R.string.craft_tab_mythic_forge
             }
             Box(
                 modifier = Modifier
@@ -262,6 +273,7 @@ private fun ItemListSelector(
                         Rarity.RARE -> RarityRare
                         Rarity.EPIC -> RarityEpic
                         Rarity.LEGENDARY -> RarityLegendary
+                        Rarity.MYTHIC -> Color(0xFFFF2255)
                     }
                     Row(
                         modifier = Modifier
@@ -411,7 +423,7 @@ private fun EnhanceSection(
                             Rarity.COMMON -> Pair(R.string.mat_iron_ore_name, "iron_ore")
                             Rarity.RARE -> Pair(R.string.mat_mithril_ore_name, "mithril_ore")
                             Rarity.EPIC -> Pair(R.string.mat_adamantite_ore_name, "adamantite_ore")
-                            Rarity.LEGENDARY -> Pair(R.string.mat_orichalcum_ore_name, "orichalcum_ore")
+                            Rarity.LEGENDARY, Rarity.MYTHIC -> Pair(R.string.mat_orichalcum_ore_name, "orichalcum_ore")
                         }
 
                         // Determine costs and availability
@@ -892,6 +904,173 @@ private fun BreakthroughSection(
                         )
                     }
                 }
+            }
+        }
+    }
+}
+
+@Composable
+private fun MythicForgeSection(
+    uiState: CraftingUiState,
+    onSelectItem: (Item) -> Unit,
+    onForgeMythic: (String, Context) -> Unit,
+    viewModel: CraftingViewModel
+) {
+    val context = LocalContext.current
+    val allItems = remember(uiState.inventoryItems, uiState.equippedItems) {
+        uiState.inventoryItems + uiState.equippedItems
+    }
+    val eligibleItems = remember(allItems) {
+        allItems.filter { it.rarity == Rarity.LEGENDARY && it.enhancementLevel >= 10 }
+    }
+
+    val selectedItem = uiState.selectedItem
+    val mythicShards = remember(uiState.materialInventory) { uiState.materialInventory.find { it.material.id == "mythic_shard" }?.amount ?: 0 }
+    val bossTrophies = remember(uiState.materialInventory) { uiState.materialInventory.find { it.material.id == "boss_trophy_3" }?.amount ?: 0 }
+
+    val shardMat = MaterialCatalog.getMaterial("mythic_shard")
+    val trophyMat = MaterialCatalog.getMaterial("boss_trophy_3")
+
+    val hasItem = selectedItem != null && selectedItem.rarity == Rarity.LEGENDARY && selectedItem.enhancementLevel >= 10
+    val hasShards = mythicShards >= 50
+    val hasTrophies = bossTrophies >= 5
+    val canForge = hasItem && hasShards && hasTrophies
+
+    // --- RESTRICT SETS BASED ON SELECTED ITEM SLOT ---
+    val validSets = remember(selectedItem) {
+        if (selectedItem == null) MythicSet.entries
+        else MythicSet.entries.filter { selectedItem.slot in it.allowedSlots }
+    }
+
+    var previewSetIndex by remember { mutableIntStateOf(0) }
+
+    // Reset index safely if list size changes
+    LaunchedEffect(validSets) {
+        if (previewSetIndex >= validSets.size) {
+            previewSetIndex = 0
+        }
+    }
+
+    val currentSet = validSets.getOrNull(previewSetIndex) ?: validSets.firstOrNull()
+
+    Row(
+        modifier = Modifier.fillMaxSize(),
+        horizontalArrangement = Arrangement.spacedBy(12.dp)
+    ) {
+        ItemListSelector(
+            itemsList = eligibleItems,
+            selectedItem = selectedItem,
+            onSelectItem = onSelectItem,
+            modifier = Modifier.weight(0.4f)
+        )
+
+        Column(
+            modifier = Modifier
+                .weight(0.6f)
+                .fillMaxHeight(),
+            verticalArrangement = Arrangement.SpaceBetween
+        ) {
+            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+
+                if (selectedItem != null && currentSet != null) {
+                    val previewItem = remember(selectedItem, currentSet) {
+                        Item(
+                            id = "preview",
+                            name = "Preview",
+                            rarity = Rarity.MYTHIC,
+                            slot = selectedItem.slot,
+                            setId = currentSet.id,
+                            floorFound = 100,
+                            emoji = ""
+                        )
+                    }
+
+                    Column(
+                        modifier = Modifier.fillMaxWidth(),
+                        horizontalAlignment = Alignment.CenterHorizontally
+                    ) {
+                        if (BuildConfig.DEBUG) {
+                            val context = LocalContext.current
+
+                            Button(
+                                onClick = { viewModel.triggerDebugMythicSeed(context) },
+                                colors = ButtonDefaults.buttonColors(containerColor = Color.Red)
+                            ) {
+                                Text("DEBUG: SEED MYTHIC GEAR")
+                            }
+                        }
+                        Text(text = "CRAFTING PREVIEW", style = PixelSmall, color = GoldAccent)
+
+                        Row(
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)
+                        ) {
+                            PixelButton(label = " < ", onClick = {
+                                previewSetIndex = if (previewSetIndex > 0) previewSetIndex - 1 else validSets.size - 1
+                            })
+
+                            Box(
+                                modifier = Modifier
+                                    .size(70.dp)
+                                    .background(BgDarkest, RoundedCornerShape(8.dp))
+                                    .border(1.dp, Color(Rarity.MYTHIC.color), RoundedCornerShape(8.dp)),
+                                contentAlignment = Alignment.Center
+                            ) {
+                                EquipmentSprite(
+                                    item = previewItem,
+                                    slot = selectedItem.slot,
+                                    modifier = Modifier.size(50.dp)
+                                )
+                            }
+
+                            PixelButton(label = " > ", onClick = {
+                                previewSetIndex = (previewSetIndex + 1) % validSets.size
+                            })
+                        }
+
+                        Text(text = stringResource(currentSet.nameRes), style = PixelHeading, color = Color(Rarity.MYTHIC.color))
+                        Text(text = "Class: ${currentSet.targetClass.name} (${selectedItem.slot.name})", style = PixelSmall, color = Color.White)
+                    }
+                    Spacer(modifier = Modifier.height(4.dp))
+                } else {
+                    Box(
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(110.dp),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Text(text = "Select a +10 Legendary item to preview Mythic sets", style = PixelSmall, color = Color.Gray)
+                    }
+                }
+
+                Text(text = safeStringResource(R.string.craft_label_mythic_recipe), style = PixelSmall, color = GoldAccent)
+
+                // Checklist
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    Text(text = if (hasItem) "✅" else "❌", fontSize = 12.sp)
+                    Text(
+                        text = if (selectedItem != null) stringResource(R.string.item_name_template, selectedItem.emoji, selectedItem.name) else stringResource(R.string.craft_err_requires_level_10_legendary),
+                        style = PixelBody, color = if (hasItem) HpGreen else HpRed
+                    )
+                }
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    Text(text = if (hasShards) "✅" else "❌", fontSize = 12.sp)
+                    Text(text = "${shardMat.emoji} ${safeStringResource(shardMat.nameRes)} ($mythicShards/50)", style = PixelBody, color = if (hasShards) HpGreen else HpRed)
+                }
+                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    Text(text = if (hasTrophies) "✅" else "❌", fontSize = 12.sp)
+                    Text(text = "${trophyMat.emoji} ${safeStringResource(trophyMat.nameRes)} ($bossTrophies/5)", style = PixelBody, color = if (hasTrophies) HpGreen else HpRed)
+                }
+            }
+
+            Button(
+                onClick = { currentSet?.let { onForgeMythic(it.id, context) } },
+                enabled = !uiState.isProcessing && canForge && currentSet != null,
+                modifier = Modifier.fillMaxWidth(),
+                colors = ButtonDefaults.buttonColors(containerColor = Color(Rarity.MYTHIC.color), disabledContainerColor = StoneGray)
+            ) {
+                Text(text = safeStringResource(R.string.craft_btn_forge_mythic), color = if (canForge && currentSet != null) Color.White else Color.LightGray, fontWeight = FontWeight.Bold)
             }
         }
     }

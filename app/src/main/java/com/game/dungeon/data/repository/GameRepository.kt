@@ -1,5 +1,6 @@
 package com.game.dungeon.data.repository
 
+import android.content.Context
 import androidx.room.withTransaction
 import com.game.dungeon.data.db.CodexDao
 import com.game.dungeon.data.db.GameDatabase
@@ -288,7 +289,7 @@ class GameRepository @Inject constructor(
             Rarity.COMMON -> "iron_ore"
             Rarity.RARE -> "mithril_ore"
             Rarity.EPIC -> "adamantite_ore"
-            Rarity.LEGENDARY -> "orichalcum_ore"
+            Rarity.LEGENDARY, Rarity.MYTHIC -> "orichalcum_ore"
         }
         val requiredOreCount = requiredLevel
 
@@ -437,6 +438,91 @@ class GameRepository @Inject constructor(
         }
 
         return Result.success(Unit)
+    }
+
+    suspend fun craftMythicEquipment(baseItemId: String, targetSetId: String, context: Context): Result<Item> {
+        val baseItem = database.itemDao.getItemById(baseItemId)
+            ?: return Result.failure(IllegalArgumentException("Item with ID $baseItemId not found."))
+
+        if (baseItem.rarity != Rarity.LEGENDARY || baseItem.enhancementLevel < 10) {
+            return Result.failure(IllegalStateException("Crafting Mythic Gear requires a +10 Legendary item."))
+        }
+
+        val shardCount = database.materialDao.getMaterialById("mythic_shard")?.amount ?: 0
+        if (shardCount < 50) {
+            return Result.failure(IllegalStateException("Insufficient Mythic Shards. Required: 50, available: $shardCount."))
+        }
+
+        val trophyCount = database.materialDao.getMaterialById("boss_trophy_3")?.amount ?: 0
+        if (trophyCount < 5) {
+            return Result.failure(IllegalStateException("Insufficient Boss Trophies. Required: 5, available: $trophyCount."))
+        }
+
+        val state = database.gameStateDao.getGameStateOnce()
+        val currentDimension = state?.currentDimension ?: 1
+
+        val baseMythicItem = Item.random(
+            floor = baseItem.floorFound.coerceAtLeast(100),
+            context = context,
+            minRarity = Rarity.MYTHIC,
+            dimension = currentDimension,
+            forcedSlot = baseItem.slot
+        )
+
+        // Find the chosen set to fetch the proper lore name
+        val chosenSet = com.game.dungeon.data.models.MythicSet.fromId(targetSetId)
+            ?: com.game.dungeon.data.models.MythicSet.entries.first()
+
+        val setName = context.getString(chosenSet.nameRes)
+
+        // Stamp the item with the chosen Set ID and name!
+        val finalMythicItem = baseMythicItem.copy(
+            setId = chosenSet.id,
+            name = setName
+        )
+
+        database.withTransaction {
+            database.materialDao.deductMaterial("mythic_shard", 50)
+            database.materialDao.deductMaterial("boss_trophy_3", 5)
+            database.itemDao.delete(baseItem)
+            database.itemDao.upsert(finalMythicItem)
+        }
+
+        return Result.success(finalMythicItem)
+    }
+
+    suspend fun craftMythicEquipment(baseItem: Item, targetSetId: String, context: Context): Result<Item> =
+        craftMythicEquipment(baseItem.id, targetSetId, context)
+
+    suspend fun seedDebugMythicCrafting(context: Context) {
+        val shardsToAdd = if (com.game.dungeon.BuildConfig.INITIAL_MYTHIC_SHARDS > 0) com.game.dungeon.BuildConfig.INITIAL_MYTHIC_SHARDS else 500
+        val trophiesToAdd = if (com.game.dungeon.BuildConfig.INITIAL_BOSS_TROPHY_3 > 0) com.game.dungeon.BuildConfig.INITIAL_BOSS_TROPHY_3 else 50
+
+        database.withTransaction {
+            database.materialDao.addMaterial("mythic_shard", shardsToAdd)
+            database.materialDao.addMaterial("boss_trophy_3", trophiesToAdd)
+
+            val state = database.gameStateDao.getGameStateOnce()
+            val dim = state?.currentDimension ?: 1
+
+            val slots = listOf(
+                ItemSlot.WEAPON, ItemSlot.WEAPON, ItemSlot.WEAPON,
+                ItemSlot.ARMOR, ItemSlot.ARMOR, ItemSlot.ARMOR,
+                ItemSlot.SHIELD, ItemSlot.SHIELD,
+                ItemSlot.ACCESSORY, ItemSlot.ACCESSORY
+            )
+
+            val debugItems = slots.map { slot ->
+                Item.random(
+                    floor = 100,
+                    context = context,
+                    minRarity = Rarity.LEGENDARY,
+                    dimension = dim,
+                    forcedSlot = slot
+                ).copy(enhancementLevel = 10)
+            }
+            database.itemDao.upsertAll(debugItems)
+        }
     }
 
     suspend fun levelUpHero(heroId: String): Result<Hero> {

@@ -61,6 +61,7 @@ object MaterialCatalog {
         "ice_essence" to Material("ice_essence", R.string.mat_ice_essence_name, MaterialCategory.ESSENCE, Rarity.COMMON, R.string.mat_ice_essence_desc, "❄️"),
         "lightning_essence" to Material("lightning_essence", R.string.mat_lightning_essence_name, MaterialCategory.ESSENCE, Rarity.COMMON, R.string.mat_lightning_essence_desc, "⚡"),
         "dark_essence" to Material("dark_essence", R.string.mat_dark_essence_name, MaterialCategory.ESSENCE, Rarity.RARE, R.string.mat_dark_essence_desc, "🖤"),
+        "mythic_shard" to Material("mythic_shard", R.string.mat_mythic_shard_name, MaterialCategory.ESSENCE, Rarity.MYTHIC, R.string.mat_mythic_shard_desc, "🔮"),
 
         // Gems
         "ruby_gem_1" to Material("ruby_gem_1", R.string.mat_ruby_gem_1_name, MaterialCategory.ESSENCE, Rarity.COMMON, R.string.mat_ruby_gem_1_desc, "🔴", attackBonus = 5, statBonus = 5),

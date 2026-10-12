@@ -34,6 +34,8 @@ import com.game.dungeon.data.models.Hero
 import com.game.dungeon.data.models.Item
 import com.game.dungeon.data.models.ItemSlot
 import com.game.dungeon.data.models.MaterialCatalog
+import com.game.dungeon.data.models.MythicSet
+import com.game.dungeon.data.models.Rarity
 import com.game.dungeon.ui.components.*
 import com.game.dungeon.ui.theme.*
 import com.game.dungeon.ui.viewmodels.EquipmentViewModel
@@ -166,6 +168,8 @@ fun EquipmentScreen(
             selectedItemForDetail?.let { item ->
                 ItemDetailOverlay(
                     item = item,
+                    hero = hero,
+                    equipped = equipped,
                     isEquipped = equipped.any { it.id == item.id },
                     animTime = animTime,
                     onEquip = {
@@ -724,6 +728,8 @@ private fun getItemStatBonuses(item: Item): List<StatBonusDisplay> = buildList {
 @Composable
 private fun ItemDetailOverlay(
     item: Item,
+    hero: Hero? = null,
+    equipped: List<Item> = emptyList(),
     isEquipped: Boolean,
     animTime: Float = 0f,
     onEquip: () -> Unit,
@@ -758,6 +764,70 @@ private fun ItemDetailOverlay(
                 Text(item.name, style = PixelHeading, color = Color(item.rarity.color))
 
                 ItemStatBonusList(item)
+
+                item.setId?.let { setId ->
+                    MythicSet.fromId(setId)?.let { mythicSet ->
+                        val setName = safeStringResource(mythicSet.nameRes)
+                        val equippedCount = equipped.count { it.setId == mythicSet.id }
+
+                        // Check if the current hero matches the required class
+                        val isCorrectClass = hero?.heroClass == mythicSet.targetClass
+                        val isSetBonusActive = equippedCount >= mythicSet.requiredPieces && isCorrectClass
+
+                        Column(
+                            horizontalAlignment = Alignment.CenterHorizontally,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .background(Color(0xFF1E0A2A), RoundedCornerShape(6.dp))
+                                .border(1.dp, Color(Rarity.MYTHIC.color), RoundedCornerShape(6.dp))
+                                .padding(8.dp)
+                        ) {
+                            Text(
+                                text = "$setName ($equippedCount/${mythicSet.requiredPieces})",
+                                style = PixelBody,
+                                color = Color(Rarity.MYTHIC.color)
+                            )
+
+                            // 1. SHOW THE REQUIRED CLASS
+                            Text(
+                                text = "Requires Class: ${mythicSet.targetClass.name}",
+                                style = PixelSmall,
+                                color = if (isCorrectClass) Color(0xFF44FF88) else Color(0xFFFF6666)
+                            )
+
+                            // 2. SHOW THE STAT BOOSTS
+                            val statsText = mythicSet.statMultipliers.entries.joinToString(" | ") { (key, value) ->
+                                val formattedVal = if (key.endsWith("_MULT")) "+${(value * 100).toInt()}%" else "+${value.toInt()}"
+                                val formattedKey = key.replace("_MULT", "").replace("_ADD", "")
+                                "$formattedVal $formattedKey"
+                            }
+
+                            Text(
+                                text = statsText,
+                                style = PixelSmall,
+                                color = GoldAccent,
+                                modifier = Modifier.padding(vertical = 4.dp)
+                            )
+
+                            // 3. SHOW ACTIVE BANNER
+                            if (isSetBonusActive) {
+                                androidx.compose.material3.Surface(
+                                    color = Color(0xFFFFD700).copy(alpha = 0.2f),
+                                    shape = RoundedCornerShape(4.dp),
+                                    border = androidx.compose.foundation.BorderStroke(1.dp, Color(0xFFFFD700))
+                                ) {
+                                    Text(
+                                        text = safeStringResource(R.string.set_bonus_active_banner),
+                                        style = PixelSmall,
+                                        color = Color(0xFFFFD700),
+                                        fontWeight = FontWeight.Bold,
+                                        modifier = Modifier.padding(horizontal = 8.dp, vertical = 4.dp)
+                                    )
+                                }
+                            }
+                        }
+                    }
+                }
 
                 Spacer(Modifier.height(8.dp))
 

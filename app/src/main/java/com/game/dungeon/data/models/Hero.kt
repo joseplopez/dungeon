@@ -262,7 +262,7 @@ class Hero(
         val rawCrit = 5 + equippedItems.sumOf { it.critChanceBonus } + (relicBonuses?.critChanceBonus ?: 0) + masteryCritChance + petCritChance
         val finalCrit = (100f * rawCrit / (rawCrit + 50f)).toInt().coerceAtMost(85)
 
-        return mapOf(
+        val statMap = mutableMapOf(
             "HP" to baseMaxHp + equippedItems.sumOf { it.hpBonus } + (relicBonuses?.hpBonus ?: 0) + masteryHp + (loreBonus * 5),
             "MP" to baseMaxMp + equippedItems.sumOf { it.mpBonus } + (relicBonuses?.mpBonus ?: 0) + masteryMp + (loreBonus * 2),
             "ATK" to baseAttack + equippedItems.sumOf { it.attackBonus } + (relicBonuses?.attackBonus ?: 0) + masteryAtk + loreBonus,
@@ -271,6 +271,31 @@ class Hero(
             "CRIT_CHANCE" to finalCrit,
             "CRIT_DAMAGE" to 50 + equippedItems.sumOf { it.critDamageBonus } + (relicBonuses?.critDamageBonus ?: 0) + masteryCritDmg + petCritDmg + (relicBonuses?.warRoomCritBonus ?: 0)
         )
+
+        // Mythic Set Bonuses Calculation
+        val setGroups = equippedItems.mapNotNull { it.setId }.groupingBy { it }.eachCount()
+        for ((setId, count) in setGroups) {
+            val mythicSet = MythicSet.fromId(setId) ?: continue
+            if (count >= mythicSet.requiredPieces && this.heroClass == mythicSet.targetClass) {
+                for ((key, value) in mythicSet.statMultipliers) {
+                    if (key.endsWith("_MULT")) {
+                        val statKey = key.removeSuffix("_MULT")
+                        val current = statMap[statKey] ?: 0
+                        statMap[statKey] = current + (current * value).toInt()
+                    } else if (key.endsWith("_ADD")) {
+                        val statKey = when (key) {
+                            "CRIT_CHANCE_ADD" -> "CRIT_CHANCE"
+                            "CRIT_DMG_ADD" -> "CRIT_DAMAGE"
+                            else -> key.removeSuffix("_ADD")
+                        }
+                        val current = statMap[statKey] ?: 0
+                        statMap[statKey] = current + value.toInt()
+                    }
+                }
+            }
+        }
+
+        return statMap
     }
 
     companion object {

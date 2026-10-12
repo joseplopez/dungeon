@@ -5,8 +5,11 @@ import androidx.test.core.app.ApplicationProvider
 import androidx.test.ext.junit.runners.AndroidJUnit4
 import com.game.dungeon.data.models.Enemy
 import com.game.dungeon.data.models.FFDimensionData
+import com.game.dungeon.data.models.Item
 import com.game.dungeon.data.models.MonsterLootTable
 import com.game.dungeon.data.models.MonsterType
+import com.game.dungeon.data.models.MythicSet
+import com.game.dungeon.data.models.Rarity
 import com.game.dungeon.data.models.RelicBonuses
 import org.junit.Assert.assertEquals
 import org.junit.Assert.assertNotNull
@@ -240,5 +243,67 @@ class FFBattleEngineDropTest {
             }
         }
         assertTrue("Boss Garland should drop boss_trophy_1 across samples", trophyCount > 0)
+    }
+
+    // ──────────────────────────────────────────────────────────────────────────
+    // 4. MYTHIC DROPS & SHARDS GATING
+    // ──────────────────────────────────────────────────────────────────────────
+
+    @Test
+    fun `test calculateMaterialDrops at floor under 100 yields NO mythic shard`() {
+        val dimension = FFDimensionData.getDimension(1)
+        val bossUnder100 = createBossEnemy(MonsterType.GARLAND, floor = 99)
+        val enemyUnder100 = createRegularEnemy(MonsterType.GOBLIN, floor = 99)
+
+        val bossDrops = battleEngine.calculateMaterialDrops(bossUnder100, 99, dimension, defaultRelicBonuses)
+        val enemyDrops = battleEngine.calculateMaterialDrops(enemyUnder100, 99, dimension, defaultRelicBonuses)
+
+        assertEquals("Boss at floor 99 should not drop mythic_shard", null, bossDrops["mythic_shard"])
+        assertEquals("Enemy at floor 99 should not drop mythic_shard", null, enemyDrops["mythic_shard"])
+    }
+
+    @Test
+    fun `test calculateMaterialDrops on boss at floor 100+ ALWAYS drops mythic shard`() {
+        val dimension = FFDimensionData.getDimension(1)
+        val boss100 = createBossEnemy(MonsterType.GARLAND, floor = 100)
+        val boss200 = createBossEnemy(MonsterType.GARLAND, floor = 200)
+
+        val drops100 = battleEngine.calculateMaterialDrops(boss100, 100, dimension, defaultRelicBonuses)
+        val drops200 = battleEngine.calculateMaterialDrops(boss200, 200, dimension, defaultRelicBonuses)
+
+        assertEquals("Boss at floor 100 should drop 1 mythic_shard", 1, drops100["mythic_shard"])
+        assertEquals("Boss at floor 200 should drop 1 mythic_shard", 1, drops200["mythic_shard"])
+    }
+
+    @Test
+    fun `test Item random generates Mythic item with non-null setId`() {
+        val context = ApplicationProvider.getApplicationContext<Context>()
+        val mythicItem = Item.random(
+            floor = 100,
+            context = context,
+            relicBonuses = defaultRelicBonuses,
+            minRarity = Rarity.MYTHIC,
+            dimension = 1
+        )
+
+        assertEquals(Rarity.MYTHIC, mythicItem.rarity)
+        assertNotNull("Mythic item must have non-null setId", mythicItem.setId)
+        assertTrue("setId should match a known MythicSet id", MythicSet.fromId(mythicItem.setId) != null)
+    }
+
+    @Test
+    fun `test standard item generation below floor 100 yields non mythic item`() {
+        val context = ApplicationProvider.getApplicationContext<Context>()
+        repeat(100) {
+            val item = Item.random(
+                floor = 99,
+                context = context,
+                relicBonuses = defaultRelicBonuses,
+                minRarity = Rarity.COMMON,
+                dimension = 1
+            )
+            assertTrue("Item generated on floor 99 should not be MYTHIC", item.rarity != Rarity.MYTHIC)
+            assertEquals("Non-mythic item should have null setId", null, item.setId)
+        }
     }
 }

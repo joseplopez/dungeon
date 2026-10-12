@@ -1,6 +1,7 @@
 package com.game.dungeon.ui.components
 
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.layout.Column
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
@@ -11,11 +12,18 @@ import androidx.compose.ui.graphics.PathEffect
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.withTransform
+import androidx.compose.ui.unit.dp
 import com.game.dungeon.data.models.Item
 import com.game.dungeon.data.models.ItemSlot
 import com.game.dungeon.data.models.Rarity
 import kotlin.math.cos
 import kotlin.math.sin
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.ui.tooling.preview.Preview
 
 /**
  * Procedural Code-Based Canvas Drawing for Equipment Sprites
@@ -46,6 +54,11 @@ fun DrawScope.drawItemSprite(item: Item, animTime: Float = 0f) {
     withTransform({
         translate(left = offsetX, top = offsetY)
     }) {
+        // --- NEW MYTHIC INTERCEPTOR ---
+        if (item.rarity == Rarity.MYTHIC && item.setId != null) {
+            drawMythicSetPiece(item, s, animTime)
+            return@withTransform
+        }
         val isMagicalWeapon = item.slot == ItemSlot.WEAPON && (item.magicBonus > 0 && item.attackBonus == 0)
         val isAxeOrBow = item.slot == ItemSlot.WEAPON && (item.emoji in listOf("🪓", "🏹") || item.name.contains("Axe", ignoreCase = true) || item.name.contains("Bow", ignoreCase = true))
         val isRobe = item.slot == ItemSlot.ARMOR && (item.name.contains("Robe", ignoreCase = true) || item.name.contains("Garb", ignoreCase = true) || item.name.contains("Gown", ignoreCase = true) || item.emoji in listOf("👘", "🔮", "🤍", "👗"))
@@ -59,19 +72,19 @@ fun DrawScope.drawItemSprite(item: Item, animTime: Float = 0f) {
                     Rarity.COMMON -> drawCommonMagicalStaff(s)
                     Rarity.RARE -> drawRareMagicalStaff(s, animTime)
                     Rarity.EPIC -> drawEpicMagicalStaff(s, animTime)
-                    Rarity.LEGENDARY -> drawLegendaryMagicalStaff(s, animTime)
+                    Rarity.LEGENDARY, Rarity.MYTHIC -> drawLegendaryMagicalStaff(s, animTime)
                 }
                 isAxeOrBow -> when (item.rarity) {
                     Rarity.COMMON -> drawCommonAxeOrBow(s)
                     Rarity.RARE -> drawRareAxeOrBow(s, animTime)
                     Rarity.EPIC -> drawEpicAxeOrBow(s, animTime)
-                    Rarity.LEGENDARY -> drawLegendaryAxeOrBow(s, animTime)
+                    Rarity.LEGENDARY, Rarity.MYTHIC -> drawLegendaryAxeOrBow(s, animTime)
                 }
                 else -> when (item.rarity) {
                     Rarity.COMMON -> drawCommonSword(s)
                     Rarity.RARE -> drawRareSword(s, animTime)
                     Rarity.EPIC -> drawEpicSword(s, animTime)
-                    Rarity.LEGENDARY -> drawLegendarySword(s, animTime)
+                    Rarity.LEGENDARY, Rarity.MYTHIC -> drawLegendarySword(s, animTime)
                 }
             }
             ItemSlot.ARMOR -> when {
@@ -79,13 +92,13 @@ fun DrawScope.drawItemSprite(item: Item, animTime: Float = 0f) {
                     Rarity.COMMON -> drawCommonRobe(s)
                     Rarity.RARE -> drawRareRobe(s, animTime)
                     Rarity.EPIC -> drawEpicRobe(s, animTime)
-                    Rarity.LEGENDARY -> drawLegendaryRobe(s, animTime)
+                    Rarity.LEGENDARY, Rarity.MYTHIC -> drawLegendaryRobe(s, animTime)
                 }
                 else -> when (item.rarity) {
                     Rarity.COMMON -> drawCommonHelmet(s)
                     Rarity.RARE -> drawRareHelmet(s, animTime)
                     Rarity.EPIC -> drawEpicHelmet(s, animTime)
-                    Rarity.LEGENDARY -> drawLegendaryHelmet(s, animTime)
+                    Rarity.LEGENDARY, Rarity.MYTHIC -> drawLegendaryHelmet(s, animTime)
                 }
             }
             ItemSlot.SHIELD -> when {
@@ -93,13 +106,13 @@ fun DrawScope.drawItemSprite(item: Item, animTime: Float = 0f) {
                     Rarity.COMMON -> drawCommonBarrier(s)
                     Rarity.RARE -> drawRareBarrier(s, animTime)
                     Rarity.EPIC -> drawEpicBarrier(s, animTime)
-                    Rarity.LEGENDARY -> drawLegendaryBarrier(s, animTime)
+                    Rarity.LEGENDARY, Rarity.MYTHIC -> drawLegendaryBarrier(s, animTime)
                 }
                 else -> when (item.rarity) {
                     Rarity.COMMON -> drawCommonShield(s)
                     Rarity.RARE -> drawRareShield(s, animTime)
                     Rarity.EPIC -> drawEpicShield(s, animTime)
-                    Rarity.LEGENDARY -> drawLegendaryShield(s, animTime)
+                    Rarity.LEGENDARY, Rarity.MYTHIC -> drawLegendaryShield(s, animTime)
                 }
             }
             ItemSlot.ACCESSORY -> when {
@@ -107,23 +120,572 @@ fun DrawScope.drawItemSprite(item: Item, animTime: Float = 0f) {
                     Rarity.COMMON -> drawCommonAmulet(s)
                     Rarity.RARE -> drawRareAmulet(s, animTime)
                     Rarity.EPIC -> drawEpicAmulet(s, animTime)
-                    Rarity.LEGENDARY -> drawLegendaryAmulet(s, animTime)
+                    Rarity.LEGENDARY, Rarity.MYTHIC -> drawLegendaryAmulet(s, animTime)
                 }
                 isCrown -> when (item.rarity) {
                     Rarity.COMMON -> drawCommonCrown(s)
                     Rarity.RARE -> drawRareCrown(s, animTime)
                     Rarity.EPIC -> drawEpicCrown(s, animTime)
-                    Rarity.LEGENDARY -> drawLegendaryCrown(s, animTime)
+                    Rarity.LEGENDARY, Rarity.MYTHIC -> drawLegendaryCrown(s, animTime)
                 }
                 else -> when (item.rarity) {
                     Rarity.COMMON -> drawCommonAccessory(s)
                     Rarity.RARE -> drawRareAccessory(s, animTime)
                     Rarity.EPIC -> drawEpicAccessory(s, animTime)
-                    Rarity.LEGENDARY -> drawLegendaryAccessory(s, animTime)
+                    Rarity.LEGENDARY, Rarity.MYTHIC -> drawLegendaryAccessory(s, animTime)
                 }
             }
         }
     }
+}
+
+// ============================================================================
+// 5. MYTHIC GEAR (LORE-SPECIFIC ARTIFACTS)
+// ============================================================================
+
+// ============================================================================
+// 5. MYTHIC GEAR (COMPLETE 3-PIECE SETS)
+// ============================================================================
+
+private fun DrawScope.drawMythicSetPiece(item: Item, s: Float, animTime: Float) {
+    when (item.setId) {
+        // --- 1. KNIGHT: Cloud Strife ---
+        "set_crystal" -> when (item.slot) {
+            ItemSlot.WEAPON -> drawMythicBusterSword(s, animTime)
+            ItemSlot.ARMOR -> drawMythicSoldierPauldron(s, animTime)
+            ItemSlot.SHIELD -> drawMythicHardedgeGuard(s, animTime)
+            ItemSlot.ACCESSORY -> drawMythicMateriaRing(s, animTime)
+        }
+        // --- 2. BLACK MAGE: Vivi Ornitier ---
+        "set_magus" -> when (item.slot) {
+            ItemSlot.WEAPON -> drawMythicStardustRod(s, animTime)
+            ItemSlot.ARMOR -> drawMythicViviHat(s, animTime)
+            ItemSlot.ACCESSORY -> drawMythicMagusRing(s, animTime)
+            else -> drawLegendaryArmorFallback(s, animTime)
+        }
+        // --- 3. WHITE MAGE: Aerith Gainsborough ---
+        "set_devout" -> when (item.slot) {
+            ItemSlot.WEAPON -> drawMythicPrincessGuard(s, animTime)
+            ItemSlot.ARMOR -> drawMythicWhiteRobe(s, animTime)
+            ItemSlot.ACCESSORY -> drawMythicHolyPendant(s, animTime)
+            else -> drawLegendaryArmorFallback(s, animTime)
+        }
+        // --- 4. NINJA / THIEF: Yuffie Kisaragi ---
+        "set_shadow" -> when (item.slot) {
+            ItemSlot.WEAPON -> drawMythicConformer(s, animTime)
+            ItemSlot.ARMOR -> drawMythicNinjaGarb(s, animTime)
+            ItemSlot.ACCESSORY -> drawMythicWindsweptTalismans(s, animTime)
+            else -> drawLegendaryArmorFallback(s, animTime)
+        }
+        // --- 5. MONK: Tifa Lockhart ---
+        "set_chakra" -> when (item.slot) {
+            ItemSlot.WEAPON -> drawMythicGodhand(s, animTime)
+            ItemSlot.ARMOR -> drawMythicWrestlerVest(s, animTime)
+            ItemSlot.ACCESSORY -> drawMythicLocketOfSeven(s, animTime)
+            else -> drawLegendaryArmorFallback(s, animTime)
+        }
+        // --- 6. DRAGOON: Kain Highwind ---
+        "set_wyvern" -> when (item.slot) {
+            ItemSlot.WEAPON -> drawMythicWyvernLance(s, animTime)
+            ItemSlot.ARMOR -> drawMythicDragonHelm(s, animTime)
+            ItemSlot.SHIELD -> drawMythicDragonGauntlet(s, animTime)
+            ItemSlot.ACCESSORY -> drawMythicDragonGauntlet(s, animTime)
+        }
+        // --- 7. RED MAGE: Celes / Alisaie ---
+        "set_crimson" -> when (item.slot) {
+            ItemSlot.WEAPON -> drawMythicRapier(s, animTime)
+            ItemSlot.ARMOR -> drawMythicDuelistDoublet(s, animTime)
+            ItemSlot.ACCESSORY -> drawMythicSpellRuby(s, animTime)
+            else -> drawLegendaryArmorFallback(s, animTime)
+        }
+        // --- 8. SUMMONER: Yuna ---
+        "set_evoker" -> when (item.slot) {
+            ItemSlot.WEAPON -> drawMythicYunaStaff(s, animTime)
+            ItemSlot.ARMOR -> drawMythicHighSummonerGown(s, animTime)
+            ItemSlot.ACCESSORY -> drawMythicNirvanaOrb(s, animTime)
+            else -> drawLegendaryArmorFallback(s, animTime)
+        }
+        // --- 9. BARD: Edward ---
+        "set_apollo" -> when (item.slot) {
+            ItemSlot.WEAPON -> drawMythicApollosHarp(s, animTime)
+            ItemSlot.ARMOR -> drawMythicFeatheredCap(s, animTime)
+            ItemSlot.ACCESSORY -> drawMythicMinstrelCloak(s, animTime)
+            else -> drawLegendaryArmorFallback(s, animTime)
+        }
+        // --- 10. SAMURAI: Auron ---
+        "set_genji" -> when (item.slot) {
+            ItemSlot.WEAPON -> drawMythicMasamune(s, animTime)
+            ItemSlot.ARMOR -> drawMythicKabutoArmor(s, animTime)
+            ItemSlot.ACCESSORY -> drawMythicBaneBracer(s, animTime)
+            else -> drawLegendaryArmorFallback(s, animTime)
+        }
+        // --- 11. PALADIN: Cecil Harvey ---
+        "set_aegis" -> when (item.slot) {
+            ItemSlot.WEAPON -> drawMythicExcalibur(s, animTime)
+            ItemSlot.ARMOR -> drawMythicPaladinPlate(s, animTime)
+            ItemSlot.SHIELD -> drawMythicCecilShield(s, animTime)
+            ItemSlot.ACCESSORY -> drawMythicPaladinPlate(s, animTime)
+        }
+        // --- 12. ONION KNIGHT: Luneth ---
+        "set_onion" -> when (item.slot) {
+            ItemSlot.WEAPON -> drawMythicOnionSword(s, animTime)
+            ItemSlot.ARMOR -> drawMythicOnionHelm(s, animTime)
+            ItemSlot.SHIELD -> drawMythicOnionShield(s, animTime)
+            ItemSlot.ACCESSORY -> drawMythicOnionShield(s, animTime)
+        }
+        else -> drawLegendaryArmorFallback(s, animTime)
+    }
+}
+
+// ============================================================================
+// INDIVIDUAL MYTHIC PROCEDURAL DRAWINGS (LORE-ACCURATE)
+// ============================================================================
+
+// ============================================================================
+// INDIVIDUAL MYTHIC PROCEDURAL DRAWINGS (LORE-ACCURATE & HIGH DETAIL)
+// ============================================================================
+
+// --- 3. AERITH GAINSBOROUGH (Devout / Aerith's Blessing) ---
+private fun DrawScope.drawMythicPrincessGuard(s: Float, animTime: Float) {
+    val rodPink = Color(0xFFE91E63); val gold = Color(0xFFFFD700); val holyGreen = Color(0xFF2ECC71)
+    val pulse = 0.85f + sin(animTime * 0.005f) * 0.15f
+    // Shaft
+    drawLine(Color(0xFFF8F9FA), Offset(50f * s, 85f * s), Offset(50f * s, 35f * s), strokeWidth = 4f * s)
+    // Detailed Floral Guard Top
+    val leftWing = Path().apply { moveTo(50f * s, 35f * s); quadraticTo(20f * s, 25f * s, 40f * s, 10f * s); quadraticTo(50f * s, 20f * s, 50f * s, 35f * s) }
+    val rightWing = Path().apply { moveTo(50f * s, 35f * s); quadraticTo(80f * s, 25f * s, 60f * s, 10f * s); quadraticTo(50f * s, 20f * s, 50f * s, 35f * s) }
+    drawPath(leftWing, gold); drawPath(rightWing, gold)
+    drawPath(leftWing, rodPink, style = Stroke(1.5f * s)); drawPath(rightWing, rodPink, style = Stroke(1.5f * s))
+    // Glowing Materia Center
+    drawCircle(holyGreen.copy(alpha = pulse), radius = 8f * s, center = Offset(50f * s, 35f * s))
+    drawCircle(Color.White, radius = 3f * s, center = Offset(49f * s, 34f * s))
+}
+private fun DrawScope.drawMythicWhiteRobe(s: Float, animTime: Float) {
+    val jacketRed = Color(0xFFC0392B); val dressPink = Color(0xFFFADBD8); val beltBrown = Color(0xFF5D4037)
+    // Flowing Pink Dress
+    val dress = Path().apply { moveTo(40f * s, 40f * s); lineTo(60f * s, 40f * s); quadraticTo(80f * s, 80f * s, 70f * s, 90f * s); lineTo(30f * s, 90f * s); quadraticTo(20f * s, 80f * s, 40f * s, 40f * s) }
+    drawPath(dress, dressPink); drawPath(dress, Color.White, style = Stroke(2f * s))
+    // Iconic Red Jacket Top
+    val jacket = Path().apply { moveTo(35f * s, 15f * s); lineTo(65f * s, 15f * s); lineTo(70f * s, 45f * s); lineTo(30f * s, 45f * s); close() }
+    drawPath(jacket, jacketRed); drawPath(jacket, Color(0xFF922B21), style = Stroke(2f * s))
+    drawRect(beltBrown, Offset(35f * s, 42f * s), Size(30f * s, 6f * s))
+}
+private fun DrawScope.drawMythicHolyPendant(s: Float, animTime: Float) {
+    val gold = Color(0xFFFFD700); val whiteGlow = Color(0xFFE0FFFF)
+    val pulse = 0.85f + sin(animTime * 0.005f) * 0.15f
+    // Delicate Chain
+    val chain = Path().apply { moveTo(25f * s, 20f * s); quadraticTo(50f * s, 60f * s, 75f * s, 20f * s) }
+    drawPath(chain, gold, style = Stroke(2f * s))
+    // Holy Materia Pendant
+    drawCircle(whiteGlow.copy(alpha = pulse), radius = 10f * s, center = Offset(50f * s, 45f * s))
+    drawCircle(gold, radius = 10f * s, center = Offset(50f * s, 45f * s), style = Stroke(3f * s))
+}
+
+// --- 4. YUFFIE KISARAGI (Shadow / Yuffie's Defiance) ---
+private fun DrawScope.drawMythicConformer(s: Float, animTime: Float) {
+    val steel = Color(0xFF95A5A6); val darkSteel = Color(0xFF2C3E50); val rivet = Color(0xFFF1C40F)
+    val rot = animTime * 0.1f // Fast spin effect
+    withTransform({ rotate(rot, Offset(50f * s, 50f * s)) }) {
+        // 4-Pointed Giant Shuriken
+        val shuriken = Path().apply {
+            moveTo(50f * s, 10f * s); lineTo(55f * s, 45f * s); lineTo(90f * s, 50f * s); lineTo(55f * s, 55f * s)
+            lineTo(50f * s, 90f * s); lineTo(45f * s, 55f * s); lineTo(10f * s, 50f * s); lineTo(45f * s, 45f * s); close()
+        }
+        drawPath(shuriken, steel); drawPath(shuriken, darkSteel, style = Stroke(2f * s))
+        // Inner Ring
+        drawCircle(darkSteel, radius = 15f * s, center = Offset(50f * s, 50f * s), style = Stroke(4f * s))
+        drawCircle(rivet, radius = 4f * s, center = Offset(50f * s, 50f * s))
+    }
+}
+private fun DrawScope.drawMythicNinjaGarb(s: Float, animTime: Float) {
+    val greenCloth = Color(0xFF27AE60); val netting = Color(0xFF1B2631); val armor = Color(0xFFE67E22)
+    val garbPath = Path().apply { moveTo(35f * s, 15f * s); lineTo(65f * s, 15f * s); lineTo(75f * s, 85f * s); lineTo(25f * s, 85f * s); close() }
+    drawPath(garbPath, greenCloth)
+    // Left arm netting texture
+    drawRect(netting, Offset(25f * s, 25f * s), Size(15f * s, 30f * s))
+    // Orange Shoulder Guard
+    drawOval(armor, topLeft = Offset(20f * s, 15f * s), size = Size(25f * s, 15f * s))
+}
+private fun DrawScope.drawMythicWindsweptTalismans(s: Float, animTime: Float) {
+    val leather = Color(0xFF78281F); val jade = Color(0xFF2ECC71)
+    // Ninja Armguard
+    drawRect(leather, Offset(35f * s, 20f * s), Size(30f * s, 60f * s), style = Stroke(4f * s))
+    drawRect(Color(0xFF212F3D), Offset(35f * s, 20f * s), Size(30f * s, 60f * s))
+    // Embedded Jade Materia
+    drawCircle(jade, radius = 8f * s, center = Offset(50f * s, 40f * s))
+    drawCircle(jade, radius = 8f * s, center = Offset(50f * s, 60f * s))
+}
+
+// --- 5. TIFA LOCKHART (Chakra / Tifa's Final Heaven) ---
+private fun DrawScope.drawMythicGodhand(s: Float, animTime: Float) {
+    val redLeather = Color(0xFFC0392B); val silverKnuckles = Color(0xFFBDC3C7); val darkStrap = Color(0xFF1C2833)
+    val materia = Color(0xFF2ECC71)
+    val pulse = 0.85f + sin(animTime * 0.005f) * 0.15f
+    // Detailed Boxing Glove Shape
+    val glovePath = Path().apply { moveTo(40f * s, 20f * s); quadraticTo(70f * s, 15f * s, 80f * s, 40f * s); quadraticTo(80f * s, 70f * s, 60f * s, 80f * s); lineTo(30f * s, 80f * s); lineTo(25f * s, 40f * s); close() }
+    drawPath(glovePath, redLeather); drawPath(glovePath, Color(0xFF922B21), style = Stroke(2f * s))
+    // Silver Knuckle Plate
+    drawRect(silverKnuckles, Offset(50f * s, 25f * s), Size(25f * s, 15f * s))
+    drawCircle(materia.copy(alpha = pulse), radius = 4f * s, center = Offset(62f * s, 32f * s))
+    // Wrist Strap
+    drawRect(darkStrap, Offset(28f * s, 65f * s), Size(35f * s, 10f * s))
+}
+private fun DrawScope.drawMythicWrestlerVest(s: Float, animTime: Float) {
+    val whiteCotton = Color(0xFFEAEDED); val suspender = Color(0xFF2C3E50); val skirt = Color(0xFF1C2833)
+    // White Crop Top
+    drawRect(whiteCotton, Offset(35f * s, 15f * s), Size(30f * s, 35f * s))
+    // Dark Suspenders
+    drawRect(suspender, Offset(38f * s, 15f * s), Size(4f * s, 35f * s))
+    drawRect(suspender, Offset(58f * s, 15f * s), Size(4f * s, 35f * s))
+    // Belt & Skirt
+    drawRect(skirt, Offset(30f * s, 50f * s), Size(40f * s, 35f * s))
+    drawRect(Color(0xFFBDC3C7), Offset(45f * s, 48f * s), Size(10f * s, 8f * s), style = Stroke(2f * s)) // Buckle
+}
+private fun DrawScope.drawMythicLocketOfSeven(s: Float, animTime: Float) {
+    val silver = Color(0xFFBDC3C7); val blueStone = Color(0xFF2980B9)
+    val chain = Path().apply { moveTo(30f * s, 20f * s); quadraticTo(50f * s, 45f * s, 70f * s, 20f * s) }
+    drawPath(chain, silver, style = Stroke(2f * s))
+    // Teardrop Pendant
+    val pendant = Path().apply { moveTo(50f * s, 40f * s); quadraticTo(60f * s, 55f * s, 50f * s, 65f * s); quadraticTo(40f * s, 55f * s, 50f * s, 40f * s) }
+    drawPath(pendant, blueStone); drawPath(pendant, silver, style = Stroke(2f * s))
+}
+
+// --- 6. KAIN HIGHWIND (Wyvern / Kain's Atonement) ---
+private fun DrawScope.drawMythicWyvernLance(s: Float, animTime: Float) {
+    val pole = Color(0xFF2C3E50); val dragonBlue = Color(0xFF2E86C1); val edgeSilver = Color(0xFFF8F9FA)
+    drawLine(pole, Offset(50f * s, 90f * s), Offset(50f * s, 30f * s), strokeWidth = 5f * s)
+    // Winged Spear Head
+    val spearHead = Path().apply { moveTo(50f * s, 5f * s); lineTo(65f * s, 30f * s); lineTo(55f * s, 35f * s); lineTo(50f * s, 45f * s); lineTo(45f * s, 35f * s); lineTo(35f * s, 30f * s); close() }
+    drawPath(spearHead, dragonBlue); drawPath(spearHead, edgeSilver, style = Stroke(2f * s))
+    drawLine(edgeSilver, Offset(50f * s, 5f * s), Offset(50f * s, 40f * s), strokeWidth = 1.5f * s)
+}
+private fun DrawScope.drawMythicDragonHelm(s: Float, animTime: Float) {
+    val dragonPurple = Color(0xFF512E5F); val trimGold = Color(0xFFF1C40F); val eyeGlow = Color(0xFFE74C3C)
+    // Scaled Helmet
+    val helm = Path().apply { moveTo(25f * s, 70f * s); quadraticTo(15f * s, 40f * s, 50f * s, 10f * s); quadraticTo(85f * s, 40f * s, 75f * s, 70f * s); close() }
+    drawPath(helm, dragonPurple); drawPath(helm, trimGold, style = Stroke(2.5f * s))
+    // Dragon Horns
+    val leftHorn = Path().apply { moveTo(40f * s, 25f * s); quadraticTo(10f * s, 15f * s, 5f * s, 30f * s); quadraticTo(20f * s, 35f * s, 35f * s, 40f * s) }
+    val rightHorn = Path().apply { moveTo(60f * s, 25f * s); quadraticTo(90f * s, 15f * s, 95f * s, 30f * s); quadraticTo(80f * s, 35f * s, 65f * s, 40f * s) }
+    drawPath(leftHorn, trimGold); drawPath(rightHorn, trimGold)
+    // Visor Slit
+    drawRect(Color(0xFF111111), Offset(40f * s, 45f * s), Size(20f * s, 8f * s))
+    drawCircle(eyeGlow, radius = 2f * s, center = Offset(45f * s, 49f * s)); drawCircle(eyeGlow, radius = 2f * s, center = Offset(55f * s, 49f * s))
+}
+private fun DrawScope.drawMythicDragonGauntlet(s: Float, animTime: Float) {
+    val purpleArmor = Color(0xFF512E5F); val spikeSilver = Color(0xFFBDC3C7)
+    // Gauntlet Base
+    val gauntlet = Path().apply { moveTo(35f * s, 20f * s); lineTo(65f * s, 20f * s); lineTo(75f * s, 80f * s); lineTo(25f * s, 80f * s); close() }
+    drawPath(gauntlet, purpleArmor); drawPath(gauntlet, Color(0xFF1C2833), style = Stroke(2f * s))
+    // Dragoon Spikes
+    val spike = Path().apply { moveTo(50f * s, 25f * s); lineTo(60f * s, 45f * s); lineTo(40f * s, 45f * s); close() }
+    drawPath(spike, spikeSilver)
+    val spike2 = Path().apply { moveTo(50f * s, 50f * s); lineTo(65f * s, 70f * s); lineTo(35f * s, 70f * s); close() }
+    drawPath(spike2, spikeSilver)
+}
+
+// --- 7. RED MAGE (Crimson / Alisaie's Resolve) ---
+private fun DrawScope.drawMythicRapier(s: Float, animTime: Float) {
+    val steel = Color(0xFFECF0F1); val goldHilt = Color(0xFFFFD700); val ruby = Color(0xFFE74C3C)
+    // Thin Rapier Blade
+    drawLine(steel, Offset(45f * s, 80f * s), Offset(80f * s, 15f * s), strokeWidth = 2.5f * s)
+    // Intricate Basket Hilt
+    val hiltGuard = Path().apply { moveTo(35f * s, 70f * s); quadraticTo(20f * s, 60f * s, 50f * s, 50f * s); quadraticTo(65f * s, 75f * s, 45f * s, 80f * s) }
+    drawPath(hiltGuard, goldHilt, style = Stroke(3f * s))
+    drawCircle(ruby, radius = 4f * s, center = Offset(45f * s, 70f * s))
+    drawLine(Color(0xFF2C3E50), Offset(45f * s, 80f * s), Offset(35f * s, 95f * s), strokeWidth = 3f * s) // Handle
+}
+private fun DrawScope.drawMythicDuelistDoublet(s: Float, animTime: Float) {
+    val crimson = Color(0xFF922B21); val whiteRuffle = Color(0xFFFDFEFE); val goldTrim = Color(0xFFFFD700)
+    // Coat
+    val coat = Path().apply { moveTo(30f * s, 15f * s); lineTo(70f * s, 15f * s); lineTo(85f * s, 85f * s); lineTo(50f * s, 70f * s); lineTo(15f * s, 85f * s); close() }
+    drawPath(coat, crimson); drawPath(coat, goldTrim, style = Stroke(2f * s))
+    // White Ruffle Collar
+    drawCircle(whiteRuffle, radius = 10f * s, center = Offset(50f * s, 25f * s))
+    drawCircle(whiteRuffle, radius = 8f * s, center = Offset(45f * s, 35f * s))
+    drawCircle(whiteRuffle, radius = 8f * s, center = Offset(55f * s, 35f * s))
+}
+private fun DrawScope.drawMythicSpellRuby(s: Float, animTime: Float) {
+    val gold = Color(0xFFFFD700); val ruby = Color(0xFFE74C3C); val pulse = 0.85f + sin(animTime * 0.005f) * 0.15f
+    // Elaborate Brooch
+    val brooch = Path().apply { moveTo(50f * s, 20f * s); lineTo(70f * s, 50f * s); lineTo(50f * s, 80f * s); lineTo(30f * s, 50f * s); close() }
+    drawPath(brooch, gold, style = Stroke(4f * s))
+    drawPath(brooch, ruby.copy(alpha = pulse))
+    drawCircle(Color.White, radius = 3f * s, center = Offset(45f * s, 40f * s))
+}
+
+// --- 9. EDWARD (Apollo / Edward's Melody) ---
+private fun DrawScope.drawMythicApollosHarp(s: Float, animTime: Float) {
+    val gold = Color(0xFFFFD700); val magicString = Color(0xFF00E5FF); val pulse = 0.85f + sin(animTime * 0.005f) * 0.15f
+    val harpBase = Path().apply { moveTo(20f * s, 20f * s); quadraticTo(80f * s, 10f * s, 80f * s, 80f * s); quadraticTo(40f * s, 90f * s, 20f * s, 80f * s); close() }
+    drawPath(harpBase, gold, style = Stroke(6f * s))
+    // Glowing Strings
+    repeat(5) { i -> drawLine(magicString.copy(alpha = pulse), Offset((35 + i * 8).toFloat() * s, 32f * s), Offset((35 + i * 8).toFloat() * s, 80f * s), strokeWidth = 1.5f * s) }
+}
+private fun DrawScope.drawMythicFeatheredCap(s: Float, animTime: Float) {
+    val greenCloth = Color(0xFF27AE60); val whiteFeather = Color(0xFFFDFEFE); val ruby = Color(0xFFE74C3C)
+    // Bard Beret
+    drawOval(greenCloth, topLeft = Offset(20f * s, 40f * s), size = Size(60f * s, 25f * s))
+    drawOval(Color(0xFF1E8449), topLeft = Offset(20f * s, 40f * s), size = Size(60f * s, 25f * s), style = Stroke(2f * s))
+    // Iconic Long Feather
+    val feather = Path().apply { moveTo(65f * s, 45f * s); quadraticTo(90f * s, 15f * s, 70f * s, 5f * s); quadraticTo(60f * s, 25f * s, 65f * s, 45f * s) }
+    drawPath(feather, whiteFeather); drawPath(feather, Color(0xFFBDC3C7), style = Stroke(1f * s))
+    drawCircle(ruby, radius = 5f * s, center = Offset(65f * s, 50f * s)) // Pin
+}
+private fun DrawScope.drawMythicMinstrelCloak(s: Float, animTime: Float) {
+    val purpleSilk = Color(0xFF8E44AD); val goldTrim = Color(0xFFFFD700)
+    // Flowing Cape
+    val cloak = Path().apply { moveTo(40f * s, 15f * s); lineTo(60f * s, 15f * s); quadraticTo(90f * s, 60f * s, 80f * s, 90f * s); quadraticTo(50f * s, 80f * s, 20f * s, 90f * s); quadraticTo(10f * s, 60f * s, 40f * s, 15f * s) }
+    drawPath(cloak, purpleSilk); drawPath(cloak, goldTrim, style = Stroke(2.5f * s))
+}
+
+// --- 10. AURON (Genji / Auron's Bushido) ---
+private fun DrawScope.drawMythicMasamune(s: Float, animTime: Float) {
+    val bladeSteel = Color(0xFFECF0F1); val darkRedWrap = Color(0xFF641E16); val goldTsuba = Color(0xFFF1C40F)
+    val spiritFire = Color(0xFF3498DB); val pulse = 0.85f + sin(animTime * 0.005f) * 0.15f
+    // Spirit Aura
+    val aura = Path().apply { moveTo(20f * s, 90f * s); quadraticTo(40f * s, 30f * s, 90f * s, 5f * s); quadraticTo(60f * s, 50f * s, 25f * s, 90f * s) }
+    drawPath(aura, spiritFire.copy(alpha = 0.3f * pulse), style = Stroke(8f * s))
+    // Curved Katana Blade
+    val katana = Path().apply { moveTo(25f * s, 70f * s); quadraticTo(50f * s, 30f * s, 85f * s, 10f * s); lineTo(80f * s, 15f * s); quadraticTo(50f * s, 35f * s, 30f * s, 75f * s); close() }
+    drawPath(katana, bladeSteel); drawPath(katana, Color(0xFFBDC3C7), style = Stroke(1f * s))
+    // Tsuba (Guard) & Tsuka (Handle)
+    drawOval(goldTsuba, topLeft = Offset(18f * s, 68f * s), size = Size(14f * s, 8f * s))
+    drawRect(darkRedWrap, Offset(10f * s, 75f * s), Size(12f * s, 20f * s))
+    drawLine(Color.Black, Offset(10f * s, 78f * s), Offset(22f * s, 82f * s), strokeWidth = 1f * s)
+    drawLine(Color.Black, Offset(10f * s, 85f * s), Offset(22f * s, 89f * s), strokeWidth = 1f * s)
+}
+private fun DrawScope.drawMythicKabutoArmor(s: Float, animTime: Float) {
+    val redLaminar = Color(0xFF922B21); val goldCrescent = Color(0xFFF1C40F); val darkIron = Color(0xFF1C2833)
+    // Samurai Helm Dome
+    val helm = Path().apply { moveTo(30f * s, 50f * s); quadraticTo(50f * s, 10f * s, 70f * s, 50f * s); close() }
+    drawPath(helm, darkIron)
+    // Neck Guard (Shikoro)
+    val neckGuard = Path().apply { moveTo(25f * s, 50f * s); lineTo(75f * s, 50f * s); lineTo(85f * s, 75f * s); lineTo(15f * s, 75f * s); close() }
+    drawPath(neckGuard, redLaminar)
+    drawLine(goldCrescent, Offset(20f * s, 60f * s), Offset(80f * s, 60f * s), strokeWidth = 2f * s)
+    // Iconic Crescent Moon Crest
+    val crescent = Path().apply { moveTo(35f * s, 20f * s); quadraticTo(50f * s, -5f * s, 65f * s, 20f * s); quadraticTo(50f * s, 5f * s, 35f * s, 20f * s) }
+    drawPath(crescent, goldCrescent)
+}
+private fun DrawScope.drawMythicBaneBracer(s: Float, animTime: Float) {
+    val blackIron = Color(0xFF1B2631); val goldTrim = Color(0xFFF1C40F); val redRope = Color(0xFFC0392B)
+    drawRect(blackIron, Offset(35f * s, 25f * s), Size(30f * s, 50f * s))
+    drawRect(goldTrim, Offset(35f * s, 25f * s), Size(30f * s, 50f * s), style = Stroke(3f * s))
+    // Rope Tie Detail
+    drawLine(redRope, Offset(35f * s, 40f * s), Offset(65f * s, 50f * s), strokeWidth = 3f * s)
+    drawLine(redRope, Offset(35f * s, 60f * s), Offset(65f * s, 70f * s), strokeWidth = 3f * s)
+}
+
+// --- 12. LUNETH (Onion / Luneth's Destiny) ---
+private fun DrawScope.drawMythicOnionSword(s: Float, animTime: Float) {
+    val blueSteel = Color(0xFF3498DB); val redHilt = Color(0xFFE74C3C); val gold = Color(0xFFF1C40F)
+    val pureWhite = Color(0xFFFFFFFF); val pulse = 0.85f + sin(animTime * 0.005f) * 0.15f
+    // Vibrant Blue Blade
+    val sword = Path().apply { moveTo(50f * s, 10f * s); lineTo(58f * s, 30f * s); lineTo(54f * s, 70f * s); lineTo(46f * s, 70f * s); lineTo(42f * s, 30f * s); close() }
+    drawPath(sword, blueSteel); drawPath(sword, pureWhite.copy(alpha = pulse), style = Stroke(1.5f * s))
+    // Round Onion Guard
+    drawOval(gold, topLeft = Offset(35f * s, 65f * s), size = Size(30f * s, 10f * s))
+    drawRect(redHilt, Offset(45f * s, 75f * s), Size(10f * s, 15f * s))
+}
+private fun DrawScope.drawMythicOnionHelm(s: Float, animTime: Float) {
+    val silverHelm = Color(0xFFECF0F1); val redPlume = Color(0xFFE74C3C); val darkShadow = Color(0xFF7F8C8D)
+    // Bulbous Onion Shape
+    val onionDome = Path().apply { moveTo(30f * s, 80f * s); quadraticTo(10f * s, 50f * s, 50f * s, 15f * s); quadraticTo(90f * s, 50f * s, 70f * s, 80f * s); close() }
+    drawPath(onionDome, silverHelm)
+    drawPath(onionDome, darkShadow, style = Stroke(2f * s))
+    // Cheek Guards
+    drawOval(darkShadow, topLeft = Offset(25f * s, 70f * s), size = Size(10f * s, 15f * s))
+    drawOval(darkShadow, topLeft = Offset(65f * s, 70f * s), size = Size(10f * s, 15f * s))
+    // Spiky Red Feather
+    val plume = Path().apply { moveTo(50f * s, 15f * s); quadraticTo(70f * s, 0f * s, 85f * s, 10f * s); quadraticTo(65f * s, 15f * s, 50f * s, 25f * s) }
+    drawPath(plume, redPlume)
+}
+private fun DrawScope.drawMythicOnionShield(s: Float, animTime: Float) {
+    val roundBlue = Color(0xFF2E86C1); val goldBorder = Color(0xFFF1C40F); val redCenter = Color(0xFFE74C3C)
+    // Classic Buckler Shield
+    drawCircle(roundBlue, radius = 32f * s, center = Offset(50f * s, 50f * s))
+    drawCircle(goldBorder, radius = 32f * s, center = Offset(50f * s, 50f * s), style = Stroke(5f * s))
+    // 3 Gold Dots
+    drawCircle(goldBorder, radius = 4f * s, center = Offset(50f * s, 30f * s))
+    drawCircle(goldBorder, radius = 4f * s, center = Offset(35f * s, 60f * s))
+    drawCircle(goldBorder, radius = 4f * s, center = Offset(65f * s, 60f * s))
+    // Center Ruby
+    drawCircle(redCenter, radius = 8f * s, center = Offset(50f * s, 50f * s))
+    drawCircle(Color.White, radius = 2f * s, center = Offset(48f * s, 48f * s))
+}
+
+// 🗡️ CLOUD: Buster Sword (Strife's Legacy)
+private fun DrawScope.drawMythicBusterSword(s: Float, animTime: Float) {
+    val steel = Color(0xFF95A5A6)
+    val darkIron = Color(0xFF2C3E50)
+    val edge = Color(0xFFECF0F1)
+    val makoGreen = Color(0xFF2ECC71)
+    val gold = Color(0xFFF1C40F)
+    val leather = Color(0xFF8B0000)
+
+    val pulse = 0.85f + sin(animTime * 0.005f) * 0.15f
+
+    // Giant Blade Base
+    val bladePath = Path().apply {
+        moveTo(35f * s, 25f * s)  // Top Left
+        lineTo(65f * s, 10f * s)  // Angled Tip Right
+        lineTo(65f * s, 65f * s)  // Bottom Right
+        lineTo(35f * s, 65f * s)  // Bottom Left
+        close()
+    }
+    drawPath(bladePath, darkIron)
+
+    // Sharp Edge
+    val edgePath = Path().apply {
+        moveTo(35f * s, 25f * s)
+        lineTo(45f * s, 20f * s)
+        lineTo(45f * s, 65f * s)
+        lineTo(35f * s, 65f * s)
+        close()
+    }
+    drawPath(edgePath, edge)
+
+    // Mako Materia Slots
+    drawCircle(darkIron, radius = 4f * s, center = Offset(55f * s, 45f * s))
+    drawCircle(makoGreen.copy(alpha = pulse), radius = 3f * s, center = Offset(55f * s, 45f * s))
+
+    drawCircle(darkIron, radius = 4f * s, center = Offset(55f * s, 55f * s))
+    drawCircle(makoGreen.copy(alpha = pulse), radius = 3f * s, center = Offset(55f * s, 55f * s))
+
+    // Heavy Guard
+    drawRect(gold, Offset(30f * s, 65f * s), Size(40f * s, 6f * s))
+    drawRect(darkIron, Offset(30f * s, 65f * s), Size(40f * s, 6f * s), style = Stroke(1.5f * s))
+
+    // Handle
+    drawRect(leather, Offset(45f * s, 71f * s), Size(10f * s, 16f * s))
+    drawLine(gold, Offset(45f * s, 73f * s), Offset(55f * s, 77f * s), strokeWidth = 1.5f * s)
+    drawLine(gold, Offset(45f * s, 79f * s), Offset(55f * s, 83f * s), strokeWidth = 1.5f * s)
+}
+
+// 🎩 VIVI: Pointy Wizard Hat (Vivi's Memories)
+private fun DrawScope.drawMythicViviHat(s: Float, animTime: Float) {
+    val hatLeather = Color(0xFFC08A47)
+    val hatShadow = Color(0xFF8B5A2B)
+    val band = Color(0xFF34495E)
+    val stitch = Color(0xFFE67E22)
+    val shadowFace = Color(0xFF111111)
+    val glowingYellow = Color(0xFFFFD700)
+
+    val pulse = 0.85f + sin(animTime * 0.005f) * 0.15f
+
+    // Dark Face Void inside the hat
+    drawOval(shadowFace, topLeft = Offset(30f * s, 65f * s), size = Size(40f * s, 25f * s))
+    // Glowing Eyes
+    drawCircle(glowingYellow.copy(alpha = pulse), radius = 3.5f * s, center = Offset(42f * s, 75f * s))
+    drawCircle(glowingYellow.copy(alpha = pulse), radius = 3.5f * s, center = Offset(58f * s, 75f * s))
+    drawCircle(Color.White, radius = 1.5f * s, center = Offset(42f * s, 75f * s))
+    drawCircle(Color.White, radius = 1.5f * s, center = Offset(58f * s, 75f * s))
+
+    // Wide Crumpled Brim
+    drawOval(hatLeather, topLeft = Offset(10f * s, 60f * s), size = Size(80f * s, 20f * s))
+    drawOval(hatShadow, topLeft = Offset(10f * s, 60f * s), size = Size(80f * s, 20f * s), style = Stroke(2f * s))
+
+    // Pointy Crooked Cone
+    val conePath = Path().apply {
+        moveTo(25f * s, 65f * s)
+        quadraticTo(35f * s, 30f * s, 75f * s, 10f * s) // Bends far right
+        quadraticTo(85f * s, 20f * s, 65f * s, 40f * s)
+        quadraticTo(60f * s, 50f * s, 75f * s, 65f * s)
+        close()
+    }
+    drawPath(conePath, hatLeather)
+    drawPath(conePath, hatShadow, style = Stroke(2f * s))
+
+    // Dark Band
+    val bandPath = Path().apply {
+        moveTo(26f * s, 60f * s)
+        quadraticTo(50f * s, 50f * s, 72f * s, 60f * s)
+        lineTo(74f * s, 65f * s)
+        quadraticTo(50f * s, 55f * s, 25f * s, 65f * s)
+        close()
+    }
+    drawPath(bandPath, band)
+    // Stitches
+    drawLine(stitch, Offset(40f * s, 55f * s), Offset(42f * s, 62f * s), strokeWidth = 1.5f * s)
+    drawLine(stitch, Offset(60f * s, 55f * s), Offset(58f * s, 62f * s), strokeWidth = 1.5f * s)
+}
+
+// 🌟 YUNA: Summoner's Staff (Yuna's Sending)
+private fun DrawScope.drawMythicYunaStaff(s: Float, animTime: Float) {
+    val wood = Color(0xFFCD853F)
+    val gold = Color(0xFFFFD700)
+    val redTassel = Color(0xFFDC143C)
+    val holyGlow = Color(0xFFE0FFFF)
+
+    val pulse = 0.85f + sin(animTime * 0.005f) * 0.15f
+    val sway = sin(animTime * 0.003f) * 4f
+
+    // Glowing Aura
+    drawCircle(holyGlow.copy(alpha = 0.3f * pulse), radius = 24f * s, center = Offset(50f * s, 25f * s))
+
+    // Staff Shaft
+    drawLine(wood, Offset(50f * s, 45f * s), Offset(50f * s, 95f * s), strokeWidth = 4f * s)
+
+    // Top Ring (The Sending Loop)
+    drawCircle(gold, radius = 16f * s, center = Offset(50f * s, 25f * s), style = Stroke(5f * s))
+
+    // Tassel / Bell hanging from the center
+    drawLine(gold, Offset(50f * s, 25f * s), Offset(50f * s + sway, 45f * s), strokeWidth = 2f * s)
+    drawRect(redTassel, Offset(46f * s + sway, 45f * s), Size(8f * s, 12f * s))
+    drawLine(Color.White, Offset(48f * s + sway, 45f * s), Offset(48f * s + sway, 57f * s), strokeWidth = 1f * s)
+    drawLine(Color.White, Offset(52f * s + sway, 45f * s), Offset(52f * s + sway, 57f * s), strokeWidth = 1f * s)
+}
+
+// 🛡️ CECIL: Paladin's Aegis (Cecil's Redemption)
+private fun DrawScope.drawMythicCecilShield(s: Float, animTime: Float) {
+    val whiteEnamel = Color(0xFFF8F9FA)
+    val holyBlue = Color(0xFF3498DB)
+    val goldTrim = Color(0xFFF1C40F)
+    val holyAura = Color(0xFF85C1E9)
+
+    val pulse = 0.85f + sin(animTime * 0.005f) * 0.15f
+
+    val shieldShape = Path().apply {
+        moveTo(20f * s, 15f * s)
+        lineTo(80f * s, 15f * s)
+        lineTo(80f * s, 40f * s)
+        quadraticTo(75f * s, 85f * s, 50f * s, 95f * s)
+        quadraticTo(25f * s, 85f * s, 20f * s, 40f * s)
+        close()
+    }
+
+    // Outer Aura
+    drawPath(shieldShape, holyAura.copy(alpha = 0.4f * pulse))
+
+    // Base Shield
+    drawPath(shieldShape, whiteEnamel)
+    drawPath(shieldShape, goldTrim, style = Stroke(4f * s))
+
+    // Holy Blue Cross / Wings inlay
+    val crestPath = Path().apply {
+        moveTo(50f * s, 25f * s)
+        lineTo(65f * s, 40f * s)
+        lineTo(55f * s, 40f * s)
+        lineTo(55f * s, 75f * s)
+        lineTo(45f * s, 75f * s)
+        lineTo(45f * s, 40f * s)
+        lineTo(35f * s, 40f * s)
+        close()
+    }
+    drawPath(crestPath, holyBlue)
+    drawPath(crestPath, goldTrim, style = Stroke(1.5f * s))
+
+    // Central Gem
+    drawCircle(Color.White, radius = 6f * s, center = Offset(50f * s, 40f * s))
+    drawCircle(holyAura, radius = 4f * s, center = Offset(50f * s, 40f * s))
+}
+
+// Fallback for Mythic items you haven't drawn yet
+private fun DrawScope.drawLegendaryArmorFallback(s: Float, animTime: Float, glowColor: Color = Color(0xFFFF2255)) {
+    val pulse = 0.85f + sin(animTime * 0.005f) * 0.15f
+    drawCircle(glowColor.copy(alpha = 0.5f * pulse), radius = 30f * s, center = Offset(50f * s, 50f * s))
+    drawCircle(Color.White, radius = 15f * s, center = Offset(50f * s, 50f * s), style = Stroke(3f * s))
 }
 
 fun DrawScope.drawEmptySlotPlaceholder(slot: ItemSlot) {
@@ -190,6 +752,105 @@ private fun DrawScope.drawCommonSword(s: Float, isPlaceholder: Boolean = false) 
         val dashEffect = PathEffect.dashPathEffect(floatArrayOf(4f * s, 4f * s), 0f)
         drawPath(bladePath, Color.Gray.copy(alpha = 0.5f), style = Stroke(1.5f * s, pathEffect = dashEffect))
     }
+}
+
+// ============================================================================
+// MISSING MYTHIC PROCEDURAL DRAWINGS (Cloud, Vivi, Yuna, Edward, Auron, Cecil)
+// ============================================================================
+
+// --- CLOUD STRIFE MISSING PIECES ---
+private fun DrawScope.drawMythicSoldierPauldron(s: Float, animTime: Float) {
+    val darkSteel = Color(0xFF2C3E50); val silver = Color(0xFFBDC3C7); val rivet = Color(0xFFF1C40F)
+    // Heavy Shoulder Plate
+    val pauldron = Path().apply { moveTo(20f * s, 40f * s); quadraticTo(50f * s, 10f * s, 80f * s, 40f * s); lineTo(80f * s, 70f * s); quadraticTo(50f * s, 85f * s, 20f * s, 70f * s); close() }
+    drawPath(pauldron, silver); drawPath(pauldron, darkSteel, style = Stroke(3f * s))
+    // Inner segmented plates
+    drawLine(darkSteel, Offset(25f * s, 50f * s), Offset(75f * s, 50f * s), strokeWidth = 2f * s)
+    drawLine(darkSteel, Offset(30f * s, 60f * s), Offset(70f * s, 60f * s), strokeWidth = 2f * s)
+    // Rivets
+    drawCircle(rivet, radius = 3f * s, center = Offset(30f * s, 30f * s))
+    drawCircle(rivet, radius = 3f * s, center = Offset(70f * s, 30f * s))
+}
+
+private fun DrawScope.drawMythicHardedgeGuard(s: Float, animTime: Float) {
+    val bladeSteel = Color(0xFF95A5A6); val redTrim = Color(0xFFC0392B); val mako = Color(0xFF2ECC71)
+    val guard = Path().apply { moveTo(25f * s, 20f * s); lineTo(75f * s, 20f * s); lineTo(85f * s, 50f * s); lineTo(50f * s, 85f * s); lineTo(15f * s, 50f * s); close() }
+    drawPath(guard, bladeSteel); drawPath(guard, redTrim, style = Stroke(4f * s))
+    drawCircle(Color(0xFF2C3E50), radius = 10f * s, center = Offset(50f * s, 45f * s))
+    drawCircle(mako, radius = 6f * s, center = Offset(50f * s, 45f * s))
+}
+
+private fun DrawScope.drawMythicMateriaRing(s: Float, animTime: Float) {
+    val silver = Color(0xFFBDC3C7); val makoGreen = Color(0xFF00FF88)
+    val pulse = 0.85f + sin(animTime * 0.005f) * 0.15f
+    drawCircle(silver, radius = 24f * s, center = Offset(50f * s, 50f * s), style = Stroke(6f * s))
+    drawCircle(makoGreen.copy(alpha = pulse), radius = 12f * s, center = Offset(50f * s, 50f * s))
+    drawCircle(Color.White, radius = 4f * s, center = Offset(48f * s, 48f * s))
+}
+
+// --- VIVI ORNITIER MISSING PIECES ---
+private fun DrawScope.drawMythicStardustRod(s: Float, animTime: Float) {
+    val wood = Color(0xFF5D4037); val starGold = Color(0xFFFFD700)
+    val pulse = 0.85f + sin(animTime * 0.005f) * 0.15f
+    drawLine(wood, Offset(30f * s, 85f * s), Offset(70f * s, 35f * s), strokeWidth = 6f * s)
+    // Star on top
+    val star = Path().apply { moveTo(70f * s, 10f * s); lineTo(75f * s, 25f * s); lineTo(90f * s, 25f * s); lineTo(78f * s, 35f * s); lineTo(82f * s, 50f * s); lineTo(70f * s, 40f * s); lineTo(58f * s, 50f * s); lineTo(62f * s, 35f * s); lineTo(50f * s, 25f * s); lineTo(65f * s, 25f * s); close() }
+    drawPath(star, starGold)
+    drawCircle(Color.White.copy(alpha = pulse), radius = 6f * s, center = Offset(70f * s, 30f * s))
+}
+
+private fun DrawScope.drawMythicMagusRing(s: Float, animTime: Float) {
+    val obsidian = Color(0xFF2C3E50); val voidPurple = Color(0xFF9B59B6)
+    val pulse = 0.85f + sin(animTime * 0.005f) * 0.15f
+    drawCircle(obsidian, radius = 22f * s, center = Offset(50f * s, 50f * s), style = Stroke(8f * s))
+    drawCircle(voidPurple.copy(alpha = pulse), radius = 10f * s, center = Offset(50f * s, 50f * s))
+    drawCircle(Color.White, radius = 3f * s, center = Offset(48f * s, 48f * s))
+}
+
+// --- YUNA MISSING PIECES ---
+private fun DrawScope.drawMythicHighSummonerGown(s: Float, animTime: Float) {
+    val whiteSilk = Color(0xFFFDFEFE); val obiYellow = Color(0xFFF1C40F); val floralPink = Color(0xFFFF69B4)
+    val gown = Path().apply { moveTo(35f * s, 15f * s); lineTo(65f * s, 15f * s); lineTo(85f * s, 85f * s); lineTo(15f * s, 85f * s); close() }
+    drawPath(gown, whiteSilk)
+    // Obi sash
+    drawRect(obiYellow, Offset(30f * s, 45f * s), Size(40f * s, 12f * s))
+    drawRect(Color(0xFFE67E22), Offset(30f * s, 45f * s), Size(40f * s, 12f * s), style = Stroke(2f * s))
+    // Floral accent
+    drawCircle(floralPink, radius = 6f * s, center = Offset(30f * s, 70f * s))
+    drawCircle(floralPink, radius = 6f * s, center = Offset(70f * s, 70f * s))
+}
+
+private fun DrawScope.drawMythicNirvanaOrb(s: Float, animTime: Float) {
+    val gold = Color(0xFFFFD700); val holyCyan = Color(0xFF00E5FF)
+    val pulse = 0.85f + sin(animTime * 0.005f) * 0.15f
+    val orb = Path().apply { moveTo(50f * s, 15f * s); lineTo(70f * s, 50f * s); lineTo(50f * s, 85f * s); lineTo(30f * s, 50f * s); close() }
+    drawPath(orb, gold, style = Stroke(4f * s))
+    drawCircle(holyCyan.copy(alpha = pulse), radius = 14f * s, center = Offset(50f * s, 50f * s))
+    drawCircle(Color.White, radius = 4f * s, center = Offset(50f * s, 50f * s))
+}
+
+
+// --- CECIL MISSING PIECES ---
+private fun DrawScope.drawMythicExcalibur(s: Float, animTime: Float) {
+    val bladeHoly = Color(0xFFFDFEFE); val goldHilt = Color(0xFFFFD700); val blueGlow = Color(0xFF3498DB)
+    val pulse = 0.85f + sin(animTime * 0.005f) * 0.15f
+    val blade = Path().apply { moveTo(50f * s, 10f * s); lineTo(60f * s, 25f * s); lineTo(55f * s, 70f * s); lineTo(45f * s, 70f * s); lineTo(40f * s, 25f * s); close() }
+    drawPath(blade, bladeHoly)
+    drawPath(blade, blueGlow.copy(alpha = pulse), style = Stroke(2f * s))
+    // Ornate Guard
+    val guard = Path().apply { moveTo(25f * s, 60f * s); quadraticTo(50f * s, 75f * s, 75f * s, 60f * s); lineTo(70f * s, 75f * s); lineTo(30f * s, 75f * s); close() }
+    drawPath(guard, goldHilt)
+    drawRect(goldHilt, Offset(46f * s, 75f * s), Size(8f * s, 15f * s)) // Handle
+}
+
+private fun DrawScope.drawMythicPaladinPlate(s: Float, animTime: Float) {
+    val plateWhite = Color(0xFFF4F6F7); val goldTrim = Color(0xFFFFD700); val holyBlue = Color(0xFF3498DB)
+    val chest = Path().apply { moveTo(30f * s, 20f * s); lineTo(70f * s, 20f * s); lineTo(80f * s, 50f * s); lineTo(50f * s, 85f * s); lineTo(20f * s, 50f * s); close() }
+    drawPath(chest, plateWhite); drawPath(chest, goldTrim, style = Stroke(3f * s))
+    // Wings crest
+    val wingLeft = Path().apply { moveTo(50f * s, 35f * s); lineTo(30f * s, 30f * s); lineTo(35f * s, 50f * s); close() }
+    val wingRight = Path().apply { moveTo(50f * s, 35f * s); lineTo(70f * s, 30f * s); lineTo(65f * s, 50f * s); close() }
+    drawPath(wingLeft, holyBlue); drawPath(wingRight, holyBlue)
 }
 
 private fun DrawScope.drawRareSword(s: Float, animTime: Float) {
@@ -1268,4 +1929,94 @@ private fun DrawScope.drawLegendaryCrown(s: Float, animTime: Float) {
     drawPath(crownPath, gold)
     drawCircle(cyanGlow, radius = 8f * s, center = Offset(50f * s, 45f * s))
     drawCircle(pureWhite, radius = 3f * s, center = Offset(50f * s, 45f * s))
+}
+
+
+@Preview(showBackground = true, backgroundColor = 0xFF0A0512)
+@Composable
+fun AllMythicSetsPreview() {
+    Column(modifier = Modifier.padding(16.dp)) {
+
+        // Helper function for quick item generation in preview
+        @Composable
+        fun PreviewItem(setId: String, slot: ItemSlot) {
+            EquipmentSprite(
+                item = Item(name = "Preview", rarity = Rarity.MYTHIC, slot = slot, setId = setId, id = "", emoji = "", floorFound = 100),
+                slot = slot,
+                modifier = Modifier.size(60.dp)
+            )
+        }
+
+        // ROW 1: Cloud & Vivi
+        Row {
+            PreviewItem("set_crystal", ItemSlot.WEAPON)
+            PreviewItem("set_crystal", ItemSlot.ARMOR)
+            PreviewItem("set_crystal", ItemSlot.SHIELD)
+        }
+        Row {
+            PreviewItem("set_magus", ItemSlot.WEAPON)
+            PreviewItem("set_magus", ItemSlot.ARMOR)
+            PreviewItem("set_magus", ItemSlot.ACCESSORY)
+        }
+        Spacer(Modifier.height(8.dp))
+
+        // ROW 2: Aerith & Yuffie
+        Row {
+            PreviewItem("set_devout", ItemSlot.WEAPON)
+            PreviewItem("set_devout", ItemSlot.ARMOR)
+            PreviewItem("set_devout", ItemSlot.ACCESSORY)
+            Spacer(modifier = Modifier.weight(1f))
+            PreviewItem("set_shadow", ItemSlot.WEAPON)
+            PreviewItem("set_shadow", ItemSlot.ARMOR)
+            PreviewItem("set_shadow", ItemSlot.ACCESSORY)
+        }
+        Spacer(Modifier.height(8.dp))
+
+        // ROW 3: Tifa & Kain
+        Row {
+            PreviewItem("set_chakra", ItemSlot.WEAPON)
+            PreviewItem("set_chakra", ItemSlot.ARMOR)
+            PreviewItem("set_chakra", ItemSlot.ACCESSORY)
+            Spacer(modifier = Modifier.weight(1f))
+            PreviewItem("set_wyvern", ItemSlot.WEAPON)
+            PreviewItem("set_wyvern", ItemSlot.ARMOR)
+            PreviewItem("set_wyvern", ItemSlot.SHIELD)
+        }
+        Spacer(Modifier.height(8.dp))
+
+        // ROW 4: Red Mage & Yuna
+        Row {
+            PreviewItem("set_crimson", ItemSlot.WEAPON)
+            PreviewItem("set_crimson", ItemSlot.ARMOR)
+            PreviewItem("set_crimson", ItemSlot.ACCESSORY)
+            Spacer(modifier = Modifier.weight(1f))
+            PreviewItem("set_evoker", ItemSlot.WEAPON)
+            PreviewItem("set_evoker", ItemSlot.ARMOR)
+            PreviewItem("set_evoker", ItemSlot.ACCESSORY)
+        }
+        Spacer(Modifier.height(8.dp))
+
+        // ROW 5: Edward & Auron
+        Row {
+            PreviewItem("set_apollo", ItemSlot.WEAPON)
+            PreviewItem("set_apollo", ItemSlot.ARMOR)
+            PreviewItem("set_apollo", ItemSlot.ACCESSORY)
+            Spacer(modifier = Modifier.weight(1f))
+            PreviewItem("set_genji", ItemSlot.WEAPON)
+            PreviewItem("set_genji", ItemSlot.ARMOR)
+            PreviewItem("set_genji", ItemSlot.ACCESSORY)
+        }
+        Spacer(Modifier.height(8.dp))
+
+        // ROW 6: Cecil & Luneth
+        Row {
+            PreviewItem("set_aegis", ItemSlot.WEAPON)
+            PreviewItem("set_aegis", ItemSlot.ARMOR)
+            PreviewItem("set_aegis", ItemSlot.SHIELD)
+            Spacer(modifier = Modifier.weight(1f))
+            PreviewItem("set_onion", ItemSlot.WEAPON)
+            PreviewItem("set_onion", ItemSlot.ARMOR)
+            PreviewItem("set_onion", ItemSlot.SHIELD)
+        }
+    }
 }
