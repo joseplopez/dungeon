@@ -1189,4 +1189,29 @@
         <string name="hero_level_normal">Lvl %1$d / %2$d</string>
         <string name="hero_breakthrough_button">সীমা অতিক্রম</string>
         <string name="hero_breakthrough_req">প্রয়োজন 1x %1$s</string>
+
+        <string name="craft_btn_forge_mythic">পৌরাণিক সরঞ্জাম তৈরি করুন</string>
+        <string name="craft_msg_mythic_forge_success">পৌরাণিক সরঞ্জাম সফলভাবে তৈরি করা হয়েছে!</string>
+        <string name="craft_err_requires_level_10_legendary">স্লটের সাথে মিল থাকা একটি +10 লিজেন্ডারি আইটেম প্রয়োজন।</string>
+        <string name="craft_label_mythic_recipe">পৌরাণিক কামারশালের রেসিপি:</string>
+        <string name="set_bonus_active_banner">✨ সেট বোনাস সক্রিয় ✨</string>
+        <string name="craft_tab_mythic_forge">পৌরাণিক কামারশাল</string>
+
+        <!-- Mythic Gear & Sets -->
+        <string name="item_rarity_mythic">পৌরাণিক</string>
+        <string name="set_crystal">স্ট্রাইফের উত্তরাধিকার</string>
+        <string name="set_magus">ভিভির স্মৃতিমালা</string>
+        <string name="set_devout">অ্যারিয়েথের আশীর্বাদ</string>
+        <string name="set_shadow">ইউফির অবাধ্যতা</string>
+        <string name="set_chakra">টিফার ফাইনাল হেভেন</string>
+        <string name="set_wyvern">কেইনের প্রாயশ্চিত্ত</string>
+        <string name="set_crimson">অ্যালিসাইয়ের সংকল্প</string>
+        <string name="set_evoker">ইউনার আত্মাশান্তি অনুষ্ঠান</string>
+        <string name="set_apollo">এডওয়ার্ডের সুর</string>
+        <string name="set_genji">অরনের বুশিডো</string>
+        <string name="set_aegis">সেসিলের মুক্তি</string>
+        <string name="set_onion">লুনেথের ভাগ্য</string>
+
+        <string name="mat_mythic_shard_name">পৌরাণিক খণ্ড</string>
+        <string name="mat_mythic_shard_desc">গভীর স্তরে পাওয়া প্রাচীন পৌরাণিক শক্তির উজ্জ্বল খণ্ড।</string>
     </resources>

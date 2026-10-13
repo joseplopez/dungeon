@@ -1188,4 +1188,29 @@
         <string name="hero_level_normal">%1$d / %2$d рів.</string>
         <string name="hero_breakthrough_button">ПРОРИВ</string>
         <string name="hero_breakthrough_req">Потрібно 1x %1$s</string>
+
+        <string name="craft_btn_forge_mythic">КУВАТИ МІФІЧНЕ СПОРЯДЖЕННЯ</string>
+        <string name="craft_msg_mythic_forge_success">Міфічне спорядження успішно викувано!</string>
+        <string name="craft_err_requires_level_10_legendary">Потрібен легендарний предмет +10, що відповідає слоту.</string>
+        <string name="craft_label_mythic_recipe">Рецепт міфічного кування:</string>
+        <string name="set_bonus_active_banner">✨ Бонус комплекту активний ✨</string>
+        <string name="craft_tab_mythic_forge">МІФІЧНЕ КУВАННЯ</string>
+
+        <!-- Mythic Gear & Sets -->
+        <string name="item_rarity_mythic">Міфічний</string>
+        <string name="set_crystal">Спадщина Страйфа</string>
+        <string name="set_magus">Спогади Віві</string>
+        <string name="set_devout">Благословення Аеріс</string>
+        <string name="set_shadow">Виклик Юффі</string>
+        <string name="set_chakra">Фінальний рай Тіфи</string>
+        <string name="set_wyvern">Спокута Кайна</string>
+        <string name="set_crimson">Рішучість Алізе</string>
+        <string name="set_evoker">Обряд Юни</string>
+        <string name="set_apollo">Мелодія Едварда</string>
+        <string name="set_genji">Бусідо Аурона</string>
+        <string name="set_aegis">Спокута Сесіла</string>
+        <string name="set_onion">Доля Лунета</string>
+
+        <string name="mat_mythic_shard_name">Міфічний уламок</string>
+        <string name="mat_mythic_shard_desc">Сяючий уламок древньої міфічної сили, знайдений на глибоких поверхах.</string>
     </resources>

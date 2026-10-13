@@ -1189,4 +1189,29 @@
         <string name="hero_level_normal">Nvl %1$d / %2$d</string>
         <string name="hero_breakthrough_button">AVANÇO</string>
         <string name="hero_breakthrough_req">Requer 1x %1$s</string>
+
+        <string name="craft_btn_forge_mythic">FORJAR EQUIPAMENTO MÍTICO</string>
+        <string name="craft_msg_mythic_forge_success">Equipamento mítico forjado com sucesso!</string>
+        <string name="craft_err_requires_level_10_legendary">Requer um item lendário +10 correspondente ao slot.</string>
+        <string name="craft_label_mythic_recipe">Receita de Forja Mítica:</string>
+        <string name="set_bonus_active_banner">✨ Bônus de Conjunto Ativo ✨</string>
+        <string name="craft_tab_mythic_forge">FORJA MÍTICA</string>
+
+        <!-- Mythic Gear & Sets -->
+        <string name="item_rarity_mythic">Mítico</string>
+        <string name="set_crystal">Legado de Strife</string>
+        <string name="set_magus">Memórias de Vivi</string>
+        <string name="set_devout">Bênção de Aerith</string>
+        <string name="set_shadow">Desafio de Yuffie</string>
+        <string name="set_chakra">Céu Final de Tifa</string>
+        <string name="set_wyvern">Expiação de Kain</string>
+        <string name="set_crimson">Determinação de Alisaie</string>
+        <string name="set_evoker">Rito de Yuna</string>
+        <string name="set_apollo">Melodia de Edward</string>
+        <string name="set_genji">Bushido de Auron</string>
+        <string name="set_aegis">Redenção de Cecil</string>
+        <string name="set_onion">Destino de Luneth</string>
+
+        <string name="mat_mythic_shard_name">Fragmento Mítico</string>
+        <string name="mat_mythic_shard_desc">Fragmento radiante de antigo poder mítico encontrado em andares profundos.</string>
     </resources>

@@ -1190,4 +1190,29 @@
         <string name="hero_level_normal">مستوى %1$d / %2$d</string>
         <string name="hero_breakthrough_button">اختراق</string>
         <string name="hero_breakthrough_req">يتطلب 1x %1$s</string>
+
+        <string name="craft_btn_forge_mythic">صنع معدات خرافية</string>
+        <string name="craft_msg_mythic_forge_success">تم تصنيع المعدات الخرافية بنجاح!</string>
+        <string name="craft_err_requires_level_10_legendary">يتطلب عنصرًا أسطوريًا +10 متوافقًا مع الخانة.</string>
+        <string name="craft_label_mythic_recipe">وصفة الحدادة الخرافية:</string>
+        <string name="set_bonus_active_banner">✨ مكافأة المجموعة نشطة ✨</string>
+        <string name="craft_tab_mythic_forge">الحدادة الخرافية</string>
+
+        <!-- Mythic Gear & Sets -->
+        <string name="item_rarity_mythic">خرافي</string>
+        <string name="set_crystal">إرث سترايف</string>
+        <string name="set_magus">ذكريات فيفي</string>
+        <string name="set_devout">بركة إيريث</string>
+        <string name="set_shadow">تحدي يوفي</string>
+        <string name="set_chakra">جنة تيفا الأخيرة</string>
+        <string name="set_wyvern">كفارة كين</string>
+        <string name="set_crimson">عزيمة أليساي</string>
+        <string name="set_evoker">طقوس يونا</string>
+        <string name="set_apollo">لحن إدوارد</string>
+        <string name="set_genji">بوشيدو أورون</string>
+        <string name="set_aegis">خلاص سيسيل</string>
+        <string name="set_onion">قدر لونيث</string>
+
+        <string name="mat_mythic_shard_name">شظية خرافية</string>
+        <string name="mat_mythic_shard_desc">شظية متوهجة من القوة الخرافية القديمة توجد في الطوابق العميقة.</string>
     </resources>

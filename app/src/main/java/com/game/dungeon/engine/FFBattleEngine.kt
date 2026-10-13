@@ -147,17 +147,29 @@ class FFBattleEngine(private val context: Context) {
                 }
 
                 if (currentFloor >= 100) {
-                    val mythicChance = if (bossTemplate != null) 0.25f else 0.01f
+                    val mythicChance = if (bossTemplate != null) 0.05f else 0.001f
                     if (Random.nextFloat() * 100f < mythicChance) {
-                        itemsFound.add(
-                            Item.random(
-                                floor = currentFloor,
-                                context = context,
-                                relicBonuses = relicBonuses,
-                                minRarity = Rarity.MYTHIC,
-                                dimension = dimension.number
-                            )
+                        // 1. Generate the base mythic item first
+                        val baseMythic = Item.random(
+                            floor = currentFloor,
+                            context = context,
+                            relicBonuses = relicBonuses,
+                            minRarity = Rarity.MYTHIC,
+                            dimension = dimension.number
                         )
+
+                        // 2. Filter valid mythic sets that match this item's slot
+                        val compatibleSets = MythicSet.entries.filter { baseMythic.slot in it.allowedSlots }
+                        val chosenSet = if (compatibleSets.isNotEmpty()) compatibleSets.random() else MythicSet.entries.random()
+
+                        // 3. Stamp the correct set ID and lore name onto the drop
+                        val setName = try { context.getString(chosenSet.nameRes) } catch (_: Exception) { "Mythic Gear" }
+                        val finalMythicDrop = baseMythic.copy(
+                            setId = chosenSet.id,
+                            name = setName
+                        )
+
+                        itemsFound.add(finalMythicDrop)
                     }
                 }
 

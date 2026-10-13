@@ -1189,4 +1189,29 @@
         <string name="hero_level_normal">Sev %1$d / %2$d</string>
         <string name="hero_breakthrough_button">SINIR AŞIMI</string>
         <string name="hero_breakthrough_req">1x %1$s Gerektirir</string>
+
+        <string name="craft_btn_forge_mythic">EFSANEVİ EKİPMAN ÜRET</string>
+        <string name="craft_msg_mythic_forge_success">Mitolojik Ekipman başarıyla üretildi!</string>
+        <string name="craft_err_requires_level_10_legendary">Yuvayla eşleşen +10 Efsanevi bir öğe gerektirir.</string>
+        <string name="craft_label_mythic_recipe">Mitolojik Dövme Tarifi:</string>
+        <string name="set_bonus_active_banner">✨ Set Bonusu Aktif ✨</string>
+        <string name="craft_tab_mythic_forge">MİTOLOJİK DÖVME</string>
+
+        <!-- Mythic Gear & Sets -->
+        <string name="item_rarity_mythic">Mitolojik</string>
+        <string name="set_crystal">Strife\'ın Mirası</string>
+        <string name="set_magus">Vivi\'nin Anıları</string>
+        <string name="set_devout">Aerith\'in Kutsaması</string>
+        <string name="set_shadow">Yuffie\'nin Meydan Okuması</string>
+        <string name="set_chakra">Tifa\'nın Son Cenneti</string>
+        <string name="set_wyvern">Kain\'in Kefareti</string>
+        <string name="set_crimson">Alisaie\'nin Kararlılığı</string>
+        <string name="set_evoker">Yuna\'nın Uğurlaması</string>
+        <string name="set_apollo">Edward\'ın Melodisi</string>
+        <string name="set_genji">Auron\'un Bushido\'su</string>
+        <string name="set_aegis">Cecil\'in Kurtuluşu</string>
+        <string name="set_onion">Luneth\'in Kaderi</string>
+
+        <string name="mat_mythic_shard_name">Mitolojik Parça</string>
+        <string name="mat_mythic_shard_desc">Derin katlarda bulunan kadim mitolojik gücün ışıltılı parçası.</string>
     </resources>

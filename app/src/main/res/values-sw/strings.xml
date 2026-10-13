@@ -1188,5 +1188,30 @@
     <string name="hero_level_normal">Kiw %1$d / %2$d</string>
     <string name="hero_breakthrough_button">VUNJA KIKOMO</string>
     <string name="hero_breakthrough_req">Inahitaji 1x %1$s</string>
-</resources>
+
+        <string name="craft_btn_forge_mythic">TENGENEZA ZANA ZAHADITHI</string>
+        <string name="craft_msg_mythic_forge_success">Zana za Hadithi zimetengenezwa kikamilifu!</string>
+        <string name="craft_err_requires_level_10_legendary">Inahitaji kifaa cha Hadithi +10 kinacholingana na nafasi.</string>
+        <string name="craft_label_mythic_recipe">Resepi ya Utengenezaji wa Hadithi:</string>
+        <string name="set_bonus_active_banner">✨ Bonasi ya Seti Ipo Hai ✨</string>
+        <string name="craft_tab_mythic_forge">UFUASI WA HADITHI</string>
+
+        <!-- Mythic Gear & Sets -->
+        <string name="item_rarity_mythic">Hadithi</string>
+        <string name="set_crystal">Urithi wa Strife</string>
+        <string name="set_magus">Kumbukumbu za Vivi</string>
+        <string name="set_devout">Baraka za Aerith</string>
+        <string name="set_shadow">Ukaidi wa Yuffie</string>
+        <string name="set_chakra">Mbingu ya Mwisho ya Tifa</string>
+        <string name="set_wyvern">Llipizo la Kain</string>
+        <string name="set_crimson">Msimamo wa Alisaie</string>
+        <string name="set_evoker">Uagaji wa Yuna</string>
+        <string name="set_apollo">Wimbo wa Edward</string>
+        <string name="set_genji">Bushido ya Auron</string>
+        <string name="set_aegis">Ukombozi wa Cecil</string>
+        <string name="set_onion">Majaaliwa ya Luneth</string>
+
+        <string name="mat_mythic_shard_name">Kipande cha Hadithi</string>
+        <string name="mat_mythic_shard_desc">Kipande kinachong\'aa cha nguvu za kale za hadithi kilichopatikana ghorofa za chini kabisa.</string>
+    </resources>
 

@@ -1188,4 +1188,30 @@
         <string name="hero_level_normal">Lv %1$d / %2$d</string>
         <string name="hero_breakthrough_button">ทะลวงขีดจำกัด</string>
         <string name="hero_breakthrough_req">ต้องการ 1x %1$s</string>
+
+
+        <string name="craft_btn_forge_mythic">ตีเหล็กอุปกรณ์ระดับตํานาน</string>
+        <string name="craft_msg_mythic_forge_success">หลอมอุปกรณ์ระดับตํานานสำเร็จแล้ว!</string>
+        <string name="craft_err_requires_level_10_legendary">ต้องการไอเทมระดับตํานาน +10 ที่ตรงกับช่องสวมใส่</string>
+        <string name="craft_label_mythic_recipe">สูตรการหลอมระดับตํานาน:</string>
+        <string name="set_bonus_active_banner">✨ โบนัสเซ็ตทํางานอยู่ ✨</string>
+        <string name="craft_tab_mythic_forge">การหลอมระดับตํานาน</string>
+
+        <!-- Mythic Gear & Sets -->
+        <string name="item_rarity_mythic">ตำนาน</string>
+        <string name="set_crystal">มรดกของสไตรฟ์</string>
+        <string name="set_magus">ความทรงจำของวีวี่</string>
+        <string name="set_devout">พรของแอริธ</string>
+        <string name="set_shadow">การท้าทายของยุฟฟี่</string>
+        <string name="set_chakra">ไฟนอลเฮเวนของทีฟา</string>
+        <string name="set_wyvern">การไถ่บาปของเคน</string>
+        <string name="set_crimson">ความมุ่งมั่นของอลิเซ</string>
+        <string name="set_evoker">การส่งวิญญาณของยูนะ</string>
+        <string name="set_apollo">บทเพลงของเอ็ดเวิร์ด</string>
+        <string name="set_genji">วิถีซามูไรของออรอน</string>
+        <string name="set_aegis">การไถ่บาปของเซซิล</string>
+        <string name="set_onion">โชคชะตาของลูเนธ</string>
+
+        <string name="mat_mythic_shard_name">เศษเสี้ยวตำนาน</string>
+        <string name="mat_mythic_shard_desc">ชิ้นส่วนเปล่งประกายแห่งพลังตำนานโบราณที่พบในชั้นลึก</string>
     </resources>

@@ -1189,4 +1189,29 @@
         <string name="hero_level_normal">Stufe %1$d / %2$d</string>
         <string name="hero_breakthrough_button">DURCHBRUCH</string>
         <string name="hero_breakthrough_req">Benötigt 1x %1$s</string>
+
+        <string name="craft_btn_forge_mythic">MYTHISCHE AUSRÜSTUNG SCHMIEDEN</string>
+        <string name="craft_msg_mythic_forge_success">Mythische Ausrüstung erfolgreich geschmiedet!</string>
+        <string name="craft_err_requires_level_10_legendary">Erfordert einen legendären Gegenstand +10 für diesen Platz.</string>
+        <string name="craft_label_mythic_recipe">Mythischer Schmiedeplan:</string>
+        <string name="set_bonus_active_banner">✨ Set-Bonus aktiv ✨</string>
+        <string name="craft_tab_mythic_forge">MYTHISCHE SCHMIEDE</string>
+
+        <!-- Mythic Gear & Sets -->
+        <string name="item_rarity_mythic">Mythisch</string>
+        <string name="set_crystal">Strifes Vermächtnis</string>
+        <string name="set_magus">Vivis Erinnerungen</string>
+        <string name="set_devout">Aeriths Segen</string>
+        <string name="set_shadow">Yuffies Trotz</string>
+        <string name="set_chakra">Tifas Finaler Himmel</string>
+        <string name="set_wyvern">Kains Sühne</string>
+        <string name="set_crimson">Alisaies Entschlossenheit</string>
+        <string name="set_evoker">Yunas Geleit</string>
+        <string name="set_apollo">Edwards Melodie</string>
+        <string name="set_genji">Aurons Bushido</string>
+        <string name="set_aegis">Cecils Erlösung</string>
+        <string name="set_onion">Luneths Schicksal</string>
+
+        <string name="mat_mythic_shard_name">Mythischer Splitter</string>
+        <string name="mat_mythic_shard_desc">Strahlender Splitter uralter mythischer Macht, der in tiefen Ebenen gefunden wird.</string>
     </resources>

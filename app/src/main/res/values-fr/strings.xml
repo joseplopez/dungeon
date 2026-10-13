@@ -1188,4 +1188,30 @@
         <string name="hero_level_normal">Nv %1$d / %2$d</string>
         <string name="hero_breakthrough_button">DÉPASSER</string>
         <string name="hero_breakthrough_req">Requiert 1x %1$s</string>
+
+
+        <string name="craft_btn_forge_mythic">FORGER ÉQUIPEMENT MYTHIQUE</string>
+        <string name="craft_msg_mythic_forge_success">Équipement mythique forgé avec succès !</string>
+        <string name="craft_err_requires_level_10_legendary">Nécessite un objet légendaire +10 correspondant à l\'emplacement.</string>
+        <string name="craft_label_mythic_recipe">Recette de forge mythique :</string>
+        <string name="set_bonus_active_banner">✨ Bonus d\'ensemble actif ✨</string>
+        <string name="craft_tab_mythic_forge">FORGE MYTHIQUE</string>
+
+        <!-- Mythic Gear & Sets -->
+        <string name="item_rarity_mythic">Mythique</string>
+        <string name="set_crystal">Héritage de Strife</string>
+        <string name="set_magus">Souvenirs de Vivi</string>
+        <string name="set_devout">Bénédiction d\'Aerith</string>
+        <string name="set_shadow">Défiance de Yuffie</string>
+        <string name="set_chakra">Dernier Ciel de Tifa</string>
+        <string name="set_wyvern">Expiation de Kain</string>
+        <string name="set_crimson">Résolution d\'Alisaie</string>
+        <string name="set_evoker">Cérémonie de Yuna</string>
+        <string name="set_apollo">Mélodie d\'Edward</string>
+        <string name="set_genji">Bushido d\'Auron</string>
+        <string name="set_aegis">Rédemption de Cecil</string>
+        <string name="set_onion">Destin de Luneth</string>
+
+        <string name="mat_mythic_shard_name">Éclat mythique</string>
+        <string name="mat_mythic_shard_desc">Éclat radieux de pouvoir mythique ancien trouvé dans les profondeurs.</string>
     </resources>

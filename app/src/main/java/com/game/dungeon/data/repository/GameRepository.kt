@@ -501,6 +501,8 @@ class GameRepository @Inject constructor(
         database.withTransaction {
             database.materialDao.addMaterial("mythic_shard", shardsToAdd)
             database.materialDao.addMaterial("boss_trophy_3", trophiesToAdd)
+            codexDao.discoverEntry(entryId = "mythic_shard", category = "MATERIAL")
+            codexDao.discoverEntry(entryId = "boss_trophy_3", category = "MATERIAL")
 
             val state = database.gameStateDao.getGameStateOnce()
             val dim = state?.currentDimension ?: 1

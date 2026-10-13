@@ -1188,4 +1188,29 @@
         <string name="hero_level_normal">Lv %1$d / %2$d</string>
         <string name="hero_breakthrough_button">限界突破</string>
         <string name="hero_breakthrough_req">必要: 1x %1$s</string>
+
+        <string name="craft_btn_forge_mythic">ミシック装備の鍛造</string>
+        <string name="craft_msg_mythic_forge_success">ミシック装備の鍛造に成功しました！</string>
+        <string name="craft_err_requires_level_10_legendary">スロットに一致する+10のレジェンダリーアイテムが必要です。</string>
+        <string name="craft_label_mythic_recipe">ミシック鍛造レシピ:</string>
+        <string name="set_bonus_active_banner">✨ セットボーナス発動中 ✨</string>
+        <string name="craft_tab_mythic_forge">ミシック鍛造</string>
+
+        <!-- Mythic Gear & Sets -->
+        <string name="item_rarity_mythic">ミシック</string>
+        <string name="set_crystal">ストライフの遺志</string>
+        <string name="set_magus">ビビの記憶</string>
+        <string name="set_devout">エアリスの祈り</string>
+        <string name="set_shadow">ユフィの不屈</string>
+        <string name="set_chakra">ティファのファイナルヘブン</string>
+        <string name="set_wyvern">カインの贖罪</string>
+        <string name="set_crimson">アリゼーの決意</string>
+        <string name="set_evoker">ユウナの異界送り</string>
+        <string name="set_apollo">ギルバートの調べ</string>
+        <string name="set_genji">アーロンの武士道</string>
+        <string name="set_aegis">セシルの救済</string>
+        <string name="set_onion">ルーネスの宿命</string>
+
+        <string name="mat_mythic_shard_name">ミシックの欠片</string>
+        <string name="mat_mythic_shard_desc">深層で見つかる古代のミシックパワーを秘めた輝く欠片。</string>
     </resources>
