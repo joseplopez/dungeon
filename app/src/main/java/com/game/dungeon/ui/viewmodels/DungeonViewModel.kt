@@ -3,6 +3,7 @@ package com.game.dungeon.ui.viewmodels
 import android.app.Activity
 import android.content.Context
 import androidx.annotation.StringRes
+import androidx.compose.runtime.toLong
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.game.dungeon.R
@@ -84,7 +85,7 @@ class DungeonViewModel @Inject constructor(
   data class RunSummary(
     val currentFloor: Int = 1,
     val gilEarnedThisRun: Long = 0,
-    val magiciteEarnedThisRun: Int = 0,
+    val magiciteEarnedThisRun: Long = 0,
     val gilLostToPenalty: Long = 0,
     val itemsFoundThisRun: List<Item> = emptyList(),
     val materialsEarned: Map<String, Int> = emptyMap(),
@@ -105,9 +106,9 @@ class DungeonViewModel @Inject constructor(
     val runComplete: Boolean = false,
     val runSummary: RunSummary? = null,
     val gilEarnedThisRun: Long = 0,
-    val magiciteEarnedThisRun: Int = 0,
+    val magiciteEarnedThisRun: Long = 0,
     val lastFloorGil: Long = 0,
-    val lastFloorMagicite: Int = 0,
+    val lastFloorMagicite: Long = 0,
     val gilLostToPenalty: Long = 0,
     val itemsFoundThisRun: List<Item> = emptyList(),
     val bossesKilledThisRun: Int = 0,
@@ -131,7 +132,8 @@ class DungeonViewModel @Inject constructor(
     val pendingFallenHeroIds: Set<String> = emptySet(),
     val materialsFoundThisRun: Map<String, Int> = emptyMap(),
     val lastDefeatedSlotIndex: Int = 0,
-    val floatingLootEffects: List<FloatingLootEffect> = emptyList()
+    val floatingLootEffects: List<FloatingLootEffect> = emptyList(),
+    val dungeonMode: DungeonMode = DungeonMode.REGULAR
   )
 
   data class FFLogEntry(
@@ -142,7 +144,7 @@ class DungeonViewModel @Inject constructor(
   )
   enum class LogType { HERO_ATTACK, ENEMY_ATTACK, ABILITY, SUMMON, HEAL, SYSTEM, BOSS, HERO_FELL, LOOT }
 
-  fun startRun(party: List<Hero>, startFloor: Int = 1) {
+  fun startRun(party: List<Hero>, startFloor: Int = 1, mode: DungeonMode = DungeonMode.REGULAR) {
     battleJob?.cancel()
     val gs = gameState.value ?: GameState()
     val dimension = FFDimensionData.getDimension(gs.currentDimension)
@@ -157,8 +159,8 @@ class DungeonViewModel @Inject constructor(
             val items = repo.getEquippedItems(hero.id).first()
             val stats = hero.calculateStats(items, relics)
             
-            val newHpBonus = (stats["HP"] ?: hero.baseMaxHp) - hero.baseMaxHp
-            val newMpBonus = (stats["MP"] ?: hero.baseMaxMp) - hero.baseMaxMp
+            val newHpBonus = (stats["HP"] ?: hero.baseMaxHp.toLong()) - hero.baseMaxHp
+            val newMpBonus = (stats["MP"] ?: hero.baseMaxMp.toLong()) - hero.baseMaxMp
             val oldMaxHp = hero.maxHp
             val oldMaxMp = hero.maxMp
 
@@ -166,12 +168,12 @@ class DungeonViewModel @Inject constructor(
                 currentHp = if (hero.currentHp >= oldMaxHp) hero.baseMaxHp + newHpBonus else hero.currentHp,
                 currentMp = if (hero.currentMp >= oldMaxMp) hero.baseMaxMp + newMpBonus else hero.currentMp
             ).apply {
-                attackBonus = (stats["ATK"] ?: baseAttack) - baseAttack
-                defenseBonus = (stats["DEF"] ?: baseDefense) - baseDefense
-                magicBonus = (stats["MAG"] ?: baseMagic) - baseMagic
+                attackBonus = (stats["ATK"] ?: baseAttack.toLong()) - baseAttack
+                defenseBonus = (stats["DEF"] ?: baseDefense.toLong()) - baseDefense
+                magicBonus = (stats["MAG"] ?: baseMagic.toLong()) - baseMagic
                 hpBonus = newHpBonus
                 mpBonus = newMpBonus
-                critChance = stats["CRIT_CHANCE"] ?: 5
+                critChance = stats["CRIT_CHANCE"]?.toInt() ?: 5
                 critDamage = stats["CRIT_DAMAGE"] ?: 50
                 jobMasteryLevel = relics.jobMasteryLevels[hero.heroClass] ?: 0
             }
@@ -184,7 +186,8 @@ class DungeonViewModel @Inject constructor(
             heroes = partyWithStats,
             originalPartySize = party.size,
             speed = savedSpeed,
-            isRunning = true
+            isRunning = true,
+            dungeonMode = mode
         )
 
         analytics.logRunStarted(startFloor.coerceAtLeast(1))
@@ -196,6 +199,7 @@ class DungeonViewModel @Inject constructor(
                 startFloor = startFloor.coerceAtLeast(1),
                 speed = battleState.value.speed,
                 relicBonuses = relics,
+                mode = mode,
                 isPaused = { battleState.value.isPaused }
             ) { event -> handleEvent(event) }
         }
@@ -450,6 +454,12 @@ class DungeonViewModel @Inject constructor(
                 highestFloor = if (isNewDimMax) newFloor else currentGs.highestFloor,
                 lifetimeHighestFloor = if (isNewLifetimeMax) newFloor else currentGs.lifetimeHighestFloor
             )
+
+            if (battleState.value.dungeonMode == DungeonMode.BOSS_LAIR) {
+                if (newFloor > currentGs.highestBossLairFloor) {
+                    nextGs = nextGs.copy(highestBossLairFloor = newFloor)
+                }
+            }
             
             // Award Job Mastery EXP
             val heroClasses = battleState.value.heroes.map { it.heroClass }.distinct()
@@ -578,7 +588,7 @@ class DungeonViewModel @Inject constructor(
               ) }
 
               // Restart the battle from the same floor
-              startRun(healedHeroes, currentState.currentFloor)
+              startRun(healedHeroes, currentState.currentFloor, currentState.dungeonMode)
           }
       }
   }
@@ -594,7 +604,7 @@ class DungeonViewModel @Inject constructor(
 
       // Death Penalty
       val penalty = if (currentState.heroes.isEmpty()) (grossEarned * 0.30f).toInt() else 0
-      val netGil = (grossEarned - penalty).toLong()
+      val netGil = (grossEarned - penalty)
       
       repo.addGil(netGil)
       repo.addMagicite(magicite)
@@ -664,6 +674,7 @@ class DungeonViewModel @Inject constructor(
             startFloor = currentFloor,
             speed = speed,
             relicBonuses = relics,
+            mode = battleState.value.dungeonMode,
             isPaused = { battleState.value.isPaused }
         ) { event -> handleEvent(event) }
     }

@@ -59,7 +59,7 @@ fun DrawScope.drawItemSprite(item: Item, animTime: Float = 0f) {
             drawMythicSetPiece(item, s, animTime)
             return@withTransform
         }
-        val isMagicalWeapon = item.slot == ItemSlot.WEAPON && (item.magicBonus > 0 && item.attackBonus == 0)
+        val isMagicalWeapon = item.slot == ItemSlot.WEAPON && (item.magicBonus > 0 && item.attackBonus == 0L)
         val isAxeOrBow = item.slot == ItemSlot.WEAPON && (item.emoji in listOf("🪓", "🏹") || item.name.contains("Axe", ignoreCase = true) || item.name.contains("Bow", ignoreCase = true))
         val isRobe = item.slot == ItemSlot.ARMOR && (item.name.contains("Robe", ignoreCase = true) || item.name.contains("Garb", ignoreCase = true) || item.name.contains("Gown", ignoreCase = true) || item.emoji in listOf("👘", "🔮", "🤍", "👗"))
         val isBarrier = item.slot == ItemSlot.SHIELD && (item.name.contains("Barrier", ignoreCase = true) || item.name.contains("Mirror", ignoreCase = true) || item.emoji in listOf("🌀", "🪞"))

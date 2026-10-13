@@ -762,7 +762,7 @@ fun EmptyPartySlot() {
 @Composable
 fun InnTopBar(
     gil: Long,
-    magicite: Int,
+    magicite: Long,
     isMuted: Boolean,
     onToggleMusic: () -> Unit,
     onOpenResourceShop: (com.game.dungeon.monetization.ResourceType) -> Unit,

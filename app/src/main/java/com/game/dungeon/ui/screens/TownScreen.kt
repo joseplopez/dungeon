@@ -6,6 +6,7 @@ import androidx.annotation.StringRes
 import androidx.compose.animation.*
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.*
+import androidx.compose.foundation.gestures.detectTapGestures
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.grid.GridCells
@@ -24,6 +25,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.graphicsLayer
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
@@ -35,6 +37,7 @@ import androidx.compose.ui.window.DialogProperties
 import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
+import com.game.dungeon.BuildConfig
 import com.game.dungeon.R
 import com.game.dungeon.data.models.*
 import com.game.dungeon.ui.components.*
@@ -58,9 +61,11 @@ fun TownScreen(
     navController: NavController,
     isMuted: Boolean,
     onToggleMusic: () -> Unit,
-    viewModel: TownViewModel = hiltViewModel()
+    viewModel: TownViewModel = hiltViewModel(),
+    onNavigateToBossLair: (party: List<Hero>, startFloor: Int) -> Unit = { _, _ -> }
 ) {
     val gs by viewModel.gameState.collectAsState()
+    val party by viewModel.party.collectAsState()
     val availableCrystals by viewModel.availableCrystals.collectAsState()
     val gil = gs?.gold ?: 0L
     val magicite = gs?.magicite ?: 0
@@ -75,6 +80,17 @@ fun TownScreen(
     var showUpgrades by remember { mutableStateOf(false) }
     var showSupportDialog by remember { mutableStateOf(false) }
     var showBulletinDialog by remember { mutableStateOf(false) }
+    var showBossLairPrep by remember { mutableStateOf(false) }
+    var showBossLairDiscoveryPopup by remember { mutableStateOf(false) }
+
+    val canSeeBossLair = (gs?.currentDimension ?: 1) >= 11 || BuildConfig.ENABLE_BOSS_LAIR_TESTING
+
+    LaunchedEffect(canSeeBossLair, gs?.hasSeenBossLairPopup) {
+        if (gs != null && canSeeBossLair && !gs!!.hasSeenBossLairPopup) {
+            showBossLairDiscoveryPopup = true
+            viewModel.setHasSeenBossLairPopup()
+        }
+    }
 
     var activeSpeechNpcId by remember { mutableStateOf<String?>(null) }
     var activeSpeechText by remember { mutableStateOf<String?>(null) }
@@ -115,9 +131,27 @@ fun TownScreen(
     }
 
     PixelTheme {
-        Box(Modifier.fillMaxSize()) {
+        Box(Modifier
+            .fillMaxSize()
+            .pointerInput(canSeeBossLair) { // Re-binds if unlock state changes
+                detectTapGestures { tapOffset ->
+                    if (canSeeBossLair && isBossLairClicked(
+                            tapX = tapOffset.x,
+                            tapY = tapOffset.y,
+                            screenWidth = size.width.toFloat(),
+                            screenHeight = size.height.toFloat(),
+                            scrollOffset = scrollState.value.toFloat() // Gets live scroll position
+                        )
+                    ) {
+                        showBossLairPrep = true // Trigger your boss screen!
+                    }
+                }
+            }) {
             // Parallax Night Background
-            TownParallaxBackground(scrollState.value.toFloat())
+            TownParallaxBackground(
+                scrollOffset = scrollState.value.toFloat(),
+                isBossLairUnlocked = canSeeBossLair
+            )
 
             Column(Modifier.fillMaxSize()) {
                 // Header
@@ -396,6 +430,74 @@ fun TownScreen(
             onBuyProduct = { act, product -> viewModel.buyProduct(act, product) },
             onDismiss = { viewModel.closeResourceShop() }
         )
+    }
+
+    if (showBossLairDiscoveryPopup) {
+        BossLairDiscoveryDialog(
+            onDismiss = { showBossLairDiscoveryPopup = false }
+        )
+    }
+
+    if (showBossLairPrep) {
+        BossLairPrepScreen(
+            party = party,
+            highestBossLairFloor = gs?.highestBossLairFloor ?: 1,
+            onEnterBossLair = { startFloor ->
+                showBossLairPrep = false
+                onNavigateToBossLair(party, startFloor)
+            },
+            onDismiss = { showBossLairPrep = false }
+        )
+    }
+}
+
+@Composable
+fun BossLairDiscoveryDialog(
+    onDismiss: () -> Unit
+) {
+    Dialog(
+        onDismissRequest = onDismiss,
+        properties = DialogProperties(usePlatformDefaultWidth = false)
+    ) {
+        GoldenBorderBox(
+            Modifier
+                .fillMaxWidth(0.9f)
+                .widthIn(max = 420.dp)
+                .wrapContentHeight()
+                .background(BgDarkest)
+                .testTag("BossLairDiscoveryDialog")
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(20.dp),
+                horizontalAlignment = CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
+                Text("💀", fontSize = 32.sp)
+                Text(
+                    safeStringResource(R.string.boss_lair_discovered_title),
+                    style = PixelHeading,
+                    color = GoldBright,
+                    textAlign = TextAlign.Center
+                )
+                PixelDivider()
+                Text(
+                    safeStringResource(R.string.boss_lair_discovered_desc),
+                    style = PixelBody,
+                    color = StoneGray,
+                    textAlign = TextAlign.Center
+                )
+                Spacer(Modifier.height(8.dp))
+                PixelButton(
+                    label = safeStringResource(R.string.btn_ok),
+                    onClick = onDismiss,
+                    modifier = Modifier
+                        .fillMaxWidth(0.6f)
+                        .height(40.dp)
+                )
+            }
+        }
     }
 }
 

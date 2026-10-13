@@ -10,7 +10,7 @@ interface AnalyticsManager {
     
     // Helper methods for common events
     fun logRunStarted(floor: Int)
-    fun logRunFinished(floor: Int, gil: Long, magicite: Int, status: String)
+    fun logRunFinished(floor: Int, gil: Long, magicite: Long, status: String)
     fun logFloorReached(floor: Int)
     fun logBossDefeated(bossName: String, floor: Int)
     fun logHeroLevelUp(heroName: String, job: String, level: Int)
@@ -38,11 +38,11 @@ class FirebaseAnalyticsManager @Inject constructor(
         logEvent("run_started", params)
     }
 
-    override fun logRunFinished(floor: Int, gil: Long, magicite: Int, status: String) {
+    override fun logRunFinished(floor: Int, gil: Long, magicite: Long, status: String) {
         val params = Bundle().apply {
             putInt("end_floor", floor)
             putLong("gil_earned", gil)
-            putInt("magicite_earned", magicite)
+            putLong("magicite_earned", magicite)
             putString("status", status) // e.g., "RETREAT", "DEFEAT"
         }
         logEvent("run_finished", params)

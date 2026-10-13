@@ -555,7 +555,7 @@ class CraftingViewModelTest {
         val legItem = createTestItem(enhancementLevel = 10).copy(rarity = Rarity.LEGENDARY)
         val mythicItem = legItem.copy(rarity = Rarity.MYTHIC, setId = "set_crystal")
 
-        whenever(repository.craftMythicEquipment(any<Item>(), any())).thenReturn(Result.success(mythicItem))
+        whenever(repository.craftMythicEquipment(any<Item>(), any<String>(), any<android.content.Context>())).thenReturn(Result.success(mythicItem))
         viewModel.selectItem(legItem)
 
         viewModel.uiState.test {
@@ -576,7 +576,7 @@ class CraftingViewModelTest {
         val mockContext = mock<android.content.Context>()
         val legItem = createTestItem(enhancementLevel = 10).copy(rarity = Rarity.LEGENDARY)
 
-        whenever(repository.craftMythicEquipment(any<Item>(), any()))
+        whenever(repository.craftMythicEquipment(any<Item>(), any<String>(), any<android.content.Context>()))
             .thenReturn(Result.failure(Exception("Insufficient Mythic Shards")))
         viewModel.selectItem(legItem)
 

@@ -2,9 +2,14 @@ package com.game.dungeon.ui.components
 
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.Canvas
+import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.BoxWithConstraints
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
@@ -12,6 +17,7 @@ import androidx.compose.ui.graphics.*
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.drawscope.rotate
+import androidx.compose.ui.input.pointer.pointerInput
 import com.game.dungeon.data.models.BiomeType
 import kotlin.math.*
 
@@ -3420,23 +3426,40 @@ fun InnBackground() {
         drawTavernInterior(fireFlicker = fireFlicker, fireFlicker2 = fireFlicker2)
     }
 }
-
 @Composable
-fun TownParallaxBackground(scrollOffset: Float) {
-    Canvas(Modifier.fillMaxSize()) {
+fun TownParallaxBackground(
+    scrollOffset: Float,
+    isBossLairUnlocked: Boolean = false
+) {
+    val currentIsUnlocked by rememberUpdatedState(isBossLairUnlocked)
+
+    // Lightning Animation Timer
+    val infiniteTransition = rememberInfiniteTransition(label = "lightning")
+    val lightningProgress by infiniteTransition.animateFloat(
+        initialValue = 0f,
+        targetValue = 1f,
+        animationSpec = infiniteRepeatable(
+            animation = tween(2000, easing = LinearEasing),
+            repeatMode = RepeatMode.Restart
+        ),
+        label = "lightning_progress"
+    )
+
+    Canvas(
+        modifier = Modifier
+            .fillMaxSize()
+    ) {
         val W = size.width
         val H = size.height
 
         // =========================================================================
-        // LAYER 0: STARRY NIGHT SKY & CRESCENT MOON (Parallax 0.02x)
+        // LAYER 0: STARRY NIGHT SKY
         // =========================================================================
-        // Gradient Night Sky
         val skyGradient = Brush.verticalGradient(
             colors = listOf(Color(0xFF030712), Color(0xFF130924), Color(0xFF28103A))
         )
         drawRect(brush = skyGradient, size = size)
 
-        // Twinkling Stars
         val starRng = java.util.Random(42)
         repeat(75) { i ->
             val origX = starRng.nextFloat() * (W * 3f)
@@ -3451,42 +3474,129 @@ fun TownParallaxBackground(scrollOffset: Float) {
             }
         }
 
-        // Crescent Moon in Upper Right Sky
         val moonX = W * 0.82f - (scrollOffset * 0.02f % W)
         val moonY = H * 0.14f
         val moonRadius = 22f
-
-        // Moon Glow Aura
         drawCircle(Color(0xFFFFF9E6).copy(alpha = 0.15f), radius = moonRadius * 1.8f, center = Offset(moonX, moonY))
         drawCircle(Color(0xFFFFF9E6).copy(alpha = 0.35f), radius = moonRadius * 1.3f, center = Offset(moonX, moonY))
-        // Moon Body
         drawCircle(Color(0xFFFFFDF0), radius = moonRadius, center = Offset(moonX, moonY))
-        // Shadow overlap creating crescent shape
         drawCircle(Color(0xFF130924), radius = moonRadius * 0.9f, center = Offset(moonX - 8f, moonY - 4f))
 
         // =========================================================================
-        // LAYER 1: DISTANT CRIMSON MOUNTAINS & CLIFFSIDE GOTHIC CASTLE (Parallax 0.12x)
+        // LAYER 1 & 1.5: MOUNTAINS AND DYNAMIC BOSS LAIR
         // =========================================================================
         val mountainY = H * 0.52f
-        val mWidth = 600f
-        var mx = -(scrollOffset * 0.12f % mWidth)
+        val mWidth = 850f
+
+        val totalScrollX = (scrollOffset * 0.12f)
+        val startingMountainIndex = (totalScrollX / mWidth).toLong()
+        var mx = -(totalScrollX % mWidth)
+        var currentIndex = startingMountainIndex
 
         while (mx < W + mWidth) {
-            // Far Mountain Silhouette (Dull Crimson/Purple)
+            val isCaveMountain = (currentIndex % 3 == 1L)
+            val peakY = if (isCaveMountain) mountainY - 280f else mountainY - 140f
+
             val pathFar = Path().apply {
                 moveTo(mx, mountainY)
                 lineTo(mx + mWidth * 0.25f, mountainY - 90f)
-                lineTo(mx + mWidth * 0.55f, mountainY - 170f)
+                lineTo(mx + mWidth * 0.5f, peakY)
                 lineTo(mx + mWidth * 0.75f, mountainY - 80f)
                 lineTo(mx + mWidth, mountainY)
                 close()
             }
             drawPath(pathFar, Color(0xFF281232))
 
-            // Nearer Mountain Silhouette (Deep Violet/Crimson)
+            if (currentIsUnlocked && isCaveMountain) {
+                val scale = 1.0f
+                val cW = 160f * scale
+                val cH = 120f * scale
+                val caveX = mx + mWidth * 0.5f
+                val top = peakY + 40f
+                val caveY = top + cH
+                val left = caveX - cW / 2f
+
+                // 1. THUNDER ANIMATION
+                if (lightningProgress > 0.8f) {
+                    val alpha = (lightningProgress - 0.8f) * 5f
+                    val boltCount = 4
+                    val lightningRng = java.util.Random(777L + (lightningProgress * 20).toInt() + currentIndex)
+
+                    repeat(boltCount) { i ->
+                        val startX = (caveX - 100f) + (i * 66f) + (lightningRng.nextFloat() - 0.5f) * 40f
+                        val segments = 8
+                        var currentY = peakY - 250f
+                        val segmentHeight = (top - currentY + cH * 0.5f) / segments
+
+                        val path = Path()
+                        var currentX = startX
+                        path.moveTo(currentX, currentY)
+
+                        var forkPath: Path? = null
+                        repeat(segments) { seg ->
+                            currentY += segmentHeight
+                            val maxOffset = if (seg == segments - 1) 0f else (lightningRng.nextFloat() - 0.5f) * 70f
+                            currentX += maxOffset
+                            path.lineTo(currentX, currentY)
+
+                            if (seg == 3 && lightningRng.nextBoolean()) {
+                                forkPath = Path().apply {
+                                    moveTo(currentX, currentY)
+                                    lineTo(currentX + (if (i % 2 == 0) 50f else -50f), currentY + segmentHeight * 1.5f)
+                                }
+                            }
+                        }
+
+                        val outerColor = if (i % 2 == 0) Color(0xFF00E5FF) else Color(0xFFFFD700)
+                        drawPath(path, outerColor.copy(alpha = alpha * 0.8f), style = Stroke(width = 10f, cap = StrokeCap.Round, join = StrokeJoin.Round))
+                        drawPath(path, Color.White.copy(alpha = alpha), style = Stroke(width = 4f, cap = StrokeCap.Round, join = StrokeJoin.Round))
+
+                        forkPath?.let { f ->
+                            drawPath(f, outerColor.copy(alpha = alpha * 0.6f), style = Stroke(width = 5f))
+                            drawPath(f, Color.White.copy(alpha = alpha * 0.8f), style = Stroke(width = 2f))
+                        }
+                    }
+
+                    drawCircle(Color(0xFF00E5FF).copy(alpha = alpha * 0.15f), radius = 300f, center = Offset(caveX, top))
+                }
+
+                // 2. CAVE STRUCTURE
+                val caveRockPath = Path().apply {
+                    moveTo(left, caveY)
+                    lineTo(left - cW * 0.1f, top + cH * 0.6f)
+                    lineTo(left + cW * 0.1f, top + cH * 0.05f)
+                    quadraticTo(left + cW * 0.5f, top - cH * 0.2f, left + cW * 0.9f, top + cH * 0.05f)
+                    lineTo(left + cW * 1.1f, top + cH * 0.6f)
+                    lineTo(left + cW, caveY)
+                    close()
+                }
+                drawPath(caveRockPath, Color(0xFF15081E))
+                drawPath(caveRockPath, Color(0xFF3B264D), style = Stroke(4f))
+
+                val caveMouthPath = Path().apply {
+                    moveTo(left + cW * 0.2f, caveY)
+                    lineTo(left + cW * 0.25f, top + cH * 0.3f)
+                    quadraticTo(left + cW * 0.5f, top + cH * 0.1f, left + cW * 0.75f, top + cH * 0.3f)
+                    lineTo(left + cW * 0.8f, caveY)
+                    close()
+                }
+                drawPath(caveMouthPath, Color(0xFF000000))
+                drawPath(caveMouthPath, Color(0xFF4A3459), style = Stroke(8f, join = StrokeJoin.Round))
+                drawPath(caveMouthPath, Color(0xFF990000).copy(alpha = 0.4f))
+
+                drawCircle(Color(0xFFFFD700), radius = cW * 0.08f, center = Offset(caveX, top + cH * 0.15f))
+                drawCircle(Color(0xFFFFD700).copy(alpha = 0.4f), radius = cW * 0.15f, center = Offset(caveX, top + cH * 0.15f))
+
+                val eyeY = top + cH * 0.65f
+                val eyePathLeft = Path().apply { moveTo(left+cW*0.32f, eyeY-6f); lineTo(left+cW*0.42f, eyeY); lineTo(left+cW*0.37f, eyeY+6f); close() }
+                val eyePathRight = Path().apply { moveTo(left+cW*0.68f, eyeY-6f); lineTo(left+cW*0.58f, eyeY); lineTo(left+cW*0.63f, eyeY+6f); close() }
+                drawPath(eyePathLeft, Color.Red)
+                drawPath(eyePathRight, Color.Red)
+            }
+
             val pathNear = Path().apply {
                 moveTo(mx + 80f, mountainY)
-                lineTo(mx + mWidth * 0.35f, mountainY - 130f)
+                lineTo(mx + mWidth * 0.35f, mountainY - 110f)
                 lineTo(mx + mWidth * 0.65f, mountainY - 60f)
                 lineTo(mx + mWidth + 80f, mountainY)
                 close()
@@ -3494,15 +3604,17 @@ fun TownParallaxBackground(scrollOffset: Float) {
             drawPath(pathNear, Color(0xFF1D0A26))
 
             mx += mWidth
+            currentIndex++
         }
 
-        // --- CLIFFSIDE GOTHIC CASTLE KEEP (Right Side Landmark) ---
+        // =========================================================================
+        // LAYER 1.8: CLIFFSIDE GOTHIC CASTLE KEEP
+        // =========================================================================
         val castleRngX = (W * 1.8f) - (scrollOffset * 0.12f % (W * 3f))
         val castleX = if (castleRngX < -300f) castleRngX + (W * 3f) else castleRngX
         val cliffY = H * 0.52f
 
         if (castleX in -300f..(W + 300f)) {
-            // High Rock Cliff Base
             val cliffPath = Path().apply {
                 moveTo(castleX - 70f, cliffY + 20f)
                 lineTo(castleX - 40f, cliffY - 60f)
@@ -3512,13 +3624,9 @@ fun TownParallaxBackground(scrollOffset: Float) {
             }
             drawPath(cliffPath, Color(0xFF14071C))
 
-            // Castle Main Spire Keep
             val castleColor = Color(0xFF0C0314)
             val windowGlow = Color(0xFFF39C12)
-
-            // Main Central Tower
             drawRect(castleColor, Offset(castleX, cliffY - 170f), Size(40f, 110f))
-            // Pointed Roof Peak
             val mainSpire = Path().apply {
                 moveTo(castleX - 4f, cliffY - 170f)
                 lineTo(castleX + 20f, cliffY - 220f)
@@ -3527,7 +3635,6 @@ fun TownParallaxBackground(scrollOffset: Float) {
             }
             drawPath(mainSpire, castleColor)
 
-            // Left Side Flank Tower
             drawRect(castleColor, Offset(castleX - 30f, cliffY - 130f), Size(24f, 70f))
             val leftSpire = Path().apply {
                 moveTo(castleX - 34f, cliffY - 130f)
@@ -3537,7 +3644,6 @@ fun TownParallaxBackground(scrollOffset: Float) {
             }
             drawPath(leftSpire, castleColor)
 
-            // Right Side Flank Tower
             drawRect(castleColor, Offset(castleX + 46f, cliffY - 130f), Size(24f, 70f))
             val rightSpire = Path().apply {
                 moveTo(castleX + 42f, cliffY - 130f)
@@ -3547,7 +3653,6 @@ fun TownParallaxBackground(scrollOffset: Float) {
             }
             drawPath(rightSpire, castleColor)
 
-            // Illuminated Orange Castle Windows
             drawRect(windowGlow, Offset(castleX + 16f, cliffY - 150f), Size(8f, 14f))
             drawRect(windowGlow, Offset(castleX + 16f, cliffY - 110f), Size(8f, 14f))
             drawRect(windowGlow, Offset(castleX - 22f, cliffY - 110f), Size(6f, 10f))
@@ -3555,54 +3660,42 @@ fun TownParallaxBackground(scrollOffset: Float) {
         }
 
         // =========================================================================
-        // LAYER 2: DENSE FOREST CANOPY & WOODEN FENCE (Parallax 0.35x)
+        // LAYER 2 & 3: FOREGROUND FOREST AND STREET
         // =========================================================================
         val forestY = H * 0.64f
         val treeW = 120f
         var tx = -(scrollOffset * 0.35f % treeW)
 
         while (tx < W + treeW) {
-            // Dark forest background trunks & shadow canopy
             drawRect(Color(0xFF061406), Offset(tx + 15f, forestY - 70f), Size(20f, 90f))
             drawCircle(Color(0xFF092109), radius = 45f, center = Offset(tx + 25f, forestY - 80f))
             drawCircle(Color(0xFF0F330F), radius = 38f, center = Offset(tx + 65f, forestY - 75f))
             drawCircle(Color(0xFF0B260B), radius = 42f, center = Offset(tx + 100f, forestY - 80f))
-
             tx += treeW
         }
 
-        // Rustic Wooden Post-and-Rail Fence along Forest Line
         val fenceW = 90f
         var fx = -(scrollOffset * 0.35f % fenceW)
         val fenceY = forestY + 5f
         val fenceColor = Color(0xFF4A321A)
 
         while (fx < W + fenceW) {
-            // Horizontal fence rails
             drawRect(fenceColor, Offset(fx, fenceY - 18f), Size(fenceW, 4f))
             drawRect(fenceColor, Offset(fx, fenceY - 8f), Size(fenceW, 4f))
-            // Vertical fence posts
             drawRect(Color(0xFF38220F), Offset(fx + 10f, fenceY - 26f), Size(6f, 28f))
             drawRect(Color(0xFF38220F), Offset(fx + 55f, fenceY - 26f), Size(6f, 28f))
-
             fx += fenceW
         }
 
-        // =========================================================================
-        // LAYER 3: FOREGROUND DIRT GROUND, COBBLESTONE PATH & GRASS (Scroll 1.0x)
-        // =========================================================================
         val groundY = H * 0.72f
-        // Warm Rich Dirt Base
         drawRect(Color(0xFF382212), Offset(0f, groundY), Size(W, H - groundY))
-        drawRect(Color(0xFF28150A), Offset(0f, groundY), Size(W, 6f)) // Ground border shadow
+        drawRect(Color(0xFF28150A), Offset(0f, groundY), Size(W, 6f))
 
-        // Winding Cobblestone Road / Pathways
         val cobW = 90f
         var cx = -(scrollOffset % cobW)
         val roadY = groundY + 8f
 
         while (cx < W + cobW) {
-            // Rounded Cobblestone Pavers
             drawRect(Color(0xFF626F73), Offset(cx + 4f, roadY), Size(24f, 12f))
             drawRect(Color(0xFF4D5659), Offset(cx + 32f, roadY + 2f), Size(26f, 11f))
             drawRect(Color(0xFF626F73), Offset(cx + 62f, roadY), Size(22f, 12f))
@@ -3613,26 +3706,59 @@ fun TownParallaxBackground(scrollOffset: Float) {
             drawRect(Color(0xFF626F73), Offset(cx + 6f, roadY + 32f), Size(26f, 11f))
             drawRect(Color(0xFF4D5659), Offset(cx + 36f, roadY + 32f), Size(28f, 11f))
             drawRect(Color(0xFF626F73), Offset(cx + 68f, roadY + 32f), Size(18f, 11f))
-
             cx += cobW
         }
 
-        // Foreground Grass Tufts & Stones
         val grassW = 100f
         var gx = -(scrollOffset % grassW)
         val grassColor = Color(0xFF1E380C)
 
         while (gx < W + grassW) {
-            // Grass tuft blades
             drawRect(grassColor, Offset(gx + 12f, H - 22f), Size(4f, 18f))
             drawRect(grassColor, Offset(gx + 18f, H - 26f), Size(4f, 22f))
             drawRect(grassColor, Offset(gx + 24f, H - 20f), Size(4f, 16f))
 
-            // Small roadside pebble stones
             drawCircle(Color(0xFF525E61), radius = 2.5f, center = Offset(gx + 55f, H - 12f))
             drawCircle(Color(0xFF3B4447), radius = 3.5f, center = Offset(gx + 62f, H - 10f))
-
             gx += grassW
         }
     }
+}
+
+fun isBossLairClicked(
+    tapX: Float,
+    tapY: Float,
+    screenWidth: Float,
+    screenHeight: Float,
+    scrollOffset: Float
+): Boolean {
+    val mWidth = 850f
+    val mountainY = screenHeight * 0.52f
+    val totalScrollX = (scrollOffset * 0.12f)
+    val startingMountainIndex = (totalScrollX / mWidth).toLong()
+    var mx = -(totalScrollX % mWidth)
+    var currentIndex = startingMountainIndex
+
+    val scale = 1.0f
+    val cW = 160f * scale
+    val cH = 120f * scale
+
+    while (mx < screenWidth + mWidth) {
+        if (currentIndex % 3 == 1L) {
+            val peakY = mountainY - 280f
+            val caveX = mx + mWidth * 0.5f
+            val top = peakY + 40f
+            val caveY = top + cH
+            val left = caveX - cW / 2f
+
+            // Generous Hitbox (expanded by 120px in all directions)
+            if (tapX in (left - 120f)..(left + cW + 120f) &&
+                tapY in (top - 120f)..(caveY + 120f)) {
+                return true
+            }
+        }
+        mx += mWidth
+        currentIndex++
+    }
+    return false
 }

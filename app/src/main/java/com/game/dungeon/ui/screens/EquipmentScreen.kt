@@ -701,7 +701,7 @@ private fun SellAllConfirmationOverlay(
     }
 }
 
-private data class StatBonusDisplay(val resId: Int, val amount: Int, val isPercent: Boolean, val color: Color)
+private data class StatBonusDisplay(val resId: Int, val amount: Long, val isPercent: Boolean, val color: Color)
 
 @Composable
 private fun ItemStatBonusList(item: Item) {
@@ -721,7 +721,7 @@ private fun getItemStatBonuses(item: Item): List<StatBonusDisplay> = buildList {
     if (item.defenseBonus > 0) add(StatBonusDisplay(R.string.stat_defense, item.defenseBonus, false, GoldBright))
     if (item.magicBonus > 0) add(StatBonusDisplay(R.string.stat_magic, item.magicBonus, false, GoldBright))
     if (item.hpBonus > 0) add(StatBonusDisplay(R.string.stat_hp, item.hpBonus, false, GoldBright))
-    if (item.critChanceBonus > 0) add(StatBonusDisplay(R.string.stat_crit_chance, item.critChanceBonus, true, HpGreen))
+    if (item.critChanceBonus > 0) add(StatBonusDisplay(R.string.stat_crit_chance, item.critChanceBonus.toLong(), true, HpGreen))
     if (item.critDamageBonus > 0) add(StatBonusDisplay(R.string.stat_crit_damage, item.critDamageBonus, true, HpGreen))
 }
 

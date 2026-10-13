@@ -12,9 +12,9 @@ class MythicSetTest {
         val crystalSet = MythicSet.fromId("set_crystal")
         assertNotNull(crystalSet)
         assertEquals(MythicSet.CRYSTAL, crystalSet)
-        assertEquals(HeroClass.KNIGHT, crystalSet?.targetClass)
+        assertEquals(HeroClass.WARRIOR, crystalSet?.targetClass)
         assertEquals(3, crystalSet?.requiredPieces)
-        assertEquals(0.4f, crystalSet?.statMultipliers?.get("DEF_MULT"))
+        assertEquals(0.4f, crystalSet?.statMultipliers?.get("ATK_MULT"))
         assertEquals(0.25f, crystalSet?.statMultipliers?.get("HP_MULT"))
 
         val unknownSet = MythicSet.fromId("non_existent_set")

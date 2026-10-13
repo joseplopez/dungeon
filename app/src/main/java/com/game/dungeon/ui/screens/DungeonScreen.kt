@@ -278,7 +278,7 @@ fun DungeonTopBar(
     dimension: FFDimension?,
     currentBiome: FFBiome?,
     gilTotal: Long,
-    magiciteTotal: Int,
+    magiciteTotal: Long,
     isBossFloor: Boolean,
     onRetreat: () -> Unit,
     speed: BattleSpeed,
@@ -917,7 +917,7 @@ fun BattleLogPanel(
 fun RunCompleteOverlay(
     currentFloor: Int,
     gilEarnedThisRun: Long,
-    magiciteEarnedThisRun: Int,
+    magiciteEarnedThisRun: Long,
     gilLostToPenalty: Long,
     fallenHeroes: List<Hero>,
     itemsFoundThisRun: List<Item>,

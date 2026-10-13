@@ -25,6 +25,7 @@ class TownViewModel @Inject constructor(
 ) : ViewModel() {
 
     val gameState = repository.getGameState().stateIn(viewModelScope, SharingStarted.Eagerly, GameState())
+    val party = repository.getParty().stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
 
     private val _showResourceShop = MutableStateFlow(false)
     val showResourceShop = _showResourceShop.asStateFlow()
@@ -168,9 +169,15 @@ class TownViewModel @Inject constructor(
         adManager.showRewardedAd(activity) {
             viewModelScope.launch {
                 val currentGs = repository.getGameStateOnce() ?: return@launch
-                val reward = (currentGs.totalMagiciteEarned * 0.01f).toInt().coerceAtLeast(5)
-                repository.addMagicite(reward)
+                val reward = (currentGs.totalMagiciteEarned * 0.01).coerceAtLeast(5.0)
+                repository.addMagicite(reward.toLong())
             }
+        }
+    }
+
+    fun setHasSeenBossLairPopup() {
+        viewModelScope.launch {
+            repository.setHasSeenBossLairPopup(true)
         }
     }
 

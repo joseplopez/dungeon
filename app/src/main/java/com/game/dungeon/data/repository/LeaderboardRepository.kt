@@ -33,7 +33,7 @@ class LeaderboardRepository @Inject constructor(
             val existingMaxFloor = snapshot.child("maxFloor").getValue(Long::class.java)?.toInt() ?: 0
             val existingDim = snapshot.child("dimension").getValue(Long::class.java)?.toInt() ?: 1
             val existingDimMaxFloor = snapshot.child("dimensionMaxFloor").getValue(Long::class.java)?.toInt() ?: 0
-            val existingMagicite = snapshot.child("totalMagicite").getValue(Long::class.java)?.toInt() ?: 0
+            val existingMagicite = snapshot.child("totalMagicite").getValue(Long::class.java)?: 0
 
             val currentRunFloor = maxOf(gameState.highestFloor, 0)
             val currentLifetimeMax = maxOf(gameState.lifetimeHighestFloor, currentRunFloor)

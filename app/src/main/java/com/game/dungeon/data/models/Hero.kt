@@ -11,12 +11,12 @@ class Hero(
     @PrimaryKey val id: String = UUID.randomUUID().toString(),
     val heroClass: HeroClass,
     val name: String,             // random FF-style name from a list
-    var currentHp: Int,
-    var currentMp: Int,
+    var currentHp: Long,
+    var currentMp: Long,
     var level: Int = 1,           // Starting level is 1
     var maxLevel: Int = 20,       // Max level cap (default 20 for newly recruited heroes)
-    var exp: Int = 0,             // Current experience
-    var expToNextLevel: Int = 10, // XP needed for next level
+    var exp: Long = 0,             // Current experience
+    var expToNextLevel: Long = 10, // XP needed for next level
     var abilityCharge: Int = 0,   // 0-3, triggers special at 3
     val aiPriority: AIPriority,   // player-set per hero
     var weaponId: String? = null,
@@ -27,25 +27,25 @@ class Hero(
     val isInParty: Boolean = false,
     val partyPosition: Int = 0 // Position in the party list (0-indexed)
 ) {
-    @Ignore var attackBonus: Int = 0
-    @Ignore var defenseBonus: Int = 0
-    @Ignore var magicBonus: Int = 0
-    @Ignore var hpBonus: Int = 0
-    @Ignore var mpBonus: Int = 0
+    @Ignore var attackBonus: Long = 0
+    @Ignore var defenseBonus: Long = 0
+    @Ignore var magicBonus: Long = 0
+    @Ignore var hpBonus: Long = 0
+    @Ignore var mpBonus: Long = 0
     @Ignore var critChance: Int = 5
-    @Ignore var critDamage: Int = 50
+    @Ignore var critDamage: Long = 50
     @Ignore var jobMasteryLevel: Int = 0
 
     fun copy(
         id: String = this.id,
         heroClass: HeroClass = this.heroClass,
         name: String = this.name,
-        currentHp: Int = this.currentHp,
-        currentMp: Int = this.currentMp,
+        currentHp: Long = this.currentHp,
+        currentMp: Long = this.currentMp,
         level: Int = this.level,
         maxLevel: Int = this.maxLevel,
-        exp: Int = this.exp,
-        expToNextLevel: Int = this.expToNextLevel,
+        exp: Long = this.exp,
+        expToNextLevel: Long = this.expToNextLevel,
         abilityCharge: Int = this.abilityCharge,
         aiPriority: AIPriority = this.aiPriority,
         weaponId: String? = this.weaponId,
@@ -122,12 +122,12 @@ class Hero(
         var result = id.hashCode()
         result = 31 * result + heroClass.hashCode()
         result = 31 * result + name.hashCode()
-        result = 31 * result + currentHp
-        result = 31 * result + currentMp
+        result = (31 * result + currentHp).toInt()
+        result = (31 * result + currentMp).toInt()
         result = 31 * result + level
         result = 31 * result + maxLevel
-        result = 31 * result + exp
-        result = 31 * result + expToNextLevel
+        result = (31 * result + exp).toInt()
+        result = (31 * result + expToNextLevel).toInt()
         result = 31 * result + abilityCharge
         result = 31 * result + aiPriority.hashCode()
         result = 31 * result + (weaponId?.hashCode() ?: 0)
@@ -137,13 +137,13 @@ class Hero(
         result = 31 * result + (accessory2Id?.hashCode() ?: 0)
         result = 31 * result + isInParty.hashCode()
         result = 31 * result + partyPosition
-        result = 31 * result + attackBonus
-        result = 31 * result + defenseBonus
-        result = 31 * result + magicBonus
-        result = 31 * result + hpBonus
-        result = 31 * result + mpBonus
+        result = (31 * result + attackBonus).toInt()
+        result = (31 * result + defenseBonus).toInt()
+        result = (31 * result + magicBonus).toInt()
+        result = (31 * result + hpBonus).toInt()
+        result = (31 * result + mpBonus).toInt()
         result = 31 * result + critChance
-        result = 31 * result + critDamage
+        result = (31 * result + critDamage).toInt()
         result = 31 * result + jobMasteryLevel
         return result
     }
@@ -177,7 +177,7 @@ class Hero(
     /**
      * Centralized experience logic. Returns true if leveled up.
      */
-    fun addExperience(amount: Int): Boolean {
+    fun addExperience(amount: Long): Boolean {
         val wasFullHp = currentHp >= maxHp
         val wasFullMp = currentMp >= maxMp
 
@@ -186,7 +186,7 @@ class Hero(
         while (exp >= expToNextLevel && level < maxLevel) {
             exp -= expToNextLevel
             level++
-            expToNextLevel = (expToNextLevel * 1.5).toInt()
+            expToNextLevel = (expToNextLevel * 1.5).toLong()
             leveledUp = true
         }
 
@@ -234,14 +234,14 @@ class Hero(
         return heroClass.baseDefense + (level - 1) * (heroClass.baseDefense / 8).coerceAtLeast(2)
     }
 
-    val maxHp: Int get() = baseMaxHp + hpBonus
-    val maxMp: Int get() = baseMaxMp + mpBonus
-    val attack: Int get() = baseAttack + attackBonus
-    val magic: Int get() = baseMagic + magicBonus
-    val defense: Int get() = baseDefense + defenseBonus
+    val maxHp: Long get() = baseMaxHp + hpBonus
+    val maxMp: Long get() = baseMaxMp + mpBonus
+    val attack: Long get() = baseAttack + attackBonus
+    val magic: Long get() = baseMagic + magicBonus
+    val defense: Long get() = baseDefense + defenseBonus
     val speed: Int get() = heroClass.baseSpeed + (level - 1) / 5 // Speed increases slowly
 
-    fun calculateStats(equippedItems: List<Item>, relicBonuses: RelicBonuses? = null): Map<String, Int> {
+    fun calculateStats(equippedItems: List<Item>, relicBonuses: RelicBonuses? = null): Map<String, Long> {
         if (relicBonuses != null) {
             jobMasteryLevel = relicBonuses.jobMasteryLevels[heroClass] ?: 0
         }
@@ -262,13 +262,13 @@ class Hero(
         val rawCrit = 5 + equippedItems.sumOf { it.critChanceBonus } + (relicBonuses?.critChanceBonus ?: 0) + masteryCritChance + petCritChance
         val finalCrit = (100f * rawCrit / (rawCrit + 50f)).toInt().coerceAtMost(85)
 
-        val statMap = mutableMapOf(
-            "HP" to baseMaxHp + equippedItems.sumOf { it.hpBonus } + (relicBonuses?.hpBonus ?: 0) + masteryHp + (loreBonus * 5),
+        val statMap: MutableMap<String, Long> = mutableMapOf(
+            "HP" to (baseMaxHp + equippedItems.sumOf { it.hpBonus } + (relicBonuses?.hpBonus ?: 0) + masteryHp + (loreBonus * 5)),
             "MP" to baseMaxMp + equippedItems.sumOf { it.mpBonus } + (relicBonuses?.mpBonus ?: 0) + masteryMp + (loreBonus * 2),
             "ATK" to baseAttack + equippedItems.sumOf { it.attackBonus } + (relicBonuses?.attackBonus ?: 0) + masteryAtk + loreBonus,
             "DEF" to baseDefense + equippedItems.sumOf { it.defenseBonus } + (relicBonuses?.defenseBonus ?: 0) + masteryDef + loreBonus,
             "MAG" to baseMagic + equippedItems.sumOf { it.magicBonus } + (relicBonuses?.magicBonus ?: 0) + masteryMag + loreBonus,
-            "CRIT_CHANCE" to finalCrit,
+            "CRIT_CHANCE" to finalCrit.toLong(),
             "CRIT_DAMAGE" to 50 + equippedItems.sumOf { it.critDamageBonus } + (relicBonuses?.critDamageBonus ?: 0) + masteryCritDmg + petCritDmg + (relicBonuses?.warRoomCritBonus ?: 0)
         )
 
@@ -281,7 +281,7 @@ class Hero(
                     if (key.endsWith("_MULT")) {
                         val statKey = key.removeSuffix("_MULT")
                         val current = statMap[statKey] ?: 0
-                        statMap[statKey] = current + (current * value).toInt()
+                        statMap[statKey] = current + (current * value.toDouble()).toLong()
                     } else if (key.endsWith("_ADD")) {
                         val statKey = when (key) {
                             "CRIT_CHANCE_ADD" -> "CRIT_CHANCE"
@@ -289,7 +289,7 @@ class Hero(
                             else -> key.removeSuffix("_ADD")
                         }
                         val current = statMap[statKey] ?: 0
-                        statMap[statKey] = current + value.toInt()
+                        statMap[statKey] = current + value.toLong()
                     }
                 }
             }
@@ -304,8 +304,8 @@ class Hero(
             val name = names.random()
             return Hero(
                 heroClass = heroClass, name = name,
-                currentHp = heroClass.baseHp,
-                currentMp = heroClass.baseMp,
+                currentHp = heroClass.baseHp.toLong(),
+                currentMp = heroClass.baseMp.toLong(),
                 aiPriority = heroClass.defaultPriority
             )
         }

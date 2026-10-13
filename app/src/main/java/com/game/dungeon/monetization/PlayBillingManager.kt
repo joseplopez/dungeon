@@ -190,7 +190,7 @@ class PlayBillingManager @Inject constructor(
         scope.launch {
             when (product.resourceType) {
                 ResourceType.GIL -> repository.addGil(product.rewardAmount, bypassCap = true)
-                ResourceType.MAGICITE -> repository.addMagicite(product.rewardAmount.toInt())
+                ResourceType.MAGICITE -> repository.addMagicite(product.rewardAmount)
             }
         }
     }

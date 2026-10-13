@@ -9,18 +9,18 @@ data class Enemy(
     val type: MonsterType = MonsterType.GOBLIN,
     val name: String,
     val emoji: String,
-    var currentHp: Int,
-    val maxHp: Int,
-    val attack: Int,
-    val defense: Int,
-    val magicDefense: Int = 0,
+    var currentHp: Long,
+    val maxHp: Long,
+    val attack: Long,
+    val defense: Long,
+    val magicDefense: Long = 0,
     val speed: Int = 5,
-    val gilReward: Int,
-    var magiciteDropped: Int = 0,
+    val gilReward: Long,
+    var magiciteDropped: Long = 0,
     val floor: Int,
     val isBoss: Boolean = false
 ) {
-    val gilDropped: Int get() = gilReward
+    val gilDropped: Long get() = gilReward
 
     companion object {
         fun fromTemplate(
@@ -71,13 +71,14 @@ data class Enemy(
             val rawAtk = (baseAtk + floorAtkBonus) * template.atkMult * globalAtkBoost * difficultyMult * totalDimMult * floorRamp * bossLateGameDampener
             val rawDef = (baseDef + floorDefBonus) * template.defMult * difficultyMult * totalDimMult * floorRamp * bossLateGameDampener
 
-            val safeHp = rawHp.coerceIn(10.0, Int.MAX_VALUE.toDouble()).toInt()
-            val safeAtk = rawAtk.coerceIn(1.0, (Int.MAX_VALUE / 2).toDouble()).toInt()
-            val safeDef = rawDef.coerceIn(0.0, (Int.MAX_VALUE / 4).toDouble()).toInt()
+            val safeHp = rawHp.coerceIn(10.0, Double.MAX_VALUE).toLong()
+            val safeAtk = rawAtk.coerceIn(1.0, (Double.MAX_VALUE / 2)).toLong()
+            val safeDef = rawDef.coerceIn(0.0, (Double.MAX_VALUE / 4)).toLong()
 
             // Gil scaling
             val floorGilMult = 1.0 + (floor.toDouble() * 0.02) + (kotlin.math.sqrt(floor.toDouble()) * 0.15)
-            val scaledGil = (template.gilReward * floorGilMult * (1.0 + (difficultyMult - 1.0) * 0.5)).coerceIn(template.gilReward.toDouble(), Int.MAX_VALUE.toDouble()).toInt()
+            val scaledGil = (template.gilReward * floorGilMult * (1.0 + (difficultyMult - 1.0) * 0.5)).coerceIn(template.gilReward.toDouble(),
+                Double.MAX_VALUE)
 
             // Magicite scaling
             val yieldMult = relicBonuses?.magiciteYieldBonus ?: 1.0f
@@ -111,10 +112,10 @@ data class Enemy(
                 currentHp = safeHp,
                 attack = safeAtk,
                 defense = safeDef,
-                magicDefense = (safeDef * 0.8f).toInt(),
+                magicDefense = (safeDef * 0.8).toLong(),
                 speed = (5 + (floor / 20) + (dimension.number - 1)).coerceAtMost(50),
-                gilReward = scaledGil,
-                magiciteDropped = magiciteQuantity,
+                gilReward = scaledGil.toLong(),
+                magiciteDropped = magiciteQuantity.toLong(),
                 floor = floor,
                 isBoss = template.isBoss
             )

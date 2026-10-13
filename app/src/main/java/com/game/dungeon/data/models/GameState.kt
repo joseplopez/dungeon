@@ -11,15 +11,15 @@ data class GameState(
     @PrimaryKey val id: Int = 1,
     val gold: Long = BuildConfig.INITIAL_GIL,
     val crystals: Map<CrystalColor, Boolean> = emptyMap(),  // owned crystals per color
-    val magicite: Int = BuildConfig.INITIAL_MAGICITE,
+    val magicite: Long = BuildConfig.INITIAL_MAGICITE,
     val currentDimension: Int = 1,
     val highestFloor: Int = 0,
-    val totalMagiciteEarned: Int = 0,
+    val totalMagiciteEarned: Long = 0,
     val fastestClearTime: Long = 0, // In milliseconds, 0 means not cleared yet
     val unlockedJobs: Set<HeroClass> = setOf(HeroClass.FREELANCER),
 
     // Hall of Fame / Achievement tracking (Resets each dimension)
-    val magiciteEarnedThisDim: Int = 0,
+    val magiciteEarnedThisDim: Long = 0,
     val dimStartTime: Long = System.currentTimeMillis(),
     val gilEarnedThisDim: Long = 0,
     val bossesKilledThisDim: Int = 0,
@@ -73,7 +73,9 @@ data class GameState(
     val petExp: Map<PetType, Int> = emptyMap(),
     val bossesDefeatedNames: Set<String> = emptySet(),
     val notifiedHiddenJobs: Set<HeroClass> = emptySet(),
-    val lastPartyClasses: List<HeroClass> = emptyList()
+    val lastPartyClasses: List<HeroClass> = emptyList(),
+    val hasSeenBossLairPopup: Boolean = false,
+    val highestBossLairFloor: Int = 1
 ) {
     val maxGil: Long get() =
         if (vaultLevel >= UpgradeType.VAULT.maxLevel) {

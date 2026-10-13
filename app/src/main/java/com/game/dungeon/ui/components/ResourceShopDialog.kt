@@ -28,9 +28,9 @@ import com.game.dungeon.ui.theme.*
 fun ResourceShopDialog(
     initialResourceType: ResourceType,
     currentGil: Long,
-    currentMagicite: Int,
+    currentMagicite: Long,
     totalGilEarned: Long,
-    totalMagiciteEarned: Int,
+    totalMagiciteEarned: Long,
     productDetailsMap: Map<String, ProductDetails>,
     onWatchGilAd: (Activity) -> Unit,
     onWatchMagiciteAd: (Activity) -> Unit,

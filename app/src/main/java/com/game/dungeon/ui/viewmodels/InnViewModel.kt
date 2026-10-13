@@ -315,8 +315,8 @@ class InnViewModel @Inject constructor(
         adManager.showRewardedAd(activity) {
             viewModelScope.launch {
                 val currentGs = repository.getGameStateOnce() ?: return@launch
-                val reward = (currentGs.totalMagiciteEarned * 0.005f).toInt().coerceAtLeast(2)
-                repository.addMagicite(reward)
+                val reward = (currentGs.totalMagiciteEarned * 0.005).coerceAtLeast(2.0)
+                repository.addMagicite(reward.toLong())
             }
         }
     }

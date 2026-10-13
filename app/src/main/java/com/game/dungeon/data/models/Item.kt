@@ -6,6 +6,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.game.dungeon.R
 import java.util.UUID
+import kotlin.math.sqrt
 import kotlin.random.Random
 
 enum class ItemSlot { WEAPON, ARMOR, SHIELD, ACCESSORY }
@@ -30,13 +31,13 @@ data class Item(
     val name: String,
     val slot: ItemSlot,
     val rarity: Rarity,
-    val attackBonus: Int = 0,
-    val defenseBonus: Int = 0,
-    val magicBonus: Int = 0,
-    val hpBonus: Int = 0,
-    val mpBonus: Int = 0,
+    val attackBonus: Long = 0,
+    val defenseBonus: Long = 0,
+    val magicBonus: Long = 0,
+    val hpBonus: Long = 0,
+    val mpBonus: Long = 0,
     val critChanceBonus: Int = 0,
-    val critDamageBonus: Int = 0,
+    val critDamageBonus: Long = 0,
     val emoji: String,
     val floorFound: Int,
     val ownerId: String? = null, // To track who is wearing it, or if it's in inventory
@@ -46,16 +47,16 @@ data class Item(
 ) {
     val sellValue: Long get() = (floorFound * 5L + rarity.ordinal * 20L).coerceAtLeast(5L)
 
-    val basePowerScore: Int get() = attackBonus + defenseBonus + magicBonus + (hpBonus / 5) + (mpBonus / 2) + (critChanceBonus * 2) + (critDamageBonus / 2)
+    val basePowerScore: Long get() = attackBonus + defenseBonus + magicBonus + (hpBonus / 5) + (mpBonus / 2) + (critChanceBonus * 2) + (critDamageBonus / 2)
 
     val socketBonus: Int get() = sockets.sumOf { it.socketedGem?.powerScore ?: 0 }
 
-    val powerScore: Int get() = (basePowerScore * (1.0 + enhancementLevel.coerceIn(0, 10) * 0.05)).toInt() + socketBonus
+    val powerScore: Double get() = (basePowerScore * (1.0 + enhancementLevel.coerceIn(0, 10) * 0.05)) + socketBonus
 
-    val effectiveAttackBonus: Int get() = (attackBonus * (1.0 + enhancementLevel.coerceIn(0, 10) * 0.05)).toInt() + sockets.sumOf { it.socketedGem?.attackBonus ?: 0 }
-    val effectiveDefenseBonus: Int get() = (defenseBonus * (1.0 + enhancementLevel.coerceIn(0, 10) * 0.05)).toInt() + sockets.sumOf { it.socketedGem?.defenseBonus ?: 0 }
-    val effectiveMagicBonus: Int get() = (magicBonus * (1.0 + enhancementLevel.coerceIn(0, 10) * 0.05)).toInt() + sockets.sumOf { it.socketedGem?.magicBonus ?: 0 }
-    val effectiveHpBonus: Int get() = (hpBonus * (1.0 + enhancementLevel.coerceIn(0, 10) * 0.05)).toInt() + sockets.sumOf { it.socketedGem?.hpBonus ?: 0 }
+    val effectiveAttackBonus: Double get() = (attackBonus * (1.0 + enhancementLevel.coerceIn(0, 10) * 0.05)) + sockets.sumOf { it.socketedGem?.attackBonus ?: 0 }
+    val effectiveDefenseBonus: Double get() = (defenseBonus * (1.0 + enhancementLevel.coerceIn(0, 10) * 0.05)) + sockets.sumOf { it.socketedGem?.defenseBonus ?: 0 }
+    val effectiveMagicBonus: Double get() = (magicBonus * (1.0 + enhancementLevel.coerceIn(0, 10) * 0.05)) + sockets.sumOf { it.socketedGem?.magicBonus ?: 0 }
+    val effectiveHpBonus: Double get() = (hpBonus * (1.0 + enhancementLevel.coerceIn(0, 10) * 0.05)) + sockets.sumOf { it.socketedGem?.hpBonus ?: 0 }
 
     companion object {
         fun random(
@@ -102,33 +103,33 @@ data class Item(
             val fullName = try { context.getString(R.string.item_name_template, rarityStr, categoryName) } catch (_: Exception) { null } ?: "$rarityStr $categoryName"
             
             val bonusMult = when (rarity) {
-                Rarity.COMMON -> 1.0f
-                Rarity.RARE -> 1.5f
-                Rarity.EPIC -> 2.5f
-                Rarity.LEGENDARY -> 4.0f
-                Rarity.MYTHIC -> 6.0f
+                Rarity.COMMON -> 1.0
+                Rarity.RARE -> 1.5
+                Rarity.EPIC -> 2.5
+                Rarity.LEGENDARY -> 4.0
+                Rarity.MYTHIC -> 6.0
             }
             
             val mythicStatMult = if (rarity == Rarity.LEGENDARY || rarity == Rarity.MYTHIC) (1f + (relicBonuses?.mythicStatBonus ?: 0f)) else 1f
-            val statBonus = 1f + (relicBonuses?.itemStatBonus ?: 0f)
-            val dimBonus = 1f + (dimension - 1) * 0.12f
+            val statBonus = 1.0 + (relicBonuses?.itemStatBonus ?: 0.0).toDouble()
+            val dimBonus = 1 + (dimension - 1) * 0.12
             val finalMult = bonusMult * statBonus * dimBonus * mythicStatMult
 
             // Soften floor scaling for item generation above floor 200 to prevent multi-million stat inflations
             val effectiveItemFloor = if (floor <= 200) {
-                floor.toFloat()
+                floor.toDouble()
             } else {
-                200f + Math.sqrt((floor - 200).toDouble()).toFloat() * 8f
+                200 + sqrt((floor - 200).toDouble()) * 8
             }
 
             val (critChance, critDmg) = calculateCritBonuses(rarity)
-            val baseWeaponStat = ((2f + effectiveItemFloor / 8f) * finalMult).toInt()
+            val baseWeaponStat = ((2.0 + effectiveItemFloor / 8.0) * finalMult)
 
             val atkBonus = if (slot == ItemSlot.WEAPON && !gearCategory.isMagicalWeapon) baseWeaponStat else 0
-            val defBonus = if (slot == ItemSlot.ARMOR || slot == ItemSlot.SHIELD) ((2f + effectiveItemFloor / 6f) * finalMult).toInt() else 0
+            val defBonus = if (slot == ItemSlot.ARMOR || slot == ItemSlot.SHIELD) ((2f + effectiveItemFloor / 6f) * finalMult) else 0
             val magBonus = when {
                 slot == ItemSlot.WEAPON && gearCategory.isMagicalWeapon -> baseWeaponStat
-                slot == ItemSlot.ACCESSORY -> ((1f + effectiveItemFloor / 12f) * finalMult).toInt()
+                slot == ItemSlot.ACCESSORY -> ((1f + effectiveItemFloor / 12f) * finalMult)
                 else -> 0
             }
 
@@ -143,13 +144,13 @@ data class Item(
                 name = fullName,
                 slot = slot,
                 rarity = rarity,
-                attackBonus = atkBonus,
-                defenseBonus = defBonus,
-                magicBonus = magBonus,
-                hpBonus = ((5f + effectiveItemFloor * 0.5f) * finalMult).toInt(),
-                mpBonus = if (slot == ItemSlot.ACCESSORY) ((2f + effectiveItemFloor / 15f) * finalMult).toInt() else 0,
+                attackBonus = atkBonus.toLong(),
+                defenseBonus = defBonus.toLong(),
+                magicBonus = magBonus.toLong(),
+                hpBonus = ((5.0 + effectiveItemFloor * 0.5) * finalMult).toLong(),
+                mpBonus = if (slot == ItemSlot.ACCESSORY) ((2 + effectiveItemFloor / 15) * finalMult).toLong() else 0,
                 critChanceBonus = critChance,
-                critDamageBonus = critDmg,
+                critDamageBonus = critDmg.toLong(),
                 emoji = emoji,
                 floorFound = floor,
                 setId = setId

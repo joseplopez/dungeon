@@ -13,6 +13,7 @@ import androidx.compose.material3.Surface
 import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.SideEffect
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -34,6 +35,7 @@ import androidx.navigation.compose.rememberNavController
 import com.game.dungeon.audio.MusicManager
 import com.game.dungeon.ui.components.BottomPixelNav
 import com.game.dungeon.ui.components.MusicToggleButton
+import com.game.dungeon.ui.screens.BossLairPrepScreen
 import com.game.dungeon.ui.screens.CodexScreen
 import com.game.dungeon.ui.screens.CraftingScreen
 import com.game.dungeon.ui.screens.DungeonScreen
@@ -181,7 +183,26 @@ class MainActivity : ComponentActivity() {
                                     navController = navController,
                                     isMuted = isMuted,
                                     onToggleMusic = { isMuted = !isMuted },
-                                    viewModel = townViewModel
+                                    viewModel = townViewModel,
+                                    onNavigateToBossLair = { party, floor ->
+                                        dungeonViewModel.startRun(party, floor, mode = com.game.dungeon.data.models.DungeonMode.BOSS_LAIR)
+                                        navController.navigate("dungeon")
+                                    }
+                                )
+                            }
+                            composable("boss_lair_prep") {
+                                val gs by townViewModel.gameState.collectAsState()
+                                val party by townViewModel.party.collectAsState()
+                                BossLairPrepScreen(
+                                    party = party,
+                                    highestBossLairFloor = gs?.highestBossLairFloor ?: 1,
+                                    onEnterBossLair = { startFloor ->
+                                        dungeonViewModel.startRun(party, startFloor, mode = com.game.dungeon.data.models.DungeonMode.BOSS_LAIR)
+                                        navController.navigate("dungeon") {
+                                            popUpTo("town")
+                                        }
+                                    },
+                                    onDismiss = { navController.popBackStack() }
                                 )
                             }
                             composable("mastery") {

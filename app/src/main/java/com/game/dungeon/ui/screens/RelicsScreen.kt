@@ -432,7 +432,7 @@ fun RelicsScreen(
 @Composable
 fun GoldExchangeDialog(
     currentGold: Long,
-    currentMagicite: Int,
+    currentMagicite: Long,
     onExchange: (Long, Int) -> Unit,
     onDismiss: () -> Unit
 ) {

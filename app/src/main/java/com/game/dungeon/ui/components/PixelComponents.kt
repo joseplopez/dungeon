@@ -342,8 +342,8 @@ fun AdBoostIconButton(
 
 @Composable
 fun PixelHpBar(
-    current: Int,
-    max: Int,
+    current: Long,
+    max: Long,
     modifier: Modifier = Modifier,
     showText: Boolean = false,
     barHeight: androidx.compose.ui.unit.Dp = 8.dp
@@ -390,7 +390,7 @@ fun PixelHpBar(
 }
 
 @Composable
-fun PixelExpBar(current: Int, max: Int, modifier: Modifier = Modifier) {
+fun PixelExpBar(current: Long, max: Long, modifier: Modifier = Modifier) {
     val ratio = (current.toFloat() / max.toFloat()).coerceIn(0f, 1f)
     val animRatio by animateFloatAsState(ratio, animationSpec = tween(500), label = "animRatio")
 

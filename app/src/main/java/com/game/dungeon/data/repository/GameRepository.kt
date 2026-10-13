@@ -137,7 +137,7 @@ class GameRepository @Inject constructor(
         database.gameStateDao.upsert(current.copy(gold = newGold, totalGilEarned = newTotal))
     }
 
-    suspend fun addMagicite(amount: Int) {
+    suspend fun addMagicite(amount: Long) {
         val current = database.gameStateDao.getGameStateOnce() ?: GameState()
         database.gameStateDao.upsert(current.copy(
             magicite = current.magicite + amount,
@@ -162,6 +162,18 @@ class GameRepository @Inject constructor(
             
             // IMMEDIATE Upload to Firebase
             triggerFirebaseUpload(newState)
+        }
+    }
+
+    suspend fun setHasSeenBossLairPopup(hasSeen: Boolean = true) {
+        val current = database.gameStateDao.getGameStateOnce() ?: GameState()
+        database.gameStateDao.upsert(current.copy(hasSeenBossLairPopup = hasSeen))
+    }
+
+    suspend fun updateHighestBossLairFloor(floor: Int) {
+        val current = database.gameStateDao.getGameStateOnce() ?: GameState()
+        if (floor > current.highestBossLairFloor) {
+            database.gameStateDao.upsert(current.copy(highestBossLairFloor = floor))
         }
     }
 
@@ -440,7 +452,7 @@ class GameRepository @Inject constructor(
         return Result.success(Unit)
     }
 
-    suspend fun craftMythicEquipment(baseItemId: String, targetSetId: String, context: Context): Result<Item> {
+    suspend fun craftMythicEquipment(baseItemId: String, targetSetId: String = "", context: Context): Result<Item> {
         val baseItem = database.itemDao.getItemById(baseItemId)
             ?: return Result.failure(IllegalArgumentException("Item with ID $baseItemId not found."))
 
@@ -473,7 +485,7 @@ class GameRepository @Inject constructor(
         val chosenSet = com.game.dungeon.data.models.MythicSet.fromId(targetSetId)
             ?: com.game.dungeon.data.models.MythicSet.entries.first()
 
-        val setName = context.getString(chosenSet.nameRes)
+        val setName = try { context.getString(chosenSet.nameRes) } catch (_: Exception) { "Mythic Gear" }
 
         // Stamp the item with the chosen Set ID and name!
         val finalMythicItem = baseMythicItem.copy(
@@ -491,8 +503,14 @@ class GameRepository @Inject constructor(
         return Result.success(finalMythicItem)
     }
 
-    suspend fun craftMythicEquipment(baseItem: Item, targetSetId: String, context: Context): Result<Item> =
+    suspend fun craftMythicEquipment(baseItemId: String, context: Context): Result<Item> =
+        craftMythicEquipment(baseItemId, "", context)
+
+    suspend fun craftMythicEquipment(baseItem: Item, targetSetId: String = "", context: Context): Result<Item> =
         craftMythicEquipment(baseItem.id, targetSetId, context)
+
+    suspend fun craftMythicEquipment(baseItem: Item, context: Context): Result<Item> =
+        craftMythicEquipment(baseItem.id, "", context)
 
     suspend fun seedDebugMythicCrafting(context: Context) {
         val shardsToAdd = if (com.game.dungeon.BuildConfig.INITIAL_MYTHIC_SHARDS > 0) com.game.dungeon.BuildConfig.INITIAL_MYTHIC_SHARDS else 500

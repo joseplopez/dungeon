@@ -6,66 +6,66 @@ import org.junit.Test
 class HeroSetBonusTest {
 
     @Test
-    fun testCrystalSetBonus_activeOnKnightWith3Pieces() {
-        val knight = Hero(
-            heroClass = HeroClass.KNIGHT,
+    fun testCrystalSetBonus_activeOnWarriorWith3Pieces() {
+        val warrior = Hero(
+            heroClass = HeroClass.WARRIOR,
             name = "Cecil",
             currentHp = 100,
             currentMp = 20,
-            aiPriority = AIPriority.DEFEND
+            aiPriority = AIPriority.ATTACK
         )
 
         val crystalArmor = Item(
             id = "c1", name = "Crystal Armor", slot = ItemSlot.ARMOR, rarity = Rarity.MYTHIC,
-            defenseBonus = 50, hpBonus = 100, emoji = "🛡️", floorFound = 300, setId = "set_crystal"
+            attackBonus = 50, hpBonus = 100, emoji = "🛡️", floorFound = 300, setId = "set_crystal"
         )
         val crystalShield = Item(
             id = "c2", name = "Crystal Shield", slot = ItemSlot.SHIELD, rarity = Rarity.MYTHIC,
-            defenseBonus = 30, hpBonus = 50, emoji = "🛡️", floorFound = 300, setId = "set_crystal"
+            attackBonus = 30, hpBonus = 50, emoji = "🛡️", floorFound = 300, setId = "set_crystal"
         )
         val crystalHelm = Item(
-            id = "c3", name = "Crystal Helm", slot = ItemSlot.WEAPON, rarity = Rarity.MYTHIC,
-            defenseBonus = 20, hpBonus = 50, emoji = "🪖", floorFound = 300, setId = "set_crystal"
+            id = "c3", name = "Crystal Sword", slot = ItemSlot.WEAPON, rarity = Rarity.MYTHIC,
+            attackBonus = 20, hpBonus = 50, emoji = "⚔️", floorFound = 300, setId = "set_crystal"
         )
 
-        val baseDef = knight.baseDefense + 100
-        val baseHp = knight.baseMaxHp + 200
+        val baseAtk = warrior.baseAttack + 100
+        val baseHp = warrior.baseMaxHp + 200
 
-        val boostedStats = knight.calculateStats(listOf(crystalArmor, crystalShield, crystalHelm))
+        val boostedStats = warrior.calculateStats(listOf(crystalArmor, crystalShield, crystalHelm))
 
-        // CRYSTAL set: +40% DEF, +25% HP
-        val expectedDef = baseDef + (baseDef * 0.40f).toInt()
+        // CRYSTAL set: +40% ATK, +25% HP
+        val expectedAtk = baseAtk + (baseAtk * 0.40f).toInt()
         val expectedHp = baseHp + (baseHp * 0.25f).toInt()
 
-        assertEquals(expectedDef, boostedStats["DEF"])
+        assertEquals(expectedAtk, boostedStats["ATK"])
         assertEquals(expectedHp, boostedStats["HP"])
     }
 
     @Test
     fun testSetBonus_inactiveWhenFewerThan3Pieces() {
-        val knight = Hero(
-            heroClass = HeroClass.KNIGHT,
+        val warrior = Hero(
+            heroClass = HeroClass.WARRIOR,
             name = "Cecil",
             currentHp = 100,
             currentMp = 20,
-            aiPriority = AIPriority.DEFEND
+            aiPriority = AIPriority.ATTACK
         )
 
         val crystalArmor = Item(
             id = "c1", name = "Crystal Armor", slot = ItemSlot.ARMOR, rarity = Rarity.MYTHIC,
-            defenseBonus = 50, hpBonus = 100, emoji = "🛡️", floorFound = 300, setId = "set_crystal"
+            attackBonus = 50, hpBonus = 100, emoji = "🛡️", floorFound = 300, setId = "set_crystal"
         )
         val crystalShield = Item(
             id = "c2", name = "Crystal Shield", slot = ItemSlot.SHIELD, rarity = Rarity.MYTHIC,
-            defenseBonus = 30, hpBonus = 50, emoji = "🛡️", floorFound = 300, setId = "set_crystal"
+            attackBonus = 30, hpBonus = 50, emoji = "🛡️", floorFound = 300, setId = "set_crystal"
         )
 
-        val stats = knight.calculateStats(listOf(crystalArmor, crystalShield))
-        val expectedDef = knight.baseDefense + 80
-        val expectedHp = knight.baseMaxHp + 150
+        val stats = warrior.calculateStats(listOf(crystalArmor, crystalShield))
+        val expectedAtk = warrior.baseAttack + 80
+        val expectedHp = warrior.baseMaxHp + 150
 
         // Inactive because only 2 pieces equipped
-        assertEquals(expectedDef, stats["DEF"])
+        assertEquals(expectedAtk, stats["ATK"])
         assertEquals(expectedHp, stats["HP"])
     }
 
@@ -79,26 +79,26 @@ class HeroSetBonusTest {
             aiPriority = AIPriority.MAGIC
         )
 
-        // Equipped with Crystal (Knight) set
+        // Equipped with Crystal (Warrior) set
         val crystalArmor = Item(
             id = "c1", name = "Crystal Armor", slot = ItemSlot.ARMOR, rarity = Rarity.MYTHIC,
-            defenseBonus = 50, hpBonus = 100, emoji = "🛡️", floorFound = 300, setId = "set_crystal"
+            attackBonus = 50, hpBonus = 100, emoji = "🛡️", floorFound = 300, setId = "set_crystal"
         )
         val crystalShield = Item(
             id = "c2", name = "Crystal Shield", slot = ItemSlot.SHIELD, rarity = Rarity.MYTHIC,
-            defenseBonus = 30, hpBonus = 50, emoji = "🛡️", floorFound = 300, setId = "set_crystal"
+            attackBonus = 30, hpBonus = 50, emoji = "🛡️", floorFound = 300, setId = "set_crystal"
         )
         val crystalHelm = Item(
-            id = "c3", name = "Crystal Helm", slot = ItemSlot.WEAPON, rarity = Rarity.MYTHIC,
-            defenseBonus = 20, hpBonus = 50, emoji = "🪖", floorFound = 300, setId = "set_crystal"
+            id = "c3", name = "Crystal Sword", slot = ItemSlot.WEAPON, rarity = Rarity.MYTHIC,
+            attackBonus = 20, hpBonus = 50, emoji = "⚔️", floorFound = 300, setId = "set_crystal"
         )
 
         val stats = blackMage.calculateStats(listOf(crystalArmor, crystalShield, crystalHelm))
-        val expectedDef = blackMage.baseDefense + 100
+        val expectedAtk = blackMage.baseAttack + 100
         val expectedHp = blackMage.baseMaxHp + 200
 
-        // Inactive because Black Mage is not targetClass (KNIGHT)
-        assertEquals(expectedDef, stats["DEF"])
+        // Inactive because Black Mage is not targetClass (WARRIOR)
+        assertEquals(expectedAtk, stats["ATK"])
         assertEquals(expectedHp, stats["HP"])
     }
 

@@ -328,6 +328,10 @@ class CraftingViewModel @Inject constructor(
         }
     }
 
+    fun craftMythicSelectedItem(context: android.content.Context) {
+        craftMythicSelectedItem("", context)
+    }
+
     fun craftMythicSelectedItem(targetSetId: String, context: android.content.Context) {
 
         val item = _selectedItem.value ?: run {

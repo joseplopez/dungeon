@@ -1247,4 +1247,16 @@
 
     <string name="mat_mythic_shard_name">Mythic Shard</string>
     <string name="mat_mythic_shard_desc">Radiant shard of ancient mythic power found in deep floors.</string>
+
+    <!-- Boss Lair Feature -->
+    <string name="boss_lair_title">Boss Lair</string>
+    <string name="boss_lair_subtitle">Endless Boss Dungeon</string>
+    <string name="boss_lair_discovered_title">New Area Discovered!</string>
+    <string name="boss_lair_discovered_desc">A spooky, gloomy cave has appeared in the mountains! The Boss Lair is an endless, boss-only dungeon featuring a 100x stat difficulty spike and exclusive Mythic rewards.</string>
+    <string name="boss_lair_warning_no_heroes">You must assign at least one hero to your party before entering the Boss Lair!</string>
+    <string name="boss_lair_enter_button">Enter Boss Lair ⚔️</string>
+    <string name="boss_lair_pathfinder_title">Boss Lair Checkpoint</string>
+    <string name="boss_lair_stat_spike_desc">⚠️ Bosses have 100x Stats (HP, Atk, Def, Magic, Gil, Exp)</string>
+    <string name="boss_lair_loot_desc">💎 Mythic Shards (25%%) &amp; Mythic Gear (5%%)</string>
+    <string name="boss_lair_cave_label">BOSS LAIR</string>
 </resources>
