@@ -111,6 +111,53 @@ class FFBattleEngineDropTest {
         assertTrue("Garland boss should have trophy rule", garlandRules.any { it.isBossTrophy })
     }
 
+    @Test
+    fun `test gem base drop chances in loot table`() {
+        val redFlanRules = MonsterLootTable.getDropsForMonster(MonsterType.RED_FLAN, isBoss = false)
+        val gem1Rule = redFlanRules.find { it.materialId == "ruby_gem_1" }
+        assertNotNull("RED_FLAN should have ruby_gem_1 rule", gem1Rule)
+        assertEquals("ruby_gem_1 base drop chance should be 0.005", 0.005f, gem1Rule!!.baseDropChance, 0.0001f)
+
+        val malboroRules = MonsterLootTable.getDropsForMonster(MonsterType.MALBORO, isBoss = false)
+        val gem2Rule = malboroRules.find { it.materialId == "emerald_gem_2" }
+        assertNotNull("MALBORO should have emerald_gem_2 rule", gem2Rule)
+        assertEquals("emerald_gem_2 base drop chance should be 0.0025", 0.0025f, gem2Rule!!.baseDropChance, 0.0001f)
+    }
+
+    @Test
+    fun `test gem drop rate hard cap with extreme relics`() {
+        val dimension = FFDimensionData.getDimension(1)
+        val redFlan = createRegularEnemy(MonsterType.RED_FLAN, floor = 10)
+        val extremeRelics = createRelicBonuses(alchemistDropChanceBonus = 100f, magnetBonus = 100f)
+
+        val samples = 10000
+        var gemCount = 0
+        repeat(samples) {
+            val drops = battleEngine.calculateMaterialDrops(redFlan, 10, dimension, extremeRelics)
+            if (drops.containsKey("ruby_gem_1")) {
+                gemCount++
+            }
+        }
+        val dropRate = gemCount.toDouble() / samples
+        assertTrue("Gem drop rate ($dropRate) under extreme relics should not exceed hard cap 5% (0.055)", dropRate <= 0.055)
+    }
+
+    @Test
+    fun `test gem drop quantity on floor 50+ does not receive floor extra yield boost`() {
+        val dimension = FFDimensionData.getDimension(1)
+        val redFlan = createRegularEnemy(MonsterType.RED_FLAN, floor = 60)
+        val noPocketsRelics = createRelicBonuses(pocketsBonus = 0f, alchemistDropChanceBonus = 10f)
+
+        val samples = 5000
+        repeat(samples) {
+            val drops = battleEngine.calculateMaterialDrops(redFlan, 60, dimension, noPocketsRelics)
+            val gemQty = drops["ruby_gem_1"]
+            if (gemQty != null) {
+                assertEquals("Gem quantity on floor 60+ without pockets bonus must be exactly 1", 1, gemQty)
+            }
+        }
+    }
+
     // ──────────────────────────────────────────────────────────────────────────
     // 2. RELIC BONUSES & YIELD MULTIPLIERS
     // ──────────────────────────────────────────────────────────────────────────

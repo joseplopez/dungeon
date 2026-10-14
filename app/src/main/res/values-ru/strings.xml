@@ -1160,6 +1160,9 @@
         <string name="craft_format_quantity">x%1$d</string>
         <string name="craft_format_stat">%1$s: %2$d ➔ %3$d</string>
         <string name="craft_format_equipped_tag">(Экипировано)</string>
+        <string name="craft_format_equipped_hero">(Экипировано: %1$s)</string>
+        <string name="craft_label_stats_preview">ПРЕДПРОСМОТР ХАРАКТЕРИСТИК</string>
+        <string name="craft_label_set_bonus">БОНУС КОМПЛЕКТА</string>
         <string name="craft_format_hero_level">%1$d ур.</string>
         <string name="craft_label_hero_breakthrough">Прорыв уровня героя:</string>
         <string name="btn_ok">ОК</string>

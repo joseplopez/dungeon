@@ -107,7 +107,7 @@ data class Item(
                 Rarity.RARE -> 1.5
                 Rarity.EPIC -> 2.5
                 Rarity.LEGENDARY -> 4.0
-                Rarity.MYTHIC -> 6.0
+                Rarity.MYTHIC -> 10.0
             }
             
             val mythicStatMult = if (rarity == Rarity.LEGENDARY || rarity == Rarity.MYTHIC) (1f + (relicBonuses?.mythicStatBonus ?: 0f)) else 1f

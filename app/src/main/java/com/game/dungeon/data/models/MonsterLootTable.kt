@@ -39,11 +39,11 @@ object MonsterLootTable {
         ),
         MonsterType.RED_FLAN to MonsterLootEntry(
             primaryDrop = MaterialDropRule("fire_essence", 0.07f),
-            secondaryDrop = MaterialDropRule("ruby_gem_1", 0.02f)
+            secondaryDrop = MaterialDropRule("ruby_gem_1", 0.005f)
         ),
         MonsterType.BOMB to MonsterLootEntry(
             primaryDrop = MaterialDropRule("fire_essence", 0.08f),
-            secondaryDrop = MaterialDropRule("ruby_gem_1", 0.02f)
+            secondaryDrop = MaterialDropRule("ruby_gem_1", 0.005f)
         ),
         MonsterType.SAHAGIN to MonsterLootEntry(
             primaryDrop = MaterialDropRule("ice_essence", 0.07f),
@@ -51,7 +51,7 @@ object MonsterLootTable {
         ),
         MonsterType.COCKATRICE to MonsterLootEntry(
             primaryDrop = MaterialDropRule("beast_fang", 0.08f),
-            secondaryDrop = MaterialDropRule("topaz_gem_1", 0.02f)
+            secondaryDrop = MaterialDropRule("topaz_gem_1", 0.005f)
         ),
         MonsterType.ZOMBIE to MonsterLootEntry(
             primaryDrop = MaterialDropRule("monster_bone", 0.08f),
@@ -75,7 +75,7 @@ object MonsterLootTable {
         ),
         MonsterType.LAMIA to MonsterLootEntry(
             primaryDrop = MaterialDropRule("dark_essence", 0.06f),
-            secondaryDrop = MaterialDropRule("sapphire_gem_1", 0.02f)
+            secondaryDrop = MaterialDropRule("sapphire_gem_1", 0.005f)
         ),
         MonsterType.SEA_SNAKE to MonsterLootEntry(
             primaryDrop = MaterialDropRule("ice_essence", 0.07f),
@@ -83,7 +83,7 @@ object MonsterLootTable {
         ),
         MonsterType.ADAMANTOISE to MonsterLootEntry(
             primaryDrop = MaterialDropRule("adamantite_ore", 0.03f),
-            secondaryDrop = MaterialDropRule("emerald_gem_1", 0.02f)
+            secondaryDrop = MaterialDropRule("emerald_gem_1", 0.005f)
         ),
         MonsterType.DARK_KNIGHT to MonsterLootEntry(
             primaryDrop = MaterialDropRule("mithril_ore", 0.05f),
@@ -95,19 +95,19 @@ object MonsterLootTable {
         ),
         MonsterType.TOAD to MonsterLootEntry(
             primaryDrop = MaterialDropRule("monster_bone", 0.08f),
-            secondaryDrop = MaterialDropRule("emerald_gem_1", 0.02f)
+            secondaryDrop = MaterialDropRule("emerald_gem_1", 0.005f)
         ),
         MonsterType.DJINN to MonsterLootEntry(
             primaryDrop = MaterialDropRule("fire_essence", 0.07f),
-            secondaryDrop = MaterialDropRule("ruby_gem_1", 0.02f)
+            secondaryDrop = MaterialDropRule("ruby_gem_1", 0.005f)
         ),
         MonsterType.MEDUSA to MonsterLootEntry(
             primaryDrop = MaterialDropRule("demon_horn", 0.03f),
-            secondaryDrop = MaterialDropRule("emerald_gem_1", 0.02f)
+            secondaryDrop = MaterialDropRule("emerald_gem_1", 0.005f)
         ),
         MonsterType.TONBERRY to MonsterLootEntry(
             primaryDrop = MaterialDropRule("dark_essence", 0.06f),
-            secondaryDrop = MaterialDropRule("topaz_gem_1", 0.02f)
+            secondaryDrop = MaterialDropRule("topaz_gem_1", 0.005f)
         ),
         MonsterType.GIANT to MonsterLootEntry(
             primaryDrop = MaterialDropRule("monster_bone", 0.08f),
@@ -119,7 +119,7 @@ object MonsterLootTable {
         ),
         MonsterType.MALBORO to MonsterLootEntry(
             primaryDrop = MaterialDropRule("dark_essence", 0.06f),
-            secondaryDrop = MaterialDropRule("emerald_gem_2", 0.02f)
+            secondaryDrop = MaterialDropRule("emerald_gem_2", 0.0025f)
         ),
         MonsterType.CAPTAIN to MonsterLootEntry(
             primaryDrop = MaterialDropRule("mithril_ore", 0.06f),
@@ -127,7 +127,7 @@ object MonsterLootTable {
         ),
         MonsterType.ANTLION to MonsterLootEntry(
             primaryDrop = MaterialDropRule("beast_fang", 0.08f),
-            secondaryDrop = MaterialDropRule("topaz_gem_1", 0.02f)
+            secondaryDrop = MaterialDropRule("topaz_gem_1", 0.005f)
         ),
         MonsterType.MIST_DRAGON to MonsterLootEntry(
             primaryDrop = MaterialDropRule("dragon_scale", 0.03f),
@@ -135,19 +135,19 @@ object MonsterLootTable {
         ),
         MonsterType.DARK_IMP to MonsterLootEntry(
             primaryDrop = MaterialDropRule("dark_essence", 0.08f),
-            secondaryDrop = MaterialDropRule("sapphire_gem_1", 0.02f)
+            secondaryDrop = MaterialDropRule("sapphire_gem_1", 0.005f)
         ),
         MonsterType.LUNAR_DRAGON to MonsterLootEntry(
             primaryDrop = MaterialDropRule("dragon_scale", 0.04f),
-            secondaryDrop = MaterialDropRule("sapphire_gem_2", 0.02f)
+            secondaryDrop = MaterialDropRule("sapphire_gem_2", 0.0025f)
         ),
         MonsterType.MINDFLAYER to MonsterLootEntry(
             primaryDrop = MaterialDropRule("dark_essence", 0.06f),
-            secondaryDrop = MaterialDropRule("sapphire_gem_1", 0.02f)
+            secondaryDrop = MaterialDropRule("sapphire_gem_1", 0.005f)
         ),
         MonsterType.FARIIS to MonsterLootEntry(
             primaryDrop = MaterialDropRule("mithril_ore", 0.05f),
-            secondaryDrop = MaterialDropRule("ruby_gem_1", 0.02f)
+            secondaryDrop = MaterialDropRule("ruby_gem_1", 0.005f)
         ),
         MonsterType.SKULL_EATER to MonsterLootEntry(
             primaryDrop = MaterialDropRule("monster_bone", 0.08f),
@@ -159,11 +159,11 @@ object MonsterLootTable {
         ),
         MonsterType.STOKER to MonsterLootEntry(
             primaryDrop = MaterialDropRule("fire_essence", 0.08f),
-            secondaryDrop = MaterialDropRule("ruby_gem_1", 0.02f)
+            secondaryDrop = MaterialDropRule("ruby_gem_1", 0.005f)
         ),
         MonsterType.OMEGA_PROTO to MonsterLootEntry(
             primaryDrop = MaterialDropRule("orichalcum_ore", 0.03f),
-            secondaryDrop = MaterialDropRule("topaz_gem_2", 0.02f)
+            secondaryDrop = MaterialDropRule("topaz_gem_2", 0.0025f)
         ),
         MonsterType.SHINRYU to MonsterLootEntry(
             primaryDrop = MaterialDropRule("dragon_scale", 0.05f),
@@ -175,7 +175,7 @@ object MonsterLootTable {
         ),
         MonsterType.BRAWLER to MonsterLootEntry(
             primaryDrop = MaterialDropRule("beast_fang", 0.08f),
-            secondaryDrop = MaterialDropRule("topaz_gem_1", 0.02f)
+            secondaryDrop = MaterialDropRule("topaz_gem_1", 0.005f)
         ),
         MonsterType.MAGITEK_ARMOR to MonsterLootEntry(
             primaryDrop = MaterialDropRule("adamantite_ore", 0.03f),
@@ -183,7 +183,7 @@ object MonsterLootTable {
         ),
         MonsterType.NINJA to MonsterLootEntry(
             primaryDrop = MaterialDropRule("lightning_essence", 0.06f),
-            secondaryDrop = MaterialDropRule("sapphire_gem_1", 0.02f)
+            secondaryDrop = MaterialDropRule("sapphire_gem_1", 0.005f)
         ),
         MonsterType.DRAGON to MonsterLootEntry(
             primaryDrop = MaterialDropRule("dragon_scale", 0.03f),
@@ -195,7 +195,7 @@ object MonsterLootTable {
         ),
         MonsterType.MAGIC_MASTER to MonsterLootEntry(
             primaryDrop = MaterialDropRule("dark_essence", 0.06f),
-            secondaryDrop = MaterialDropRule("sapphire_gem_2", 0.02f)
+            secondaryDrop = MaterialDropRule("sapphire_gem_2", 0.0025f)
         ),
         MonsterType.GRUNT to MonsterLootEntry(
             primaryDrop = MaterialDropRule("iron_ore", 0.08f),
@@ -211,7 +211,7 @@ object MonsterLootTable {
         ),
         MonsterType.JENOVA_CELL to MonsterLootEntry(
             primaryDrop = MaterialDropRule("dark_essence", 0.07f),
-            secondaryDrop = MaterialDropRule("sapphire_gem_2", 0.02f)
+            secondaryDrop = MaterialDropRule("sapphire_gem_2", 0.0025f)
         ),
         MonsterType.DRAGON_RIDER to MonsterLootEntry(
             primaryDrop = MaterialDropRule("dragon_scale", 0.03f),
@@ -267,7 +267,7 @@ object MonsterLootTable {
         ),
         MonsterType.WATER_FLAN to MonsterLootEntry(
             primaryDrop = MaterialDropRule("ice_essence", 0.08f),
-            secondaryDrop = MaterialDropRule("sapphire_gem_1", 0.02f)
+            secondaryDrop = MaterialDropRule("sapphire_gem_1", 0.005f)
         ),
         MonsterType.KLIKK to MonsterLootEntry(
             primaryDrop = MaterialDropRule("beast_fang", 0.08f),
@@ -279,11 +279,11 @@ object MonsterLootTable {
         ),
         MonsterType.GREAT_MALBORO to MonsterLootEntry(
             primaryDrop = MaterialDropRule("dark_essence", 0.07f),
-            secondaryDrop = MaterialDropRule("emerald_gem_2", 0.02f)
+            secondaryDrop = MaterialDropRule("emerald_gem_2", 0.0025f)
         ),
         MonsterType.DARK_AEON to MonsterLootEntry(
             primaryDrop = MaterialDropRule("dark_essence", 0.08f),
-            secondaryDrop = MaterialDropRule("topaz_gem_2", 0.02f)
+            secondaryDrop = MaterialDropRule("topaz_gem_2", 0.0025f)
         ),
         MonsterType.SLIME to MonsterLootEntry(
             primaryDrop = MaterialDropRule("fire_essence", 0.06f),
@@ -303,7 +303,7 @@ object MonsterLootTable {
         ),
         MonsterType.STOKER_MONSTER to MonsterLootEntry(
             primaryDrop = MaterialDropRule("fire_essence", 0.08f),
-            secondaryDrop = MaterialDropRule("ruby_gem_1", 0.02f)
+            secondaryDrop = MaterialDropRule("ruby_gem_1", 0.005f)
         ),
 
         // ── Bosses — Tier 1 (10% – 15% Trophy Chance) ──

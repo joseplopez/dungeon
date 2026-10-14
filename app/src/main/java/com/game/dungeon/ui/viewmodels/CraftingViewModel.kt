@@ -37,7 +37,9 @@ data class CraftingUiState(
     val selectedTab: CraftingTab = CraftingTab.ENHANCE,
     val isProcessing: Boolean = false,
     val userMessageRes: Int? = null,
-    val gold: Long = 0L // Added gold to support the UI header
+    val gold: Long = 0L,
+    val gameState: GameState? = null,
+    val roster: List<com.game.dungeon.data.models.Hero> = emptyList()
 )
 
 @HiltViewModel
@@ -70,7 +72,8 @@ class CraftingViewModel @Inject constructor(
         _selectedTab,
         _isProcessing,
         _userMessageRes,
-        _gameState // Added to the combine block
+        _gameState,
+        repository.getRoster()
     ) { flows ->
         @Suppress("UNCHECKED_CAST")
         val inventoryItems = flows[0] as List<Item>
@@ -84,7 +87,9 @@ class CraftingViewModel @Inject constructor(
         val selectedTab = flows[4] as CraftingTab
         val isProcessing = flows[5] as Boolean
         val userMessageRes = flows[6] as Int?
-        val gameState = flows[7] as? GameState // Safe cast
+        val gameState = flows[7] as? GameState
+        @Suppress("UNCHECKED_CAST")
+        val roster = flows[8] as List<com.game.dungeon.data.models.Hero>
 
         val refreshedSelectedItem = selectedItem?.let { current ->
             val found = (inventoryItems + equippedItems).find { it.id == current.id }
@@ -103,7 +108,9 @@ class CraftingViewModel @Inject constructor(
             selectedTab = selectedTab,
             isProcessing = isProcessing,
             userMessageRes = userMessageRes,
-            gold = gameState?.gold ?: 0L // Map the gold value from GameState
+            gold = gameState?.gold ?: 0L,
+            gameState = gameState,
+            roster = roster
         )
     }.stateIn(
         scope = viewModelScope,

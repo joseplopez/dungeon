@@ -1161,6 +1161,9 @@
         <string name="craft_format_quantity">x%1$d</string>
         <string name="craft_format_stat">%1$s: %2$d ➔ %3$d</string>
         <string name="craft_format_equipped_tag">(Equipado)</string>
+        <string name="craft_format_equipped_hero">(Equipado: %1$s)</string>
+        <string name="craft_label_stats_preview">PRÉVIA DE ATRIBUTOS</string>
+        <string name="craft_label_set_bonus">BÔNUS DE CONJUNTO</string>
         <string name="craft_format_hero_level">Nvl %1$d</string>
         <string name="craft_label_hero_breakthrough">Avanço de Nível do Herói:</string>
         <string name="btn_ok">OK</string>

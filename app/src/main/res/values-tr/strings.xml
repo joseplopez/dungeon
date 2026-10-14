@@ -1161,6 +1161,9 @@
         <string name="craft_format_quantity">x%1$d</string>
         <string name="craft_format_stat">%1$s: %2$d ➔ %3$d</string>
         <string name="craft_format_equipped_tag">(Kuşanıldı)</string>
+        <string name="craft_format_equipped_hero">(Kuşanıldı: %1$s)</string>
+        <string name="craft_label_stats_preview">İSTATİSTİK ÖNİZLEME</string>
+        <string name="craft_label_set_bonus">SET BONUSU</string>
         <string name="craft_format_hero_level">Sev %1$d</string>
         <string name="craft_label_hero_breakthrough">Kahraman Seviye Sınır Aşımı:</string>
         <string name="btn_ok">Tamam</string>

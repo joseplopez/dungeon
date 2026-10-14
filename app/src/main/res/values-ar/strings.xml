@@ -1162,6 +1162,9 @@
         <string name="craft_format_quantity">x%1$d</string>
         <string name="craft_format_stat">%1$s: %2$d ➔ %3$d</string>
         <string name="craft_format_equipped_tag">(مجهز)</string>
+        <string name="craft_format_equipped_hero">(مجهز: %1$s)</string>
+        <string name="craft_label_stats_preview">معاينة الإحصائيات</string>
+        <string name="craft_label_set_bonus">مكافأة المجموعة</string>
         <string name="craft_format_hero_level">مستوى %1$d</string>
         <string name="craft_label_hero_breakthrough">اختراق مستوى البطل:</string>
         <string name="btn_ok">موافق</string>

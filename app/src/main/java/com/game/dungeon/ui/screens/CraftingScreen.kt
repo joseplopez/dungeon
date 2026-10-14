@@ -8,7 +8,9 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
@@ -31,6 +33,7 @@ import com.game.dungeon.data.models.MaterialCategory
 import com.game.dungeon.data.models.MaterialInventoryItem
 import com.game.dungeon.data.models.MythicSet
 import com.game.dungeon.data.models.Rarity
+import com.game.dungeon.data.models.RelicBonuses
 import com.game.dungeon.ui.components.EquipmentSprite
 import com.game.dungeon.ui.components.GoldenBorderBox
 import com.game.dungeon.ui.components.MusicToggleButton
@@ -246,7 +249,8 @@ private fun ItemListSelector(
     itemsList: List<Item>,
     selectedItem: Item?,
     onSelectItem: (Item) -> Unit,
-    modifier: Modifier = Modifier
+    modifier: Modifier = Modifier,
+    roster: List<Hero> = emptyList()
 ) {
     Column(modifier = modifier) {
         Text(
@@ -300,8 +304,14 @@ private fun ItemListSelector(
                                 fontSize = 12.sp
                             )
                             if (item.ownerId != null) {
+                                val ownerHero = roster.find { it.id == item.ownerId }
+                                val equippedText = if (ownerHero != null) {
+                                    safeStringResource(R.string.craft_format_equipped_hero, ownerHero.name)
+                                } else {
+                                    safeStringResource(R.string.craft_format_equipped_tag)
+                                }
                                 Text(
-                                    text = stringResource(R.string.craft_format_equipped_tag),
+                                    text = equippedText,
                                     color = GoldAccent,
                                     fontSize = 10.sp
                                 )
@@ -336,7 +346,8 @@ private fun EnhanceSection(
             itemsList = allItems,
             selectedItem = uiState.selectedItem,
             onSelectItem = onSelectItem,
-            modifier = Modifier.weight(0.4f)
+            modifier = Modifier.weight(0.4f),
+            roster = uiState.roster
         )
 
         Column(
@@ -505,7 +516,8 @@ private fun SocketSection(
             itemsList = allItems,
             selectedItem = uiState.selectedItem,
             onSelectItem = onSelectItem,
-            modifier = Modifier.weight(0.35f)
+            modifier = Modifier.weight(0.35f),
+            roster = uiState.roster
         )
 
         Column(
@@ -917,6 +929,8 @@ private fun MythicForgeSection(
     viewModel: CraftingViewModel
 ) {
     val context = LocalContext.current
+    val scrollState = rememberScrollState()
+
     val allItems = remember(uiState.inventoryItems, uiState.equippedItems) {
         uiState.inventoryItems + uiState.equippedItems
     }
@@ -961,92 +975,215 @@ private fun MythicForgeSection(
             itemsList = eligibleItems,
             selectedItem = selectedItem,
             onSelectItem = onSelectItem,
-            modifier = Modifier.weight(0.4f)
+            modifier = Modifier.weight(0.4f),
+            roster = uiState.roster
         )
 
         Column(
             modifier = Modifier
                 .weight(0.6f)
-                .fillMaxHeight(),
-            verticalArrangement = Arrangement.SpaceBetween
+                .fillMaxHeight()
+                .verticalScroll(scrollState),
+            verticalArrangement = Arrangement.spacedBy(10.dp)
         ) {
-            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+            if (BuildConfig.DEBUG) {
+                Button(
+                    onClick = { viewModel.triggerDebugMythicSeed(context) },
+                    colors = ButtonDefaults.buttonColors(containerColor = Color.Red),
+                    modifier = Modifier.fillMaxWidth()
+                ) {
+                    Text("DEBUG: SEED MYTHIC GEAR")
+                }
+            }
 
-                if (selectedItem != null && currentSet != null) {
-                    val previewItem = remember(selectedItem, currentSet) {
-                        Item(
-                            id = "preview",
-                            name = "Preview",
-                            rarity = Rarity.MYTHIC,
-                            slot = selectedItem.slot,
-                            setId = currentSet.id,
-                            floorFound = 100,
-                            emoji = ""
-                        )
-                    }
+            if (selectedItem != null && currentSet != null) {
+                val setNameText = stringResource(currentSet.nameRes)
+                val previewItem = remember(selectedItem.id, currentSet.id, uiState.gameState, setNameText) {
+                    val craftFloor = maxOf(1000, uiState.gameState?.lifetimeHighestFloor ?: 1000)
+                    val dimension = uiState.gameState?.currentDimension ?: 1
+                    val relicBonuses = uiState.gameState?.let { RelicBonuses.from(it) }
 
-                    Column(
-                        modifier = Modifier.fillMaxWidth(),
-                        horizontalAlignment = Alignment.CenterHorizontally
+                    Item.random(
+                        floor = craftFloor,
+                        context = context,
+                        relicBonuses = relicBonuses,
+                        minRarity = Rarity.MYTHIC,
+                        dimension = dimension,
+                        forcedSlot = selectedItem.slot
+                    ).copy(
+                        setId = currentSet.id,
+                        name = setNameText
+                    )
+                }
+
+                Column(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(text = "CRAFTING PREVIEW", style = PixelSmall, color = GoldAccent)
+
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)
                     ) {
-                        if (BuildConfig.DEBUG) {
-                            val context = LocalContext.current
+                        PixelButton(label = " < ", onClick = {
+                            previewSetIndex = if (previewSetIndex > 0) previewSetIndex - 1 else validSets.size - 1
+                        })
 
-                            Button(
-                                onClick = { viewModel.triggerDebugMythicSeed(context) },
-                                colors = ButtonDefaults.buttonColors(containerColor = Color.Red)
-                            ) {
-                                Text("DEBUG: SEED MYTHIC GEAR")
-                            }
-                        }
-                        Text(text = "CRAFTING PREVIEW", style = PixelSmall, color = GoldAccent)
-
-                        Row(
-                            verticalAlignment = Alignment.CenterVertically,
-                            horizontalArrangement = Arrangement.SpaceBetween,
-                            modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)
+                        Box(
+                            modifier = Modifier
+                                .size(70.dp)
+                                .background(BgDarkest, RoundedCornerShape(8.dp))
+                                .border(1.dp, Color(Rarity.MYTHIC.color), RoundedCornerShape(8.dp)),
+                            contentAlignment = Alignment.Center
                         ) {
-                            PixelButton(label = " < ", onClick = {
-                                previewSetIndex = if (previewSetIndex > 0) previewSetIndex - 1 else validSets.size - 1
-                            })
-
-                            Box(
-                                modifier = Modifier
-                                    .size(70.dp)
-                                    .background(BgDarkest, RoundedCornerShape(8.dp))
-                                    .border(1.dp, Color(Rarity.MYTHIC.color), RoundedCornerShape(8.dp)),
-                                contentAlignment = Alignment.Center
-                            ) {
-                                EquipmentSprite(
-                                    item = previewItem,
-                                    slot = selectedItem.slot,
-                                    modifier = Modifier.size(50.dp)
-                                )
-                            }
-
-                            PixelButton(label = " > ", onClick = {
-                                previewSetIndex = (previewSetIndex + 1) % validSets.size
-                            })
+                            EquipmentSprite(
+                                item = previewItem,
+                                slot = selectedItem.slot,
+                                modifier = Modifier.size(50.dp)
+                            )
                         }
 
-                        Text(text = stringResource(currentSet.nameRes), style = PixelHeading, color = Color(Rarity.MYTHIC.color))
-                        Text(text = "Class: ${currentSet.targetClass.name} (${selectedItem.slot.name})", style = PixelSmall, color = Color.White)
+                        PixelButton(label = " > ", onClick = {
+                            previewSetIndex = (previewSetIndex + 1) % validSets.size
+                        })
                     }
-                    Spacer(modifier = Modifier.height(4.dp))
-                } else {
-                    Box(
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(110.dp),
-                        contentAlignment = Alignment.Center
-                    ) {
-                        Text(text = "Select a +10 Legendary item to preview Mythic sets", style = PixelSmall, color = Color.Gray)
+
+                    Text(
+                        text = "$setNameText - ${currentSet.targetClass.name}",
+                        style = PixelHeading,
+                        color = Color(Rarity.MYTHIC.color)
+                    )
+                    Text(
+                        text = "Class: ${currentSet.targetClass.name} (${selectedItem.slot.name})",
+                        style = PixelSmall,
+                        color = Color.White
+                    )
+                }
+
+                // STATS PREVIEW BOX
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(BgDarkest, RoundedCornerShape(6.dp))
+                        .border(1.dp, GoldDark, RoundedCornerShape(6.dp))
+                        .padding(8.dp)
+                ) {
+                    Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                        Text(
+                            text = safeStringResource(R.string.craft_label_stats_preview),
+                            style = PixelSmall,
+                            color = GoldAccent,
+                            fontWeight = FontWeight.Bold
+                        )
+
+                        val selAtk = selectedItem.effectiveAttackBonus.toLong()
+                        val preAtk = previewItem.attackBonus
+                        val dAtk = preAtk - selAtk
+
+                        val selDef = selectedItem.effectiveDefenseBonus.toLong()
+                        val preDef = previewItem.defenseBonus
+                        val dDef = preDef - selDef
+
+                        val selMag = selectedItem.effectiveMagicBonus.toLong()
+                        val preMag = previewItem.magicBonus
+                        val dMag = preMag - selMag
+
+                        val selHp = selectedItem.effectiveHpBonus.toLong()
+                        val preHp = previewItem.hpBonus
+                        val dHp = preHp - selHp
+
+                        val selMp = selectedItem.mpBonus
+                        val preMp = previewItem.mpBonus
+                        val dMp = preMp - selMp
+
+                        val selCritC = selectedItem.critChanceBonus
+                        val preCritC = previewItem.critChanceBonus
+                        val dCritC = preCritC - selCritC
+
+                        val selCritD = selectedItem.critDamageBonus
+                        val preCritD = previewItem.critDamageBonus
+                        val dCritD = preCritD - selCritD
+
+                        if (preAtk > 0 || selAtk > 0) {
+                            StatPreviewRow(label = safeStringResource(R.string.stat_attack), value = preAtk, delta = dAtk)
+                        }
+                        if (preDef > 0 || selDef > 0) {
+                            StatPreviewRow(label = safeStringResource(R.string.stat_defense), value = preDef, delta = dDef)
+                        }
+                        if (preMag > 0 || selMag > 0) {
+                            StatPreviewRow(label = safeStringResource(R.string.stat_magic), value = preMag, delta = dMag)
+                        }
+                        if (preHp > 0 || selHp > 0) {
+                            StatPreviewRow(label = safeStringResource(R.string.stat_hp), value = preHp, delta = dHp)
+                        }
+                        if (preMp > 0 || selMp > 0) {
+                            StatPreviewRow(label = safeStringResource(R.string.stat_mp), value = preMp, delta = dMp)
+                        }
+                        if (preCritC > 0 || selCritC > 0) {
+                            StatPreviewRow(label = safeStringResource(R.string.stat_crit_chance), value = preCritC.toLong(), delta = dCritC.toLong(), isPercentage = true)
+                        }
+                        if (preCritD > 0 || selCritD > 0) {
+                            StatPreviewRow(label = safeStringResource(R.string.stat_crit_damage), value = preCritD, delta = dCritD, isPercentage = true)
+                        }
                     }
                 }
 
-                Text(text = safeStringResource(R.string.craft_label_mythic_recipe), style = PixelSmall, color = GoldAccent)
+                // MYTHIC SET BONUS BOX
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .background(Color(0xFF1E0A2A), RoundedCornerShape(6.dp))
+                        .border(1.dp, Color(Rarity.MYTHIC.color), RoundedCornerShape(6.dp))
+                        .padding(8.dp)
+                ) {
+                    Column(
+                        horizontalAlignment = Alignment.CenterHorizontally,
+                        verticalArrangement = Arrangement.spacedBy(4.dp),
+                        modifier = Modifier.fillMaxWidth()
+                    ) {
+                        Text(
+                            text = "$setNameText (${currentSet.requiredPieces}-Piece Set Bonus)",
+                            style = PixelBody,
+                            color = Color(Rarity.MYTHIC.color),
+                            fontWeight = FontWeight.Bold
+                        )
 
-                // Checklist
+                        Text(
+                            text = "Requires Class: ${currentSet.targetClass.name}",
+                            style = PixelSmall,
+                            color = GoldAccent
+                        )
+
+                        val statsText = currentSet.statMultipliers.entries.joinToString(" | ") { (key, value) ->
+                            val formattedVal = if (key.endsWith("_MULT")) "+${(value * 100).toInt()}%" else "+${value.toInt()}"
+                            val formattedKey = key.replace("_MULT", "").replace("_ADD", "")
+                            "$formattedVal Total $formattedKey"
+                        }
+
+                        Text(
+                            text = statsText,
+                            style = PixelSmall,
+                            color = Color.White
+                        )
+                    }
+                }
+            } else {
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(110.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    Text(text = "Select a +10 Legendary item to preview Mythic sets", style = PixelSmall, color = Color.Gray)
+                }
+            }
+
+            Text(text = safeStringResource(R.string.craft_label_mythic_recipe), style = PixelSmall, color = GoldAccent)
+
+            // Checklist
+            Column(verticalArrangement = Arrangement.spacedBy(6.dp)) {
                 Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                     Text(text = if (hasItem) "✅" else "❌", fontSize = 12.sp)
                     Text(
@@ -1070,8 +1207,54 @@ private fun MythicForgeSection(
                 modifier = Modifier.fillMaxWidth(),
                 colors = ButtonDefaults.buttonColors(containerColor = Color(Rarity.MYTHIC.color), disabledContainerColor = StoneGray)
             ) {
-                Text(text = safeStringResource(R.string.craft_btn_forge_mythic), color = if (canForge && currentSet != null) Color.White else Color.LightGray, fontWeight = FontWeight.Bold)
+                Text(
+                    text = safeStringResource(R.string.craft_btn_forge_mythic),
+                    color = if (canForge && currentSet != null) Color.White else Color.LightGray,
+                    fontWeight = FontWeight.Bold
+                )
             }
+        }
+    }
+}
+
+@Composable
+private fun StatPreviewRow(
+    label: String,
+    value: Long,
+    delta: Long,
+    isPercentage: Boolean = false
+) {
+    Row(
+        modifier = Modifier.fillMaxWidth(),
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        val displayVal = if (isPercentage) "+$value%" else "$value"
+        val deltaSign = if (delta >= 0) "+$delta" else "$delta"
+        val displayDelta = if (isPercentage) "$deltaSign%" else deltaSign
+        val deltaColor = when {
+            delta > 0 -> HpGreen
+            delta < 0 -> HpRed
+            else -> Color.Gray
+        }
+
+        Text(
+            text = "$label:",
+            style = PixelSmall,
+            color = Color.LightGray
+        )
+        Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+            Text(
+                text = displayVal,
+                style = PixelSmall,
+                color = Color.White
+            )
+            Text(
+                text = "($displayDelta)",
+                style = PixelSmall,
+                color = deltaColor,
+                fontWeight = FontWeight.Bold
+            )
         }
     }
 }

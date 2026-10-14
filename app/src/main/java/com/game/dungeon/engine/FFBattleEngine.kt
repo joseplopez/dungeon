@@ -170,8 +170,12 @@ class FFBattleEngine(private val context: Context) {
 
                     // 2. Mythic Gear: 5% drop chance per boss kill to drop exactly one Mythic Gear piece.
                     if (Random.nextFloat() < 0.05f) {
+                        val effectiveFloor = (1000.0 * pow(1.15, (currentFloor - 1).toDouble()))
+                            .toLong()
+                            .coerceAtMost(Int.MAX_VALUE.toLong())
+                            .toInt()
                         val baseMythic = Item.random(
-                            floor = currentFloor,
+                            floor = effectiveFloor,
                             context = context,
                             relicBonuses = relicBonuses,
                             minRarity = Rarity.MYTHIC,
@@ -301,32 +305,18 @@ class FFBattleEngine(private val context: Context) {
         relicBonuses: RelicBonuses,
         mode: DungeonMode = DungeonMode.REGULAR
     ): Map<String, Int> {
-        val drops = mutableMapOf<String, Int>()
         if (mode == DungeonMode.BOSS_LAIR) {
-            // Bypass standard loot tables for Boss Lair mode
-            if (Random.nextFloat() < 0.25f) {
-                val qty = Random.nextInt(2, 6)
-                drops["mythic_shard"] = qty
-            }
-            return drops
+            return if (Random.nextFloat() < 0.25f) mapOf("mythic_shard" to Random.nextInt(2, 6)) else emptyMap()
         }
 
+        val drops = mutableMapOf<String, Int>()
         val relicMultiplier = 1f + relicBonuses.alchemistDropChanceBonus + (relicBonuses.magnetBonus * 0.10f)
-
-        // Strictly uses enemy.isBoss — NO floor % 10 check
         val dropRules = MonsterLootTable.getDropsForMonster(enemy.type, enemy.isBoss)
 
         dropRules.forEach { rule ->
-            val rawChance = rule.baseDropChance * relicMultiplier
-            val maxCap = if (rule.isBossTrophy) 0.50f else 0.25f
-            val finalChance = rawChance.coerceAtMost(maxCap)
-
-            if (Random.nextFloat() < finalChance) {
-                val matId = rule.materialId
-                val baseAmount = rule.minQuantity
-                val extraYieldChance = (relicBonuses.pocketsBonus * 0.2f) + (if (floor >= 50) 0.2f else 0.0f)
-                val qty = if (Random.nextFloat() < extraYieldChance) baseAmount + 1 else baseAmount
-                drops[matId] = (drops[matId] ?: 0) + qty
+            val qty = evaluateRuleDrop(rule, floor, relicMultiplier, relicBonuses.pocketsBonus)
+            if (qty > 0) {
+                drops[rule.materialId] = (drops[rule.materialId] ?: 0) + qty
             }
         }
 
@@ -335,6 +325,26 @@ class FFBattleEngine(private val context: Context) {
         }
 
         return drops
+    }
+
+    private fun evaluateRuleDrop(
+        rule: MaterialDropRule,
+        floor: Int,
+        relicMultiplier: Float,
+        pocketsBonus: Float
+    ): Int {
+        val isGem = rule.materialId.contains("gem")
+        val maxCap = when {
+            rule.isBossTrophy -> 0.50f
+            isGem -> 0.05f
+            else -> 0.15f
+        }
+        val finalChance = (rule.baseDropChance * relicMultiplier).coerceAtMost(maxCap)
+        if (Random.nextFloat() >= finalChance) return 0
+
+        val floorBonus = if (floor >= 50 && !isGem) 0.2f else 0.0f
+        val extraYieldChance = (pocketsBonus * 0.2f) + floorBonus
+        return if (Random.nextFloat() < extraYieldChance) rule.minQuantity + 1 else rule.minQuantity
     }
 
     private fun applyDamageToEnemy(

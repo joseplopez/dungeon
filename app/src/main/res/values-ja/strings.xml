@@ -1160,6 +1160,9 @@
         <string name="craft_format_quantity">x%1$d</string>
         <string name="craft_format_stat">%1$s: %2$d ➔ %3$d</string>
         <string name="craft_format_equipped_tag">(装備中)</string>
+        <string name="craft_format_equipped_hero">(装備中: %1$s)</string>
+        <string name="craft_label_stats_preview">ステータスプレビュー</string>
+        <string name="craft_label_set_bonus">セット効果</string>
         <string name="craft_format_hero_level">Lv %1$d</string>
         <string name="craft_label_hero_breakthrough">ヒーローレベル限界突破:</string>
         <string name="btn_ok">OK</string>

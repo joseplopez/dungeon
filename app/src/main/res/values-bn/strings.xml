@@ -1161,6 +1161,9 @@
         <string name="craft_format_quantity">x%1$d</string>
         <string name="craft_format_stat">%1$s: %2$d ➔ %3$d</string>
         <string name="craft_format_equipped_tag">( সজ্জিত )</string>
+        <string name="craft_format_equipped_hero">( সজ্জিত: %1$s )</string>
+        <string name="craft_label_stats_preview">পরিসংখ্যান পূর্বাবলোকন</string>
+        <string name="craft_label_set_bonus">সেট বোনাস</string>
         <string name="craft_format_hero_level">Lvl %1$d</string>
         <string name="craft_label_hero_breakthrough">বীর স্তর সীমা অতিক্রম:</string>
         <string name="btn_ok">ঠিক আছে</string>

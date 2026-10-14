@@ -477,10 +477,13 @@ class GameRepository @Inject constructor(
 
         val state = database.gameStateDao.getGameStateOnce()
         val currentDimension = state?.currentDimension ?: 1
+        val craftFloor = maxOf(1000, state?.lifetimeHighestFloor ?: 0)
+        val relicBonuses = state?.let { RelicBonuses.from(it) }
 
         val baseMythicItem = Item.random(
-            floor = baseItem.floorFound.coerceAtLeast(100),
+            floor = craftFloor,
             context = context,
+            relicBonuses = relicBonuses,
             minRarity = Rarity.MYTHIC,
             dimension = currentDimension,
             forcedSlot = baseItem.slot

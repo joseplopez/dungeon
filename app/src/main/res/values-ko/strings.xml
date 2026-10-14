@@ -1162,6 +1162,9 @@
         <string name="craft_format_quantity">x%1$d</string>
         <string name="craft_format_stat">%1$s: %2$d ➔ %3$d</string>
         <string name="craft_format_equipped_tag">(장착 중)</string>
+        <string name="craft_format_equipped_hero">(장착 중: %1$s)</string>
+        <string name="craft_label_stats_preview">능력치 미리보기</string>
+        <string name="craft_label_set_bonus">세트 효과</string>
         <string name="craft_format_hero_level">Lv %1$d</string>
         <string name="craft_label_hero_breakthrough">영웅 레벨 한계 돌파:</string>
         <string name="btn_ok">확인</string>
