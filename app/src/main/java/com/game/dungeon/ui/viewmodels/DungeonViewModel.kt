@@ -642,7 +642,11 @@ class DungeonViewModel @Inject constructor(
           battleLog = (it.battleLog + FFLogEntry(if (penalty > 0) R.string.log_total_wipe else R.string.retreat_button, emptyList(), LogType.HERO_FELL)).takeLast(25)
       ) }
       
-      repo.triggerFirebaseUpload()
+      if (currentState.dungeonMode == DungeonMode.BOSS_LAIR) {
+          repo.updateHighestBossLairFloor(floor)
+      } else {
+          repo.triggerFirebaseUpload()
+      }
     }
   }
 
@@ -731,7 +735,11 @@ class DungeonViewModel @Inject constructor(
           runComplete=true,
           runSummary = summary
       ) }
-      repo.triggerFirebaseUpload()
+      if (currentState.dungeonMode == DungeonMode.BOSS_LAIR) {
+          repo.updateHighestBossLairFloor(floor)
+      } else {
+          repo.triggerFirebaseUpload()
+      }
     }
   }
 

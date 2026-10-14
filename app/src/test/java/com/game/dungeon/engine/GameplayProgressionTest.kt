@@ -415,10 +415,10 @@ class GameplayProgressionTest {
         repeat(200) {
             val item = Item.random(floor = 50, context = mockContext, dimension = 1)
             if (item.slot == ItemSlot.WEAPON) {
-                if (item.magicBonus > 0 && item.attackBonus == 0) {
+                if (item.magicBonus > 0L && item.attackBonus == 0L) {
                     foundMagicalWeapon = true
                 }
-                if (item.attackBonus > 0 && item.magicBonus == 0) {
+                if (item.attackBonus > 0L && item.magicBonus == 0L) {
                     foundPhysicalWeapon = true
                 }
             }
@@ -600,18 +600,18 @@ class GameplayProgressionTest {
         val copiedHero = hero.copy(currentHp = 5000)
 
         // Verify bonus stats are preserved on copy
-        assertEquals(137, copiedHero.attackBonus)
-        assertEquals(4822, copiedHero.defenseBonus)
-        assertEquals(5529, copiedHero.hpBonus)
-        assertEquals(122, copiedHero.magicBonus)
-        assertEquals(351, copiedHero.mpBonus)
+        assertEquals(137L, copiedHero.attackBonus)
+        assertEquals(4822L, copiedHero.defenseBonus)
+        assertEquals(5529L, copiedHero.hpBonus)
+        assertEquals(122L, copiedHero.magicBonus)
+        assertEquals(351L, copiedHero.mpBonus)
         assertEquals(42, copiedHero.critChance)
         assertEquals(50, copiedHero.critDamage)
 
         // Verify total stats match expected base + bonus
-        assertEquals(hero.baseAttack + 137, copiedHero.attack)
-        assertEquals(hero.baseDefense + 4822, copiedHero.defense)
-        assertEquals(hero.baseMaxHp + 5529, copiedHero.maxHp)
+        assertEquals((hero.baseAttack + 137).toLong(), copiedHero.attack)
+        assertEquals((hero.baseDefense + 4822).toLong(), copiedHero.defense)
+        assertEquals((hero.baseMaxHp + 5529).toLong(), copiedHero.maxHp)
 
         // Verify hero does not die on taking small damage when HP is high
         copiedHero.currentHp -= 113

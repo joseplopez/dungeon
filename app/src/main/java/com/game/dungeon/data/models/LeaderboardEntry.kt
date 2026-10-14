@@ -5,6 +5,7 @@ data class LeaderboardEntry(
     val playerId: String? = null,
     val playerName: String,
     val maxFloor: Int,
+    val maxBossFloor: Int = 0,
     val dimension: Int = 1,
     val dimensionMaxFloor: Int = 0,
     val totalMagicite: Int,

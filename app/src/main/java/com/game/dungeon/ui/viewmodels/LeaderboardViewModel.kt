@@ -2,6 +2,7 @@ package com.game.dungeon.ui.viewmodels
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.game.dungeon.BuildConfig
 import com.game.dungeon.data.models.LeaderboardEntry
 import com.game.dungeon.data.repository.AuthRepository
 import com.game.dungeon.data.repository.FriendRepository
@@ -13,10 +14,11 @@ import kotlinx.coroutines.flow.SharingStarted
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.combine
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.map
 import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.flow.stateIn
-import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -28,11 +30,15 @@ class LeaderboardViewModel @Inject constructor(
     private val friendRepository: FriendRepository
 ) : ViewModel() {
 
-    private val _selectedTab = MutableStateFlow(0) // 0: Global, 1: Dimension
+    private val _selectedTab = MutableStateFlow(0) // 0: Global, 1: Boss Lair
     val selectedTab = _selectedTab.asStateFlow()
 
     val gameState = repository.getGameState().stateIn(viewModelScope, SharingStarted.Eagerly, null)
     val currentParty = repository.getParty().stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
+
+    val canSeeBossLair: StateFlow<Boolean> = gameState.map { gs ->
+        (gs?.currentDimension ?: 1) >= 11 || BuildConfig.ENABLE_BOSS_LAIR_TESTING
+    }.stateIn(viewModelScope, SharingStarted.Eagerly, false)
 
     private val _isLoading = MutableStateFlow(false)
     val isLoading = _isLoading.asStateFlow()
@@ -43,15 +49,14 @@ class LeaderboardViewModel @Inject constructor(
         _selectedTab,
         _refreshTrigger,
         gameState,
-        friendRepository.friendIds,
         currentParty
-    ) { tab, _, gs, friends, party ->
+    ) { tab, _, gs, party ->
         if (gs == null) return@combine emptyList()
         
         val entries = when (tab) {
             0 -> leaderboardRepository.getGlobalLeaderboard()
-            1 -> leaderboardRepository.getDimensionLeaderboard()
-            else -> leaderboardRepository.getFriendsLeaderboard(friends.toList(), gs.playerId ?: "")
+            1 -> leaderboardRepository.getBossLairLeaderboard()
+            else -> leaderboardRepository.getGlobalLeaderboard()
         }
         
         entries.map { entry ->

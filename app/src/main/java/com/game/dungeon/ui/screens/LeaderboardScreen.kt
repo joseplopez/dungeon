@@ -44,6 +44,7 @@ fun LeaderboardScreen(
     val selectedTab by viewModel.selectedTab.collectAsState()
     val gameState by viewModel.gameState.collectAsState()
     val isLoading by viewModel.isLoading.collectAsState()
+    val canSeeBossLair by viewModel.canSeeBossLair.collectAsState()
 
     var selectedEntry by remember { mutableStateOf<LeaderboardEntry?>(null) }
     var showEditNameDialog by remember { mutableStateOf(false) }
@@ -226,8 +227,9 @@ fun LeaderboardScreen(
                                 fontSize = 11.sp,
                                 maxLines = 1
                             )
+                            val scoreText = if (selectedTab == 1) "Boss Flr ${topChampion.maxBossFloor}" else "Dim ${topChampion.dimension} • Floor ${topChampion.maxFloor}"
                             Text(
-                                text = "Dim ${topChampion.dimension} • Floor ${topChampion.maxFloor}",
+                                text = scoreText,
                                 style = PixelSmall,
                                 color = StoneGray,
                                 fontSize = 8.sp
@@ -277,6 +279,7 @@ fun LeaderboardScreen(
                                     title = "🥈 " + safeStringResource(R.string.podium_silver),
                                     heightDp = 50,
                                     borderColor = Color(0xFFC0C0C0),
+                                    selectedTab = selectedTab,
                                     modifier = Modifier.weight(1f),
                                     onClick = { selectedEntry = entries[1] }
                                 )
@@ -290,6 +293,7 @@ fun LeaderboardScreen(
                                 title = "🥇 " + safeStringResource(R.string.podium_gold),
                                 heightDp = 68,
                                 borderColor = GoldBright,
+                                selectedTab = selectedTab,
                                 modifier = Modifier.weight(1f),
                                 onClick = { selectedEntry = entries[0] }
                             )
@@ -301,6 +305,7 @@ fun LeaderboardScreen(
                                     title = "🥉 " + safeStringResource(R.string.podium_bronze),
                                     heightDp = 42,
                                     borderColor = Color(0xFFCD7F32),
+                                    selectedTab = selectedTab,
                                     modifier = Modifier.weight(1f),
                                     onClick = { selectedEntry = entries[2] }
                                 )
@@ -318,22 +323,23 @@ fun LeaderboardScreen(
                     .weight(0.65f)
                     .fillMaxSize()
             ) {
-                // Category Tabs (GLOBAL, DIMENSION)
+                // Category Tabs (Normal, Boss Lair)
                 Row(
                     Modifier.fillMaxWidth(),
                     horizontalArrangement = Arrangement.spacedBy(4.dp),
                     verticalAlignment = CenterVertically
                 ) {
                     PixelButton(
-                        label = safeStringResource(R.string.tab_global),
+                        label = safeStringResource(R.string.tab_normal),
                         onClick = { viewModel.selectTab(0) },
                         active = selectedTab == 0,
                         modifier = Modifier.weight(1f).height(28.dp)
                     )
                     PixelButton(
-                        label = safeStringResource(R.string.tab_dimension),
-                        onClick = { viewModel.selectTab(1) },
+                        label = if (canSeeBossLair) safeStringResource(R.string.boss_lair_title) else "🔒 Boss Lair",
+                        onClick = { if (canSeeBossLair) viewModel.selectTab(1) },
                         active = selectedTab == 1,
+                        enabled = canSeeBossLair,
                         modifier = Modifier.weight(1f).height(28.dp)
                     )
                 }
@@ -368,7 +374,7 @@ fun LeaderboardScreen(
                                 color = GoldBright,
                                 modifier = Modifier.weight(1f)
                             )
-                            val floorHeader = if (selectedTab == 1) safeStringResource(R.string.header_max_dim) else safeStringResource(R.string.floor_reached_short)
+                            val floorHeader = if (selectedTab == 1) safeStringResource(R.string.header_boss) else safeStringResource(R.string.header_flr)
                             Text(
                                 text = floorHeader,
                                 style = PixelSmall,
@@ -440,7 +446,11 @@ fun LeaderboardScreen(
     }
 
     selectedEntry?.let { entry ->
-        GhostRunDialog(entry, onDismiss = { selectedEntry = null })
+        GhostRunDialog(
+            entry = entry,
+            selectedTab = selectedTab,
+            onDismiss = { selectedEntry = null }
+        )
     }
 
     if (showSupportDialog) {
@@ -455,6 +465,7 @@ private fun PodiumPedestal(
     heightDp: Int,
     borderColor: Color,
     modifier: Modifier = Modifier,
+    selectedTab: Int = 0,
     onClick: () -> Unit
 ) {
     Column(
@@ -497,8 +508,9 @@ private fun PodiumPedestal(
                     fontWeight = FontWeight.Bold,
                     textAlign = TextAlign.Center
                 )
+                val displayFloor = if (selectedTab == 1) entry.maxBossFloor else entry.maxFloor
                 Text(
-                    text = safeStringResource(R.string.flr_short_format, entry.maxFloor),
+                    text = safeStringResource(R.string.flr_short_format, displayFloor),
                     style = PixelHeading,
                     color = GoldBright,
                     fontSize = 9.sp
@@ -562,7 +574,7 @@ fun LeaderboardRow(entry: LeaderboardEntry, selectedTab: Int, onClick: () -> Uni
         }
 
         Text(
-            text = (if (selectedTab == 1) entry.dimension else entry.maxFloor).toString(),
+            text = (if (selectedTab == 1) entry.maxBossFloor else entry.maxFloor).toString(),
             style = PixelSmall,
             color = textColor,
             modifier = Modifier.width(55.dp),
@@ -639,7 +651,11 @@ fun EditNameDialog(currentName: String, onDismiss: () -> Unit, onSave: (String) 
 }
 
 @Composable
-fun GhostRunDialog(entry: LeaderboardEntry, onDismiss: () -> Unit) {
+fun GhostRunDialog(
+    entry: LeaderboardEntry,
+    selectedTab: Int = 0,
+    onDismiss: () -> Unit
+) {
     Dialog(
         onDismissRequest = onDismiss,
         properties = DialogProperties(usePlatformDefaultWidth = false)
@@ -658,8 +674,13 @@ fun GhostRunDialog(entry: LeaderboardEntry, onDismiss: () -> Unit) {
             ) {
                 val displayName = if (entry.isUser) safeStringResource(R.string.player_name_you) else entry.playerName
                 Text(safeStringResource(R.string.ghost_run_team_title, displayName), style = PixelHeading)
+                val summaryText = if (selectedTab == 1) {
+                    "BOSS FLR ${entry.maxBossFloor} • 💎 ${formatMagicite(entry.totalMagicite)}"
+                } else {
+                    "DIM ${entry.dimension} • FLOOR ${entry.maxFloor} • 💎 ${formatMagicite(entry.totalMagicite)}"
+                }
                 Text(
-                    text = "DIM ${entry.dimension} • FLOOR ${entry.maxFloor} • 💎 ${formatMagicite(entry.totalMagicite)}",
+                    text = summaryText,
                     style = PixelSmall,
                     color = GoldBright
                 )

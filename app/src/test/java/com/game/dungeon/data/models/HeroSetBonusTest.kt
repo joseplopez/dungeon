@@ -37,8 +37,8 @@ class HeroSetBonusTest {
         val expectedAtk = baseAtk + (baseAtk * 0.40f).toInt()
         val expectedHp = baseHp + (baseHp * 0.25f).toInt()
 
-        assertEquals(expectedAtk, boostedStats["ATK"])
-        assertEquals(expectedHp, boostedStats["HP"])
+        assertEquals(expectedAtk.toLong(), boostedStats["ATK"])
+        assertEquals(expectedHp.toLong(), boostedStats["HP"])
     }
 
     @Test
@@ -65,8 +65,8 @@ class HeroSetBonusTest {
         val expectedHp = warrior.baseMaxHp + 150
 
         // Inactive because only 2 pieces equipped
-        assertEquals(expectedAtk, stats["ATK"])
-        assertEquals(expectedHp, stats["HP"])
+        assertEquals(expectedAtk.toLong(), stats["ATK"])
+        assertEquals(expectedHp.toLong(), stats["HP"])
     }
 
     @Test
@@ -98,8 +98,8 @@ class HeroSetBonusTest {
         val expectedHp = blackMage.baseMaxHp + 200
 
         // Inactive because Black Mage is not targetClass (WARRIOR)
-        assertEquals(expectedAtk, stats["ATK"])
-        assertEquals(expectedHp, stats["HP"])
+        assertEquals(expectedAtk.toLong(), stats["ATK"])
+        assertEquals(expectedHp.toLong(), stats["HP"])
     }
 
     @Test
@@ -130,11 +130,11 @@ class HeroSetBonusTest {
         // MAGUS set: +40% MAG, +15 Flat Crit Chance
         val baseMag = blackMage.baseMagic + 200
         val expectedMag = baseMag + (baseMag * 0.40f).toInt()
-        assertEquals(expectedMag, stats["MAG"])
+        assertEquals(expectedMag.toLong(), stats["MAG"])
 
         // Crit Chance addition (+15 flat to calculated final crit)
         val initialCrit = (100f * 5 / (5 + 50)).toInt() // 9
         val expectedCrit = initialCrit + 15 // 24
-        assertEquals(expectedCrit, stats["CRIT_CHANCE"])
+        assertEquals(expectedCrit.toLong(), stats["CRIT_CHANCE"])
     }
 }

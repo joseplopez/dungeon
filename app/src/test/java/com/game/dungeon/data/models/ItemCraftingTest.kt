@@ -9,13 +9,13 @@ import org.junit.Test
 class ItemCraftingTest {
 
     private fun createBaseItem(
-        attackBonus: Int = 100,
-        defenseBonus: Int = 50,
-        magicBonus: Int = 20,
-        hpBonus: Int = 100,
-        mpBonus: Int = 10,
+        attackBonus: Long = 100L,
+        defenseBonus: Long = 50L,
+        magicBonus: Long = 20L,
+        hpBonus: Long = 100L,
+        mpBonus: Long = 10L,
         critChanceBonus: Int = 5,
-        critDamageBonus: Int = 20,
+        critDamageBonus: Long = 20L,
         enhancementLevel: Int = 0,
         sockets: List<SocketSlot> = emptyList(),
     ): Item {
@@ -43,8 +43,8 @@ class ItemCraftingTest {
         // basePowerScore = attackBonus(100) + defenseBonus(50) + magicBonus(20) + (hpBonus/5 = 20) + (mpBonus/2 = 5) + (critChance*2 = 10) + (critDamage/2 = 10) = 215
         val item = createBaseItem()
 
-        assertEquals(215, item.basePowerScore)
-        assertEquals(215, item.powerScore)
+        assertEquals(215L, item.basePowerScore)
+        assertEquals(215.0, item.powerScore, 0.001)
     }
 
     @Test
@@ -60,18 +60,18 @@ class ItemCraftingTest {
             floorFound = 1,
         )
 
-        assertEquals(100, item.basePowerScore)
+        assertEquals(100L, item.basePowerScore)
 
         // Key milestones check (+0%, +25%, +50%)
-        assertEquals(100, item.copy(enhancementLevel = 0).powerScore)
-        assertEquals(125, item.copy(enhancementLevel = 5).powerScore)
-        assertEquals(150, item.copy(enhancementLevel = 10).powerScore)
+        assertEquals(100.0, item.copy(enhancementLevel = 0).powerScore, 0.001)
+        assertEquals(125.0, item.copy(enhancementLevel = 5).powerScore, 0.001)
+        assertEquals(150.0, item.copy(enhancementLevel = 10).powerScore, 0.001)
 
-        // Verify all enhancement levels 0..10 scale according to (base * (1.0 + level * 0.05)).toInt()
+        // Verify all enhancement levels 0..10 scale according to (base * (1.0 + level * 0.05))
         for (level in 0..10) {
             val enhancedItem = item.copy(enhancementLevel = level)
-            val expectedPower = (item.basePowerScore * (1.0 + (level * 0.05))).toInt()
-            assertEquals("PowerScore mismatch at enhancement level $level", expectedPower, enhancedItem.powerScore)
+            val expectedPower = item.basePowerScore * (1.0 + (level * 0.05))
+            assertEquals("PowerScore mismatch at enhancement level $level", expectedPower, enhancedItem.powerScore, 0.001)
         }
     }
 
@@ -92,19 +92,19 @@ class ItemCraftingTest {
 
         // Below 0: enhancementLevel = -5 should be coerced to 0 (multiplier 1.0)
         val negativeEnhanced = item.copy(enhancementLevel = -5)
-        assertEquals(200, negativeEnhanced.powerScore)
-        assertEquals(100, negativeEnhanced.effectiveAttackBonus)
-        assertEquals(100, negativeEnhanced.effectiveDefenseBonus)
+        assertEquals(200.0, negativeEnhanced.powerScore, 0.001)
+        assertEquals(100.0, negativeEnhanced.effectiveAttackBonus, 0.001)
+        assertEquals(100.0, negativeEnhanced.effectiveDefenseBonus, 0.001)
 
         // Above 10: enhancementLevel = 15 should be coerced to 10 (multiplier 1.5)
         val overEnhanced = item.copy(enhancementLevel = 15)
-        assertEquals(300, overEnhanced.powerScore)
-        assertEquals(150, overEnhanced.effectiveAttackBonus)
-        assertEquals(150, overEnhanced.effectiveDefenseBonus)
+        assertEquals(300.0, overEnhanced.powerScore, 0.001)
+        assertEquals(150.0, overEnhanced.effectiveAttackBonus, 0.001)
+        assertEquals(150.0, overEnhanced.effectiveDefenseBonus, 0.001)
 
         // Way above 10: enhancementLevel = 100 should also coerce to 10 (multiplier 1.5)
         val maxCoerced = item.copy(enhancementLevel = 100)
-        assertEquals(300, maxCoerced.powerScore)
+        assertEquals(300.0, maxCoerced.powerScore, 0.001)
     }
 
     @Test
@@ -138,21 +138,21 @@ class ItemCraftingTest {
 
         // Base stats at enhancementLevel = 2:
         // basePowerScore = 50 + 50 + 50 + (100/5 = 20) = 170
-        // base power scaled by 1.10 = (170 * 1.10).toInt() = 187
+        // base power scaled by 1.10 = (170 * 1.10) = 187
         // socketBonus = 30 + 30 + 30 + 30 = 120
         // expected total powerScore = 187 + 120 = 307
         assertEquals(120, baseItem.socketBonus)
-        assertEquals(307, baseItem.powerScore)
+        assertEquals(307.0, baseItem.powerScore, 0.001)
 
         // Effective stats at enhancementLevel = 2 (1.10 multiplier on base, plus gem bonus):
         // effectiveAttackBonus: (50 * 1.10).toInt() + 15 = 55 + 15 = 70
         // effectiveDefenseBonus: (50 * 1.10).toInt() + 15 = 55 + 15 = 70
         // effectiveMagicBonus: (50 * 1.10).toInt() + 15 = 55 + 15 = 70
         // effectiveHpBonus: (100 * 1.10).toInt() + 75 = 110 + 75 = 185
-        assertEquals(70, baseItem.effectiveAttackBonus)
-        assertEquals(70, baseItem.effectiveDefenseBonus)
-        assertEquals(70, baseItem.effectiveMagicBonus)
-        assertEquals(185, baseItem.effectiveHpBonus)
+        assertEquals(70.0, baseItem.effectiveAttackBonus, 0.001)
+        assertEquals(70.0, baseItem.effectiveDefenseBonus, 0.001)
+        assertEquals(70.0, baseItem.effectiveMagicBonus, 0.001)
+        assertEquals(185.0, baseItem.effectiveHpBonus, 0.001)
     }
 
     @Test

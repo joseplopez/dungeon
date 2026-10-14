@@ -18,11 +18,11 @@ class AnalyticsManagerTest {
             logEvent("run_started", params)
         }
 
-        override fun logRunFinished(floor: Int, gil: Long, magicite: Int, status: String) {
+        override fun logRunFinished(floor: Int, gil: Long, magicite: Long, status: String) {
             val params = Bundle().apply {
                 putInt("end_floor", floor)
                 putLong("gil_earned", gil)
-                putInt("magicite_earned", magicite)
+                putLong("magicite_earned", magicite)
                 putString("status", status)
             }
             logEvent("run_finished", params)

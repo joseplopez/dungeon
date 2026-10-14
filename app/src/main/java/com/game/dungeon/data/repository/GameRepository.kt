@@ -172,9 +172,14 @@ class GameRepository @Inject constructor(
 
     suspend fun updateHighestBossLairFloor(floor: Int) {
         val current = database.gameStateDao.getGameStateOnce() ?: GameState()
-        if (floor > current.highestBossLairFloor) {
-            database.gameStateDao.upsert(current.copy(highestBossLairFloor = floor))
+        val newState = if (floor > current.highestBossLairFloor) {
+            val updated = current.copy(highestBossLairFloor = floor)
+            database.gameStateDao.upsert(updated)
+            updated
+        } else {
+            current
         }
+        triggerFirebaseUpload(newState)
     }
 
     suspend fun triggerFirebaseUpload(state: GameState? = null) {

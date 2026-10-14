@@ -667,6 +667,9 @@
     <string name="tab_global">GLOBAL</string>
     <string name="tab_dimension" translatable="false">FANTASY</string>
     <string name="tab_friends">FRIENDS</string>
+    <string name="tab_normal">Normal</string>
+    <string name="header_flr">FLR</string>
+    <string name="header_boss">BOSS</string>
     <string name="rank_label">RANK</string>
     <string name="player_label">PLAYER</string>
     <string name="floor_reached_short">MAX FLR</string>
