@@ -6,6 +6,7 @@ import com.game.dungeon.R
 import com.game.dungeon.data.models.*
 import kotlinx.coroutines.delay
 import java.lang.Math.pow
+import kotlin.math.pow
 import kotlin.random.Random
 
 sealed class FFBattleEvent {
@@ -168,9 +169,10 @@ class FFBattleEngine(private val context: Context) {
                         onEvent(FFBattleEvent.MaterialDropped("mythic_shard", shardQty))
                     }
 
-                    // 2. Mythic Gear: 5% drop chance per boss kill to drop exactly one Mythic Gear piece.
-                    if (Random.nextFloat() < 0.05f) {
-                        val effectiveFloor = (1000.0 * pow(1.15, (currentFloor - 1).toDouble()))
+                    // 2. Mythic Gear: 5% caped drop chance per boss kill to drop exactly one Mythic Gear piece.
+                    val mythicDropChance = (0.002f + (currentFloor - 1) * 0.001f).coerceAtMost(0.05f)
+                    if (Random.nextFloat() < mythicDropChance) {
+                        val effectiveFloor = (1000.0 * 1.15.pow((currentFloor - 1).toDouble()))
                             .toLong()
                             .coerceAtMost(Int.MAX_VALUE.toLong())
                             .toInt()
@@ -219,7 +221,7 @@ class FFBattleEngine(private val context: Context) {
                     }
 
                     if (currentFloor >= 100) {
-                        val mythicChance = if (bossTemplate != null) 0.05f else 0.001f
+                        val mythicChance = if (bossTemplate != null) 0.005f else 0.0001f
                         if (Random.nextFloat() * 100f < mythicChance) {
                             // 1. Generate the base mythic item first
                             val baseMythic = Item.random(
