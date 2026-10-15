@@ -60,6 +60,8 @@ fun DungeonScreen(
     navController: NavController? = null
 ) {
     val state by viewModel.battleState.collectAsState()
+    val hasPremiumSpeed by viewModel.hasPremiumSpeed.collectAsState()
+    val showPremiumPurchaseDialog by viewModel.showPremiumPurchaseDialog.collectAsState()
     val dimension = state.dimension
     val isBossFloor = dimension != null && FFDimensionData.getBossForFloor(dimension, state.currentFloor) != null
     val activity = LocalContext.current as? Activity
@@ -79,6 +81,8 @@ fun DungeonScreen(
                 onRetreat = { viewModel.retreat() },
                 speed = state.speed,
                 onSpeedChange = { viewModel.setSpeed(it) },
+                hasPremiumSpeed = hasPremiumSpeed,
+                onOpenPremiumPurchase = { viewModel.openPremiumPurchase() },
                 isPaused = state.isPaused,
                 onTogglePause = { viewModel.togglePause() },
                 isMuted = isMuted,
@@ -224,6 +228,18 @@ fun DungeonScreen(
                 onGiveUp = { viewModel.finalizeRun() }
             )
         }
+
+        // Premium Speed Purchase Dialog
+        AnimatedVisibility(
+            visible = showPremiumPurchaseDialog,
+            enter = fadeIn() + scaleIn(),
+            exit = fadeOut() + scaleOut()
+        ) {
+            PremiumSpeedDialog(
+                onBuy = { activity?.let { viewModel.buyPremiumSpeed(it) } },
+                onClose = { viewModel.closePremiumPurchase() }
+            )
+        }
     }
 }
 
@@ -273,6 +289,51 @@ fun ReviveDialog(onRevive: () -> Unit, onGiveUp: () -> Unit) {
 }
 
 @Composable
+fun PremiumSpeedDialog(onBuy: () -> Unit, onClose: () -> Unit) {
+    Dialog(
+        onDismissRequest = onClose,
+        properties = DialogProperties(usePlatformDefaultWidth = false)
+    ) {
+        PixelPanel(
+            Modifier
+                .fillMaxWidth(0.88f)
+                .widthIn(max = 380.dp)
+                .background(BgDarkest),
+            borderColor = GoldBright
+        ) {
+            Column(
+                Modifier.padding(20.dp),
+                horizontalAlignment = CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                Text("⚡", fontSize = 48.sp)
+                Text(safeStringResource(R.string.premium_speed_title), style = PixelTitle, color = GoldBright)
+                Text(
+                    safeStringResource(R.string.premium_speed_desc),
+                    style = PixelBody,
+                    color = Color.White,
+                    textAlign = TextAlign.Center
+                )
+                
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    PixelButton(
+                        safeStringResource(R.string.buy_premium_speed_button),
+                        onClick = onBuy,
+                        modifier = Modifier.fillMaxWidth().height(48.dp),
+                        active = true
+                    )
+                    PixelButton(
+                        safeStringResource(R.string.close_button),
+                        onClick = onClose,
+                        modifier = Modifier.fillMaxWidth().height(44.dp)
+                    )
+                }
+            }
+        }
+    }
+}
+
+@Composable
 fun DungeonTopBar(
     floor: Int,
     dimension: FFDimension?,
@@ -283,6 +344,8 @@ fun DungeonTopBar(
     onRetreat: () -> Unit,
     speed: BattleSpeed,
     onSpeedChange: (BattleSpeed) -> Unit,
+    hasPremiumSpeed: Boolean = false,
+    onOpenPremiumPurchase: () -> Unit = {},
     isPaused: Boolean = false,
     onTogglePause: () -> Unit = {},
     isMuted: Boolean,
@@ -330,9 +393,31 @@ fun DungeonTopBar(
                 Text(safeStringResource(R.string.boss_floor_warning), style = PixelHeading.copy(color = EnemyRed.copy(alpha = alpha)))
             } else {
                 Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
-                    listOf(BattleSpeed.NORMAL to "1x", BattleSpeed.FAST to "2x", BattleSpeed.ULTRAFAST to "4x").forEach { (s, label) ->
-                        PixelButton(label, onClick = { onSpeedChange(s) }, active = (speed == s), modifier = Modifier.width(44.dp).height(32.dp))
-                    }
+                    PixelButton(
+                        "1x",
+                        onClick = { onSpeedChange(BattleSpeed.NORMAL) },
+                        active = (speed == BattleSpeed.NORMAL),
+                        modifier = Modifier.width(44.dp).height(32.dp)
+                    )
+                    PixelButton(
+                        "3x",
+                        onClick = { onSpeedChange(BattleSpeed.FAST) },
+                        active = (speed == BattleSpeed.FAST),
+                        modifier = Modifier.width(44.dp).height(32.dp)
+                    )
+                    PixelButton(
+                        if (hasPremiumSpeed) "10x ⚡" else "10x 🔒",
+                        onClick = {
+                            if (hasPremiumSpeed) {
+                                onSpeedChange(BattleSpeed.HYPER)
+                            } else {
+                                onOpenPremiumPurchase()
+                            }
+                        },
+                        active = (speed == BattleSpeed.HYPER),
+                        modifier = Modifier.width(58.dp).height(32.dp),
+                        horizontalPadding = 4.dp
+                    )
                 }
             }
 

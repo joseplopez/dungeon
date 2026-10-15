@@ -13,6 +13,8 @@ import com.game.dungeon.data.repository.GameRepository
 import com.game.dungeon.data.repository.UserPreferencesRepository
 import com.game.dungeon.engine.*
 import com.game.dungeon.monetization.AdManager
+import com.game.dungeon.monetization.BillingManager
+import com.game.dungeon.monetization.InAppProduct
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
@@ -28,6 +30,7 @@ class DungeonViewModel @Inject constructor(
     private val userPreferencesRepo: UserPreferencesRepository,
     private val analytics: AnalyticsManager,
     private val adManager: AdManager,
+    val billingManager: BillingManager,
     @ApplicationContext private val context: Context
 ) : ViewModel() {
 
@@ -36,11 +39,42 @@ class DungeonViewModel @Inject constructor(
   val battleState = MutableStateFlow(FFBattleState())
   val gameState = repo.getGameState().stateIn(viewModelScope, SharingStarted.Eagerly, GameState())
 
+  val hasPremiumSpeed: StateFlow<Boolean> = userPreferencesRepo.hasPremiumSpeed
+      .stateIn(viewModelScope, SharingStarted.Eagerly, false)
+
+  private val _showPremiumPurchaseDialog = MutableStateFlow(false)
+  val showPremiumPurchaseDialog: StateFlow<Boolean> = _showPremiumPurchaseDialog.asStateFlow()
+
+  fun openPremiumPurchase() {
+      _showPremiumPurchaseDialog.value = true
+  }
+
+  fun closePremiumPurchase() {
+      _showPremiumPurchaseDialog.value = false
+  }
+
+  fun buyPremiumSpeed(activity: Activity) {
+      billingManager.launchBillingFlow(
+          activity = activity,
+          product = InAppProduct.SPEED_PRODUCT,
+          onSuccess = {
+              viewModelScope.launch {
+                  userPreferencesRepo.setHasPremiumSpeed(true)
+                  _showPremiumPurchaseDialog.value = false
+              }
+          },
+          onError = {
+              _showPremiumPurchaseDialog.value = false
+          }
+      )
+  }
+
   init {
     viewModelScope.launch {
       userPreferencesRepo.battleSpeed.collect { savedSpeed ->
         if (!battleState.value.isRunning) {
-          battleState.update { it.copy(speed = savedSpeed) }
+          val actualSpeed = if (savedSpeed == BattleSpeed.HYPER && !hasPremiumSpeed.value) BattleSpeed.FAST else savedSpeed
+          battleState.update { it.copy(speed = actualSpeed) }
         }
       }
     }
@@ -449,6 +483,7 @@ class DungeonViewModel @Inject constructor(
             val newFloor = event.floor + 1
             val isNewDimMax = newFloor > currentGs.highestFloor
             val isNewLifetimeMax = newFloor > currentGs.lifetimeHighestFloor
+            val isNewBossLairMax = (battleState.value.dungeonMode == DungeonMode.BOSS_LAIR) && (newFloor > currentGs.highestBossLairFloor)
 
             var nextGs = currentGs.copy(
                 highestFloor = if (isNewDimMax) newFloor else currentGs.highestFloor,
@@ -473,7 +508,7 @@ class DungeonViewModel @Inject constructor(
             }
 
             repo.saveGameState(nextGs)
-            if (isNewDimMax || isNewLifetimeMax) {
+            if (isNewDimMax || isNewLifetimeMax || isNewBossLairMax) {
                 repo.triggerFirebaseUpload(nextGs)
             }
         }

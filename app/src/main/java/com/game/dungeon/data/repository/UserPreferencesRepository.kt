@@ -10,11 +10,14 @@ import kotlinx.coroutines.flow.map
 import javax.inject.Inject
 import javax.inject.Singleton
 
+import androidx.datastore.preferences.core.booleanPreferencesKey
+
 @Singleton
 class UserPreferencesRepository @Inject constructor(
     private val dataStore: DataStore<Preferences>
 ) {
     private val battleSpeedKey = stringPreferencesKey("battle_speed")
+    private val hasPremiumSpeedKey = booleanPreferencesKey("has_premium_speed")
 
     val battleSpeed: Flow<BattleSpeed> = dataStore.data.map { preferences ->
         val speedName = preferences[battleSpeedKey] ?: BattleSpeed.NORMAL.name
@@ -28,6 +31,16 @@ class UserPreferencesRepository @Inject constructor(
     suspend fun setBattleSpeed(speed: BattleSpeed) {
         dataStore.edit { preferences ->
             preferences[battleSpeedKey] = speed.name
+        }
+    }
+
+    val hasPremiumSpeed: Flow<Boolean> = dataStore.data.map { preferences ->
+        preferences[hasPremiumSpeedKey] ?: false
+    }
+
+    suspend fun setHasPremiumSpeed(hasPremium: Boolean) {
+        dataStore.edit { preferences ->
+            preferences[hasPremiumSpeedKey] = hasPremium
         }
     }
 }

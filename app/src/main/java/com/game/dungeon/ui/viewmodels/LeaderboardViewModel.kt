@@ -59,7 +59,7 @@ class LeaderboardViewModel @Inject constructor(
             else -> leaderboardRepository.getGlobalLeaderboard()
         }
         
-        entries.map { entry ->
+        val mappedEntries = entries.map { entry ->
             val isUser = gs.playerId != null && entry.playerId == gs.playerId
             // Preserve the team that actually set the record from Firebase.
             // Only fallback to active party if no team was saved for the record yet.
@@ -68,7 +68,39 @@ class LeaderboardViewModel @Inject constructor(
             } else {
                 entry.copy(isUser = isUser)
             }
+        }.toMutableList()
+
+        val hasUser = mappedEntries.any { it.isUser }
+        if (!hasUser && gs.playerId != null) {
+            val userBossFloor = gs.highestBossLairFloor
+            val userFloor = gs.lifetimeHighestFloor
+            val showUser = if (tab == 1) userBossFloor > 0 else userFloor > 0
+            if (showUser) {
+                val userEntry = LeaderboardEntry(
+                    rank = mappedEntries.size + 1,
+                    playerId = gs.playerId,
+                    playerName = gs.playerName,
+                    maxFloor = gs.lifetimeHighestFloor,
+                    maxBossFloor = gs.highestBossLairFloor,
+                    dimension = gs.currentDimension,
+                    dimensionMaxFloor = gs.highestFloor,
+                    totalMagicite = gs.totalMagiciteEarned.toInt(),
+                    fastestClearMs = gs.fastestClearTime,
+                    isUser = true,
+                    team = party
+                )
+                mappedEntries.add(userEntry)
+                val comparator = if (tab == 1) {
+                    compareByDescending<LeaderboardEntry> { it.maxBossFloor }.thenByDescending { it.totalMagicite }
+                } else {
+                    compareByDescending<LeaderboardEntry> { it.maxFloor }.thenByDescending { it.dimension }.thenByDescending { it.totalMagicite }
+                }
+                return@combine mappedEntries.sortedWith(comparator)
+                    .mapIndexed { index, entry -> entry.copy(rank = index + 1) }
+            }
         }
+
+        mappedEntries
     }.onStart { _isLoading.value = true }
      .onEach { _isLoading.value = false }
      .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), emptyList())
@@ -80,11 +112,16 @@ class LeaderboardViewModel @Inject constructor(
     fun ensureUserIdentity() {
         viewModelScope.launch {
             repository.getGameState().first()?.let { currentGs ->
-                if (currentGs.playerId == null) {
-                    val uid = authRepository.signInAnonymously()
+                var uid = currentGs.playerId
+                if (uid == null) {
+                    uid = authRepository.signInAnonymously()
                     if (uid != null) {
-                        repository.saveGameState(currentGs.copy(playerId = uid))
+                        val updatedGs = currentGs.copy(playerId = uid)
+                        repository.saveGameState(updatedGs)
+                        repository.triggerFirebaseUpload(updatedGs)
                     }
+                } else {
+                    repository.triggerFirebaseUpload(currentGs)
                 }
             }
         }
@@ -92,10 +129,17 @@ class LeaderboardViewModel @Inject constructor(
 
     fun selectTab(index: Int) {
         _selectedTab.value = index
+        viewModelScope.launch {
+            repository.triggerFirebaseUpload()
+            _refreshTrigger.value += 1
+        }
     }
 
     fun refresh() {
-        _refreshTrigger.value += 1
+        viewModelScope.launch {
+            repository.triggerFirebaseUpload()
+            _refreshTrigger.value += 1
+        }
     }
 
     fun addFriend(id: String) {

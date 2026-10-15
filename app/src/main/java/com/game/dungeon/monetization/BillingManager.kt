@@ -27,13 +27,25 @@ data class InAppProduct(
         const val MAGICITE_PACK_MEDIUM = "magicite_pack_medium"
         const val MAGICITE_PACK_LARGE = "magicite_pack_large"
 
+        const val PREMIUM_SPEED = "premium_speed_10x"
+
         val ALL_PRODUCT_IDS = listOf(
             GIL_PACK_SMALL,
             GIL_PACK_MEDIUM,
             GIL_PACK_LARGE,
             MAGICITE_PACK_SMALL,
             MAGICITE_PACK_MEDIUM,
-            MAGICITE_PACK_LARGE
+            MAGICITE_PACK_LARGE,
+            PREMIUM_SPEED
+        )
+
+        val SPEED_PRODUCT = InAppProduct(
+            id = PREMIUM_SPEED,
+            resourceType = ResourceType.MAGICITE,
+            rewardAmount = 0L,
+            defaultPrice = "$3.99",
+            titleResId = R.string.premium_speed_title,
+            iconEmoji = "⚡"
         )
 
         val GIL_PRODUCTS = listOf(

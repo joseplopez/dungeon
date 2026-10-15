@@ -40,8 +40,8 @@ android {
             buildConfigField("long", "INITIAL_GIL", "1000000000L")
             buildConfigField("long", "INITIAL_MAGICITE", "1000000L")
             buildConfigField("int", "INITIAL_MASTERY_LEVEL", "30")
-            buildConfigField("boolean", "DEBUG_MYTHIC_CRAFTING", "false")
-            buildConfigField("boolean", "ENABLE_BOSS_LAIR_TESTING", "false")
+            buildConfigField("boolean", "DEBUG_MYTHIC_CRAFTING", "true")
+            buildConfigField("boolean", "ENABLE_BOSS_LAIR_TESTING", "true")
             buildConfigField("int", "INITIAL_MYTHIC_SHARDS", "500")
             buildConfigField("int", "INITIAL_BOSS_TROPHY_3", "50")
             manifestPlaceholders["admobAppId"] = "ca-app-pub-3940256099942544~3347511713"

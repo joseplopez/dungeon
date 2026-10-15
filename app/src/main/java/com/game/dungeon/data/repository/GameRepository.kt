@@ -31,6 +31,7 @@ class GameRepository @Inject constructor(
     private val database: GameDatabase,
     private val leaderboardRepository: LeaderboardRepository,
     private val codexDao: CodexDao,
+    private val authRepository: AuthRepository
 ) {
     // Codex Flows
     val codexCompletionPercentage: Flow<Float> = codexDao.getCodexEntries().map { entries ->
@@ -184,14 +185,21 @@ class GameRepository @Inject constructor(
 
     suspend fun triggerFirebaseUpload(state: GameState? = null) {
         val current = state ?: database.gameStateDao.getGameStateOnce() ?: return
-        val sanitized = if (current.dimStartTime <= 0L) {
+        var sanitized = if (current.dimStartTime <= 0L) {
             val fixed = current.copy(dimStartTime = System.currentTimeMillis())
             database.gameStateDao.upsert(fixed)
             fixed
         } else {
             current
         }
-        val playerId = sanitized.playerId
+        var playerId = sanitized.playerId
+        if (playerId == null) {
+            playerId = authRepository.getCurrentUserId() ?: authRepository.signInAnonymously()
+            if (playerId != null) {
+                sanitized = sanitized.copy(playerId = playerId)
+                database.gameStateDao.upsert(sanitized)
+            }
+        }
         if (playerId != null) {
             val party = database.heroDao.getPartyOnce()
             leaderboardRepository.uploadScore(playerId, sanitized.playerName, sanitized, party)

@@ -77,9 +77,10 @@ object AppModule {
     fun provideGameRepository(
         database: GameDatabase,
         leaderboardRepository: LeaderboardRepository,
-        codexDao: com.game.dungeon.data.db.CodexDao
+        codexDao: com.game.dungeon.data.db.CodexDao,
+        authRepository: AuthRepository
     ): GameRepository {
-        return GameRepository(database, leaderboardRepository, codexDao)
+        return GameRepository(database, leaderboardRepository, codexDao, authRepository)
     }
 
     @Provides

@@ -34,7 +34,9 @@ class LeaderboardRepository @Inject constructor(
             val existingDim = snapshot.child("dimension").getValue(Long::class.java)?.toInt() ?: 1
             val existingDimMaxFloor = snapshot.child("dimensionMaxFloor").getValue(Long::class.java)?.toInt() ?: 0
             val existingMagicite = snapshot.child("totalMagicite").getValue(Long::class.java)?: 0
-            val existingBossFloor = snapshot.child("maxBossFloor").getValue(Long::class.java)?.toInt() ?: 0
+            val existingBossFloor = runCatching { snapshot.child("maxBossFloor").getValue(Long::class.java)?.toInt() }.getOrNull()
+                ?: runCatching { snapshot.child("maxBossFloor").getValue(Int::class.java) }.getOrNull()
+                ?: 0
 
             val currentRunFloor = maxOf(gameState.highestFloor, 0)
             val currentLifetimeMax = maxOf(gameState.lifetimeHighestFloor, currentRunFloor)
@@ -54,7 +56,8 @@ class LeaderboardRepository @Inject constructor(
             val hasExistingTeam = existingTeamSnapshot.exists() && existingTeamSnapshot.childrenCount > 0L
 
             val isNewFloorRecord = currentRunFloor >= existingMaxFloor && currentRunFloor > 0
-            val shouldUpdateTeam = (isNewFloorRecord || !hasExistingTeam) && team.isNotEmpty()
+            val isNewBossRecord = gameState.highestBossLairFloor >= existingBossFloor && gameState.highestBossLairFloor > 0
+            val shouldUpdateTeam = (isNewFloorRecord || isNewBossRecord || !hasExistingTeam) && team.isNotEmpty()
 
             val teamData: Any? = when {
                 shouldUpdateTeam -> {
@@ -109,10 +112,14 @@ class LeaderboardRepository @Inject constructor(
             }
 
             rootRef.child(playerId).setValue(data).await()
-            Log.d("LeaderboardRepo", "Upload SUCCESS for $playerId (MaxFloor: $finalMaxFloor, DimFloor: $finalDimMaxFloor, Team updated: $shouldUpdateTeam)")
+            Log.d("LeaderboardRepo", "Upload SUCCESS for $playerId (MaxFloor: $finalMaxFloor, DimFloor: $finalDimMaxFloor, BossFloor: $finalBossFloor, Team updated: $shouldUpdateTeam)")
         } catch (e: Exception) {
             Log.e("LeaderboardRepo", "Upload FAILED: ${e.message}", e)
         }
+    }
+
+    suspend fun syncScore(playerId: String, playerName: String, gameState: GameState, team: List<Hero>) {
+        uploadScore(playerId, playerName, gameState, team)
     }
 
     suspend fun getGlobalLeaderboard(limit: Int = 50): List<LeaderboardEntry> {
@@ -168,24 +175,37 @@ class LeaderboardRepository @Inject constructor(
     suspend fun getBossLairLeaderboard(limit: Int = 50): List<LeaderboardEntry> {
         Log.d("LeaderboardRepo", "Fetching Boss Lair Leaderboard...")
         return try {
-            val snapshot = rootRef
-                .orderByChild("maxBossFloor")
-                .limitToLast(limit)
-                .get()
-                .await()
+            val snapshot = try {
+                rootRef
+                    .orderByChild("maxBossFloor")
+                    .limitToLast(limit)
+                    .get()
+                    .await()
+            } catch (e: Exception) {
+                Log.w("LeaderboardRepo", "orderByChild(maxBossFloor) failed, falling back to rootRef.get(): ${e.message}")
+                rootRef.get().await()
+            }
 
-            val entries = snapshot.children.map { doc ->
+            var entries = snapshot.children.map { doc ->
                 mapToEntry(doc)
             }.filter { it.maxBossFloor > 0 }
-            .sortedWith(
+
+            if (entries.isEmpty()) {
+                val fullSnapshot = rootRef.get().await()
+                entries = fullSnapshot.children.map { doc ->
+                    mapToEntry(doc)
+                }.filter { it.maxBossFloor > 0 }
+            }
+
+            val sortedEntries = entries.sortedWith(
                 compareByDescending<LeaderboardEntry> { it.maxBossFloor }
                     .thenByDescending { it.totalMagicite }
-            ).mapIndexed { index, entry -> entry.copy(rank = index + 1) }
+            ).take(limit).mapIndexed { index, entry -> entry.copy(rank = index + 1) }
 
-            Log.d("LeaderboardRepo", "Boss Lair fetch SUCCESS. Count: ${entries.size}")
-            entries
+            Log.d("LeaderboardRepo", "Boss Lair fetch SUCCESS. Count: ${sortedEntries.size}")
+            sortedEntries
         } catch (e: Exception) {
-            Log.e("LeaderboardRepo", "Boss Lair fetch ERROR: ${e.message}")
+            Log.e("LeaderboardRepo", "Boss Lair fetch ERROR: ${e.message}", e)
             emptyList()
         }
     }
@@ -252,12 +272,17 @@ class LeaderboardRepository @Inject constructor(
         val rawFastest = snapshot.child("fastestClearMs").getValue(Long::class.java) ?: 0L
         val rawCurrentDimTime = snapshot.child("currentDimTimeMs").getValue(Long::class.java) ?: 0L
 
+        val rawBossFloor = runCatching { snapshot.child("maxBossFloor").getValue(Long::class.java)?.toInt() }.getOrNull()
+            ?: runCatching { snapshot.child("maxBossFloor").getValue(Int::class.java) }.getOrNull()
+            ?: runCatching { snapshot.child("maxBossFloor").getValue(String::class.java)?.toInt() }.getOrNull()
+            ?: 0
+
         return LeaderboardEntry(
             rank = 0,
             playerId = snapshot.child("playerId").getValue(String::class.java),
             playerName = snapshot.child("playerName").getValue(String::class.java) ?: "Unknown",
             maxFloor = maxFloorVal,
-            maxBossFloor = snapshot.child("maxBossFloor").getValue(Long::class.java)?.toInt() ?: 0,
+            maxBossFloor = rawBossFloor,
             dimension = snapshot.child("dimension").getValue(Long::class.java)?.toInt() ?: 1,
             dimensionMaxFloor = snapshot.child("dimensionMaxFloor").getValue(Long::class.java)?.toInt() ?: 0,
             totalMagicite = snapshot.child("totalMagicite").getValue(Long::class.java)?.toInt() ?: 0,

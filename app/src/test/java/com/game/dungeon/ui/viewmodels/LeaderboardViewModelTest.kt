@@ -119,4 +119,20 @@ class LeaderboardViewModelTest {
         assertEquals(1, bossEntries.size)
         assertEquals(25, bossEntries[0].maxBossFloor)
     }
+
+    @Test
+    fun `test user entry appended when not in fetched boss lair entries`() = runTest {
+        whenever(leaderboardRepository.getBossLairLeaderboard()).thenReturn(emptyList())
+
+        gameStateFlow.value = GameState(playerId = "p2", playerName = "HeroUser", currentDimension = 11, highestBossLairFloor = 15)
+
+        viewModel.selectTab(1)
+        val entries = viewModel.leaderboardEntries.first()
+        assertEquals(1, entries.size)
+        val userEntry = entries[0]
+        assertEquals("p2", userEntry.playerId)
+        assertEquals("HeroUser", userEntry.playerName)
+        assertEquals(15, userEntry.maxBossFloor)
+        assertTrue(userEntry.isUser)
+    }
 }

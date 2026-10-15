@@ -153,6 +153,7 @@ class FFBattleEngineTest {
         val userPreferencesRepo: UserPreferencesRepository = mock()
         val analytics: AnalyticsManager = mock()
         val adManager: AdManager = mock()
+        val billingManager: com.game.dungeon.monetization.BillingManager = mock()
 
         val initialGs = GameState(id = 1, currentDimension = 11, highestBossLairFloor = 1)
         val gameStateFlow = MutableStateFlow(initialGs)
@@ -172,6 +173,7 @@ class FFBattleEngineTest {
         whenever(repository.getCodexBonuses()).thenReturn(CodexBonuses())
         whenever(repository.getEquippedItems(any())).thenReturn(flowOf(emptyList()))
         whenever(userPreferencesRepo.battleSpeed).thenReturn(flowOf(BattleSpeed.NORMAL))
+        whenever(userPreferencesRepo.hasPremiumSpeed).thenReturn(flowOf(false))
 
         whenever(repository.saveGameState(any())).thenAnswer { invocation ->
             val updated = invocation.getArgument<GameState>(0)
@@ -184,6 +186,7 @@ class FFBattleEngineTest {
             userPreferencesRepo = userPreferencesRepo,
             analytics = analytics,
             adManager = adManager,
+            billingManager = billingManager,
             context = context
         )
 

@@ -25,6 +25,7 @@ class GameRepositoryCodexTest {
 
     private lateinit var database: GameDatabase
     private lateinit var leaderboardRepository: LeaderboardRepository
+    private lateinit var authRepository: AuthRepository
     private lateinit var repository: GameRepository
 
     @Before
@@ -34,7 +35,8 @@ class GameRepositoryCodexTest {
             .allowMainThreadQueries()
             .build()
         leaderboardRepository = Mockito.mock(LeaderboardRepository::class.java)
-        repository = GameRepository(database, leaderboardRepository, database.codexDao)
+        authRepository = Mockito.mock(AuthRepository::class.java)
+        repository = GameRepository(database, leaderboardRepository, database.codexDao, authRepository)
     }
 
     @After

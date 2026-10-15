@@ -171,7 +171,7 @@ class PlayBillingManager @Inject constructor(
                         pendingSuccessCallback?.invoke(currentProduct)
                     } else {
                         // Match product by ID if pendingProduct was cleared
-                        val matchedProduct = (InAppProduct.GIL_PRODUCTS + InAppProduct.MAGICITE_PRODUCTS)
+                        val matchedProduct = (InAppProduct.GIL_PRODUCTS + InAppProduct.MAGICITE_PRODUCTS + InAppProduct.SPEED_PRODUCT)
                             .find { product -> purchase.products.contains(product.id) }
                         if (matchedProduct != null) {
                             handleProductReward(matchedProduct)

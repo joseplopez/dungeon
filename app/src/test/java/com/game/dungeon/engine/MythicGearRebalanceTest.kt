@@ -28,6 +28,7 @@ class MythicGearRebalanceTest {
 
     private lateinit var db: GameDatabase
     private lateinit var leaderboardRepository: LeaderboardRepository
+    private lateinit var authRepository: com.game.dungeon.data.repository.AuthRepository
     private lateinit var repository: GameRepository
     private lateinit var context: Context
 
@@ -38,7 +39,8 @@ class MythicGearRebalanceTest {
             .allowMainThreadQueries()
             .build()
         leaderboardRepository = Mockito.mock(LeaderboardRepository::class.java)
-        repository = GameRepository(db, leaderboardRepository, db.codexDao)
+        authRepository = Mockito.mock(com.game.dungeon.data.repository.AuthRepository::class.java)
+        repository = GameRepository(db, leaderboardRepository, db.codexDao, authRepository)
     }
 
     @After

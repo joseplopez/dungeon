@@ -165,7 +165,11 @@ fun LeaderboardScreen(
                         }
 
                         Text(
-                            text = "FAN ${gameState?.currentDimension ?: 1} • FLR ${gameState?.lifetimeHighestFloor ?: 0}",
+                            text = if (selectedTab == 1) {
+                                "BOSS FLR ${gameState?.highestBossLairFloor ?: 1}"
+                            } else {
+                                "FAN ${gameState?.currentDimension ?: 1} • FLR ${gameState?.lifetimeHighestFloor ?: 0}"
+                            },
                             style = PixelSmall,
                             color = StoneGray
                         )
