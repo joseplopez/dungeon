@@ -47,10 +47,12 @@ class DungeonViewModel @Inject constructor(
 
   fun openPremiumPurchase() {
       _showPremiumPurchaseDialog.value = true
+      battleState.update { it.copy(isPaused = true) }
   }
 
   fun closePremiumPurchase() {
       _showPremiumPurchaseDialog.value = false
+      battleState.update { it.copy(isPaused = false) }
   }
 
   fun buyPremiumSpeed(activity: Activity) {
@@ -61,10 +63,12 @@ class DungeonViewModel @Inject constructor(
               viewModelScope.launch {
                   userPreferencesRepo.setHasPremiumSpeed(true)
                   _showPremiumPurchaseDialog.value = false
+                  battleState.update { it.copy(isPaused = false) }
               }
           },
           onError = {
               _showPremiumPurchaseDialog.value = false
+              battleState.update { it.copy(isPaused = false) }
           }
       )
   }
