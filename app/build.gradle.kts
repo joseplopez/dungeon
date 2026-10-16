@@ -39,7 +39,7 @@ android {
         debug {
             buildConfigField("long", "INITIAL_GIL", "1000000000L")
             buildConfigField("long", "INITIAL_MAGICITE", "1000000L")
-            buildConfigField("int", "INITIAL_MASTERY_LEVEL", "30")
+            buildConfigField("int", "INITIAL_MASTERY_LEVEL", "0")
             buildConfigField("boolean", "DEBUG_MYTHIC_CRAFTING", "true")
             buildConfigField("boolean", "ENABLE_BOSS_LAIR_TESTING", "true")
             buildConfigField("int", "INITIAL_MYTHIC_SHARDS", "500")

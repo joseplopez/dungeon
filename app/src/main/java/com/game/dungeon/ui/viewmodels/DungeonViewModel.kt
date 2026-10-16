@@ -167,6 +167,7 @@ class DungeonViewModel @Inject constructor(
     val boostFloorsRemaining: Int = 0,
     val reviveUsedThisRun: Boolean = false,
     val showReviveDialog: Boolean = false,
+    val showRetreatReviveDialog: Boolean = false,
     val pendingFallenHeroIds: Set<String> = emptySet(),
     val materialsFoundThisRun: Map<String, Int> = emptyMap(),
     val lastDefeatedSlotIndex: Int = 0,
@@ -632,6 +633,32 @@ class DungeonViewModel @Inject constructor(
       }
   }
 
+  fun watchRetreatReviveAd(activity: Activity) {
+      adManager.showRewardedAd(activity) {
+          viewModelScope.launch {
+              val roster = repo.getRoster().first()
+              // Recover fallen heroes with 1 HP so forceRetreat() saves them instead of deleting them
+              val rescuedHeroes = battleState.value.pendingFallenHeroIds.mapNotNull { id ->
+                  roster.find { it.id == id }?.copy(currentHp = 1) 
+              }
+              
+              battleState.update { it.copy(
+                  heroes = it.heroes + rescuedHeroes,
+                  pendingFallenHeroIds = emptySet(), // Clears permadeath queue
+                  showRetreatReviveDialog = false,
+                  reviveUsedThisRun = true
+              ) }
+              
+              forceRetreat() // Safely process the retreat now
+          }
+      }
+  }
+
+  fun declineRetreatRevive() {
+      battleState.update { it.copy(showRetreatReviveDialog = false) }
+      forceRetreat() // Proceed with permadeath retreat
+  }
+
   fun finalizeRun() {
     viewModelScope.launch {
       val currentState = battleState.value
@@ -724,8 +751,18 @@ class DungeonViewModel @Inject constructor(
   }
 
   fun retreat() {
-    battleJob?.cancel()
-    viewModelScope.launch {
+      val state = battleState.value
+      if (state.pendingFallenHeroIds.isNotEmpty() && !state.reviveUsedThisRun) {
+          battleJob?.cancel()
+          battleState.update { it.copy(showRetreatReviveDialog = true) }
+          return
+      }
+      forceRetreat()
+  }
+
+  private fun forceRetreat() {
+      battleJob?.cancel()
+      viewModelScope.launch {
       val gil = battleState.value.gilEarnedThisRun
       val magicite = battleState.value.magiciteEarnedThisRun
       val floor = battleState.value.currentFloor

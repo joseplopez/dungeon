@@ -707,6 +707,10 @@
     <string name="revive_dialog_desc">Watch a short ad to revive your team at the start of this floor? (Once per run)</string>
     <string name="revive_button">REVIVE (AD)</string>
     <string name="give_up_button">GIVE UP</string>
+    <string name="retreat_rescue_title">CASUALTIES DETECTED</string>
+    <string name="retreat_rescue_desc">Some heroes have fallen! Watch a short ad to rescue them before fleeing?</string>
+    <string name="rescue_ad_button">RESCUE (AD)</string>
+    <string name="retreat_anyway_button">RETREAT</string>
     <string name="premium_speed_title">10x HYPER SPEED</string>
     <string name="premium_speed_desc">Unlock 10x Hyper Speed to blast through dungeon battles at maximum velocity!</string>
     <string name="buy_premium_speed_button">UNLOCK 10x SPEED</string>

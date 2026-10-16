@@ -229,6 +229,13 @@ fun DungeonScreen(
             )
         }
 
+        if (state.showRetreatReviveDialog) {
+            RetreatReviveDialog(
+                onRescue = { activity?.let { viewModel.watchRetreatReviveAd(it) } },
+                onRetreat = { viewModel.declineRetreatRevive() }
+            )
+        }
+
         // Premium Speed Purchase Dialog
         AnimatedVisibility(
             visible = showPremiumPurchaseDialog,
@@ -239,6 +246,24 @@ fun DungeonScreen(
                 onBuy = { activity?.let { viewModel.buyPremiumSpeed(it) } },
                 onClose = { viewModel.closePremiumPurchase() }
             )
+        }
+    }
+}
+
+@Composable
+fun RetreatReviveDialog(onRescue: () -> Unit, onRetreat: () -> Unit) {
+    Dialog(onDismissRequest = {}, properties = DialogProperties(usePlatformDefaultWidth = false)) {
+        PixelPanel(Modifier.fillMaxWidth(0.88f).widthIn(max = 380.dp).background(BgDarkest), borderColor = EnemyRed) {
+            Column(Modifier.padding(20.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(16.dp)) {
+                Text("⚠️", fontSize = 48.sp)
+                Text(safeStringResource(R.string.retreat_rescue_title, "CASUALTIES DETECTED"), style = PixelTitle, color = EnemyRed)
+                Text(safeStringResource(R.string.retreat_rescue_desc, "Some heroes have fallen! Watch a short ad to rescue them before fleeing?"), style = PixelBody, color = Color.White, textAlign = TextAlign.Center)
+                
+                Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    PixelButton(safeStringResource(R.string.rescue_ad_button, "RESCUE (AD)"), onClick = onRescue, modifier = Modifier.fillMaxWidth().height(48.dp), active = true)
+                    PixelButton(safeStringResource(R.string.retreat_anyway_button, "RETREAT"), onClick = onRetreat, modifier = Modifier.fillMaxWidth().height(44.dp))
+                }
+            }
         }
     }
 }
