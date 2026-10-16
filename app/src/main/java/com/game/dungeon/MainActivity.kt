@@ -67,6 +67,8 @@ class MainActivity : ComponentActivity() {
 
         requestedOrientation = ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE
         
+        window.setFormat(android.graphics.PixelFormat.RGBA_8888)
+
         WindowCompat.setDecorFitsSystemWindows(window, false)
         val controller = WindowCompat.getInsetsController(window, window.decorView)
         controller.systemBarsBehavior = WindowInsetsControllerCompat.BEHAVIOR_SHOW_TRANSIENT_BARS_BY_SWIPE

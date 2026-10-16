@@ -43,7 +43,7 @@ data class InAppProduct(
             id = PREMIUM_SPEED,
             resourceType = ResourceType.MAGICITE,
             rewardAmount = 0L,
-            defaultPrice = "$3.99",
+            defaultPrice = "$4.99",
             titleResId = R.string.premium_speed_title,
             iconEmoji = "⚡"
         )
