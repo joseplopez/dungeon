@@ -737,6 +737,7 @@
     <string name="btn_auto_equip">สวมใส่อัตโนมัติ</string>
     <string name="btn_rehire_party">จ้างใหม่อีกครั้ง (%1$dG)</string>
     <string name="btn_rehire_no_run">ลุยสัก 1 รอบ!</string>
+    <string name="bench_tab_format">สำรอง (%1$d)</string>
 
     <!-- Extracted Screen Strings -->
     <string name="return_to_inn">กลับสู่โรงเตี๊ยม</string>

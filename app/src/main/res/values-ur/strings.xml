@@ -736,6 +736,7 @@
     <!-- Inn QoL Buttons -->
     <string name="btn_auto_equip">خودکار سامان</string>
     <string name="btn_rehire_party">دوبارہ بھرتی (%1$dG)</string>
+    <string name="bench_tab_format">بینچ (%1$d)</string>
     <string name="btn_rehire_no_run">ایک راؤنڈ کھیلیں!</string>
 
     <!-- Extracted Screen Strings -->

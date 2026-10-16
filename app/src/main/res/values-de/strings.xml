@@ -737,6 +737,7 @@
     <string name="btn_auto_equip">AUTO-AUSRÜSTEN</string>
     <string name="btn_rehire_party">REKRUTIEREN (%1$dG)</string>
     <string name="btn_rehire_no_run">MACH EINEN RUN!</string>
+    <string name="bench_tab_format">BANK (%1$d)</string>
 
     <!-- Extracted Screen Strings -->
     <string name="return_to_inn">ZURÜCK ZUR TAVERNE</string>

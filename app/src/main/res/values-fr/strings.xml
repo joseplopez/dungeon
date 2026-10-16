@@ -737,6 +737,7 @@
     <string name="btn_auto_equip">AUTO-ÉQUIPER</string>
     <string name="btn_rehire_party">RÉENGAGER (%1$dG)</string>
     <string name="btn_rehire_no_run">FAIS UN RUN!</string>
+    <string name="bench_tab_format">RÉSERVE (%1$d)</string>
 
     <!-- Extracted Screen Strings -->
     <string name="return_to_inn">RETOURNER À L\'AUBERGE</string>

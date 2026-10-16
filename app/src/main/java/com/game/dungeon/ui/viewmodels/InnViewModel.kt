@@ -68,8 +68,18 @@ class InnViewModel @Inject constructor(
         )
     }
     
-    private val _hiredHeroes = MutableStateFlow<List<Hero>>(emptyList())
-    val hiredHeroes: StateFlow<List<Hero>> = _hiredHeroes.asStateFlow()
+    private val _roster = MutableStateFlow<List<Hero>>(emptyList())
+    val roster: StateFlow<List<Hero>> = _roster.asStateFlow()
+
+    val activeParty: StateFlow<List<Hero>> = _roster.map { heroes ->
+        heroes.filter { it.isInParty }.sortedBy { it.partyPosition }
+    }.stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
+
+    val benchedHeroes: StateFlow<List<Hero>> = _roster.map { heroes ->
+        heroes.filter { !it.isInParty }.sortedByDescending { it.level }
+    }.stateIn(viewModelScope, SharingStarted.Eagerly, emptyList())
+
+    val hiredHeroes: StateFlow<List<Hero>> = activeParty
 
     private val _startFloor = MutableStateFlow(1)
     val startFloor: StateFlow<Int> = _startFloor.asStateFlow()
@@ -83,8 +93,8 @@ class InnViewModel @Inject constructor(
             }
         }
         viewModelScope.launch {
-            repository.getParty().collect { party ->
-                _hiredHeroes.value = party
+            repository.getRoster().collect { roster ->
+                _roster.value = roster
             }
         }
     }
@@ -110,21 +120,22 @@ class InnViewModel @Inject constructor(
         get() = gameState.value?.getMaxPartySize() ?: 3
 
     val canSendToDungeon: Boolean
-        get() = _hiredHeroes.value.isNotEmpty()
+        get() = activeParty.value.isNotEmpty()
 
     fun hireHero(heroClass: HeroClass) {
         val gs = gameState.value ?: return
         // Ensure only unlocked jobs can be hired
         if (!unlockedJobs.contains(heroClass) && heroClass != HeroClass.FREELANCER) return
         
-        if (gs.gold >= heroClass.hireCost && _hiredHeroes.value.size < maxPartySize) {
+        if (gs.gold >= heroClass.hireCost) {
             viewModelScope.launch {
                 val currentGs = repository.getGameStateOnce() ?: gs
                 if (currentGs.gold >= heroClass.hireCost) {
                     repository.saveGameState(currentGs.copy(gold = currentGs.gold - heroClass.hireCost))
+                    val partyIsFull = activeParty.value.size >= maxPartySize
                     val hero = Hero.create(heroClass, context).copy(
-                        isInParty = true,
-                        partyPosition = _hiredHeroes.value.size
+                        isInParty = !partyIsFull,
+                        partyPosition = if (partyIsFull) -1 else activeParty.value.size
                     )
                     analytics.logHeroHired(hero.name, heroClass.name)
                     repository.saveHero(hero)
@@ -133,8 +144,34 @@ class InnViewModel @Inject constructor(
         }
     }
 
+    fun toggleBenchStatus(heroId: String) {
+        val allHeroes = _roster.value
+        val hero = allHeroes.find { it.id == heroId } ?: return
+        viewModelScope.launch {
+            if (hero.isInParty) {
+                // Move from Active to Bench
+                val remainingActive = activeParty.value.filter { it.id != heroId }
+                val reindexedActive = remainingActive.mapIndexed { index, h ->
+                    h.copy(partyPosition = index)
+                }
+                val benchedHero = hero.copy(isInParty = false, partyPosition = -1)
+                repository.saveHeroes(reindexedActive + listOf(benchedHero))
+            } else {
+                // Move from Bench to Active (if space available)
+                val currentActive = activeParty.value
+                if (currentActive.size < maxPartySize) {
+                    val activatedHero = hero.copy(
+                        isInParty = true,
+                        partyPosition = currentActive.size
+                    )
+                    repository.saveHero(activatedHero)
+                }
+            }
+        }
+    }
+
     fun moveHeroUp(heroId: String) {
-        val heroes = _hiredHeroes.value.toMutableList()
+        val heroes = activeParty.value.toMutableList()
         val index = heroes.indexOfFirst { it.id == heroId }
         if (index > 0) {
             val hero = heroes[index]
@@ -150,7 +187,7 @@ class InnViewModel @Inject constructor(
     }
 
     fun moveHeroDown(heroId: String) {
-        val heroes = _hiredHeroes.value.toMutableList()
+        val heroes = activeParty.value.toMutableList()
         val index = heroes.indexOfFirst { it.id == heroId }
         if (index != -1 && index < heroes.size - 1) {
             val hero = heroes[index]
@@ -167,16 +204,23 @@ class InnViewModel @Inject constructor(
 
     fun fireHero(heroId: String) {
         viewModelScope.launch {
-            _hiredHeroes.value.find { it.id == heroId }?.let {
-                analytics.logHeroFired(it.name, it.heroClass.name)
-                repository.removeHero(it)
+            _roster.value.find { it.id == heroId }?.let { heroToFire ->
+                analytics.logHeroFired(heroToFire.name, heroToFire.heroClass.name)
+                if (heroToFire.isInParty) {
+                    val remainingActive = activeParty.value.filter { it.id != heroId }
+                    val reindexedActive = remainingActive.mapIndexed { index, h ->
+                        h.copy(partyPosition = index)
+                    }
+                    repository.saveHeroes(reindexedActive)
+                }
+                repository.removeHero(heroToFire)
             }
         }
     }
 
     fun setHeroPriority(heroId: String, priority: AIPriority) {
         viewModelScope.launch {
-            _hiredHeroes.value.find { it.id == heroId }?.let {
+            _roster.value.find { it.id == heroId }?.let {
                 repository.saveHero(it.copy(aiPriority = priority))
             }
         }
@@ -187,8 +231,8 @@ class InnViewModel @Inject constructor(
         val requiredFloor = gs.currentDimension * 100
         if (gs.currentDimension < 11 && gs.highestFloor >= requiredFloor) {
             viewModelScope.launch {
-                // Remove all heroes from party
-                _hiredHeroes.value.forEach { repository.removeHero(it) }
+                // Remove all heroes from party and bench
+                _roster.value.forEach { repository.removeHero(it) }
                 
                 // Clear inventory
                 repository.clearInventory()
@@ -273,7 +317,7 @@ class InnViewModel @Inject constructor(
     }
 
     fun restAtInn() {
-        val heroes = _hiredHeroes.value
+        val heroes = _roster.value
         if (heroes.isEmpty()) return
 
         // Cost: 10 Gil per Level per Hero, proportional to % of HP missing
@@ -324,7 +368,7 @@ class InnViewModel @Inject constructor(
     // --- QoL Features ---
 
     fun quickEquipAllHeroes() {
-        val heroes = _hiredHeroes.value
+        val heroes = activeParty.value
         if (heroes.isEmpty()) return
 
         viewModelScope.launch {
@@ -388,11 +432,11 @@ class InnViewModel @Inject constructor(
             val lastParty = gameState.value?.lastPartyClasses ?: emptyList()
             if (lastParty.isEmpty()) return emptyList()
 
-            val currentHiredClasses = _hiredHeroes.value.map { it.heroClass }.toMutableList()
+            val currentClasses = _roster.value.map { it.heroClass }.toMutableList()
             val missing = mutableListOf<HeroClass>()
             for (job in lastParty) {
-                if (currentHiredClasses.contains(job)) {
-                    currentHiredClasses.remove(job)
+                if (currentClasses.contains(job)) {
+                    currentClasses.remove(job)
                 } else {
                     missing.add(job)
                 }
@@ -410,7 +454,7 @@ class InnViewModel @Inject constructor(
             if (lastParty.isEmpty()) return false
             val missing = missingLastPartyClasses
             if (missing.isEmpty()) return false
-            if (_hiredHeroes.value.size + missing.size > maxPartySize) return false
+            if (activeParty.value.size + missing.size > maxPartySize) return false
             if (gs.gold < rehireLastPartyCost) return false
             val available = unlockedJobs
             if (!available.containsAll(missing)) return false
@@ -425,9 +469,9 @@ class InnViewModel @Inject constructor(
         val cost = rehireLastPartyCost
         viewModelScope.launch {
             val currentGs = repository.getGameStateOnce() ?: gs
-            if (currentGs.gold >= cost && _hiredHeroes.value.size + missing.size <= maxPartySize) {
+            if (currentGs.gold >= cost && activeParty.value.size + missing.size <= maxPartySize) {
                 repository.saveGameState(currentGs.copy(gold = currentGs.gold - cost))
-                val currentPartySize = _hiredHeroes.value.size
+                val currentPartySize = activeParty.value.size
                 val newHeroes = missing.mapIndexed { index, job ->
                     Hero.create(job, context).copy(
                         isInParty = true,

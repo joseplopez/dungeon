@@ -736,6 +736,7 @@
     <!-- Inn QoL Buttons -->
     <string name="btn_auto_equip">OTOMATİK DONAT</string>
     <string name="btn_rehire_party">YENİDEN KİRALA (%1$dG)</string>
+    <string name="bench_tab_format">YEDEK (%1$d)</string>
     <string name="btn_rehire_no_run">BİR TUR YAP!</string>
 
     <!-- Extracted Screen Strings -->

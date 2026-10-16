@@ -738,6 +738,7 @@
     <string name="btn_auto_equip">AUTOEQUIPAR</string>
     <string name="btn_rehire_party">RECONTRATAR (%1$dG)</string>
     <string name="btn_rehire_no_run">FAÇA UMA RUN!</string>
+    <string name="bench_tab_format">BANCO (%1$d)</string>
 
     <!-- Extracted Screen Strings -->
     <string name="return_to_inn">VOLTAR À ESTALAGEM</string>

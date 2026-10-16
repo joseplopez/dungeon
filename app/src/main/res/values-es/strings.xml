@@ -737,6 +737,7 @@
     <string name="btn_auto_equip">AUTOEQUIPAR</string>
     <string name="btn_rehire_party">RECONTRATAR (%1$dG)</string>
     <string name="btn_rehire_no_run">¡HAZ UNA RUN!</string>
+    <string name="bench_tab_format">BANQUILLO (%1$d)</string>
 
     <!-- Extracted Screen Strings -->
     <string name="return_to_inn">VOLVER A LA POSADA</string>

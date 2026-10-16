@@ -738,6 +738,7 @@
     <string name="btn_auto_equip">অটো ইকুইপ</string>
     <string name="btn_rehire_party">পুনরায় নিয়োগ (%1$dG)</string>
     <string name="btn_rehire_no_run">একবার চেষ্টা করুন!</string>
+    <string name="bench_tab_format">বেন্চ (%1$d)</string>
 
     <!-- Extracted Screen Strings -->
     <string name="return_to_inn">পান্থশালায় ফিরুন</string>

@@ -737,6 +737,7 @@
     <string name="btn_auto_equip">АВТОЕКІПІРУВАННЯ</string>
     <string name="btn_rehire_party">НАЙНЯТИ ЗНОВУ (%1$dG)</string>
     <string name="btn_rehire_no_run">ЗРОБИ 1 РАУНД!</string>
+    <string name="bench_tab_format">ЗАПАС (%1$d)</string>
 
     <!-- Extracted Screen Strings -->
     <string name="return_to_inn">ПОВЕРНУТИСЯ ДО ТАВЕРНИ</string>

@@ -422,6 +422,11 @@ fun DungeonTopBar(
             }
 
             Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+
+                PauseToggleButton(isPaused = isPaused, onToggle = onTogglePause)
+                SupportIconButton(onClick = onOpenSupport)
+                MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
+                Spacer(Modifier.width(8.dp))
                 Column(horizontalAlignment = End, verticalArrangement = Arrangement.Center) {
                     Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                         Text("🪙", fontSize = 12.sp)
@@ -432,9 +437,6 @@ fun DungeonTopBar(
                         Text(formatMagicite(magiciteTotal), style = PixelGold)
                     }
                 }
-                PauseToggleButton(isPaused = isPaused, onToggle = onTogglePause)
-                SupportIconButton(onClick = onOpenSupport)
-                MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
             }
         }
     }

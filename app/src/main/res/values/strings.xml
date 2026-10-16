@@ -747,6 +747,7 @@
     <string name="btn_auto_equip">AUTO EQUIP</string>
     <string name="btn_rehire_party">REHIRE TEAM (%1$dG)</string>
     <string name="btn_rehire_no_run">DO ONE RUN!</string>
+    <string name="bench_tab_format">BENCH (%1$d)</string>
 
     <!-- Extracted Screen Strings -->
     <string name="return_to_inn">RETURN TO INN</string>

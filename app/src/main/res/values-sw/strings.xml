@@ -737,6 +737,7 @@
     <string name="btn_auto_equip">EKEA AUTOMATIKI</string>
     <string name="btn_rehire_party">AJIRI TENA (%1$dG)</string>
     <string name="btn_rehire_no_run">FANYA ZIARA MOJA!</string>
+    <string name="bench_tab_format">BENCHI (%1$d)</string>
 
     <!-- Extracted Screen Strings -->
     <string name="return_to_inn">RUDI NYUMBA YA WAGENI</string>

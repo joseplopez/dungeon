@@ -738,6 +738,7 @@
     <string name="btn_auto_equip">تجهيز تلقائي</string>
     <string name="btn_rehire_party">إعادة توظيف (%1$dG)</string>
     <string name="btn_rehire_no_run">قم بجولة واحدة!</string>
+    <string name="bench_tab_format">الاحتياط (%1$d)</string>
 
     <!-- Extracted Screen Strings -->
     <string name="return_to_inn">العودة إلى النزل</string>

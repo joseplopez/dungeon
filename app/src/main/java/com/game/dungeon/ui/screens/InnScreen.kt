@@ -47,7 +47,9 @@ fun InnScreen(
     viewModel: InnViewModel = hiltViewModel(),
 ) {
     val gs by viewModel.gameState.collectAsState()
-    val hiredHeroes by viewModel.hiredHeroes.collectAsState()
+    val activeParty by viewModel.activeParty.collectAsState()
+    val benchedHeroes by viewModel.benchedHeroes.collectAsState()
+    val allHeroes = activeParty + benchedHeroes
     val startFloor by viewModel.startFloor.collectAsState()
     val gil = gs?.gold ?: 0L
     val magicite = gs?.magicite ?: 0
@@ -97,18 +99,18 @@ fun InnScreen(
                 GuildStageArea(
                     modifier = Modifier.weight(0.70f),
                     unlockedJobs = unlockedJobs,
-                    hiredHeroes = hiredHeroes,
+                    allHeroes = allHeroes,
                     gil = gil,
                     pathfinderLevel = pathfinderLevel,
                     canSend = canSendToDungeon,
                     onSelectJobToHire = { job -> selectedHireJob = job },
                     onRest = { viewModel.restAtInn() },
                     onDepartClick = {
-                        viewModel.saveLastParty(hiredHeroes)
+                        viewModel.saveLastParty(activeParty)
                         if (pathfinderLevel > 0) {
                             showPathfinderDialog = true
                         } else {
-                            onNavigateToDungeon(hiredHeroes, 1)
+                            onNavigateToDungeon(activeParty, 1)
                             viewModel.resetStartFloor()
                         }
                     },
@@ -122,7 +124,8 @@ fun InnScreen(
                 // RIGHT (30% width): Party Roster Panel
                 PartyPanel(
                     modifier = Modifier.weight(0.30f),
-                    hiredHeroes = hiredHeroes,
+                    activeParty = activeParty,
+                    benchedHeroes = benchedHeroes,
                     maxPartySize = maxPartySize,
                     hasNoLastParty = hasNoLastParty,
                     rehireCost = rehireCost,
@@ -131,6 +134,7 @@ fun InnScreen(
                     onEquip = onNavigateToEquipment,
                     onMoveUp = { viewModel.moveHeroUp(it) },
                     onMoveDown = { viewModel.moveHeroDown(it) },
+                    onToggleBench = { viewModel.toggleBenchStatus(it) },
                     onQuickEquipAll = { viewModel.quickEquipAllHeroes() },
                     onRehireLastParty = { viewModel.rehireLastParty() }
                 )
@@ -145,8 +149,6 @@ fun InnScreen(
         HireHeroClassDialog(
             job = job,
             gil = gil,
-            partySize = hiredHeroes.size,
-            maxPartySize = maxPartySize,
             onDismiss = { selectedHireJob = null },
             onHire = {
                 viewModel.hireHero(job)
@@ -163,7 +165,7 @@ fun InnScreen(
             initialStartFloor = startFloor,
             onConfirm = { chosenFloor ->
                 viewModel.setStartFloor(chosenFloor)
-                onNavigateToDungeon(hiredHeroes, chosenFloor)
+                onNavigateToDungeon(activeParty, chosenFloor)
                 viewModel.resetStartFloor()
                 showPathfinderDialog = false
             },
@@ -225,7 +227,7 @@ fun InnScreen(
 fun GuildStageArea(
     modifier: Modifier,
     unlockedJobs: List<HeroClass>,
-    hiredHeroes: List<Hero>,
+    allHeroes: List<Hero>,
     gil: Long,
     pathfinderLevel: Int,
     canSend: Boolean,
@@ -345,7 +347,7 @@ fun GuildStageArea(
             Spacer(Modifier.height(6.dp))
 
             // Actions Row
-            val woundedHeroes = hiredHeroes.filter { it.currentHp < it.maxHp }
+            val woundedHeroes = allHeroes.filter { it.currentHp < it.maxHp }
             val restCost = woundedHeroes.sumOf { hero ->
                 val hpMissingRatio = (hero.maxHp - hero.currentHp).toFloat() / hero.maxHp.toFloat()
                 val baseCost = hero.level * 10
@@ -365,7 +367,7 @@ fun GuildStageArea(
                 PixelButton(
                     label = if (restCost > 0) safeStringResource(R.string.rest_at_inn_cost, restCost) else safeStringResource(R.string.rest_at_inn_free),
                     onClick = onRest,
-                    enabled = canAffordRest || (restCost == 0L && hiredHeroes.isNotEmpty() && woundedHeroes.isNotEmpty()),
+                    enabled = canAffordRest || (restCost == 0L && allHeroes.isNotEmpty() && woundedHeroes.isNotEmpty()),
                     horizontalPadding = 4.dp,
                     modifier = Modifier
                         .weight(1f)
@@ -394,12 +396,12 @@ fun GuildStageArea(
 fun HireHeroClassDialog(
     job: HeroClass,
     gil: Long,
-    partySize: Int,
-    maxPartySize: Int,
+    partySize: Int = 0,
+    maxPartySize: Int = 3,
     onDismiss: () -> Unit,
     onHire: () -> Unit
 ) {
-    val canHire = gil >= job.hireCost && partySize < maxPartySize
+    val canHire = gil >= job.hireCost
 
     Dialog(
         onDismissRequest = onDismiss,
@@ -481,7 +483,7 @@ fun HireHeroClassDialog(
                     )
 
                     PixelButton(
-                        label = if (partySize >= maxPartySize) safeStringResource(R.string.party_full) else safeStringResource(R.string.hire_cost_format, job.hireCost),
+                        label = safeStringResource(R.string.hire_cost_format, job.hireCost),
                         onClick = onHire,
                         enabled = canHire,
                         active = canHire,
@@ -576,7 +578,8 @@ fun PathfinderFloorSelectDialog(
 @Composable
 fun PartyPanel(
     modifier: Modifier,
-    hiredHeroes: List<Hero>,
+    activeParty: List<Hero>,
+    benchedHeroes: List<Hero>,
     maxPartySize: Int,
     hasNoLastParty: Boolean,
     rehireCost: Long,
@@ -585,9 +588,12 @@ fun PartyPanel(
     onEquip: (String) -> Unit,
     onMoveUp: (String) -> Unit,
     onMoveDown: (String) -> Unit,
+    onToggleBench: (String) -> Unit,
     onQuickEquipAll: () -> Unit,
     onRehireLastParty: () -> Unit
 ) {
+    var selectedTab by remember { mutableIntStateOf(0) } // 0 = Active, 1 = Bench
+
     Box(
         modifier = modifier
             .fillMaxSize()
@@ -598,13 +604,26 @@ fun PartyPanel(
         Column(Modifier.fillMaxSize()) {
             Row(
                 Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
                 verticalAlignment = CenterVertically
             ) {
-                Text(
-                    text = safeStringResource(R.string.party_size_format, hiredHeroes.size, maxPartySize),
-                    style = PixelHeading,
-                    color = GoldBright
+                PixelButton(
+                    label = safeStringResource(R.string.party_size_format, activeParty.size, maxPartySize),
+                    onClick = { selectedTab = 0 },
+                    active = selectedTab == 0,
+                    horizontalPadding = 2.dp,
+                    verticalPadding = 1.dp,
+                    fontSize = 9.sp,
+                    modifier = Modifier.weight(1f).height(28.dp)
+                )
+                PixelButton(
+                    label = safeStringResource(R.string.bench_tab_format, benchedHeroes.size),
+                    onClick = { selectedTab = 1 },
+                    active = selectedTab == 1,
+                    horizontalPadding = 2.dp,
+                    verticalPadding = 1.dp,
+                    fontSize = 9.sp,
+                    modifier = Modifier.weight(1f).height(28.dp)
                 )
             }
             Spacer(Modifier.height(4.dp))
@@ -615,7 +634,7 @@ fun PartyPanel(
                 PixelButton(
                     label = "⚡ " + safeStringResource(R.string.btn_auto_equip),
                     onClick = onQuickEquipAll,
-                    enabled = hiredHeroes.isNotEmpty(),
+                    enabled = activeParty.isNotEmpty(),
                     horizontalPadding = 2.dp,
                     verticalPadding = 1.dp,
                     fontSize = 8.sp,
@@ -645,17 +664,35 @@ fun PartyPanel(
                 modifier = Modifier.weight(1f),
                 verticalArrangement = Arrangement.spacedBy(6.dp)
             ) {
-                items(hiredHeroes) { hero ->
-                    PartyMemberCard(
-                        hero = hero, 
-                        onFire = { onFire(hero.id) }, 
-                        onEquip = { onEquip(hero.id) },
-                        onMoveUp = { onMoveUp(hero.id) },
-                        onMoveDown = { onMoveDown(hero.id) }
-                    )
-                }
-                repeat((maxPartySize - hiredHeroes.size).coerceAtLeast(0)) {
-                    item { EmptyPartySlot() }
+                if (selectedTab == 0) {
+                    items(activeParty, key = { it.id }) { hero ->
+                        PartyMemberCard(
+                            hero = hero,
+                            isBenched = false,
+                            canJoinParty = true,
+                            onFire = { onFire(hero.id) },
+                            onEquip = { onEquip(hero.id) },
+                            onMoveUp = { onMoveUp(hero.id) },
+                            onMoveDown = { onMoveDown(hero.id) },
+                            onToggleBench = { onToggleBench(hero.id) }
+                        )
+                    }
+                    repeat((maxPartySize - activeParty.size).coerceAtLeast(0)) {
+                        item { EmptyPartySlot() }
+                    }
+                } else {
+                    items(benchedHeroes, key = { it.id }) { hero ->
+                        PartyMemberCard(
+                            hero = hero,
+                            isBenched = true,
+                            canJoinParty = activeParty.size < maxPartySize,
+                            onFire = { onFire(hero.id) },
+                            onEquip = { onEquip(hero.id) },
+                            onMoveUp = { onMoveUp(hero.id) },
+                            onMoveDown = { onMoveDown(hero.id) },
+                            onToggleBench = { onToggleBench(hero.id) }
+                        )
+                    }
                 }
             }
         }
@@ -665,10 +702,13 @@ fun PartyPanel(
 @Composable
 fun PartyMemberCard(
     hero: Hero,
+    isBenched: Boolean = false,
+    canJoinParty: Boolean = true,
     onFire: () -> Unit,
     onEquip: () -> Unit,
-    onMoveUp: () -> Unit,
-    onMoveDown: () -> Unit
+    onMoveUp: () -> Unit = {},
+    onMoveDown: () -> Unit = {},
+    onToggleBench: () -> Unit = {}
 ) {
     Box(
         Modifier
@@ -679,30 +719,33 @@ fun PartyMemberCard(
             .padding(6.dp)
     ) {
         Row(Modifier.fillMaxSize(), verticalAlignment = CenterVertically) {
-            Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
-                Box(
-                    Modifier
-                        .size(18.dp)
-                        .background(BgDarkest)
-                        .border(1.dp, GoldDark)
-                        .clickable { onMoveUp() },
-                    contentAlignment = Center
-                ) {
-                    Text("▲", fontSize = 8.sp, color = GoldBright)
+            if (!isBenched) {
+                Column(verticalArrangement = Arrangement.spacedBy(2.dp)) {
+                    Box(
+                        Modifier
+                            .size(18.dp)
+                            .background(BgDarkest)
+                            .border(1.dp, GoldDark)
+                            .clickable { onMoveUp() },
+                        contentAlignment = Center
+                    ) {
+                        Text("▲", fontSize = 8.sp, color = GoldBright)
+                    }
+                    Box(
+                        Modifier
+                            .size(18.dp)
+                            .background(BgDarkest)
+                            .border(1.dp, GoldDark)
+                            .clickable { onMoveDown() },
+                        contentAlignment = Center
+                    ) {
+                        Text("▼", fontSize = 8.sp, color = GoldBright)
+                    }
                 }
-                Box(
-                    Modifier
-                        .size(18.dp)
-                        .background(BgDarkest)
-                        .border(1.dp, GoldDark)
-                        .clickable { onMoveDown() },
-                    contentAlignment = Center
-                ) {
-                    Text("▼", fontSize = 8.sp, color = GoldBright)
-                }
+
+                Spacer(Modifier.width(6.dp))
             }
 
-            Spacer(Modifier.width(6.dp))
             HeroSprite(hero.heroClass, Modifier.size(38.dp))
             Spacer(Modifier.width(6.dp))
 
@@ -726,6 +769,25 @@ fun PartyMemberCard(
                         fontSize = 11.sp,
                         modifier = Modifier.height(26.dp).weight(1f)
                     )
+
+                    // Swap Button
+                    val canClickSwap = !isBenched || canJoinParty
+                    Box(
+                        Modifier
+                            .size(26.dp)
+                            .background(BgMedium, RoundedCornerShape(2.dp))
+                            .border(1.dp, GoldDark, RoundedCornerShape(2.dp))
+                            .clickable(enabled = canClickSwap) { onToggleBench() },
+                        contentAlignment = Center
+                    ) {
+                        Text(
+                            text = if (isBenched) "➕" else "🪑",
+                            fontSize = 12.sp,
+                            color = Color.White.copy(alpha = if (isBenched && !canJoinParty) 0.3f else 1f)
+                        )
+                    }
+
+                    // Fire Button (Existing X button)
                     Box(
                         Modifier
                             .size(26.dp)

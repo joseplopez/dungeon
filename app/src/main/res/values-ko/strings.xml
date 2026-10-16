@@ -738,6 +738,7 @@
     <string name="btn_auto_equip">자동 장착</string>
     <string name="btn_rehire_party">재고용 (%1$dG)</string>
     <string name="btn_rehire_no_run">1회 도전!</string>
+    <string name="bench_tab_format">대기 (%1$d)</string>
 
     <!-- Extracted Screen Strings -->
     <string name="return_to_inn">여관으로 돌아가기</string>

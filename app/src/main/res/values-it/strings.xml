@@ -737,6 +737,7 @@
     <string name="btn_auto_equip">AUTO-EQUIPA</string>
     <string name="btn_rehire_party">RIRAGGIUNGI (%1$dG)</string>
     <string name="btn_rehire_no_run">FA BASTA UN RUN!</string>
+    <string name="bench_tab_format">PANCHINA (%1$d)</string>
 
     <!-- Extracted Screen Strings -->
     <string name="return_to_inn">TORNA ALLA LOCANDA</string>
