@@ -8,6 +8,7 @@ This document defines the mandatory strategy for handling user-facing strings in
 2.  **Explicit Resource Extraction**: Every new string must be added to `app/src/main/res/values/strings.xml`.
 3.  **No XLIFF Tags**: Do not use `<xliff:g>` tags in the English `strings.xml`. Keep translations clean using standard placeholders (e.g., `%1$s`, `%1$d`).
 4.  **Non-Translatable Strings**: Mark technical strings or brand names with `translatable="false"` if necessary.
+5.  **DO NOT translate strings to all languages** 
 
 ## 🛠️ Placeholder Standards
 

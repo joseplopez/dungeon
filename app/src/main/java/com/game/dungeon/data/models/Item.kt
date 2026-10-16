@@ -1,6 +1,7 @@
 package com.game.dungeon.data.models
 
 import android.content.Context
+import androidx.annotation.StringRes
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
@@ -9,7 +10,12 @@ import java.util.UUID
 import kotlin.math.sqrt
 import kotlin.random.Random
 
-enum class ItemSlot { WEAPON, ARMOR, SHIELD, ACCESSORY }
+enum class ItemSlot(@get:StringRes val nameRes: Int) {
+    WEAPON(R.string.slot_weapon),
+    ARMOR(R.string.slot_armor),
+    SHIELD(R.string.slot_shield),
+    ACCESSORY(R.string.slot_accessory)
+}
 
 enum class Rarity(val color: Long) {
     COMMON(0xFF888888),

@@ -1216,5 +1216,59 @@
 
         <string name="mat_mythic_shard_name">Kipande cha Hadithi</string>
         <string name="mat_mythic_shard_desc">Kipande kinachong\'aa cha nguvu za kale za hadithi kilichopatikana ghorofa za chini kabisa.</string>
-    </resources>
+    <!-- Debug Strings -->
+    <string name="debug_seed_mythic">REKEBISHA: WEKA ZANA ZA HADITHI</string>
+
+    <!-- Crafting & Mythic Forge Strings -->
+    <string name="craft_preview_title">ONYESHO PREVIEW LA UTENGELEZAJI</string>
+    <string name="craft_preview_class_slot">Kundi: %1$s (%2$s)</string>
+    <string name="craft_set_bonus_pieces">%1$s (Bonasi ya Seti ya Vipande %2$d)</string>
+    <string name="craft_requires_class">Inahitaji Kundi: %1$s</string>
+    <string name="craft_stat_total_format">%1$s Jumla %2$s</string>
+    <string name="craft_select_legendary_preview">Chagua kifaa cha Hadithi +10 kuona seti za Hadithi</string>
+
+    <!-- Boss Lair Prep Strings -->
+    <string name="boss_lair_assigned_heroes">MASHUJAA WALIOOPANGWA (%1$d):</string>
+
+    <!-- Currency & Reward Formats -->
+    <string name="currency_gil">GIL</string>
+    <string name="currency_magicite">MAGICITE</string>
+    <string name="gold_amount_format">%1$s G</string>
+    <string name="reward_gil_plus">🪙 +%1$s Gil</string>
+    <string name="reward_magicite_plus">💎 +%1$s Magicite</string>
+    <string name="reward_gil_plus_no_emoji">+%1$s Gil</string>
+    <string name="reward_magicite_plus_no_emoji">+%1$s Magicite</string>
+
+    <!-- Slots -->
+    <string name="slot_armor">Bao la Chuma</string>
+    <string name="slot_shield">Ngozi ya Kinga</string>
+    <string name="slot_accessory">Pambo</string>
+
+    <!-- Crystal Colors -->
+    <string name="crystal_clear">Kioo Safi</string>
+    <string name="crystal_fire">Kioo cha Moto</string>
+    <string name="crystal_light">Kioo cha Mwanga</string>
+    <string name="crystal_dark">Kioo cha Giza</string>
+    <string name="crystal_wind">Kioo cha Upepo</string>
+    <string name="crystal_earth">Kioo cha Ardhi</string>
+    <string name="crystal_ice">Kioo cha Bafu</string>
+    <string name="crystal_holy">Kioo Kitakatifu</string>
+    <string name="crystal_void">Kioo cha Utupu</string>
+    <string name="crystal_storm">Kioo cha Dhoruba</string>
+    <string name="crystal_life">Kioo cha Uzima</string>
+    <string name="crystal_shadow">Kioo cha Kivuli</string>
+    <string name="crystal_bushido">Kioo cha Bushido</string>
+    <string name="crystal_onion">Kioo cha Kitunguu</string>
+    <string name="crystal_mime">Kioo cha Igizo</string>
+    <string name="crystal_death">Kioo cha Mauti</string>
+    <string name="crystal_lore">Kioo cha Maarifa</string>
+    <string name="crystal_hidden">Njia iliyofichika</string>
+
+    <!-- AI Priorities -->
+    <string name="ai_priority_attack">Shambulia</string>
+    <string name="ai_priority_magic">Uchawi</string>
+    <string name="ai_priority_heal">Tibu</string>
+    <string name="ai_priority_defend">Tetea</string>
+
+</resources>
 

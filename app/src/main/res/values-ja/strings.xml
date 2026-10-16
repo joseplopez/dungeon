@@ -1216,4 +1216,58 @@
 
         <string name="mat_mythic_shard_name">ミシックの欠片</string>
         <string name="mat_mythic_shard_desc">深層で見つかる古代のミシックパワーを秘めた輝く欠片。</string>
+
+        <!-- Debug Strings -->
+        <string name="debug_seed_mythic">デバッグ: ミシック装備を生成</string>
+
+        <!-- Crafting & Mythic Forge Strings -->
+        <string name="craft_preview_title">クラフトプレビュー</string>
+        <string name="craft_preview_class_slot">ジョブ: %1$s (%2$s)</string>
+        <string name="craft_set_bonus_pieces">%1$s (%2$dセット効果)</string>
+        <string name="craft_requires_class">必要ジョブ: %1$s</string>
+        <string name="craft_stat_total_format">%1$s 合計 %2$s</string>
+        <string name="craft_select_legendary_preview">+10レジェンダリーを選択してミシックをプレビュー</string>
+
+        <!-- Boss Lair Prep Strings -->
+        <string name="boss_lair_assigned_heroes">配置されたヒーロー (%1$d):</string>
+
+        <!-- Currency & Reward Formats -->
+        <string name="currency_gil">ギル</string>
+        <string name="currency_magicite">マギサイト</string>
+        <string name="gold_amount_format">%1$s G</string>
+        <string name="reward_gil_plus">🪙 +%1$s ギル</string>
+        <string name="reward_magicite_plus">💎 +%1$s マギサイト</string>
+        <string name="reward_gil_plus_no_emoji">+%1$s ギル</string>
+        <string name="reward_magicite_plus_no_emoji">+%1$s マギサイト</string>
+
+        <!-- Slots -->
+        <string name="slot_armor">防具</string>
+        <string name="slot_shield">盾</string>
+        <string name="slot_accessory">アクセサリ</string>
+
+        <!-- Crystal Colors -->
+        <string name="crystal_clear">透明のクリスタル</string>
+        <string name="crystal_fire">火のクリスタル</string>
+        <string name="crystal_light">光のクリスタル</string>
+        <string name="crystal_dark">闇のクリスタル</string>
+        <string name="crystal_wind">風のクリスタル</string>
+        <string name="crystal_earth">土のクリスタル</string>
+        <string name="crystal_ice">氷のクリスタル</string>
+        <string name="crystal_holy">聖なるクリスタル</string>
+        <string name="crystal_void">無のクリスタル</string>
+        <string name="crystal_storm">嵐のクリスタル</string>
+        <string name="crystal_life">命のクリスタル</string>
+        <string name="crystal_shadow">影のクリスタル</string>
+        <string name="crystal_bushido">武士道のクリスタル</string>
+        <string name="crystal_onion">オニオンクリスタル</string>
+        <string name="crystal_mime">ものまねのクリスタル</string>
+        <string name="crystal_death">死のクリスタル</string>
+        <string name="crystal_lore">伝承のクリスタル</string>
+        <string name="crystal_hidden">隠された道</string>
+
+        <!-- AI Priorities -->
+        <string name="ai_priority_attack">攻撃</string>
+        <string name="ai_priority_magic">魔法</string>
+        <string name="ai_priority_heal">回復</string>
+        <string name="ai_priority_defend">防御</string>
     </resources>

@@ -1216,4 +1216,58 @@
 
         <string name="mat_mythic_shard_name">Міфічний уламок</string>
         <string name="mat_mythic_shard_desc">Сяючий уламок древньої міфічної сили, знайдений на глибоких поверхах.</string>
-    </resources>
+
+    <!-- Debug Strings -->
+    <string name="debug_seed_mythic">НАЛАГОДЖЕННЯ: СТВОРИТИ МІФІЧНЕ СПОРЯДЖЕННЯ</string>
+
+    <!-- Crafting & Mythic Forge Strings -->
+    <string name="craft_preview_title">ПОПЕРЕДНІЙ ПЕРЕГЛЯД СТВОРЕННЯ</string>
+    <string name="craft_preview_class_slot">Клас: %1$s (%2$s)</string>
+    <string name="craft_set_bonus_pieces">%1$s (Бонус комплекту з %2$d предметів)</string>
+    <string name="craft_requires_class">Потрібен клас: %1$s</string>
+    <string name="craft_stat_total_format">%1$s усього: %2$s</string>
+    <string name="craft_select_legendary_preview">Виберіть легендарний предмет +10 для перегляду міфічних комплектів</string>
+
+    <!-- Boss Lair Prep Strings -->
+    <string name="boss_lair_assigned_heroes">ПРИЗНАЧЕНІ ГЕРОЇ (%1$d):</string>
+
+    <!-- Currency & Reward Formats -->
+    <string name="currency_gil">ГІЛ</string>
+    <string name="currency_magicite">МАДЖИЦИТ</string>
+    <string name="gold_amount_format">%1$s G</string>
+    <string name="reward_gil_plus">🪙 +%1$s Гіл</string>
+    <string name="reward_magicite_plus">💎 +%1$s Маджицит</string>
+    <string name="reward_gil_plus_no_emoji">+%1$s Гіл</string>
+    <string name="reward_magicite_plus_no_emoji">+%1$s Маджицит</string>
+
+    <!-- Slots -->
+    <string name="slot_armor">Броня</string>
+    <string name="slot_shield">Щит</string>
+    <string name="slot_accessory">Аксесуар</string>
+
+    <!-- Crystal Colors -->
+    <string name="crystal_clear">Прозорий кристал</string>
+    <string name="crystal_fire">Кристал вогню</string>
+    <string name="crystal_light">Кристал світла</string>
+    <string name="crystal_dark">Кристал темряви</string>
+    <string name="crystal_wind">Кристал вітру</string>
+    <string name="crystal_earth">Кристал землі</string>
+    <string name="crystal_ice">Кристал льоду</string>
+    <string name="crystal_holy">Святий кристал</string>
+    <string name="crystal_void">Кристал порожнечі</string>
+    <string name="crystal_storm">Кристал бурі</string>
+    <string name="crystal_life">Кристал життя</string>
+    <string name="crystal_shadow">Кристал тіні</string>
+    <string name="crystal_bushido">Кристал бусідо</string>
+    <string name="crystal_onion">Цибулевий кристал</string>
+    <string name="crystal_mime">Кристал міма</string>
+    <string name="crystal_death">Кристал смерті</string>
+    <string name="crystal_lore">Кристал знань</string>
+    <string name="crystal_hidden">Прихований шлях</string>
+
+    <!-- AI Priorities -->
+    <string name="ai_priority_attack">Атака</string>
+    <string name="ai_priority_magic">Магія</string>
+    <string name="ai_priority_heal">Лікування</string>
+    <string name="ai_priority_defend">Захист</string>
+</resources>

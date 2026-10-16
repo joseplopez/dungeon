@@ -1218,4 +1218,58 @@
 
         <string name="mat_mythic_shard_name">شظية خرافية</string>
         <string name="mat_mythic_shard_desc">شظية متوهجة من القوة الخرافية القديمة توجد في الطوابق العميقة.</string>
+
+        <!-- Debug Strings -->
+        <string name="debug_seed_mythic">تصحيح: إنشاء معدات خرافية</string>
+
+        <!-- Crafting & Mythic Forge Strings -->
+        <string name="craft_preview_title">معاينة التصنيع</string>
+        <string name="craft_preview_class_slot">الفئة: %1$s (%2$s)</string>
+        <string name="craft_set_bonus_pieces">%1$s (مكافأة طقم %2$d قطع)</string>
+        <string name="craft_requires_class">يتطلب فئة: %1$s</string>
+        <string name="craft_stat_total_format">%1$s إجمالي %2$s</string>
+        <string name="craft_select_legendary_preview">حدد عنصرًا أسطوريًا +10 لمعاينة الأطقم الخرافية</string>
+
+        <!-- Boss Lair Prep Strings -->
+        <string name="boss_lair_assigned_heroes">الأبطال المخصصون (%1$d):</string>
+
+        <!-- Currency & Reward Formats -->
+        <string name="currency_gil">جيل</string>
+        <string name="currency_magicite">ماجيسايت</string>
+        <string name="gold_amount_format">%1$s جيل</string>
+        <string name="reward_gil_plus">🪙 +%1$s جيل</string>
+        <string name="reward_magicite_plus">💎 +%1$s ماجيسايت</string>
+        <string name="reward_gil_plus_no_emoji">+%1$s جيل</string>
+        <string name="reward_magicite_plus_no_emoji">+%1$s ماجيسايت</string>
+
+        <!-- Slots -->
+        <string name="slot_armor">درع</string>
+        <string name="slot_shield">ترس</string>
+        <string name="slot_accessory">ملحق</string>
+
+        <!-- Crystal Colors -->
+        <string name="crystal_clear">بلورة نقية</string>
+        <string name="crystal_fire">بلورة النار</string>
+        <string name="crystal_light">بلورة الضوء</string>
+        <string name="crystal_dark">بلورة الظلام</string>
+        <string name="crystal_wind">بلورة الرياح</string>
+        <string name="crystal_earth">بلورة الأرض</string>
+        <string name="crystal_ice">بلورة الثلج</string>
+        <string name="crystal_holy">بلورة مقدسة</string>
+        <string name="crystal_void">بلورة الفراغ</string>
+        <string name="crystal_storm">بلورة العاصفة</string>
+        <string name="crystal_life">بلورة الحياة</string>
+        <string name="crystal_shadow">بلورة الظل</string>
+        <string name="crystal_bushido">بلورة البوشيدو</string>
+        <string name="crystal_onion">بلورة البصل</string>
+        <string name="crystal_mime">بلورة المقلد</string>
+        <string name="crystal_death">بلورة الموت</string>
+        <string name="crystal_lore">بلورة المعرفة</string>
+        <string name="crystal_hidden">المسار المخفي</string>
+
+        <!-- AI Priorities -->
+        <string name="ai_priority_attack">هجوم</string>
+        <string name="ai_priority_magic">سحر</string>
+        <string name="ai_priority_heal">علاج</string>
+        <string name="ai_priority_defend">دفاع</string>
     </resources>

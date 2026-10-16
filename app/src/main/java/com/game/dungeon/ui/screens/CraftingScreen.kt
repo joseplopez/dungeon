@@ -992,7 +992,7 @@ private fun MythicForgeSection(
                     colors = ButtonDefaults.buttonColors(containerColor = Color.Red),
                     modifier = Modifier.fillMaxWidth()
                 ) {
-                    Text("DEBUG: SEED MYTHIC GEAR")
+                    Text(safeStringResource(R.string.debug_seed_mythic))
                 }
             }
 
@@ -1020,7 +1020,7 @@ private fun MythicForgeSection(
                     modifier = Modifier.fillMaxWidth(),
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
-                    Text(text = "CRAFTING PREVIEW", style = PixelSmall, color = GoldAccent)
+                    Text(text = safeStringResource(R.string.craft_preview_title), style = PixelSmall, color = GoldAccent)
 
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
@@ -1051,12 +1051,12 @@ private fun MythicForgeSection(
                     }
 
                     Text(
-                        text = "$setNameText - ${currentSet.targetClass.name}",
+                        text = "$setNameText - ${safeStringResource(currentSet.targetClass.nameRes)}",
                         style = PixelHeading,
                         color = Color(Rarity.MYTHIC.color)
                     )
                     Text(
-                        text = "Class: ${currentSet.targetClass.name} (${selectedItem.slot.name})",
+                        text = safeStringResource(R.string.craft_preview_class_slot, safeStringResource(currentSet.targetClass.nameRes), safeStringResource(selectedItem.slot.nameRes)),
                         style = PixelSmall,
                         color = Color.White
                     )
@@ -1144,22 +1144,32 @@ private fun MythicForgeSection(
                         modifier = Modifier.fillMaxWidth()
                     ) {
                         Text(
-                            text = "$setNameText (${currentSet.requiredPieces}-Piece Set Bonus)",
+                            text = safeStringResource(R.string.craft_set_bonus_pieces, setNameText, currentSet.requiredPieces),
                             style = PixelBody,
                             color = Color(Rarity.MYTHIC.color),
                             fontWeight = FontWeight.Bold
                         )
 
                         Text(
-                            text = "Requires Class: ${currentSet.targetClass.name}",
+                            text = safeStringResource(R.string.craft_requires_class, safeStringResource(currentSet.targetClass.nameRes)),
                             style = PixelSmall,
                             color = GoldAccent
                         )
 
                         val statsText = currentSet.statMultipliers.entries.joinToString(" | ") { (key, value) ->
                             val formattedVal = if (key.endsWith("_MULT")) "+${(value * 100).toInt()}%" else "+${value.toInt()}"
-                            val formattedKey = key.replace("_MULT", "").replace("_ADD", "")
-                            "$formattedVal Total $formattedKey"
+                            val statRes = when {
+                                key.startsWith("ATK") -> R.string.stat_attack
+                                key.startsWith("DEF") -> R.string.stat_defense
+                                key.startsWith("MAG") -> R.string.stat_magic
+                                key.startsWith("HP") -> R.string.stat_hp
+                                key.startsWith("MP") -> R.string.stat_mp
+                                key.startsWith("CRIT_CHANCE") -> R.string.stat_crit_chance
+                                key.startsWith("CRIT_DMG") -> R.string.stat_crit_damage
+                                else -> 0
+                            }
+                            val statName = if (statRes != 0) context.getString(statRes) else key.replace("_MULT", "").replace("_ADD", "")
+                            context.getString(R.string.craft_stat_total_format, formattedVal, statName)
                         }
 
                         Text(
@@ -1176,7 +1186,7 @@ private fun MythicForgeSection(
                         .height(110.dp),
                     contentAlignment = Alignment.Center
                 ) {
-                    Text(text = "Select a +10 Legendary item to preview Mythic sets", style = PixelSmall, color = Color.Gray)
+                    Text(text = safeStringResource(R.string.craft_select_legendary_preview), style = PixelSmall, color = Color.Gray)
                 }
             }
 

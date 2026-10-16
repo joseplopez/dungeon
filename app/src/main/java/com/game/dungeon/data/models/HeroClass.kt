@@ -92,30 +92,30 @@ enum class StatType(@StringRes val nameRes: Int) {
     CRIT_DAMAGE(R.string.stat_crit_damage)
 }
 
-enum class CrystalColor(val displayName: String, val colorHex: Long, val baseCost: Int) {
-    CLEAR("Clear Crystal", 0xFFDDDDDD, 0),      // always available (Freelancer)
-    RED("Fire Crystal", 0xFFFF4444, 200),
-    WHITE("Light Crystal", 0xFFFFFFFF, 250),
-    BLACK("Dark Crystal", 0xFF333366, 275),
-    GREEN("Wind Crystal", 0xFF44CC44, 225),
-    ORANGE("Earth Crystal", 0xFFFF8800, 200),
-    BLUE("Ice Crystal", 0xFF4488FF, 600),
-    GOLD("Holy Crystal", 0xFFFFD700, 900),
-    PURPLE("Void Crystal", 0xFFAA44FF, 1100),
-    CYAN("Storm Crystal", 0xFF44CCCC, 800),
-    PINK("Life Crystal", 0xFFFF88CC, 700),
-    DARK_GREEN("Shadow Crystal", 0xFF226622, 850),
-    DARK_RED("Bushido Crystal", 0xFF882222, 850),
-    HIDDEN_ONION("Onion Crystal", 0xFFCCFFCC, 2000),
-    HIDDEN_MIME("Mime Crystal", 0xFFFFFF99, 2500),
-    HIDDEN_NECRO("Death Crystal", 0xFF330033, 3000),
-    HIDDEN_BLUE("Lore Crystal", 0xFF3333FF, 2500),
-    HIDDEN("Hidden Path", 0xFF000000, 0)
+enum class CrystalColor(@get:StringRes val nameRes: Int, val colorHex: Long, val baseCost: Int, val displayName: String) {
+    CLEAR(R.string.crystal_clear, 0xFFDDDDDD, 0, "Clear Crystal"),      // always available (Freelancer)
+    RED(R.string.crystal_fire, 0xFFFF4444, 200, "Fire Crystal"),
+    WHITE(R.string.crystal_light, 0xFFFFFFFF, 250, "Light Crystal"),
+    BLACK(R.string.crystal_dark, 0xFF333366, 275, "Dark Crystal"),
+    GREEN(R.string.crystal_wind, 0xFF44CC44, 225, "Wind Crystal"),
+    ORANGE(R.string.crystal_earth, 0xFFFF8800, 200, "Earth Crystal"),
+    BLUE(R.string.crystal_ice, 0xFF4488FF, 600, "Ice Crystal"),
+    GOLD(R.string.crystal_holy, 0xFFFFD700, 900, "Holy Crystal"),
+    PURPLE(R.string.crystal_void, 0xFFAA44FF, 1100, "Void Crystal"),
+    CYAN(R.string.crystal_storm, 0xFF44CCCC, 800, "Storm Crystal"),
+    PINK(R.string.crystal_life, 0xFFFF88CC, 700, "Life Crystal"),
+    DARK_GREEN(R.string.crystal_shadow, 0xFF226622, 850, "Shadow Crystal"),
+    DARK_RED(R.string.crystal_bushido, 0xFF882222, 850, "Bushido Crystal"),
+    HIDDEN_ONION(R.string.crystal_onion, 0xFFCCFFCC, 2000, "Onion Crystal"),
+    HIDDEN_MIME(R.string.crystal_mime, 0xFFFFFF99, 2500, "Mime Crystal"),
+    HIDDEN_NECRO(R.string.crystal_death, 0xFF330033, 3000, "Death Crystal"),
+    HIDDEN_BLUE(R.string.crystal_lore, 0xFF3333FF, 2500, "Lore Crystal"),
+    HIDDEN(R.string.crystal_hidden, 0xFF000000, 0, "Hidden Path")
 }
 
-enum class AIPriority(val displayName: String, val emoji: String) {
-    ATTACK("Attack", "⚔️"),
-    MAGIC("Magic", "🔮"),
-    HEAL("Heal", "✨"),
-    DEFEND("Defend", "🛡️")
+enum class AIPriority(@get:StringRes val nameRes: Int, val emoji: String, val displayName: String) {
+    ATTACK(R.string.ai_priority_attack, "⚔️", "Attack"),
+    MAGIC(R.string.ai_priority_magic, "🔮", "Magic"),
+    HEAL(R.string.ai_priority_heal, "✨", "Heal"),
+    DEFEND(R.string.ai_priority_defend, "🛡️", "Defend")
 }

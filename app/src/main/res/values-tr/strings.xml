@@ -1217,4 +1217,58 @@
 
         <string name="mat_mythic_shard_name">Mitolojik Parça</string>
         <string name="mat_mythic_shard_desc">Derin katlarda bulunan kadim mitolojik gücün ışıltılı parçası.</string>
-    </resources>
+
+    <!-- Debug Strings -->
+    <string name="debug_seed_mythic">HATA AYIKLAMA: MİTOLOJİK EKİPMAN EKLE</string>
+
+    <!-- Crafting & Mythic Forge Strings -->
+    <string name="craft_preview_title">ÜRETİM ÖNZİLEMESİ</string>
+    <string name="craft_preview_class_slot">Sınıf: %1$s (%2$s)</string>
+    <string name="craft_set_bonus_pieces">%1$s (%2$d Parçalı Set Bonusu)</string>
+    <string name="craft_requires_class">Gerekli Sınıf: %1$s</string>
+    <string name="craft_stat_total_format">%1$s Toplam %2$s</string>
+    <string name="craft_select_legendary_preview">Mitolojik setleri önizlemek için +10 Efsanevi bir eşya seçin</string>
+
+    <!-- Boss Lair Prep Strings -->
+    <string name="boss_lair_assigned_heroes">ATANAN KAHRAMANLAR (%1$d):</string>
+
+    <!-- Currency & Reward Formats -->
+    <string name="currency_gil">GİL</string>
+    <string name="currency_magicite">MAGİCİTE</string>
+    <string name="gold_amount_format">%1$s G</string>
+    <string name="reward_gil_plus">🪙 +%1$s Gil</string>
+    <string name="reward_magicite_plus">💎 +%1$s Magicite</string>
+    <string name="reward_gil_plus_no_emoji">+%1$s Gil</string>
+    <string name="reward_magicite_plus_no_emoji">+%1$s Magicite</string>
+
+    <!-- Slots -->
+    <string name="slot_armor">Zırh</string>
+    <string name="slot_shield">Kalkan</string>
+    <string name="slot_accessory">Aksesuar</string>
+
+    <!-- Crystal Colors -->
+    <string name="crystal_clear">Berrak Kristal</string>
+    <string name="crystal_fire">Ateş Kristali</string>
+    <string name="crystal_light">Işık Kristali</string>
+    <string name="crystal_dark">Karanlık Kristali</string>
+    <string name="crystal_wind">Rüzgar Kristali</string>
+    <string name="crystal_earth">Toprak Kristali</string>
+    <string name="crystal_ice">Buz Kristali</string>
+    <string name="crystal_holy">Kutsal Kristal</string>
+    <string name="crystal_void">Boşluk Kristali</string>
+    <string name="crystal_storm">Fırtına Kristali</string>
+    <string name="crystal_life">Yaşam Kristali</string>
+    <string name="crystal_shadow">Gölge Kristali</string>
+    <string name="crystal_bushido">Bushido Kristali</string>
+    <string name="crystal_onion">Soğan Kristali</string>
+    <string name="crystal_mime">Pandomim Kristali</string>
+    <string name="crystal_death">Ölüm Kristali</string>
+    <string name="crystal_lore">İlim Kristali</string>
+    <string name="crystal_hidden">Gizli Yol</string>
+
+    <!-- AI Priorities -->
+    <string name="ai_priority_attack">Saldırı</string>
+    <string name="ai_priority_magic">Büyü</string>
+    <string name="ai_priority_heal">İyileştirme</string>
+    <string name="ai_priority_defend">Savunma</string>
+</resources>

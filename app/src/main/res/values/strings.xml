@@ -1268,4 +1268,58 @@
     <string name="boss_lair_stat_spike_desc">⚠️ Bosses have 100x Stats (HP, Atk, Def, Magic, Gil, Exp)</string>
     <string name="boss_lair_loot_desc">💎 Mythic Shards (25%%) &amp; Mythic Gear (5%%)</string>
     <string name="boss_lair_cave_label">BOSS LAIR</string>
+
+    <!-- Debug Strings -->
+    <string name="debug_seed_mythic">DEBUG: SEED MYTHIC GEAR</string>
+
+    <!-- Crafting & Mythic Forge Strings -->
+    <string name="craft_preview_title">CRAFTING PREVIEW</string>
+    <string name="craft_preview_class_slot">Class: %1$s (%2$s)</string>
+    <string name="craft_set_bonus_pieces">%1$s (%2$d-Piece Set Bonus)</string>
+    <string name="craft_requires_class">Requires Class: %1$s</string>
+    <string name="craft_stat_total_format">%1$s Total %2$s</string>
+    <string name="craft_select_legendary_preview">Select a +10 Legendary item to preview Mythic sets</string>
+
+    <!-- Boss Lair Prep Strings -->
+    <string name="boss_lair_assigned_heroes">ASSIGNED HEROES (%1$d):</string>
+
+    <!-- Currency & Reward Formats -->
+    <string name="currency_gil">GIL</string>
+    <string name="currency_magicite">MAGICITE</string>
+    <string name="gold_amount_format">%1$s G</string>
+    <string name="reward_gil_plus">🪙 +%1$s Gil</string>
+    <string name="reward_magicite_plus">💎 +%1$s Magicite</string>
+    <string name="reward_gil_plus_no_emoji">+%1$s Gil</string>
+    <string name="reward_magicite_plus_no_emoji">+%1$s Magicite</string>
+
+    <!-- Slots -->
+    <string name="slot_armor">Armor</string>
+    <string name="slot_shield">Shield</string>
+    <string name="slot_accessory">Accessory</string>
+
+    <!-- Crystal Colors -->
+    <string name="crystal_clear">Clear Crystal</string>
+    <string name="crystal_fire">Fire Crystal</string>
+    <string name="crystal_light">Light Crystal</string>
+    <string name="crystal_dark">Dark Crystal</string>
+    <string name="crystal_wind">Wind Crystal</string>
+    <string name="crystal_earth">Earth Crystal</string>
+    <string name="crystal_ice">Ice Crystal</string>
+    <string name="crystal_holy">Holy Crystal</string>
+    <string name="crystal_void">Void Crystal</string>
+    <string name="crystal_storm">Storm Crystal</string>
+    <string name="crystal_life">Life Crystal</string>
+    <string name="crystal_shadow">Shadow Crystal</string>
+    <string name="crystal_bushido">Bushido Crystal</string>
+    <string name="crystal_onion">Onion Crystal</string>
+    <string name="crystal_mime">Mime Crystal</string>
+    <string name="crystal_death">Death Crystal</string>
+    <string name="crystal_lore">Lore Crystal</string>
+    <string name="crystal_hidden">Hidden Path</string>
+
+    <!-- AI Priorities -->
+    <string name="ai_priority_attack">Attack</string>
+    <string name="ai_priority_magic">Magic</string>
+    <string name="ai_priority_heal">Heal</string>
+    <string name="ai_priority_defend">Defend</string>
 </resources>

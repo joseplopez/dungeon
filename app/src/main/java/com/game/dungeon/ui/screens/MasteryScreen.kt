@@ -250,7 +250,7 @@ fun JobDetailFullScreenView(
                                 )
                                 Spacer(Modifier.height(2.dp))
                                 Text(
-                                    job.crystalColor.displayName,
+                                    safeStringResource(job.crystalColor.nameRes),
                                     style = PixelSmall,
                                     color = Color(job.crystalColor.colorHex)
                                 )
@@ -341,7 +341,7 @@ fun JobDetailFullScreenView(
                                 safeStringResource(
                                     R.string.job_detail_tactical_role,
                                     job.defaultPriority.emoji,
-                                    job.defaultPriority.displayName
+                                    safeStringResource(job.defaultPriority.nameRes)
                                 ),
                                 style = PixelSmall,
                                 color = StoneGray

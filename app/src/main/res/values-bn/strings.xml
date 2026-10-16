@@ -1217,4 +1217,58 @@
 
         <string name="mat_mythic_shard_name">পৌরাণিক খণ্ড</string>
         <string name="mat_mythic_shard_desc">গভীর স্তরে পাওয়া প্রাচীন পৌরাণিক শক্তির উজ্জ্বল খণ্ড।</string>
+
+        <!-- Debug Strings -->
+        <string name="debug_seed_mythic">ডিবাগ: পৌরাণিক গিয়ার সিড করুন</string>
+
+        <!-- Crafting & Mythic Forge Strings -->
+        <string name="craft_preview_title">ক্রাফটিং প্রিভিউ</string>
+        <string name="craft_preview_class_slot">শ্রেণি: %1$s (%2$s)</string>
+        <string name="craft_set_bonus_pieces">%1$s (%2$d-পিস সেট বোনাস)</string>
+        <string name="craft_requires_class">প্রয়োজন শ্রেণি: %1$s</string>
+        <string name="craft_stat_total_format">%1$s মোট %2$s</string>
+        <string name="craft_select_legendary_preview">পৌরাণিক সেট প্রিভিউ করতে একটি +10 লিজেন্ডারি আইটেম নির্বাচন করুন</string>
+
+        <!-- Boss Lair Prep Strings -->
+        <string name="boss_lair_assigned_heroes">নির্ধারিত নায়ক (%1$d):</string>
+
+        <!-- Currency & Reward Formats -->
+        <string name="currency_gil">গিল</string>
+        <string name="currency_magicite">ম্যাজিসাইট</string>
+        <string name="gold_amount_format">%1$s গিল</string>
+        <string name="reward_gil_plus">🪙 +%1$s গিল</string>
+        <string name="reward_magicite_plus">💎 +%1$s ম্যাজিসাইট</string>
+        <string name="reward_gil_plus_no_emoji">+%1$s গিল</string>
+        <string name="reward_magicite_plus_no_emoji">+%1$s ম্যাজিসাইট</string>
+
+        <!-- Slots -->
+        <string name="slot_armor">বর্ম</string>
+        <string name="slot_shield">ঢাল</string>
+        <string name="slot_accessory">অনুষঙ্গ</string>
+
+        <!-- Crystal Colors -->
+        <string name="crystal_clear">স্বচ্ছ ক্রিস্টাল</string>
+        <string name="crystal_fire">অগ্নি ক্রিস্টাল</string>
+        <string name="crystal_light">আলো ক্রিস্টাল</string>
+        <string name="crystal_dark">অন্ধকার ক্রিস্টাল</string>
+        <string name="crystal_wind">বাতাস ক্রিস্টাল</string>
+        <string name="crystal_earth">পৃথিবী ক্রিস্টাল</string>
+        <string name="crystal_ice">বরফ ক্রিস্টাল</string>
+        <string name="crystal_holy">পবিত্র ক্রিস্টাল</string>
+        <string name="crystal_void">শূন্যতা ক্রিস্টাল</string>
+        <string name="crystal_storm">ঝড় ক্রিস্টাল</string>
+        <string name="crystal_life">জীবন ক্রিস্টাল</string>
+        <string name="crystal_shadow">ছায়া ক্রিস্টাল</string>
+        <string name="crystal_bushido">বুশিডো ক্রিস্টাল</string>
+        <string name="crystal_onion">পেঁয়াজ ক্রিস্টাল</string>
+        <string name="crystal_mime">বহুরূপী ক্রিস্টাল</string>
+        <string name="crystal_death">মৃত্যু ক্রিস্টাল</string>
+        <string name="crystal_lore">জ্ঞান ক্রিস্টাল</string>
+        <string name="crystal_hidden">লুকানো পথ</string>
+
+        <!-- AI Priorities -->
+        <string name="ai_priority_attack">আক্রমণ</string>
+        <string name="ai_priority_magic">যাদু</string>
+        <string name="ai_priority_heal">আরোগ্য</string>
+        <string name="ai_priority_defend">প্রতিরোধ</string>
     </resources>

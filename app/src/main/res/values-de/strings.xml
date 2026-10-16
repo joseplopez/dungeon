@@ -1217,4 +1217,58 @@
 
         <string name="mat_mythic_shard_name">Mythischer Splitter</string>
         <string name="mat_mythic_shard_desc">Strahlender Splitter uralter mythischer Macht, der in tiefen Ebenen gefunden wird.</string>
+
+        <!-- Debug Strings -->
+        <string name="debug_seed_mythic">DEBUG: MYTHISCHE AUSRÜSTUNG ERZEUGEN</string>
+
+        <!-- Crafting & Mythic Forge Strings -->
+        <string name="craft_preview_title">SCHMIEDE-VORSCHAU</string>
+        <string name="craft_preview_class_slot">Klasse: %1$s (%2$s)</string>
+        <string name="craft_set_bonus_pieces">%1$s (%2$d-Teile Set-Bonus)</string>
+        <string name="craft_requires_class">Benötigt Klasse: %1$s</string>
+        <string name="craft_stat_total_format">%1$s Gesamt %2$s</string>
+        <string name="craft_select_legendary_preview">Wähle einen +10 Legendären Gegenstand für die Mythische Vorschau</string>
+
+        <!-- Boss Lair Prep Strings -->
+        <string name="boss_lair_assigned_heroes">ZUGEWIESENE HELDEN (%1$d):</string>
+
+        <!-- Currency & Reward Formats -->
+        <string name="currency_gil">GIL</string>
+        <string name="currency_magicite">MAGIZIT</string>
+        <string name="gold_amount_format">%1$s G</string>
+        <string name="reward_gil_plus">🪙 +%1$s Gil</string>
+        <string name="reward_magicite_plus">💎 +%1$s Magizit</string>
+        <string name="reward_gil_plus_no_emoji">+%1$s Gil</string>
+        <string name="reward_magicite_plus_no_emoji">+%1$s Magizit</string>
+
+        <!-- Slots -->
+        <string name="slot_armor">Rüstung</string>
+        <string name="slot_shield">Schild</string>
+        <string name="slot_accessory">Zubehör</string>
+
+        <!-- Crystal Colors -->
+        <string name="crystal_clear">Klarer Kristall</string>
+        <string name="crystal_fire">Feuerkristall</string>
+        <string name="crystal_light">Lichtkristall</string>
+        <string name="crystal_dark">Dunkelkristall</string>
+        <string name="crystal_wind">Windkristall</string>
+        <string name="crystal_earth">Erdkristall</string>
+        <string name="crystal_ice">Eiskristall</string>
+        <string name="crystal_holy">Heiliger Kristall</string>
+        <string name="crystal_void">Leerenkristall</string>
+        <string name="crystal_storm">Sturmkristall</string>
+        <string name="crystal_life">Lebenskristall</string>
+        <string name="crystal_shadow">Schattenkristall</string>
+        <string name="crystal_bushido">Bushido-Kristall</string>
+        <string name="crystal_onion">Zwiebelkristall</string>
+        <string name="crystal_mime">Mimenkristall</string>
+        <string name="crystal_death">Todeskristall</string>
+        <string name="crystal_lore">Wissenskristall</string>
+        <string name="crystal_hidden">Verborgener Pfad</string>
+
+        <!-- AI Priorities -->
+        <string name="ai_priority_attack">Angriff</string>
+        <string name="ai_priority_magic">Magie</string>
+        <string name="ai_priority_heal">Heilung</string>
+        <string name="ai_priority_defend">Verteidigung</string>
     </resources>

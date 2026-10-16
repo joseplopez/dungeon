@@ -1230,4 +1230,58 @@
 
         <string name="mat_mythic_shard_name">میتھک ٹکڑا</string>
         <string name="mat_mythic_shard_desc">نچلی منزلوں سے ملنے والا قدیم میتھک طاقت کا چمکتا ہوا ٹکڑا۔</string>
-    </resources>
+
+    <!-- Debug Strings -->
+    <string name="debug_seed_mythic">ڈیبگ: میتھک سامان پیدا کریں</string>
+
+    <!-- Crafting & Mythic Forge Strings -->
+    <string name="craft_preview_title">تیاری کا پیش نظارہ</string>
+    <string name="craft_preview_class_slot">کلاس: %1$s (%2$s)</string>
+    <string name="craft_set_bonus_pieces">%1$s (%2$d-ٹکڑوں کا سیٹ بونس)</string>
+    <string name="craft_requires_class">مطلوبہ کلاس: %1$s</string>
+    <string name="craft_stat_total_format">%1$s کل %2$s</string>
+    <string name="craft_select_legendary_preview">میتھک سیٹ دیکھنے کے لیے +10 لیجنڈری چیز منتخب کریں</string>
+
+    <!-- Boss Lair Prep Strings -->
+    <string name="boss_lair_assigned_heroes">مقرر کردہ ہیروز (%1$d):</string>
+
+    <!-- Currency & Reward Formats -->
+    <string name="currency_gil">گل</string>
+    <string name="currency_magicite">میجیسائٹ</string>
+    <string name="gold_amount_format">%1$s G</string>
+    <string name="reward_gil_plus">🪙 +%1$s گل</string>
+    <string name="reward_magicite_plus">💎 +%1$s میجیسائٹ</string>
+    <string name="reward_gil_plus_no_emoji">+%1$s گل</string>
+    <string name="reward_magicite_plus_no_emoji">+%1$s میجیسائٹ</string>
+
+    <!-- Slots -->
+    <string name="slot_armor">زیرہ</string>
+    <string name="slot_shield">ڈھال</string>
+    <string name="slot_accessory">زیور</string>
+
+    <!-- Crystal Colors -->
+    <string name="crystal_clear">شفاف کرسٹل</string>
+    <string name="crystal_fire">آگ کا کرسٹل</string>
+    <string name="crystal_light">روشنی کا کرسٹل</string>
+    <string name="crystal_dark">تاریکی کا کرسٹل</string>
+    <string name="crystal_wind">ہوا کا کرسٹل</string>
+    <string name="crystal_earth">زمین کا کرسٹل</string>
+    <string name="crystal_ice">برف کا کرسٹل</string>
+    <string name="crystal_holy">مقدس کرسٹل</string>
+    <string name="crystal_void">خلا کا کرسٹل</string>
+    <string name="crystal_storm">طوفان کا کرسٹل</string>
+    <string name="crystal_life">زندگی کا کرسٹل</string>
+    <string name="crystal_shadow">سائے کا کرسٹل</string>
+    <string name="crystal_bushido">بوشیڈو کرسٹل</string>
+    <string name="crystal_onion">پیاز کا کرسٹل</string>
+    <string name="crystal_mime">مائم کرسٹل</string>
+    <string name="crystal_death">موت کا کرسٹل</string>
+    <string name="crystal_lore">علم کا کرسٹل</string>
+    <string name="crystal_hidden">پوشیدہ راستہ</string>
+
+    <!-- AI Priorities -->
+    <string name="ai_priority_attack">حملہ</string>
+    <string name="ai_priority_magic">جادو</string>
+    <string name="ai_priority_heal">علاج</string>
+    <string name="ai_priority_defend">دفاع</string>
+</resources>

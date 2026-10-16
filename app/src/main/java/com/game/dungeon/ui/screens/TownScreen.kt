@@ -761,7 +761,7 @@ fun CrystalShopRow(
         }
         Spacer(Modifier.width(12.dp))
         Column(Modifier.weight(1f)) {
-            Text(crystal.color.displayName, style = PixelBody, color = Color(crystal.color.colorHex))
+            Text(safeStringResource(crystal.color.nameRes), style = PixelBody, color = Color(crystal.color.colorHex))
             Text(safeStringResource(id = R.string.unlocks_job_format, safeStringResource(crystal.unlocksJob.nameRes)), style = PixelSmall, color = GoldDark)
         }
         if (isUnlocked) {

@@ -464,8 +464,8 @@ fun HireHeroClassDialog(
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = CenterVertically
                 ) {
-                    Text("COST:", style = PixelBody, color = StoneGray)
-                    Text("${formatGold(job.hireCost)} G", style = PixelGold, fontWeight = FontWeight.Bold)
+                    Text(safeStringResource(R.string.craft_label_cost), style = PixelBody, color = StoneGray)
+                    Text(safeStringResource(R.string.gold_amount_format, formatGold(job.hireCost)), style = PixelGold, fontWeight = FontWeight.Bold)
                 }
 
                 Row(

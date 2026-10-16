@@ -146,7 +146,7 @@ fun BossLairPrepDialog(
                             verticalArrangement = Arrangement.spacedBy(4.dp)
                         ) {
                             Text(
-                                "ASSIGNED HEROES (${party.size}):",
+                                safeStringResource(R.string.boss_lair_assigned_heroes, party.size),
                                 style = PixelSmall,
                                 color = StoneGray
                             )

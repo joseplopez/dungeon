@@ -166,7 +166,7 @@ fun ResourceShopDialog(
                         ) {
                             Column {
                                 Text(
-                                    text = if (selectedTab == ResourceType.GIL) "🪙 +${formatGold(freeGilReward)} Gil" else "💎 +${formatMagicite(freeMagiciteReward)} Magicite",
+                                    text = if (selectedTab == ResourceType.GIL) safeStringResource(R.string.reward_gil_plus, formatGold(freeGilReward)) else safeStringResource(R.string.reward_magicite_plus, formatMagicite(freeMagiciteReward.toLong())),
                                     style = PixelHeading,
                                     color = if (selectedTab == ResourceType.GIL) GoldBright else Color(0xFF00E5FF)
                                 )
@@ -245,9 +245,9 @@ fun ResourceShopDialog(
                                         )
                                         Text(
                                             text = if (product.resourceType == ResourceType.GIL) {
-                                                "+${formatGold(product.rewardAmount)} Gil"
+                                                safeStringResource(R.string.reward_gil_plus_no_emoji, formatGold(product.rewardAmount))
                                             } else {
-                                                "+${formatMagicite(product.rewardAmount)} Magicite"
+                                                safeStringResource(R.string.reward_magicite_plus_no_emoji, formatMagicite(product.rewardAmount))
                                             },
                                             style = PixelSmall,
                                             color = if (product.resourceType == ResourceType.GIL) GoldBright else Color(0xFF00E5FF)

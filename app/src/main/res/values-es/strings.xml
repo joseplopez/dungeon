@@ -1216,4 +1216,58 @@
 
         <string name="mat_mythic_shard_name">Fragmento mítico</string>
         <string name="mat_mythic_shard_desc">Fragmento radiante de antiguo poder mítico hallado en los pisos profundos.</string>
+
+        <!-- Debug Strings -->
+        <string name="debug_seed_mythic">DEBUG: GENERAR EQUIPO MÍTICO</string>
+
+        <!-- Crafting & Mythic Forge Strings -->
+        <string name="craft_preview_title">VISTA PREVIA DE FORJA</string>
+        <string name="craft_preview_class_slot">Clase: %1$s (%2$s)</string>
+        <string name="craft_set_bonus_pieces">%1$s (Bonificación de %2$d piezas)</string>
+        <string name="craft_requires_class">Requiere Clase: %1$s</string>
+        <string name="craft_stat_total_format">%1$s Total de %2$s</string>
+        <string name="craft_select_legendary_preview">Selecciona un objeto Legendario +10 para ver conjuntos Míticos</string>
+
+        <!-- Boss Lair Prep Strings -->
+        <string name="boss_lair_assigned_heroes">HÉROES ASIGNADOS (%1$d):</string>
+
+        <!-- Currency & Reward Formats -->
+        <string name="currency_gil">GIL</string>
+        <string name="currency_magicite">MAGICITA</string>
+        <string name="gold_amount_format">%1$s G</string>
+        <string name="reward_gil_plus">🪙 +%1$s Gil</string>
+        <string name="reward_magicite_plus">💎 +%1$s Magicita</string>
+        <string name="reward_gil_plus_no_emoji">+%1$s Gil</string>
+        <string name="reward_magicite_plus_no_emoji">+%1$s Magicita</string>
+
+        <!-- Slots -->
+        <string name="slot_armor">Armadura</string>
+        <string name="slot_shield">Escudo</string>
+        <string name="slot_accessory">Accesorio</string>
+
+        <!-- Crystal Colors -->
+        <string name="crystal_clear">Cristal Claro</string>
+        <string name="crystal_fire">Cristal de Fuego</string>
+        <string name="crystal_light">Cristal de Luz</string>
+        <string name="crystal_dark">Cristal Oscuro</string>
+        <string name="crystal_wind">Cristal de Viento</string>
+        <string name="crystal_earth">Cristal de Tierra</string>
+        <string name="crystal_ice">Cristal de Hielo</string>
+        <string name="crystal_holy">Cristal Sagrado</string>
+        <string name="crystal_void">Cristal del Vacío</string>
+        <string name="crystal_storm">Cristal de Tormenta</string>
+        <string name="crystal_life">Cristal de Vida</string>
+        <string name="crystal_shadow">Cristal de Sombra</string>
+        <string name="crystal_bushido">Cristal Bushido</string>
+        <string name="crystal_onion">Cristal Cebolla</string>
+        <string name="crystal_mime">Cristal Mimo</string>
+        <string name="crystal_death">Cristal de Muerte</string>
+        <string name="crystal_lore">Cristal del Saber</string>
+        <string name="crystal_hidden">Camino Oculto</string>
+
+        <!-- AI Priorities -->
+        <string name="ai_priority_attack">Ataque</string>
+        <string name="ai_priority_magic">Magia</string>
+        <string name="ai_priority_heal">Curación</string>
+        <string name="ai_priority_defend">Defensa</string>
     </resources>

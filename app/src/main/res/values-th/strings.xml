@@ -1217,4 +1217,58 @@
 
         <string name="mat_mythic_shard_name">เศษเสี้ยวตำนาน</string>
         <string name="mat_mythic_shard_desc">ชิ้นส่วนเปล่งประกายแห่งพลังตำนานโบราณที่พบในชั้นลึก</string>
-    </resources>
+
+    <!-- Debug Strings -->
+    <string name="debug_seed_mythic">ดีแบ็ก: สุ่มสร้างอุปกรณ์ระดับตำนาน</string>
+
+    <!-- Crafting & Mythic Forge Strings -->
+    <string name="craft_preview_title">ตัวอย่างการสร้าง</string>
+    <string name="craft_preview_class_slot">คลาส: %1$s (%2$s)</string>
+    <string name="craft_set_bonus_pieces">%1$s (โบนัสเซ็ต %2$d ชิ้น)</string>
+    <string name="craft_requires_class">ต้องการคลาส: %1$s</string>
+    <string name="craft_stat_total_format">%1$s รวม %2$s</string>
+    <string name="craft_select_legendary_preview">เลือกไอเทมระดับตำนาน +10 เพื่อดูตัวอย่างเซ็ตระดับตำนาน</string>
+
+    <!-- Boss Lair Prep Strings -->
+    <string name="boss_lair_assigned_heroes">ฮีโร่ที่มอบหมาย (%1$d):</string>
+
+    <!-- Currency & Reward Formats -->
+    <string name="currency_gil">กิล</string>
+    <string name="currency_magicite">เมจิไซต์</string>
+    <string name="gold_amount_format">%1$s G</string>
+    <string name="reward_gil_plus">🪙 +%1$s กิล</string>
+    <string name="reward_magicite_plus">💎 +%1$s เมจิไซต์</string>
+    <string name="reward_gil_plus_no_emoji">+%1$s กิล</string>
+    <string name="reward_magicite_plus_no_emoji">+%1$s เมจิไซต์</string>
+
+    <!-- Slots -->
+    <string name="slot_armor">ชุดเกราะ</string>
+    <string name="slot_shield">โล่</string>
+    <string name="slot_accessory">เครื่องประดับ</string>
+
+    <!-- Crystal Colors -->
+    <string name="crystal_clear">คริสตัลใส</string>
+    <string name="crystal_fire">คริสตัลแห่งไฟ</string>
+    <string name="crystal_light">คริสตัลแห่งแสง</string>
+    <string name="crystal_dark">คริสตัลแห่งความมืด</string>
+    <string name="crystal_wind">คริสตัลแห่งลม</string>
+    <string name="crystal_earth">คริสตัลแห่งดิน</string>
+    <string name="crystal_ice">คริสตัลแห่งน้ำแข็ง</string>
+    <string name="crystal_holy">คริสตัลศักดิ์สิทธิ์</string>
+    <string name="crystal_void">คริสตัลแห่งความว่างเปล่า</string>
+    <string name="crystal_storm">คริสตัลแห่งพายุ</string>
+    <string name="crystal_life">คริสตัลแห่งชีวิต</string>
+    <string name="crystal_shadow">คริสตัลแห่งเงา</string>
+    <string name="crystal_bushido">คริสตัลบุชิโด</string>
+    <string name="crystal_onion">คริสตัลหัวหอม</string>
+    <string name="crystal_mime">คริสตัลการเลียนแบบ</string>
+    <string name="crystal_death">คริสตัลแห่งความตาย</string>
+    <string name="crystal_lore">คริสตัลแห่งตำนาน</string>
+    <string name="crystal_hidden">เส้นทางที่ซ่อนอยู่</string>
+
+    <!-- AI Priorities -->
+    <string name="ai_priority_attack">โจมตี</string>
+    <string name="ai_priority_magic">เวทมนตร์</string>
+    <string name="ai_priority_heal">รักษา</string>
+    <string name="ai_priority_defend">ป้องกัน</string>
+</resources>

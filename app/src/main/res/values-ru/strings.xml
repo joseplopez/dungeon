@@ -1216,4 +1216,58 @@
 
         <string name="mat_mythic_shard_name">Мифический осколок</string>
         <string name="mat_mythic_shard_desc">Сияющий осколок древней мифической силы, найденный на глубоких этажах.</string>
-    </resources>
+
+    <!-- Debug Strings -->
+    <string name="debug_seed_mythic">ОТЛАДКА: СОЗДАТЬ МИФИЧЕСКОЕ СНАРЯЖЕНИЕ</string>
+
+    <!-- Crafting & Mythic Forge Strings -->
+    <string name="craft_preview_title">ПРЕДПРОСМОТР СОЗДАНИЯ</string>
+    <string name="craft_preview_class_slot">Класс: %1$s (%2$s)</string>
+    <string name="craft_set_bonus_pieces">%1$s (Бонус комплекта из %2$d предметов)</string>
+    <string name="craft_requires_class">Требуется класс: %1$s</string>
+    <string name="craft_stat_total_format">%1$s всего: %2$s</string>
+    <string name="craft_select_legendary_preview">Выберите легендарный предмет +10 для предпросмотра мифических комплектов</string>
+
+    <!-- Boss Lair Prep Strings -->
+    <string name="boss_lair_assigned_heroes">НАЗНАЧЕННЫЕ ГЕРОИ (%1$d):</string>
+
+    <!-- Currency & Reward Formats -->
+    <string name="currency_gil">ГИЛ</string>
+    <string name="currency_magicite">МАДЖИЦИТ</string>
+    <string name="gold_amount_format">%1$s G</string>
+    <string name="reward_gil_plus">🪙 +%1$s Гил</string>
+    <string name="reward_magicite_plus">💎 +%1$s Маджицит</string>
+    <string name="reward_gil_plus_no_emoji">+%1$s Гил</string>
+    <string name="reward_magicite_plus_no_emoji">+%1$s Маджицит</string>
+
+    <!-- Slots -->
+    <string name="slot_armor">Броня</string>
+    <string name="slot_shield">Щит</string>
+    <string name="slot_accessory">Аксессуар</string>
+
+    <!-- Crystal Colors -->
+    <string name="crystal_clear">Прозрачный кристалл</string>
+    <string name="crystal_fire">Кристалл огня</string>
+    <string name="crystal_light">Кристалл света</string>
+    <string name="crystal_dark">Кристалл тьмы</string>
+    <string name="crystal_wind">Кристалл ветра</string>
+    <string name="crystal_earth">Кристалл земли</string>
+    <string name="crystal_ice">Кристалл льда</string>
+    <string name="crystal_holy">Святой кристалл</string>
+    <string name="crystal_void">Кристалл пустоты</string>
+    <string name="crystal_storm">Кристалл бури</string>
+    <string name="crystal_life">Кристалл жизни</string>
+    <string name="crystal_shadow">Кристалл тени</string>
+    <string name="crystal_bushido">Кристалл бусидо</string>
+    <string name="crystal_onion">Луковый кристалл</string>
+    <string name="crystal_mime">Кристалл мима</string>
+    <string name="crystal_death">Кристалл смерти</string>
+    <string name="crystal_lore">Кристалл знаний</string>
+    <string name="crystal_hidden">Скрытый путь</string>
+
+    <!-- AI Priorities -->
+    <string name="ai_priority_attack">Атака</string>
+    <string name="ai_priority_magic">Магия</string>
+    <string name="ai_priority_heal">Лечение</string>
+    <string name="ai_priority_defend">Защита</string>
+</resources>

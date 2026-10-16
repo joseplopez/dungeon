@@ -16,6 +16,8 @@ import androidx.compose.ui.unit.sp
 import androidx.navigation.NavController
 import com.game.dungeon.ui.theme.*
 
+import com.game.dungeon.R
+
 @Composable
 fun BottomPixelNav(currentRoute: String?, navController: NavController) {
     GoldenBorderBox(
@@ -26,8 +28,8 @@ fun BottomPixelNav(currentRoute: String?, navController: NavController) {
     ) {
         Row(Modifier.fillMaxSize(), horizontalArrangement = Arrangement.SpaceEvenly) {
             listOf(
-                "inn" to "⚗ INN",
-                "town" to "🏰 TOWN"
+                "inn" to "⚗ " + safeStringResource(R.string.building_inn),
+                "town" to "🏰 " + safeStringResource(R.string.town_name)
             ).forEach { (route, label) ->
                 val active = currentRoute == route
                 Box(

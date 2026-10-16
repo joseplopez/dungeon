@@ -1064,7 +1064,7 @@ fun RunCompleteOverlay(
                                 Text("🪙", fontSize = 24.sp)
                                 Column {
                                     Text(formatGold(gilEarnedThisRun), style = PixelTitle, color = GoldBright)
-                                    Text("GIL", style = PixelSmall, color = GoldDark)
+                                    Text(safeStringResource(R.string.currency_gil), style = PixelSmall, color = GoldDark)
                                 }
                                 if (gilLostToPenalty > 0) {
                                     Spacer(Modifier.width(8.dp))
@@ -1079,7 +1079,7 @@ fun RunCompleteOverlay(
                                 Text("💎", fontSize = 24.sp)
                                 Column {
                                     Text(formatMagicite(magiciteEarnedThisRun), style = PixelTitle, color = Color(0xFFAA44FF))
-                                    Text("MAGICITE", style = PixelSmall, color = GoldDark)
+                                    Text(safeStringResource(R.string.currency_magicite), style = PixelSmall, color = GoldDark)
                                 }
                             }
                         }
