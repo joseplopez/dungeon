@@ -30,6 +30,7 @@ import android.widget.Toast
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.game.dungeon.R
 import com.game.dungeon.data.models.Hero
@@ -131,6 +132,7 @@ fun EquipmentScreen(
                             hero = h,
                             equipped = equipped,
                             onQuickEquip = { viewModel.quickEquip() },
+                            onUnequipAll = { viewModel.unequipAll() },
                             onSelectSlot = { selectedItemForDetail = it },
                             animTime = animTime,
                             heroItemState = currentHeroItemState,
@@ -342,6 +344,7 @@ private fun HeroPlatformArea(
     hero: Hero,
     equipped: List<Item>,
     onQuickEquip: () -> Unit,
+    onUnequipAll: () -> Unit,
     onSelectSlot: (Item) -> Unit,
     modifier: Modifier = Modifier,
     animTime: Float = 0f,
@@ -495,7 +498,8 @@ private fun HeroPlatformArea(
                                 .background(Color(0xFF180C28), RoundedCornerShape(4.dp))
                                 .border(
                                     width = 1.5.dp,
-                                    color = item?.rarity?.color?.let { Color(it) } ?: OrnateGoldDark,
+                                    color = item?.rarity?.color?.let { Color(it) }
+                                        ?: OrnateGoldDark,
                                     shape = RoundedCornerShape(4.dp)
                                 )
                                 .clickable { item?.let { onSelectSlot(it) } },
@@ -514,14 +518,28 @@ private fun HeroPlatformArea(
 
             Spacer(Modifier.height(12.dp))
 
-            // Quick Equip Button
-            PixelButton(
-                label = safeStringResource(R.string.quick_equip),
-                onClick = onQuickEquip,
-                modifier = Modifier
-                    .width(130.dp)
-                    .height(36.dp)
-            )
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                PixelButton(
+                    label = safeStringResource(R.string.quick_equip),
+                    onClick = onQuickEquip,
+                    modifier = Modifier
+                        .width(110.dp)
+                        .height(34.dp)
+                )
+
+                PixelButton(
+                    label = stringResource(R.string.unequip_all),
+                    onClick = onUnequipAll,
+                    enabled = equipped.isNotEmpty(),
+                    active = equipped.isNotEmpty(),
+                    modifier = Modifier
+                        .width(110.dp)
+                        .height(34.dp)
+                )
+            }
         }
     }
 }
@@ -611,8 +629,15 @@ fun InventoryChestPanel(
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .height(38.dp)
-                                .background(Color(0xFF140A04).copy(alpha = 0.5f), RoundedCornerShape(4.dp))
-                                .border(1.dp, Color.DarkGray.copy(alpha = 0.4f), RoundedCornerShape(4.dp))
+                                .background(
+                                    Color(0xFF140A04).copy(alpha = 0.5f),
+                                    RoundedCornerShape(4.dp)
+                                )
+                                .border(
+                                    1.dp,
+                                    Color.DarkGray.copy(alpha = 0.4f),
+                                    RoundedCornerShape(4.dp)
+                                )
                         )
                     }
                 }
@@ -699,12 +724,16 @@ private fun SellAllConfirmationOverlay(
                     PixelButton(
                         label = safeStringResource(R.string.cancel_button),
                         onClick = onDismiss,
-                        modifier = Modifier.weight(1f).height(40.dp)
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(40.dp)
                     )
                     PixelButton(
                         label = safeStringResource(R.string.sell_all_confirm_action),
                         onClick = onConfirm,
-                        modifier = Modifier.weight(1f).height(40.dp),
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(40.dp),
                         active = true
                     )
                 }
@@ -852,7 +881,9 @@ private fun ItemDetailOverlay(
                 PixelButton(
                     label = if (item.isLocked) "🔓 UNLOCK" else "🔒 LOCK",
                     onClick = onToggleLock,
-                    modifier = Modifier.fillMaxWidth().height(40.dp)
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(40.dp)
                 )
 
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
@@ -861,17 +892,23 @@ private fun ItemDetailOverlay(
                     )
                     val actionClick = if (isEquipped) onUnequip else onEquip
 
-                    PixelButton(actionLabel, onClick = actionClick, modifier = Modifier.weight(1f).height(40.dp))
+                    PixelButton(actionLabel, onClick = actionClick, modifier = Modifier
+                        .weight(1f)
+                        .height(40.dp))
                     PixelButton(
                         label = safeStringResource(R.string.sell_button_format, item.sellValue),
                         onClick = onSell,
-                        modifier = Modifier.weight(1f).height(40.dp),
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(40.dp),
                         enabled = !item.isLocked,
                         active = !item.isLocked
                     )
                 }
 
-                PixelButton(safeStringResource(R.string.close_button), onClick = onClose, modifier = Modifier.fillMaxWidth().height(40.dp))
+                PixelButton(safeStringResource(R.string.close_button), onClick = onClose, modifier = Modifier
+                    .fillMaxWidth()
+                    .height(40.dp))
             }
         }
     }

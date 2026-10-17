@@ -96,6 +96,13 @@ class EquipmentViewModel @Inject constructor(
         }
     }
 
+    fun unequipAll() {
+        val heroId = _selectedHeroId.value ?: return
+        viewModelScope.launch {
+            repository.unequipAll(heroId)
+        }
+    }
+
     fun quickEquip() {
         val heroId = _selectedHeroId.value ?: return
         viewModelScope.launch {

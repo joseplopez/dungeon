@@ -1349,4 +1349,5 @@
     <string name="party_down">PARTY DOWN!</string>
     <string name="your_party_was_defeated">Your party was defeated! Protection will return your heroes safely to the Inn, or you can watch an ad to revive them and continue this run.</string>
     <string name="run_failed_heroes_saved">RUN FAILED (HEROES SAVED 🛡️)</string>
+    <string name="unequip_all">UNEQUIP ALL</string>
 </resources>
