@@ -29,6 +29,7 @@ import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -516,6 +517,7 @@ fun TownBuilding(
     onClick: () -> Unit,
     onBulletinClick: (() -> Unit)? = null
 ) {
+    val displayName = name.ifBlank { tag }
     Column(
         horizontalAlignment = CenterHorizontally,
         modifier = Modifier
@@ -558,13 +560,13 @@ fun TownBuilding(
                 .background(BgDarkest.copy(alpha = 0.9f), RoundedCornerShape(4.dp))
         ) {
             Text(
-                name,
-                modifier = Modifier.padding(horizontal = 18.dp, vertical = 6.dp),
+                text = displayName,
+                modifier = Modifier.padding(horizontal = 10.dp, vertical = 6.dp),
                 style = PixelBody,
                 color = GoldBright,
                 textAlign = TextAlign.Center,
                 maxLines = 1,
-                softWrap = false
+                overflow = TextOverflow.Ellipsis
             )
         }
     }
