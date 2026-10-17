@@ -27,6 +27,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import android.widget.Toast
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.ui.platform.LocalContext
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.game.dungeon.R
@@ -748,6 +750,8 @@ private fun ItemDetailOverlay(
     onToggleLock: () -> Unit,
     onClose: () -> Unit
 ) {
+    val scrollState = rememberScrollState()
+
     Box(
         Modifier
             .fillMaxSize()
@@ -757,14 +761,17 @@ private fun ItemDetailOverlay(
     ) {
         PixelPanel(
             Modifier
-                .width(300.dp)
+                .width(320.dp)
+                .fillMaxHeight(0.9f)
                 .clickable(enabled = false) {},
             borderColor = Color(item.rarity.color)
         ) {
             Column(
-                Modifier.padding(16.dp),
+                Modifier
+                    .padding(10.dp)
+                    .verticalScroll(scrollState),
                 horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(12.dp)
+                verticalArrangement = Arrangement.spacedBy(6.dp)
             ) {
                 EquipmentSprite(
                     item = item,
