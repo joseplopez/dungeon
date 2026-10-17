@@ -49,7 +49,8 @@ data class Item(
     val ownerId: String? = null, // To track who is wearing it, or if it's in inventory
     val enhancementLevel: Int = 0,
     val sockets: List<SocketSlot> = emptyList(),
-    @ColumnInfo(defaultValue = "NULL") val setId: String? = null
+    @ColumnInfo(defaultValue = "NULL") val setId: String? = null,
+    val isLocked: Boolean = false
 ) {
     val sellValue: Long get() = (floorFound * 5L + rarity.ordinal * 20L).coerceAtLeast(5L)
 

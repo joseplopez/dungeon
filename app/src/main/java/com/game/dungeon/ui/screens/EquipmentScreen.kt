@@ -152,9 +152,10 @@ fun EquipmentScreen(
 
             // Sell All Confirmation Dialog Overlay
             if (showSellAllConfirmation && inventory.isNotEmpty()) {
-                val totalValue = inventory.sumOf { it.sellValue }
+                val sellableItems = inventory.filter { !it.isLocked }
+                val totalValue = sellableItems.sumOf { it.sellValue }
                 SellAllConfirmationOverlay(
-                    itemCount = inventory.size,
+                    itemCount = sellableItems.size,
                     totalGold = totalValue,
                     onConfirm = {
                         viewModel.sellAllUnequipped()
@@ -183,6 +184,10 @@ fun EquipmentScreen(
                     onSell = {
                         viewModel.sellItem(item)
                         selectedItemForDetail = null
+                    },
+                    onToggleLock = {
+                        viewModel.toggleItemLock(item)
+                        selectedItemForDetail = item.copy(isLocked = !item.isLocked)
                     },
                     onClose = { selectedItemForDetail = null }
                 )
@@ -582,7 +587,12 @@ fun InventoryChestPanel(
                         )
                         Spacer(Modifier.width(8.dp))
                         Column(modifier = Modifier.weight(1f)) {
-                            Text(item.name, color = Color.White, fontSize = 10.sp, fontWeight = FontWeight.Bold)
+                            Text(
+                                text = if (item.isLocked) "🔒 ${item.name}" else item.name,
+                                color = Color.White,
+                                fontSize = 10.sp,
+                                fontWeight = FontWeight.Bold
+                            )
                             Text(
                                 text = safeStringResource(R.string.item_lvl_rarity_format, item.floorFound, item.rarity.name),
                                 color = Color.Gray,
@@ -735,6 +745,7 @@ private fun ItemDetailOverlay(
     onEquip: () -> Unit,
     onUnequip: () -> Unit,
     onSell: () -> Unit,
+    onToggleLock: () -> Unit,
     onClose: () -> Unit
 ) {
     Box(
@@ -831,6 +842,12 @@ private fun ItemDetailOverlay(
 
                 Spacer(Modifier.height(8.dp))
 
+                PixelButton(
+                    label = if (item.isLocked) "🔓 UNLOCK" else "🔒 LOCK",
+                    onClick = onToggleLock,
+                    modifier = Modifier.fillMaxWidth().height(40.dp)
+                )
+
                 Row(Modifier.fillMaxWidth(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     val actionLabel = safeStringResource(
                         if (isEquipped) R.string.unequip_button else R.string.equip_button
@@ -838,7 +855,13 @@ private fun ItemDetailOverlay(
                     val actionClick = if (isEquipped) onUnequip else onEquip
 
                     PixelButton(actionLabel, onClick = actionClick, modifier = Modifier.weight(1f).height(40.dp))
-                    PixelButton(safeStringResource(R.string.sell_button_format, item.sellValue), onClick = onSell, modifier = Modifier.weight(1f).height(40.dp), active = true)
+                    PixelButton(
+                        label = safeStringResource(R.string.sell_button_format, item.sellValue),
+                        onClick = onSell,
+                        modifier = Modifier.weight(1f).height(40.dp),
+                        enabled = !item.isLocked,
+                        active = !item.isLocked
+                    )
                 }
 
                 PixelButton(safeStringResource(R.string.close_button), onClick = onClose, modifier = Modifier.fillMaxWidth().height(40.dp))

@@ -80,9 +80,15 @@ class EquipmentViewModel @Inject constructor(
         }
     }
 
+    fun toggleItemLock(item: Item) {
+        viewModelScope.launch {
+            repository.saveItem(item.copy(isLocked = !item.isLocked))
+        }
+    }
+
     fun sellAllUnequipped() {
         viewModelScope.launch {
-            val itemsToSell = inventory.value.filter { it.ownerId == null }
+            val itemsToSell = inventory.value.filter { it.ownerId == null && !it.isLocked }
             if (itemsToSell.isEmpty()) return@launch
             itemsToSell.forEach { item ->
                 repository.sellItem(item)
