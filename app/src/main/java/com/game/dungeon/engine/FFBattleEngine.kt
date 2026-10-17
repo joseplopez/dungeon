@@ -72,8 +72,8 @@ class FFBattleEngine(private val context: Context) {
                     relicBonuses = relicBonuses,
                     dimension = dimension
                 )
-                // Exponential difficulty: 100x base, + 15% compounding increase per floor
-                val diffMult = 100.0 * pow(1.15, (currentFloor - 1).toDouble())
+                // Exponential difficulty: 100x base, + 10% compounding increase per floor
+                val diffMult = 100.0 * pow(1.10, (currentFloor - 1).toDouble())
 
                 val scaledHp = (rawBoss.maxHp * diffMult).toLong().coerceAtMost(Long.MAX_VALUE)
                 val scaledAtk = (rawBoss.attack * diffMult).toLong().coerceAtMost(Long.MAX_VALUE)
