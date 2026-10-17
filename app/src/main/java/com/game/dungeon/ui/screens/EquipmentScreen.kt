@@ -727,10 +727,10 @@ private fun ItemStatBonusList(item: Item) {
 }
 
 private fun getItemStatBonuses(item: Item): List<StatBonusDisplay> = buildList {
-    if (item.attackBonus > 0) add(StatBonusDisplay(R.string.stat_attack, item.attackBonus, false, GoldBright))
-    if (item.defenseBonus > 0) add(StatBonusDisplay(R.string.stat_defense, item.defenseBonus, false, GoldBright))
-    if (item.magicBonus > 0) add(StatBonusDisplay(R.string.stat_magic, item.magicBonus, false, GoldBright))
-    if (item.hpBonus > 0) add(StatBonusDisplay(R.string.stat_hp, item.hpBonus, false, GoldBright))
+    if (item.attackBonus > 0) add(StatBonusDisplay(R.string.stat_attack, item.effectiveAttackBonus.toLong(), false, GoldBright))
+    if (item.defenseBonus > 0) add(StatBonusDisplay(R.string.stat_defense, item.effectiveDefenseBonus.toLong(), false, GoldBright))
+    if (item.magicBonus > 0) add(StatBonusDisplay(R.string.stat_magic, item.effectiveMagicBonus.toLong(), false, GoldBright))
+    if (item.hpBonus > 0) add(StatBonusDisplay(R.string.stat_hp, item.effectiveHpBonus.toLong(), false, GoldBright))
     if (item.critChanceBonus > 0) add(StatBonusDisplay(R.string.stat_crit_chance, item.critChanceBonus.toLong(), true, HpGreen))
     if (item.critDamageBonus > 0) add(StatBonusDisplay(R.string.stat_crit_damage, item.critDamageBonus, true, HpGreen))
 }
