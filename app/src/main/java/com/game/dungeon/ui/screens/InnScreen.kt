@@ -95,6 +95,7 @@ fun InnScreen(
                     .padding(6.dp),
                 horizontalArrangement = Arrangement.spacedBy(6.dp)
             ) {
+                val activity = androidx.compose.ui.platform.LocalContext.current as? android.app.Activity
                 // LEFT (70% width): Interactive Guild Stage
                 GuildStageArea(
                     modifier = Modifier.weight(0.70f),
@@ -103,6 +104,10 @@ fun InnScreen(
                     gil = gil,
                     pathfinderLevel = pathfinderLevel,
                     canSend = canSendToDungeon,
+                    hasPermadeathProtectionUnlocked = gs?.hasPermadeathProtectionUnlocked ?: false,
+                    isPermadeathProtectionActive = gs?.isPermadeathProtectionActive ?: false,
+                    onBuyPermadeathProtection = { activity?.let { viewModel.buyPermadeathProtection(it) } },
+                    onTogglePermadeathProtection = { active -> viewModel.togglePermadeathProtection(active) },
                     onSelectJobToHire = { job -> selectedHireJob = job },
                     onRest = { viewModel.restAtInn() },
                     onDepartClick = {
@@ -231,6 +236,10 @@ fun GuildStageArea(
     gil: Long,
     pathfinderLevel: Int,
     canSend: Boolean,
+    hasPermadeathProtectionUnlocked: Boolean,
+    isPermadeathProtectionActive: Boolean,
+    onBuyPermadeathProtection: () -> Unit,
+    onTogglePermadeathProtection: (Boolean) -> Unit,
     onSelectJobToHire: (HeroClass) -> Unit,
     onRest: () -> Unit,
     onDepartClick: () -> Unit,
@@ -344,7 +353,17 @@ fun GuildStageArea(
                 }
             }
 
-            Spacer(Modifier.height(6.dp))
+            Spacer(Modifier.height(4.dp))
+
+            PermadeathProtectionControl(
+                hasUnlocked = hasPermadeathProtectionUnlocked,
+                isActive = isPermadeathProtectionActive,
+                onBuyClick = onBuyPermadeathProtection,
+                onToggleActive = onTogglePermadeathProtection,
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            Spacer(Modifier.height(4.dp))
 
             // Actions Row
             val woundedHeroes = allHeroes.filter { it.currentHp < it.maxHp }
@@ -410,65 +429,75 @@ fun HireHeroClassDialog(
         GoldenBorderBox(
             Modifier
                 .fillMaxWidth(0.90f)
+                .fillMaxHeight(0.90f)
                 .widthIn(max = 380.dp)
-                .wrapContentHeight()
                 .background(BgDarkest)
         ) {
             Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp),
-                horizontalAlignment = CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(10.dp)
+                    .fillMaxSize()
+                    .padding(16.dp)
             ) {
                 Text(
                     text = safeStringResource(R.string.hire_warriors),
                     style = PixelHeading,
-                    color = GoldBright
+                    color = GoldBright,
+                    modifier = Modifier.align(CenterHorizontally)
                 )
 
-                Spacer(Modifier.height(2.dp))
+                Spacer(Modifier.height(8.dp))
 
-                Box(
-                    Modifier
-                        .size(64.dp)
-                        .background(Color(job.crystalColor.colorHex).copy(alpha = 0.2f), CircleShape)
-                        .border(2.dp, Color(job.crystalColor.colorHex), CircleShape),
-                    contentAlignment = Center
+                Column(
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxWidth()
+                        .verticalScroll(rememberScrollState()),
+                    horizontalAlignment = CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
-                    HeroSprite(job, Modifier.size(48.dp))
+                    Box(
+                        Modifier
+                            .size(64.dp)
+                            .background(Color(job.crystalColor.colorHex).copy(alpha = 0.2f), CircleShape)
+                            .border(2.dp, Color(job.crystalColor.colorHex), CircleShape),
+                        contentAlignment = Center
+                    ) {
+                        HeroSprite(job, Modifier.size(48.dp))
+                    }
+
+                    Text(
+                        text = safeStringResource(job.nameRes),
+                        style = PixelHeading,
+                        color = GoldBright
+                    )
+
+                    Text(
+                        text = safeStringResource(job.descRes),
+                        style = PixelBody,
+                        color = Color.White,
+                        textAlign = TextAlign.Center
+                    )
+
+                    Text(
+                        text = safeStringResource(R.string.permadeath_warning),
+                        style = PixelSmall,
+                        color = EnemyRed,
+                        textAlign = TextAlign.Center
+                    )
+
+                    PixelDivider()
+
+                    Row(
+                        Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.SpaceBetween,
+                        verticalAlignment = CenterVertically
+                    ) {
+                        Text(safeStringResource(R.string.craft_label_cost), style = PixelBody, color = StoneGray)
+                        Text(safeStringResource(R.string.gold_amount_format, formatGold(job.hireCost)), style = PixelGold, fontWeight = FontWeight.Bold)
+                    }
                 }
 
-                Text(
-                    text = safeStringResource(job.nameRes),
-                    style = PixelHeading,
-                    color = GoldBright
-                )
-
-                Text(
-                    text = safeStringResource(job.descRes),
-                    style = PixelBody,
-                    color = Color.White,
-                    textAlign = TextAlign.Center
-                )
-
-                Text(
-                    text = safeStringResource(R.string.permadeath_warning),
-                    style = PixelSmall,
-                    color = EnemyRed,
-                    textAlign = TextAlign.Center
-                )
-
-                PixelDivider()
-
-                Row(
-                    Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = CenterVertically
-                ) {
-                    Text(safeStringResource(R.string.craft_label_cost), style = PixelBody, color = StoneGray)
-                    Text(safeStringResource(R.string.gold_amount_format, formatGold(job.hireCost)), style = PixelGold, fontWeight = FontWeight.Bold)
-                }
+                Spacer(Modifier.height(8.dp))
 
                 Row(
                     Modifier.fillMaxWidth(),
@@ -515,49 +544,66 @@ fun PathfinderFloorSelectDialog(
         GoldenBorderBox(
             Modifier
                 .fillMaxWidth(0.90f)
+                .fillMaxHeight(0.90f)
                 .widthIn(max = 380.dp)
-                .wrapContentHeight()
                 .background(BgDarkest)
                 .testTag("PathfinderFloorSelector")
         ) {
             Column(
                 modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(20.dp),
-                horizontalAlignment = CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(10.dp)
+                    .fillMaxSize()
+                    .padding(16.dp)
             ) {
-                Text(safeStringResource(R.string.pathfinder_title), style = PixelHeading, color = GoldBright)
-                Text(safeStringResource(R.string.pathfinder_select_floor_desc), style = PixelSmall, color = StoneGray)
+                Text(
+                    text = safeStringResource(R.string.pathfinder_title),
+                    style = PixelHeading,
+                    color = GoldBright,
+                    modifier = Modifier.align(CenterHorizontally)
+                )
 
-                Box(
-                    Modifier
+                Spacer(Modifier.height(8.dp))
+
+                Column(
+                    modifier = Modifier
+                        .weight(1f)
                         .fillMaxWidth()
-                        .background(Color(0xFF140A05), RoundedCornerShape(6.dp))
-                        .border(1.5.dp, GoldDark, RoundedCornerShape(6.dp))
-                        .padding(12.dp),
-                    contentAlignment = Center
+                        .verticalScroll(rememberScrollState()),
+                    horizontalAlignment = CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(10.dp)
                 ) {
-                    Text(safeStringResource(R.string.pathfinder_floor_range_format, selectedFloor, maxStartFloor), style = PixelHeading, color = GoldBright, fontSize = 16.sp)
+                    Text(safeStringResource(R.string.pathfinder_select_floor_desc), style = PixelSmall, color = StoneGray)
+
+                    Box(
+                        Modifier
+                            .fillMaxWidth()
+                            .background(Color(0xFF140A05), RoundedCornerShape(6.dp))
+                            .border(1.5.dp, GoldDark, RoundedCornerShape(6.dp))
+                            .padding(12.dp),
+                        contentAlignment = Center
+                    ) {
+                        Text(safeStringResource(R.string.pathfinder_floor_range_format, selectedFloor, maxStartFloor), style = PixelHeading, color = GoldBright, fontSize = 16.sp)
+                    }
+
+                    Row(
+                        Modifier.fillMaxWidth(),
+                        horizontalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
+                        if (maxStartFloor > 100) {
+                            PixelButton("-100", onClick = { selectedFloor = (selectedFloor - 100).coerceAtLeast(1) }, modifier = Modifier.weight(1f).height(32.dp))
+                        }
+                        PixelButton("-10", onClick = { selectedFloor = (selectedFloor - 10).coerceAtLeast(1) }, modifier = Modifier.weight(1f).height(32.dp))
+                        PixelButton("-1", onClick = { selectedFloor = (selectedFloor - 1).coerceAtLeast(1) }, modifier = Modifier.weight(1f).height(32.dp))
+                        PixelButton("+1", onClick = { selectedFloor = (selectedFloor + 1).coerceAtMost(maxStartFloor) }, modifier = Modifier.weight(1f).height(32.dp))
+                        PixelButton("+10", onClick = { selectedFloor = (selectedFloor + 10).coerceAtMost(maxStartFloor) }, modifier = Modifier.weight(1f).height(32.dp))
+                        if (maxStartFloor > 100) {
+                            PixelButton("+100", onClick = { selectedFloor = (selectedFloor + 100).coerceAtMost(maxStartFloor) }, modifier = Modifier.weight(1f).height(32.dp))
+                        }
+                    }
                 }
 
-                Row(
-                    Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(4.dp)
-                ) {
-                    if (maxStartFloor>100) {
-                        PixelButton("-100", onClick = { selectedFloor = (selectedFloor - 100).coerceAtLeast(1) }, modifier = Modifier.weight(1f).height(32.dp))
-                    }
-                    PixelButton("-10", onClick = { selectedFloor = (selectedFloor - 10).coerceAtLeast(1) }, modifier = Modifier.weight(1f).height(32.dp))
-                    PixelButton("-1", onClick = { selectedFloor = (selectedFloor - 1).coerceAtLeast(1) }, modifier = Modifier.weight(1f).height(32.dp))
-                    PixelButton("+1", onClick = { selectedFloor = (selectedFloor + 1).coerceAtMost(maxStartFloor) }, modifier = Modifier.weight(1f).height(32.dp))
-                    PixelButton("+10", onClick = { selectedFloor = (selectedFloor + 10).coerceAtMost(maxStartFloor) }, modifier = Modifier.weight(1f).height(32.dp))
-                    if (maxStartFloor>100) {
-                        PixelButton("+100", onClick = { selectedFloor = (selectedFloor + 100).coerceAtMost(maxStartFloor) }, modifier = Modifier.weight(1f).height(32.dp))
-                    }
-                }
-
+                Spacer(Modifier.height(8.dp))
                 PixelDivider()
+                Spacer(Modifier.height(8.dp))
 
                 Row(
                     Modifier.fillMaxWidth(),
@@ -938,51 +984,70 @@ fun DimensionResetDialog(gs: GameState, onDismiss: () -> Unit, onConfirm: () -> 
         GoldenBorderBox(
             Modifier
                 .fillMaxWidth(0.90f)
+                .fillMaxHeight(0.90f)
                 .widthIn(max = 450.dp)
-                .wrapContentHeight()
                 .background(BgDarkest)
         ) {
             Column(
-                modifier = Modifier.padding(20.dp),
-                horizontalAlignment = CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(12.dp)
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
             ) {
-                Text(safeStringResource(R.string.dimension_complete), style = PixelHeading, color = GoldBright)
-                Text(safeStringResource(nextDimension.storyRes), style = PixelSmall, color = Color.White, textAlign = TextAlign.Center)
-                
-                PixelDivider()
-                
-                Text(safeStringResource(R.string.hall_of_fame), style = PixelBody, color = GoldBright)
-                Column(
-                    Modifier
-                        .fillMaxWidth()
-                        .padding(horizontal = 24.dp),
-                    verticalArrangement = Arrangement.spacedBy(4.dp)
-                ) {
-                    HallOfFameRow(safeStringResource(R.string.gil_earned_label), formatGold(gs.gilEarnedThisDim))
-                    HallOfFameRow(safeStringResource(R.string.magicite_found_label), formatMagicite(gs.magiciteEarnedThisDim))
-                    HallOfFameRow(safeStringResource(R.string.bosses_slain_label), gs.bossesKilledThisDim.toString())
-                    HallOfFameRow(safeStringResource(R.string.items_found_label), gs.itemsFoundThisDim.toString())
-                }
+                Text(
+                    text = safeStringResource(R.string.dimension_complete),
+                    style = PixelHeading,
+                    color = GoldBright,
+                    modifier = Modifier.align(CenterHorizontally)
+                )
 
-                PixelDivider()
-                
-                Text(safeStringResource(R.string.ascension_rewards), style = PixelBody, color = HpGreen)
-                Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(16.dp)) {
-                    Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                        Text("💎", fontSize = 14.sp)
-                        Text("+${formatMagicite(bonusMagicite)}", style = PixelGold)
+                Spacer(Modifier.height(8.dp))
+
+                Column(
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxWidth()
+                        .verticalScroll(rememberScrollState()),
+                    horizontalAlignment = CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
+                    Text(safeStringResource(nextDimension.storyRes), style = PixelSmall, color = Color.White, textAlign = TextAlign.Center)
+                    
+                    PixelDivider()
+                    
+                    Text(safeStringResource(R.string.hall_of_fame), style = PixelBody, color = GoldBright)
+                    Column(
+                        Modifier
+                            .fillMaxWidth()
+                            .padding(horizontal = 24.dp),
+                        verticalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
+                        HallOfFameRow(safeStringResource(R.string.gil_earned_label), formatGold(gs.gilEarnedThisDim))
+                        HallOfFameRow(safeStringResource(R.string.magicite_found_label), formatMagicite(gs.magiciteEarnedThisDim))
+                        HallOfFameRow(safeStringResource(R.string.bosses_slain_label), gs.bossesKilledThisDim.toString())
+                        HallOfFameRow(safeStringResource(R.string.items_found_label), gs.itemsFoundThisDim.toString())
                     }
-                    if (goldKept > 0) {
+
+                    PixelDivider()
+                    
+                    Text(safeStringResource(R.string.ascension_rewards), style = PixelBody, color = HpGreen)
+                    Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(16.dp)) {
                         Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                            Text("🪙", fontSize = 14.sp)
-                            Text("+${formatGold(goldKept)}", style = PixelGold)
+                            Text("💎", fontSize = 14.sp)
+                            Text("+${formatMagicite(bonusMagicite)}", style = PixelGold)
+                        }
+                        if (goldKept > 0) {
+                            Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                                Text("🪙", fontSize = 14.sp)
+                                Text("+${formatGold(goldKept)}", style = PixelGold)
+                            }
                         }
                     }
+                    
+                    Text(safeStringResource(R.string.dimension_reset_warning), style = PixelSmall, color = StoneGray, textAlign = TextAlign.Center)
                 }
-                
-                Text(safeStringResource(R.string.dimension_reset_warning), style = PixelSmall, color = StoneGray, textAlign = TextAlign.Center)
-                
+
+                Spacer(Modifier.height(8.dp))
+
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     PixelButton(safeStringResource(R.string.cancel_button), onClick = onDismiss, Modifier.weight(1f))
                     PixelButton(safeStringResource(R.string.advance_button), onClick = onConfirm, active = true, modifier = Modifier.weight(1f))
@@ -1009,32 +1074,49 @@ fun HiddenJobUnlockDialog(heroClass: HeroClass, onDismiss: () -> Unit) {
         GoldenBorderBox(
             Modifier
                 .fillMaxWidth(0.90f)
+                .fillMaxHeight(0.90f)
                 .widthIn(max = 420.dp)
-                .wrapContentHeight()
                 .background(BgDarkest)
         ) {
             Column(
-                modifier = Modifier.padding(20.dp),
-                horizontalAlignment = Alignment.CenterHorizontally,
-                verticalArrangement = Arrangement.spacedBy(12.dp)
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp)
             ) {
-                Text(safeStringResource(R.string.hidden_job_unlock_title), style = PixelHeading, color = GoldBright)
-                Spacer(Modifier.height(4.dp))
-                HeroSprite(heroClass, Modifier.size(64.dp))
-                Spacer(Modifier.height(4.dp))
                 Text(
-                    safeStringResource(R.string.hidden_job_unlock_body, safeStringResource(heroClass.nameRes)),
-                    style = PixelBody,
-                    color = Color.White,
-                    textAlign = TextAlign.Center
+                    text = safeStringResource(R.string.hidden_job_unlock_title),
+                    style = PixelHeading,
+                    color = GoldBright,
+                    modifier = Modifier.align(CenterHorizontally)
                 )
-                Text(
-                    safeStringResource(heroClass.descRes),
-                    style = PixelSmall,
-                    color = StoneGray,
-                    textAlign = TextAlign.Center
-                )
+
                 Spacer(Modifier.height(8.dp))
+
+                Column(
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxWidth()
+                        .verticalScroll(rememberScrollState()),
+                    horizontalAlignment = CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
+                    HeroSprite(heroClass, Modifier.size(64.dp))
+                    Text(
+                        safeStringResource(R.string.hidden_job_unlock_body, safeStringResource(heroClass.nameRes)),
+                        style = PixelBody,
+                        color = Color.White,
+                        textAlign = TextAlign.Center
+                    )
+                    Text(
+                        safeStringResource(heroClass.descRes),
+                        style = PixelSmall,
+                        color = StoneGray,
+                        textAlign = TextAlign.Center
+                    )
+                }
+
+                Spacer(Modifier.height(8.dp))
+
                 PixelButton(
                     safeStringResource(R.string.hidden_job_unlock_close),
                     onClick = onDismiss,

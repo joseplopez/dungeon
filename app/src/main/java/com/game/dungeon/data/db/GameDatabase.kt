@@ -9,7 +9,7 @@ import com.game.dungeon.data.models.GameState
 import com.game.dungeon.data.models.Hero
 import com.game.dungeon.data.models.Item
 
-@Database(entities = [GameState::class, Hero::class, Item::class, MaterialEntity::class, CodexEntity::class], version = 32, exportSchema = true)
+@Database(entities = [GameState::class, Hero::class, Item::class, MaterialEntity::class, CodexEntity::class], version = 33, exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class GameDatabase : RoomDatabase() {
     abstract val gameStateDao: GameStateDao
@@ -19,6 +19,16 @@ abstract class GameDatabase : RoomDatabase() {
     abstract val codexDao: CodexDao
 
     companion object {
+        val MIGRATION_32_33 = object : Migration(32, 33) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                try {
+                    ensureColumn(db, "game_state", "hasPermadeathProtectionUnlocked", "INTEGER NOT NULL DEFAULT 0")
+                    ensureColumn(db, "game_state", "isPermadeathProtectionActive", "INTEGER NOT NULL DEFAULT 0")
+                } catch (e: Exception) {
+                    wipeDatabase(db)
+                }
+            }
+        }
         val MIGRATION_31_32 = object : Migration(31, 32) {
             override fun migrate(db: SupportSQLiteDatabase) {
                 try {
@@ -158,6 +168,8 @@ abstract class GameDatabase : RoomDatabase() {
                     ensureColumn(db, "game_state", "petExp", "TEXT NOT NULL DEFAULT '{}'")
                     ensureColumn(db, "game_state", "bossesDefeatedNames", "TEXT NOT NULL DEFAULT '[]'")
                     ensureColumn(db, "game_state", "notifiedHiddenJobs", "TEXT NOT NULL DEFAULT '[]'")
+                    ensureColumn(db, "game_state", "hasPermadeathProtectionUnlocked", "INTEGER NOT NULL DEFAULT 0")
+                    ensureColumn(db, "game_state", "isPermadeathProtectionActive", "INTEGER NOT NULL DEFAULT 0")
 
                     // Ensure all columns in heroes
                     ensureColumn(db, "heroes", "id", "TEXT NOT NULL PRIMARY KEY")

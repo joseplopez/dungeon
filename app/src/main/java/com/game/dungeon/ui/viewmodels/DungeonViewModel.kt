@@ -681,10 +681,17 @@ class DungeonViewModel @Inject constructor(
       )
       repo.recordBossDefeats(currentState.defeatedBossNamesThisRun)
       
+      val gs = repo.getGameStateOnce() ?: GameState()
+      val isProtectionActive = gs.isPermadeathProtectionActive
+
       // Permadeath for those who really died
       currentState.pendingFallenHeroIds.forEach { heroId ->
           repo.getRoster().first().find { it.id == heroId }?.let { hero ->
-              repo.removeHero(hero)
+              if (!isProtectionActive) {
+                  repo.removeHero(hero)
+              } else {
+                  repo.saveHero(hero.copy(currentHp = hero.maxHp))
+              }
           }
       }
       
@@ -778,19 +785,30 @@ class DungeonViewModel @Inject constructor(
       )
       repo.recordBossDefeats(battleState.value.defeatedBossNamesThisRun)
       
-      // Save current state of surviving heroes and remove dead ones
+      val gs = repo.getGameStateOnce() ?: GameState()
+      val isProtectionActive = gs.isPermadeathProtectionActive
+
+      // Save current state of surviving heroes and remove/restore dead ones
       battleState.value.heroes.forEach { hero ->
           if (hero.currentHp > 0) {
               repo.saveHero(hero)
           } else {
-              repo.removeHero(hero)
+              if (!isProtectionActive) {
+                  repo.removeHero(hero)
+              } else {
+                  repo.saveHero(hero.copy(currentHp = hero.maxHp))
+              }
           }
       }
       
       // Permadeath for those who died during the run before retreating
       battleState.value.pendingFallenHeroIds.forEach { heroId ->
           repo.getRoster().first().find { it.id == heroId }?.let { hero ->
-              repo.removeHero(hero)
+              if (!isProtectionActive) {
+                  repo.removeHero(hero)
+              } else {
+                  repo.saveHero(hero.copy(currentHp = hero.maxHp))
+              }
           }
       }
 

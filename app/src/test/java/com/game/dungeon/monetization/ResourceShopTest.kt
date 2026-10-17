@@ -45,7 +45,7 @@ class ResourceShopTest {
     @Test
     fun testAllProductIds() {
         val allIds = InAppProduct.ALL_PRODUCT_IDS
-        assertEquals(7, allIds.size)
+        assertEquals(8, allIds.size)
         assertTrue(allIds.contains(InAppProduct.GIL_PACK_SMALL))
         assertTrue(allIds.contains(InAppProduct.GIL_PACK_MEDIUM))
         assertTrue(allIds.contains(InAppProduct.GIL_PACK_LARGE))
@@ -53,6 +53,7 @@ class ResourceShopTest {
         assertTrue(allIds.contains(InAppProduct.MAGICITE_PACK_MEDIUM))
         assertTrue(allIds.contains(InAppProduct.MAGICITE_PACK_LARGE))
         assertTrue(allIds.contains(InAppProduct.PREMIUM_SPEED))
+        assertTrue(allIds.contains(InAppProduct.PERMADEATH_PROTECTION))
     }
 
     @Test

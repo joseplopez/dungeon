@@ -75,7 +75,9 @@ data class GameState(
     val notifiedHiddenJobs: Set<HeroClass> = emptySet(),
     val lastPartyClasses: List<HeroClass> = emptyList(),
     val hasSeenBossLairPopup: Boolean = false,
-    val highestBossLairFloor: Int = 1
+    val highestBossLairFloor: Int = 1,
+    val hasPermadeathProtectionUnlocked: Boolean = false,
+    val isPermadeathProtectionActive: Boolean = false
 ) {
     val maxGil: Long get() =
         if (vaultLevel >= UpgradeType.VAULT.maxLevel) {

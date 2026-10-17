@@ -183,6 +183,19 @@ class GameRepository @Inject constructor(
         triggerFirebaseUpload(newState)
     }
 
+    suspend fun setPermadeathProtectionActive(active: Boolean) {
+        val current = database.gameStateDao.getGameStateOnce() ?: GameState()
+        database.gameStateDao.upsert(current.copy(isPermadeathProtectionActive = active))
+    }
+
+    suspend fun unlockPermadeathProtection() {
+        val current = database.gameStateDao.getGameStateOnce() ?: GameState()
+        database.gameStateDao.upsert(current.copy(
+            hasPermadeathProtectionUnlocked = true,
+            isPermadeathProtectionActive = true
+        ))
+    }
+
     suspend fun triggerFirebaseUpload(state: GameState? = null) {
         val current = state ?: database.gameStateDao.getGameStateOnce() ?: return
         var sanitized = if (current.dimStartTime <= 0L) {

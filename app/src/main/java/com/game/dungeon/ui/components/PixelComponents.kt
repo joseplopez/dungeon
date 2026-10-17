@@ -29,6 +29,7 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import com.game.dungeon.R
 import com.game.dungeon.ui.theme.*
 import kotlinx.coroutines.delay
 import androidx.compose.foundation.Canvas
@@ -332,7 +333,7 @@ fun AdBoostIconButton(
                 drawPath(path = path, color = Color(0xFFFFD700))
             }
             Text(
-                "2x",
+                safeStringResource(R.string.ad_boost_multiplier),
                 style = PixelSmall,
                 color = GoldBright
             )
@@ -599,6 +600,73 @@ fun GoldenBorderBox(modifier: Modifier = Modifier, cornerSize: Dp = 8.dp, conten
                 Offset(size.width - cornerSize, size.height - cornerSize)
             ).forEach {
                 drawRect(color = GoldBright, topLeft = it, size = Size(cornerSize, cornerSize))
+            }
+        }
+    }
+}
+
+@Composable
+fun PermadeathProtectionControl(
+    hasUnlocked: Boolean,
+    isActive: Boolean,
+    onBuyClick: () -> Unit,
+    onToggleActive: (Boolean) -> Unit,
+    modifier: Modifier = Modifier
+) {
+    Row(
+        modifier = modifier
+            .background(Color(0xFF050B12), RoundedCornerShape(4.dp))
+            .border(1.dp, GoldDark.copy(alpha = 0.6f), RoundedCornerShape(4.dp))
+            .padding(horizontal = 8.dp, vertical = 4.dp),
+        verticalAlignment = Alignment.CenterVertically,
+        horizontalArrangement = Arrangement.SpaceBetween
+    ) {
+        if (!hasUnlocked) {
+            Text(
+                text = safeStringResource(R.string.permadeath_status_on),
+                style = PixelSmall,
+                color = EnemyRed,
+                fontSize = 10.sp,
+                fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
+            )
+            PixelButton(
+                label = safeStringResource(R.string.buy_protection_button),
+                onClick = onBuyClick,
+                horizontalPadding = 6.dp,
+                verticalPadding = 2.dp,
+                fontSize = 9.sp,
+                modifier = Modifier.height(26.dp)
+            )
+        } else {
+            Text(
+                text = safeStringResource(R.string.protection_label),
+                style = PixelSmall,
+                color = GoldBright,
+                fontSize = 10.sp,
+                fontWeight = androidx.compose.ui.text.font.FontWeight.Bold
+            )
+            Row(
+                horizontalArrangement = Arrangement.spacedBy(4.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                PixelButton(
+                    label = safeStringResource(R.string.label_on),
+                    onClick = { onToggleActive(true) },
+                    active = isActive,
+                    horizontalPadding = 6.dp,
+                    verticalPadding = 2.dp,
+                    fontSize = 9.sp,
+                    modifier = Modifier.height(24.dp)
+                )
+                PixelButton(
+                    label = safeStringResource(R.string.label_off),
+                    onClick = { onToggleActive(false) },
+                    active = !isActive,
+                    horizontalPadding = 6.dp,
+                    verticalPadding = 2.dp,
+                    fontSize = 9.sp,
+                    modifier = Modifier.height(24.dp)
+                )
             }
         }
     }

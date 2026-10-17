@@ -31,6 +31,7 @@ import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -61,6 +62,8 @@ fun DungeonScreen(
 ) {
     val state by viewModel.battleState.collectAsState()
     val hasPremiumSpeed by viewModel.hasPremiumSpeed.collectAsState()
+    val gameState by viewModel.gameState.collectAsState()
+    val isPermadeathProtected = gameState?.isPermadeathProtectionActive == true
     val showPremiumPurchaseDialog by viewModel.showPremiumPurchaseDialog.collectAsState()
     val dimension = state.dimension
     val isBossFloor = dimension != null && FFDimensionData.getBossForFloor(dimension, state.currentFloor) != null
@@ -122,7 +125,9 @@ fun DungeonScreen(
                     visible = state.isPaused && !state.runComplete && !state.showReviveDialog,
                     enter = fadeIn() + slideInVertically(),
                     exit = fadeOut() + slideOutVertically(),
-                    modifier = Modifier.align(Alignment.TopCenter).padding(top = 8.dp)
+                    modifier = Modifier
+                        .align(Alignment.TopCenter)
+                        .padding(top = 8.dp)
                 ) {
                     Box(
                         Modifier
@@ -158,7 +163,12 @@ fun DungeonScreen(
                     .fillMaxWidth()
                     .background(
                         if (biome != null && dimension != null) {
-                            Brush.horizontalGradient(listOf(Color(dimension.mainColor), Color(dimension.accentColor)))
+                            Brush.horizontalGradient(
+                                listOf(
+                                    Color(dimension.mainColor),
+                                    Color(dimension.accentColor)
+                                )
+                            )
                         } else {
                             Brush.horizontalGradient(listOf(GoldDark, GoldBright, GoldDark))
                         }
@@ -182,7 +192,9 @@ fun DungeonScreen(
             exit = scaleOut() + fadeOut(),
             modifier = Modifier.align(Center)
         ) {
-            GoldenBorderBox(Modifier.padding(20.dp).background(EnemyRed.copy(alpha = 0.9f))) {
+            GoldenBorderBox(Modifier
+                .padding(20.dp)
+                .background(EnemyRed.copy(alpha = 0.9f))) {
                 Text(safeStringResource(R.string.log_boss_defeated, state.bossBannerText), style = PixelTitle, color = Color.White, modifier = Modifier.padding(16.dp))
             }
         }
@@ -213,6 +225,7 @@ fun DungeonScreen(
                 itemsFoundThisRun = summary?.itemsFoundThisRun ?: state.itemsFoundThisRun,
                 materialsEarned = summary?.materialsEarned ?: state.materialsFoundThisRun,
                 originalPartySize = summary?.originalPartySize ?: state.originalPartySize,
+                isPermadeathProtected = isPermadeathProtected,
                 onReturn = {
                     navController?.navigate("inn") {
                         popUpTo("inn") { inclusive = true }
@@ -224,6 +237,7 @@ fun DungeonScreen(
         // Revive Dialog
         if (state.showReviveDialog) {
             ReviveDialog(
+                isPermadeathProtected = isPermadeathProtected,
                 onRevive = { activity?.let { viewModel.watchReviveAd(it) } },
                 onGiveUp = { viewModel.finalizeRun() }
             )
@@ -231,6 +245,7 @@ fun DungeonScreen(
 
         if (state.showRetreatReviveDialog) {
             RetreatReviveDialog(
+                isPermadeathProtected = isPermadeathProtected,
                 onRescue = { activity?.let { viewModel.watchRetreatReviveAd(it) } },
                 onRetreat = { viewModel.declineRetreatRevive() }
             )
@@ -251,17 +266,56 @@ fun DungeonScreen(
 }
 
 @Composable
-fun RetreatReviveDialog(onRescue: () -> Unit, onRetreat: () -> Unit) {
+fun RetreatReviveDialog(
+    isPermadeathProtected: Boolean = false,
+    onRescue: () -> Unit,
+    onRetreat: () -> Unit
+) {
     Dialog(onDismissRequest = {}, properties = DialogProperties(usePlatformDefaultWidth = false)) {
-        PixelPanel(Modifier.fillMaxWidth(0.88f).widthIn(max = 380.dp).background(BgDarkest), borderColor = EnemyRed) {
-            Column(Modifier.padding(20.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(16.dp)) {
-                Text("⚠️", fontSize = 48.sp)
-                Text(safeStringResource(R.string.retreat_rescue_title, "CASUALTIES DETECTED"), style = PixelTitle, color = EnemyRed)
-                Text(safeStringResource(R.string.retreat_rescue_desc, "Some heroes have fallen! Watch a short ad to rescue them before fleeing?"), style = PixelBody, color = Color.White, textAlign = TextAlign.Center)
-                
+        PixelPanel(
+            Modifier
+                .fillMaxWidth(0.88f)
+                .widthIn(max = 380.dp)
+                .background(BgDarkest),
+            borderColor = if (isPermadeathProtected) GoldBright else EnemyRed
+        ) {
+            Column(
+                Modifier.padding(20.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                Text(if (isPermadeathProtected) "🛡️" else "⚠️", fontSize = 48.sp)
+                Text(
+                    text = if (isPermadeathProtected) stringResource(R.string.heroes_down) else safeStringResource(R.string.retreat_rescue_title, ),
+                    style = PixelTitle,
+                    color = if (isPermadeathProtected) GoldBright else EnemyRed
+                )
+                Text(
+                    text = if (isPermadeathProtected)
+                        stringResource(R.string.some_heroes_fell)
+                    else
+                        safeStringResource(R.string.retreat_rescue_desc),
+                    style = PixelBody,
+                    color = Color.White,
+                    textAlign = TextAlign.Center
+                )
+
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    PixelButton(safeStringResource(R.string.rescue_ad_button, "RESCUE (AD)"), onClick = onRescue, modifier = Modifier.fillMaxWidth().height(48.dp), active = true)
-                    PixelButton(safeStringResource(R.string.retreat_anyway_button, "RETREAT"), onClick = onRetreat, modifier = Modifier.fillMaxWidth().height(44.dp))
+                    PixelButton(
+                        safeStringResource(R.string.rescue_ad_button),
+                        onClick = onRescue,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(48.dp),
+                        active = true
+                    )
+                    PixelButton(
+                        safeStringResource(R.string.retreat_anyway_button),
+                        onClick = onRetreat,
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(44.dp)
+                    )
                 }
             }
         }
@@ -269,7 +323,11 @@ fun RetreatReviveDialog(onRescue: () -> Unit, onRetreat: () -> Unit) {
 }
 
 @Composable
-fun ReviveDialog(onRevive: () -> Unit, onGiveUp: () -> Unit) {
+fun ReviveDialog(
+    isPermadeathProtected: Boolean = false,
+    onRevive: () -> Unit,
+    onGiveUp: () -> Unit
+) {
     Dialog(
         onDismissRequest = {},
         properties = DialogProperties(usePlatformDefaultWidth = false)
@@ -279,33 +337,44 @@ fun ReviveDialog(onRevive: () -> Unit, onGiveUp: () -> Unit) {
                 .fillMaxWidth(0.88f)
                 .widthIn(max = 380.dp)
                 .background(BgDarkest),
-            borderColor = EnemyRed
+            borderColor = if (isPermadeathProtected) GoldBright else EnemyRed
         ) {
             Column(
                 Modifier.padding(20.dp),
                 horizontalAlignment = CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                Text("💀", fontSize = 48.sp)
-                Text(safeStringResource(R.string.revive_dialog_title), style = PixelTitle, color = EnemyRed)
+                Text(if (isPermadeathProtected) "🛡️" else "💀", fontSize = 48.sp)
                 Text(
-                    safeStringResource(R.string.revive_dialog_desc),
+                    text = if (isPermadeathProtected) stringResource(R.string.party_down) else safeStringResource(R.string.revive_dialog_title),
+                    style = PixelTitle,
+                    color = if (isPermadeathProtected) GoldBright else EnemyRed
+                )
+                Text(
+                    text = if (isPermadeathProtected)
+                        stringResource(R.string.your_party_was_defeated)
+                    else
+                        safeStringResource(R.string.revive_dialog_desc),
                     style = PixelBody,
                     color = Color.White,
                     textAlign = TextAlign.Center
                 )
-                
+
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     PixelButton(
-                        safeStringResource(R.string.revive_button),
+                        label = safeStringResource(R.string.revive_button),
                         onClick = onRevive,
-                        modifier = Modifier.fillMaxWidth().height(48.dp),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(48.dp),
                         active = true
                     )
                     PixelButton(
-                        safeStringResource(R.string.give_up_button),
+                        label = if (isPermadeathProtected) safeStringResource(R.string.return_to_inn) else safeStringResource(R.string.give_up_button),
                         onClick = onGiveUp,
-                        modifier = Modifier.fillMaxWidth().height(44.dp)
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(44.dp)
                     )
                 }
             }
@@ -344,13 +413,17 @@ fun PremiumSpeedDialog(onBuy: () -> Unit, onClose: () -> Unit) {
                     PixelButton(
                         safeStringResource(R.string.buy_premium_speed_button),
                         onClick = onBuy,
-                        modifier = Modifier.fillMaxWidth().height(48.dp),
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(48.dp),
                         active = true
                     )
                     PixelButton(
                         safeStringResource(R.string.close_button),
                         onClick = onClose,
-                        modifier = Modifier.fillMaxWidth().height(44.dp)
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(44.dp)
                     )
                 }
             }
@@ -379,9 +452,14 @@ fun DungeonTopBar(
     onWatchBoostAd: () -> Unit,
     onOpenSupport: () -> Unit
 ) {
-    GoldenBorderBox(Modifier.fillMaxWidth().height(54.dp).background(BgDarkest)) {
+    GoldenBorderBox(Modifier
+        .fillMaxWidth()
+        .height(54.dp)
+        .background(BgDarkest)) {
         Row(
-            Modifier.fillMaxSize().padding(horizontal = 8.dp),
+            Modifier
+                .fillMaxSize()
+                .padding(horizontal = 8.dp),
             verticalAlignment = CenterVertically,
             horizontalArrangement = Arrangement.SpaceBetween
         ) {
@@ -422,13 +500,17 @@ fun DungeonTopBar(
                         "1x",
                         onClick = { onSpeedChange(BattleSpeed.NORMAL) },
                         active = (speed == BattleSpeed.NORMAL),
-                        modifier = Modifier.width(44.dp).height(32.dp)
+                        modifier = Modifier
+                            .width(44.dp)
+                            .height(32.dp)
                     )
                     PixelButton(
                         "3x",
                         onClick = { onSpeedChange(BattleSpeed.FAST) },
                         active = (speed == BattleSpeed.FAST),
-                        modifier = Modifier.width(44.dp).height(32.dp)
+                        modifier = Modifier
+                            .width(44.dp)
+                            .height(32.dp)
                     )
                     PixelButton(
                         if (hasPremiumSpeed) "10x ⚡" else "10x 🔒",
@@ -440,7 +522,9 @@ fun DungeonTopBar(
                             }
                         },
                         active = (speed == BattleSpeed.HYPER),
-                        modifier = Modifier.width(58.dp).height(32.dp),
+                        modifier = Modifier
+                            .width(58.dp)
+                            .height(32.dp),
                         horizontalPadding = 4.dp
                     )
                 }
@@ -741,9 +825,13 @@ fun HeroUnitDisplay(hero: Hero, isAttacking: Boolean, isHit: Boolean, isCritical
                 color = GoldBright
             )
             Spacer(Modifier.height(2.dp))
-            PixelHpBar(hero.currentHp, hero.maxHp, Modifier.width(64.dp).height(10.dp))
+            PixelHpBar(hero.currentHp, hero.maxHp, Modifier
+                .width(64.dp)
+                .height(10.dp))
             Spacer(Modifier.height(4.dp))
-            PixelExpBar(hero.exp, hero.expToNextLevel, Modifier.width(64.dp).height(6.dp))
+            PixelExpBar(hero.exp, hero.expToNextLevel, Modifier
+                .width(64.dp)
+                .height(6.dp))
         } else {
             Text(safeStringResource(R.string.hero_status_rip), style = PixelSmall, color = StoneGray, modifier = Modifier.padding(bottom = 12.dp))
         }
@@ -800,7 +888,12 @@ fun HeroUnitDisplay(hero: Hero, isAttacking: Boolean, isHit: Boolean, isCritical
         if (!isDying && hero.hasSpecialAbility) {
             Row(horizontalArrangement = Arrangement.spacedBy(2.dp)) {
                 repeat(3) { i ->
-                    Box(Modifier.size(6.dp).background(if (i < hero.abilityCharge) GoldBright else StoneGray, CircleShape))
+                    Box(Modifier
+                        .size(6.dp)
+                        .background(
+                            if (i < hero.abilityCharge) GoldBright else StoneGray,
+                            CircleShape
+                        ))
                 }
             }
         }
@@ -918,7 +1011,7 @@ fun UnitHitParticles(isCritical: Boolean) {
                     .size(p.size)
                     .offset(x = px.dp, y = py.dp)
                     .graphicsLayer(alpha = alpha)
-                    .background(if(isCritical) GoldDark else particleColor)
+                    .background(if (isCritical) GoldDark else particleColor)
             )
         }
     }
@@ -960,7 +1053,10 @@ fun FloatingLootItem(
         modifier = Modifier
             .offset(y = offsetY.value.dp)
             .graphicsLayer(alpha = alpha.value)
-            .background(BgDarkest.copy(alpha = 0.85f * alpha.value), shape = RoundedCornerShape(4.dp))
+            .background(
+                BgDarkest.copy(alpha = 0.85f * alpha.value),
+                shape = RoundedCornerShape(4.dp)
+            )
             .border(1.dp, textColor.copy(alpha = alpha.value), shape = RoundedCornerShape(4.dp))
             .padding(horizontal = 6.dp, vertical = 2.dp),
         verticalAlignment = CenterVertically,
@@ -986,7 +1082,10 @@ fun BattleLogPanel(
     battleLog: List<DungeonViewModel.FFLogEntry>,
     isPaused: Boolean = false
 ) {
-    GoldenBorderBox(Modifier.fillMaxWidth().height(100.dp).background(BgDarkest.copy(alpha = 0.9f))) {
+    GoldenBorderBox(Modifier
+        .fillMaxWidth()
+        .height(100.dp)
+        .background(BgDarkest.copy(alpha = 0.9f))) {
         val listState = rememberLazyListState()
         
         LaunchedEffect(battleLog.size, isPaused) {
@@ -1035,11 +1134,20 @@ fun RunCompleteOverlay(
     itemsFoundThisRun: List<Item>,
     materialsEarned: Map<String, Int> = emptyMap(),
     originalPartySize: Int,
+    isPermadeathProtected: Boolean = false,
     onReturn: () -> Unit
 ) {
     val scrollState = rememberScrollState()
     val allDead = fallenHeroes.size >= originalPartySize && originalPartySize > 0
     var selectedItemForDetail by remember { mutableStateOf<Item?>(null) }
+
+    val headerTitle = when {
+        !allDead -> safeStringResource(R.string.run_complete)
+        isPermadeathProtected -> stringResource(R.string.run_failed_heroes_saved)
+        else -> safeStringResource(R.string.party_wiped)
+    }
+
+    val headerColor = if (!allDead || isPermadeathProtected) GoldBright else EnemyRed
 
     Box(
         Modifier
@@ -1055,9 +1163,9 @@ fun RunCompleteOverlay(
         ) {
             // Header
             Text(
-                if (allDead) safeStringResource(R.string.party_wiped) else safeStringResource(R.string.run_complete),
+                text = headerTitle,
                 style = PixelTitle,
-                color = if (allDead) EnemyRed else GoldBright
+                color = headerColor
             )
             Text(safeStringResource(R.string.floor_reached_format, currentFloor), style = PixelHeading, color = GoldDark)
 
@@ -1067,7 +1175,9 @@ fun RunCompleteOverlay(
 
             // Main Content Area (Two Columns)
             Row(
-                modifier = Modifier.weight(1f).fillMaxWidth(),
+                modifier = Modifier
+                    .weight(1f)
+                    .fillMaxWidth(),
                 horizontalArrangement = Arrangement.spacedBy(24.dp)
             ) {
                 // Left Column: Rewards
@@ -1130,7 +1240,9 @@ fun RunCompleteOverlay(
                                     Column(horizontalAlignment = CenterHorizontally, modifier = Modifier.width(60.dp)) {
                                         Box(Modifier.size(48.dp)) {
                                             HeroSprite(hero.heroClass, Modifier.fillMaxSize())
-                                            Box(Modifier.fillMaxSize().background(Color.Black.copy(alpha = 0.6f)))
+                                            Box(Modifier
+                                                .fillMaxSize()
+                                                .background(Color.Black.copy(alpha = 0.6f)))
                                             Text("💀", fontSize = 20.sp, modifier = Modifier.align(Center))
                                         }
                                         Text(hero.name, style = PixelSmall, color = StoneGray, maxLines = 1)
@@ -1211,7 +1323,9 @@ fun RunCompleteOverlay(
             PixelButton(
                 safeStringResource(R.string.return_to_inn),
                 onClick = onReturn,
-                modifier = Modifier.fillMaxWidth().height(44.dp)
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(44.dp)
             )
         }
 
@@ -1226,7 +1340,9 @@ fun RunCompleteOverlay(
                 contentAlignment = Center
             ) {
                 PixelPanel(
-                    Modifier.width(280.dp).clickable(enabled = false) {},
+                    Modifier
+                        .width(280.dp)
+                        .clickable(enabled = false) {},
                     borderColor = Color(item.rarity.color)
                 ) {
                     Column(
@@ -1254,7 +1370,9 @@ fun RunCompleteOverlay(
                         
                         Text(safeStringResource(R.string.item_lvl_rarity_format, item.floorFound, item.rarity.name), style = PixelSmall, color = StoneGray)
 
-                        PixelButton(safeStringResource(R.string.close_button), onClick = { selectedItemForDetail = null }, modifier = Modifier.fillMaxWidth().height(40.dp))
+                        PixelButton(safeStringResource(R.string.close_button), onClick = { selectedItemForDetail = null }, modifier = Modifier
+                            .fillMaxWidth()
+                            .height(40.dp))
                     }
                 }
             }

@@ -67,6 +67,30 @@ class InnViewModel @Inject constructor(
             }
         )
     }
+
+    fun buyPermadeathProtection(activity: Activity) {
+        billingManager.launchBillingFlow(
+            activity = activity,
+            product = InAppProduct.PERMADEATH_PRODUCT,
+            onSuccess = {
+                viewModelScope.launch {
+                    repository.unlockPermadeathProtection()
+                    Toast.makeText(activity, "Permadeath Protection Unlocked!", Toast.LENGTH_SHORT).show()
+                }
+            },
+            onError = { error ->
+                if (error != "Cancelled") {
+                    Toast.makeText(activity, error, Toast.LENGTH_SHORT).show()
+                }
+            }
+        )
+    }
+
+    fun togglePermadeathProtection(active: Boolean) {
+        viewModelScope.launch {
+            repository.setPermadeathProtectionActive(active)
+        }
+    }
     
     private val _roster = MutableStateFlow<List<Hero>>(emptyList())
     val roster: StateFlow<List<Hero>> = _roster.asStateFlow()

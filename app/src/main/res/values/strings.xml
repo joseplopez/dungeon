@@ -667,9 +667,7 @@
     <string name="tab_global">GLOBAL</string>
     <string name="tab_dimension" translatable="false">FANTASY</string>
     <string name="tab_friends">FRIENDS</string>
-    <string name="tab_normal">Normal</string>
-    <string name="header_flr">FLR</string>
-    <string name="header_boss">BOSS</string>
+
     <string name="rank_label">RANK</string>
     <string name="player_label">PLAYER</string>
     <string name="floor_reached_short">MAX FLR</string>
@@ -707,13 +705,7 @@
     <string name="revive_dialog_desc">Watch a short ad to revive your team at the start of this floor? (Once per run)</string>
     <string name="revive_button">REVIVE (AD)</string>
     <string name="give_up_button">GIVE UP</string>
-    <string name="retreat_rescue_title">CASUALTIES DETECTED</string>
-    <string name="retreat_rescue_desc">Some heroes have fallen! Watch a short ad to rescue them before fleeing?</string>
-    <string name="rescue_ad_button">RESCUE (AD)</string>
-    <string name="retreat_anyway_button">RETREAT</string>
-    <string name="premium_speed_title">10x HYPER SPEED</string>
-    <string name="premium_speed_desc">Unlock 10x Hyper Speed to blast through dungeon battles at maximum velocity!</string>
-    <string name="buy_premium_speed_button">UNLOCK 10x SPEED</string>
+
     <string name="ad_gil_reward">FREE GIL (AD)</string>
     <string name="ad_magicite_reward">FREE MAGICITE (AD)</string>
     <string name="ad_not_ready">Ad not ready. Please wait a moment.</string>
@@ -1262,17 +1254,7 @@
     <string name="mat_mythic_shard_name">Mythic Shard</string>
     <string name="mat_mythic_shard_desc">Radiant shard of ancient mythic power found in deep floors.</string>
 
-    <!-- Boss Lair Feature -->
-    <string name="boss_lair_title">Boss Lair</string>
-    <string name="boss_lair_subtitle">Endless Boss Dungeon</string>
-    <string name="boss_lair_discovered_title">New Area Discovered!</string>
-    <string name="boss_lair_discovered_desc">A spooky, gloomy cave has appeared in the mountains! The Boss Lair is an endless, boss-only dungeon featuring a 100x stat difficulty spike and exclusive Mythic rewards.</string>
-    <string name="boss_lair_warning_no_heroes">You must assign at least one hero to your party before entering the Boss Lair!</string>
-    <string name="boss_lair_enter_button">Enter Boss Lair ⚔️</string>
-    <string name="boss_lair_pathfinder_title">Boss Lair Checkpoint</string>
-    <string name="boss_lair_stat_spike_desc">⚠️ Bosses have 100x Stats (HP, Atk, Def, Magic, Gil, Exp)</string>
-    <string name="boss_lair_loot_desc">💎 Mythic Shards (25%%) &amp; Mythic Gear (5%%)</string>
-    <string name="boss_lair_cave_label">BOSS LAIR</string>
+
 
     <!-- Debug Strings -->
     <string name="debug_seed_mythic">DEBUG: SEED MYTHIC GEAR</string>
@@ -1327,4 +1309,44 @@
     <string name="ai_priority_magic">Magic</string>
     <string name="ai_priority_heal">Heal</string>
     <string name="ai_priority_defend">Defend</string>
+
+    <!-- Pixel Components Strings -->
+    <string name="ad_boost_multiplier" translatable="false">2x</string>
+
+    <string name="label_on" translatable="false">ON</string>
+    <string name="label_off" translatable="false">OFF</string>
+
+    <string name="tab_normal">Normal</string>
+    <string name="header_flr">FLR</string>
+    <string name="header_boss">BOSS</string>
+
+    <string name="permadeath_status_on">🔒 Permadeath: ON</string>
+    <string name="protection_label">🛡️ Protection:</string>
+    <string name="retreat_rescue_title">CASUALTIES DETECTED</string>
+    <string name="retreat_rescue_desc">Some heroes have fallen! Watch a short ad to rescue them before fleeing?</string>
+    <string name="rescue_ad_button">RESCUE (AD)</string>
+    <string name="retreat_anyway_button">RETREAT</string>
+    <string name="premium_speed_title">10x HYPER SPEED</string>
+    <string name="premium_speed_desc">Unlock 10x Hyper Speed to blast through dungeon battles at maximum velocity!</string>
+    <string name="buy_premium_speed_button">UNLOCK 10x SPEED</string>
+    <string name="permadeath_protection_title">PERMADEATH PROTECTION</string>
+    <string name="permadeath_protection_desc">Protect your heroes from permanent death when party wipes occur!</string>
+    <string name="buy_protection_button">BUY PROTECTION</string>
+
+    <!-- Boss Lair Feature -->
+    <string name="boss_lair_title">Boss Lair</string>
+    <string name="boss_lair_subtitle">Endless Boss Dungeon</string>
+    <string name="boss_lair_discovered_title">New Area Discovered!</string>
+    <string name="boss_lair_discovered_desc">A spooky, gloomy cave has appeared in the mountains! The Boss Lair is an endless, boss-only dungeon featuring a 100x stat difficulty spike and exclusive Mythic rewards.</string>
+    <string name="boss_lair_warning_no_heroes">You must assign at least one hero to your party before entering the Boss Lair!</string>
+    <string name="boss_lair_enter_button">Enter Boss Lair ⚔️</string>
+    <string name="boss_lair_pathfinder_title">Boss Lair Checkpoint</string>
+    <string name="boss_lair_stat_spike_desc">⚠️ Bosses have 100x Stats (HP, Atk, Def, Magic, Gil, Exp)</string>
+    <string name="boss_lair_loot_desc">💎 Mythic Shards (25%%) &amp; Mythic Gear (5%%)</string>
+    <string name="boss_lair_cave_label">BOSS LAIR</string>
+    <string name="heroes_down">HEROES DOWN</string>
+    <string name="some_heroes_fell">Some heroes fell! Protection will keep them safe at the Inn, but you can revive them now to finish the floor.</string>
+    <string name="party_down">PARTY DOWN!</string>
+    <string name="your_party_was_defeated">Your party was defeated! Protection will return your heroes safely to the Inn, or you can watch an ad to revive them and continue this run.</string>
+    <string name="run_failed_heroes_saved">RUN FAILED (HEROES SAVED 🛡️)</string>
 </resources>

@@ -439,9 +439,14 @@ fun TownScreen(
     }
 
     if (showBossLairPrep) {
+        val activity = androidx.compose.ui.platform.LocalContext.current as? android.app.Activity
         BossLairPrepScreen(
             party = party,
             highestBossLairFloor = gs?.highestBossLairFloor ?: 1,
+            hasPermadeathProtectionUnlocked = gs?.hasPermadeathProtectionUnlocked ?: false,
+            isPermadeathProtectionActive = gs?.isPermadeathProtectionActive ?: false,
+            onBuyPermadeathProtection = { activity?.let { viewModel.buyPermadeathProtection(it) } },
+            onTogglePermadeathProtection = { active -> viewModel.togglePermadeathProtection(active) },
             onEnterBossLair = { startFloor ->
                 showBossLairPrep = false
                 onNavigateToBossLair(party, startFloor)

@@ -195,9 +195,15 @@ class MainActivity : ComponentActivity() {
                             composable("boss_lair_prep") {
                                 val gs by townViewModel.gameState.collectAsState()
                                 val party by townViewModel.party.collectAsState()
+                                val context = androidx.compose.ui.platform.LocalContext.current
+                                val activity = context as? android.app.Activity
                                 BossLairPrepScreen(
                                     party = party,
                                     highestBossLairFloor = gs?.highestBossLairFloor ?: 1,
+                                    hasPermadeathProtectionUnlocked = gs?.hasPermadeathProtectionUnlocked ?: false,
+                                    isPermadeathProtectionActive = gs?.isPermadeathProtectionActive ?: false,
+                                    onBuyPermadeathProtection = { activity?.let { townViewModel.buyPermadeathProtection(it) } },
+                                    onTogglePermadeathProtection = { active -> townViewModel.togglePermadeathProtection(active) },
                                     onEnterBossLair = { startFloor ->
                                         dungeonViewModel.startRun(party, startFloor, mode = com.game.dungeon.data.models.DungeonMode.BOSS_LAIR)
                                         navController.navigate("dungeon") {
