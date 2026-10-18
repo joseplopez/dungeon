@@ -20,6 +20,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -46,12 +47,19 @@ fun MasteryScreen(
     var selectedJobDetail by remember { mutableStateOf<HeroClass?>(null) }
     val tabs = listOf(safeStringResource(R.string.tab_job_mastery), safeStringResource(R.string.tab_pets))
 
-    Box(Modifier.fillMaxSize().background(BgDarkest)) {
+    Box(Modifier
+        .fillMaxSize()
+        .background(BgDarkest)) {
         Column(Modifier.fillMaxSize()) {
             // Header
-            GoldenBorderBox(Modifier.fillMaxWidth().height(56.dp).background(BgDarkest)) {
+            GoldenBorderBox(Modifier
+                .fillMaxWidth()
+                .height(56.dp)
+                .background(BgDarkest)) {
                 Row(
-                    Modifier.fillMaxSize().padding(horizontal = 12.dp),
+                    Modifier
+                        .fillMaxSize()
+                        .padding(horizontal = 12.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
@@ -79,7 +87,9 @@ fun MasteryScreen(
                 }
             }
 
-            Box(Modifier.weight(1f).padding(8.dp)) {
+            Box(Modifier
+                .weight(1f)
+                .padding(8.dp)) {
                 when (selectedTab) {
                     0 -> JobMasteryTab(
                         gs = gs ?: GameState(),
@@ -147,8 +157,14 @@ fun JobMasteryTab(gs: GameState, onSelectJob: (HeroClass) -> Unit = {}) {
                         }
 
                         // EXP Bar
-                        Box(Modifier.fillMaxWidth().height(8.dp).background(BgDarkest)) {
-                            Box(Modifier.fillMaxWidth(exp.toFloat() / nextExp.coerceAtLeast(1).toFloat()).fillMaxHeight().background(SystemCyan))
+                        Box(Modifier
+                            .fillMaxWidth()
+                            .height(8.dp)
+                            .background(BgDarkest)) {
+                            Box(Modifier
+                                .fillMaxWidth(exp.toFloat() / nextExp.coerceAtLeast(1).toFloat())
+                                .fillMaxHeight()
+                                .background(SystemCyan))
                         }
                         Text(safeStringResource(R.string.mastery_exp_format, exp, nextExp), style = PixelSmall, color = StoneGray)
                     }
@@ -182,7 +198,10 @@ fun JobDetailFullScreenView(
     ) {
         Column(Modifier.fillMaxSize()) {
             // Full Screen Header Bar
-            GoldenBorderBox(Modifier.fillMaxWidth().height(56.dp).background(BgDarkest)) {
+            GoldenBorderBox(Modifier
+                .fillMaxWidth()
+                .height(56.dp)
+                .background(BgDarkest)) {
                 Row(
                     Modifier
                         .fillMaxSize()
@@ -376,7 +395,9 @@ fun JobDetailFullScreenView(
                             ) {
                                 Box(
                                     Modifier
-                                        .fillMaxWidth(exp.toFloat() / nextExp.coerceAtLeast(1).toFloat())
+                                        .fillMaxWidth(
+                                            exp.toFloat() / nextExp.coerceAtLeast(1).toFloat()
+                                        )
                                         .fillMaxHeight()
                                         .background(SystemCyan)
                                 )
@@ -467,6 +488,54 @@ private fun JobAbilityProgressionPanel(job: HeroClass, currentLevel: Int) {
                     }
                 }
             }
+
+            // --- NEW: GUTS & COVER PASSIVE UI FOR TANKS ---
+            if (job == HeroClass.KNIGHT || job == HeroClass.PALADIN) {
+                val isUnlocked = currentLevel >= 25
+                val statusText = if (isUnlocked) {
+                    safeStringResource(R.string.job_ability_unlocked)
+                } else {
+                    safeStringResource(R.string.job_ability_unlocks_at, 25)
+                }
+                val borderColor = if (isUnlocked) GoldBright else StoneGray
+                val textColor = if (isUnlocked) Color.White else StoneGray
+
+                Box(
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(vertical = 3.dp)
+                        .background(if (isUnlocked) BgMedium else BgDarkest)
+                        .border(1.dp, borderColor)
+                        .padding(6.dp)
+                ) {
+                    Column {
+                        Row(
+                            Modifier.fillMaxWidth(),
+                            horizontalArrangement = Arrangement.SpaceBetween,
+                            verticalAlignment = Alignment.CenterVertically
+                        ) {
+                            Text(
+                                stringResource(R.string.guts_passive),
+                                style = PixelBody,
+                                color = if (isUnlocked) GoldBright else StoneGray,
+                                fontWeight = FontWeight.Bold
+                            )
+                            Text(
+                                statusText,
+                                style = PixelSmall,
+                                color = if (isUnlocked) HpGreen else StoneGray
+                            )
+                        }
+                        Spacer(Modifier.height(2.dp))
+                        Text(
+                            stringResource(R.string.automatically_intercepts_fatal_attacks),
+                            style = PixelSmall,
+                            color = textColor
+                        )
+                    }
+                }
+            }
+            // --------------------------------------
         }
     }
 }
@@ -509,7 +578,10 @@ fun PetCard(pet: PetType?, isSelected: Boolean, isUnlocked: Boolean, gs: GameSta
     val canAfford = if (pet != null) gs.gold >= pet.unlockCost else true
 
     PixelPanel(
-        modifier = Modifier.fillMaxWidth().height(105.dp).clickable { onSelect() },
+        modifier = Modifier
+            .fillMaxWidth()
+            .height(105.dp)
+            .clickable { onSelect() },
         borderColor = color
     ) {
         Row(Modifier.padding(8.dp), verticalAlignment = Alignment.CenterVertically) {
@@ -519,7 +591,9 @@ fun PetCard(pet: PetType?, isSelected: Boolean, isUnlocked: Boolean, gs: GameSta
                 }
             } else {
                 Box(Modifier.size(48.dp)) {
-                    PetSprite(pet, Modifier.fillMaxSize().alpha(if (isUnlocked) 1f else 0.5f))
+                    PetSprite(pet, Modifier
+                        .fillMaxSize()
+                        .alpha(if (isUnlocked) 1f else 0.5f))
                     if (!isUnlocked) {
                         Text("🔒", fontSize = 16.sp, modifier = Modifier.align(Alignment.BottomEnd))
                     }
@@ -541,8 +615,16 @@ fun PetCard(pet: PetType?, isSelected: Boolean, isUnlocked: Boolean, gs: GameSta
                         
                         Text(safeStringResource(R.string.pet_bonus_format, bonusPct, safeStringResource(pet.bonusType.nameRes)), style = PixelSmall, color = HpGreen)
                         Spacer(Modifier.height(4.dp))
-                        Box(Modifier.fillMaxWidth().height(6.dp).background(BgDarkest)) {
-                            Box(Modifier.fillMaxWidth(currentExp.toFloat() / nextExp.coerceAtLeast(1).toFloat()).fillMaxHeight().background(SystemCyan))
+                        Box(Modifier
+                            .fillMaxWidth()
+                            .height(6.dp)
+                            .background(BgDarkest)) {
+                            Box(Modifier
+                                .fillMaxWidth(
+                                    currentExp.toFloat() / nextExp.coerceAtLeast(1).toFloat()
+                                )
+                                .fillMaxHeight()
+                                .background(SystemCyan))
                         }
                     } else {
                         Text(safeStringResource(R.string.unlock_pet_format, pet.unlockCost), style = PixelSmall, color = if (canAfford) GoldBright else EnemyRed)

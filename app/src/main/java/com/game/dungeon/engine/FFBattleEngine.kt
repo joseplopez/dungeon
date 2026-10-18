@@ -52,14 +52,19 @@ class FFBattleEngine(private val context: Context) {
         } else emptyList()
 
         while (aliveHeroes.any { it.isAlive } && currentFloor <= maxFloor) {
-            while (isPaused()) { delay(200) }
+            while (isPaused()) {
+                delay(200)
+            }
 
             // Track all heroes that level up during the entire floor duration
             val floorLeveledUpHeroIds = mutableSetOf<String>()
 
             // Spawn enemies for this floor
             val bossTemplate = if (mode == DungeonMode.BOSS_LAIR) {
-                if (allBossTemplates.isNotEmpty()) allBossTemplates[(currentFloor - 1) % allBossTemplates.size] else FFDimensionData.getBossForFloor(dimension, currentFloor)
+                if (allBossTemplates.isNotEmpty()) allBossTemplates[(currentFloor - 1) % allBossTemplates.size] else FFDimensionData.getBossForFloor(
+                    dimension,
+                    currentFloor
+                )
             } else {
                 FFDimensionData.getBossForFloor(dimension, currentFloor)
             }
@@ -78,7 +83,8 @@ class FFBattleEngine(private val context: Context) {
                 val scaledHp = (rawBoss.maxHp * diffMult).toLong().coerceAtMost(Long.MAX_VALUE)
                 val scaledAtk = (rawBoss.attack * diffMult).toLong().coerceAtMost(Long.MAX_VALUE)
                 val scaledDef = (rawBoss.defense * diffMult).toLong().coerceAtMost(Long.MAX_VALUE)
-                val scaledMDef = (rawBoss.magicDefense * diffMult).toLong().coerceAtMost(Long.MAX_VALUE)
+                val scaledMDef =
+                    (rawBoss.magicDefense * diffMult).toLong().coerceAtMost(Long.MAX_VALUE)
                 val scaledGil = (rawBoss.gilReward * diffMult).toLong().coerceAtMost(Long.MAX_VALUE)
 
                 mutableListOf(
@@ -92,7 +98,15 @@ class FFBattleEngine(private val context: Context) {
                     )
                 )
             } else if (bossTemplate != null) {
-                mutableListOf(Enemy.fromTemplate(bossTemplate, currentFloor, context, relicBonuses = relicBonuses, dimension = dimension))
+                mutableListOf(
+                    Enemy.fromTemplate(
+                        bossTemplate,
+                        currentFloor,
+                        context,
+                        relicBonuses = relicBonuses,
+                        dimension = dimension
+                    )
+                )
             } else {
                 spawnEnemies(dimension, currentFloor, context, relicBonuses).toMutableList()
             }
@@ -104,25 +118,34 @@ class FFBattleEngine(private val context: Context) {
 
             // Floor battle loop
             while (enemies.any { it.currentHp > 0 } && aliveHeroes.any { it.isAlive }) {
-                val turnOrder = (aliveHeroes.filter { it.isAlive } + enemies.filter { it.currentHp > 0 })
-                    .sortedByDescending {
-                        when (it) {
-                            is Hero -> it.speed
-                            is Enemy -> it.speed
-                            else -> 0
+                val turnOrder =
+                    (aliveHeroes.filter { it.isAlive } + enemies.filter { it.currentHp > 0 })
+                        .sortedByDescending {
+                            when (it) {
+                                is Hero -> it.speed
+                                is Enemy -> it.speed
+                                else -> 0
+                            }
                         }
-                    }
 
                 for (actor in turnOrder) {
-                    while (isPaused()) { delay(200) }
+                    while (isPaused()) {
+                        delay(200)
+                    }
                     if (!enemies.any { it.currentHp > 0 } || !aliveHeroes.any { it.isAlive }) break
 
                     when (actor) {
                         is Hero -> {
                             if (actor.isAlive) {
                                 executeHeroTurn(
-                                    actor, aliveHeroes, enemies, dimension, relicBonuses,
-                                    floorLeveledUpHeroIds, { lastAbilityClass }, { lastAbilityClass = it },
+                                    actor,
+                                    aliveHeroes,
+                                    enemies,
+                                    dimension,
+                                    relicBonuses,
+                                    floorLeveledUpHeroIds,
+                                    { lastAbilityClass },
+                                    { lastAbilityClass = it },
                                     mode,
                                     { gil, magicite ->
                                         floorBaseGilEarned += gil
@@ -133,10 +156,16 @@ class FFBattleEngine(private val context: Context) {
                                 delay(speed.delayMs)
                             }
                         }
+
                         is Enemy -> {
                             // STRICT CHECK: Only execute turn AND delay if enemy is actually alive
                             if (actor.currentHp > 0) {
-                                executeEnemyTurn(actor, aliveHeroes, onEvent)
+                                executeEnemyTurn(
+                                    actor,
+                                    aliveHeroes,
+                                    relicBonuses,
+                                    onEvent
+                                ) // Added relicBonuses here
                                 delay(speed.delayMs)
                             }
                         }
@@ -151,7 +180,8 @@ class FFBattleEngine(private val context: Context) {
 
                 // Award completion XP (x100 if BOSS_LAIR)
                 val expMult = if (mode == DungeonMode.BOSS_LAIR) 100 else 1
-                val completionExp = ((5 + (currentFloor / 2)) * relicBonuses.expMultiplier * expMult).toLong()
+                val completionExp =
+                    ((5 + (currentFloor / 2)) * relicBonuses.expMultiplier * expMult).toLong()
                 aliveHeroes.filter { it.isAlive }.forEach { hero ->
                     val result = hero.addExperience(completionExp)
                     if (result) floorLeveledUpHeroIds.add(hero.id)
@@ -170,7 +200,8 @@ class FFBattleEngine(private val context: Context) {
                     }
 
                     // 2. Mythic Gear: 5% caped drop chance per boss kill to drop exactly one Mythic Gear piece.
-                    val mythicDropChance = (0.002f + (currentFloor - 1) * 0.001f).coerceAtMost(0.05f)
+                    val mythicDropChance =
+                        (0.002f + (currentFloor - 1) * 0.001f).coerceAtMost(0.05f)
                     if (Random.nextFloat() < mythicDropChance) {
                         val effectiveFloor = (1000.0 * 1.15.pow((currentFloor - 1).toDouble()))
                             .toLong()
@@ -183,9 +214,15 @@ class FFBattleEngine(private val context: Context) {
                             minRarity = Rarity.MYTHIC,
                             dimension = dimension.number
                         )
-                        val compatibleSets = MythicSet.entries.filter { baseMythic.slot in it.allowedSlots }
-                        val chosenSet = if (compatibleSets.isNotEmpty()) compatibleSets.random() else MythicSet.entries.random()
-                        val setName = try { context.getString(chosenSet.nameRes) } catch (_: Exception) { "Mythic Gear" }
+                        val compatibleSets =
+                            MythicSet.entries.filter { baseMythic.slot in it.allowedSlots }
+                        val chosenSet =
+                            if (compatibleSets.isNotEmpty()) compatibleSets.random() else MythicSet.entries.random()
+                        val setName = try {
+                            context.getString(chosenSet.nameRes)
+                        } catch (_: Exception) {
+                            "Mythic Gear"
+                        }
                         val finalMythicDrop = baseMythic.copy(
                             setId = chosenSet.id,
                             name = setName
@@ -193,8 +230,12 @@ class FFBattleEngine(private val context: Context) {
                         itemsFound.add(finalMythicDrop)
                     }
                 } else {
-                    val rawDropChance = if (bossTemplate != null) 100f else 10f * (1f + relicBonuses.petItemFindBonus)
-                    val finalDropChance = if (bossTemplate != null) 100f else (100f * (rawDropChance / (rawDropChance + 85f))).coerceAtMost(85f)
+                    val rawDropChance =
+                        if (bossTemplate != null) 100f else 10f * (1f + relicBonuses.petItemFindBonus)
+                    val finalDropChance =
+                        if (bossTemplate != null) 100f else (100f * (rawDropChance / (rawDropChance + 85f))).coerceAtMost(
+                            85f
+                        )
 
                     if (Random.nextFloat() * 100 < finalDropChance) {
                         itemsFound.add(
@@ -233,11 +274,17 @@ class FFBattleEngine(private val context: Context) {
                             )
 
                             // 2. Filter valid mythic sets that match this item's slot
-                            val compatibleSets = MythicSet.entries.filter { baseMythic.slot in it.allowedSlots }
-                            val chosenSet = if (compatibleSets.isNotEmpty()) compatibleSets.random() else MythicSet.entries.random()
+                            val compatibleSets =
+                                MythicSet.entries.filter { baseMythic.slot in it.allowedSlots }
+                            val chosenSet =
+                                if (compatibleSets.isNotEmpty()) compatibleSets.random() else MythicSet.entries.random()
 
                             // 3. Stamp the correct set ID and lore name onto the drop
-                            val setName = try { context.getString(chosenSet.nameRes) } catch (_: Exception) { "Mythic Gear" }
+                            val setName = try {
+                                context.getString(chosenSet.nameRes)
+                            } catch (_: Exception) {
+                                "Mythic Gear"
+                            }
                             val finalMythicDrop = baseMythic.copy(
                                 setId = chosenSet.id,
                                 name = setName
@@ -252,18 +299,21 @@ class FFBattleEngine(private val context: Context) {
                 totalMagicite += magiciteEarned
 
                 if (bossTemplate != null) {
-                    val bossName = runCatching { context.getString(bossTemplate.nameRes) }.getOrNull()
-                        ?: runCatching { context.resources?.getString(bossTemplate.nameRes) }.getOrNull()
-                        ?: "Boss"
+                    val bossName =
+                        runCatching { context.getString(bossTemplate.nameRes) }.getOrNull()
+                            ?: runCatching { context.resources?.getString(bossTemplate.nameRes) }.getOrNull()
+                            ?: "Boss"
                     onEvent(FFBattleEvent.BossDefeated(bossName, currentFloor >= maxFloor))
                 }
 
                 aliveHeroes.removeAll { !it.isAlive }
 
-                onEvent(FFBattleEvent.FloorComplete(
-                    currentFloor, gilEarned, magiciteEarned, itemsFound,
-                    aliveHeroes.map { it.copy() }, floorLeveledUpHeroIds.toList()
-                ))
+                onEvent(
+                    FFBattleEvent.FloorComplete(
+                        currentFloor, gilEarned, magiciteEarned, itemsFound,
+                        aliveHeroes.map { it.copy() }, floorLeveledUpHeroIds.toList()
+                    )
+                )
 
                 currentFloor++
             }
@@ -272,11 +322,24 @@ class FFBattleEngine(private val context: Context) {
         if (!aliveHeroes.any { it.isAlive }) onEvent(FFBattleEvent.AllHeroesFell)
     }
 
-    private fun spawnEnemies(dimension: FFDimension, floor: Int, context: Context, relicBonuses: RelicBonuses): List<Enemy> {
+    private fun spawnEnemies(
+        dimension: FFDimension,
+        floor: Int,
+        context: Context,
+        relicBonuses: RelicBonuses
+    ): List<Enemy> {
         val templates = FFDimensionData.getEnemiesForFloor(dimension, floor)
         if (templates.isEmpty()) return emptyList()
         val count = Random.nextInt(1, 4)
-        return List(count) { Enemy.fromTemplate(templates.random(), floor, context, relicBonuses = relicBonuses, dimension = dimension) }
+        return List(count) {
+            Enemy.fromTemplate(
+                templates.random(),
+                floor,
+                context,
+                relicBonuses = relicBonuses,
+                dimension = dimension
+            )
+        }
     }
 
     private fun handleEnemyDefeated(
@@ -293,7 +356,16 @@ class FFBattleEngine(private val context: Context) {
         val exp = ((enemy.floor * 2) * relicBonuses.expMultiplier * expMult).toLong()
         val materials = calculateMaterialDrops(enemy, enemy.floor, dimension, relicBonuses, mode)
         onLootCollected(enemy.gilDropped, enemy.magiciteDropped)
-        onEvent(FFBattleEvent.EnemyDefeated(enemy.id, enemy.type, enemy.gilDropped, enemy.magiciteDropped, exp, materials))
+        onEvent(
+            FFBattleEvent.EnemyDefeated(
+                enemy.id,
+                enemy.type,
+                enemy.gilDropped,
+                enemy.magiciteDropped,
+                exp,
+                materials
+            )
+        )
         materials.forEach { (matId, amt) ->
             onEvent(FFBattleEvent.MaterialDropped(matId, amt))
         }
@@ -308,11 +380,17 @@ class FFBattleEngine(private val context: Context) {
         mode: DungeonMode = DungeonMode.REGULAR
     ): Map<String, Int> {
         if (mode == DungeonMode.BOSS_LAIR) {
-            return if (Random.nextFloat() < 0.25f) mapOf("mythic_shard" to Random.nextInt(2, 6)) else emptyMap()
+            return if (Random.nextFloat() < 0.25f) mapOf(
+                "mythic_shard" to Random.nextInt(
+                    2,
+                    6
+                )
+            ) else emptyMap()
         }
 
         val drops = mutableMapOf<String, Int>()
-        val relicMultiplier = 1f + relicBonuses.alchemistDropChanceBonus + (relicBonuses.magnetBonus * 0.10f)
+        val relicMultiplier =
+            1f + relicBonuses.alchemistDropChanceBonus + (relicBonuses.magnetBonus * 0.10f)
         val dropRules = MonsterLootTable.getDropsForMonster(enemy.type, enemy.isBoss)
 
         dropRules.forEach { rule ->
@@ -369,7 +447,16 @@ class FFBattleEngine(private val context: Context) {
         onEvent(FFBattleEvent.DamageDealt(attacker.id, target.id, damage, isMagic, isCritical))
         if (wasAlive && target.currentHp <= 0) {
             enemies.remove(target) // Remove defeated enemy from combat immediately so heroes never attack 0-health enemies
-            handleEnemyDefeated(target, dimension, relicBonuses, allies, levelUpTracker, mode, onLootCollected, onEvent)
+            handleEnemyDefeated(
+                target,
+                dimension,
+                relicBonuses,
+                allies,
+                levelUpTracker,
+                mode,
+                onLootCollected,
+                onEvent
+            )
         }
     }
 
@@ -402,27 +489,86 @@ class FFBattleEngine(private val context: Context) {
 
         if (useAbility) {
             hero.abilityCharge = 0
-            executeJobAbility(hero, allies, enemies, dimension, relicBonuses, levelUpTracker, getLastAbility, setLastAbility, mode, onLootCollected, onEvent)
+            executeJobAbility(
+                hero,
+                allies,
+                enemies,
+                dimension,
+                relicBonuses,
+                levelUpTracker,
+                getLastAbility,
+                setLastAbility,
+                mode,
+                onLootCollected,
+                onEvent
+            )
             return
         }
 
         when (hero.aiPriority) {
             AIPriority.ATTACK -> {
-                val target = enemies.filter { it.currentHp > 0 }.minByOrNull { it.currentHp } ?: return
+                val target =
+                    enemies.filter { it.currentHp > 0 }.minByOrNull { it.currentHp } ?: return
                 val (dmg, isCrit) = calcPhysicalDamage(hero, target)
-                applyDamageToEnemy(hero, target, dmg, false, isCrit, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent, mode)
+                applyDamageToEnemy(
+                    hero,
+                    target,
+                    dmg,
+                    false,
+                    isCrit,
+                    enemies,
+                    dimension,
+                    relicBonuses,
+                    allies,
+                    levelUpTracker,
+                    onLootCollected,
+                    onEvent,
+                    mode
+                )
             }
+
             AIPriority.MAGIC -> {
                 if (masteryLvl >= 1) {
-                    val target = enemies.filter { it.currentHp > 0 }.maxByOrNull { it.currentHp } ?: return
+                    val target =
+                        enemies.filter { it.currentHp > 0 }.maxByOrNull { it.currentHp } ?: return
                     val (dmg, isCrit) = calcMagicDamage(hero, target)
-                    applyDamageToEnemy(hero, target, dmg, true, isCrit, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent, mode)
+                    applyDamageToEnemy(
+                        hero,
+                        target,
+                        dmg,
+                        true,
+                        isCrit,
+                        enemies,
+                        dimension,
+                        relicBonuses,
+                        allies,
+                        levelUpTracker,
+                        onLootCollected,
+                        onEvent,
+                        mode
+                    )
                 } else {
-                    val target = enemies.filter { it.currentHp > 0 }.minByOrNull { it.currentHp } ?: return
+                    val target =
+                        enemies.filter { it.currentHp > 0 }.minByOrNull { it.currentHp } ?: return
                     val (dmg, isCrit) = calcPhysicalDamage(hero, target)
-                    applyDamageToEnemy(hero, target, dmg, false, isCrit, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent, mode)
+                    applyDamageToEnemy(
+                        hero,
+                        target,
+                        dmg,
+                        false,
+                        isCrit,
+                        enemies,
+                        dimension,
+                        relicBonuses,
+                        allies,
+                        levelUpTracker,
+                        onLootCollected,
+                        onEvent,
+                        mode
+                    )
                 }
             }
+
             AIPriority.HEAL -> {
                 val wounded = allies.filter { it.isAlive && it.currentHp < it.maxHp * 0.6f }
                     .minByOrNull { it.currentHp }
@@ -432,24 +578,61 @@ class FFBattleEngine(private val context: Context) {
                     hero.currentMp -= 10
                     onEvent(FFBattleEvent.HealCast(hero.id, wounded.id, healAmt))
                 } else {
-                    val target = enemies.filter { it.currentHp > 0 }.minByOrNull { it.currentHp } ?: return
+                    val target =
+                        enemies.filter { it.currentHp > 0 }.minByOrNull { it.currentHp } ?: return
                     val (dmg, isCrit) = calcPhysicalDamage(hero, target)
-                    applyDamageToEnemy(hero, target, dmg, false, isCrit, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent, mode)
+                    applyDamageToEnemy(
+                        hero,
+                        target,
+                        dmg,
+                        false,
+                        isCrit,
+                        enemies,
+                        dimension,
+                        relicBonuses,
+                        allies,
+                        levelUpTracker,
+                        onLootCollected,
+                        onEvent,
+                        mode
+                    )
                 }
             }
+
             AIPriority.DEFEND -> {
                 val target = allies.filter { it.isAlive }.minByOrNull { it.currentHp }
                 if (masteryLvl >= 1 && target != null && target.id != hero.id) {
-                    onEvent(FFBattleEvent.AbilityUsed(hero.id, R.string.ability_cover_name, R.string.ability_cover_desc, listOf(target.name)))
+                    onEvent(
+                        FFBattleEvent.AbilityUsed(
+                            hero.id,
+                            R.string.ability_cover_name,
+                            R.string.ability_cover_desc,
+                            listOf(target.name)
+                        )
+                    )
                 } else {
-                    val enemyTarget = enemies.filter { it.currentHp > 0 }.minByOrNull { it.currentHp } ?: return
+                    val enemyTarget =
+                        enemies.filter { it.currentHp > 0 }.minByOrNull { it.currentHp } ?: return
                     val (dmg, isCrit) = calcPhysicalDamage(hero, enemyTarget)
-                    applyDamageToEnemy(hero, enemyTarget, dmg, false, isCrit, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent, mode)
+                    applyDamageToEnemy(
+                        hero,
+                        enemyTarget,
+                        dmg,
+                        false,
+                        isCrit,
+                        enemies,
+                        dimension,
+                        relicBonuses,
+                        allies,
+                        levelUpTracker,
+                        onLootCollected,
+                        onEvent,
+                        mode
+                    )
                 }
             }
         }
     }
-
 
 
     private fun executeJobAbility(
@@ -469,8 +652,16 @@ class FFBattleEngine(private val context: Context) {
             setLastAbility(hero.heroClass)
         }
         val masteryLvl = relicBonuses.getMasteryLevel(hero.heroClass)
-        val activeSkill = JobAbilityData.getActiveAbilityForLevel(hero.heroClass, masteryLvl) ?: return
-        onEvent(FFBattleEvent.AbilityUsed(hero.id, activeSkill.nameRes, activeSkill.descRes, listOf(hero.name)))
+        val activeSkill =
+            JobAbilityData.getActiveAbilityForLevel(hero.heroClass, masteryLvl) ?: return
+        onEvent(
+            FFBattleEvent.AbilityUsed(
+                hero.id,
+                activeSkill.nameRes,
+                activeSkill.descRes,
+                listOf(hero.name)
+            )
+        )
 
         when (hero.heroClass) {
             HeroClass.FREELANCER -> {
@@ -479,7 +670,20 @@ class FFBattleEngine(private val context: Context) {
                     if (target != null) {
                         val (baseDmg, isCrit) = calcPhysicalDamage(hero, target)
                         val dmg = (baseDmg * 2.2).toLong()
-                        applyDamageToEnemy(hero, target, dmg, false, isCrit, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                        applyDamageToEnemy(
+                            hero,
+                            target,
+                            dmg,
+                            false,
+                            isCrit,
+                            enemies,
+                            dimension,
+                            relicBonuses,
+                            allies,
+                            levelUpTracker,
+                            onLootCollected,
+                            onEvent
+                        )
                     }
                     val healAmt = (hero.maxHp * 0.30f + hero.attack * 0.5f).toInt()
                     hero.currentHp = minOf(hero.currentHp + healAmt, hero.maxHp)
@@ -490,7 +694,20 @@ class FFBattleEngine(private val context: Context) {
                     if (target != null) {
                         val (baseDmg, isCrit) = calcPhysicalDamage(hero, target)
                         val dmg = (baseDmg * 1.8).toLong()
-                        applyDamageToEnemy(hero, target, dmg, false, isCrit, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                        applyDamageToEnemy(
+                            hero,
+                            target,
+                            dmg,
+                            false,
+                            isCrit,
+                            enemies,
+                            dimension,
+                            relicBonuses,
+                            allies,
+                            levelUpTracker,
+                            onLootCollected,
+                            onEvent
+                        )
                     }
                     val healAmt = (hero.maxHp * 0.15f + hero.attack * 0.2f).toInt()
                     hero.currentHp = minOf(hero.currentHp + healAmt, hero.maxHp)
@@ -501,15 +718,34 @@ class FFBattleEngine(private val context: Context) {
                     onEvent(FFBattleEvent.HealCast(hero.id, hero.id, healAmt))
                 }
             }
+
             HeroClass.WARRIOR -> {
-                val mult = when { masteryLvl >= 25 -> 2.2; masteryLvl >= 10 -> 1.8; else -> 1.5 }
-                val targetEnemies = if (masteryLvl >= 25) enemies.filter { it.currentHp > 0 } else listOfNotNull(enemies.filter { it.currentHp > 0 }.maxByOrNull { it.currentHp })
+                val mult = when {
+                    masteryLvl >= 25 -> 2.2; masteryLvl >= 10 -> 1.8; else -> 1.5
+                }
+                val targetEnemies =
+                    if (masteryLvl >= 25) enemies.filter { it.currentHp > 0 } else listOfNotNull(
+                        enemies.filter { it.currentHp > 0 }.maxByOrNull { it.currentHp })
                 targetEnemies.forEach { target ->
                     val (baseDmg, _) = calcPhysicalDamage(hero, target)
                     val dmg = (baseDmg * mult).toLong()
-                    applyDamageToEnemy(hero, target, dmg, false, true, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                    applyDamageToEnemy(
+                        hero,
+                        target,
+                        dmg,
+                        false,
+                        true,
+                        enemies,
+                        dimension,
+                        relicBonuses,
+                        allies,
+                        levelUpTracker,
+                        onLootCollected,
+                        onEvent
+                    )
                 }
             }
+
             HeroClass.WHITE_MAGE -> {
                 if (masteryLvl >= 25) {
                     val amounts = mutableMapOf<String, Int>()
@@ -522,7 +758,8 @@ class FFBattleEngine(private val context: Context) {
                         onEvent(FFBattleEvent.GroupHeal(hero.id, amounts))
                     }
                 } else {
-                    val target = allies.filter { it.isAlive }.minByOrNull { it.currentHp.toFloat() / it.maxHp } ?: hero
+                    val target = allies.filter { it.isAlive }
+                        .minByOrNull { it.currentHp.toFloat() / it.maxHp } ?: hero
                     if (target.isAlive) {
                         val healMult = if (masteryLvl >= 10) 2.8f else 2.0f
                         val heal = (hero.magic * healMult + target.maxHp * 0.30f + 30).toInt()
@@ -531,30 +768,66 @@ class FFBattleEngine(private val context: Context) {
                     }
                 }
             }
+
             HeroClass.BLACK_MAGE -> {
-                val mult = when { masteryLvl >= 25 -> 2.2; masteryLvl >= 10 -> 1.8; else -> 1.4 }
-                val targetEnemies = if (masteryLvl >= 25) enemies.filter { it.currentHp > 0 } else if (masteryLvl >= 10) enemies.filter { it.currentHp > 0 }.take(2) else listOfNotNull(enemies.filter { it.currentHp > 0 }.firstOrNull())
+                val mult = when {
+                    masteryLvl >= 25 -> 2.2; masteryLvl >= 10 -> 1.8; else -> 1.4
+                }
+                val targetEnemies =
+                    if (masteryLvl >= 25) enemies.filter { it.currentHp > 0 } else if (masteryLvl >= 10) enemies.filter { it.currentHp > 0 }
+                        .take(2) else listOfNotNull(enemies.filter { it.currentHp > 0 }
+                        .firstOrNull())
                 targetEnemies.forEach { enemy ->
                     val (baseDmg, _) = calcMagicDamage(hero, enemy)
                     val dmg = (baseDmg * mult).toLong()
-                    applyDamageToEnemy(hero, enemy, dmg, true, true, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                    applyDamageToEnemy(
+                        hero,
+                        enemy,
+                        dmg,
+                        true,
+                        true,
+                        enemies,
+                        dimension,
+                        relicBonuses,
+                        allies,
+                        levelUpTracker,
+                        onLootCollected,
+                        onEvent
+                    )
                 }
             }
+
             HeroClass.THIEF -> {
                 val hits = if (masteryLvl >= 25) 3 else 1
-                val mult = when { masteryLvl >= 25 -> 2.0; masteryLvl >= 10 -> 1.5; else -> 1.2 }
+                val mult = when {
+                    masteryLvl >= 25 -> 2.0; masteryLvl >= 10 -> 1.5; else -> 1.2
+                }
                 repeat(hits) {
                     val target = enemies.filter { it.currentHp > 0 }.firstOrNull() ?: return@repeat
                     val (dmg, isCrit) = calcPhysicalDamage(hero, target)
                     val finalDmg = (dmg * mult).toLong()
                     val forceCrit = masteryLvl >= 25 || isCrit
-                    applyDamageToEnemy(hero, target, finalDmg, false, forceCrit, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                    applyDamageToEnemy(
+                        hero,
+                        target,
+                        finalDmg,
+                        false,
+                        forceCrit,
+                        enemies,
+                        dimension,
+                        relicBonuses,
+                        allies,
+                        levelUpTracker,
+                        onLootCollected,
+                        onEvent
+                    )
                     if (target.magiciteDropped > 0 && (hero.hasRansack || masteryLvl >= 10)) {
                         onEvent(FFBattleEvent.MagiciteStolen(hero.id, target.magiciteDropped))
                         target.magiciteDropped = 0
                     }
                 }
             }
+
             HeroClass.MONK -> {
                 val selfHeal = (hero.maxHp * 0.35f + hero.magic * 1.5f).toInt()
                 hero.currentHp = minOf(hero.currentHp + selfHeal, hero.maxHp)
@@ -564,32 +837,88 @@ class FFBattleEngine(private val context: Context) {
                     enemies.filter { it.currentHp > 0 }.forEach { target ->
                         val (baseDmg, isCrit) = calcPhysicalDamage(hero, target)
                         val dmg = (baseDmg * 2.0).toLong()
-                        applyDamageToEnemy(hero, target, dmg, false, isCrit, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                        applyDamageToEnemy(
+                            hero,
+                            target,
+                            dmg,
+                            false,
+                            isCrit,
+                            enemies,
+                            dimension,
+                            relicBonuses,
+                            allies,
+                            levelUpTracker,
+                            onLootCollected,
+                            onEvent
+                        )
                     }
                 } else if (masteryLvl >= 10) {
                     repeat(3) {
-                        val target = enemies.filter { it.currentHp > 0 }.firstOrNull() ?: return@repeat
+                        val target =
+                            enemies.filter { it.currentHp > 0 }.firstOrNull() ?: return@repeat
                         val (baseDmg, isCrit) = calcPhysicalDamage(hero, target)
                         val dmg = (baseDmg * 1.2).toLong()
-                        applyDamageToEnemy(hero, target, dmg, false, isCrit, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                        applyDamageToEnemy(
+                            hero,
+                            target,
+                            dmg,
+                            false,
+                            isCrit,
+                            enemies,
+                            dimension,
+                            relicBonuses,
+                            allies,
+                            levelUpTracker,
+                            onLootCollected,
+                            onEvent
+                        )
                     }
                 } else {
                     val target = enemies.filter { it.currentHp > 0 }.firstOrNull()
                     if (target != null) {
                         val (baseDmg, isCrit) = calcPhysicalDamage(hero, target)
                         val dmg = (baseDmg * 1.4).toLong()
-                        applyDamageToEnemy(hero, target, dmg, false, isCrit, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                        applyDamageToEnemy(
+                            hero,
+                            target,
+                            dmg,
+                            false,
+                            isCrit,
+                            enemies,
+                            dimension,
+                            relicBonuses,
+                            allies,
+                            levelUpTracker,
+                            onLootCollected,
+                            onEvent
+                        )
                     }
                 }
             }
+
             HeroClass.KNIGHT -> {
                 val target = enemies.filter { it.currentHp > 0 }.maxByOrNull { it.currentHp }
                 if (target != null) {
                     val totalAtkDef = hero.attack + hero.defense
-                    val mult = when { masteryLvl >= 25 -> 2.2; masteryLvl >= 10 -> 1.8; else -> 1.5 }
+                    val mult = when {
+                        masteryLvl >= 25 -> 2.2; masteryLvl >= 10 -> 1.8; else -> 1.5
+                    }
                     val baseDmg = maxOf(1, totalAtkDef - target.defense + Random.nextInt(-3, 4))
                     val dmg = (baseDmg * mult).toLong()
-                    applyDamageToEnemy(hero, target, dmg, false, true, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                    applyDamageToEnemy(
+                        hero,
+                        target,
+                        dmg,
+                        false,
+                        true,
+                        enemies,
+                        dimension,
+                        relicBonuses,
+                        allies,
+                        levelUpTracker,
+                        onLootCollected,
+                        onEvent
+                    )
                 }
                 if (masteryLvl >= 10) {
                     val amounts = mutableMapOf<String, Int>()
@@ -603,13 +932,32 @@ class FFBattleEngine(private val context: Context) {
                     }
                 }
             }
+
             HeroClass.PALADIN -> {
-                val targetEnemies = if (masteryLvl >= 25) enemies.filter { it.currentHp > 0 } else listOfNotNull(enemies.filter { it.currentHp > 0 }.firstOrNull())
-                val mult = when { masteryLvl >= 25 -> 2.0; masteryLvl >= 10 -> 1.6; else -> 1.3 }
+                val targetEnemies =
+                    if (masteryLvl >= 25) enemies.filter { it.currentHp > 0 } else listOfNotNull(
+                        enemies.filter { it.currentHp > 0 }.firstOrNull()
+                    )
+                val mult = when {
+                    masteryLvl >= 25 -> 2.0; masteryLvl >= 10 -> 1.6; else -> 1.3
+                }
                 targetEnemies.forEach { enemy ->
                     val (dmg, isCrit) = calcPhysicalDamage(hero, enemy)
                     val finalDmg = (dmg * mult).toLong()
-                    applyDamageToEnemy(hero, enemy, finalDmg, false, isCrit, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                    applyDamageToEnemy(
+                        hero,
+                        enemy,
+                        finalDmg,
+                        false,
+                        isCrit,
+                        enemies,
+                        dimension,
+                        relicBonuses,
+                        allies,
+                        levelUpTracker,
+                        onLootCollected,
+                        onEvent
+                    )
                 }
 
                 val amounts = mutableMapOf<String, Int>()
@@ -630,7 +978,8 @@ class FFBattleEngine(private val context: Context) {
                     val lowestAlly = livingAllies.minByOrNull { it.currentHp.toFloat() / it.maxHp }
                     if (lowestAlly != null) {
                         val healAmt = (hero.magic * 1.5f + lowestAlly.maxHp * 0.15f).toInt()
-                        lowestAlly.currentHp = minOf(lowestAlly.currentHp + healAmt, lowestAlly.maxHp)
+                        lowestAlly.currentHp =
+                            minOf(lowestAlly.currentHp + healAmt, lowestAlly.maxHp)
                         amounts[lowestAlly.id] = healAmt
                     }
                 }
@@ -638,13 +987,28 @@ class FFBattleEngine(private val context: Context) {
                     onEvent(FFBattleEvent.GroupHeal(hero.id, amounts))
                 }
             }
+
             HeroClass.RED_MAGE -> {
                 if (masteryLvl >= 25) {
                     repeat(3) {
-                        val target = enemies.filter { it.currentHp > 0 }.firstOrNull() ?: return@repeat
+                        val target =
+                            enemies.filter { it.currentHp > 0 }.firstOrNull() ?: return@repeat
                         val (dmg, isCrit) = calcMagicDamage(hero, target)
                         val finalDmg = (dmg * 2.0).toLong()
-                        applyDamageToEnemy(hero, target, finalDmg, true, isCrit, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                        applyDamageToEnemy(
+                            hero,
+                            target,
+                            finalDmg,
+                            true,
+                            isCrit,
+                            enemies,
+                            dimension,
+                            relicBonuses,
+                            allies,
+                            levelUpTracker,
+                            onLootCollected,
+                            onEvent
+                        )
                     }
                     val amounts = mutableMapOf<String, Int>()
                     allies.filter { it.isAlive }.forEach { ally ->
@@ -657,26 +1021,56 @@ class FFBattleEngine(private val context: Context) {
                     }
                 } else if (masteryLvl >= 10) {
                     repeat(2) {
-                        val target = enemies.filter { it.currentHp > 0 }.firstOrNull() ?: return@repeat
+                        val target =
+                            enemies.filter { it.currentHp > 0 }.firstOrNull() ?: return@repeat
                         val (dmg, isCrit) = calcMagicDamage(hero, target)
                         val finalDmg = (dmg * 1.8).toLong()
-                        applyDamageToEnemy(hero, target, finalDmg, true, isCrit, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                        applyDamageToEnemy(
+                            hero,
+                            target,
+                            finalDmg,
+                            true,
+                            isCrit,
+                            enemies,
+                            dimension,
+                            relicBonuses,
+                            allies,
+                            levelUpTracker,
+                            onLootCollected,
+                            onEvent
+                        )
                     }
                 } else {
                     val target = enemies.filter { it.currentHp > 0 }.firstOrNull()
                     if (target != null) {
                         val (dmg, isCrit) = calcMagicDamage(hero, target)
                         val finalDmg = (dmg * 1.4).toLong()
-                        applyDamageToEnemy(hero, target, finalDmg, true, isCrit, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                        applyDamageToEnemy(
+                            hero,
+                            target,
+                            finalDmg,
+                            true,
+                            isCrit,
+                            enemies,
+                            dimension,
+                            relicBonuses,
+                            allies,
+                            levelUpTracker,
+                            onLootCollected,
+                            onEvent
+                        )
                     }
-                    val lowestAlly = allies.filter { it.isAlive }.minByOrNull { it.currentHp.toFloat() / it.maxHp }
+                    val lowestAlly = allies.filter { it.isAlive }
+                        .minByOrNull { it.currentHp.toFloat() / it.maxHp }
                     if (lowestAlly != null) {
                         val healAmt = (hero.magic * 2.0f + lowestAlly.maxHp * 0.20f).toInt()
-                        lowestAlly.currentHp = minOf(lowestAlly.currentHp + healAmt, lowestAlly.maxHp)
+                        lowestAlly.currentHp =
+                            minOf(lowestAlly.currentHp + healAmt, lowestAlly.maxHp)
                         onEvent(FFBattleEvent.HealCast(hero.id, lowestAlly.id, healAmt))
                     }
                 }
             }
+
             HeroClass.SUMMONER -> {
                 val (name, mult) = when {
                     masteryLvl >= 25 -> "Bahamut" to 2.5f
@@ -688,58 +1082,164 @@ class FFBattleEngine(private val context: Context) {
                     val (baseDmg, isCrit) = calcMagicDamage(hero, enemy)
                     val dmg = (baseDmg * mult).toLong()
                     totalDmg += dmg
-                    applyDamageToEnemy(hero, enemy, dmg, true, isCrit || mult > 2f, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                    applyDamageToEnemy(
+                        hero,
+                        enemy,
+                        dmg,
+                        true,
+                        isCrit || mult > 2f,
+                        enemies,
+                        dimension,
+                        relicBonuses,
+                        allies,
+                        levelUpTracker,
+                        onLootCollected,
+                        onEvent
+                    )
                 }
                 onEvent(FFBattleEvent.SummonUsed(hero.id, name, totalDmg))
             }
+
             HeroClass.NINJA -> {
                 if (masteryLvl >= 25) {
                     val target = enemies.filter { it.currentHp > 0 }.maxByOrNull { it.currentHp }
                     if (target != null) {
                         val dmg = (hero.attack * 2.8).toLong()
-                        applyDamageToEnemy(hero, target, dmg, false, true, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                        applyDamageToEnemy(
+                            hero,
+                            target,
+                            dmg,
+                            false,
+                            true,
+                            enemies,
+                            dimension,
+                            relicBonuses,
+                            allies,
+                            levelUpTracker,
+                            onLootCollected,
+                            onEvent
+                        )
                     }
                 } else if (masteryLvl >= 10) {
                     repeat(2) {
-                        val target = enemies.filter { it.currentHp > 0 }.maxByOrNull { it.currentHp } ?: return@repeat
+                        val target =
+                            enemies.filter { it.currentHp > 0 }.maxByOrNull { it.currentHp }
+                                ?: return@repeat
                         val dmg = (hero.attack * 1.5).toLong()
-                        applyDamageToEnemy(hero, target, dmg, false, true, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                        applyDamageToEnemy(
+                            hero,
+                            target,
+                            dmg,
+                            false,
+                            true,
+                            enemies,
+                            dimension,
+                            relicBonuses,
+                            allies,
+                            levelUpTracker,
+                            onLootCollected,
+                            onEvent
+                        )
                     }
                 } else {
                     val target = enemies.filter { it.currentHp > 0 }.maxByOrNull { it.currentHp }
                     if (target != null) {
                         val dmg = (hero.attack * 1.8).toLong()
-                        applyDamageToEnemy(hero, target, dmg, false, true, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                        applyDamageToEnemy(
+                            hero,
+                            target,
+                            dmg,
+                            false,
+                            true,
+                            enemies,
+                            dimension,
+                            relicBonuses,
+                            allies,
+                            levelUpTracker,
+                            onLootCollected,
+                            onEvent
+                        )
                     }
                 }
             }
+
             HeroClass.DRAGOON -> {
                 if (masteryLvl >= 25) {
                     enemies.filter { it.currentHp > 0 }.forEach { target ->
                         val (baseDmg, isCrit) = calcPhysicalDamage(hero, target)
                         val dmg = (baseDmg * 2.5).toLong()
-                        applyDamageToEnemy(hero, target, dmg, false, isCrit, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                        applyDamageToEnemy(
+                            hero,
+                            target,
+                            dmg,
+                            false,
+                            isCrit,
+                            enemies,
+                            dimension,
+                            relicBonuses,
+                            allies,
+                            levelUpTracker,
+                            onLootCollected,
+                            onEvent
+                        )
                     }
                 } else if (masteryLvl >= 10) {
                     val target = enemies.filter { it.currentHp > 0 }.firstOrNull()
                     if (target != null) {
                         val baseDmg = maxOf(1, hero.attack + Random.nextInt(-3, 4))
                         val dmg = (baseDmg * 2.0).toLong()
-                        applyDamageToEnemy(hero, target, dmg, false, true, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                        applyDamageToEnemy(
+                            hero,
+                            target,
+                            dmg,
+                            false,
+                            true,
+                            enemies,
+                            dimension,
+                            relicBonuses,
+                            allies,
+                            levelUpTracker,
+                            onLootCollected,
+                            onEvent
+                        )
                     }
                 } else {
                     val target = enemies.filter { it.currentHp > 0 }.firstOrNull()
                     if (target != null) {
                         val (baseDmg, isCrit) = calcPhysicalDamage(hero, target)
                         val dmg = (baseDmg * 1.6).toLong()
-                        applyDamageToEnemy(hero, target, dmg, false, isCrit, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                        applyDamageToEnemy(
+                            hero,
+                            target,
+                            dmg,
+                            false,
+                            isCrit,
+                            enemies,
+                            dimension,
+                            relicBonuses,
+                            allies,
+                            levelUpTracker,
+                            onLootCollected,
+                            onEvent
+                        )
                     }
                 }
             }
+
             HeroClass.BARD -> {
                 val (songRes, effectRes, healPct) = when {
-                    masteryLvl >= 25 -> Triple(R.string.song_ballad, R.string.song_ballad_effect, 0.45f)
-                    masteryLvl >= 10 -> Triple(R.string.song_minuet, R.string.song_minuet_effect, 0.30f)
+                    masteryLvl >= 25 -> Triple(
+                        R.string.song_ballad,
+                        R.string.song_ballad_effect,
+                        0.45f
+                    )
+
+                    masteryLvl >= 10 -> Triple(
+                        R.string.song_minuet,
+                        R.string.song_minuet_effect,
+                        0.30f
+                    )
+
                     else -> Triple(R.string.song_paeon, R.string.song_paeon_effect, 0.20f)
                 }
                 onEvent(FFBattleEvent.BardSong(hero.id, songRes, effectRes))
@@ -754,46 +1254,131 @@ class FFBattleEngine(private val context: Context) {
                     onEvent(FFBattleEvent.GroupHeal(hero.id, amounts))
                 }
             }
+
             HeroClass.SAMURAI -> {
                 if (masteryLvl >= 25) {
                     enemies.filter { it.currentHp > 0 }.forEach { enemy ->
                         val dmg = (hero.attack * 2.5).toLong()
-                        applyDamageToEnemy(hero, enemy, dmg, false, true, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                        applyDamageToEnemy(
+                            hero,
+                            enemy,
+                            dmg,
+                            false,
+                            true,
+                            enemies,
+                            dimension,
+                            relicBonuses,
+                            allies,
+                            levelUpTracker,
+                            onLootCollected,
+                            onEvent
+                        )
                     }
                 } else if (masteryLvl >= 10) {
                     enemies.filter { it.currentHp > 0 }.forEach { enemy ->
                         val dmg = (hero.attack * 2.0).toLong()
-                        applyDamageToEnemy(hero, enemy, dmg, false, true, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                        applyDamageToEnemy(
+                            hero,
+                            enemy,
+                            dmg,
+                            false,
+                            true,
+                            enemies,
+                            dimension,
+                            relicBonuses,
+                            allies,
+                            levelUpTracker,
+                            onLootCollected,
+                            onEvent
+                        )
                     }
                 } else {
                     val target = enemies.filter { it.currentHp > 0 }.firstOrNull()
                     if (target != null) {
                         val (baseDmg, _) = calcPhysicalDamage(hero, target)
                         val dmg = (baseDmg * 1.5).toLong()
-                        applyDamageToEnemy(hero, target, dmg, false, true, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                        applyDamageToEnemy(
+                            hero,
+                            target,
+                            dmg,
+                            false,
+                            true,
+                            enemies,
+                            dimension,
+                            relicBonuses,
+                            allies,
+                            levelUpTracker,
+                            onLootCollected,
+                            onEvent
+                        )
                     }
                 }
             }
+
             HeroClass.MIME -> {
                 val lastAbility = getLastAbility()
                 if (lastAbility != null) {
                     val mimickedHero = hero.copy(heroClass = lastAbility)
-                    executeJobAbility(mimickedHero, allies, enemies, dimension, relicBonuses, levelUpTracker, getLastAbility, setLastAbility, mode, onLootCollected, onEvent)
+                    executeJobAbility(
+                        mimickedHero,
+                        allies,
+                        enemies,
+                        dimension,
+                        relicBonuses,
+                        levelUpTracker,
+                        getLastAbility,
+                        setLastAbility,
+                        mode,
+                        onLootCollected,
+                        onEvent
+                    )
                 } else {
                     val target = enemies.filter { it.currentHp > 0 }.firstOrNull()
                     if (target != null) {
                         val (dmg, isCrit) = calcPhysicalDamage(hero, target)
-                        applyDamageToEnemy(hero, target, dmg, false, isCrit, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                        applyDamageToEnemy(
+                            hero,
+                            target,
+                            dmg,
+                            false,
+                            isCrit,
+                            enemies,
+                            dimension,
+                            relicBonuses,
+                            allies,
+                            levelUpTracker,
+                            onLootCollected,
+                            onEvent
+                        )
                     }
                 }
             }
+
             HeroClass.NECROMANCER -> {
-                val targetEnemies = if (masteryLvl >= 25) enemies.filter { it.currentHp > 0 } else listOfNotNull(enemies.filter { it.currentHp > 0 }.firstOrNull())
-                val mult = when { masteryLvl >= 25 -> 2.2; masteryLvl >= 10 -> 1.8; else -> 1.4 }
+                val targetEnemies =
+                    if (masteryLvl >= 25) enemies.filter { it.currentHp > 0 } else listOfNotNull(
+                        enemies.filter { it.currentHp > 0 }.firstOrNull()
+                    )
+                val mult = when {
+                    masteryLvl >= 25 -> 2.2; masteryLvl >= 10 -> 1.8; else -> 1.4
+                }
                 targetEnemies.forEach { target ->
                     val (baseDmg, isCrit) = calcMagicDamage(hero, target)
                     val dmg = (baseDmg * mult).toLong()
-                    applyDamageToEnemy(hero, target, dmg, true, isCrit, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                    applyDamageToEnemy(
+                        hero,
+                        target,
+                        dmg,
+                        true,
+                        isCrit,
+                        enemies,
+                        dimension,
+                        relicBonuses,
+                        allies,
+                        levelUpTracker,
+                        onLootCollected,
+                        onEvent
+                    )
 
                     val healAmt = (dmg * 0.5f).toInt()
                     if (masteryLvl >= 10) {
@@ -811,12 +1396,26 @@ class FFBattleEngine(private val context: Context) {
                     }
                 }
             }
+
             HeroClass.BLUE_MAGE -> {
                 if (masteryLvl >= 25) {
                     enemies.filter { it.currentHp > 0 }.forEach { target ->
                         val (baseDmg, isCrit) = calcMagicDamage(hero, target)
                         val dmg = (baseDmg * 2.2).toLong()
-                        applyDamageToEnemy(hero, target, dmg, true, isCrit, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                        applyDamageToEnemy(
+                            hero,
+                            target,
+                            dmg,
+                            true,
+                            isCrit,
+                            enemies,
+                            dimension,
+                            relicBonuses,
+                            allies,
+                            levelUpTracker,
+                            onLootCollected,
+                            onEvent
+                        )
                     }
                     val amounts = mutableMapOf<String, Int>()
                     allies.filter { it.isAlive }.forEach { ally ->
@@ -841,45 +1440,117 @@ class FFBattleEngine(private val context: Context) {
                     if (target != null) {
                         val (baseDmg, isCrit) = calcMagicDamage(hero, target)
                         val dmg = (baseDmg * 1.8).toLong()
-                        applyDamageToEnemy(hero, target, dmg, true, isCrit, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                        applyDamageToEnemy(
+                            hero,
+                            target,
+                            dmg,
+                            true,
+                            isCrit,
+                            enemies,
+                            dimension,
+                            relicBonuses,
+                            allies,
+                            levelUpTracker,
+                            onLootCollected,
+                            onEvent
+                        )
                     }
                 } else {
                     val target = enemies.filter { it.currentHp > 0 }.firstOrNull()
                     if (target != null) {
                         val (baseDmg, isCrit) = calcPhysicalDamage(hero, target)
                         val dmg = (baseDmg * 1.5).toLong()
-                        applyDamageToEnemy(hero, target, dmg, false, isCrit, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                        applyDamageToEnemy(
+                            hero,
+                            target,
+                            dmg,
+                            false,
+                            isCrit,
+                            enemies,
+                            dimension,
+                            relicBonuses,
+                            allies,
+                            levelUpTracker,
+                            onLootCollected,
+                            onEvent
+                        )
                     }
                 }
             }
+
             HeroClass.ONION_KNIGHT -> {
                 if (masteryLvl >= 25) {
                     val target = enemies.filter { it.currentHp > 0 }.firstOrNull()
                     if (target != null) {
                         val (baseDmg, _) = calcPhysicalDamage(hero, target)
                         val dmg = (baseDmg * 3.0).toLong()
-                        applyDamageToEnemy(hero, target, dmg, false, true, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                        applyDamageToEnemy(
+                            hero,
+                            target,
+                            dmg,
+                            false,
+                            true,
+                            enemies,
+                            dimension,
+                            relicBonuses,
+                            allies,
+                            levelUpTracker,
+                            onLootCollected,
+                            onEvent
+                        )
                     }
                 } else if (masteryLvl >= 10) {
                     repeat(2) {
-                        val target = enemies.filter { it.currentHp > 0 }.firstOrNull() ?: return@repeat
+                        val target =
+                            enemies.filter { it.currentHp > 0 }.firstOrNull() ?: return@repeat
                         val (baseDmg, isCrit) = calcPhysicalDamage(hero, target)
                         val dmg = (baseDmg * 1.5).toLong()
-                        applyDamageToEnemy(hero, target, dmg, false, isCrit, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                        applyDamageToEnemy(
+                            hero,
+                            target,
+                            dmg,
+                            false,
+                            isCrit,
+                            enemies,
+                            dimension,
+                            relicBonuses,
+                            allies,
+                            levelUpTracker,
+                            onLootCollected,
+                            onEvent
+                        )
                     }
                 } else {
                     val target = enemies.filter { it.currentHp > 0 }.firstOrNull()
                     if (target != null) {
                         val (baseDmg, isCrit) = calcPhysicalDamage(hero, target)
                         val dmg = (baseDmg * 1.2).toLong()
-                        applyDamageToEnemy(hero, target, dmg, false, isCrit, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
+                        applyDamageToEnemy(
+                            hero,
+                            target,
+                            dmg,
+                            false,
+                            isCrit,
+                            enemies,
+                            dimension,
+                            relicBonuses,
+                            allies,
+                            levelUpTracker,
+                            onLootCollected,
+                            onEvent
+                        )
                     }
                 }
             }
         }
     }
 
-    private fun awardExpToParty(heroes: List<Hero>, amount: Long, tracker: MutableSet<String>, onEvent: (FFBattleEvent) -> Unit) {
+    private fun awardExpToParty(
+        heroes: List<Hero>,
+        amount: Long,
+        tracker: MutableSet<String>,
+        onEvent: (FFBattleEvent) -> Unit
+    ) {
         heroes.filter { it.isAlive }.forEach { hero ->
             val result = hero.addExperience(amount)
             if (result) tracker.add(hero.id)
@@ -892,7 +1563,8 @@ class FFBattleEngine(private val context: Context) {
         val critMult = 1.0f + (attacker.critDamage / 100f)
         val totalAtk = attacker.attack.toDouble()
         val defK = 500f + target.floor * 2.0
-        val mitigation = (target.defense.toDouble() / (target.defense.toDouble() + defK)).coerceAtMost(0.85)
+        val mitigation =
+            (target.defense.toDouble() / (target.defense.toDouble() + defK)).coerceAtMost(0.85)
         val baseDmg = maxOf(1.toDouble(), totalAtk * (1 - mitigation) + Random.nextInt(-2, 3))
         val finalDmg = if (isCrit) (baseDmg * critMult).toLong() else baseDmg.toLong()
         return finalDmg to isCrit
@@ -903,17 +1575,25 @@ class FFBattleEngine(private val context: Context) {
         val critMult = 1.0 + (attacker.critDamage / 100.0)
         val totalMag = attacker.magic.toDouble() * 1.5
         val mdefK = 400 + target.floor * 1.5
-        val mitigation = (target.magicDefense.toDouble() / (target.magicDefense.toDouble() + mdefK)).coerceAtMost(0.85)
+        val mitigation =
+            (target.magicDefense.toDouble() / (target.magicDefense.toDouble() + mdefK)).coerceAtMost(
+                0.85
+            )
         val baseDmg = maxOf(1.toDouble(), totalMag * (1 - mitigation) + Random.nextInt(-2, 3))
         val finalDmg = if (isCrit) (baseDmg * critMult).toLong() else baseDmg.toLong()
         return finalDmg to isCrit
     }
 
-    private fun executeEnemyTurn(enemy: Enemy, heroes: MutableList<Hero>, onEvent: (FFBattleEvent) -> Unit) {
+    private fun executeEnemyTurn(
+        enemy: Enemy,
+        heroes: MutableList<Hero>,
+        relicBonuses: RelicBonuses,
+        onEvent: (FFBattleEvent) -> Unit
+    ) {
         val aliveHeroes = heroes.filter { it.isAlive }
         if (aliveHeroes.isEmpty()) return
 
-        // Aggro calculation: ensures zero-defense heroes maintain a minimum weight of 1
+        // 1. Initial Target Selection (Aggro based on Defense)
         val totalDefense = aliveHeroes.sumOf { maxOf(1, it.defense) }
         var roll = Random.nextLong(totalDefense)
 
@@ -927,16 +1607,76 @@ class FFBattleEngine(private val context: Context) {
             roll -= weight
         }
 
-        val k = 150f + enemy.floor * 0.8f
-        val mitigation = (target.defense.toFloat() / (target.defense.toFloat() + k)).coerceAtMost(0.85f)
-        
-        val isCrit = Random.nextInt(100) < (if (enemy.isBoss) 20 else if (enemy.floor >= 200) 10 else 0)
-        val critMult = if (isCrit) 1.5f else 1.0f
+        // Helper function to calculate damage against a specific defender's stats
+        fun calculateDamageFor(defender: Hero): Pair<Long, Boolean> {
+            val k = 150f + enemy.floor * 0.8f
+            val mitigation =
+                (defender.defense.toFloat() / (defender.defense.toFloat() + k)).coerceAtMost(0.85f)
+            val isCrit =
+                Random.nextInt(100) < (if (enemy.isBoss) 20 else if (enemy.floor >= 200) 10 else 0)
+            val critMult = if (isCrit) 1.5f else 1.0f
+            val rawDmg = maxOf(1f, (enemy.attack.toFloat() + Random.nextInt(-2, 3)) * critMult)
+            val dmg = maxOf(1, (rawDmg * (1f - mitigation)).toLong())
+            return dmg to isCrit
+        }
 
-        val rawDmg = maxOf(1f, (enemy.attack.toFloat() + Random.nextInt(-2, 3)) * critMult)
-        val dmg = maxOf(1, (rawDmg * (1f - mitigation)).toLong())
+        var (dmg, isCrit) = calculateDamageFor(target)
+
+        // --- NEW: COVER INTERCEPTION ---
+        // If a non-tank is about to take fatal damage, a healthy tank steps in!
+        val isOriginalTargetTank =
+            target.heroClass == HeroClass.KNIGHT || target.heroClass == HeroClass.PALADIN
+
+        if (!isOriginalTargetTank && dmg >= target.currentHp) {
+            // Find a tank in the party who is above 50% HP (so they can successfully use Guts)
+            val coveringTank = aliveHeroes.firstOrNull {
+                (it.heroClass == HeroClass.KNIGHT || it.heroClass == HeroClass.PALADIN) &&
+                        it.currentHp > (it.maxHp * 0.5f)
+            }
+
+            if (coveringTank != null) {
+                // Emit the "Cover" text to the combat log using existing string resources
+                onEvent(
+                    FFBattleEvent.AbilityUsed(
+                        coveringTank.id,
+                        R.string.ability_cover_name,
+                        R.string.ability_cover_desc,
+                        listOf(target.name)
+                    )
+                )
+
+                // Swap the target to the Tank and recalculate damage against their heavy armor
+                target = coveringTank
+                val newCalc = calculateDamageFor(target)
+                dmg = newCalc.first
+                isCrit = newCalc.second
+            }
+        }
+        // -------------------------------
+
+        // --- ENDGAME SURVIVAL MECHANICS ---
+
+        // 1. Max HP Damage Gate: No single attack can exceed 80% of a hero's maximum HP
+        val damageGateCap = (target.maxHp * 0.80).toLong()
+        if (dmg > damageGateCap) {
+            dmg = damageGateCap
+        }
+
+        // 2. Tank Guts: Knights and Paladins survive fatal hits with 1 HP if above 50% Health
+        val masteryLvl = relicBonuses.getMasteryLevel(target.heroClass)
+        val isCurrentlyTank =
+            target.heroClass == HeroClass.KNIGHT || target.heroClass == HeroClass.PALADIN
+        val hasGuts = isCurrentlyTank && masteryLvl >= 25
+
+        if (hasGuts && target.currentHp > (target.maxHp * 0.5f) && dmg >= target.currentHp) {
+            dmg = target.currentHp - 1 // Leave them with exactly 1 HP
+        }
+
+        // --------------------------------------
+
         target.currentHp -= dmg
         onEvent(FFBattleEvent.DamageDealt(enemy.id, target.id, dmg, false, isCrit))
+
         if (target.currentHp <= 0) {
             target.currentHp = 0
             onEvent(FFBattleEvent.HeroFell(target.id, target.name, target.heroClass))
