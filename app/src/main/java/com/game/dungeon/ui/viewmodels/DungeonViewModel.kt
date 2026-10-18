@@ -603,7 +603,11 @@ class DungeonViewModel @Inject constructor(
       battleState.update { it.copy(isPaused = true) }
       adManager.showRewardedAd(
           activity,
-          { battleState.update { it.copy(boostFloorsRemaining = it.boostFloorsRemaining + 10) } },
+          {
+              val maxFloor = gameState.value?.highestFloor ?: 1
+              val boostFloors = maxOf(10, (maxFloor * 0.05f).toInt())
+              battleState.update { it.copy(boostFloorsRemaining = it.boostFloorsRemaining + boostFloors) }
+          },
           { battleState.update { it.copy(isPaused = false) } }
       )
   }
