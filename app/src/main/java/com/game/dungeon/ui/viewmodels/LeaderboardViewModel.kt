@@ -52,17 +52,22 @@ class LeaderboardViewModel @Inject constructor(
         currentParty
     ) { tab, _, gs, party ->
         if (gs == null) return@combine emptyList()
-        
-        val entries = when (tab) {
+
+        val rawEntries = when (tab) {
             0 -> leaderboardRepository.getGlobalLeaderboard()
             1 -> leaderboardRepository.getBossLairLeaderboard()
             else -> leaderboardRepository.getGlobalLeaderboard()
         }
-        
+
+        // Filter Boss Lair entries to only show players who unlocked Dimension 11+ and completed at least 1 Boss floor
+        val entries = if (tab == 1) {
+            rawEntries.filter { it.dimension >= 11 && it.maxBossFloor > 1 }
+        } else {
+            rawEntries
+        }
+
         val mappedEntries = entries.map { entry ->
             val isUser = gs.playerId != null && entry.playerId == gs.playerId
-            // Preserve the team that actually set the record from Firebase.
-            // Only fallback to active party if no team was saved for the record yet.
             if (isUser && entry.team.isEmpty()) {
                 entry.copy(isUser = true, team = party)
             } else {
@@ -74,7 +79,9 @@ class LeaderboardViewModel @Inject constructor(
         if (!hasUser && gs.playerId != null) {
             val userBossFloor = gs.highestBossLairFloor
             val userFloor = gs.lifetimeHighestFloor
-            val showUser = if (tab == 1) userBossFloor > 0 else userFloor > 0
+            val canSeeBoss = gs.currentDimension >= 11 || BuildConfig.ENABLE_BOSS_LAIR_TESTING
+            val showUser = if (tab == 1) (canSeeBoss && userBossFloor > 1) else userFloor > 0
+
             if (showUser) {
                 val userEntry = LeaderboardEntry(
                     rank = mappedEntries.size + 1,
