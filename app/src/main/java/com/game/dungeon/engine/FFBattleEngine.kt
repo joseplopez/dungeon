@@ -484,7 +484,7 @@ class FFBattleEngine(private val context: Context) {
                     val healAmt = (hero.maxHp * 0.30f + hero.attack * 0.5f).toInt()
                     hero.currentHp = minOf(hero.currentHp + healAmt, hero.maxHp)
                     onEvent(FFBattleEvent.HealCast(hero.id, hero.id, healAmt))
-                    hero.abilityCharge = 2
+                    hero.abilityCharge = 1
                 } else if (masteryLvl >= 10) {
                     val target = enemies.filter { it.currentHp > 0 }.firstOrNull()
                     if (target != null) {
@@ -492,11 +492,11 @@ class FFBattleEngine(private val context: Context) {
                         val dmg = (baseDmg * 1.8).toLong()
                         applyDamageToEnemy(hero, target, dmg, false, isCrit, enemies, dimension, relicBonuses, allies, levelUpTracker, onLootCollected, onEvent)
                     }
-                    val healAmt = (hero.maxHp * 0.30f + hero.attack * 0.5f).toInt()
+                    val healAmt = (hero.maxHp * 0.15f + hero.attack * 0.2f).toInt()
                     hero.currentHp = minOf(hero.currentHp + healAmt, hero.maxHp)
                     onEvent(FFBattleEvent.HealCast(hero.id, hero.id, healAmt))
                 } else {
-                    val healAmt = (hero.maxHp * 0.25f + hero.attack * 0.5f).toInt()
+                    val healAmt = (hero.maxHp * 0.05f + hero.attack * 0.1f).toInt()
                     hero.currentHp = minOf(hero.currentHp + healAmt, hero.maxHp)
                     onEvent(FFBattleEvent.HealCast(hero.id, hero.id, healAmt))
                 }
