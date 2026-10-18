@@ -437,9 +437,9 @@ fun GoldExchangeDialog(
     onDismiss: () -> Unit
 ) {
     val packs = listOf(
-        Triple(50_000L, 10, "50K"),
         Triple(250_000L, 50, "250K"),
-        Triple(1_000_000L, 200, "1M")
+        Triple(1_000_000L, 200, "1M"),
+        Triple(1_000_000_000L, 20000, "1M")
     )
 
     Dialog(
