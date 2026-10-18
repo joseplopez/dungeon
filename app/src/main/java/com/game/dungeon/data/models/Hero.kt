@@ -263,11 +263,11 @@ class Hero(
         val finalCrit = (100f * rawCrit / (rawCrit + 50f)).toInt().coerceAtMost(85)
 
         val statMap: MutableMap<String, Long> = mutableMapOf(
-            "HP" to (baseMaxHp + equippedItems.sumOf { it.hpBonus } + (relicBonuses?.hpBonus ?: 0) + masteryHp + (loreBonus * 5)),
+            "HP" to (baseMaxHp + equippedItems.sumOf { it.effectiveHpBonus.toLong() } + (relicBonuses?.hpBonus ?: 0) + masteryHp + (loreBonus * 5)),
             "MP" to baseMaxMp + equippedItems.sumOf { it.mpBonus } + (relicBonuses?.mpBonus ?: 0) + masteryMp + (loreBonus * 2),
-            "ATK" to baseAttack + equippedItems.sumOf { it.attackBonus } + (relicBonuses?.attackBonus ?: 0) + masteryAtk + loreBonus,
-            "DEF" to baseDefense + equippedItems.sumOf { it.defenseBonus } + (relicBonuses?.defenseBonus ?: 0) + masteryDef + loreBonus,
-            "MAG" to baseMagic + equippedItems.sumOf { it.magicBonus } + (relicBonuses?.magicBonus ?: 0) + masteryMag + loreBonus,
+            "ATK" to baseAttack + equippedItems.sumOf { it.effectiveAttackBonus.toLong() } + (relicBonuses?.attackBonus ?: 0) + masteryAtk + loreBonus,
+            "DEF" to baseDefense + equippedItems.sumOf { it.effectiveDefenseBonus.toLong() } + (relicBonuses?.defenseBonus ?: 0) + masteryDef + loreBonus,
+            "MAG" to baseMagic + equippedItems.sumOf { it.effectiveMagicBonus.toLong() } + (relicBonuses?.magicBonus ?: 0) + masteryMag + loreBonus,
             "CRIT_CHANCE" to finalCrit.toLong(),
             "CRIT_DAMAGE" to 50 + equippedItems.sumOf { it.critDamageBonus } + (relicBonuses?.critDamageBonus ?: 0) + masteryCritDmg + petCritDmg + (relicBonuses?.warRoomCritBonus ?: 0)
         )

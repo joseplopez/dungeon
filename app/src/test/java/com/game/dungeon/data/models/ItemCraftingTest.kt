@@ -109,10 +109,10 @@ class ItemCraftingTest {
 
     @Test
     fun `test socketed gem stat bonuses append correctly to power score and effective stat getters`() {
-        val rubyGem = MaterialCatalog.getMaterial("ruby_gem_2") // attackBonus = 15, statBonus = 15 -> powerScore = 30
-        val sapphireGem = MaterialCatalog.getMaterial("sapphire_gem_2") // magicBonus = 15, statBonus = 15 -> powerScore = 30
-        val emeraldGem = MaterialCatalog.getMaterial("emerald_gem_2") // defenseBonus = 15, statBonus = 15 -> powerScore = 30
-        val topazGem = MaterialCatalog.getMaterial("topaz_gem_2") // hpBonus = 75, statBonus = 15 -> powerScore = 30 (75/5 + 15)
+        val rubyGem = MaterialCatalog.getMaterial("ruby_gem_2") // attackBonus = 2, statBonus = 2 -> powerScore = 4
+        val sapphireGem = MaterialCatalog.getMaterial("sapphire_gem_2") // magicBonus = 2, statBonus = 2 -> powerScore = 4
+        val emeraldGem = MaterialCatalog.getMaterial("emerald_gem_2") // defenseBonus = 2, statBonus = 2 -> powerScore = 4
+        val topazGem = MaterialCatalog.getMaterial("topaz_gem_2") // hpBonus = 2, statBonus = 2 -> powerScore = 4
 
         val sockets = listOf(
             SocketSlot(id = "slot_1", socketedGem = rubyGem),
@@ -139,20 +139,20 @@ class ItemCraftingTest {
         // Base stats at enhancementLevel = 2:
         // basePowerScore = 50 + 50 + 50 + (100/5 = 20) = 170
         // base power scaled by 1.10 = (170 * 1.10) = 187
-        // socketBonus = 30 + 30 + 30 + 30 = 120
-        // expected total powerScore = 187 + 120 = 307
-        assertEquals(120, baseItem.socketBonus)
-        assertEquals(307.0, baseItem.powerScore, 0.001)
+        // socketBonus = 4 + 4 + 4 + 2 = 14
+        // expected total powerScore = 187 + 14 = 201
+        assertEquals(14, baseItem.socketBonus)
+        assertEquals(201.0, baseItem.powerScore, 0.001)
 
-        // Effective stats at enhancementLevel = 2 (1.10 multiplier on base, plus gem bonus):
-        // effectiveAttackBonus: (50 * 1.10).toInt() + 15 = 55 + 15 = 70
-        // effectiveDefenseBonus: (50 * 1.10).toInt() + 15 = 55 + 15 = 70
-        // effectiveMagicBonus: (50 * 1.10).toInt() + 15 = 55 + 15 = 70
-        // effectiveHpBonus: (100 * 1.10).toInt() + 75 = 110 + 75 = 185
-        assertEquals(70.0, baseItem.effectiveAttackBonus, 0.001)
-        assertEquals(70.0, baseItem.effectiveDefenseBonus, 0.001)
-        assertEquals(70.0, baseItem.effectiveMagicBonus, 0.001)
-        assertEquals(185.0, baseItem.effectiveHpBonus, 0.001)
+        // Effective stats at enhancementLevel = 2 (1.10 multiplier on base, scaled by gem %):
+        // effectiveAttackBonus: (50 * 1.10) * 1.02 = 56.1
+        // effectiveDefenseBonus: (50 * 1.10) * 1.02 = 56.1
+        // effectiveMagicBonus: (50 * 1.10) * 1.02 = 56.1
+        // effectiveHpBonus: (100 * 1.10) * 1.02 = 112.2
+        assertEquals(56.1, baseItem.effectiveAttackBonus, 0.001)
+        assertEquals(56.1, baseItem.effectiveDefenseBonus, 0.001)
+        assertEquals(56.1, baseItem.effectiveMagicBonus, 0.001)
+        assertEquals(112.2, baseItem.effectiveHpBonus, 0.001)
     }
 
     @Test

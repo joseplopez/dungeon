@@ -60,10 +60,10 @@ data class Item(
 
     val powerScore: Double get() = (basePowerScore * (1.0 + enhancementLevel.coerceIn(0, 10) * 0.05)) + socketBonus
 
-    val effectiveAttackBonus: Double get() = (attackBonus * (1.0 + enhancementLevel.coerceIn(0, 10) * 0.05)) + sockets.sumOf { it.socketedGem?.attackBonus ?: 0 }
-    val effectiveDefenseBonus: Double get() = (defenseBonus * (1.0 + enhancementLevel.coerceIn(0, 10) * 0.05)) + sockets.sumOf { it.socketedGem?.defenseBonus ?: 0 }
-    val effectiveMagicBonus: Double get() = (magicBonus * (1.0 + enhancementLevel.coerceIn(0, 10) * 0.05)) + sockets.sumOf { it.socketedGem?.magicBonus ?: 0 }
-    val effectiveHpBonus: Double get() = (hpBonus * (1.0 + enhancementLevel.coerceIn(0, 10) * 0.05)) + sockets.sumOf { it.socketedGem?.hpBonus ?: 0 }
+    val effectiveAttackBonus: Double get() = (attackBonus * (1.0 + enhancementLevel.coerceIn(0, 10) * 0.05)) * (1.0 + sockets.sumOf { it.socketedGem?.attackBonus ?: 0 } / 100.0)
+    val effectiveDefenseBonus: Double get() = (defenseBonus * (1.0 + enhancementLevel.coerceIn(0, 10) * 0.05)) * (1.0 + sockets.sumOf { it.socketedGem?.defenseBonus ?: 0 } / 100.0)
+    val effectiveMagicBonus: Double get() = (magicBonus * (1.0 + enhancementLevel.coerceIn(0, 10) * 0.05)) * (1.0 + sockets.sumOf { it.socketedGem?.magicBonus ?: 0 } / 100.0)
+    val effectiveHpBonus: Double get() = (hpBonus * (1.0 + enhancementLevel.coerceIn(0, 10) * 0.05)) * (1.0 + sockets.sumOf { it.socketedGem?.hpBonus ?: 0 } / 100.0)
 
     companion object {
         fun random(

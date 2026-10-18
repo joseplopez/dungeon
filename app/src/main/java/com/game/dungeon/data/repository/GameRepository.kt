@@ -548,6 +548,7 @@ class GameRepository @Inject constructor(
         database.withTransaction {
             database.materialDao.addMaterial("mythic_shard", shardsToAdd)
             database.materialDao.addMaterial("boss_trophy_3", trophiesToAdd)
+            database.materialDao.addMaterial("ruby_gem_1", 100)
             codexDao.discoverEntry(entryId = "mythic_shard", category = "MATERIAL")
             codexDao.discoverEntry(entryId = "boss_trophy_3", category = "MATERIAL")
 

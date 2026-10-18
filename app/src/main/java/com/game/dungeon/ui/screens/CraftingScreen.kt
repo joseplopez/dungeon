@@ -519,11 +519,13 @@ private fun SocketSection(
             modifier = Modifier.weight(0.35f),
             roster = uiState.roster
         )
+        val scrollState = rememberScrollState()
 
         Column(
             modifier = Modifier
                 .weight(0.65f)
-                .fillMaxHeight(),
+                .fillMaxHeight()
+                .verticalScroll(scrollState),
             verticalArrangement = Arrangement.SpaceBetween
         ) {
             val item = uiState.selectedItem
@@ -539,6 +541,7 @@ private fun SocketSection(
                     )
                 }
             } else {
+
                 val maxSockets = if (item.slot == ItemSlot.ACCESSORY) 1 else 3
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     Text(
@@ -650,6 +653,25 @@ private fun SocketSection(
                                 }
                             }
                         }
+
+                        val selectedGem = uiState.materials.find { it.id == selectedGemId } ?: selectedGemId?.let { MaterialCatalog.getMaterial(it) }
+                        if (selectedGem != null) {
+                            val effectText = when {
+                                selectedGem.attackBonus > 0 -> "+${selectedGem.attackBonus}% ${stringResource(R.string.stat_attack)}"
+                                selectedGem.defenseBonus > 0 -> "+${selectedGem.defenseBonus}% ${stringResource(R.string.stat_defense)}"
+                                selectedGem.magicBonus > 0 -> "+${selectedGem.magicBonus}% ${stringResource(R.string.stat_magic)}"
+                                selectedGem.hpBonus > 0 -> "+${selectedGem.hpBonus}% ${stringResource(R.string.stat_hp)}"
+                                else -> ""
+                            }
+                            if (effectText.isNotEmpty()) {
+                                Text(
+                                    text = stringResource(R.string.effect, effectText),
+                                    style = PixelSmall,
+                                    color = GoldAccent,
+                                    modifier = Modifier.padding(top = 4.dp)
+                                )
+                            }
+                        }
                     }
                 }
 
@@ -754,6 +776,20 @@ private fun GemFusionSection(
                             style = PixelSmall,
                             color = if (canFuse) HpGreen else Color.Gray
                         )
+                        val tgtEffectText = when {
+                            tgtMat.attackBonus > 0 -> "+${tgtMat.attackBonus}% ${stringResource(R.string.stat_attack)}"
+                            tgtMat.defenseBonus > 0 -> "+${tgtMat.defenseBonus}% ${stringResource(R.string.stat_defense)}"
+                            tgtMat.magicBonus > 0 -> "+${tgtMat.magicBonus}% ${stringResource(R.string.stat_magic)}"
+                            tgtMat.hpBonus > 0 -> "+${tgtMat.hpBonus}% ${stringResource(R.string.stat_hp)}"
+                            else -> ""
+                        }
+                        if (tgtEffectText.isNotEmpty()) {
+                            Text(
+                                text = "Result: $tgtEffectText",
+                                style = PixelSmall,
+                                color = GoldAccent
+                            )
+                        }
                     }
 
                     Button(
@@ -1025,7 +1061,9 @@ private fun MythicForgeSection(
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
                         horizontalArrangement = Arrangement.SpaceBetween,
-                        modifier = Modifier.fillMaxWidth().padding(vertical = 4.dp)
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .padding(vertical = 4.dp)
                     ) {
                         PixelButton(label = " < ", onClick = {
                             previewSetIndex = if (previewSetIndex > 0) previewSetIndex - 1 else validSets.size - 1
