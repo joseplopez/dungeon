@@ -76,7 +76,7 @@ fun OnionKnightSpritePreview() {
                     .padding(16.dp)
             ) {
                 HeroSprite(
-                    heroClass = HeroClass.ONION_KNIGHT,
+                    heroClass = HeroClass.MIME,
                     modifier = Modifier.fillMaxSize()
                 )
             }
@@ -108,7 +108,7 @@ fun WarriorSpritePreview() {
                     .padding(16.dp)
             ) {
                 HeroSprite(
-                    heroClass = HeroClass.WARRIOR,
+                    heroClass = HeroClass.MIME,
                     modifier = Modifier.fillMaxSize()
                 )
             }
