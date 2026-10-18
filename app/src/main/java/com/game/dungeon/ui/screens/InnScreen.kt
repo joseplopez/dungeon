@@ -927,6 +927,7 @@ fun InnTopBar(
                 Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                     SupportIconButton(onClick = onOpenSupport)
                     MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
+                    Spacer(Modifier.size(size = 16.dp))
                 }
             }
         }

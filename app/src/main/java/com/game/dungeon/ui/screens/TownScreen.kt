@@ -196,6 +196,7 @@ fun TownScreen(
                             Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(8.dp)) {
                                 SupportIconButton(onClick = { showSupportDialog = true })
                                 MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
+                                Spacer(Modifier.size(size = 16.dp))
                             }
                         }
                     }
