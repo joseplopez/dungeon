@@ -1082,32 +1082,20 @@
         <string name="mat_dark_essence_desc">암흑 마법의 그림자 핵심.</string>
 
         <string name="mat_ruby_gem_1_name">하급 루비</string>
-        <string name="mat_ruby_gem_1_desc">+5 공격력 보너스</string>
         <string name="mat_ruby_gem_2_name">루비 보석</string>
-        <string name="mat_ruby_gem_2_desc">+15 공격력 보너스</string>
         <string name="mat_ruby_gem_3_name">최상급 루비</string>
-        <string name="mat_ruby_gem_3_desc">+35 공격력 보너스</string>
 
         <string name="mat_sapphire_gem_1_name">하급 사파이어</string>
-        <string name="mat_sapphire_gem_1_desc">+5 마력 보너스</string>
         <string name="mat_sapphire_gem_2_name">사파이어 보석</string>
-        <string name="mat_sapphire_gem_2_desc">+15 마력 보너스</string>
         <string name="mat_sapphire_gem_3_name">최상급 사파이어</string>
-        <string name="mat_sapphire_gem_3_desc">+35 마력 보너스</string>
 
         <string name="mat_emerald_gem_1_name">하급 에메랄드</string>
-        <string name="mat_emerald_gem_1_desc">+5 방어력 보너스</string>
         <string name="mat_emerald_gem_2_name">에메랄드 보석</string>
-        <string name="mat_emerald_gem_2_desc">+15 방어력 보너스</string>
         <string name="mat_emerald_gem_3_name">최상급 에메랄드</string>
-        <string name="mat_emerald_gem_3_desc">+35 방어력 보너스</string>
 
         <string name="mat_topaz_gem_1_name">하급 토파즈</string>
-        <string name="mat_topaz_gem_1_desc">+25 체력 보너스</string>
         <string name="mat_topaz_gem_2_name">토파즈 보석</string>
-        <string name="mat_topaz_gem_2_desc">+75 체력 보너스</string>
         <string name="mat_topaz_gem_3_name">최상급 토파즈</string>
-        <string name="mat_topaz_gem_3_desc">+175 체력 보너스</string>
 
         <string name="mat_boss_trophy_1_name">고블린 왕의 왕관</string>
         <string name="mat_boss_trophy_1_desc">고블린 왕을 처치했다는 증표.</string>
@@ -1273,4 +1261,52 @@
     <string name="ai_priority_magic">마법</string>
     <string name="ai_priority_heal">회복</string>
     <string name="ai_priority_defend">방어</string>
+
+    <string name="tab_normal">일반</string>
+    <string name="header_flr">층</string>
+    <string name="header_boss">보스</string>
+
+    <string name="permadeath_status_on">🔒 영구 사망: 켜짐</string>
+    <string name="protection_label">🛡️ 보호:</string>
+    <string name="retreat_rescue_title">사망자 발생</string>
+    <string name="retreat_rescue_desc">일부 영웅이 쓰러졌습니다! 도망치기 전에 짧은 광고를 보고 영웅들을 구출하시겠습니까?</string>
+    <string name="rescue_ad_button">구출 (광고)</string>
+    <string name="retreat_anyway_button">후퇴</string>
+    <string name="premium_speed_title">10배 하이퍼 스피드</string>
+    <string name="premium_speed_desc">10배 하이퍼 스피드를 해제하여 던전 전투를 최고 속도로 빠르게돌파하세요!</string>
+    <string name="buy_premium_speed_button">10배 스피드 해제</string>
+    <string name="permadeath_protection_title">영구 사망 보호</string>
+    <string name="permadeath_protection_desc">파티가 전멸했을 때 영웅들의 영구 사망을 방지하세요!</string>
+    <string name="buy_protection_button">보호 구매</string>
+
+    <!-- Boss Lair Feature -->
+    <string name="boss_lair_title">보스의 은신처</string>
+    <string name="boss_lair_subtitle">무한 보스 던전</string>
+    <string name="boss_lair_discovered_title">새로운 지역 발견!</string>
+    <string name="boss_lair_discovered_desc">산속에 으스스하고 어두운 동굴이 나타났습니다! 보스의 은신처는 100배 스탯 난이도 상승과 전용 신화 보상이 기다리는 보스 전용 무한 던전입니다.</string>
+    <string name="boss_lair_warning_no_heroes">보스의 은신처에 입장하려면 파티에 최소 한 명의 영웅을 배치해야 합니다!</string>
+    <string name="boss_lair_enter_button">보스의 은신처 입장 ⚔️</string>
+    <string name="boss_lair_pathfinder_title">은신처 체크포인트</string>
+    <string name="boss_lair_stat_spike_desc">⚠️ 보스 스탯 100배 (HP, 공격력, 방어력, 마법, 길, 경험치)</string>
+    <string name="boss_lair_loot_desc">💎 신화의 조각 (25%%) &amp; 신화 장비 (5%%)</string>
+    <string name="boss_lair_cave_label">보스의 은신처</string>
+    <string name="heroes_down">영웅 쓰러짐</string>
+    <string name="some_heroes_fell">일부 영웅이 쓰러졌습니다! 보호 기능으로 여관에서 안전하게 보호되지만, 지금 부활시켜 해당 층을 완료할 수 있습니다.</string>
+    <string name="party_down">파티 전멸!</string>
+    <string name="your_party_was_defeated">파티가 전멸했습니다! 보호 기능이 영웅들을 여관으로 안전하게 복귀시키거나, 광고를 시청하여 부활시킨 뒤 도전을 계속할 수 있습니다.</string>
+    <string name="run_failed_heroes_saved">도전 실패 (영웅 보호됨 🛡️)</string>
+    <string name="unequip_all">모두 해제</string>
+    <string name="mat_ruby_gem_1_desc">+1% 공격력 보너스</string>
+    <string name="mat_ruby_gem_2_desc">+2% 공격력 보너스</string>
+    <string name="mat_ruby_gem_3_desc">+4% 공격력 보너스</string>
+    <string name="mat_sapphire_gem_1_desc">+1% 마법 보너스</string>
+    <string name="mat_sapphire_gem_2_desc">+2% 마법 보너스</string>
+    <string name="mat_sapphire_gem_3_desc">+4% 마법 보너스</string>
+    <string name="mat_emerald_gem_1_desc">+1% 방어력 보너스</string>
+    <string name="mat_emerald_gem_2_desc">+2% 방어력 보너스</string>
+    <string name="mat_emerald_gem_3_desc">+4% 방어력 보너스</string>
+    <string name="mat_topaz_gem_1_desc">+1% HP 보너스</string>
+    <string name="mat_topaz_gem_2_desc">+2% HP 보너스</string>
+    <string name="mat_topaz_gem_3_desc">+4% HP 보너스</string>
+    <string name="effect">효과: %1$s</string>
 </resources>

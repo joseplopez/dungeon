@@ -1081,32 +1081,20 @@
         <string name="mat_dark_essence_desc">কালো জাদুর ছায়াময় কেন্দ্র।</string>
 
         <string name="mat_ruby_gem_1_name">ছোট রুবি</string>
-        <string name="mat_ruby_gem_1_desc">+5 অ্যাটাক বোনাস</string>
         <string name="mat_ruby_gem_2_name">রুবি রত্ন</string>
-        <string name="mat_ruby_gem_2_desc">+15 অ্যাটাক বোনাস</string>
         <string name="mat_ruby_gem_3_name">নিখুঁত রুবি</string>
-        <string name="mat_ruby_gem_3_desc">+35 অ্যাটাক বোনাস</string>
 
         <string name="mat_sapphire_gem_1_name">ছোট স্যাফায়ার</string>
-        <string name="mat_sapphire_gem_1_desc">+5 ম্যাজিক বোনাস</string>
         <string name="mat_sapphire_gem_2_name">স্যাফায়ার রত্ন</string>
-        <string name="mat_sapphire_gem_2_desc">+15 ম্যাজিক বোনাস</string>
         <string name="mat_sapphire_gem_3_name">নিখুঁত স্যাফায়ার</string>
-        <string name="mat_sapphire_gem_3_desc">+35 ম্যাজিক বোনাস</string>
 
         <string name="mat_emerald_gem_1_name">ছোট ইমারেল্ড</string>
-        <string name="mat_emerald_gem_1_desc">+5 ডিফেন্স বোনাস</string>
         <string name="mat_emerald_gem_2_name">ইমারেল্ড রত্ন</string>
-        <string name="mat_emerald_gem_2_desc">+15 ডিফেন্স বোনাস</string>
         <string name="mat_emerald_gem_3_name">নিখুঁত ইমারেল্ড</string>
-        <string name="mat_emerald_gem_3_desc">+35 ডিফেন্স বোনাস</string>
 
         <string name="mat_topaz_gem_1_name">ছোট টোপাজ</string>
-        <string name="mat_topaz_gem_1_desc">+25 এইচপি বোনাস</string>
         <string name="mat_topaz_gem_2_name">টোপাজ রত্ন</string>
-        <string name="mat_topaz_gem_2_desc">+75 এইচপি বোনাস</string>
         <string name="mat_topaz_gem_3_name">নিখুঁত টোপাজ</string>
-        <string name="mat_topaz_gem_3_desc">+175 এইচপি বোনাস</string>
 
         <string name="mat_boss_trophy_1_name">গবলিন রাজার মুকুট</string>
         <string name="mat_boss_trophy_1_desc">গবলিন রাজাকে পরাজিত করার প্রমাণ।</string>
@@ -1272,4 +1260,52 @@
         <string name="ai_priority_magic">যাদু</string>
         <string name="ai_priority_heal">আরোগ্য</string>
         <string name="ai_priority_defend">প্রতিরোধ</string>
+
+    <string name="tab_normal">সাধারণ</string>
+    <string name="header_flr">তলা</string>
+    <string name="header_boss">বস</string>
+
+    <string name="permadeath_status_on">🔒 পার্মেডেথ: চালু</string>
+    <string name="protection_label">🛡️ সুরক্ষা:</string>
+    <string name="retreat_rescue_title">বীরদের পতন ঘটেছে</string>
+    <string name="retreat_rescue_desc">কিছু বীর পরাজিত হয়েছে! পালানোর আগে তাদের উদ্ধার করতে একটি ছোট বিজ্ঞাপন দেখবেন?</string>
+    <string name="rescue_ad_button">উদ্ধার করুন (বিজ্ঞাপন)</string>
+    <string name="retreat_anyway_button">প্রস্থান করুন</string>
+    <string name="premium_speed_title">১০ গুণ হাইপার স্পিড</string>
+    <string name="premium_speed_desc">সর্বোচ্চ গতিতে অন্ধকূপের যুদ্ধ দ্রুত পার হতে ১০ গুণ হাইপার স্পিড আনলক করুন!</string>
+    <string name="buy_premium_speed_button">১০ গুণ গতি আনলক করুন</string>
+    <string name="permadeath_protection_title">পার্মেডেথ সুরক্ষা</string>
+    <string name="permadeath_protection_desc">দল পরাজিত হলে আপনার বীরদের চিরস্থায়ী মৃত্যু থেকে রক্ষা করুন!</string>
+    <string name="buy_protection_button">সুরক্ষা কিনুন</string>
+
+    <!-- Boss Lair Feature -->
+    <string name="boss_lair_title">বসের ডেরা</string>
+    <string name="boss_lair_subtitle">অনন্ত বস অন্ধকূপ</string>
+    <string name="boss_lair_discovered_title">নতুন এলাকা আবিষ্কৃত হয়েছে!</string>
+    <string name="boss_lair_discovered_desc">পাহাড়ে একটি ভুতুড়ে, অন্ধকার গুহা দেখা দিয়েছে! বসের ডেরা হল কেবল বসদের জন্য একটি অনন্ত অন্ধকূপ যেখানে ১০০ গুণ পরিসংখ্যানগত কঠিনতা এবং অনন্য পৌরাণিক পুরস্কার রয়েছে।</string>
+    <string name="boss_lair_warning_no_heroes">বসের ডেরায় প্রবেশের আগে আপনাকে অবশ্যই আপনার দলে অন্তত একজন বীর নিযুক্ত করতে হবে!</string>
+    <string name="boss_lair_enter_button">বসের ডেরায় প্রবেশ করুন ⚔️</string>
+    <string name="boss_lair_pathfinder_title">বসের ডেরার চেকপয়েন্ট</string>
+    <string name="boss_lair_stat_spike_desc">⚠️ বসদের পরিসংখ্যান ১০০ গুণ (এইচপি, আক্রমণ, প্রতিরক্ষা, জাদু, জিল, অভিজ্ঞতা)</string>
+    <string name="boss_lair_loot_desc">💎 পৌরাণিক খণ্ড (২৫%%) এবং পৌরাণিক সরঞ্জাম (৫%%)</string>
+    <string name="boss_lair_cave_label">বসের ডেরা</string>
+    <string name="heroes_down">বীরগণ পরাজিত</string>
+    <string name="some_heroes_fell">কিছু বীর পরাজিত হয়েছে! সুরক্ষা তাদের সরাইখানায় নিরাপদ রাখবে, তবে তলাটি শেষ করতে আপনি তাদের এখনই পুনরুজ্জীবিত করতে পারেন।</string>
+    <string name="party_down">দল পরাজিত!</string>
+    <string name="your_party_was_defeated">আপনার দল পরাজিত হয়েছে! সুরক্ষা আপনার বীরদের সরাইখানায় নিরাপদে ফিরিয়ে আনবে, অথবা এই যাত্রা চালিয়ে যেতে আপনি একটি বিজ্ঞাপন দেখে তাদের পুনরুজ্জীবিত করতে পারেন।</string>
+    <string name="run_failed_heroes_saved">অভিযান ব্যর্থ (বীরগণ সুরক্ষিত 🛡️)</string>
+    <string name="unequip_all">সব কিছু খুলে ফেলুন</string>
+    <string name="mat_ruby_gem_1_desc">+১% আক্রমণ বোনাস</string>
+    <string name="mat_ruby_gem_2_desc">+২% আক্রমণ বোনাস</string>
+    <string name="mat_ruby_gem_3_desc">+৪% আক্রমণ বোনাস</string>
+    <string name="mat_sapphire_gem_1_desc">+১% জাদু বোনাস</string>
+    <string name="mat_sapphire_gem_2_desc">+২% জাদু বোনাস</string>
+    <string name="mat_sapphire_gem_3_desc">+৪% জাদু বোনাস</string>
+    <string name="mat_emerald_gem_1_desc">+১% প্রতিরক্ষা বোনাস</string>
+    <string name="mat_emerald_gem_2_desc">+২% প্রতিরক্ষা বোনাস</string>
+    <string name="mat_emerald_gem_3_desc">+৪% প্রতিরক্ষা বোনাস</string>
+    <string name="mat_topaz_gem_1_desc">+১% এইচপি বোনাস</string>
+    <string name="mat_topaz_gem_2_desc">+২% এইচপি বোনাস</string>
+    <string name="mat_topaz_gem_3_desc">+৪% এইচপি বোনাস</string>
+    <string name="effect">প্রভাব: %1$s</string>
     </resources>

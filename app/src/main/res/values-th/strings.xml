@@ -1080,32 +1080,20 @@
         <string name="mat_dark_essence_desc">แกนกลางเงามืดแห่งเวทมนตร์ดำ</string>
 
         <string name="mat_ruby_gem_1_name">ทับทิมขนาดเล็ก</string>
-        <string name="mat_ruby_gem_1_desc">+5 โบนัสพลังโจมตี</string>
         <string name="mat_ruby_gem_2_name">อัญมณีทับทิม</string>
-        <string name="mat_ruby_gem_2_desc">+15 โบนัสพลังโจมตี</string>
         <string name="mat_ruby_gem_3_name">ทับทิมไร้ที่ติ</string>
-        <string name="mat_ruby_gem_3_desc">+35 โบนัสพลังโจมตี</string>
 
         <string name="mat_sapphire_gem_1_name">ไพลินขนาดเล็ก</string>
-        <string name="mat_sapphire_gem_1_desc">+5 โบนัสพลังเวท</string>
         <string name="mat_sapphire_gem_2_name">อัญมณีไพลิน</string>
-        <string name="mat_sapphire_gem_2_desc">+15 โบนัสพลังเวท</string>
         <string name="mat_sapphire_gem_3_name">ไพลินไร้ที่ติ</string>
-        <string name="mat_sapphire_gem_3_desc">+35 โบนัสพลังเวท</string>
 
         <string name="mat_emerald_gem_1_name">มรกตขนาดเล็ก</string>
-        <string name="mat_emerald_gem_1_desc">+5 โบนัสพลังป้องกัน</string>
         <string name="mat_emerald_gem_2_name">อัญมณีมรกต</string>
-        <string name="mat_emerald_gem_2_desc">+15 โบนัสพลังป้องกัน</string>
         <string name="mat_emerald_gem_3_name">มรกตไร้ที่ติ</string>
-        <string name="mat_emerald_gem_3_desc">+35 โบนัสพลังป้องกัน</string>
 
         <string name="mat_topaz_gem_1_name">บุษราคัมขนาดเล็ก</string>
-        <string name="mat_topaz_gem_1_desc">+25 โบนัสพลังชีวิต</string>
         <string name="mat_topaz_gem_2_name">อัญมณีบุษราคัม</string>
-        <string name="mat_topaz_gem_2_desc">+75 โบนัสพลังชีวิต</string>
         <string name="mat_topaz_gem_3_name">บุษราคัมไร้ที่ติ</string>
-        <string name="mat_topaz_gem_3_desc">+175 โบนัสพลังชีวิต</string>
 
         <string name="mat_boss_trophy_1_name">มงกุฎราชาก็อบลิน</string>
         <string name="mat_boss_trophy_1_desc">หลักฐานการเอาชนะราชาก็อบลิน</string>
@@ -1272,4 +1260,52 @@
     <string name="ai_priority_magic">เวทมนตร์</string>
     <string name="ai_priority_heal">รักษา</string>
     <string name="ai_priority_defend">ป้องกัน</string>
+
+    <string name="tab_normal">ปกติ</string>
+    <string name="header_flr">ชั้น</string>
+    <string name="header_boss">บอส</string>
+
+    <string name="permadeath_status_on">🔒 ตายถาวร: เปิด</string>
+    <string name="protection_label">🛡️ การปกป้อง:</string>
+    <string name="retreat_rescue_title">ตรวจพบผู้สูญเสีย</string>
+    <string name="retreat_rescue_desc">ฮีโร่บางคนล้มลง! รับชมโฆษณาสั้นเพื่อช่วยเหลือพวกเขาก่อนหลบหนีหรือไม่?</string>
+    <string name="rescue_ad_button">ช่วยเหลือ (โฆษณา)</string>
+    <string name="retreat_anyway_button">ถอยทัพ</string>
+    <string name="premium_speed_title">ความเร็วไฮเปอร์ 10 เท่า</string>
+    <string name="premium_speed_desc">ปลดล็อกความเร็วไฮเปอร์ 10 เท่าเพื่อลุยผ่านการต่อสู้ในดันเจี้ยนด้วยความเร็วสูงสุด!</string>
+    <string name="buy_premium_speed_button">ปลดล็อกความเร็ว 10 เท่า</string>
+    <string name="permadeath_protection_title">การปกป้องจากการตายถาวร</string>
+    <string name="permadeath_protection_desc">ปกป้องฮีโร่ของคุณจากการตายถาวรเมื่อปาร์ตี้พ่ายแพ้ทั้งหมด!</string>
+    <string name="buy_protection_button">ซื้อการปกป้อง</string>
+
+    <!-- Boss Lair Feature -->
+    <string name="boss_lair_title">รังบอส</string>
+    <string name="boss_lair_subtitle">ดันเจี้ยนบอสไม่รู้จบ</string>
+    <string name="boss_lair_discovered_title">ค้นพบพื้นที่ใหม่!</string>
+    <string name="boss_lair_discovered_desc">ถ้ำลึกลับมืดมิดปรากฏขึ้นในภูเขา! รังบอสเป็นดันเจี้ยนไม่รู้จบที่มีเฉพาะบอส ซึ่งมีความยากของสเตตัสเพิ่มขึ้น 100 เท่าและมีรางวัลระดับตำนานสุดพิเศษ</string>
+    <string name="boss_lair_warning_no_heroes">คุณต้องมอบหมายฮีโร่อย่างน้อยหนึ่งคนในปาร์ตี้ก่อนเข้าสู่รังบอส!</string>
+    <string name="boss_lair_enter_button">เข้าสู่รังบอส ⚔️</string>
+    <string name="boss_lair_pathfinder_title">จุดเช็กพอยต์รังบอส</string>
+    <string name="boss_lair_stat_spike_desc">⚠️ บอสมีสเตตัสเพิ่มขึ้น 100 เท่า (HP, โจมตี, ป้องกัน, เวทมนตร์, กิล, Exp)</string>
+    <string name="boss_lair_loot_desc">💎 เศษเสี้ยวตำนาน (25%%) &amp; อุปกรณ์ระดับตำนาน (5%%)</string>
+    <string name="boss_lair_cave_label">รังบอส</string>
+    <string name="heroes_down">ฮีโร่พ่ายแพ้</string>
+    <string name="some_heroes_fell">ฮีโร่บางคนล้มลง! การปกป้องจะช่วยให้พวกเขาปลอดภัยที่โรงเตี๊ยม แต่คุณสามารถฟื้นคืนชีพพวกเขาตอนนี้เพื่อผ่านชั้นนี้ได้</string>
+    <string name="party_down">ปาร์ตี้พ่ายแพ้!</string>
+    <string name="your_party_was_defeated">ปาร์ตี้ของคุณพ่ายแพ้! การปกป้องจะนำฮีโร่ของคุณกลับสู่โรงเตี๊ยมอย่างปลอดภัย หรือคุณสามารถรับชมโฆษณาเพื่อฟื้นคืนชีพพวกเขาและเล่นต่อในรอบนี้</string>
+    <string name="run_failed_heroes_saved">การลุยล้มเหลว (ฮีโร่ปลอดภัย 🛡️)</string>
+    <string name="unequip_all">ถอดออกทั้งหมด</string>
+    <string name="mat_ruby_gem_1_desc">+1% โบนัสการโจมตี</string>
+    <string name="mat_ruby_gem_2_desc">+2% โบนัสการโจมตี</string>
+    <string name="mat_ruby_gem_3_desc">+4% โบนัสการโจมตี</string>
+    <string name="mat_sapphire_gem_1_desc">+1% โบนัสเวทมนตร์</string>
+    <string name="mat_sapphire_gem_2_desc">+2% โบนัสเวทมนตร์</string>
+    <string name="mat_sapphire_gem_3_desc">+4% โบนัสเวทมนตร์</string>
+    <string name="mat_emerald_gem_1_desc">+1% โบนัสการป้องกัน</string>
+    <string name="mat_emerald_gem_2_desc">+2% โบนัสการป้องกัน</string>
+    <string name="mat_emerald_gem_3_desc">+4% โบนัสการป้องกัน</string>
+    <string name="mat_topaz_gem_1_desc">+1% โบนัส HP</string>
+    <string name="mat_topaz_gem_2_desc">+2% โบนัส HP</string>
+    <string name="mat_topaz_gem_3_desc">+4% โบนัส HP</string>
+    <string name="effect">ผล: %1$s</string>
 </resources>

@@ -1081,32 +1081,20 @@
         <string name="mat_dark_essence_desc">Karanlık büyünün gölgeli çekirdeği.</string>
 
         <string name="mat_ruby_gem_1_name">Küçük Yakut</string>
-        <string name="mat_ruby_gem_1_desc">+5 Saldırı Bonusu</string>
         <string name="mat_ruby_gem_2_name">Yakut Mücevheri</string>
-        <string name="mat_ruby_gem_2_desc">+15 Saldırı Bonusu</string>
         <string name="mat_ruby_gem_3_name">Kusursuz Yakut</string>
-        <string name="mat_ruby_gem_3_desc">+35 Saldırı Bonusu</string>
 
         <string name="mat_sapphire_gem_1_name">Küçük Safir</string>
-        <string name="mat_sapphire_gem_1_desc">+5 Büyü Bonusu</string>
         <string name="mat_sapphire_gem_2_name">Safir Mücevheri</string>
-        <string name="mat_sapphire_gem_2_desc">+15 Büyü Bonusu</string>
         <string name="mat_sapphire_gem_3_name">Kusursuz Safir</string>
-        <string name="mat_sapphire_gem_3_desc">+35 Büyü Bonusu</string>
 
         <string name="mat_emerald_gem_1_name">Küçük Zümrüt</string>
-        <string name="mat_emerald_gem_1_desc">+5 Savunma Bonusu</string>
         <string name="mat_emerald_gem_2_name">Zümrüt Mücevheri</string>
-        <string name="mat_emerald_gem_2_desc">+15 Savunma Bonusu</string>
         <string name="mat_emerald_gem_3_name">Kusursuz Zümrüt</string>
-        <string name="mat_emerald_gem_3_desc">+35 Savunma Bonusu</string>
 
         <string name="mat_topaz_gem_1_name">Küçük Topaz</string>
-        <string name="mat_topaz_gem_1_desc">+25 Can Bonusu</string>
         <string name="mat_topaz_gem_2_name">Topaz Mücevheri</string>
-        <string name="mat_topaz_gem_2_desc">+75 Can Bonusu</string>
         <string name="mat_topaz_gem_3_name">Kusursuz Topaz</string>
-        <string name="mat_topaz_gem_3_desc">+175 Can Bonusu</string>
 
         <string name="mat_boss_trophy_1_name">Goblin Kralı Tacı</string>
         <string name="mat_boss_trophy_1_desc">Goblin Kralı\'nı yenmenin kanıtı.</string>
@@ -1272,4 +1260,52 @@
     <string name="ai_priority_magic">Büyü</string>
     <string name="ai_priority_heal">İyileştirme</string>
     <string name="ai_priority_defend">Savunma</string>
+
+    <string name="tab_normal">Normal</string>
+    <string name="header_flr">KAT</string>
+    <string name="header_boss">PATRON</string>
+
+    <string name="permadeath_status_on">🔒 Permadeath: AÇIK</string>
+    <string name="protection_label">🛡️ Koruma:</string>
+    <string name="retreat_rescue_title">KAYIPLAR TESPİT EDİLDİ</string>
+    <string name="retreat_rescue_desc">Bazı kahramanlar düştü! Kaçmadan önce onları kurtarmak için kısa bir reklam izlensin mi?</string>
+    <string name="rescue_ad_button">KURTAR (REKLAM)</string>
+    <string name="retreat_anyway_button">GERİ ÇEKİL</string>
+    <string name="premium_speed_title">10x HİPER HIZ</string>
+    <string name="premium_speed_desc">Zindan savaşlarını maksimum hızda patlatarak geçmek için 10x Hiper Hızın kilidini açın!</string>
+    <string name="buy_premium_speed_button">10x HIZIN KİLİDİNİ AÇ</string>
+    <string name="permadeath_protection_title">Kalıcı Ölüm Koruması</string>
+    <string name="permadeath_protection_desc">Tüm takım yenildiğinde kahramanlarınızı kalıcı ölümden koruyun!</string>
+    <string name="buy_protection_button">KORUMA SATIN AL</string>
+
+    <!-- Boss Lair Feature -->
+    <string name="boss_lair_title">Patron İni</string>
+    <string name="boss_lair_subtitle">Sonsuz Patron Zindanı</string>
+    <string name="boss_lair_discovered_title">Yeni Alan Keşfedildi!</string>
+    <string name="boss_lair_discovered_desc">Dağlarda ürpertici, kasvetli bir mağara belirdi! Patron İni, 100 kat nitelik zorluk artışı ve özel Mitolojik ödüller içeren sonsuz, sadece patronlardan oluşan bir zindandır.</string>
+    <string name="boss_lair_warning_no_heroes">Patron İnine girmeden önce takımınıza en az bir kahraman atamalısınız!</string>
+    <string name="boss_lair_enter_button">Patron İnine Gir ⚔️</string>
+    <string name="boss_lair_pathfinder_title">Patron İni Kontrol Noktası</string>
+    <string name="boss_lair_stat_spike_desc">⚠️ Patronlar 100x Niteliğe Sahip (HP, Sal, Sav, Büyü, Gil, Tec)</string>
+    <string name="boss_lair_loot_desc">💎 Mitolojik Parçalar (25%%) &amp; Mitolojik Ekipman (5%%)</string>
+    <string name="boss_lair_cave_label">PATRON İNİ</string>
+    <string name="heroes_down">KAHRAMANLAR DÜŞTÜ</string>
+    <string name="some_heroes_fell">Bazı kahramanlar düştü! Koruma onları Handa güvende tutacak, ancak katı bitirmek için onları şimdi canlandırabilirsiniz.</string>
+    <string name="party_down">TAKIM YENİLDİ!</string>
+    <string name="your_party_was_defeated">Takımınız yenildi! Koruma kahramanlarınızı güvenle Hana geri getirecek veya bu turu sürdürmek için bir reklam izleyip onları canlandırabilirsiniz.</string>
+    <string name="run_failed_heroes_saved">TUR BAŞARISIZ (KAHRAMANLAR KORUNDU 🛡️)</string>
+    <string name="unequip_all">TÜMÜNÜ ÇIKAR</string>
+    <string name="mat_ruby_gem_1_desc">+%1 Saldırı Bonusu</string>
+    <string name="mat_ruby_gem_2_desc">+%2 Saldırı Bonusu</string>
+    <string name="mat_ruby_gem_3_desc">+%4 Saldırı Bonusu</string>
+    <string name="mat_sapphire_gem_1_desc">+%1 Büyü Bonusu</string>
+    <string name="mat_sapphire_gem_2_desc">+%2 Büyü Bonusu</string>
+    <string name="mat_sapphire_gem_3_desc">+%4 Büyü Bonusu</string>
+    <string name="mat_emerald_gem_1_desc">+%1 Savunma Bonusu</string>
+    <string name="mat_emerald_gem_2_desc">+%2 Savunma Bonusu</string>
+    <string name="mat_emerald_gem_3_desc">+%4 Savunma Bonusu</string>
+    <string name="mat_topaz_gem_1_desc">+%1 HP Bonusu</string>
+    <string name="mat_topaz_gem_2_desc">+%2 HP Bonusu</string>
+    <string name="mat_topaz_gem_3_desc">+%4 HP Bonusu</string>
+    <string name="effect">Etki: %1$s</string>
 </resources>

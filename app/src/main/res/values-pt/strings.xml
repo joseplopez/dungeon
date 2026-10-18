@@ -1081,32 +1081,20 @@
         <string name="mat_dark_essence_desc">Núcleo sombrio de magia negra.</string>
 
         <string name="mat_ruby_gem_1_name">Rubi Menor</string>
-        <string name="mat_ruby_gem_1_desc">+5 de Bônus de Ataque</string>
         <string name="mat_ruby_gem_2_name">Gema de Rubi</string>
-        <string name="mat_ruby_gem_2_desc">+15 de Bônus de Ataque</string>
         <string name="mat_ruby_gem_3_name">Rubi Impecável</string>
-        <string name="mat_ruby_gem_3_desc">+35 de Bônus de Ataque</string>
 
         <string name="mat_sapphire_gem_1_name">Safira Menor</string>
-        <string name="mat_sapphire_gem_1_desc">+5 de Bônus de Magia</string>
         <string name="mat_sapphire_gem_2_name">Safira</string>
-        <string name="mat_sapphire_gem_2_desc">+15 de Bônus de Magia</string>
         <string name="mat_sapphire_gem_3_name">Safira Impecável</string>
-        <string name="mat_sapphire_gem_3_desc">+35 de Bônus de Magia</string>
 
         <string name="mat_emerald_gem_1_name">Esmeralda Menor</string>
-        <string name="mat_emerald_gem_1_desc">+5 de Bônus de Defesa</string>
         <string name="mat_emerald_gem_2_name">Esmeralda</string>
-        <string name="mat_emerald_gem_2_desc">+15 de Bônus de Defesa</string>
         <string name="mat_emerald_gem_3_name">Esmeralda Impecável</string>
-        <string name="mat_emerald_gem_3_desc">+35 de Bônus de Defesa</string>
 
         <string name="mat_topaz_gem_1_name">Topázio Menor</string>
-        <string name="mat_topaz_gem_1_desc">+25 de Bônus de PV</string>
         <string name="mat_topaz_gem_2_name">Topázio</string>
-        <string name="mat_topaz_gem_2_desc">+75 de Bônus de PV</string>
         <string name="mat_topaz_gem_3_name">Topázio Impecável</string>
-        <string name="mat_topaz_gem_3_desc">+175 de Bônus de PV</string>
 
         <string name="mat_boss_trophy_1_name">Coroa do Rei Goblin</string>
         <string name="mat_boss_trophy_1_desc">Prova de ter derrotado o Rei Goblin.</string>
@@ -1272,4 +1260,52 @@
     <string name="ai_priority_magic">Magia</string>
     <string name="ai_priority_heal">Cura</string>
     <string name="ai_priority_defend">Defesa</string>
+
+    <string name="tab_normal">Normal</string>
+    <string name="header_flr">AND</string>
+    <string name="header_boss">CHEFE</string>
+
+    <string name="permadeath_status_on">🔒 Permadeath: LIG</string>
+    <string name="protection_label">🛡️ Proteção:</string>
+    <string name="retreat_rescue_title">BAIXAS DETECTADAS</string>
+    <string name="retreat_rescue_desc">Alguns heróis caíram! Assistir a um anúncio curto para resgatá-los antes de fugir?</string>
+    <string name="rescue_ad_button">RESGATAR (ANÚNCIO)</string>
+    <string name="retreat_anyway_button">RECUAR</string>
+    <string name="premium_speed_title">HIPERVELOCIDADE 10x</string>
+    <string name="premium_speed_desc">Desbloqueie a Hipervelocidade 10x para disparar pelas batalhas da masmorra na velocidade máxima!</string>
+    <string name="buy_premium_speed_button">DESBLOQUEAR VELOCIDADE 10x</string>
+    <string name="permadeath_protection_title">PROTEÇÃO CONTRA PERMADEATH</string>
+    <string name="permadeath_protection_desc">Proteja seus heróis da morte permanente quando o grupo inteiro for derrotado!</string>
+    <string name="buy_protection_button">COMPRAR PROTEÇÃO</string>
+
+    <!-- Boss Lair Feature -->
+    <string name="boss_lair_title">Guarida dos Chefes</string>
+    <string name="boss_lair_subtitle">Masmorra Infinita de Chefes</string>
+    <string name="boss_lair_discovered_title">Nova Área Descoberta!</string>
+    <string name="boss_lair_discovered_desc">Uma caverna sombria e assustadora apareceu nas montanhas! A Guarida dos Chefes é uma masmorra infinita exclusiva de chefes com aumento de 100x na dificuldade de atributos e recompensas Míticas exclusivas.</string>
+    <string name="boss_lair_warning_no_heroes">Você deve atribuir pelo menos um herói ao seu grupo antes de entrar na Guarida dos Chefes!</string>
+    <string name="boss_lair_enter_button">Entrar na Guarida dos Chefes ⚔️</string>
+    <string name="boss_lair_pathfinder_title">Ponto de Controle da Guarida</string>
+    <string name="boss_lair_stat_spike_desc">⚠️ Chefes têm 100x Atributos (PV, Atq, Def, Magia, Gil, Exp)</string>
+    <string name="boss_lair_loot_desc">💎 Fragmentos Míticos (25%%) e Equipamento Mítico (5%%)</string>
+    <string name="boss_lair_cave_label">GUARIDA DOS CHEFES</string>
+    <string name="heroes_down">HERÓIS CAÍDOS</string>
+    <string name="some_heroes_fell">Alguns heróis caíram! A proteção os manterá em segurança na Estalagem, mas você pode ressuscitá-los agora para terminar o andar.</string>
+    <string name="party_down">GRUPO DERROTADO!</string>
+    <string name="your_party_was_defeated">Seu grupo foi derrotado! A proteção retornará seus heróis em segurança para a Estalagem, ou você pode assistir a um anúncio para ressuscitá-los e continuar esta jornada.</string>
+    <string name="run_failed_heroes_saved">JORNADA FALHOU (HERÓIS SALVOS 🛡️)</string>
+    <string name="unequip_all">DESEQUIPAR TUDO</string>
+    <string name="mat_ruby_gem_1_desc">+1% Bônus de Ataque</string>
+    <string name="mat_ruby_gem_2_desc">+2% Bônus de Ataque</string>
+    <string name="mat_ruby_gem_3_desc">+4% Bônus de Ataque</string>
+    <string name="mat_sapphire_gem_1_desc">+1% Bônus de Magia</string>
+    <string name="mat_sapphire_gem_2_desc">+2% Bônus de Magia</string>
+    <string name="mat_sapphire_gem_3_desc">+4% Bônus de Magia</string>
+    <string name="mat_emerald_gem_1_desc">+1% Bônus de Defesa</string>
+    <string name="mat_emerald_gem_2_desc">+2% Bônus de Defesa</string>
+    <string name="mat_emerald_gem_3_desc">+4% Bônus de Defesa</string>
+    <string name="mat_topaz_gem_1_desc">+1% Bônus de PV</string>
+    <string name="mat_topaz_gem_2_desc">+2% Bônus de PV</string>
+    <string name="mat_topaz_gem_3_desc">+4% Bônus de PV</string>
+    <string name="effect">Efeito: %1$s</string>
 </resources>

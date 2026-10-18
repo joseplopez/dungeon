@@ -1082,32 +1082,20 @@
         <string name="mat_dark_essence_desc">نواة ظلال من السحر الأسود.</string>
 
         <string name="mat_ruby_gem_1_name">ياقوت صغير</string>
-        <string name="mat_ruby_gem_1_desc">+5 مكافأة هجوم</string>
         <string name="mat_ruby_gem_2_name">جوهرة ياقوت</string>
-        <string name="mat_ruby_gem_2_desc">+15 مكافأة هجوم</string>
         <string name="mat_ruby_gem_3_name">ياقوت نقي</string>
-        <string name="mat_ruby_gem_3_desc">+35 مكافأة هجوم</string>
 
         <string name="mat_sapphire_gem_1_name">ياقوت أزرق صغير</string>
-        <string name="mat_sapphire_gem_1_desc">+5 مكافأة سحر</string>
         <string name="mat_sapphire_gem_2_name">جوهرة ياقوت أزرق</string>
-        <string name="mat_sapphire_gem_2_desc">+15 مكافأة سحر</string>
         <string name="mat_sapphire_gem_3_name">ياقوت أزرق نقي</string>
-        <string name="mat_sapphire_gem_3_desc">+35 مكافأة سحر</string>
 
         <string name="mat_emerald_gem_1_name">زمرد صغير</string>
-        <string name="mat_emerald_gem_1_desc">+5 مكافأة دفاع</string>
         <string name="mat_emerald_gem_2_name">جوهرة زمرد</string>
-        <string name="mat_emerald_gem_2_desc">+15 مكافأة دفاع</string>
         <string name="mat_emerald_gem_3_name">زمرد نقي</string>
-        <string name="mat_emerald_gem_3_desc">+35 مكافأة دفاع</string>
 
         <string name="mat_topaz_gem_1_name">توباز صغير</string>
-        <string name="mat_topaz_gem_1_desc">+25 مكافأة نقاط الحياة</string>
         <string name="mat_topaz_gem_2_name">جوهرة توباز</string>
-        <string name="mat_topaz_gem_2_desc">+75 مكافأة نقاط الحياة</string>
         <string name="mat_topaz_gem_3_name">توباز نقي</string>
-        <string name="mat_topaz_gem_3_desc">+175 مكافأة نقاط الحياة</string>
 
         <string name="mat_boss_trophy_1_name">تاج ملك الجوبلن</string>
         <string name="mat_boss_trophy_1_desc">دليل على هزم ملك الجوبلن.</string>
@@ -1273,4 +1261,52 @@
         <string name="ai_priority_magic">سحر</string>
         <string name="ai_priority_heal">علاج</string>
         <string name="ai_priority_defend">دفاع</string>
+
+    <string name="tab_normal">عادي</string>
+    <string name="header_flr">طابق</string>
+    <string name="header_boss">زعيم</string>
+
+    <string name="permadeath_status_on">🔒 الموت النهائي: مفعل</string>
+    <string name="protection_label">🛡️ الحماية:</string>
+    <string name="retreat_rescue_title">تم اكتشاف خسائر</string>
+    <string name="retreat_rescue_desc">سقط بعض الأبطال! هل تريد مشاهدة إعلان قصير لإنقاذهم قبل الهروب؟</string>
+    <string name="rescue_ad_button">إنقاذ (إعلان)</string>
+    <string name="retreat_anyway_button">انسحاب</string>
+    <string name="premium_speed_title">سرعة فائقة 10x</string>
+    <string name="premium_speed_desc">افتح السرعة الفائقة 10x للانطلاق عبر معارك الزنزانات بأقصى سرعة!</string>
+    <string name="buy_premium_speed_button">فتح سرعة 10x</string>
+    <string name="permadeath_protection_title">حماية الموت النهائي</string>
+    <string name="permadeath_protection_desc">احمِ أبطالك من الموت النهائي عند هزيمة الفريق بالكامل!</string>
+    <string name="buy_protection_button">شراء الحماية</string>
+
+    <!-- Boss Lair Feature -->
+    <string name="boss_lair_title">عرين الزعماء</string>
+    <string name="boss_lair_subtitle">زنزانة الزعماء اللانهائية</string>
+    <string name="boss_lair_discovered_title">تم إكتشاف منطقة جديدة!</string>
+    <string name="boss_lair_discovered_desc">ظهر كهف مخيف ومظلم في الجبال! عرين الزعماء هو زنزانة لانهائية مخصصة للزعماء فقط تتميز بزيادة صعوبة الإحصائيات بمقدار 100 ضعف ومكافآت خرافية حصرية.</string>
+    <string name="boss_lair_warning_no_heroes">يجب عليك تعيين بطل واحد على الأقل في فريقك قبل دخول عرين الزعماء!</string>
+    <string name="boss_lair_enter_button">دخول عرين الزعماء ⚔️</string>
+    <string name="boss_lair_pathfinder_title">نقطة تفتيش عرين الزعماء</string>
+    <string name="boss_lair_stat_spike_desc">⚠️ للزعماء إحصائيات مضاعفة 100x (الصحة، الهجوم، الدفاع، السحر، جيل، الخبرة)</string>
+    <string name="boss_lair_loot_desc">💎 شظايا خرافية (25%%) ومعدات خرافية (5%%)</string>
+    <string name="boss_lair_cave_label">عرين الزعماء</string>
+    <string name="heroes_down">سقوط الأبطال</string>
+    <string name="some_heroes_fell">سقط بعض الأبطال! ستنقذهم الحماية وتعيدهم بآمان إلى النزل، ولكن يمكنك إنعاشهم الآن لإكمال الطابق.</string>
+    <string name="party_down">هزيمة الفريق!</string>
+    <string name="your_party_was_defeated">تمت هزيمة فريقك! ستعيد الحماية أبطالك بآمان إلى النزل، أو يمكنك مشاهدة إعلان لإنعاشهم ومتابعة المحاولة.</string>
+    <string name="run_failed_heroes_saved">فشلت المحاولة (تم إنقاذ الأبطال 🛡️)</string>
+    <string name="unequip_all">إزالة الكل</string>
+    <string name="mat_ruby_gem_1_desc">+1% مكافأة الهجوم</string>
+    <string name="mat_ruby_gem_2_desc">+2% مكافأة الهجوم</string>
+    <string name="mat_ruby_gem_3_desc">+4% مكافأة الهجوم</string>
+    <string name="mat_sapphire_gem_1_desc">+1% مكافأة السحر</string>
+    <string name="mat_sapphire_gem_2_desc">+2% مكافأة السحر</string>
+    <string name="mat_sapphire_gem_3_desc">+4% مكافأة السحر</string>
+    <string name="mat_emerald_gem_1_desc">+1% مكافأة الدفاع</string>
+    <string name="mat_emerald_gem_2_desc">+2% مكافأة الدفاع</string>
+    <string name="mat_emerald_gem_3_desc">+4% مكافأة الدفاع</string>
+    <string name="mat_topaz_gem_1_desc">+1% مكافأة الصحة</string>
+    <string name="mat_topaz_gem_2_desc">+2% مكافأة الصحة</string>
+    <string name="mat_topaz_gem_3_desc">+4% مكافأة الصحة</string>
+    <string name="effect">التأثير: %1$s</string>
     </resources>

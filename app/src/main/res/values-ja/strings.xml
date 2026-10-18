@@ -1080,32 +1080,20 @@
         <string name="mat_dark_essence_desc">闇の魔法が宿る影のコア。</string>
 
         <string name="mat_ruby_gem_1_name">ルビー（小）</string>
-        <string name="mat_ruby_gem_1_desc">+5 攻撃ボーナス</string>
         <string name="mat_ruby_gem_2_name">ルビー</string>
-        <string name="mat_ruby_gem_2_desc">+15 攻撃ボーナス</string>
         <string name="mat_ruby_gem_3_name">極上ルビー</string>
-        <string name="mat_ruby_gem_3_desc">+35 攻撃ボーナス</string>
 
         <string name="mat_sapphire_gem_1_name">サファイア（小）</string>
-        <string name="mat_sapphire_gem_1_desc">+5 魔法ボーナス</string>
         <string name="mat_sapphire_gem_2_name">サファイア</string>
-        <string name="mat_sapphire_gem_2_desc">+15 魔法ボーナス</string>
         <string name="mat_sapphire_gem_3_name">極上サファイア</string>
-        <string name="mat_sapphire_gem_3_desc">+35 魔法ボーナス</string>
 
         <string name="mat_emerald_gem_1_name">エメラルド（小）</string>
-        <string name="mat_emerald_gem_1_desc">+5 防御ボーナス</string>
         <string name="mat_emerald_gem_2_name">エメラルド</string>
-        <string name="mat_emerald_gem_2_desc">+15 防御ボーナス</string>
         <string name="mat_emerald_gem_3_name">極上エメラルド</string>
-        <string name="mat_emerald_gem_3_desc">+35 防御ボーナス</string>
 
         <string name="mat_topaz_gem_1_name">トパーズ（小）</string>
-        <string name="mat_topaz_gem_1_desc">+25 HPボーナス</string>
         <string name="mat_topaz_gem_2_name">トパーズ</string>
-        <string name="mat_topaz_gem_2_desc">+75 HPボーナス</string>
         <string name="mat_topaz_gem_3_name">極上トパーズ</string>
-        <string name="mat_topaz_gem_3_desc">+175 HPボーナス</string>
 
         <string name="mat_boss_trophy_1_name">ゴブリンキングの王冠</string>
         <string name="mat_boss_trophy_1_desc">ゴブリンキングを撃破した証。</string>
@@ -1271,4 +1259,52 @@
         <string name="ai_priority_magic">魔法</string>
         <string name="ai_priority_heal">回復</string>
         <string name="ai_priority_defend">防御</string>
+
+    <string name="tab_normal">ノーマル</string>
+    <string name="header_flr">階</string>
+    <string name="header_boss">ボス</string>
+
+    <string name="permadeath_status_on">🔒 パーマデス: ON</string>
+    <string name="protection_label">🛡️ 保護:</string>
+    <string name="retreat_rescue_title">倒れたヒーローを検知</string>
+    <string name="retreat_rescue_desc">一部のヒーローが倒れました！逃げる前に短い広告を見て彼らを救出しますか？</string>
+    <string name="rescue_ad_button">救出する (広告)</string>
+    <string name="retreat_anyway_button">撤退する</string>
+    <string name="premium_speed_title">10倍ハイパースピード</string>
+    <string name="premium_speed_desc">10倍ハイパースピードを解放して、ダンジョンバトルを最高速度で駆け抜けよう！</string>
+    <string name="buy_premium_speed_button">10倍スピードを解放</string>
+    <string name="permadeath_protection_title">パーマデス保護</string>
+    <string name="permadeath_protection_desc">パーティが全滅した際、ヒーローの永久死亡を防ぎます！</string>
+    <string name="buy_protection_button">保護を購入</string>
+
+    <!-- Boss Lair Feature -->
+    <string name="boss_lair_title">ボスのネグラ</string>
+    <string name="boss_lair_subtitle">無限ボスダンジョン</string>
+    <string name="boss_lair_discovered_title">新しいエリアを発見！</string>
+    <string name="boss_lair_discovered_desc">山の中に不気味で薄暗い洞窟が現れました！「ボスのネグラ」はボスのみが登場する無限ダンジョンで、ステータス難易度が100倍になり、限定のミシック報酬が手に入ります。</string>
+    <string name="boss_lair_warning_no_heroes">ボスのネグラに入る前に、パーティに少なくとも1人のヒーローを配置する必要があります！</string>
+    <string name="boss_lair_enter_button">ボスのネグラに入る ⚔️</string>
+    <string name="boss_lair_pathfinder_title">ネグラのチェックポイント</string>
+    <string name="boss_lair_stat_spike_desc">⚠️ ボスのステータスが100倍（HP、攻撃、防御、魔法、ギル、経験値）</string>
+    <string name="boss_lair_loot_desc">💎 ミシックの欠片 (25%%) &amp; ミシック装備 (5%%)</string>
+    <string name="boss_lair_cave_label">ボスのネグラ</string>
+    <string name="heroes_down">ヒーロー戦闘不能</string>
+    <string name="some_heroes_fell">一部のヒーローが倒れました！保護機能により宿屋で無事に保護されますが、今すぐ復活させて階層をクリアすることもできます。</string>
+    <string name="party_down">パーティ全滅！</string>
+    <string name="your_party_was_defeated">パーティが全滅しました！保護機能によりヒーローは宿屋へ安全に戻されます。または広告を視聴して復活し、この挑戦を継続できます。</string>
+    <string name="run_failed_heroes_saved">挑戦失敗 (ヒーローは無事 🛡️)</string>
+    <string name="unequip_all">すべて外す</string>
+    <string name="mat_ruby_gem_1_desc">+1% 攻撃ボーナス</string>
+    <string name="mat_ruby_gem_2_desc">+2% 攻撃ボーナス</string>
+    <string name="mat_ruby_gem_3_desc">+4% 攻撃ボーナス</string>
+    <string name="mat_sapphire_gem_1_desc">+1% 魔法ボーナス</string>
+    <string name="mat_sapphire_gem_2_desc">+2% 魔法ボーナス</string>
+    <string name="mat_sapphire_gem_3_desc">+4% 魔法ボーナス</string>
+    <string name="mat_emerald_gem_1_desc">+1% 防御ボーナス</string>
+    <string name="mat_emerald_gem_2_desc">+2% 防御ボーナス</string>
+    <string name="mat_emerald_gem_3_desc">+4% 防御ボーナス</string>
+    <string name="mat_topaz_gem_1_desc">+1% HPボーナス</string>
+    <string name="mat_topaz_gem_2_desc">+2% HPボーナス</string>
+    <string name="mat_topaz_gem_3_desc">+4% HPボーナス</string>
+    <string name="effect">効果: %1$s</string>
     </resources>

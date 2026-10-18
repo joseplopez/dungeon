@@ -1080,32 +1080,20 @@
         <string name="mat_dark_essence_desc">Noyau sombre de magie noire.</string>
 
         <string name="mat_ruby_gem_1_name">Rubis mineur</string>
-        <string name="mat_ruby_gem_1_desc">+5 Bonus d\'attaque</string>
         <string name="mat_ruby_gem_2_name">Rubis</string>
-        <string name="mat_ruby_gem_2_desc">+15 Bonus d\'attaque</string>
         <string name="mat_ruby_gem_3_name">Rubis parfait</string>
-        <string name="mat_ruby_gem_3_desc">+35 Bonus d\'attaque</string>
 
         <string name="mat_sapphire_gem_1_name">Saphir mineur</string>
-        <string name="mat_sapphire_gem_1_desc">+5 Bonus de magie</string>
         <string name="mat_sapphire_gem_2_name">Saphir</string>
-        <string name="mat_sapphire_gem_2_desc">+15 Bonus de magie</string>
         <string name="mat_sapphire_gem_3_name">Saphir parfait</string>
-        <string name="mat_sapphire_gem_3_desc">+35 Bonus de magie</string>
 
         <string name="mat_emerald_gem_1_name">Émeraude mineure</string>
-        <string name="mat_emerald_gem_1_desc">+5 Bonus de défense</string>
         <string name="mat_emerald_gem_2_name">Émeraude</string>
-        <string name="mat_emerald_gem_2_desc">+15 Bonus de défense</string>
         <string name="mat_emerald_gem_3_name">Émeraude parfaite</string>
-        <string name="mat_emerald_gem_3_desc">+35 Bonus de défense</string>
 
         <string name="mat_topaz_gem_1_name">Topaze mineure</string>
-        <string name="mat_topaz_gem_1_desc">+25 Bonus de PV</string>
         <string name="mat_topaz_gem_2_name">Topaze</string>
-        <string name="mat_topaz_gem_2_desc">+75 Bonus de PV</string>
         <string name="mat_topaz_gem_3_name">Topaze parfaite</string>
-        <string name="mat_topaz_gem_3_desc">+175 Bonus de PV</string>
 
         <string name="mat_boss_trophy_1_name">Couronne du Roi Goblin</string>
         <string name="mat_boss_trophy_1_desc">Preuve d\'avoir vaincu le Roi Goblin.</string>
@@ -1272,4 +1260,52 @@
         <string name="ai_priority_magic">Magie</string>
         <string name="ai_priority_heal">Soin</string>
         <string name="ai_priority_defend">Défense</string>
+
+    <string name="tab_normal">Normal</string>
+    <string name="header_flr">ÉTG</string>
+    <string name="header_boss">BOSS</string>
+
+    <string name="permadeath_status_on">🔒 Mort permanente : ACTIVÉE</string>
+    <string name="protection_label">🛡️ Protection :</string>
+    <string name="retreat_rescue_title">VICTIMES DÉTECTÉES</string>
+    <string name="retreat_rescue_desc">Certains héros sont tombés ! Regarder une courte publicité pour les sauver avant de fuir ?</string>
+    <string name="rescue_ad_button">SAUVER (PUB)</string>
+    <string name="retreat_anyway_button">BATTRE EN RETRAITE</string>
+    <string name="premium_speed_title">HYPER VITESSE 10x</string>
+    <string name="premium_speed_desc">Débloquez l\'Hyper Vitesse 10x pour traverser les combats de donjon à toute vitesse !</string>
+    <string name="buy_premium_speed_button">DÉBLOQUER VITESSE 10x</string>
+    <string name="permadeath_protection_title">PROTECTION CONTRE LA MORT PERMANENTE</string>
+    <string name="permadeath_protection_desc">Protégez vos héros de la mort permanente en cas de défaite totale de l\'équipe !</string>
+    <string name="buy_protection_button">ACHETER PROTECTION</string>
+
+    <!-- Boss Lair Feature -->
+    <string name="boss_lair_title">Repaire du Boss</string>
+    <string name="boss_lair_subtitle">Donjon de Boss Infini</string>
+    <string name="boss_lair_discovered_title">Nouvelle Zone Découverte !</string>
+    <string name="boss_lair_discovered_desc">Une grotte sombre et effrayante est apparue dans les montagnes ! Le Repaire du Boss est un donjon infini composé uniquement de boss, avec un pic de difficulté de statistiques x100 et des récompenses Mythiques exclusives.</string>
+    <string name="boss_lair_warning_no_heroes">Vous devez assigner au moins un héros à votre équipe avant d\'entrer dans le Repaire du Boss !</string>
+    <string name="boss_lair_enter_button">Entrer dans le Repaire ⚔️</string>
+    <string name="boss_lair_pathfinder_title">Point de Contrôle du Repaire</string>
+    <string name="boss_lair_stat_spike_desc">⚠️ Les boss ont des Stats x100 (PV, Atq, Déf, Magie, Gils, Exp)</string>
+    <string name="boss_lair_loot_desc">💎 Éclats Mythiques (25%%) &amp; Équipement Mythique (5%%)</string>
+    <string name="boss_lair_cave_label">REPAIRE DU BOSS</string>
+    <string name="heroes_down">HÉROS K.O.</string>
+    <string name="some_heroes_fell">Certains héros sont tombés ! La protection les gardera en sécurité à l\'Auberge, mais vous pouvez les ranimer maintenant pour terminer l\'étage.</string>
+    <string name="party_down">ÉQUIPE VAINCUE !</string>
+    <string name="your_party_was_defeated">Votre équipe a été vaincue ! La protection ramènera vos héros en sécurité à l\'Auberge, ou vous pouvez regarder une publicité pour les ranimer et continuer cette partie.</string>
+    <string name="run_failed_heroes_saved">TENTATIVE ÉCHUÉE (HÉROS SAUVÉS 🛡️)</string>
+    <string name="unequip_all">TOUT DÉSÉQUIPER</string>
+    <string name="mat_ruby_gem_1_desc">+1% Bonus d\'Attaque</string>
+    <string name="mat_ruby_gem_2_desc">+2% Bonus d\'Attaque</string>
+    <string name="mat_ruby_gem_3_desc">+4% Bonus d\'Attaque</string>
+    <string name="mat_sapphire_gem_1_desc">+1% Bonus de Magie</string>
+    <string name="mat_sapphire_gem_2_desc">+2% Bonus de Magie</string>
+    <string name="mat_sapphire_gem_3_desc">+4% Bonus de Magie</string>
+    <string name="mat_emerald_gem_1_desc">+1% Bonus de Défense</string>
+    <string name="mat_emerald_gem_2_desc">+2% Bonus de Défense</string>
+    <string name="mat_emerald_gem_3_desc">+4% Bonus de Défense</string>
+    <string name="mat_topaz_gem_1_desc">+1% Bonus de PV</string>
+    <string name="mat_topaz_gem_2_desc">+2% Bonus de PV</string>
+    <string name="mat_topaz_gem_3_desc">+4% Bonus de PV</string>
+    <string name="effect">Effet : %1$s</string>
     </resources>

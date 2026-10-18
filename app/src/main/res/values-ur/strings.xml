@@ -1093,32 +1093,20 @@
         <string name="mat_dark_essence_desc">کالے جادو کا تاریک مرکز۔</string>
 
         <string name="mat_ruby_gem_1_name">چھوٹا یاقوت</string>
-        <string name="mat_ruby_gem_1_desc">+5 حملہ بونس</string>
         <string name="mat_ruby_gem_2_name">یاقوت کا نگینہ</string>
-        <string name="mat_ruby_gem_2_desc">+15 حملہ بونس</string>
         <string name="mat_ruby_gem_3_name">بے عیب یاقوت</string>
-        <string name="mat_ruby_gem_3_desc">+35 حملہ بونس</string>
 
         <string name="mat_sapphire_gem_1_name">چھوٹا نیلم</string>
-        <string name="mat_sapphire_gem_1_desc">+5 جادو بونس</string>
         <string name="mat_sapphire_gem_2_name">نیلم کا نگینہ</string>
-        <string name="mat_sapphire_gem_2_desc">+15 جادو بونس</string>
         <string name="mat_sapphire_gem_3_name">بے عیب نیلم</string>
-        <string name="mat_sapphire_gem_3_desc">+35 جادو بونس</string>
 
         <string name="mat_emerald_gem_1_name">چھوٹا زمرد</string>
-        <string name="mat_emerald_gem_1_desc">+5 دفاع بونس</string>
         <string name="mat_emerald_gem_2_name">زمرد کا نگینہ</string>
-        <string name="mat_emerald_gem_2_desc">+15 دفاع بونس</string>
         <string name="mat_emerald_gem_3_name">بے عیب زمرد</string>
-        <string name="mat_emerald_gem_3_desc">+35 دفاع بونس</string>
 
         <string name="mat_topaz_gem_1_name">چھوٹا پکھراج</string>
-        <string name="mat_topaz_gem_1_desc">+25 صحت بونس</string>
         <string name="mat_topaz_gem_2_name">پکھراج کا نگینہ</string>
-        <string name="mat_topaz_gem_2_desc">+75 صحت بونس</string>
         <string name="mat_topaz_gem_3_name">بے عیب پکھراج</string>
-        <string name="mat_topaz_gem_3_desc">+175 صحت بونس</string>
 
         <string name="mat_boss_trophy_1_name">گوبلن بادشاہ کا تاج</string>
         <string name="mat_boss_trophy_1_desc">گوبلن بادشاہ کو ہرا کا ثبوت۔</string>
@@ -1285,4 +1273,52 @@
     <string name="ai_priority_magic">جادو</string>
     <string name="ai_priority_heal">علاج</string>
     <string name="ai_priority_defend">دفاع</string>
+
+    <string name="tab_normal">عام</string>
+    <string name="header_flr">منزل</string>
+    <string name="header_boss">باس</string>
+
+    <string name="permadeath_status_on">🔒 دائمی موت: فعال</string>
+    <string name="protection_label">🛡️ تحفظ:</string>
+    <string name="retreat_rescue_title">نقصان کی نشاندہی ہوئی</string>
+    <string name="retreat_rescue_desc">کچھ ہیرو گر گئے ہیں! فرار ہونے سے پہلے انہیں بچانے کے لیے ایک چھوٹا اشتہار دیکھیں؟</string>
+    <string name="rescue_ad_button">بچائیں (اشتہار)</string>
+    <string name="retreat_anyway_button">پیچھے ہٹیں</string>
+    <string name="premium_speed_title">10x ہائپر اسپیڈ</string>
+    <string name="premium_speed_desc">زیادہ سے زیادہ رفتار سے تہہ خانے کی جنگوں کو پار کرنے کے لیے 10x ہائپر اسپیڈ انلاک کریں!</string>
+    <string name="buy_premium_speed_button">10x اسپیڈ انلاک کریں</string>
+    <string name="permadeath_protection_title">دائمى موت سے تحفظ</string>
+    <string name="permadeath_protection_desc">پوری ٹیم کی شکست پر اپنے ہیروز کو دائمی موت سے محفوظ رکھیں!</string>
+    <string name="buy_protection_button">تحفظ خریدیں</string>
+
+    <!-- Boss Lair Feature -->
+    <string name="boss_lair_title">باس کا اڈا</string>
+    <string name="boss_lair_subtitle">لا محدود باس تہہ خانہ</string>
+    <string name="boss_lair_discovered_title">نیا علاقہ دریافت ہوا!</string>
+    <string name="boss_lair_discovered_desc">پہاڑوں میں ایک خوفناک، تاریک غار نمودار ہوئی ہے! باس کا اڈا صرف باسز کا لا محدود تہہ خانہ ہے جس میں 100x شماریاتی مشکل اور خصوصی میتھک انعامات ہیں۔</string>
+    <string name="boss_lair_warning_no_heroes">باس کے اڈے میں داخل ہونے سے پہلے آپ کو اپنی ٹیم میں کم از کم ایک ہیرو مقرر کرنا ہوگا!</string>
+    <string name="boss_lair_enter_button">باس کے اڈے میں داخل ہوں ⚔️</string>
+    <string name="boss_lair_pathfinder_title">باس کے اڈے کی چیک پوائنٹ</string>
+    <string name="boss_lair_stat_spike_desc">⚠️ باسز کی خصوصیات 100x ہیں (صحت، حملہ، دفاع، جادو، گل، تجربہ)</string>
+    <string name="boss_lair_loot_desc">💎 میتھک ٹکڑے (25%%) اور میتھک سامان (5%%)</string>
+    <string name="boss_lair_cave_label">باس کا اڈا</string>
+    <string name="heroes_down">ہیروز گر گئے</string>
+    <string name="some_heroes_fell">کچھ ہیرو گر گئے! تحفظ انہیں سرائے میں محفوظ رکھے گا، لیکن آپ منزل مکمل کرنے کے لیے انہیں ابھی زندہ کر سکتے ہیں۔</string>
+    <string name="party_down">ٹیم ہار گئی!</string>
+    <string name="your_party_was_defeated">آپ کی ٹیم ہار گئی! تحفظ آپ کے ہیروز کو محفوظ طریقے سے سرائے واپس لے جائے گا، یا آپ انہیں زندہ کر کے اس باری کو جاری رکھنے کے لیے ایک اشتہار دیکھ سکتے ہیں۔</string>
+    <string name="run_failed_heroes_saved">باری ناکام (ہیروز محفوظ 🛡️)</string>
+    <string name="unequip_all">سب اتاریں</string>
+    <string name="mat_ruby_gem_1_desc">+1% حملے کا بونس</string>
+    <string name="mat_ruby_gem_2_desc">+2% حملے کا بونس</string>
+    <string name="mat_ruby_gem_3_desc">+4% حملے کا بونس</string>
+    <string name="mat_sapphire_gem_1_desc">+1% جادو کا بونس</string>
+    <string name="mat_sapphire_gem_2_desc">+2% جادو کا بونس</string>
+    <string name="mat_sapphire_gem_3_desc">+4% جادو کا بونس</string>
+    <string name="mat_emerald_gem_1_desc">+1% دفاع کا بونس</string>
+    <string name="mat_emerald_gem_2_desc">+2% دفاع کا بونس</string>
+    <string name="mat_emerald_gem_3_desc">+4% دفاع کا بونس</string>
+    <string name="mat_topaz_gem_1_desc">+1% صحت کا بونس</string>
+    <string name="mat_topaz_gem_2_desc">+2% صحت کا بونس</string>
+    <string name="mat_topaz_gem_3_desc">+4% صحت کا بونس</string>
+    <string name="effect">اثر: %1$s</string>
 </resources>

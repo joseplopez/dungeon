@@ -1080,32 +1080,20 @@
         <string name="mat_dark_essence_desc">Тіньове ядро темної магії.</string>
 
         <string name="mat_ruby_gem_1_name">Малий рубін</string>
-        <string name="mat_ruby_gem_1_desc">+5 до атаки</string>
         <string name="mat_ruby_gem_2_name">Рубін</string>
-        <string name="mat_ruby_gem_2_desc">+15 до атаки</string>
         <string name="mat_ruby_gem_3_name">Бездоганний рубін</string>
-        <string name="mat_ruby_gem_3_desc">+35 до атаки</string>
 
         <string name="mat_sapphire_gem_1_name">Малий сапфір</string>
-        <string name="mat_sapphire_gem_1_desc">+5 до магії</string>
         <string name="mat_sapphire_gem_2_name">Сапфір</string>
-        <string name="mat_sapphire_gem_2_desc">+15 до магії</string>
         <string name="mat_sapphire_gem_3_name">Бездоганний сапфір</string>
-        <string name="mat_sapphire_gem_3_desc">+35 до магії</string>
 
         <string name="mat_emerald_gem_1_name">Малий смарагд</string>
-        <string name="mat_emerald_gem_1_desc">+5 до захисту</string>
         <string name="mat_emerald_gem_2_name">Смарагд</string>
-        <string name="mat_emerald_gem_2_desc">+15 до захисту</string>
         <string name="mat_emerald_gem_3_name">Бездоганний смарагд</string>
-        <string name="mat_emerald_gem_3_desc">+35 до захисту</string>
 
         <string name="mat_topaz_gem_1_name">Малий топаз</string>
-        <string name="mat_topaz_gem_1_desc">+25 до здоров\'я</string>
         <string name="mat_topaz_gem_2_name">Топаз</string>
-        <string name="mat_topaz_gem_2_desc">+75 до здоров\'я</string>
         <string name="mat_topaz_gem_3_name">Бездоганний топаз</string>
-        <string name="mat_topaz_gem_3_desc">+175 до здоров\'я</string>
 
         <string name="mat_boss_trophy_1_name">Корона Короля Гоблінів</string>
         <string name="mat_boss_trophy_1_desc">Доказ перемоги над Королем Гоблінів.</string>
@@ -1271,4 +1259,52 @@
     <string name="ai_priority_magic">Магія</string>
     <string name="ai_priority_heal">Лікування</string>
     <string name="ai_priority_defend">Захист</string>
+
+    <string name="tab_normal">Звичайний</string>
+    <string name="header_flr">ПОВ</string>
+    <string name="header_boss">БОС</string>
+
+    <string name="permadeath_status_on">🔒 Permadeath: УВІМК</string>
+    <string name="protection_label">🛡️ Захист:</string>
+    <string name="retreat_rescue_title">ВИЯВЛЕНО ВТРАТИ</string>
+    <string name="retreat_rescue_desc">Деякі герои впали! Переглянути коротку рекламу, щоб врятувати їх перед втечею?</string>
+    <string name="rescue_ad_button">ВРЯТУВАТИ (РЕКЛАМА)</string>
+    <string name="retreat_anyway_button">ВІДСТУПИТИ</string>
+    <string name="premium_speed_title">10x ГІПЕРШВИДКІСТЬ</string>
+    <string name="premium_speed_desc">Розблокуйте 10x Гіпершвидкість, щоб проноситися через битви в підземеллі на максимальній швидкості!</string>
+    <string name="buy_premium_speed_button">РОЗБЛОКУВАТИ ШВИДКІСТЬ 10x</string>
+    <string name="permadeath_protection_title">ЗАХИСТ ВІД ОСТАТОЧНОЇ СМЕРТІ</string>
+    <string name="permadeath_protection_desc">Захистіть своїх героїв від остаточної смерті при поразці всієї групи!</string>
+    <string name="buy_protection_button">КУПИТИ ЗАХИСТ</string>
+
+    <!-- Boss Lair Feature -->
+    <string name="boss_lair_title">Лігво Босів</string>
+    <string name="boss_lair_subtitle">Нескінченне Підземелля Босів</string>
+    <string name="boss_lair_discovered_title">Виявлено нову область!</string>
+    <string name="boss_lair_discovered_desc">У горах з\'явилася моторошна, похмура печера! Лігво Босів — це нескінченне підземелля тільки з босами, зі 100-разовим стрибком складності характеристик та ексклюзивними міфічними нагородами.</string>
+    <string name="boss_lair_warning_no_heroes">Ви повинні призначити принаймні одного героя до групи перед входом у Лігво Босів!</string>
+    <string name="boss_lair_enter_button">Увійти в Лігво Босів ⚔️</string>
+    <string name="boss_lair_pathfinder_title">Контрольна точка Лігва</string>
+    <string name="boss_lair_stat_spike_desc">⚠️ Боси мають 100x Характеристики (ЗДР, Атк, Зах, Магія, Гіл, Досв)</string>
+    <string name="boss_lair_loot_desc">💎 Міфічні уламки (25%%) та Міфічне спорядження (5%%)</string>
+    <string name="boss_lair_cave_label">ЛІГВО БОСІВ</string>
+    <string name="heroes_down">ГЕРОЇ ВПАЛИ</string>
+    <string name="some_heroes_fell">Деякі герої впали! Захист убереже їх у Таверні, але ви можете воскресити їх зараз, щоб завершити поверх.</string>
+    <string name="party_down">ГРУПУ ПОВЕРЖЕНО!</string>
+    <string name="your_party_was_defeated">Вашу групу повержено! Захист безпечно поверне ваших героїв до Таверни, або ви можете переглянути рекламу, щоб воскресити їх і продовжити забіг.</string>
+    <string name="run_failed_heroes_saved">ЗАБІГ ПРОВАЛЕНО (ГЕРОЇ ВРЯТОВАНІ 🛡️)</string>
+    <string name="unequip_all">ЗНЯТИ ВСЕ</string>
+    <string name="mat_ruby_gem_1_desc">+1% До бонусу атаки</string>
+    <string name="mat_ruby_gem_2_desc">+2% До бонусу атаки</string>
+    <string name="mat_ruby_gem_3_desc">+4% До бонусу атаки</string>
+    <string name="mat_sapphire_gem_1_desc">+1% До бонусу магії</string>
+    <string name="mat_sapphire_gem_2_desc">+2% До бонусу магії</string>
+    <string name="mat_sapphire_gem_3_desc">+4% До бонусу магії</string>
+    <string name="mat_emerald_gem_1_desc">+1% До бонусу захисту</string>
+    <string name="mat_emerald_gem_2_desc">+2% До бонусу захисту</string>
+    <string name="mat_emerald_gem_3_desc">+4% До бонусу захисту</string>
+    <string name="mat_topaz_gem_1_desc">+1% До бонусу ЗДР</string>
+    <string name="mat_topaz_gem_2_desc">+2% До бонусу ЗДР</string>
+    <string name="mat_topaz_gem_3_desc">+4% До бонусу ЗДР</string>
+    <string name="effect">Ефект: %1$s</string>
 </resources>

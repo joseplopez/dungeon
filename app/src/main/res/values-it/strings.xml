@@ -1080,32 +1080,20 @@
         <string name="mat_dark_essence_desc">Nucleo ombroso di magia oscura.</string>
 
         <string name="mat_ruby_gem_1_name">Rubino minore</string>
-        <string name="mat_ruby_gem_1_desc">+5 Bonus Attacco</string>
         <string name="mat_ruby_gem_2_name">Rubino</string>
-        <string name="mat_ruby_gem_2_desc">+15 Bonus Attacco</string>
         <string name="mat_ruby_gem_3_name">Rubino perfetto</string>
-        <string name="mat_ruby_gem_3_desc">+35 Bonus Attacco</string>
 
         <string name="mat_sapphire_gem_1_name">Zaffiro minore</string>
-        <string name="mat_sapphire_gem_1_desc">+5 Bonus Magia</string>
         <string name="mat_sapphire_gem_2_name">Zaffiro</string>
-        <string name="mat_sapphire_gem_2_desc">+15 Bonus Magia</string>
         <string name="mat_sapphire_gem_3_name">Zaffiro perfetto</string>
-        <string name="mat_sapphire_gem_3_desc">+35 Bonus Magia</string>
 
         <string name="mat_emerald_gem_1_name">Smeraldo minore</string>
-        <string name="mat_emerald_gem_1_desc">+5 Bonus Difesa</string>
         <string name="mat_emerald_gem_2_name">Smeraldo</string>
-        <string name="mat_emerald_gem_2_desc">+15 Bonus Difesa</string>
         <string name="mat_emerald_gem_3_name">Smeraldo perfetto</string>
-        <string name="mat_emerald_gem_3_desc">+35 Bonus Difesa</string>
 
         <string name="mat_topaz_gem_1_name">Topazio minore</string>
-        <string name="mat_topaz_gem_1_desc">+25 Bonus PV</string>
         <string name="mat_topaz_gem_2_name">Topazio</string>
-        <string name="mat_topaz_gem_2_desc">+75 Bonus PV</string>
         <string name="mat_topaz_gem_3_name">Topazio perfetto</string>
-        <string name="mat_topaz_gem_3_desc">+175 Bonus PV</string>
 
         <string name="mat_boss_trophy_1_name">Corona del Re Goblin</string>
         <string name="mat_boss_trophy_1_desc">Prova di aver sconfitto il Re Goblin.</string>
@@ -1271,4 +1259,52 @@
         <string name="ai_priority_magic">Magia</string>
         <string name="ai_priority_heal">Cura</string>
         <string name="ai_priority_defend">Difesa</string>
+
+    <string name="tab_normal">Normale</string>
+    <string name="header_flr">PIANO</string>
+    <string name="header_boss">BOSS</string>
+
+    <string name="permadeath_status_on">🔒 Permadeath: ATTIVO</string>
+    <string name="protection_label">🛡️ Protezione:</string>
+    <string name="retreat_rescue_title">PERDITE RILEVATE</string>
+    <string name="retreat_rescue_desc">Alcuni eroi sono caduti! Guardare un breve annuncio per salvarli prima di fuggire?</string>
+    <string name="rescue_ad_button">SALVA (PUBBLICITÀ)</string>
+    <string name="retreat_anyway_button">RITIRATI</string>
+    <string name="premium_speed_title">IPER VELOCITÀ 10x</string>
+    <string name="premium_speed_desc">Sblocca l\'Iper Velocità 10x per sfrecciare nelle battaglie del dungeon alla massima velocità!</string>
+    <string name="buy_premium_speed_button">SBLOCCA VELOCITÀ 10x</string>
+    <string name="permadeath_protection_title">PROTEZIONE PERMADEATH</string>
+    <string name="permadeath_protection_desc">Proteggi i tuoi eroi dalla morte permanente quando l\'intero gruppo viene sconfitto!</string>
+    <string name="buy_protection_button">ACQUISTA PROTEZIONE</string>
+
+    <!-- Boss Lair Feature -->
+    <string name="boss_lair_title">Covo del Boss</string>
+    <string name="boss_lair_subtitle">Dungeon Infinito di Boss</string>
+    <string name="boss_lair_discovered_title">Nuova Area Scoperta!</string>
+    <string name="boss_lair_discovered_desc">Una grotta spaventosa e cupa è apparsa tra le montagne! Il Covo del Boss è un dungeon infinito di soli boss con un aumento della difficoltà delle statistiche di 100x e ricompense mitiche esclusive.</string>
+    <string name="boss_lair_warning_no_heroes">Devi assegnare almeno un eroe al tuo gruppo prima di entrare nel Covo del Boss!</string>
+    <string name="boss_lair_enter_button">Entra nel Covo ⚔️</string>
+    <string name="boss_lair_pathfinder_title">Check-point Covo del Boss</string>
+    <string name="boss_lair_stat_spike_desc">⚠️ I boss hanno Statistiche 100x (PV, Att, Dif, Magia, Gil, Exp)</string>
+    <string name="boss_lair_loot_desc">💎 Frammenti Mitici (25%%) e Equipaggiamento Mitico (5%%)</string>
+    <string name="boss_lair_cave_label">COVO DEL BOSS</string>
+    <string name="heroes_down">EROI CADUTI</string>
+    <string name="some_heroes_fell">Alcuni eroi sono caduti! La protezione li terrà al sicuro alla Locanda, ma puoi rianimarli ora per completare il piano.</string>
+    <string name="party_down">GRUPPO SCONFITTO!</string>
+    <string name="your_party_was_defeated">Il tuo gruppo è stato sconfitto! La protezione riporterà i tuoi eroi al sicuro alla Locanda, oppure puoi guardare un annuncio per rianimarli e continuare la partita.</string>
+    <string name="run_failed_heroes_saved">PARTITA FALLITA (EROI SALVATI 🛡️)</string>
+    <string name="unequip_all">RIMOVI TUTTO</string>
+    <string name="mat_ruby_gem_1_desc">+1% Bonus Attacco</string>
+    <string name="mat_ruby_gem_2_desc">+2% Bonus Attacco</string>
+    <string name="mat_ruby_gem_3_desc">+4% Bonus Attacco</string>
+    <string name="mat_sapphire_gem_1_desc">+1% Bonus Magia</string>
+    <string name="mat_sapphire_gem_2_desc">+2% Bonus Magia</string>
+    <string name="mat_sapphire_gem_3_desc">+4% Bonus Magia</string>
+    <string name="mat_emerald_gem_1_desc">+1% Bonus Difesa</string>
+    <string name="mat_emerald_gem_2_desc">+2% Bonus Difesa</string>
+    <string name="mat_emerald_gem_3_desc">+4% Bonus Difesa</string>
+    <string name="mat_topaz_gem_1_desc">+1% Bonus PV</string>
+    <string name="mat_topaz_gem_2_desc">+2% Bonus PV</string>
+    <string name="mat_topaz_gem_3_desc">+4% Bonus PV</string>
+    <string name="effect">Effetto: %1$s</string>
     </resources>

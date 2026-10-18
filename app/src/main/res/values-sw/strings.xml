@@ -1080,32 +1080,20 @@
         <string name="mat_dark_essence_desc">Moyo wa kivuli wa uchawi mweusi.</string>
 
         <string name="mat_ruby_gem_1_name">Rubi Ndogo</string>
-        <string name="mat_ruby_gem_1_desc">+5 Bonasi ya Shambulio</string>
         <string name="mat_ruby_gem_2_name">Gemu ya Rubi</string>
-        <string name="mat_ruby_gem_2_desc">+15 Bonasi ya Shambulio</string>
         <string name="mat_ruby_gem_3_name">Rubi Safi</string>
-        <string name="mat_ruby_gem_3_desc">+35 Bonasi ya Shambulio</string>
 
         <string name="mat_sapphire_gem_1_name">Safira Ndogo</string>
-        <string name="mat_sapphire_gem_1_desc">+5 Bonasi ya Uchawi</string>
         <string name="mat_sapphire_gem_2_name">Gemu ya Safira</string>
-        <string name="mat_sapphire_gem_2_desc">+15 Bonasi ya Uchawi</string>
         <string name="mat_sapphire_gem_3_name">Safira Safi</string>
-        <string name="mat_sapphire_gem_3_desc">+35 Bonasi ya Uchawi</string>
 
         <string name="mat_emerald_gem_1_name">Zumaridi Ndogo</string>
-        <string name="mat_emerald_gem_1_desc">+5 Bonasi ya Ulinzi</string>
         <string name="mat_emerald_gem_2_name">Gemu ya Zumaridi</string>
-        <string name="mat_emerald_gem_2_desc">+15 Bonasi ya Ulinzi</string>
         <string name="mat_emerald_gem_3_name">Zumaridi Safi</string>
-        <string name="mat_emerald_gem_3_desc">+35 Bonasi ya Ulinzi</string>
 
         <string name="mat_topaz_gem_1_name">Topazi Ndogo</string>
-        <string name="mat_topaz_gem_1_desc">+25 Bonasi ya PV</string>
         <string name="mat_topaz_gem_2_name">Gemu ya Topazi</string>
-        <string name="mat_topaz_gem_2_desc">+75 Bonasi ya PV</string>
         <string name="mat_topaz_gem_3_name">Topazi Safi</string>
-        <string name="mat_topaz_gem_3_desc">+175 Bonasi ya PV</string>
 
         <string name="mat_boss_trophy_1_name">Taji la Mfalme Goblin</string>
         <string name="mat_boss_trophy_1_desc">Ushahidi wa kumshinda Mfalme Goblin.</string>
@@ -1271,5 +1259,53 @@
     <string name="ai_priority_heal">Tibu</string>
     <string name="ai_priority_defend">Tetea</string>
 
+
+    <string name="tab_normal">Kawaida</string>
+    <string name="header_flr">GHO</string>
+    <string name="header_boss">BOSI</string>
+
+    <string name="permadeath_status_on">🔒 Permadeath: IPO HAI</string>
+    <string name="protection_label">🛡️ Ulinzi:</string>
+    <string name="retreat_rescue_title">MASHUJAA WAMEDONDOKA</string>
+    <string name="retreat_rescue_desc">Baadhi ya mashujaa wameanguka! Tazama tangazo fupi kuwaokoa kabla ya kukimbia?</string>
+    <string name="rescue_ad_button">OKOA (TANGAZO)</string>
+    <string name="retreat_anyway_button">RUDI NYUMA</string>
+    <string name="premium_speed_title">KASI KUBWA YA 10x</string>
+    <string name="premium_speed_desc">Fungua Kasi Kubwa ya 10x ili kupitia mapambano ya shimo kwa kasi ya juu kabisa!</string>
+    <string name="buy_premium_speed_button">FUNGUA KASI YA 10x</string>
+    <string name="permadeath_protection_title">ULINZI WA KIFO CHA DAIMA</string>
+    <string name="permadeath_protection_desc">Linda mashujaa wako dhidi ya kifo cha daima kundi zima linaposhindwa!</string>
+    <string name="buy_protection_button">NUNUA ULINZI</string>
+
+    <!-- Boss Lair Feature -->
+    <string name="boss_lair_title">Pango la Bosi</string>
+    <string name="boss_lair_subtitle">Shimo la Bosisi Cisizo na Mwisho</string>
+    <string name="boss_lair_discovered_title">Eneo Jipya Limegunduliwa!</string>
+    <string name="boss_lair_discovered_desc">Pango la kutisha na lenye giza limeonekana milimani! Pango la Bosi ni shimo lisilo na mwisho la mabosi pekee lenye ugumu wa takwimu mara 100x na zawadi za kipekee za Hadithi.</string>
+    <string name="boss_lair_warning_no_heroes">Lazima umchague kamwe shujaa mmoja kwenye kundi yako kabla ya kuingia Pango la Bosi!</string>
+    <string name="boss_lair_enter_button">Ingia Pango la Bosi ⚔️</string>
+    <string name="boss_lair_pathfinder_title">Kituo cha Pango la Bosi</string>
+    <string name="boss_lair_stat_spike_desc">⚠️ Mabosi yana Takwimu 100x (HP, Atk, Def, Magic, Gil, Exp)</string>
+    <string name="boss_lair_loot_desc">💎 Vipande vya Hadithi (25%%) &amp; Zana za Hadithi (5%%)</string>
+    <string name="boss_lair_cave_label">PANGO LA BOSI</string>
+    <string name="heroes_down">MASHUJAA WAMEANGUKA</string>
+    <string name="some_heroes_fell">Baadhi ya mashujaa wameanguka! Ulinzi utawaweka salama Nyumbani mwa Wageni, lakini unaweza kuwafufua sasa ili kumaliza ghorofa.</string>
+    <string name="party_down">KUNDI LIMESHINDWA!</string>
+    <string name="your_party_was_defeated">Kundi yako imeshindwa! Ulinzi utawarejesha mashujaa wako salama Nyumbani mwa Wageni, au unaweza kutazama tangazo kuwafufua na kuendelea.</string>
+    <string name="run_failed_heroes_saved">MCHEZO UMEFELI (MASHUJAA WAMEOKOLEWA 🛡️)</string>
+    <string name="unequip_all">VUA VYOTE</string>
+    <string name="mat_ruby_gem_1_desc">+1% Bonasi ya Shambulio</string>
+    <string name="mat_ruby_gem_2_desc">+2% Bonasi ya Shambulio</string>
+    <string name="mat_ruby_gem_3_desc">+4% Bonasi ya Shambulio</string>
+    <string name="mat_sapphire_gem_1_desc">+1% Bonasi ya Uchawi</string>
+    <string name="mat_sapphire_gem_2_desc">+2% Bonasi ya Uchawi</string>
+    <string name="mat_sapphire_gem_3_desc">+4% Bonasi ya Uchawi</string>
+    <string name="mat_emerald_gem_1_desc">+1% Bonasi ya Ulinzi</string>
+    <string name="mat_emerald_gem_2_desc">+2% Bonasi ya Ulinzi</string>
+    <string name="mat_emerald_gem_3_desc">+4% Bonasi ya Ulinzi</string>
+    <string name="mat_topaz_gem_1_desc">+1% Bonasi ya HP</string>
+    <string name="mat_topaz_gem_2_desc">+2% Bonasi ya HP</string>
+    <string name="mat_topaz_gem_3_desc">+4% Bonasi ya HP</string>
+    <string name="effect">Athari: %1$s</string>
 </resources>
 

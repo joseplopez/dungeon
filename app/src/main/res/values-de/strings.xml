@@ -1081,32 +1081,20 @@
         <string name="mat_dark_essence_desc">Schattiger Kern dunkler Magie.</string>
 
         <string name="mat_ruby_gem_1_name">Kleine Rubin</string>
-        <string name="mat_ruby_gem_1_desc">+5 Angriffsbonus</string>
         <string name="mat_ruby_gem_2_name">Rubinedelstein</string>
-        <string name="mat_ruby_gem_2_desc">+15 Angriffsbonus</string>
         <string name="mat_ruby_gem_3_name">Makelloser Rubin</string>
-        <string name="mat_ruby_gem_3_desc">+35 Angriffsbonus</string>
 
         <string name="mat_sapphire_gem_1_name">Kleiner Saphir</string>
-        <string name="mat_sapphire_gem_1_desc">+5 Magiebonus</string>
         <string name="mat_sapphire_gem_2_name">Saphiredelstein</string>
-        <string name="mat_sapphire_gem_2_desc">+15 Magiebonus</string>
         <string name="mat_sapphire_gem_3_name">Makelloser Saphir</string>
-        <string name="mat_sapphire_gem_3_desc">+35 Magiebonus</string>
 
         <string name="mat_emerald_gem_1_name">Kleiner Smaragd</string>
-        <string name="mat_emerald_gem_1_desc">+5 Verteidigungsbonus</string>
         <string name="mat_emerald_gem_2_name">Smaragdedelstein</string>
-        <string name="mat_emerald_gem_2_desc">+15 Verteidigungsbonus</string>
         <string name="mat_emerald_gem_3_name">Makelloser Smaragd</string>
-        <string name="mat_emerald_gem_3_desc">+35 Verteidigungsbonus</string>
 
         <string name="mat_topaz_gem_1_name">Kleiner Topas</string>
-        <string name="mat_topaz_gem_1_desc">+25 LP-Bonus</string>
         <string name="mat_topaz_gem_2_name">Topasedelstein</string>
-        <string name="mat_topaz_gem_2_desc">+75 LP-Bonus</string>
         <string name="mat_topaz_gem_3_name">Makelloser Topas</string>
-        <string name="mat_topaz_gem_3_desc">+175 LP-Bonus</string>
 
         <string name="mat_boss_trophy_1_name">Goblinkönig-Krone</string>
         <string name="mat_boss_trophy_1_desc">Beweis für den Sieg über den Goblinkönig.</string>
@@ -1272,4 +1260,52 @@
         <string name="ai_priority_magic">Magie</string>
         <string name="ai_priority_heal">Heilung</string>
         <string name="ai_priority_defend">Verteidigung</string>
+
+    <string name="tab_normal">Normal</string>
+    <string name="header_flr">EBN</string>
+    <string name="header_boss">BOSS</string>
+
+    <string name="permadeath_status_on">🔒 Permadeath: AN</string>
+    <string name="protection_label">🛡️ Schutz:</string>
+    <string name="retreat_rescue_title">VERLUSTE ERFASST</string>
+    <string name="retreat_rescue_desc">Einige Helden sind gefallen! Kurze Werbung ansehen, um sie vor der Flucht zu retten?</string>
+    <string name="rescue_ad_button">RETTEN (WERBUNG)</string>
+    <string name="retreat_anyway_button">RÜCKZUG</string>
+    <string name="premium_speed_title">10x HYPER-TEMPO</string>
+    <string name="premium_speed_desc">Schalte 10x Hyper-Tempo frei, um mit maximaler Geschwindigkeit durch Dungeon-Kämpfe zu fegen!</string>
+    <string name="buy_premium_speed_button">10x TEMPO FREISCHALTEN</string>
+    <string name="permadeath_protection_title">SCHUTZ VOR PERMANTEM TOD</string>
+    <string name="permadeath_protection_desc">Schütze deine Helden vor dem permanenten Tod, wenn die gesamte Gruppe besiegt wird!</string>
+    <string name="buy_protection_button">SCHUTZ KAUFEN</string>
+
+    <!-- Boss Lair Feature -->
+    <string name="boss_lair_title">Boss-Höhle</string>
+    <string name="boss_lair_subtitle">Endloser Boss-Dungeon</string>
+    <string name="boss_lair_discovered_title">Neues Gebiet entdeckt!</string>
+    <string name="boss_lair_discovered_desc">Eine unheimliche, düstere Höhle ist in den Bergen aufgetaucht! Die Boss-Höhle ist ein endloser Dungeon nur für Bosse mit einem 100-fachen Attributs-Schwierigkeitssprung und exklusiven mythischen Belohnungen.</string>
+    <string name="boss_lair_warning_no_heroes">Du musst deiner Gruppe mindestens einen Helden zuweisen, bevor du die Boss-Höhle betrittst!</string>
+    <string name="boss_lair_enter_button">Boss-Höhle betreten ⚔️</string>
+    <string name="boss_lair_pathfinder_title">Boss-Höhlen-Kontrollpunkt</string>
+    <string name="boss_lair_stat_spike_desc">⚠️ Bosse haben 100x Attribute (KP, Ang, Ver, Magie, Gil, EP)</string>
+    <string name="boss_lair_loot_desc">💎 Mythische Splitter (25%%) &amp; Mythische Ausrüstung (5%%)</string>
+    <string name="boss_lair_cave_label">BOSS-HÖHLE</string>
+    <string name="heroes_down">HELDEN GEFALLEN</string>
+    <string name="some_heroes_fell">Einige Helden sind gefallen! Der Schutz bringt sie sicher ins Gasthaus, aber du kannst sie jetzt wiederbeleben, um die Ebene zu beenden.</string>
+    <string name="party_down">GRUPPE BESIEGT!</string>
+    <string name="your_party_was_defeated">Deine Gruppe wurde besiegt! Der Schutz bringt deine Helden sicher ins Gasthaus zurück, oder du kannst eine Werbung ansehen, um sie wiederzubeleben und diesen Lauf fortzusetzen.</string>
+    <string name="run_failed_heroes_saved">LAUF FEHLGESCHLAGEN (HELDEN GERETTET 🛡️)</string>
+    <string name="unequip_all">ALLES ABLEGEN</string>
+    <string name="mat_ruby_gem_1_desc">+1% Angriffsbonus</string>
+    <string name="mat_ruby_gem_2_desc">+2% Angriffsbonus</string>
+    <string name="mat_ruby_gem_3_desc">+4% Angriffsbonus</string>
+    <string name="mat_sapphire_gem_1_desc">+1% Magiebonus</string>
+    <string name="mat_sapphire_gem_2_desc">+2% Magiebonus</string>
+    <string name="mat_sapphire_gem_3_desc">+4% Magiebonus</string>
+    <string name="mat_emerald_gem_1_desc">+1% Verteidigungsbonus</string>
+    <string name="mat_emerald_gem_2_desc">+2% Verteidigungsbonus</string>
+    <string name="mat_emerald_gem_3_desc">+4% Verteidigungsbonus</string>
+    <string name="mat_topaz_gem_1_desc">+1% KP-Bonus</string>
+    <string name="mat_topaz_gem_2_desc">+2% KP-Bonus</string>
+    <string name="mat_topaz_gem_3_desc">+4% KP-Bonus</string>
+    <string name="effect">Effekt: %1$s</string>
     </resources>
