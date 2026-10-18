@@ -77,7 +77,6 @@ fun TownScreen(
     val resourceShopType by viewModel.resourceShopType.collectAsState()
     val productDetailsMap by viewModel.billingManager.productDetailsMap.collectAsState()
 
-    var showCrystalShop by remember { mutableStateOf(false) }
     var showUpgrades by remember { mutableStateOf(false) }
     var showSupportDialog by remember { mutableStateOf(false) }
     var showBulletinDialog by remember { mutableStateOf(false) }
@@ -225,7 +224,10 @@ fun TownScreen(
                             animTime = animTime,
                             buildingWidth = 180.dp,
                             buildingHeight = 120.dp,
-                            onClick = { showCrystalShop = true }
+                            onClick = { navController.navigate("crystal_shop") {
+                                launchSingleTop = true
+                                restoreState = true
+                            } }
                         )
 
                         Spacer(Modifier.width(40.dp))
@@ -384,18 +386,6 @@ fun TownScreen(
                 BottomPixelNav(currentRoute, navController)
             }
         }
-    }
-
-    // Dialogs
-    if (showCrystalShop) {
-        CrystalShopDialog(
-            availableCrystals = availableCrystals,
-            unlockedJobs = gs?.unlockedJobs ?: setOf(HeroClass.FREELANCER),
-            gil = gil,
-            onBuy = { viewModel.buyCrystal(it) },
-            onDismiss = { showCrystalShop = false },
-            gs = gs ?: GameState()
-        )
     }
 
     if (showUpgrades) {
@@ -671,119 +661,6 @@ fun BulletinBoardDialog(
     }
 }
 
-@Composable
-fun CrystalShopDialog(
-    availableCrystals: List<TownViewModel.CrystalData>,
-    unlockedJobs: Set<HeroClass>,
-    gil: Long,
-    onBuy: (CrystalColor) -> Unit,
-    onDismiss: () -> Unit,
-    gs: GameState
-) {
-    Dialog(
-        onDismissRequest = onDismiss,
-        properties = DialogProperties(usePlatformDefaultWidth = false)
-    ) {
-        GoldenBorderBox(
-            Modifier
-                .fillMaxWidth(0.90f)
-                .widthIn(max = 480.dp)
-                .height(460.dp)
-                .background(BgDarkest)
-        ) {
-            Column(Modifier.fillMaxSize().padding(all = 20.dp)) {
-                Row(
-                    Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.SpaceBetween,
-                    verticalAlignment = CenterVertically
-                ) {
-                    Text(safeStringResource(R.string.building_crystal_shop), style = PixelHeading)
-                    PixelButton(
-                        label = "X",
-                        onClick = onDismiss,
-                        modifier = Modifier.size(32.dp),
-                        horizontalPadding = 0.dp,
-                        verticalPadding = 0.dp
-                    )
-                }
-                Text(safeStringResource(R.string.crystal_shop_subtitle), style = PixelSmall, color = GoldDark)
-                Spacer(Modifier.height(8.dp))
-                PixelDivider()
-                Spacer(Modifier.height(12.dp))
-                LazyColumn(
-                    verticalArrangement = Arrangement.spacedBy(12.dp),
-                    modifier = Modifier.weight(1f)
-                ) {
-                    val allStandardUnlocked = HeroClass.entries.filter { it.tier == 1 || it.tier == 2 }.all { unlockedJobs.contains(it) || it == HeroClass.FREELANCER }
-                    val hiddenJobsToDiscover = HeroClass.entries.filter { it.tier == 3 }.any { !gs.isJobDiscovered(it) }
-                    if (allStandardUnlocked && hiddenJobsToDiscover) {
-                        item {
-                            Row(Modifier.fillMaxWidth().padding(4.dp), verticalAlignment = CenterVertically) {
-                                Canvas(Modifier.size(32.dp)) {
-                                    val path = Path().apply {
-                                        moveTo(size.width / 2f, 0f)
-                                        lineTo(size.width, size.height * 0.4f)
-                                        lineTo(size.width / 2f, size.height)
-                                        lineTo(0f, size.height * 0.4f)
-                                        close()
-                                    }
-                                    drawPath(path, color = Color(0xFF000000))
-                                    drawPath(path, color = Color.White.copy(alpha = 0.3f), style = Stroke(2f))
-                                }
-                                Spacer(Modifier.width(12.dp))
-                                Column(Modifier.weight(1f)) {
-                                    Text("???", style = PixelBody, color = GoldBright)
-                                    Text(safeStringResource(R.string.hidden_job_clue_desc), style = PixelSmall, color = StoneGray)
-                                }
-                            }
-                        }
-                    }
-                    items(availableCrystals) { crystal ->
-                        val isUnlocked = unlockedJobs.contains(crystal.unlocksJob)
-                        CrystalShopRow(crystal, isUnlocked, gil, onBuy = { onBuy(crystal.color) })
-                    }
-                }
-            }
-        }
-    }
-}
-
-@Composable
-fun CrystalShopRow(
-    crystal: TownViewModel.CrystalData,
-    isUnlocked: Boolean,
-    gil: Long,
-    onBuy: () -> Unit
-) {
-    Row(Modifier.fillMaxWidth().padding(4.dp).testTag("CrystalRow_${crystal.color.name}"), verticalAlignment = CenterVertically) {
-        Canvas(Modifier.size(32.dp)) {
-            val path = Path().apply {
-                moveTo(size.width / 2f, 0f)
-                lineTo(size.width, size.height * 0.4f)
-                lineTo(size.width / 2f, size.height)
-                lineTo(0f, size.height * 0.4f)
-                close()
-            }
-            drawPath(path, color = Color(crystal.color.colorHex))
-            drawPath(path, color = Color.White.copy(alpha = 0.3f), style = Stroke(2f))
-        }
-        Spacer(Modifier.width(12.dp))
-        Column(Modifier.weight(1f)) {
-            Text(safeStringResource(crystal.color.nameRes), style = PixelBody, color = Color(crystal.color.colorHex))
-            Text(safeStringResource(id = R.string.unlocks_job_format, safeStringResource(crystal.unlocksJob.nameRes)), style = PixelSmall, color = GoldDark)
-        }
-        if (isUnlocked) {
-            Text(safeStringResource(R.string.owned_status), style = PixelSmall, color = HpGreen)
-        } else {
-            PixelButton(
-                "${crystal.color.baseCost}G",
-                onClick = onBuy,
-                enabled = gil >= crystal.color.baseCost,
-                modifier = Modifier.width(80.dp).height(36.dp)
-            )
-        }
-    }
-}
 
 private fun getUpgradeLevel(gs: GameState, type: UpgradeType): Int {
     return when (type) {

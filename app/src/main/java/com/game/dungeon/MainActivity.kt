@@ -38,6 +38,7 @@ import com.game.dungeon.ui.components.MusicToggleButton
 import com.game.dungeon.ui.screens.BossLairPrepScreen
 import com.game.dungeon.ui.screens.CodexScreen
 import com.game.dungeon.ui.screens.CraftingScreen
+import com.game.dungeon.ui.screens.CrystalShopScreen
 import com.game.dungeon.ui.screens.DungeonScreen
 import com.game.dungeon.ui.screens.EquipmentScreen
 import com.game.dungeon.ui.screens.InnScreen
@@ -191,6 +192,9 @@ class MainActivity : ComponentActivity() {
                                         navController.navigate("dungeon")
                                     }
                                 )
+                            }
+                            composable("crystal_shop") {
+                                CrystalShopScreen(navController = navController)
                             }
                             composable("boss_lair_prep") {
                                 val gs by townViewModel.gameState.collectAsState()
