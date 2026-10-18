@@ -17,6 +17,7 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
@@ -337,14 +338,18 @@ fun LeaderboardScreen(
                         label = safeStringResource(R.string.tab_normal),
                         onClick = { viewModel.selectTab(0) },
                         active = selectedTab == 0,
-                        modifier = Modifier.weight(1f).height(28.dp)
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(28.dp)
                     )
                     PixelButton(
                         label = if (canSeeBossLair) safeStringResource(R.string.boss_lair_title) else "🔒 Boss Lair",
                         onClick = { if (canSeeBossLair) viewModel.selectTab(1) },
                         active = selectedTab == 1,
                         enabled = canSeeBossLair,
-                        modifier = Modifier.weight(1f).height(28.dp)
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(28.dp)
                     )
                 }
 
@@ -370,7 +375,7 @@ fun LeaderboardScreen(
                                 text = safeStringResource(R.string.rank_label),
                                 style = PixelSmall,
                                 color = GoldBright,
-                                modifier = Modifier.width(36.dp)
+                                modifier = Modifier.width(44.dp)
                             )
                             Text(
                                 text = safeStringResource(R.string.gladiator_team_header),
@@ -538,11 +543,11 @@ fun LeaderboardRow(entry: LeaderboardEntry, selectedTab: Int, onClick: () -> Uni
         verticalAlignment = CenterVertically
     ) {
         // Rank Badge
-        Box(Modifier.width(36.dp)) {
+        Box(Modifier.width(44.dp)) {
             when (entry.rank) {
-                1 -> Text("🥇 #1", style = PixelSmall, color = GoldBright)
-                2 -> Text("🥈 #2", style = PixelSmall, color = Color(0xFFC0C0C0))
-                3 -> Text("🥉 #3", style = PixelSmall, color = Color(0xFFCD7F32))
+                1 -> Text("#1 🥇", style = PixelSmall, color = GoldBright)
+                2 -> Text("#2 🥈", style = PixelSmall, color = Color(0xFFC0C0C0))
+                3 -> Text("#3 🥉", style = PixelSmall, color = Color(0xFFCD7F32))
                 else -> Text("#${entry.rank}", style = PixelSmall, color = textColor)
             }
         }
@@ -679,9 +684,18 @@ fun GhostRunDialog(
                 val displayName = if (entry.isUser) safeStringResource(R.string.player_name_you) else entry.playerName
                 Text(safeStringResource(R.string.ghost_run_team_title, displayName), style = PixelHeading)
                 val summaryText = if (selectedTab == 1) {
-                    "BOSS FLR ${entry.maxBossFloor} • 💎 ${formatMagicite(entry.totalMagicite)}"
+                    stringResource(
+                        R.string.boss_flr,
+                        entry.maxBossFloor,
+                        formatMagicite(entry.totalMagicite)
+                    )
                 } else {
-                    "DIM ${entry.dimension} • FLOOR ${entry.maxFloor} • 💎 ${formatMagicite(entry.totalMagicite)}"
+                    stringResource(
+                        R.string.dim_floor,
+                        entry.dimension,
+                        entry.maxFloor,
+                        formatMagicite(entry.totalMagicite)
+                    )
                 }
                 Text(
                     text = summaryText,
@@ -738,7 +752,9 @@ fun GhostRunDialog(
                 PixelButton(
                     label = safeStringResource(R.string.ghost_run_close),
                     onClick = onDismiss,
-                    modifier = Modifier.fillMaxWidth().height(40.dp)
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(40.dp)
                 )
             }
         }

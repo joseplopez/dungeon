@@ -1354,4 +1354,6 @@
     <string name="effect">Effect: %1$s</string>
     <string name="guts_passive">🛡️ Guts (Passive)</string>
     <string name="automatically_intercepts_fatal_attacks">Automatically intercepts fatal attacks meant for allies. Survives fatal blows with 1 HP if hit while above 50% max HP.</string>
+    <string name="boss_flr">BOSS FLR %1$d • 💎 %2$s</string>
+    <string name="dim_floor">DIM %1$d • FLOOR %2$d • 💎 %3$s</string>
 </resources>

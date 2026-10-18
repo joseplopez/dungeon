@@ -1264,7 +1264,7 @@
     <string name="header_flr">PISO</string>
     <string name="header_boss">JEFE</string>
 
-    <string name="permadeath_status_on">🔒 Permadeath: ACT</string>
+    <string name="permadeath_status_on">🔒 Muerte permanente: ACTIVA</string>
     <string name="protection_label">🛡️ Protección:</string>
     <string name="retreat_rescue_title">BAJAS DETECTADAS</string>
     <string name="retreat_rescue_desc">¡Algunos héroes han caído! ¿Ver un anuncio corto para rescatarlos antes de huir?</string>
