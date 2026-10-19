@@ -220,8 +220,10 @@ fun RelicsScreen(
                     // PANEL 2: CENTER DETAIL INSPECTOR (Weight 1.3f)
                     // =========================================
                     val selectedLevel = getRelicLevel(selectedRelicType, gs)
-                    val upgradeCost = (selectedLevel + 1) * 10
-                    val canAfford = magicite >= upgradeCost
+                    val cost = (selectedLevel + 1) * 10
+                    val upgradeCost = formatAmount(cost.toLong())
+
+                    val canAfford = magicite >= cost
 
                     GoldenBorderBox(
                         modifier = Modifier
@@ -281,8 +283,8 @@ fun RelicsScreen(
                             Text(safeStringResource(R.string.perk_upgrades_title), style = PixelGold, fontSize = 10.sp)
 
                             // Stat Boost Cards
-                            val currentVal = getRelicBonusValue(selectedRelicType, selectedLevel)
-                            val nextVal = getRelicBonusValue(selectedRelicType, selectedLevel + 1)
+                            val currentVal = formatAmount(getRelicBonusValue(selectedRelicType, selectedLevel))
+                            val nextVal = formatAmount(getRelicBonusValue(selectedRelicType, selectedLevel + 1))
                             val suffix = getRelicSuffix(selectedRelicType)
                             val icon = getRelicIcon(selectedRelicType)
 
@@ -351,7 +353,8 @@ fun RelicsScreen(
                                 ) {
                                     items(allRelics) { relic ->
                                         val lvl = getRelicLevel(relic, gs)
-                                        val valStr = "+${getRelicBonusValue(relic, lvl)}${getRelicSuffix(relic)}"
+                                        val relicBonus = formatAmount(getRelicBonusValue(relic, lvl))
+                                        val valStr = "+${relicBonus}${getRelicSuffix(relic)}"
                                         val relicIcon = getRelicIcon(relic)
 
                                         GoldenBorderBox(
@@ -642,20 +645,20 @@ fun getRelicLevel(relicType: RelicType, gs: GameState): Int {
     }
 }
 
-fun getRelicBonusValue(relicType: RelicType, level: Int): Int {
+fun getRelicBonusValue(relicType: RelicType, level: Int): Long {
     return when (relicType) {
-        RelicType.ATTACK -> level * 2
-        RelicType.HP -> level * 15
-        RelicType.MP -> level * 10
-        RelicType.MAGIC -> level * 2
-        RelicType.DEFENSE -> level * 2
-        RelicType.GOLD -> level * 5
-        RelicType.MAGICITE_FIND -> level
-        RelicType.CRIT_CHANCE -> level
-        RelicType.CRIT_DAMAGE -> level * 5
-        RelicType.MAGNET -> level * 5
-        RelicType.POCKETS -> level * 10
-        RelicType.DOUBLE_LOOT -> level * 5
+        RelicType.ATTACK -> level * 2L
+        RelicType.HP -> level * 15L
+        RelicType.MP -> level * 10L
+        RelicType.MAGIC -> level * 2L
+        RelicType.DEFENSE -> level * 2L
+        RelicType.GOLD -> level * 5L
+        RelicType.MAGICITE_FIND -> level.toLong()
+        RelicType.CRIT_CHANCE -> level.toLong()
+        RelicType.CRIT_DAMAGE -> level * 5L
+        RelicType.MAGNET -> level * 5L
+        RelicType.POCKETS -> level * 10L
+        RelicType.DOUBLE_LOOT -> level * 5L
     }
 }
 

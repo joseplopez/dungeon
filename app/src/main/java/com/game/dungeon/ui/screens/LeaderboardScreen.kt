@@ -761,7 +761,7 @@ fun GhostRunDialog(
     }
 }
 
-fun formatLargeNumber(num: Int): String = formatAmount(num)
+fun formatLargeNumber(num: Long): String = formatAmount(num)
 
 @Composable
 fun formatTime(fastest: Long, current: Long): String {

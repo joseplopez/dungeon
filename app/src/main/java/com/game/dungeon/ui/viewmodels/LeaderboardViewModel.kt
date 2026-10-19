@@ -91,7 +91,7 @@ class LeaderboardViewModel @Inject constructor(
                     maxBossFloor = gs.highestBossLairFloor,
                     dimension = gs.currentDimension,
                     dimensionMaxFloor = gs.highestFloor,
-                    totalMagicite = gs.totalMagiciteEarned.toInt(),
+                    totalMagicite = gs.totalMagiciteEarned,
                     fastestClearMs = gs.fastestClearTime,
                     isUser = true,
                     team = party

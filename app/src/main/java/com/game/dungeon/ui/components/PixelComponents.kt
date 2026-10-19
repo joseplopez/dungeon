@@ -489,43 +489,55 @@ fun formatAmount(n: Long): String {
     if (n == Long.MAX_VALUE) return "∞"
     val absN = kotlin.math.abs(n)
     val formatted = when {
+        absN >= 1_000_000_000_000_000_000L -> {
+            val v = absN / 1_000_000_000_000_000_000.0
+            val s = String.format(java.util.Locale.US, "%.1f", v)
+                .dropLastWhile { it == '0' }
+                .removeSuffix(".")
+            "${s}Qi" // Quintillion
+        }
+        absN >= 1_000_000_000_000_000L -> {
+            val v = absN / 1_000_000_000_000_000.0
+            val s = String.format(java.util.Locale.US, "%.1f", v)
+                .dropLastWhile { it == '0' }
+                .removeSuffix(".")
+            "${s}Qa" // Quadrillion
+        }
         absN >= 1_000_000_000_000L -> {
             val v = absN / 1_000_000_000_000.0
             val s = String.format(java.util.Locale.US, "%.1f", v)
                 .dropLastWhile { it == '0' }
                 .removeSuffix(".")
-            "${s}T"
+            "${s}T" // Trillion
         }
         absN >= 1_000_000_000L -> {
             val v = absN / 1_000_000_000.0
             val s = String.format(java.util.Locale.US, "%.1f", v)
                 .dropLastWhile { it == '0' }
                 .removeSuffix(".")
-            "${s}B"
+            "${s}B" // Billion
         }
         absN >= 1_000_000L -> {
             val v = absN / 1_000_000.0
             val s = String.format(java.util.Locale.US, "%.1f", v)
                 .dropLastWhile { it == '0' }
                 .removeSuffix(".")
-            "${s}M"
+            "${s}M" // Million
         }
         absN >= 1_000L -> {
             val v = absN / 1_000.0
             val s = String.format(java.util.Locale.US, "%.1f", v)
                 .dropLastWhile { it == '0' }
                 .removeSuffix(".")
-            "${s}K"
+            "${s}K" // Thousand
         }
         else -> absN.toString()
     }
     return if (n < 0) "-$formatted" else formatted
 }
 
-fun formatAmount(n: Int): String = formatAmount(n.toLong())
 
 fun formatGold(n: Long): String = formatAmount(n)
-fun formatGold(n: Int): String = formatAmount(n.toLong())
 
 fun formatMagicite(n: Long): String = formatAmount(n)
 fun formatMagicite(n: Int): String = formatAmount(n.toLong())

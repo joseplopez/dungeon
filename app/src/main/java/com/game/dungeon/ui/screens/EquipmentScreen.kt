@@ -296,12 +296,14 @@ private fun OrnateStatPanel(
             items(statRows) { row ->
                 val (icon, resId, key) = row
                 val label = safeStringResource(resId)
-                val total = totalStats[key] ?: 0
-                val base = baseOnly[key] ?: 0
+                val total = totalStats[key] ?: 0L
+                val base = baseOnly[key] ?: 0L
                 val bonus = total - base
                 val isPercent = key == "CRIT_CHANCE" || key == "CRIT_DAMAGE"
-                val valueStr = if (isPercent) "$total%" else total.toString()
-                val bonusStr = if (isPercent) " +$bonus%" else " +$bonus"
+
+                // Route massive integer strings through the K/M/B/T formatter
+                val valueStr = if (isPercent) "$total%" else formatAmount(total)
+                val bonusStr = if (isPercent) " +$bonus%" else " +${formatAmount(bonus)}"
 
                 Box(
                     modifier = Modifier

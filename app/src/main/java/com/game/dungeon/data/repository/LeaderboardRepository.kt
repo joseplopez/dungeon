@@ -285,7 +285,7 @@ class LeaderboardRepository @Inject constructor(
             maxBossFloor = rawBossFloor,
             dimension = snapshot.child("dimension").getValue(Long::class.java)?.toInt() ?: 1,
             dimensionMaxFloor = snapshot.child("dimensionMaxFloor").getValue(Long::class.java)?.toInt() ?: 0,
-            totalMagicite = snapshot.child("totalMagicite").getValue(Long::class.java)?.toInt() ?: 0,
+            totalMagicite = snapshot.child("totalMagicite").getValue(Long::class.java) ?: 0,
             fastestClearMs = if (rawFastest > MAX_VALID_TIME_MS) 0L else rawFastest,
             currentDimTimeMs = if (rawCurrentDimTime > MAX_VALID_TIME_MS) 0L else rawCurrentDimTime,
             isUser = false,

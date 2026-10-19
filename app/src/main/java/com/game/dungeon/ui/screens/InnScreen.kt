@@ -332,7 +332,7 @@ fun GuildStageArea(
                                     .padding(horizontal = 4.dp, vertical = 1.dp)
                             ) {
                                 Text(
-                                    text = "${formatGold(job.hireCost)}G",
+                                    text = "${formatGold(job.hireCost.toLong())}G",
                                     style = PixelSmall,
                                     color = Color.Black,
                                     fontSize = 8.sp,
@@ -493,7 +493,7 @@ fun HireHeroClassDialog(
                         verticalAlignment = CenterVertically
                     ) {
                         Text(safeStringResource(R.string.craft_label_cost), style = PixelBody, color = StoneGray)
-                        Text(safeStringResource(R.string.gold_amount_format, formatGold(job.hireCost)), style = PixelGold, fontWeight = FontWeight.Bold)
+                        Text(safeStringResource(R.string.gold_amount_format, formatGold(job.hireCost.toLong())), style = PixelGold, fontWeight = FontWeight.Bold)
                     }
                 }
 

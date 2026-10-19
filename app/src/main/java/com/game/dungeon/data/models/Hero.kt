@@ -198,44 +198,45 @@ class Hero(
     }
 
     // Dynamic stats based on level
-    val baseMaxHp: Int get() {
+    // Dynamic stats based on level
+    val baseMaxHp: Long get() {
         if (heroClass == HeroClass.ONION_KNIGHT) {
-            return if (level < 30) heroClass.baseHp + (level - 1) * 2
-            else 500 + ((level - 30) * (level - 30) * 250) // Massive quadratic spike
+            return if (level < 30) (heroClass.baseHp + (level - 1) * 2).toLong()
+            else 500L + ((level - 30L) * (level - 30L) * 250L) // Massive quadratic spike
         }
-        return heroClass.baseHp + (level - 1) * (heroClass.baseHp / 4).coerceAtLeast(12) + ((level - 1) * (level - 1) / 10)
+        return heroClass.baseHp + (level - 1L) * (heroClass.baseHp / 4).coerceAtLeast(12) + ((level - 1L) * (level - 1L) / 10L)
     }
 
-    val baseMaxMp: Int get() {
+    val baseMaxMp: Long get() {
         if (heroClass == HeroClass.ONION_KNIGHT) {
-            return if (level < 30) heroClass.baseMp + (level - 1)
-            else 200 + ((level - 30) * (level - 30) * 15)
+            return if (level < 30) (heroClass.baseMp + (level - 1)).toLong()
+            else 200L + ((level - 30L) * (level - 30L) * 15L)
         }
-        return heroClass.baseMp + (level - 1) * (heroClass.baseMp / 10).coerceAtLeast(2)
+        return heroClass.baseMp + (level - 1L) * (heroClass.baseMp / 10).coerceAtLeast(2)
     }
 
-    val baseAttack: Int get() {
+    val baseAttack: Long get() {
         if (heroClass == HeroClass.ONION_KNIGHT) {
-            return if (level < 30) heroClass.baseAttack + (level - 1)
-            else 100 + ((level - 30) * (level - 30) * 25)
+            return if (level < 30) (heroClass.baseAttack + (level - 1)).toLong()
+            else 100L + ((level - 30L) * (level - 30L) * 25L)
         }
-        return heroClass.baseAttack + (level - 1) * (heroClass.baseAttack / 10).coerceAtLeast(1)
+        return heroClass.baseAttack + (level - 1L) * (heroClass.baseAttack / 10).coerceAtLeast(1)
     }
 
-    val baseMagic: Int get() {
+    val baseMagic: Long get() {
         if (heroClass == HeroClass.ONION_KNIGHT) {
-            return if (level < 30) heroClass.baseMagic + (level - 1)
-            else 100 + ((level - 30) * (level - 30) * 25)
+            return if (level < 30) (heroClass.baseMagic + (level - 1)).toLong()
+            else 100L + ((level - 30L) * (level - 30L) * 25L)
         }
-        return heroClass.baseMagic + (level - 1) * (heroClass.baseMagic / 10).coerceAtLeast(1)
+        return heroClass.baseMagic + (level - 1L) * (heroClass.baseMagic / 10).coerceAtLeast(1)
     }
 
-    val baseDefense: Int get() {
+    val baseDefense: Long get() {
         if (heroClass == HeroClass.ONION_KNIGHT) {
-            return if (level < 30) heroClass.baseDefense + (level - 1)
-            else 100 + ((level - 30) * (level - 30) * 25)
+            return if (level < 30) (heroClass.baseDefense + (level - 1)).toLong()
+            else 100L + ((level - 30L) * (level - 30L) * 25L)
         }
-        return heroClass.baseDefense + (level - 1) * (heroClass.baseDefense / 8).coerceAtLeast(2)
+        return heroClass.baseDefense + (level - 1L) * (heroClass.baseDefense / 8).coerceAtLeast(2)
     }
 
     val maxHp: Long get() = baseMaxHp + hpBonus
