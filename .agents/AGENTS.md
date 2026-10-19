@@ -8,12 +8,13 @@
 
 ## 🔍 Contextual Awareness
 Before making ANY changes to the project, the agent MUST read the following "Skill" files to understand the specific protocols of this repository:
-1.  **`SKILL_DATABASE_MANAGEMENT.md`**: Mandatory steps for Room database changes (Version increments, explicit migrations, and `ensureColumn` safety).
-2.  **`SKILL_LOCALIZATION_PROTOCOL.md`**: Rules for string management, extraction, and XLIFF placeholder usage.
-3.  **`SKILL_TESTING_PROTOCOL.md`**: Mandatory requirements for UI and database migration testing.
-4.  **`SKILL_BIOME_BACKGROUNDS.md`**: Mandatory 7-layer architecture and quality standards for UI biome backgrounds in `PixelBackground.kt`.
-5.  **`SKILL_HERO_SPRITES.md`**: Mandatory pixel-by-pixel JRPG architecture, uniform matrix grid mapping, palettes, and quality standards for Hero and Monster sprites in `PixelCharacters.kt`.
-6.  **`SKILL_SPRITE_CONVERSION.md`**: Protocol, architecture, color palette mapping, and workflow for image-to-matrix conversion via `convert.py`.
+1.  **`SKILL_GLOBAL_OVERVIEW.md`**: Master architecture, systems map, progression loop, combat formulas, and invariants overview.
+2.  **`SKILL_DATABASE_MANAGEMENT.md`**: Mandatory steps for Room database changes (Version increments, explicit migrations, and `ensureColumn` safety).
+3.  **`SKILL_LOCALIZATION_PROTOCOL.md`**: Rules for string management, extraction, and XLIFF placeholder usage.
+4.  **`SKILL_TESTING_PROTOCOL.md`**: Mandatory requirements for UI and database migration testing.
+5.  **`SKILL_BIOME_BACKGROUNDS.md`**: Mandatory 7-layer architecture and quality standards for UI biome backgrounds in `PixelBackground.kt`.
+6.  **`SKILL_HERO_SPRITES.md`**: Mandatory pixel-by-pixel JRPG architecture, uniform matrix grid mapping, palettes, and quality standards for Hero and Monster sprites in `PixelCharacters.kt`.
+7.  **`SKILL_SPRITE_CONVERSION.md`**: Protocol, architecture, color palette mapping, and workflow for image-to-matrix conversion via `convert.py`.
 
 ## Core Package Structure (`com.game.dungeon`)
 - **`data/models`**: Domain entities (`Hero`, `Item`, `GameState`, `Enemy`, `RelicType`).
