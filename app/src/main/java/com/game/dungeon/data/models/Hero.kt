@@ -197,19 +197,18 @@ class Hero(
         return leveledUp
     }
 
-    // Dynamic stats based on level
-    // Dynamic stats based on level
+    // 1. MUST return Long, not Int
     val baseMaxHp: Long get() {
         if (heroClass == HeroClass.ONION_KNIGHT) {
-            return if (level < 30) (heroClass.baseHp + (level - 1) * 2).toLong()
-            else 500L + ((level - 30L) * (level - 30L) * 250L) // Massive quadratic spike
+            return if (level < 30) heroClass.baseHp + (level - 1L) * 2L
+            else 500L + ((level - 30L) * (level - 30L) * 250L)
         }
         return heroClass.baseHp + (level - 1L) * (heroClass.baseHp / 4).coerceAtLeast(12) + ((level - 1L) * (level - 1L) / 10L)
     }
 
     val baseMaxMp: Long get() {
         if (heroClass == HeroClass.ONION_KNIGHT) {
-            return if (level < 30) (heroClass.baseMp + (level - 1)).toLong()
+            return if (level < 30) heroClass.baseMp + (level - 1L)
             else 200L + ((level - 30L) * (level - 30L) * 15L)
         }
         return heroClass.baseMp + (level - 1L) * (heroClass.baseMp / 10).coerceAtLeast(2)
@@ -217,7 +216,7 @@ class Hero(
 
     val baseAttack: Long get() {
         if (heroClass == HeroClass.ONION_KNIGHT) {
-            return if (level < 30) (heroClass.baseAttack + (level - 1)).toLong()
+            return if (level < 30) heroClass.baseAttack + (level - 1L)
             else 100L + ((level - 30L) * (level - 30L) * 25L)
         }
         return heroClass.baseAttack + (level - 1L) * (heroClass.baseAttack / 10).coerceAtLeast(1)
@@ -225,7 +224,7 @@ class Hero(
 
     val baseMagic: Long get() {
         if (heroClass == HeroClass.ONION_KNIGHT) {
-            return if (level < 30) (heroClass.baseMagic + (level - 1)).toLong()
+            return if (level < 30) heroClass.baseMagic + (level - 1L)
             else 100L + ((level - 30L) * (level - 30L) * 25L)
         }
         return heroClass.baseMagic + (level - 1L) * (heroClass.baseMagic / 10).coerceAtLeast(1)
@@ -233,7 +232,7 @@ class Hero(
 
     val baseDefense: Long get() {
         if (heroClass == HeroClass.ONION_KNIGHT) {
-            return if (level < 30) (heroClass.baseDefense + (level - 1)).toLong()
+            return if (level < 30) heroClass.baseDefense + (level - 1L)
             else 100L + ((level - 30L) * (level - 30L) * 25L)
         }
         return heroClass.baseDefense + (level - 1L) * (heroClass.baseDefense / 8).coerceAtLeast(2)
@@ -250,31 +249,33 @@ class Hero(
         if (relicBonuses != null) {
             jobMasteryLevel = relicBonuses.jobMasteryLevels[heroClass] ?: 0
         }
-        val masteryHp = relicBonuses?.getMasteryBonus(heroClass, StatType.HP) ?: 0
-        val masteryAtk = relicBonuses?.getMasteryBonus(heroClass, StatType.ATTACK) ?: 0
-        val masteryDef = relicBonuses?.getMasteryBonus(heroClass, StatType.DEFENSE) ?: 0
-        val masteryMag = relicBonuses?.getMasteryBonus(heroClass, StatType.MAGIC) ?: 0
-        val masteryMp = relicBonuses?.getMasteryBonus(heroClass, StatType.MP) ?: 0
-        val masteryCritChance = relicBonuses?.getMasteryBonus(heroClass, StatType.CRIT_CHANCE) ?: 0
-        val masteryCritDmg = relicBonuses?.getMasteryBonus(heroClass, StatType.CRIT_DAMAGE) ?: 0
+        // Change default fallbacks to 0L
+        val masteryHp = relicBonuses?.getMasteryBonus(heroClass, StatType.HP) ?: 0L
+        val masteryAtk = relicBonuses?.getMasteryBonus(heroClass, StatType.ATTACK) ?: 0L
+        val masteryDef = relicBonuses?.getMasteryBonus(heroClass, StatType.DEFENSE) ?: 0L
+        val masteryMag = relicBonuses?.getMasteryBonus(heroClass, StatType.MAGIC) ?: 0L
+        val masteryMp = relicBonuses?.getMasteryBonus(heroClass, StatType.MP) ?: 0L
+        val masteryCritChance = relicBonuses?.getMasteryBonus(heroClass, StatType.CRIT_CHANCE)?.toInt() ?: 0 // Crit Chance stays Int
+        val masteryCritDmg = relicBonuses?.getMasteryBonus(heroClass, StatType.CRIT_DAMAGE) ?: 0L
 
         val petCritChance = relicBonuses?.petCritChanceBonus ?: 0
-        val petCritDmg = relicBonuses?.petCritDamageBonus ?: 0
+        val petCritDmg = relicBonuses?.petCritDamageBonus ?: 0L
 
-        // Blue Mage Lore Bonus: +2 to all stats per unique boss defeated
-        val loreBonus = if (heroClass == HeroClass.BLUE_MAGE) (relicBonuses?.bossesDefeatedCount ?: 0) * 2 else 0
+        // Blue Mage Lore Bonus
+        val loreBonus = if (heroClass == HeroClass.BLUE_MAGE) (relicBonuses?.bossesDefeatedCount?.toLong() ?: 0L) * 2L else 0L
 
         val rawCrit = 5 + equippedItems.sumOf { it.critChanceBonus } + (relicBonuses?.critChanceBonus ?: 0) + masteryCritChance + petCritChance
         val finalCrit = (100f * rawCrit / (rawCrit + 50f)).toInt().coerceAtMost(85)
 
         val statMap: MutableMap<String, Long> = mutableMapOf(
-            "HP" to (baseMaxHp + equippedItems.sumOf { it.effectiveHpBonus.toLong() } + (relicBonuses?.hpBonus ?: 0) + masteryHp + (loreBonus * 5)),
-            "MP" to baseMaxMp + equippedItems.sumOf { it.mpBonus } + (relicBonuses?.mpBonus ?: 0) + masteryMp + (loreBonus * 2),
-            "ATK" to baseAttack + equippedItems.sumOf { it.effectiveAttackBonus.toLong() } + (relicBonuses?.attackBonus ?: 0) + masteryAtk + loreBonus,
-            "DEF" to baseDefense + equippedItems.sumOf { it.effectiveDefenseBonus.toLong() } + (relicBonuses?.defenseBonus ?: 0) + masteryDef + loreBonus,
-            "MAG" to baseMagic + equippedItems.sumOf { it.effectiveMagicBonus.toLong() } + (relicBonuses?.magicBonus ?: 0) + masteryMag + loreBonus,
+            // Apply 0L to all RelicBonus Elvis operators
+            "HP" to (baseMaxHp + equippedItems.sumOf { it.effectiveHpBonus.toLong() } + (relicBonuses?.hpBonus ?: 0L) + masteryHp + (loreBonus * 5L)),
+            "MP" to baseMaxMp + equippedItems.sumOf { it.mpBonus } + (relicBonuses?.mpBonus ?: 0L) + masteryMp + (loreBonus * 2L),
+            "ATK" to baseAttack + equippedItems.sumOf { it.effectiveAttackBonus.toLong() } + (relicBonuses?.attackBonus ?: 0L) + masteryAtk + loreBonus,
+            "DEF" to baseDefense + equippedItems.sumOf { it.effectiveDefenseBonus.toLong() } + (relicBonuses?.defenseBonus ?: 0L) + masteryDef + loreBonus,
+            "MAG" to baseMagic + equippedItems.sumOf { it.effectiveMagicBonus.toLong() } + (relicBonuses?.magicBonus ?: 0L) + masteryMag + loreBonus,
             "CRIT_CHANCE" to finalCrit.toLong(),
-            "CRIT_DAMAGE" to 50 + equippedItems.sumOf { it.critDamageBonus } + (relicBonuses?.critDamageBonus ?: 0) + masteryCritDmg + petCritDmg + (relicBonuses?.warRoomCritBonus ?: 0)
+            "CRIT_DAMAGE" to 50L + equippedItems.sumOf { it.critDamageBonus } + (relicBonuses?.critDamageBonus ?: 0L) + masteryCritDmg + petCritDmg + (relicBonuses?.warRoomCritBonus?.toLong() ?: 0L)
         )
 
         // Mythic Set Bonuses Calculation

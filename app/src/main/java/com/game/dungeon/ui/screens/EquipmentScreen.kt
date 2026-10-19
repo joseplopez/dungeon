@@ -301,9 +301,8 @@ private fun OrnateStatPanel(
                 val bonus = total - base
                 val isPercent = key == "CRIT_CHANCE" || key == "CRIT_DAMAGE"
 
-                // Route massive integer strings through the K/M/B/T formatter
-                val valueStr = if (isPercent) "$total%" else formatAmount(total)
-                val bonusStr = if (isPercent) " +$bonus%" else " +${formatAmount(bonus)}"
+                val valueStr = if (isPercent) "${formatAmount(total)}%" else formatAmount(total)
+                val bonusStr = if (isPercent) " +${formatAmount(bonus)}%" else " +${formatAmount(bonus)}"
 
                 Box(
                     modifier = Modifier
