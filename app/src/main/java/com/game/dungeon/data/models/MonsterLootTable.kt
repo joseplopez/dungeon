@@ -391,6 +391,10 @@ object MonsterLootTable {
             primaryDrop = MaterialDropRule("iron_ore", 0.08f),
             bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.12f, isBossTrophy = true)
         ),
+        MonsterType.NORG to MonsterLootEntry(
+            primaryDrop = MaterialDropRule("dark_essence", 0.08f),
+            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.12f, isBossTrophy = true)
+        ),
         MonsterType.PLANT_BRAIN to MonsterLootEntry(
             primaryDrop = MaterialDropRule("monster_bone", 0.08f),
             bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.10f, isBossTrophy = true)
@@ -492,10 +496,6 @@ object MonsterLootTable {
         MonsterType.HOJO to MonsterLootEntry(
             primaryDrop = MaterialDropRule("dark_essence", 0.08f),
             bossTrophyDrop = MaterialDropRule("boss_trophy_2", 0.19f, isBossTrophy = true)
-        ),
-        MonsterType.NORG to MonsterLootEntry(
-            primaryDrop = MaterialDropRule("dark_essence", 0.08f),
-            bossTrophyDrop = MaterialDropRule("boss_trophy_2", 0.18f, isBossTrophy = true)
         ),
         MonsterType.EDEA to MonsterLootEntry(
             primaryDrop = MaterialDropRule("ice_essence", 0.08f),

@@ -109,6 +109,11 @@ class FFBattleEngineDropTest {
 
         val garlandRules = MonsterLootTable.getDropsForMonster(MonsterType.GARLAND, isBoss = true)
         assertTrue("Garland boss should have trophy rule", garlandRules.any { it.isBossTrophy })
+
+        val norgRules = MonsterLootTable.getDropsForMonster(MonsterType.NORG, isBoss = true)
+        val norgTrophy = norgRules.find { it.isBossTrophy }
+        assertNotNull("NORG should have a boss trophy rule", norgTrophy)
+        assertEquals("NORG trophy should be boss_trophy_1 for Dimension 8 breakthrough accessibility", "boss_trophy_1", norgTrophy!!.materialId)
     }
 
     @Test
