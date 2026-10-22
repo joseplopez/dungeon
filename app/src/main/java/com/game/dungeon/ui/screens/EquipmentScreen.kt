@@ -24,6 +24,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.Path
 import androidx.compose.ui.graphics.drawscope.Stroke
 import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import android.widget.Toast
@@ -804,13 +805,79 @@ private fun ItemDetailOverlay(
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(6.dp)
             ) {
-                EquipmentSprite(
-                    item = item,
-                    slot = item.slot,
-                    modifier = Modifier.size(56.dp),
-                    animTime = animTime
-                )
-                Text(item.name, style = PixelHeading, color = Color(item.rarity.color))
+                Box(
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(80.dp),
+                    contentAlignment = Alignment.Center
+                ) {
+                    EquipmentSprite(
+                        item = item,
+                        slot = item.slot,
+                        modifier = Modifier.size(56.dp),
+                        animTime = animTime
+                    )
+
+                    // Sockets display aligned to the right side
+                    if (item.sockets.isNotEmpty()) {
+                        Column(
+                            modifier = Modifier
+                                .align(Alignment.CenterEnd)
+                                .padding(end = 16.dp),
+                            verticalArrangement = Arrangement.spacedBy(6.dp)
+                        ) {
+                            item.sockets.forEach { slot ->
+                                val hasGem = slot.socketedGem != null
+                                val gemColor = when {
+                                    slot.socketedGem?.id?.contains("ruby", ignoreCase = true) == true -> Color(0xFFFF3333)
+                                    slot.socketedGem?.id?.contains("sapphire", ignoreCase = true) == true -> Color(0xFF3388FF)
+                                    slot.socketedGem?.id?.contains("emerald", ignoreCase = true) == true -> Color(0xFF33FF33)
+                                    slot.socketedGem?.id?.contains("topaz", ignoreCase = true) == true -> Color(0xFFFFD700)
+                                    hasGem -> Color.Magenta // Fallback for unknown gems
+                                    else -> Color.Transparent // Empty socket
+                                }
+                                Box(
+                                    modifier = Modifier
+                                        .size(16.dp)
+                                        .background(gemColor, androidx.compose.foundation.shape.CircleShape)
+                                        .border(2.dp, GoldBright, androidx.compose.foundation.shape.CircleShape)
+                                )
+                            }
+                        }
+                    }
+                }
+
+                // Item Name and Enhancement Level Row
+                Row(
+                    verticalAlignment = Alignment.CenterVertically,
+                    horizontalArrangement = Arrangement.spacedBy(6.dp)
+                ) {
+                    Text(
+                        text = item.name,
+                        style = PixelHeading,
+                        color = Color(item.rarity.color),
+                        maxLines = 1,
+                        overflow = TextOverflow.Ellipsis
+                    )
+
+                    // Determine max level state (Level 10+, unless it's Mythic which scales infinitely)
+                    val isMaxed = item.enhancementLevel >= 10 && item.rarity != Rarity.MYTHIC
+
+                    Row(
+                        verticalAlignment = Alignment.CenterVertically,
+                        horizontalArrangement = Arrangement.spacedBy(4.dp)
+                    ) {
+                        Text(
+                            text = "+${item.enhancementLevel}",
+                            style = PixelHeading,
+                            color = GoldBright,
+                            maxLines = 1
+                        )
+                        if (isMaxed) {
+                            ShardSprite(modifier = Modifier.size(12.dp, 16.dp))
+                        }
+                    }
+                }
 
                 ItemStatBonusList(item)
 
@@ -913,5 +980,80 @@ private fun ItemDetailOverlay(
                     .height(40.dp))
             }
         }
+    }
+}
+
+@Composable
+private fun ShardSprite(
+    modifier: Modifier = Modifier,
+    color: Color = Color(0xFF00E5FF)
+) {
+    Canvas(modifier = modifier) {
+        val w = size.width
+        val h = size.height
+        val midX = w / 2f
+        val topY = 0f
+        val midY = h * 0.42f
+        val botY = h
+
+        val cLight = color.copy(alpha = 0.95f)
+        val cMid = color.copy(alpha = 0.75f)
+        val cDark = color.copy(alpha = 0.5f)
+        val cDeep = color.copy(alpha = 0.35f)
+
+        // Top-Left Facet
+        drawPath(
+            Path().apply {
+                moveTo(midX, topY)
+                lineTo(0f, midY)
+                lineTo(midX, midY + h * 0.1f)
+                close()
+            },
+            color = cLight
+        )
+
+        // Top-Right Facet
+        drawPath(
+            Path().apply {
+                moveTo(midX, topY)
+                lineTo(w, midY)
+                lineTo(midX, midY + h * 0.1f)
+                close()
+            },
+            color = cMid
+        )
+
+        // Lower-Left Facet
+        drawPath(
+            Path().apply {
+                moveTo(0f, midY)
+                lineTo(midX, botY)
+                lineTo(midX, midY + h * 0.1f)
+                close()
+            },
+            color = cDark
+        )
+
+        // Lower-Right Facet
+        drawPath(
+            Path().apply {
+                moveTo(w, midY)
+                lineTo(midX, botY)
+                lineTo(midX, midY + h * 0.1f)
+                close()
+            },
+            color = cDeep
+        )
+
+        // Outline / Edges
+        val outerPath = Path().apply {
+            moveTo(midX, topY)
+            lineTo(w, midY)
+            lineTo(midX, botY)
+            lineTo(0f, midY)
+            close()
+        }
+        drawPath(outerPath, color = Color.White.copy(alpha = 0.8f), style = Stroke(1.5f))
+        drawLine(Color.White.copy(alpha = 0.8f), Offset(midX, topY), Offset(midX, botY), strokeWidth = 1.5f)
     }
 }

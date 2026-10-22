@@ -585,7 +585,10 @@ class GameRepository @Inject constructor(
                     minRarity = Rarity.LEGENDARY,
                     dimension = dim,
                     forcedSlot = slot
-                ).copy(enhancementLevel = 10)
+                ).copy(
+                    enhancementLevel = 10,
+                    sockets = List(3) { SocketSlot() }
+                )
             }
             database.itemDao.upsertAll(debugItems)
         }
