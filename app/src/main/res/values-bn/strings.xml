@@ -742,12 +742,12 @@
 
     <!-- Extracted Screen Strings -->
     <string name="return_to_inn">পান্থশালায় ফিরুন</string>
-    <string name="stat_bonus_atk">আক্রমণ: +%1$d</string>
-    <string name="stat_bonus_def">প্রতিরোধ: +%1$d</string>
-    <string name="stat_bonus_mag">জাদু: +%1$d</string>
-    <string name="stat_bonus_hp">এইচপি: +%1$d</string>
+    <string name="stat_bonus_atk">আক্রমণ: +%1$s</string>
+    <string name="stat_bonus_def">প্রতিরোধ: +%1$s</string>
+    <string name="stat_bonus_mag">জাদু: +%1$s</string>
+    <string name="stat_bonus_hp">এইচপি: +%1$s</string>
     <string name="stat_bonus_crit_chance">ক্রিটিক্যাল %%%: +%1$d%%%</string>
-    <string name="stat_bonus_crit_damage">ক্রিটিক্যাল ক্ষতি: +%1$d%%%</string>
+    <string name="stat_bonus_crit_damage">ক্রিটিক্যাল ক্ষতি: +%1$s%%%</string>
     <string name="hero_status_rip">প্রয়াত</string>
     <string name="jobs_count_format">%1$dটি পেশা</string>
     <string name="party_full">পূর্ণ</string>
@@ -1324,4 +1324,15 @@
     <string name="set_azure">অ্যাজুর জ্ঞান</string>
     <string name="skill_black_mage_t4_name">মহাকর্ষ</string>
     <string name="skill_black_mage_t4_desc">তীব্র মহাকর্ষ দিয়ে সমস্ত শত্রুকে চূর্ণ করে, তাদের সর্বোচ্চ HP-র ১/৬ ভাগ সরিয়ে দেয়।</string>
+
+    <!-- Dungeon Screen Extracted Strings -->
+    <string name="dimension_subtitle_banner">⚔️ %1$s ⚔️</string>
+    <string name="restart_title">পুনরায় শুরু করবেন?</string>
+    <string name="restart_desc">আপনার প্রবেশের তলা থেকে পুনরায় শুরু করুন। সমস্ত অর্জিত সম্পদ ও অর্থ বজায় থাকবে!</string>
+    <string name="loop_run_button">লুপ রান (সম্পদ রাখুন)</string>
+    <string name="loop_count_format">লুপ x%1$d</string>
+    <string name="speed_1x" translatable="false">1x</string>
+    <string name="speed_3x" translatable="false">3x</string>
+    <string name="speed_10x_unlocked" translatable="false">10x ⚡</string>
+    <string name="speed_10x_locked" translatable="false">10x 🔒</string>
 </resources>

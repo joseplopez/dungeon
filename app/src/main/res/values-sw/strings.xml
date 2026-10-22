@@ -741,12 +741,12 @@
 
     <!-- Extracted Screen Strings -->
     <string name="return_to_inn">RUDI NYUMBA YA WAGENI</string>
-    <string name="stat_bonus_atk">SHAMBULIO: +%1$d</string>
-    <string name="stat_bonus_def">ULINZI: +%1$d</string>
-    <string name="stat_bonus_mag">UCHAWI: +%1$d</string>
-    <string name="stat_bonus_hp">AFYA: +%1$d</string>
+    <string name="stat_bonus_atk">SHAMBULIO: +%1$s</string>
+    <string name="stat_bonus_def">ULINZI: +%1$s</string>
+    <string name="stat_bonus_mag">UCHAWI: +%1$s</string>
+    <string name="stat_bonus_hp">AFYA: +%1$s</string>
     <string name="stat_bonus_crit_chance">KRITIKALI %%%: +%1$d%%%</string>
-    <string name="stat_bonus_crit_damage">MADHARA KRITIKALI: +%1$d%%%</string>
+    <string name="stat_bonus_crit_damage">MADHARA KRITIKALI: +%1$s%%%</string>
     <string name="hero_status_rip">FARIKI</string>
     <string name="jobs_count_format">%1$d KAZI</string>
     <string name="party_full">IMEJAA</string>
@@ -1323,5 +1323,16 @@
     <string name="set_azure">Maarifa ya Bluu</string>
     <string name="skill_black_mage_t4_name">Mvuto wa Ardhi</string>
     <string name="skill_black_mage_t4_desc">Huponda maadui wote kwa mvuto mkubwa, ukiondoa 1/6 ya HP yao kuu.</string>
+
+    <!-- Dungeon Screen Extracted Strings -->
+    <string name="dimension_subtitle_banner">⚔️ %1$s ⚔️</string>
+    <string name="restart_title">Anza Tena?</string>
+    <string name="restart_desc">Anza tena kutoka ghorofa yako ya kuingilia. Nyara zote na fedha ulizokusanya zitahifadhiwa!</string>
+    <string name="loop_run_button">Mzunguko Mwingine (Hifadhi Nyara)</string>
+    <string name="loop_count_format">Mzunguko x%1$d</string>
+    <string name="speed_1x" translatable="false">1x</string>
+    <string name="speed_3x" translatable="false">3x</string>
+    <string name="speed_10x_unlocked" translatable="false">10x ⚡</string>
+    <string name="speed_10x_locked" translatable="false">10x 🔒</string>
 </resources>
 

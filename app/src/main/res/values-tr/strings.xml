@@ -741,12 +741,12 @@
 
     <!-- Extracted Screen Strings -->
     <string name="return_to_inn">HAN\'A DÖN</string>
-    <string name="stat_bonus_atk">SDR: +%1$d</string>
-    <string name="stat_bonus_def">SAV: +%1$d</string>
-    <string name="stat_bonus_mag">BÜY: +%1$d</string>
-    <string name="stat_bonus_hp">CAN: +%1$d</string>
+    <string name="stat_bonus_atk">SDR: +%1$s</string>
+    <string name="stat_bonus_def">SAV: +%1$s</string>
+    <string name="stat_bonus_mag">BÜY: +%1$s</string>
+    <string name="stat_bonus_hp">CAN: +%1$s</string>
     <string name="stat_bonus_crit_chance">KRİT %%%: +%1$d%%%</string>
-    <string name="stat_bonus_crit_damage">KRİT HASAR: +%1$d%%%</string>
+    <string name="stat_bonus_crit_damage">KRİT HASAR: +%1$s%%%</string>
     <string name="hero_status_rip">ÖLDÜ</string>
     <string name="jobs_count_format">%1$d MESLEK</string>
     <string name="party_full">DOLU</string>
@@ -1324,4 +1324,15 @@
     <string name="set_azure">Gökmavisi İlim</string>
     <string name="skill_black_mage_t4_name">Yerçekimi</string>
     <string name="skill_black_mage_t4_desc">Yoğun yerçekimi ile tüm düşmanları ezer, maksimum HP\'lerinin 1/6\'sını eksiltir.</string>
+
+    <!-- Dungeon Screen Extracted Strings -->
+    <string name="dimension_subtitle_banner">⚔️ %1$s ⚔️</string>
+    <string name="restart_title">Yeniden Başlat?</string>
+    <string name="restart_desc">Giriş katınızdan yeniden başlatın. Toplanan tüm ganimetler ve birikimler korunacaktır!</string>
+    <string name="loop_run_button">Turu Tekrarla (Ganimeti Koru)</string>
+    <string name="loop_count_format">Döngü x%1$d</string>
+    <string name="speed_1x" translatable="false">1x</string>
+    <string name="speed_3x" translatable="false">3x</string>
+    <string name="speed_10x_unlocked" translatable="false">10x ⚡</string>
+    <string name="speed_10x_locked" translatable="false">10x 🔒</string>
 </resources>

@@ -741,12 +741,12 @@
 
     <!-- Extracted Screen Strings -->
     <string name="return_to_inn">ZURÜCK ZUR TAVERNE</string>
-    <string name="stat_bonus_atk">ANG: +%1$d</string>
-    <string name="stat_bonus_def">ABW: +%1$d</string>
-    <string name="stat_bonus_mag">MAG: +%1$d</string>
-    <string name="stat_bonus_hp">TP: +%1$d</string>
+    <string name="stat_bonus_atk">ANG: +%1$s</string>
+    <string name="stat_bonus_def">ABW: +%1$s</string>
+    <string name="stat_bonus_mag">MAG: +%1$s</string>
+    <string name="stat_bonus_hp">TP: +%1$s</string>
     <string name="stat_bonus_crit_chance">KRIT %%%: +%1$d%%%</string>
-    <string name="stat_bonus_crit_damage">KRIT-SCHADEN: +%1$d%%%</string>
+    <string name="stat_bonus_crit_damage">KRIT-SCHADEN: +%1$s%%%</string>
     <string name="hero_status_rip">RIP</string>
     <string name="jobs_count_format">%1$d KLASSEN</string>
     <string name="party_full">VOLL</string>
@@ -1324,4 +1324,15 @@
     <string name="set_azure">Azurblaues Wissen</string>
     <string name="skill_black_mage_t4_name">Gravitation</string>
     <string name="skill_black_mage_t4_desc">Zermalmt alle Gegner mit intensiver Schwerkraft und zieht 1/6 ihrer maximalen KP ab.</string>
+
+    <!-- Dungeon Screen Extracted Strings -->
+    <string name="dimension_subtitle_banner">⚔️ %1$s ⚔️</string>
+    <string name="restart_title">Neustart?</string>
+    <string name="restart_desc">Starte auf deiner Einstiegsebene neu. Alle gesammelte Beute und Währung bleiben erhalten!</string>
+    <string name="loop_run_button">Lauf wiederholen (Beute behalten)</string>
+    <string name="loop_count_format">Schleife x%1$d</string>
+    <string name="speed_1x" translatable="false">1x</string>
+    <string name="speed_3x" translatable="false">3x</string>
+    <string name="speed_10x_unlocked" translatable="false">10x ⚡</string>
+    <string name="speed_10x_locked" translatable="false">10x 🔒</string>
 </resources>

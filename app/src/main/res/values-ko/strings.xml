@@ -742,12 +742,12 @@
 
     <!-- Extracted Screen Strings -->
     <string name="return_to_inn">여관으로 돌아가기</string>
-    <string name="stat_bonus_atk">공격: +%1$d</string>
-    <string name="stat_bonus_def">방어: +%1$d</string>
-    <string name="stat_bonus_mag">마력: +%1$d</string>
-    <string name="stat_bonus_hp">HP: +%1$d</string>
+    <string name="stat_bonus_atk">공격: +%1$s</string>
+    <string name="stat_bonus_def">방어: +%1$s</string>
+    <string name="stat_bonus_mag">마력: +%1$s</string>
+    <string name="stat_bonus_hp">HP: +%1$s</string>
     <string name="stat_bonus_crit_chance">치명타율 %%%: +%1$d%%%</string>
-    <string name="stat_bonus_crit_damage">치명타 피해: +%1$d%%%</string>
+    <string name="stat_bonus_crit_damage">치명타 피해: +%1$s%%%</string>
     <string name="hero_status_rip">전사</string>
     <string name="jobs_count_format">%1$d개 직업</string>
     <string name="party_full">가득 차다</string>
@@ -1325,4 +1325,15 @@
     <string name="set_azure">푸른 전승</string>
     <string name="skill_black_mage_t4_name">그라비데</string>
     <string name="skill_black_mage_t4_desc">강력한 중력으로 모든 적을 짓눌러 최대 HP의 1/6을 감소시킵니다.</string>
+
+    <!-- Dungeon Screen Extracted Strings -->
+    <string name="dimension_subtitle_banner">⚔️ %1$s ⚔️</string>
+    <string name="restart_title">재시작하시겠습니까?</string>
+    <string name="restart_desc">입장 층에서 다시 시작합니다. 획득한 전리품과 재화는 모두 유지됩니다!</string>
+    <string name="loop_run_button">반복 탐험 (전리품 유지)</string>
+    <string name="loop_count_format">루프 x%1$d</string>
+    <string name="speed_1x" translatable="false">1x</string>
+    <string name="speed_3x" translatable="false">3x</string>
+    <string name="speed_10x_unlocked" translatable="false">10x ⚡</string>
+    <string name="speed_10x_locked" translatable="false">10x 🔒</string>
 </resources>

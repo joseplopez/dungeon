@@ -741,12 +741,12 @@
 
     <!-- Extracted Screen Strings -->
     <string name="return_to_inn">سرائے میں واپس جائیں</string>
-    <string name="stat_bonus_atk">حملہ: +%1$d</string>
-    <string name="stat_bonus_def">دفاع: +%1$d</string>
-    <string name="stat_bonus_mag">جادو: +%1$d</string>
-    <string name="stat_bonus_hp">صحت: +%1$d</string>
+    <string name="stat_bonus_atk">حملہ: +%1$s</string>
+    <string name="stat_bonus_def">دفاع: +%1$s</string>
+    <string name="stat_bonus_mag">جادو: +%1$s</string>
+    <string name="stat_bonus_hp">صحت: +%1$s</string>
     <string name="stat_bonus_crit_chance">نازک %%%: +%1$d%%%</string>
-    <string name="stat_bonus_crit_damage">نازک نقصان: +%1$d%%%</string>
+    <string name="stat_bonus_crit_damage">نازک نقصان: +%1$s%%%</string>
     <string name="hero_status_rip">وفات</string>
     <string name="jobs_count_format">%1$d نوکریاں</string>
     <string name="party_full">مکمل</string>
@@ -1337,4 +1337,15 @@
     <string name="set_azure">نیلا علم</string>
     <string name="skill_black_mage_t4_name">کششِ ثقل</string>
     <string name="skill_black_mage_t4_desc">شدید کششِ ثقل سے تمام دشمنوں کو کچلتا ہے، ان کی زیادہ سے زیادہ HP کا 1/6 حصہ کم کرتا ہے۔</string>
+
+    <!-- Dungeon Screen Extracted Strings -->
+    <string name="dimension_subtitle_banner">⚔️ %1$s ⚔️</string>
+    <string name="restart_title">دوبارہ شروع کریں؟</string>
+    <string name="restart_desc">اپنی شروعاتی منزل سے دوبارہ شروع کریں۔ تمام جمع شدہ لوٹ اور رقم برقرار رہے گی!</string>
+    <string name="loop_run_button">لوپ رن (لوٹ رکھیں)</string>
+    <string name="loop_count_format">لوپ x%1$d</string>
+    <string name="speed_1x" translatable="false">1x</string>
+    <string name="speed_3x" translatable="false">3x</string>
+    <string name="speed_10x_unlocked" translatable="false">10x ⚡</string>
+    <string name="speed_10x_locked" translatable="false">10x 🔒</string>
 </resources>

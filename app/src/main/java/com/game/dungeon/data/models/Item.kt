@@ -127,11 +127,14 @@ data class Item(
             val (critChance, critDmg) = calculateCritBonuses(rarity)
 
             // --- QUADRATIC STAT CALCULATION ---
-            val generatedAttack = calculateQuadraticGearStat(floor, baseValue = 10.0, linearFactor = 1.0, quadraticFactor = 0.1) * finalMult
-            val generatedDefense = calculateQuadraticGearStat(floor, baseValue = 10.0, linearFactor = 1.0, quadraticFactor = 0.1) * finalMult
-            val generatedMagic = calculateQuadraticGearStat(floor, baseValue = 10.0, linearFactor = 1.0, quadraticFactor = 0.1) * finalMult
-            val generatedHp = calculateQuadraticGearStat(floor, baseValue = 50.0, linearFactor = 4.0, quadraticFactor = 0.5) * finalMult
-            val generatedMp = calculateQuadraticGearStat(floor, baseValue = 5.0, linearFactor = 0.5, quadraticFactor = 0.05) * finalMult
+            // ATK / MAG / DEF: Target ~200 ATK at Flr 10, ~900K ATK at Flr 34,000 (Mythic)
+            val generatedAttack = calculateQuadraticGearStat(floor, baseValue = 10.0, linearFactor = 1.0, quadraticFactor = 0.00005) * finalMult
+            val generatedDefense = calculateQuadraticGearStat(floor, baseValue = 10.0, linearFactor = 1.0, quadraticFactor = 0.00005) * finalMult
+            val generatedMagic = calculateQuadraticGearStat(floor, baseValue = 10.0, linearFactor = 1.0, quadraticFactor = 0.00005) * finalMult
+
+// HP: Target ~1,000 HP at Flr 10, ~5.1 Million HP at Flr 34,000 (Mythic)
+            val generatedHp = calculateQuadraticGearStat(floor, baseValue = 50.0, linearFactor = 5.0, quadraticFactor = 0.0003) * finalMult
+            val generatedMp = calculateQuadraticGearStat(floor, baseValue = 5.0, linearFactor = 0.5, quadraticFactor = 0.00002) * finalMult
 
             val atkBonus = if (slot == ItemSlot.WEAPON && !gearCategory.isMagicalWeapon) generatedAttack else 0.0
             val defBonus = if (slot == ItemSlot.ARMOR || slot == ItemSlot.SHIELD) generatedDefense else 0.0
@@ -428,6 +431,14 @@ data class Item(
 
 /**
  * Calculates gear stats based on the floor found using a gentle quadratic curve.
+ */
+/**
+ * Calculates gear stats using a calibrated curve that keeps early floors low (~500-1000 HP at floor 10)
+ * and scales deep floors (like 34,000) into the low millions.
+ */
+/**
+ * Calculates gear stats using a single, unified quadratic curve.
+ * No piecewise jumps, guaranteeing smooth scaling from Floor 1 to 35,000+.
  */
 private fun calculateQuadraticGearStat(floor: Int, baseValue: Double, linearFactor: Double, quadraticFactor: Double): Long {
     val f = floor.toDouble().coerceAtLeast(1.0)

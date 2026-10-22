@@ -741,12 +741,12 @@
 
     <!-- Extracted Screen Strings -->
     <string name="return_to_inn">RETOURNER À L\'AUBERGE</string>
-    <string name="stat_bonus_atk">ATQ: +%1$d</string>
-    <string name="stat_bonus_def">DÉF: +%1$d</string>
-    <string name="stat_bonus_mag">MAG: +%1$d</string>
-    <string name="stat_bonus_hp">PV: +%1$d</string>
+    <string name="stat_bonus_atk">ATQ: +%1$s</string>
+    <string name="stat_bonus_def">DÉF: +%1$s</string>
+    <string name="stat_bonus_mag">MAG: +%1$s</string>
+    <string name="stat_bonus_hp">PV: +%1$s</string>
     <string name="stat_bonus_crit_chance">CRIT %%%: +%1$d%%%</string>
-    <string name="stat_bonus_crit_damage">DÉGÂTS CRIT: +%1$d%%%</string>
+    <string name="stat_bonus_crit_damage">DÉGÂTS CRIT: +%1$s%%%</string>
     <string name="hero_status_rip">RIP</string>
     <string name="jobs_count_format">%1$d CLASSES</string>
     <string name="party_full">PLEIN</string>
@@ -1324,4 +1324,15 @@
     <string name="set_azure">Savoir Azur</string>
     <string name="skill_black_mage_t4_name">Gravité</string>
     <string name="skill_black_mage_t4_desc">Écrase tous les ennemis avec une gravité intense, réduisant 1/6 de leurs PV maximaux.</string>
+
+    <!-- Dungeon Screen Extracted Strings -->
+    <string name="dimension_subtitle_banner">⚔️ %1$s ⚔️</string>
+    <string name="restart_title">Redémarrer ?</string>
+    <string name="restart_desc">Redémarrez depuis votre étage d\'entrée. Tout le butin et la monnaie accumulés seront conservés !</string>
+    <string name="loop_run_button">Recommencer (Garder le butin)</string>
+    <string name="loop_count_format">Boucle x%1$d</string>
+    <string name="speed_1x" translatable="false">1x</string>
+    <string name="speed_3x" translatable="false">3x</string>
+    <string name="speed_10x_unlocked" translatable="false">10x ⚡</string>
+    <string name="speed_10x_locked" translatable="false">10x 🔒</string>
 </resources>

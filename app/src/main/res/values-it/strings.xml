@@ -741,12 +741,12 @@
 
     <!-- Extracted Screen Strings -->
     <string name="return_to_inn">TORNA ALLA LOCANDA</string>
-    <string name="stat_bonus_atk">ATC: +%1$d</string>
-    <string name="stat_bonus_def">DIF: +%1$d</string>
-    <string name="stat_bonus_mag">MAG: +%1$d</string>
-    <string name="stat_bonus_hp">PV: +%1$d</string>
+    <string name="stat_bonus_atk">ATC: +%1$s</string>
+    <string name="stat_bonus_def">DIF: +%1$s</string>
+    <string name="stat_bonus_mag">MAG: +%1$s</string>
+    <string name="stat_bonus_hp">PV: +%1$s</string>
     <string name="stat_bonus_crit_chance">CRIT %%%: +%1$d%%%</string>
-    <string name="stat_bonus_crit_damage">DANNO CRIT: +%1$d%%%</string>
+    <string name="stat_bonus_crit_damage">DANNO CRIT: +%1$s%%%</string>
     <string name="hero_status_rip">RIP</string>
     <string name="jobs_count_format">%1$d CLASSI</string>
     <string name="party_full">PIENO</string>
@@ -1323,4 +1323,15 @@
     <string name="set_azure">Sapienza Azzurra</string>
     <string name="skill_black_mage_t4_name">Gravità</string>
     <string name="skill_black_mage_t4_desc">Schiaccia tutti i nemici con un\'intensa gravità, rimuovendo 1/6 dei loro PV massimi.</string>
+
+    <!-- Dungeon Screen Extracted Strings -->
+    <string name="dimension_subtitle_banner">⚔️ %1$s ⚔️</string>
+    <string name="restart_title">Riavviare?</string>
+    <string name="restart_desc">Riavvia dal tuo piano di ingresso. Tutto il bottino e le monete accumulate verranno conservati!</string>
+    <string name="loop_run_button">Ripeti corsa (Conserva bottino)</string>
+    <string name="loop_count_format">Loop x%1$d</string>
+    <string name="speed_1x" translatable="false">1x</string>
+    <string name="speed_3x" translatable="false">3x</string>
+    <string name="speed_10x_unlocked" translatable="false">10x ⚡</string>
+    <string name="speed_10x_locked" translatable="false">10x 🔒</string>
 </resources>

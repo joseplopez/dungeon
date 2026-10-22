@@ -743,12 +743,12 @@
 
     <!-- Extracted Screen Strings -->
     <string name="return_to_inn">العودة إلى النزل</string>
-    <string name="stat_bonus_atk">هجوم: +%1$d</string>
-    <string name="stat_bonus_def">دفاع: +%1$d</string>
-    <string name="stat_bonus_mag">سحر: +%1$d</string>
-    <string name="stat_bonus_hp">صحة: +%1$d</string>
+    <string name="stat_bonus_atk">هجوم: +%1$s</string>
+    <string name="stat_bonus_def">دفاع: +%1$s</string>
+    <string name="stat_bonus_mag">سحر: +%1$s</string>
+    <string name="stat_bonus_hp">صحة: +%1$s</string>
     <string name="stat_bonus_crit_chance">حرج %%%: +%1$d%%%</string>
-    <string name="stat_bonus_crit_damage">ضرر حرج: +%1$d%%%</string>
+    <string name="stat_bonus_crit_damage">ضرر حرج: +%1$s%%%</string>
     <string name="hero_status_rip">توفي</string>
     <string name="jobs_count_format">%1$d وظائف</string>
     <string name="party_full">ممتلئ</string>
@@ -1325,4 +1325,15 @@
     <string name="set_azure">الحكمة الزرقاء</string>
     <string name="skill_black_mage_t4_name">الجاذبية</string>
     <string name="skill_black_mage_t4_desc">يسحق جميع الأعداء بجاذبية شديدة، ويزيل 1/6 من صحتها القصوى.</string>
+
+    <!-- Dungeon Screen Extracted Strings -->
+    <string name="dimension_subtitle_banner">⚔️ %1$s ⚔️</string>
+    <string name="restart_title">إعادة التشغيل؟</string>
+    <string name="restart_desc">أعد التشغيل من طابق الدخول. سيتم الاحتفاظ بجميع الغنائم والعملات المكتسبة!</string>
+    <string name="loop_run_button">إعادة المحاولة (الاحتفاظ بالغنائم)</string>
+    <string name="loop_count_format">تكرار x%1$d</string>
+    <string name="speed_1x" translatable="false">1x</string>
+    <string name="speed_3x" translatable="false">3x</string>
+    <string name="speed_10x_unlocked" translatable="false">10x ⚡</string>
+    <string name="speed_10x_locked" translatable="false">10x 🔒</string>
 </resources>

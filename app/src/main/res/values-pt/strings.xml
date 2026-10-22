@@ -742,12 +742,12 @@
 
     <!-- Extracted Screen Strings -->
     <string name="return_to_inn">VOLTAR À ESTALAGEM</string>
-    <string name="stat_bonus_atk">ATQ: +%1$d</string>
-    <string name="stat_bonus_def">DEF: +%1$d</string>
-    <string name="stat_bonus_mag">MAG: +%1$d</string>
-    <string name="stat_bonus_hp">PV: +%1$d</string>
+    <string name="stat_bonus_atk">ATQ: +%1$s</string>
+    <string name="stat_bonus_def">DEF: +%1$s</string>
+    <string name="stat_bonus_mag">MAG: +%1$s</string>
+    <string name="stat_bonus_hp">PV: +%1$s</string>
     <string name="stat_bonus_crit_chance">CRÍT %%%: +%1$d%%%</string>
-    <string name="stat_bonus_crit_damage">DANO CRÍT: +%1$d%%%</string>
+    <string name="stat_bonus_crit_damage">DANO CRÍT: +%1$s%%%</string>
     <string name="hero_status_rip">R.I.P.</string>
     <string name="jobs_count_format">%1$d CLASSES</string>
     <string name="party_full">CHEIO</string>
@@ -1324,4 +1324,15 @@
     <string name="set_azure">Saber Azul</string>
     <string name="skill_black_mage_t4_name">Gravidade</string>
     <string name="skill_black_mage_t4_desc">Esmaga todos os inimigos com gravidade intensa, removendo 1/6 do seu PV máximo.</string>
+
+    <!-- Dungeon Screen Extracted Strings -->
+    <string name="dimension_subtitle_banner">⚔️ %1$s ⚔️</string>
+    <string name="restart_title">Reiniciar?</string>
+    <string name="restart_desc">Reinicie a partir do seu andar de entrada. Todo o saque e moedas acumulados serão mantidos!</string>
+    <string name="loop_run_button">Repetir corrida (Manter saque)</string>
+    <string name="loop_count_format">Loop x%1$d</string>
+    <string name="speed_1x" translatable="false">1x</string>
+    <string name="speed_3x" translatable="false">3x</string>
+    <string name="speed_10x_unlocked" translatable="false">10x ⚡</string>
+    <string name="speed_10x_locked" translatable="false">10x 🔒</string>
 </resources>

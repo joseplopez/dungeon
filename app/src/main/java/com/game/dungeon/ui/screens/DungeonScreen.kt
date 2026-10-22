@@ -179,7 +179,7 @@ fun DungeonScreen(
             ) {
                 Column(horizontalAlignment = CenterHorizontally) {
                     if (dimension != null) {
-                        Text("⚔️ ${safeStringResource(dimension.subtitleRes)} ⚔️", style = PixelSmall, color = Color.White)
+                        Text(safeStringResource(R.string.dimension_subtitle_banner, safeStringResource(dimension.subtitleRes)), style = PixelSmall, color = Color.White)
                     }
                     Text(state.floorBannerText, style = PixelHeading, color = if (biome != null) GoldBright else BgDarkest)
                 }
@@ -300,7 +300,7 @@ fun RetreatReviveDialog(
                     text = if (hasFallenHeroes) {
                         if (isPermadeathProtected) stringResource(R.string.heroes_down) else safeStringResource(R.string.retreat_rescue_title)
                     } else {
-                        "Rest & Restart?"
+                        safeStringResource(R.string.restart_title)
                     },
                     style = PixelTitle,
                     color = if (hasFallenHeroes && !isPermadeathProtected) EnemyRed else GoldBright
@@ -310,7 +310,7 @@ fun RetreatReviveDialog(
                     text = if (hasFallenHeroes) {
                         if (isPermadeathProtected) stringResource(R.string.some_heroes_fell) else safeStringResource(R.string.retreat_rescue_desc)
                     } else {
-                        "Restart from your entry floor. All accumulated loot and currency will be carried over!"
+                        safeStringResource(R.string.restart_desc)
                     },
                     style = PixelBody,
                     color = Color.White,
@@ -327,7 +327,7 @@ fun RetreatReviveDialog(
                         )
                     } else {
                         PixelButton(
-                            "Loop Run (Keep Loot)",
+                            safeStringResource(R.string.loop_run_button),
                             onClick = onRetry,
                             modifier = Modifier.fillMaxWidth().height(48.dp),
                             active = true
@@ -508,7 +508,7 @@ fun DungeonTopBar(
                 Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                     Text(safeStringResource(R.string.floor_format, floor), style = PixelHeading, color = GoldBright)
                     if (loopCount > 1) {
-                        Text("Loop x$loopCount", style = PixelSmall, color = HpGreen, fontSize = 10.sp)
+                        Text(safeStringResource(R.string.loop_count_format, loopCount), style = PixelSmall, color = HpGreen, fontSize = 10.sp)
                     }
                 }
                 if (dimension != null) {
@@ -526,7 +526,7 @@ fun DungeonTopBar(
             } else {
                 Row(horizontalArrangement = Arrangement.spacedBy(6.dp)) {
                     PixelButton(
-                        "1x",
+                        safeStringResource(R.string.speed_1x),
                         onClick = { onSpeedChange(BattleSpeed.NORMAL) },
                         active = (speed == BattleSpeed.NORMAL),
                         modifier = Modifier
@@ -534,7 +534,7 @@ fun DungeonTopBar(
                             .height(32.dp)
                     )
                     PixelButton(
-                        "3x",
+                        safeStringResource(R.string.speed_3x),
                         onClick = { onSpeedChange(BattleSpeed.FAST) },
                         active = (speed == BattleSpeed.FAST),
                         modifier = Modifier
@@ -542,7 +542,7 @@ fun DungeonTopBar(
                             .height(32.dp)
                     )
                     PixelButton(
-                        if (hasPremiumSpeed) "10x ⚡" else "10x 🔒",
+                        safeStringResource(if (hasPremiumSpeed) R.string.speed_10x_unlocked else R.string.speed_10x_locked),
                         onClick = {
                             if (hasPremiumSpeed) {
                                 onSpeedChange(BattleSpeed.HYPER)
@@ -1402,12 +1402,12 @@ fun RunCompleteOverlay(
                         Text(item.name, style = PixelHeading, color = Color(item.rarity.color))
                         
                         Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(4.dp)) {
-                            if (item.attackBonus > 0) Text(safeStringResource(R.string.stat_bonus_atk, item.attackBonus), style = PixelBody, color = GoldBright)
-                            if (item.defenseBonus > 0) Text(safeStringResource(R.string.stat_bonus_def, item.defenseBonus), style = PixelBody, color = GoldBright)
-                            if (item.magicBonus > 0) Text(safeStringResource(R.string.stat_bonus_mag, item.magicBonus), style = PixelBody, color = GoldBright)
-                            if (item.hpBonus > 0) Text(safeStringResource(R.string.stat_bonus_hp, item.hpBonus), style = PixelBody, color = GoldBright)
+                            if (item.attackBonus > 0) Text(safeStringResource(R.string.stat_bonus_atk, formatAmount(item.attackBonus)), style = PixelBody, color = GoldBright)
+                            if (item.defenseBonus > 0) Text(safeStringResource(R.string.stat_bonus_def, formatAmount(item.defenseBonus)), style = PixelBody, color = GoldBright)
+                            if (item.magicBonus > 0) Text(safeStringResource(R.string.stat_bonus_mag, formatAmount(item.magicBonus)), style = PixelBody, color = GoldBright)
+                            if (item.hpBonus > 0) Text(safeStringResource(R.string.stat_bonus_hp, formatAmount(item.hpBonus)), style = PixelBody, color = GoldBright)
                             if (item.critChanceBonus > 0) Text(safeStringResource(R.string.stat_bonus_crit_chance, item.critChanceBonus), style = PixelBody, color = HpGreen)
-                            if (item.critDamageBonus > 0) Text(safeStringResource(R.string.stat_bonus_crit_damage, item.critDamageBonus), style = PixelBody, color = HpGreen)
+                            if (item.critDamageBonus > 0) Text(safeStringResource(R.string.stat_bonus_crit_damage, formatAmount(item.critDamageBonus)), style = PixelBody, color = HpGreen)
                         }
 
                         Spacer(Modifier.height(8.dp))
