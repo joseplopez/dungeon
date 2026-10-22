@@ -1,5 +1,7 @@
 package com.game.dungeon.data.models
 
+import kotlin.math.ln
+
 data class RelicBonuses(
     val attackBonus: Long,    // Changed to Long
     val hpBonus: Long,        // Changed to Long
@@ -53,33 +55,45 @@ data class RelicBonuses(
     }
 
     companion object {
-        fun from(gs: GameState, codexBonuses: CodexBonuses = CodexBonuses()) = RelicBonuses(
-            // Enforced 64-bit math across all scaling formulas
-            attackBonus = (gs.attackRelic * 2 * (1f + codexBonuses.attackMultiplierBonus)).toLong(),
-            hpBonus = gs.hpRelic.toLong() * 60L + (gs.hpRelic.toLong() * gs.hpRelic.toLong() * 2L),
-            mpBonus = gs.mpRelic.toLong() * 10L,
-            magicBonus = gs.magicRelic.toLong() * 2L,
-            defenseBonus = gs.defenseRelic.toLong() * 8L + (gs.defenseRelic.toLong() * gs.defenseRelic.toLong()),
-            goldMultiplier = (1f + gs.goldRelic * 0.05f) + (if (gs.selectedPet == PetType.CAT) PetType.CAT.bonusValue else 0f) + codexBonuses.goldMultiplierBonus,
-            magiciteChanceBonus = gs.magiciteRelic * 0.01f + codexBonuses.magiciteChanceBonus,
-            expMultiplier = gs.expMultiplier,
-            itemStatBonus = gs.itemStatBonus,
-            magicShopLevel = gs.magicShopLevel,
-            critChanceBonus = gs.critChanceRelic + codexBonuses.critChanceBonus,
-            critDamageBonus = gs.critDamageRelic.toLong() * 5L,
-            magnetBonus = gs.magnetBonus,
-            pocketsBonus = gs.pocketsBonus,
-            doubleLootChance = gs.doubleLootChance,
-            jobMasteryLevels = gs.jobMasteryLevels,
-            selectedPet = gs.selectedPet,
-            bossesDefeatedCount = gs.bossesDefeatedNames.size,
-            magiciteYieldBonus = gs.magiciteYieldBonus,
-            alchemistDropChanceBonus = gs.alchemistDropChanceBonus,
-            mythicDropBonus = gs.mythicDropBonus,
-            mythicStatBonus = gs.mythicStatBonus,
-            warRoomCritBonus = gs.warRoomCritBonus.toInt(),
-            warRoomAbilityChargeBonus = gs.warRoomAbilityChargeBonus,
-            codexBonuses = codexBonuses
-        )
+        fun from(gs: GameState, codexBonuses: CodexBonuses = CodexBonuses()): RelicBonuses {
+            // Apply logarithmic scaling: base_multiplier * ln(level + 1)
+            // This grants fast early growth that flattens out, keeping gear and hero levels relevant.
+            
+            val atkLvl = gs.attackRelic.toDouble()
+            val hpLvl = gs.hpRelic.toDouble()
+            val mpLvl = gs.mpRelic.toDouble()
+            val magLvl = gs.magicRelic.toDouble()
+            val defLvl = gs.defenseRelic.toDouble()
+            val critDmgLvl = gs.critDamageRelic.toDouble()
+
+            return RelicBonuses(
+                attackBonus = (400.0 * ln(atkLvl + 1.0) * (1f + codexBonuses.attackMultiplierBonus)).toLong(),
+                hpBonus = (2500.0 * ln(hpLvl + 1.0)).toLong(),
+                mpBonus = (50.0 * ln(mpLvl + 1.0)).toLong(),
+                magicBonus = (400.0 * ln(magLvl + 1.0)).toLong(),
+                defenseBonus = (300.0 * ln(defLvl + 1.0)).toLong(),
+                goldMultiplier = (1f + gs.goldRelic * 0.05f) + (if (gs.selectedPet == PetType.CAT) PetType.CAT.bonusValue else 0f) + codexBonuses.goldMultiplierBonus,
+                magiciteChanceBonus = gs.magiciteRelic * 0.01f + codexBonuses.magiciteChanceBonus,
+                expMultiplier = gs.expMultiplier,
+                itemStatBonus = gs.itemStatBonus,
+                magicShopLevel = gs.magicShopLevel,
+                critChanceBonus = gs.critChanceRelic + codexBonuses.critChanceBonus,
+                critDamageBonus = (25.0 * ln(critDmgLvl + 1.0)).toLong(),
+                magnetBonus = gs.magnetBonus,
+                pocketsBonus = gs.pocketsBonus,
+                doubleLootChance = gs.doubleLootChance,
+                jobMasteryLevels = gs.jobMasteryLevels,
+                selectedPet = gs.selectedPet,
+                bossesDefeatedCount = gs.bossesDefeatedNames.size,
+                magiciteYieldBonus = gs.magiciteYieldBonus,
+                alchemistDropChanceBonus = gs.alchemistDropChanceBonus,
+                mythicDropBonus = gs.mythicDropBonus,
+                mythicStatBonus = gs.mythicStatBonus,
+                warRoomCritBonus = gs.warRoomCritBonus.toInt(),
+                warRoomAbilityChargeBonus = gs.warRoomAbilityChargeBonus,
+                codexBonuses = codexBonuses
+            )
+        }
     }
 }
+
