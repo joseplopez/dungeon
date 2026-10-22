@@ -274,6 +274,7 @@ class GameRepository @Inject constructor(
         database.itemDao.delete(item)
     }
     suspend fun deleteItem(item: Item) = database.itemDao.delete(item)
+    suspend fun deleteItem(id: String) { database.itemDao.getItemById(id)?.let { database.itemDao.delete(it) } }
     suspend fun clearInventory() = database.itemDao.deleteAll()
 
     // Materials & Crafting

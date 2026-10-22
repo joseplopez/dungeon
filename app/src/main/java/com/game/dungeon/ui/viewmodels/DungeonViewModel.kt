@@ -176,7 +176,8 @@ class DungeonViewModel @Inject constructor(
     val materialsFoundThisRun: Map<String, Int> = emptyMap(),
     val lastDefeatedSlotIndex: Int = 0,
     val floatingLootEffects: List<FloatingLootEffect> = emptyList(),
-    val dungeonMode: DungeonMode = DungeonMode.REGULAR
+    val dungeonMode: DungeonMode = DungeonMode.REGULAR,
+    val hasRerolledLoot: Boolean = false
   )
 
   data class FFLogEntry(
@@ -666,6 +667,97 @@ class DungeonViewModel @Inject constructor(
   fun declineRetreatRevive() {
       battleState.update { it.copy(showRetreatReviveDialog = false) }
       forceRetreat() // Proceed with permadeath retreat
+  }
+
+  fun rerollRunRewards(activity: Activity) {
+      adManager.showRewardedAd(
+          activity,
+          onEarnedReward = {
+              viewModelScope.launch {
+                  val state = battleState.value
+                  val summary = state.runSummary ?: return@launch
+                  val gs = repo.getGameStateOnce() ?: GameState()
+                  val codex = repo.getCodexBonuses()
+                  val relics = RelicBonuses.from(gs, codex)
+                  val dimension = FFDimensionData.getDimension(gs.currentDimension)
+
+                  val bossesKilled = state.bossesKilledThisRun
+                  val newItems = mutableListOf<Item>()
+                  val newMaterials = mutableMapOf<String, Int>()
+
+                  // Recalculate new base values for this run
+                  val newGil = summary.gilEarnedThisRun
+                  val newMagicite = summary.magiciteEarnedThisRun
+
+                  // Recalculate Item Drops for cleared floors
+                  for (f in state.startFloor until state.currentFloor) {
+                      val isBoss = FFDimensionData.getBossForFloor(dimension, f) != null
+                      val dropChance = if (isBoss) 100f else 10f * (1f + relics.petItemFindBonus)
+                      
+                      if (kotlin.random.Random.nextFloat() * 100 < dropChance) {
+                          newItems.add(Item.random(
+                              floor = f,
+                              context = context,
+                              relicBonuses = relics,
+                              minRarity = if (isBoss) Rarity.RARE else Rarity.COMMON,
+                              dimension = gs.currentDimension
+                          ))
+                      }
+                  }
+
+                  // Recalculate Boss Material Drops
+                  if (bossesKilled > 0) {
+                      var shards = 0
+                      repeat(bossesKilled) {
+                          if (kotlin.random.Random.nextFloat() < 0.25f) {
+                              shards += kotlin.random.Random.nextInt(2, 6)
+                          }
+                      }
+                      if (shards > 0) newMaterials["mythic_shard"] = shards
+                  }
+
+                  // --- DATABASE REPLACEMENT LOGIC ---
+                  
+                  // 1. Adjust Gil & Magicite deltas (Difference between new roll and old roll)
+                  val gilDelta = newGil - summary.gilEarnedThisRun
+                  val magiciteDelta = newMagicite - summary.magiciteEarnedThisRun
+                  if (gilDelta != 0L) repo.addGil(gilDelta)
+                  if (magiciteDelta != 0L) repo.addMagicite(magiciteDelta)
+
+                  // 2. Remove previously saved items from this run and save the new items
+                  summary.itemsFoundThisRun.forEach { oldItem ->
+                      repo.deleteItem(oldItem.id)
+                  }
+                  newItems.forEach { newItem ->
+                      repo.saveItem(newItem)
+                  }
+
+                  // 3. Remove old materials from this run and add new materials
+                  summary.materialsEarned.forEach { (matId, oldQty) ->
+                      repo.addMaterial(matId, -oldQty)
+                  }
+                  newMaterials.forEach { (matId, newQty) ->
+                      repo.addMaterial(matId, newQty)
+                  }
+
+                  // --- UPDATE RUN SUMMARY STATE (STRICT REPLACEMENT) ---
+                  val updatedSummary = summary.copy(
+                      gilEarnedThisRun = newGil,
+                      magiciteEarnedThisRun = newMagicite,
+                      itemsFoundThisRun = newItems,
+                      materialsEarned = newMaterials
+                  )
+
+                  battleState.update { it.copy(
+                      runSummary = updatedSummary,
+                      itemsFoundThisRun = newItems,
+                      materialsFoundThisRun = newMaterials,
+                      hasRerolledLoot = true
+                  ) }
+              }
+          },
+          onAdClosed = {}
+      )
   }
 
   fun finalizeRun() {

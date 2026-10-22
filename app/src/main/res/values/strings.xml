@@ -706,6 +706,7 @@
     <string name="revive_button">REVIVE (AD)</string>
     <string name="give_up_button">GIVE UP</string>
 
+
     <string name="ad_gil_reward">FREE GIL (AD)</string>
     <string name="ad_magicite_reward">FREE MAGICITE (AD)</string>
     <string name="ad_not_ready">Ad not ready. Please wait a moment.</string>
@@ -905,8 +906,6 @@
     <string name="skill_black_mage_t2_desc">Deals 170% elemental magic damage striking up to 2 enemies.</string>
     <string name="skill_black_mage_t3_name">Meteor Tempest</string>
     <string name="skill_black_mage_t3_desc">Calls down meteors dealing 220% massive magic damage to ALL enemies!</string>
-    <string name="skill_black_mage_t4_name">Gravity</string>
-    <string name="skill_black_mage_t4_desc">Crushes all enemies with intense gravity, removing 1/6 of their maximum HP.</string>
 
     <!-- Thief Skills -->
     <string name="skill_thief_t1_name">Quick Dagger</string>
@@ -1242,12 +1241,7 @@
     <!-- Onion Knight: Luneth (FFIII) -->
     <string name="set_onion">Luneth\'s Destiny</string>
 
-    <string name="set_adventurer">Adventurer\'s Spirit</string>
-    <string name="set_lionheart">Lionheart Guard</string>
-    <string name="set_mirage">Mirage Vestments</string>
-    <string name="set_mimic">Gogo\'s Mimicry</string>
-    <string name="set_reaper">Reaper\'s Shroud</string>
-    <string name="set_azure">Azure Lore</string>
+
 
     <string name="mat_mythic_shard_name">Mythic Shard</string>
     <string name="mat_mythic_shard_desc">Radiant shard of ancient mythic power found in deep floors.</string>
@@ -1370,4 +1364,14 @@
     <string name="cost">"Cost: "</string>
     <string name="purchase">PURCHASE</string>
     <string name="not_enough_gil">NOT ENOUGH GIL</string>
+    <string name="reroll_loot_button">📺 Reroll Loot</string>
+    <string name="set_adventurer">Adventurer\'s Spirit</string>
+    <string name="set_lionheart">Lionheart Guard</string>
+    <string name="set_mirage">Mirage Vestments</string>
+    <string name="set_mimic">Gogo\'s Mimicry</string>
+    <string name="set_reaper">Reaper\'s Shroud</string>
+    <string name="set_azure">Azure Lore</string>
+    <string name="skill_black_mage_t4_name">Gravity</string>
+    <string name="skill_black_mage_t4_desc">Crushes all enemies with intense gravity, removing 1/6 of their maximum HP.</string>
+
 </resources>

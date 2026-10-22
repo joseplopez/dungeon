@@ -227,6 +227,8 @@ fun DungeonScreen(
                 materialsEarned = summary?.materialsEarned ?: state.materialsFoundThisRun,
                 originalPartySize = summary?.originalPartySize ?: state.originalPartySize,
                 isPermadeathProtected = isPermadeathProtected,
+                hasRerolledLoot = state.hasRerolledLoot,
+                onRerollLoot = { activity?.let { viewModel.rerollRunRewards(it) } },
                 onReturn = {
                     navController?.navigate("inn") {
                         popUpTo("inn") { inclusive = true }
@@ -1162,6 +1164,8 @@ fun RunCompleteOverlay(
     materialsEarned: Map<String, Int> = emptyMap(),
     originalPartySize: Int,
     isPermadeathProtected: Boolean = false,
+    hasRerolledLoot: Boolean = false, 
+    onRerollLoot: () -> Unit,         
     onReturn: () -> Unit
 ) {
     val scrollState = rememberScrollState()
@@ -1347,6 +1351,19 @@ fun RunCompleteOverlay(
             }
 
             Spacer(Modifier.height(16.dp))
+
+            if (!hasRerolledLoot) {
+                PixelButton(
+                    label = "📺 Reroll Loot",
+                    onClick = onRerollLoot,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(44.dp),
+                    active = true
+                )
+                Spacer(Modifier.height(8.dp))
+            }
+
             PixelButton(
                 safeStringResource(R.string.return_to_inn),
                 onClick = onReturn,
