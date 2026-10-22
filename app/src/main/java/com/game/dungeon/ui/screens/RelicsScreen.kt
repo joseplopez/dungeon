@@ -34,6 +34,7 @@ import com.game.dungeon.data.models.RelicType
 import com.game.dungeon.ui.components.*
 import com.game.dungeon.ui.theme.*
 import com.game.dungeon.ui.viewmodels.RelicsViewModel
+import com.game.dungeon.ui.viewmodels.calculateMaxRelicUpgrades
 import kotlin.random.Random
 
 @Composable
@@ -242,7 +243,7 @@ fun RelicsScreen(
                             GoldenBorderBox(
                                 modifier = Modifier
                                     .fillMaxWidth()
-                                    .height(110.dp)
+                                    .height(70.dp)
                                     .background(BgPanel.copy(alpha = 0.8f))
                             ) {
                                 Canvas(Modifier.fillMaxSize().padding(8.dp)) {
@@ -307,13 +308,46 @@ fun RelicsScreen(
                                 )
                             }
 
-                            // Action Upgrade Button
-                            PixelButton(
-                                label = if (canAfford) safeStringResource(R.string.btn_upgrade_magicite, upgradeCost) else safeStringResource(R.string.btn_need_magicite, upgradeCost),
-                                onClick = { viewModel.upgradeRelic(selectedRelicType) },
-                                enabled = canAfford,
-                                modifier = Modifier.fillMaxWidth().height(38.dp)
-                            )
+                            // Action Upgrade Buttons
+                            val cost1 = (selectedLevel + 1) * 10L
+                            val canAfford1 = magicite >= cost1
+
+                            val (halfLevels, halfCost) = calculateMaxRelicUpgrades(selectedLevel, magicite / 2L)
+                            val (allLevels, allCost) = calculateMaxRelicUpgrades(selectedLevel, magicite)
+
+                            Column(
+                                modifier = Modifier.fillMaxWidth()
+                                    .verticalScroll(rememberScrollState()), // Make buttons scrollable,
+                                verticalArrangement = Arrangement.spacedBy(4.dp)
+                            ) {
+                                // Basic +1 Level Button
+                                PixelButton(
+                                    label = if (canAfford1) "+1 LVL (💎 ${formatAmount(cost1)})" else safeStringResource(R.string.btn_need_magicite, formatAmount(cost1)),
+                                    onClick = { viewModel.upgradeRelic(selectedRelicType, 1) },
+                                    enabled = canAfford1,
+                                    modifier = Modifier.fillMaxWidth().height(32.dp)
+                                )
+
+                                // Spend Half Button
+                                if (halfLevels > 1) {
+                                    PixelButton(
+                                        label = "+$halfLevels LVLs (💎 ${formatAmount(halfCost)})",
+                                        onClick = { viewModel.upgradeRelic(selectedRelicType, halfLevels) },
+                                        enabled = true,
+                                        modifier = Modifier.fillMaxWidth().height(32.dp)
+                                    )
+                                }
+
+                                // Spend All Button
+                                if (allLevels > 1 && allLevels != halfLevels) {
+                                    PixelButton(
+                                        label = "+$allLevels LVLs (💎 ${formatAmount(allCost)})",
+                                        onClick = { viewModel.upgradeRelic(selectedRelicType, allLevels) },
+                                        enabled = true,
+                                        modifier = Modifier.fillMaxWidth().height(32.dp)
+                                    )
+                                }
+                            }
                         }
                     }
 
@@ -439,11 +473,22 @@ fun GoldExchangeDialog(
     onExchange: (Long, Int) -> Unit,
     onDismiss: () -> Unit
 ) {
+    // 250,000 Gil = 50 Magicite (Rate: 5,000 Gil per 1 Magicite)
+    val exchangeRate = 5000L
+
+    // Calculate exact proportional costs for Half and All
+    val halfMagicite = ((currentGold / 2L) / exchangeRate).toInt().coerceAtLeast(1)
+    val halfCost = halfMagicite * exchangeRate
+
+    val allMagicite = (currentGold / exchangeRate).toInt().coerceAtLeast(1)
+    val allCost = allMagicite * exchangeRate
+
+    // distinctBy prevents duplicate buttons (e.g. if 'All' exactly equals 250k)
     val packs = listOf(
-        Triple(250_000L, 50, "250K"),
-        Triple(1_000_000L, 200, "1M"),
-        Triple(1_000_000_000L, 200000, "1B")
-    )
+        Triple(250_000L, 50, "Base"),
+        Triple(halfCost, halfMagicite, "Half"),
+        Triple(allCost, allMagicite, "All")
+    ).distinctBy { it.first }
 
     Dialog(
         onDismissRequest = onDismiss,

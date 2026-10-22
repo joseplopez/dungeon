@@ -15,6 +15,7 @@ import com.game.dungeon.engine.*
 import com.game.dungeon.monetization.AdManager
 import com.game.dungeon.monetization.BillingManager
 import com.game.dungeon.monetization.InAppProduct
+import com.game.dungeon.ui.components.formatAmount
 import dagger.hilt.android.lifecycle.HiltViewModel
 import dagger.hilt.android.qualifiers.ApplicationContext
 import kotlinx.coroutines.Dispatchers
@@ -291,7 +292,7 @@ class DungeonViewModel @Inject constructor(
             attackingHeroId = if (isHeroAttacking) event.attackerId else null,
             isCriticalHit = event.isCritical,
             activeAbilityAnimation = if (!isHeroAttacking) animInfo else (animInfo ?: state.activeAbilityAnimation),
-            battleLog = (state.battleLog + FFLogEntry(logRes, listOf(attackerName, targetName, event.damage),
+            battleLog = (state.battleLog + FFLogEntry(logRes, listOf(attackerName, targetName, formatAmount(event.damage)),
               if(isHeroAttacking) LogType.HERO_ATTACK else LogType.ENEMY_ATTACK)).takeLast(25)
           )
         }
@@ -337,7 +338,7 @@ class DungeonViewModel @Inject constructor(
               state.copy(
                   lastDefeatedSlotIndex = slotIndex,
                   enemies = state.enemies.filter { it.id != event.enemyId },
-                  battleLog = (state.battleLog + FFLogEntry(R.string.log_victory_xp, listOf(enemy?.name ?: "?", event.expDropped), LogType.SYSTEM)).takeLast(25)
+                  battleLog = (state.battleLog + FFLogEntry(R.string.log_victory_xp, listOf(enemy?.name ?: "?", formatAmount(event.expDropped)), LogType.SYSTEM)).takeLast(25)
               )
           }
           viewModelScope.launch(Dispatchers.IO) {
@@ -384,7 +385,7 @@ class DungeonViewModel @Inject constructor(
               state.copy(
                   heroes = updatedHeroes,
                   activeAbilityAnimation = updatedAnim,
-                  battleLog = (state.battleLog + FFLogEntry(R.string.log_heal_format, listOf(findName(state, event.casterId), findName(state, event.targetId), event.amount), LogType.HEAL)).takeLast(25)
+                  battleLog = (state.battleLog + FFLogEntry(R.string.log_heal_format, listOf(findName(state, event.casterId), findName(state, event.targetId), formatAmount(event.amount.toLong())), LogType.HEAL)).takeLast(25)
               )
           }
       }
@@ -552,7 +553,7 @@ class DungeonViewModel @Inject constructor(
             activeAbilityAnimation = animInfo,
             battleLog = (state.battleLog + FFLogEntry(
               R.string.log_summon_format,
-              listOf(findName(state, event.heroId), event.summonName, event.totalDamage),
+              listOf(findName(state, event.heroId), event.summonName, formatAmount(event.totalDamage)),
               LogType.SUMMON)).takeLast(25))
         }
         viewModelScope.launch {
@@ -564,7 +565,7 @@ class DungeonViewModel @Inject constructor(
           battleState.update { state ->
               state.copy(
                   magiciteEarnedThisRun = state.magiciteEarnedThisRun + event.amount,
-                  battleLog = (state.battleLog + FFLogEntry(R.string.log_magicite_stolen, listOf(findName(state, event.heroId), event.amount), LogType.ABILITY)).takeLast(25)
+                  battleLog = (state.battleLog + FFLogEntry(R.string.log_magicite_stolen, listOf(findName(state, event.heroId), formatAmount(event.amount)), LogType.ABILITY)).takeLast(25)
               )
           }
       }

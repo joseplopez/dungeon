@@ -22,7 +22,8 @@ class RelicsViewModel @Inject constructor(
     val gameState: StateFlow<GameState?> = repository.getGameState()
         .stateIn(viewModelScope, SharingStarted.Eagerly, null)
 
-    fun upgradeRelic(type: RelicType) {
+    fun upgradeRelic(type: RelicType, levels: Int = 1) {
+        if (levels <= 0) return
         val gs = gameState.value ?: return
         val currentLevel = when (type) {
             RelicType.ATTACK -> gs.attackRelic
@@ -38,7 +39,11 @@ class RelicsViewModel @Inject constructor(
             RelicType.POCKETS -> gs.pocketsRelic
             RelicType.DOUBLE_LOOT -> gs.doubleLootRelic
         }
-        val cost = (currentLevel + 1) * 10
+
+        val L = currentLevel.toLong()
+        val N = levels.toLong()
+        // Arithmetic progression sum for cost
+        val cost = 5L * N * N + (10L * L + 5L) * N
 
         if (gs.magicite >= cost) {
             viewModelScope.launch {
@@ -57,25 +62,27 @@ class RelicsViewModel @Inject constructor(
                     RelicType.POCKETS -> currentGs.pocketsRelic
                     RelicType.DOUBLE_LOOT -> currentGs.doubleLootRelic
                 }
-                val costCurrent = (level + 1) * 10
+
+                val currentL = level.toLong()
+                val costCurrent = 5L * N * N + (10L * currentL + 5L) * N
 
                 if (currentGs.magicite >= costCurrent) {
                     val updatedGs = when (type) {
-                        RelicType.ATTACK -> currentGs.copy(attackRelic = currentGs.attackRelic + 1)
-                        RelicType.HP -> currentGs.copy(hpRelic = currentGs.hpRelic + 1)
-                        RelicType.MP -> currentGs.copy(mpRelic = currentGs.mpRelic + 1)
-                        RelicType.MAGIC -> currentGs.copy(magicRelic = currentGs.magicRelic + 1)
-                        RelicType.DEFENSE -> currentGs.copy(defenseRelic = currentGs.defenseRelic + 1)
-                        RelicType.GOLD -> currentGs.copy(goldRelic = currentGs.goldRelic + 1)
-                        RelicType.MAGICITE_FIND -> currentGs.copy(magiciteRelic = currentGs.magiciteRelic + 1)
-                        RelicType.CRIT_CHANCE -> currentGs.copy(critChanceRelic = currentGs.critChanceRelic + 1)
-                        RelicType.CRIT_DAMAGE -> currentGs.copy(critDamageRelic = currentGs.critDamageRelic + 1)
-                        RelicType.MAGNET -> currentGs.copy(magnetRelic = currentGs.magnetRelic + 1)
-                        RelicType.POCKETS -> currentGs.copy(pocketsRelic = currentGs.pocketsRelic + 1)
-                        RelicType.DOUBLE_LOOT -> currentGs.copy(doubleLootRelic = currentGs.doubleLootRelic + 1)
+                        RelicType.ATTACK -> currentGs.copy(attackRelic = currentGs.attackRelic + levels)
+                        RelicType.HP -> currentGs.copy(hpRelic = currentGs.hpRelic + levels)
+                        RelicType.MP -> currentGs.copy(mpRelic = currentGs.mpRelic + levels)
+                        RelicType.MAGIC -> currentGs.copy(magicRelic = currentGs.magicRelic + levels)
+                        RelicType.DEFENSE -> currentGs.copy(defenseRelic = currentGs.defenseRelic + levels)
+                        RelicType.GOLD -> currentGs.copy(goldRelic = currentGs.goldRelic + levels)
+                        RelicType.MAGICITE_FIND -> currentGs.copy(magiciteRelic = currentGs.magiciteRelic + levels)
+                        RelicType.CRIT_CHANCE -> currentGs.copy(critChanceRelic = currentGs.critChanceRelic + levels)
+                        RelicType.CRIT_DAMAGE -> currentGs.copy(critDamageRelic = currentGs.critDamageRelic + levels)
+                        RelicType.MAGNET -> currentGs.copy(magnetRelic = currentGs.magnetRelic + levels)
+                        RelicType.POCKETS -> currentGs.copy(pocketsRelic = currentGs.pocketsRelic + levels)
+                        RelicType.DOUBLE_LOOT -> currentGs.copy(doubleLootRelic = currentGs.doubleLootRelic + levels)
                     }.copy(magicite = currentGs.magicite - costCurrent)
 
-                    analytics.logRelicUpgrade(type.name, level + 1)
+                    analytics.logRelicUpgrade(type.name, level + levels)
                     repository.saveGameState(updatedGs)
                 }
             }
@@ -105,4 +112,19 @@ class RelicsViewModel @Inject constructor(
             }
         }
     }
+}
+
+fun calculateMaxRelicUpgrades(currentLevel: Int, maxMagicite: Long): Pair<Int, Long> {
+    if (maxMagicite < (currentLevel + 1) * 10L) return 0 to 0L
+
+    val L = currentLevel.toLong()
+    val b = 10L * L + 5L
+    val discriminant = (b * b) + 20L * maxMagicite
+
+    // Solve the quadratic equation for N
+    val n = ((-b + kotlin.math.sqrt(discriminant.toDouble())) / 10.0).toLong()
+    if (n <= 0) return 0 to 0L
+
+    val cost = 5L * n * n + b * n
+    return n.toInt() to cost
 }

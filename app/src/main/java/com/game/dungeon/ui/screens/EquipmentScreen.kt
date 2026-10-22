@@ -616,12 +616,12 @@ fun InventoryChestPanel(
                                 fontWeight = FontWeight.Bold
                             )
                             Text(
-                                text = safeStringResource(R.string.item_lvl_rarity_format, item.floorFound, item.rarity.name),
+                                text = safeStringResource(R.string.item_lvl_rarity_format, formatAmount(item.floorFound.toLong()), item.rarity.name),
                                 color = Color.Gray,
                                 fontSize = 8.sp
                             )
                         }
-                        Text("🪙${item.sellValue}", color = OrnateGoldLight, fontSize = 9.sp)
+                        Text("🪙${formatAmount(item.sellValue)}", color = OrnateGoldLight, fontSize = 9.sp)
                     }
                 }
 
@@ -714,7 +714,7 @@ private fun SellAllConfirmationOverlay(
                 )
 
                 Text(
-                    text = safeStringResource(R.string.sell_all_confirm_message, itemCount, totalGold),
+                    text = safeStringResource(R.string.sell_all_confirm_message, itemCount, formatAmount(totalGold)),
                     style = PixelBody,
                     color = Color.White
                 )
@@ -754,7 +754,7 @@ private fun ItemStatBonusList(item: Item) {
         statList.forEach { stat ->
             val label = safeStringResource(stat.resId)
             val suffix = if (stat.isPercent) "%" else ""
-            Text("$label: +${stat.amount}$suffix", style = PixelBody, color = stat.color)
+            Text("$label: +${formatAmount(stat.amount)}$suffix", style = PixelBody, color = stat.color)
         }
     }
 }
@@ -898,7 +898,7 @@ private fun ItemDetailOverlay(
                         .weight(1f)
                         .height(40.dp))
                     PixelButton(
-                        label = safeStringResource(R.string.sell_button_format, item.sellValue),
+                        label = safeStringResource(R.string.sell_button_format, formatAmount(item.sellValue)),
                         onClick = onSell,
                         modifier = Modifier
                             .weight(1f)

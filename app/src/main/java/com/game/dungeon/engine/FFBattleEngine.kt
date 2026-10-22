@@ -85,7 +85,7 @@ class FFBattleEngine(private val context: Context) {
                 val scaledDef = (rawBoss.defense * diffMult).toLong().coerceAtMost(Long.MAX_VALUE)
                 val scaledMDef =
                     (rawBoss.magicDefense * diffMult).toLong().coerceAtMost(Long.MAX_VALUE)
-                val scaledGil = (rawBoss.gilReward * diffMult).toLong().coerceAtMost(Long.MAX_VALUE)
+                val scaledGil = (rawBoss.gilReward * (50L + (currentFloor * 5L))).coerceAtMost(Long.MAX_VALUE)
 
                 mutableListOf(
                     rawBoss.copy(
@@ -203,10 +203,8 @@ class FFBattleEngine(private val context: Context) {
                     val mythicDropChance =
                         (0.002f + (currentFloor - 1) * 0.001f).coerceAtMost(0.05f)
                     if (Random.nextFloat() < mythicDropChance) {
-                        val effectiveFloor = (1000.0 * 1.15.pow((currentFloor - 1).toDouble()))
-                            .toLong()
-                            .coerceAtMost(Int.MAX_VALUE.toLong())
-                            .toInt()
+                        val effectiveFloor = 1000 + (currentFloor * 225)
+
                         val baseMythic = Item.random(
                             floor = effectiveFloor,
                             context = context,
