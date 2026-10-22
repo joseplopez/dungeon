@@ -38,10 +38,18 @@ data class RelicBonuses(
         return jobMasteryLevels[heroClass] ?: 0
     }
 
-    // Changed return type to Long
     fun getMasteryBonus(heroClass: HeroClass, stat: StatType): Long {
         val level = getMasteryLevel(heroClass)
-        return if (heroClass.masteryStatType == stat) (level * heroClass.masteryBonusPerLevel).toLong() else 0L
+        if (level <= 0 || heroClass.masteryStatType != stat) return 0L
+
+        // Rebalanced hybrid scaling:
+        // Early levels grow nicely, but high levels (100+) scale quadratically/linearly to thousands/millions
+        val basePerLevel = heroClass.masteryBonusPerLevel.toDouble()
+
+        // Example curve: Linear component + quadratic tail for late-game scaling
+        val bonus = (level * basePerLevel) + (level * level * 2.5)
+
+        return bonus.toLong()
     }
 
     val petItemFindBonus: Float get() = if (selectedPet == PetType.CHOCOBO) PetType.CHOCOBO.bonusValue else 0f
