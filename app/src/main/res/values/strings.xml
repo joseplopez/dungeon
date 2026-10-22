@@ -1240,6 +1240,13 @@
     <!-- Onion Knight: Luneth (FFIII) -->
     <string name="set_onion">Luneth\'s Destiny</string>
 
+    <string name="set_adventurer">Adventurer\'s Spirit</string>
+    <string name="set_lionheart">Lionheart Guard</string>
+    <string name="set_mirage">Mirage Vestments</string>
+    <string name="set_mimic">Gogo\'s Mimicry</string>
+    <string name="set_reaper">Reaper\'s Shroud</string>
+    <string name="set_azure">Azure Lore</string>
+
     <string name="mat_mythic_shard_name">Mythic Shard</string>
     <string name="mat_mythic_shard_desc">Radiant shard of ancient mythic power found in deep floors.</string>
 

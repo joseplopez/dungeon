@@ -21,7 +21,13 @@ enum class MythicSet(
     APOLLO("set_apollo", HeroClass.BARD, R.string.set_apollo, 3, mapOf("HP_MULT" to 0.3f, "MP_MULT" to 0.5f), listOf(ItemSlot.WEAPON, ItemSlot.ARMOR, ItemSlot.ACCESSORY)),
     GENJI("set_genji", HeroClass.SAMURAI, R.string.set_genji, 3, mapOf("ATK_MULT" to 0.4f, "CRIT_DMG_ADD" to 30f), listOf(ItemSlot.WEAPON, ItemSlot.ARMOR, ItemSlot.ACCESSORY)),
     AEGIS("set_aegis", HeroClass.PALADIN, R.string.set_aegis, 3, mapOf("HP_MULT" to 0.35f, "DEF_MULT" to 0.35f), listOf(ItemSlot.WEAPON, ItemSlot.ARMOR, ItemSlot.SHIELD)),
-    ONION("set_onion", HeroClass.ONION_KNIGHT, R.string.set_onion, 3, mapOf("ATK_MULT" to 0.3f, "DEF_MULT" to 0.3f, "MAG_MULT" to 0.3f, "HP_MULT" to 0.3f), listOf(ItemSlot.WEAPON, ItemSlot.ARMOR, ItemSlot.SHIELD));
+    ONION("set_onion", HeroClass.ONION_KNIGHT, R.string.set_onion, 3, mapOf("ATK_MULT" to 0.3f, "DEF_MULT" to 0.3f, "MAG_MULT" to 0.3f, "HP_MULT" to 0.3f), listOf(ItemSlot.WEAPON, ItemSlot.ARMOR, ItemSlot.SHIELD)),
+    ADVENTURER("set_adventurer", HeroClass.FREELANCER, R.string.set_adventurer, 3, mapOf("HP_MULT" to 0.3f, "ATK_MULT" to 0.3f), listOf(ItemSlot.WEAPON, ItemSlot.ARMOR, ItemSlot.ACCESSORY)),
+    LIONHEART("set_lionheart", HeroClass.KNIGHT, R.string.set_lionheart, 3, mapOf("ATK_MULT" to 0.35f, "DEF_MULT" to 0.4f), listOf(ItemSlot.WEAPON, ItemSlot.ARMOR, ItemSlot.SHIELD)),
+    MIRAGE("set_mirage", HeroClass.THIEF, R.string.set_mirage, 3, mapOf("ATK_MULT" to 0.2f, "CRIT_CHANCE_ADD" to 25f), listOf(ItemSlot.WEAPON, ItemSlot.ARMOR, ItemSlot.ACCESSORY)),
+    MIMIC("set_mimic", HeroClass.MIME, R.string.set_mimic, 3, mapOf("HP_MULT" to 0.2f, "MAG_MULT" to 0.2f, "ATK_MULT" to 0.2f), listOf(ItemSlot.WEAPON, ItemSlot.ARMOR, ItemSlot.ACCESSORY)),
+    REAPER("set_reaper", HeroClass.NECROMANCER, R.string.set_reaper, 3, mapOf("MAG_MULT" to 0.5f, "HP_MULT" to -0.15f), listOf(ItemSlot.WEAPON, ItemSlot.ARMOR, ItemSlot.ACCESSORY)),
+    AZURE("set_azure", HeroClass.BLUE_MAGE, R.string.set_azure, 3, mapOf("HP_MULT" to 0.4f, "MAG_MULT" to 0.3f), listOf(ItemSlot.WEAPON, ItemSlot.ARMOR, ItemSlot.ACCESSORY));
 
     companion object {
         fun fromId(id: String?): MythicSet? = entries.find { it.id == id }

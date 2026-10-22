@@ -233,6 +233,48 @@ private fun DrawScope.drawMythicSetPiece(item: Item, s: Float, animTime: Float) 
             ItemSlot.SHIELD -> drawMythicOnionShield(s, animTime)
             ItemSlot.ACCESSORY -> drawMythicOnionShield(s, animTime)
         }
+        // --- 13. FREELANCER: Bartz (Adventurer) ---
+        "set_adventurer" -> when (item.slot) {
+            ItemSlot.WEAPON -> drawMythicBraveBlade(s, animTime)
+            ItemSlot.ARMOR -> drawMythicAdventurerTunic(s, animTime)
+            ItemSlot.ACCESSORY -> drawMythicWindCrystal(s, animTime)
+            else -> drawLegendaryArmorFallback(s, animTime)
+        }
+        // --- 14. KNIGHT: Squall (Lionheart) ---
+        "set_lionheart" -> when (item.slot) {
+            ItemSlot.WEAPON -> drawMythicGunblade(s, animTime)
+            ItemSlot.ARMOR -> drawMythicMercenaryJacket(s, animTime)
+            ItemSlot.SHIELD -> drawMythicLionCrest(s, animTime)
+            ItemSlot.ACCESSORY -> drawMythicLionCrest(s, animTime)
+        }
+        // --- 15. THIEF: Zidane (Mirage) ---
+        "set_mirage" -> when (item.slot) {
+            ItemSlot.WEAPON -> drawMythicMageMasher(s, animTime)
+            ItemSlot.ARMOR -> drawMythicBanditVest(s, animTime)
+            ItemSlot.ACCESSORY -> drawMythicThiefGlove(s, animTime)
+            else -> drawLegendaryArmorFallback(s, animTime)
+        }
+        // --- 16. MIME: Gogo (Mimic) ---
+        "set_mimic" -> when (item.slot) {
+            ItemSlot.WEAPON -> drawMythicMimicBaton(s, animTime)
+            ItemSlot.ARMOR -> drawMythicPatchworkRobes(s, animTime)
+            ItemSlot.ACCESSORY -> drawMythicMimicMask(s, animTime)
+            else -> drawLegendaryArmorFallback(s, animTime)
+        }
+        // --- 17. NECROMANCER: Generic Dark Mage (Reaper) ---
+        "set_reaper" -> when (item.slot) {
+            ItemSlot.WEAPON -> drawMythicSoulScythe(s, animTime)
+            ItemSlot.ARMOR -> drawMythicBoneCuirass(s, animTime)
+            ItemSlot.ACCESSORY -> drawMythicPhylactery(s, animTime)
+            else -> drawLegendaryArmorFallback(s, animTime)
+        }
+        // --- 18. BLUE MAGE: Quistis / Strago (Azure) ---
+        "set_azure" -> when (item.slot) {
+            ItemSlot.WEAPON -> drawMythicBeastWhip(s, animTime)
+            ItemSlot.ARMOR -> drawMythicAzureCloak(s, animTime)
+            ItemSlot.ACCESSORY -> drawMythicMonsterLore(s, animTime)
+            else -> drawLegendaryArmorFallback(s, animTime)
+        }
         else -> drawLegendaryArmorFallback(s, animTime)
     }
 }
@@ -1952,8 +1994,7 @@ fun AllMythicSetsPreview() {
             PreviewItem("set_crystal", ItemSlot.WEAPON)
             PreviewItem("set_crystal", ItemSlot.ARMOR)
             PreviewItem("set_crystal", ItemSlot.SHIELD)
-        }
-        Row {
+            Spacer(modifier = Modifier.weight(1f))
             PreviewItem("set_magus", ItemSlot.WEAPON)
             PreviewItem("set_magus", ItemSlot.ARMOR)
             PreviewItem("set_magus", ItemSlot.ACCESSORY)
@@ -2018,5 +2059,245 @@ fun AllMythicSetsPreview() {
             PreviewItem("set_onion", ItemSlot.ARMOR)
             PreviewItem("set_onion", ItemSlot.SHIELD)
         }
+        Spacer(Modifier.height(8.dp))
+
+        // ROW 7: Bartz & Squall
+        Row {
+            PreviewItem("set_adventurer", ItemSlot.WEAPON)
+            PreviewItem("set_adventurer", ItemSlot.ARMOR)
+            PreviewItem("set_adventurer", ItemSlot.ACCESSORY)
+            Spacer(modifier = Modifier.weight(1f))
+            PreviewItem("set_lionheart", ItemSlot.WEAPON)
+            PreviewItem("set_lionheart", ItemSlot.ARMOR)
+            PreviewItem("set_lionheart", ItemSlot.SHIELD)
+        }
+        Spacer(Modifier.height(8.dp))
+
+        // ROW 8: Zidane & Gogo
+        Row {
+            PreviewItem("set_mirage", ItemSlot.WEAPON)
+            PreviewItem("set_mirage", ItemSlot.ARMOR)
+            PreviewItem("set_mirage", ItemSlot.ACCESSORY)
+            Spacer(modifier = Modifier.weight(1f))
+            PreviewItem("set_mimic", ItemSlot.WEAPON)
+            PreviewItem("set_mimic", ItemSlot.ARMOR)
+            PreviewItem("set_mimic", ItemSlot.ACCESSORY)
+        }
+        Spacer(Modifier.height(8.dp))
+
+        // ROW 9: Necromancer & Blue Mage
+        Row {
+            PreviewItem("set_reaper", ItemSlot.WEAPON)
+            PreviewItem("set_reaper", ItemSlot.ARMOR)
+            PreviewItem("set_reaper", ItemSlot.ACCESSORY)
+            Spacer(modifier = Modifier.weight(1f))
+            PreviewItem("set_azure", ItemSlot.WEAPON)
+            PreviewItem("set_azure", ItemSlot.ARMOR)
+            PreviewItem("set_azure", ItemSlot.ACCESSORY)
+        }
     }
+}
+
+// ============================================================================
+// NEW MYTHIC SETS (FREELANCER, KNIGHT, THIEF, MIME, NECROMANCER, BLUE MAGE)
+// ============================================================================
+
+// --- 13. FREELANCER (Bartz Klauser) ---
+private fun DrawScope.drawMythicBraveBlade(s: Float, animTime: Float) {
+    val steel = Color(0xFFECF0F1); val gold = Color(0xFFF1C40F); val blueHilt = Color(0xFF2980B9)
+    val pulse = 0.85f + sin(animTime * 0.005f) * 0.15f
+    val blade = Path().apply { moveTo(50f * s, 10f * s); lineTo(60f * s, 20f * s); lineTo(55f * s, 65f * s); lineTo(45f * s, 65f * s); lineTo(40f * s, 20f * s); close() }
+    drawPath(blade, steel); drawPath(blade, Color.White.copy(alpha = pulse), style = Stroke(2f * s))
+    val guard = Path().apply { moveTo(30f * s, 60f * s); lineTo(70f * s, 60f * s); lineTo(75f * s, 70f * s); lineTo(25f * s, 70f * s); close() }
+    drawPath(guard, gold)
+    drawRect(blueHilt, Offset(46f * s, 70f * s), Size(8f * s, 15f * s))
+}
+private fun DrawScope.drawMythicAdventurerTunic(s: Float, animTime: Float) {
+    val tunicBlue = Color(0xFF3498DB); val beltBrown = Color(0xFF8B4513); val capeRed = Color(0xFFE74C3C)
+    val cape = Path().apply { moveTo(30f * s, 20f * s); lineTo(70f * s, 20f * s); lineTo(85f * s, 85f * s); lineTo(15f * s, 85f * s); close() }
+    drawPath(cape, capeRed)
+    val tunic = Path().apply { moveTo(35f * s, 15f * s); lineTo(65f * s, 15f * s); lineTo(60f * s, 60f * s); lineTo(40f * s, 60f * s); close() }
+    drawPath(tunic, tunicBlue); drawPath(tunic, Color.White, style = Stroke(1.5f * s))
+    drawRect(beltBrown, Offset(35f * s, 45f * s), Size(30f * s, 8f * s))
+    drawRect(Color(0xFFF1C40F), Offset(46f * s, 44f * s), Size(8f * s, 10f * s), style = Stroke(2f * s))
+}
+private fun DrawScope.drawMythicWindCrystal(s: Float, animTime: Float) {
+    val windGreen = Color(0xFF2ECC71); val gold = Color(0xFFF1C40F)
+    val pulse = 0.85f + sin(animTime * 0.005f) * 0.15f
+    drawCircle(gold, radius = 22f * s, center = Offset(50f * s, 50f * s), style = Stroke(4f * s))
+    val crystal = Path().apply { moveTo(50f * s, 25f * s); lineTo(65f * s, 50f * s); lineTo(50f * s, 75f * s); lineTo(35f * s, 50f * s); close() }
+    drawPath(crystal, windGreen); drawPath(crystal, Color.White.copy(alpha = pulse), style = Stroke(2f * s))
+}
+
+// --- 14. KNIGHT (Squall Leonhart) ---
+private fun DrawScope.drawMythicGunblade(s: Float, animTime: Float) {
+    val steel = Color(0xFFBDC3C7); val darkIron = Color(0xFF2C3E50); val silver = Color(0xFFECF0F1)
+    val blade = Path().apply { moveTo(45f * s, 10f * s); lineTo(60f * s, 20f * s); lineTo(60f * s, 65f * s); lineTo(45f * s, 65f * s); close() }
+    drawPath(blade, steel); drawPath(blade, silver, style = Stroke(1.5f * s))
+    // Revolver Cylinder
+    drawCircle(darkIron, radius = 10f * s, center = Offset(52f * s, 68f * s))
+    drawCircle(silver, radius = 2f * s, center = Offset(47f * s, 68f * s))
+    drawCircle(silver, radius = 2f * s, center = Offset(57f * s, 68f * s))
+    // Handle & Trigger
+    drawRect(darkIron, Offset(49f * s, 78f * s), Size(6f * s, 15f * s))
+    drawLine(darkIron, Offset(49f * s, 75f * s), Offset(42f * s, 80f * s), strokeWidth = 2f * s)
+}
+private fun DrawScope.drawMythicMercenaryJacket(s: Float, animTime: Float) {
+    val leatherBlack = Color(0xFF1C2833); val furWhite = Color(0xFFFDFEFE); val beltSilver = Color(0xFFBDC3C7)
+    val jacket = Path().apply { moveTo(35f * s, 25f * s); lineTo(65f * s, 25f * s); lineTo(70f * s, 85f * s); lineTo(30f * s, 85f * s); close() }
+    drawPath(jacket, leatherBlack)
+    // Fur Collar
+    drawOval(furWhite, topLeft = Offset(25f * s, 15f * s), size = Size(50f * s, 20f * s))
+    // Belts
+    drawLine(beltSilver, Offset(32f * s, 50f * s), Offset(68f * s, 50f * s), strokeWidth = 3f * s)
+    drawLine(beltSilver, Offset(31f * s, 60f * s), Offset(69f * s, 60f * s), strokeWidth = 3f * s)
+}
+private fun DrawScope.drawMythicLionCrest(s: Float, animTime: Float) {
+    val silver = Color(0xFFBDC3C7); val darkIron = Color(0xFF2C3E50); val lionGold = Color(0xFFF1C40F)
+    drawCircle(silver, radius = 30f * s, center = Offset(50f * s, 50f * s))
+    drawCircle(darkIron, radius = 30f * s, center = Offset(50f * s, 50f * s), style = Stroke(4f * s))
+    // Griever / Lion Cross
+    val cross = Path().apply { moveTo(45f * s, 30f * s); lineTo(55f * s, 30f * s); lineTo(55f * s, 45f * s); lineTo(70f * s, 45f * s); lineTo(70f * s, 55f * s); lineTo(55f * s, 55f * s); lineTo(55f * s, 70f * s); lineTo(45f * s, 70f * s); lineTo(45f * s, 55f * s); lineTo(30f * s, 55f * s); lineTo(30f * s, 45f * s); lineTo(45f * s, 45f * s); close() }
+    drawPath(cross, lionGold)
+}
+
+// --- 15. THIEF (Zidane Tribal) ---
+private fun DrawScope.drawMythicMageMasher(s: Float, animTime: Float) {
+    val steel = Color(0xFFECF0F1); val wrapColor = Color(0xFFE67E22); val purpleGlow = Color(0xFF9B59B6)
+    val pulse = 0.85f + sin(animTime * 0.005f) * 0.15f
+    // Curved dagger blade with holes
+    val blade = Path().apply { moveTo(50f * s, 15f * s); quadraticTo(80f * s, 30f * s, 60f * s, 65f * s); lineTo(45f * s, 65f * s); quadraticTo(50f * s, 40f * s, 50f * s, 15f * s); close() }
+    drawPath(blade, steel); drawPath(blade, purpleGlow.copy(alpha = pulse), style = Stroke(2f * s))
+    drawCircle(Color(0xFF2C3E50), radius = 3f * s, center = Offset(54f * s, 35f * s))
+    drawCircle(Color(0xFF2C3E50), radius = 3f * s, center = Offset(56f * s, 45f * s))
+    // Hilt
+    drawRect(Color(0xFF34495E), Offset(40f * s, 65f * s), Size(20f * s, 5f * s))
+    drawRect(wrapColor, Offset(46f * s, 70f * s), Size(8f * s, 15f * s))
+}
+private fun DrawScope.drawMythicBanditVest(s: Float, animTime: Float) {
+    val vestTeal = Color(0xFF1ABC9C); val shirtWhite = Color(0xFFFDFEFE); val leather = Color(0xFF8B4513)
+    drawRect(shirtWhite, Offset(35f * s, 20f * s), Size(30f * s, 60f * s))
+    // Vest
+    val vestLeft = Path().apply { moveTo(35f * s, 20f * s); lineTo(45f * s, 20f * s); lineTo(40f * s, 60f * s); lineTo(30f * s, 60f * s); close() }
+    val vestRight = Path().apply { moveTo(65f * s, 20f * s); lineTo(55f * s, 20f * s); lineTo(60f * s, 60f * s); lineTo(70f * s, 60f * s); close() }
+    drawPath(vestLeft, vestTeal); drawPath(vestRight, vestTeal)
+    // Belts
+    drawRect(leather, Offset(30f * s, 50f * s), Size(40f * s, 6f * s))
+    drawRect(leather, Offset(30f * s, 70f * s), Size(40f * s, 6f * s))
+}
+private fun DrawScope.drawMythicThiefGlove(s: Float, animTime: Float) {
+    val leather = Color(0xFFD35400); val gold = Color(0xFFF1C40F)
+    drawRect(leather, Offset(35f * s, 25f * s), Size(30f * s, 50f * s))
+    drawRect(gold, Offset(35f * s, 25f * s), Size(30f * s, 50f * s), style = Stroke(3f * s))
+    val feather = Path().apply { moveTo(50f * s, 20f * s); quadraticTo(70f * s, 40f * s, 50f * s, 70f * s); quadraticTo(30f * s, 40f * s, 50f * s, 20f * s) }
+    drawPath(feather, Color(0xFFF1C40F))
+}
+
+// --- 16. MIME (Gogo) ---
+private fun DrawScope.drawMythicMimicBaton(s: Float, animTime: Float) {
+    val wood = Color(0xFF8B4513); val red = Color(0xFFE74C3C); val yellow = Color(0xFFF1C40F)
+    val rot = animTime * 0.1f
+    drawLine(wood, Offset(50f * s, 25f * s), Offset(50f * s, 85f * s), strokeWidth = 4f * s)
+    withTransform({ rotate(rot, Offset(50f * s, 25f * s)) }) {
+        drawCircle(red, radius = 12f * s, center = Offset(50f * s, 25f * s))
+        drawCircle(yellow, radius = 8f * s, center = Offset(50f * s, 25f * s))
+        drawCircle(Color.White, radius = 4f * s, center = Offset(50f * s, 25f * s))
+    }
+}
+private fun DrawScope.drawMythicPatchworkRobes(s: Float, animTime: Float) {
+    val red = Color(0xFFE74C3C); val purple = Color(0xFF9B59B6); val green = Color(0xFF2ECC71); val yellow = Color(0xFFF1C40F)
+    val robe = Path().apply { moveTo(30f * s, 15f * s); lineTo(70f * s, 15f * s); lineTo(85f * s, 85f * s); lineTo(15f * s, 85f * s); close() }
+    drawPath(robe, red)
+    // Patches
+    drawRect(purple, Offset(25f * s, 35f * s), Size(20f * s, 20f * s))
+    drawRect(green, Offset(55f * s, 55f * s), Size(20f * s, 20f * s))
+    drawRect(yellow, Offset(35f * s, 65f * s), Size(15f * s, 15f * s))
+    // Stitches
+    drawLine(Color.White, Offset(25f * s, 35f * s), Offset(45f * s, 35f * s), strokeWidth = 2f * s)
+    drawLine(Color.White, Offset(55f * s, 55f * s), Offset(75f * s, 55f * s), strokeWidth = 2f * s)
+}
+private fun DrawScope.drawMythicMimicMask(s: Float, animTime: Float) {
+    val wood = Color(0xFFD35400); val eyeGlow = Color(0xFF00FF00)
+    val pulse = 0.85f + sin(animTime * 0.005f) * 0.15f
+    drawOval(wood, topLeft = Offset(30f * s, 25f * s), size = Size(40f * s, 50f * s))
+    drawOval(Color(0xFF8B4513), topLeft = Offset(30f * s, 25f * s), size = Size(40f * s, 50f * s), style = Stroke(3f * s))
+    // Glowing Eyes
+    drawCircle(eyeGlow.copy(alpha = pulse), radius = 5f * s, center = Offset(40f * s, 45f * s))
+    drawCircle(eyeGlow.copy(alpha = pulse), radius = 5f * s, center = Offset(60f * s, 45f * s))
+    // Mouth
+    drawLine(Color.Black, Offset(40f * s, 60f * s), Offset(60f * s, 60f * s), strokeWidth = 3f * s)
+}
+
+// --- 17. NECROMANCER (Reaper) ---
+private fun DrawScope.drawMythicSoulScythe(s: Float, animTime: Float) {
+    val darkWood = Color(0xFF2C3E50); val boneWhite = Color(0xFFECF0F1); val soulGreen = Color(0xFF2ECC71)
+    val pulse = 0.85f + sin(animTime * 0.005f) * 0.15f
+    // Handle
+    drawLine(darkWood, Offset(40f * s, 90f * s), Offset(60f * s, 20f * s), strokeWidth = 4f * s)
+    // Huge Curved Blade
+    val blade = Path().apply { moveTo(60f * s, 20f * s); quadraticTo(30f * s, -10f * s, 10f * s, 40f * s); quadraticTo(30f * s, 15f * s, 60f * s, 25f * s); close() }
+    drawPath(blade, boneWhite)
+    drawPath(blade, soulGreen.copy(alpha = pulse), style = Stroke(2f * s))
+}
+private fun DrawScope.drawMythicBoneCuirass(s: Float, animTime: Float) {
+    val robeBlack = Color(0xFF111111); val bone = Color(0xFFECF0F1); val eyePurple = Color(0xFF8E44AD)
+    val robe = Path().apply { moveTo(35f * s, 15f * s); lineTo(65f * s, 15f * s); lineTo(75f * s, 85f * s); lineTo(25f * s, 85f * s); close() }
+    drawPath(robe, robeBlack)
+    // Ribcage Armor
+    repeat(4) { i ->
+        val y = 30f + (i * 12f)
+        drawLine(bone, Offset(45f * s, y * s), Offset(30f * s, (y - 5f) * s), strokeWidth = 4f * s)
+        drawLine(bone, Offset(55f * s, y * s), Offset(70f * s, (y - 5f) * s), strokeWidth = 4f * s)
+    }
+    drawLine(bone, Offset(50f * s, 25f * s), Offset(50f * s, 70f * s), strokeWidth = 5f * s) // Spine
+    drawCircle(eyePurple, radius = 6f * s, center = Offset(50f * s, 25f * s))
+}
+private fun DrawScope.drawMythicPhylactery(s: Float, animTime: Float) {
+    val silver = Color(0xFFBDC3C7); val soulGreen = Color(0xFF2ECC71)
+    val pulse = 0.85f + sin(animTime * 0.005f) * 0.15f
+    val chain = Path().apply { moveTo(25f * s, 20f * s); quadraticTo(50f * s, 60f * s, 75f * s, 20f * s) }
+    drawPath(chain, silver, style = Stroke(2f * s))
+    // Lantern / Crystal
+    drawRect(silver, Offset(42f * s, 35f * s), Size(16f * s, 24f * s))
+    drawRect(soulGreen.copy(alpha = pulse), Offset(44f * s, 37f * s), Size(12f * s, 20f * s))
+}
+
+// --- 18. BLUE MAGE (Azure / Strago / Quistis) ---
+private fun DrawScope.drawMythicBeastWhip(s: Float, animTime: Float) {
+    val leather = Color(0xFF8B4513); val spikeSilver = Color(0xFFECF0F1); val energyBlue = Color(0xFF3498DB)
+    val pulse = 0.85f + sin(animTime * 0.005f) * 0.15f
+    // Handle
+    drawRect(Color(0xFF2C3E50), Offset(45f * s, 70f * s), Size(10f * s, 20f * s))
+    // Coiled Whip
+    val whip = Path().apply { moveTo(50f * s, 70f * s); quadraticTo(80f * s, 50f * s, 50f * s, 30f * s); quadraticTo(20f * s, 10f * s, 70f * s, 15f * s) }
+    drawPath(whip, leather, style = Stroke(4f * s))
+    drawPath(whip, energyBlue.copy(alpha = pulse), style = Stroke(1.5f * s))
+    // Spikes along whip
+    drawCircle(spikeSilver, radius = 3f * s, center = Offset(65f * s, 60f * s))
+    drawCircle(spikeSilver, radius = 3f * s, center = Offset(35f * s, 40f * s))
+    drawCircle(spikeSilver, radius = 4f * s, center = Offset(70f * s, 15f * s)) // Tip
+}
+private fun DrawScope.drawMythicAzureCloak(s: Float, animTime: Float) {
+    val azure = Color(0xFF2980B9); val furWhite = Color(0xFFFDFEFE); val beltGold = Color(0xFFF1C40F)
+    val cloak = Path().apply { moveTo(35f * s, 20f * s); lineTo(65f * s, 20f * s); lineTo(80f * s, 85f * s); lineTo(20f * s, 85f * s); close() }
+    drawPath(cloak, azure)
+    // Monster fur shoulders
+    drawOval(furWhite, topLeft = Offset(25f * s, 15f * s), size = Size(20f * s, 20f * s))
+    drawOval(furWhite, topLeft = Offset(55f * s, 15f * s), size = Size(20f * s, 20f * s))
+    // Eye/Monster emblem on chest
+    drawCircle(Color(0xFF111111), radius = 8f * s, center = Offset(50f * s, 45f * s))
+    drawCircle(Color(0xFFE74C3C), radius = 4f * s, center = Offset(50f * s, 45f * s))
+    drawRect(beltGold, Offset(35f * s, 60f * s), Size(30f * s, 5f * s))
+}
+private fun DrawScope.drawMythicMonsterLore(s: Float, animTime: Float) {
+    val parchment = Color(0xFFF5CBA7); val trimDark = Color(0xFF5D4037); val magicBlue = Color(0xFF3498DB)
+    val pulse = 0.85f + sin(animTime * 0.005f) * 0.15f
+    // Open Scroll
+    val scroll = Path().apply { moveTo(30f * s, 25f * s); lineTo(70f * s, 25f * s); lineTo(70f * s, 75f * s); lineTo(30f * s, 75f * s); close() }
+    drawPath(scroll, parchment)
+    drawPath(scroll, trimDark, style = Stroke(3f * s))
+    // Glowing Blue Rune
+    val rune = Path().apply { moveTo(50f * s, 35f * s); lineTo(60f * s, 50f * s); lineTo(40f * s, 50f * s); close() }
+    drawPath(rune, magicBlue.copy(alpha = pulse), style = Stroke(3f * s))
+    drawCircle(magicBlue, radius = 4f * s, center = Offset(50f * s, 60f * s))
 }
