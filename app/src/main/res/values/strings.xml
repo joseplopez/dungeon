@@ -905,6 +905,8 @@
     <string name="skill_black_mage_t2_desc">Deals 170% elemental magic damage striking up to 2 enemies.</string>
     <string name="skill_black_mage_t3_name">Meteor Tempest</string>
     <string name="skill_black_mage_t3_desc">Calls down meteors dealing 220% massive magic damage to ALL enemies!</string>
+    <string name="skill_black_mage_t4_name">Gravity</string>
+    <string name="skill_black_mage_t4_desc">Crushes all enemies with intense gravity, removing 1/6 of their maximum HP.</string>
 
     <!-- Thief Skills -->
     <string name="skill_thief_t1_name">Quick Dagger</string>

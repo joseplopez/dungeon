@@ -31,7 +31,8 @@ object JobAbilityData {
             HeroClass.BLACK_MAGE -> listOf(
                 JobAbilitySpec(1, R.string.skill_black_mage_t1_name, R.string.skill_black_mage_t1_desc, "🔥"),
                 JobAbilitySpec(10, R.string.skill_black_mage_t2_name, R.string.skill_black_mage_t2_desc, "⚡"),
-                JobAbilitySpec(25, R.string.skill_black_mage_t3_name, R.string.skill_black_mage_t3_desc, "☄️")
+                JobAbilitySpec(25, R.string.skill_black_mage_t3_name, R.string.skill_black_mage_t3_desc, "☄️"),
+                JobAbilitySpec(40, R.string.skill_black_mage_t4_name, R.string.skill_black_mage_t4_desc, "🌌")
             )
             HeroClass.THIEF -> listOf(
                 JobAbilitySpec(1, R.string.skill_thief_t1_name, R.string.skill_thief_t1_desc, "🗡️"),
@@ -109,9 +110,10 @@ object JobAbilityData {
     fun getActiveAbilityForLevel(job: HeroClass, level: Int): JobAbilitySpec? {
         val abilities = getAbilitiesForJob(job)
         return when {
-            level >= 25 -> abilities[2]
-            level >= 10 -> abilities[1]
-            level >= 1 -> abilities[0]
+            level >= 40 -> abilities.getOrNull(3) ?: abilities.last()
+            level >= 25 -> abilities.getOrNull(2) ?: abilities.last()
+            level >= 10 -> abilities.getOrNull(1) ?: abilities.last()
+            level >= 1 -> abilities.first()
             else -> null
         }
     }

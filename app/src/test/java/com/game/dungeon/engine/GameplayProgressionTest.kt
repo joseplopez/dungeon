@@ -695,7 +695,7 @@ class GameplayProgressionTest {
     fun testJobAbilityThreeTierProgression() {
         for (job in HeroClass.entries) {
             val abilities = JobAbilityData.getAbilitiesForJob(job)
-            assertEquals("Each job class must have 3 ability tiers defined", 3, abilities.size)
+            assertTrue("Each job class must have at least 3 ability tiers defined", abilities.size >= 3)
 
             val level0Spec = JobAbilityData.getActiveAbilityForLevel(job, 0)
             assertNull("Level 0 / 0 mastery must return null for active ability", level0Spec)

@@ -271,7 +271,7 @@ private fun DrawScope.drawBlackMageElemental(progress: Float, lvl: Int, heroX: F
                 strokeWidth = 4f
             )
         }
-    } else {
+    } else if (lvl == 3) {
         // Level 3 (Firaga / Meteor): Plunging Meteor Fireball & Tri-Elemental Explosion
         val meteorY = -100f + progress * (enemyY + 100f)
         val coreRadius = 45f + progress * 20f
@@ -305,6 +305,36 @@ private fun DrawScope.drawBlackMageElemental(progress: Float, lvl: Int, heroX: F
                 else -> GoldBright
             }
             drawRect(col.copy(alpha = alpha), topLeft = Offset(px, py), size = Size(8f, 8f))
+        }
+    } else {
+        // Level 4 (Gravity): Crushing Black Hole effect
+        val gravRadius = 30f + progress * 70f
+        
+        // Deep space void core
+        drawCircle(
+            color = Color.Black,
+            radius = gravRadius,
+            center = Offset(enemyX, enemyY),
+            alpha = alpha
+        )
+        
+        // Event horizon ring
+        drawCircle(
+            color = Color(0xFFAA44FF).copy(alpha = alpha),
+            radius = gravRadius + 10f,
+            center = Offset(enemyX, enemyY),
+            style = Stroke(width = 6f)
+        )
+        
+        // Gravitational pull particles (moving inwards toward the singularity)
+        val rng = Random(999)
+        repeat(50) {
+            val a = rng.nextFloat() * 2f * Math.PI.toFloat()
+            // Particles start far away and pull toward the center as progress increases
+            val dist = gravRadius + (1f - progress) * 150f * rng.nextFloat()
+            val px = enemyX + cos(a) * dist
+            val py = enemyY + sin(a) * dist
+            drawRect(Color(0xFF8E44AD).copy(alpha = alpha), topLeft = Offset(px, py), size = Size(6f, 6f))
         }
     }
 }

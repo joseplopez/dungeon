@@ -106,6 +106,7 @@ class DungeonViewModel @Inject constructor(
     if (hero == null) return 1
     val lvl = hero.jobMasteryLevel
     return when {
+        lvl >= 40 -> 4
         lvl >= 25 -> 3
         lvl >= 10 -> 2
         lvl >= 1 -> 1

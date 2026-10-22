@@ -768,30 +768,51 @@ class FFBattleEngine(private val context: Context) {
             }
 
             HeroClass.BLACK_MAGE -> {
-                val mult = when {
-                    masteryLvl >= 25 -> 2.2; masteryLvl >= 10 -> 1.8; else -> 1.4
-                }
-                val targetEnemies =
-                    if (masteryLvl >= 25) enemies.filter { it.currentHp > 0 } else if (masteryLvl >= 10) enemies.filter { it.currentHp > 0 }
-                        .take(2) else listOfNotNull(enemies.filter { it.currentHp > 0 }
-                        .firstOrNull())
-                targetEnemies.forEach { enemy ->
-                    val (baseDmg, _) = calcMagicDamage(hero, enemy)
-                    val dmg = (baseDmg * mult).toLong()
-                    applyDamageToEnemy(
-                        hero,
-                        enemy,
-                        dmg,
-                        true,
-                        true,
-                        enemies,
-                        dimension,
-                        relicBonuses,
-                        allies,
-                        levelUpTracker,
-                        onLootCollected,
-                        onEvent
-                    )
+                if (masteryLvl >= 40) {
+                    val targetEnemies = enemies.filter { it.currentHp > 0 }
+                    targetEnemies.forEach { enemy ->
+                        val dmg = (enemy.maxHp / 6L).coerceAtLeast(1L)
+                        applyDamageToEnemy(
+                            hero,
+                            enemy,
+                            dmg,
+                            true,
+                            false,
+                            enemies,
+                            dimension,
+                            relicBonuses,
+                            allies,
+                            levelUpTracker,
+                            onLootCollected,
+                            onEvent
+                        )
+                    }
+                } else {
+                    val mult = when {
+                        masteryLvl >= 25 -> 2.2; masteryLvl >= 10 -> 1.8; else -> 1.4
+                    }
+                    val targetEnemies =
+                        if (masteryLvl >= 25) enemies.filter { it.currentHp > 0 } else if (masteryLvl >= 10) enemies.filter { it.currentHp > 0 }
+                            .take(2) else listOfNotNull(enemies.filter { it.currentHp > 0 }
+                            .firstOrNull())
+                    targetEnemies.forEach { enemy ->
+                        val (baseDmg, _) = calcMagicDamage(hero, enemy)
+                        val dmg = (baseDmg * mult).toLong()
+                        applyDamageToEnemy(
+                            hero,
+                            enemy,
+                            dmg,
+                            true,
+                            true,
+                            enemies,
+                            dimension,
+                            relicBonuses,
+                            allies,
+                            levelUpTracker,
+                            onLootCollected,
+                            onEvent
+                        )
+                    }
                 }
             }
 

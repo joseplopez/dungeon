@@ -109,7 +109,7 @@ fun AbilityEffectVisualCard(
     }
 }
 
-@Preview(widthDp = 400, heightDp = 800)
+@Preview(widthDp = 400, heightDp = 1050)
 @Composable
 fun BlackMageAbilityLevelsPreview() {
     Column(
@@ -154,6 +154,17 @@ fun BlackMageAbilityLevelsPreview() {
                 heroClass = HeroClass.BLACK_MAGE,
                 abilityLevel = 3,
                 abilityNameRes = R.string.skill_black_mage_t3_name,
+                attackerId = "h1",
+                targetId = "e1"
+            )
+        )
+
+        AbilityEffectVisualCard(
+            title = "Level 4: Gravity",
+            animInfo = AbilityAnimationInfo(
+                heroClass = HeroClass.BLACK_MAGE,
+                abilityLevel = 4,
+                abilityNameRes = R.string.skill_black_mage_t4_name,
                 attackerId = "h1",
                 targetId = "e1"
             )
@@ -347,7 +358,7 @@ fun AllAbilitiesInteractiveViewer() {
             )
 
             Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                listOf(1, 2, 3).forEach { lvl ->
+                listOf(1, 2, 3, 4).forEach { lvl ->
                     Button(
                         onClick = { selectedLevel = lvl },
                         colors = ButtonDefaults.buttonColors(
