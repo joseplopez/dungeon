@@ -133,7 +133,9 @@ class DungeonViewModel @Inject constructor(
   )
 
   data class FFBattleState(
+    val startFloor: Int = 1,
     val currentFloor: Int = 1,
+    val runLoopCount: Int = 1,
     val currentBiome: FFBiome? = null,
     val dimension: FFDimension? = null,
     val heroes: List<Hero> = emptyList(),
@@ -220,6 +222,7 @@ class DungeonViewModel @Inject constructor(
         }
 
         battleState.value = FFBattleState(
+            startFloor = startFloor.coerceAtLeast(1),
             currentFloor = startFloor.coerceAtLeast(1),
             currentBiome = dimension.getBiomeForFloor(startFloor.coerceAtLeast(1)),
             dimension = dimension,
@@ -763,13 +766,41 @@ class DungeonViewModel @Inject constructor(
   }
 
   fun retreat() {
-      val state = battleState.value
-      if (state.pendingFallenHeroIds.isNotEmpty() && !state.reviveUsedThisRun) {
-          battleJob?.cancel()
-          battleState.update { it.copy(showRetreatReviveDialog = true) }
-          return
+      battleJob?.cancel()
+      battleState.update { it.copy(showRetreatReviveDialog = true) }
+  }
+
+  fun retryRun() {
+      battleJob?.cancel()
+      viewModelScope.launch {
+          val state = battleState.value
+          
+          battleState.update { it.copy(
+              currentFloor = state.startFloor,
+              runLoopCount = state.runLoopCount + 1,
+              showRetreatReviveDialog = false,
+              isRunning = true,
+              runComplete = false
+          ) }
+          
+          val gs = repo.getGameStateOnce() ?: GameState()
+          val dimension = FFDimensionData.getDimension(gs.currentDimension)
+          val codexBonuses = repo.getCodexBonuses()
+          val relics = RelicBonuses.from(gs, codexBonuses)
+          
+          // Restart battle loop directly (keeps Gil/Magicite accumulators intact)
+          battleJob = launch {
+              engine.runBattle(
+                  heroes = state.heroes,
+                  dimension = dimension,
+                  startFloor = state.startFloor,
+                  speed = state.speed,
+                  relicBonuses = relics,
+                  mode = state.dungeonMode,
+                  isPaused = { battleState.value.isPaused }
+              ) { event -> handleEvent(event) }
+          }
       }
-      forceRetreat()
   }
 
   private fun forceRetreat() {

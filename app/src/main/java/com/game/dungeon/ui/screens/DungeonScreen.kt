@@ -76,6 +76,7 @@ fun DungeonScreen(
         Column(Modifier.fillMaxSize()) {
             DungeonTopBar(
                 floor = state.currentFloor,
+                loopCount = state.runLoopCount,
                 dimension = dimension,
                 currentBiome = state.currentBiome,
                 gilTotal = state.gilEarnedThisRun,
@@ -246,8 +247,10 @@ fun DungeonScreen(
         if (state.showRetreatReviveDialog) {
             RetreatReviveDialog(
                 isPermadeathProtected = isPermadeathProtected,
+                hasFallenHeroes = state.pendingFallenHeroIds.isNotEmpty() && !state.reviveUsedThisRun,
                 onRescue = { activity?.let { viewModel.watchRetreatReviveAd(it) } },
-                onRetreat = { viewModel.declineRetreatRevive() }
+                onRetreat = { viewModel.declineRetreatRevive() },
+                onRetry = { viewModel.retryRun() }
             )
         }
 
@@ -268,8 +271,10 @@ fun DungeonScreen(
 @Composable
 fun RetreatReviveDialog(
     isPermadeathProtected: Boolean = false,
+    hasFallenHeroes: Boolean,
     onRescue: () -> Unit,
-    onRetreat: () -> Unit
+    onRetreat: () -> Unit,
+    onRetry: () -> Unit
 ) {
     Dialog(onDismissRequest = {}, properties = DialogProperties(usePlatformDefaultWidth = false)) {
         PixelPanel(
@@ -277,44 +282,60 @@ fun RetreatReviveDialog(
                 .fillMaxWidth(0.88f)
                 .widthIn(max = 380.dp)
                 .background(BgDarkest),
-            borderColor = if (isPermadeathProtected) GoldBright else EnemyRed
+            borderColor = if (hasFallenHeroes && !isPermadeathProtected) EnemyRed else GoldBright
         ) {
             Column(
                 Modifier.padding(20.dp),
                 horizontalAlignment = Alignment.CenterHorizontally,
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
-                Text(if (isPermadeathProtected) "🛡️" else "⚠️", fontSize = 48.sp)
                 Text(
-                    text = if (isPermadeathProtected) stringResource(R.string.heroes_down) else safeStringResource(R.string.retreat_rescue_title, ),
-                    style = PixelTitle,
-                    color = if (isPermadeathProtected) GoldBright else EnemyRed
+                    text = if (hasFallenHeroes) (if (isPermadeathProtected) "🛡️" else "⚠️") else "⛺", 
+                    fontSize = 48.sp
                 )
+                
                 Text(
-                    text = if (isPermadeathProtected)
-                        stringResource(R.string.some_heroes_fell)
-                    else
-                        safeStringResource(R.string.retreat_rescue_desc),
+                    text = if (hasFallenHeroes) {
+                        if (isPermadeathProtected) stringResource(R.string.heroes_down) else safeStringResource(R.string.retreat_rescue_title)
+                    } else {
+                        "Rest & Restart?"
+                    },
+                    style = PixelTitle,
+                    color = if (hasFallenHeroes && !isPermadeathProtected) EnemyRed else GoldBright
+                )
+                
+                Text(
+                    text = if (hasFallenHeroes) {
+                        if (isPermadeathProtected) stringResource(R.string.some_heroes_fell) else safeStringResource(R.string.retreat_rescue_desc)
+                    } else {
+                        "Restart from your entry floor. All accumulated loot and currency will be carried over!"
+                    },
                     style = PixelBody,
                     color = Color.White,
                     textAlign = TextAlign.Center
                 )
 
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                    if (hasFallenHeroes) {
+                        PixelButton(
+                            safeStringResource(R.string.rescue_ad_button),
+                            onClick = onRescue,
+                            modifier = Modifier.fillMaxWidth().height(48.dp),
+                            active = true
+                        )
+                    } else {
+                        PixelButton(
+                            "Loop Run (Keep Loot)",
+                            onClick = onRetry,
+                            modifier = Modifier.fillMaxWidth().height(48.dp),
+                            active = true
+                        )
+                    }
+                    
                     PixelButton(
-                        safeStringResource(R.string.rescue_ad_button),
-                        onClick = onRescue,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(48.dp),
-                        active = true
-                    )
-                    PixelButton(
-                        safeStringResource(R.string.retreat_anyway_button),
+                        if (hasFallenHeroes) safeStringResource(R.string.retreat_anyway_button) else safeStringResource(R.string.retreat_button),
                         onClick = onRetreat,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(44.dp)
+                        modifier = Modifier.fillMaxWidth().height(44.dp)
                     )
                 }
             }
@@ -434,6 +455,7 @@ fun PremiumSpeedDialog(onBuy: () -> Unit, onClose: () -> Unit) {
 @Composable
 fun DungeonTopBar(
     floor: Int,
+    loopCount: Int = 1,
     dimension: FFDimension?,
     currentBiome: FFBiome?,
     gilTotal: Long,
@@ -481,7 +503,12 @@ fun DungeonTopBar(
             }
             
             Column(horizontalAlignment = CenterHorizontally) {
-                Text(safeStringResource(R.string.floor_format, floor), style = PixelHeading, color = GoldBright)
+                Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(6.dp)) {
+                    Text(safeStringResource(R.string.floor_format, floor), style = PixelHeading, color = GoldBright)
+                    if (loopCount > 1) {
+                        Text("Loop x$loopCount", style = PixelSmall, color = HpGreen, fontSize = 10.sp)
+                    }
+                }
                 if (dimension != null) {
                     Text(safeStringResource(dimension.titleRes), style = PixelSmall, color = Color(dimension.mainColor))
                 }
