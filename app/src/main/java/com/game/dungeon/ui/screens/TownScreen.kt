@@ -508,15 +508,24 @@ fun TownBuilding(
     onClick: () -> Unit,
     onBulletinClick: (() -> Unit)? = null
 ) {
-    val displayName = name.ifBlank { tag }
+    val displayName = name.trim().ifBlank { tag }
+
     Column(
         horizontalAlignment = CenterHorizontally,
+        verticalArrangement = Arrangement.Bottom, // Pushes everything to the bottom baseline
         modifier = Modifier
             .wrapContentWidth()
+            .fillMaxHeight() // Takes up available vertical space in the Row
             .clickable { onClick() }
     ) {
+        // The Building Graphic
         Box(
-            modifier = Modifier.size(width = buildingWidth, height = buildingHeight),
+            modifier = Modifier
+                .width(buildingWidth)
+                .heightIn(max = buildingHeight)
+                // This is the magic line: it allows the building to shrink vertically
+                // if the screen is too small, protecting the text badge below it.
+                .weight(1f, fill = false),
             contentAlignment = Alignment.BottomCenter
         ) {
             Canvas(Modifier.fillMaxSize()) {
@@ -531,7 +540,6 @@ fun TownBuilding(
                 }
             }
 
-            // Clickable Bulletin Board Overlay button on Inn building
             if (tag == "THE INN" && onBulletinClick != null) {
                 Box(
                     Modifier
