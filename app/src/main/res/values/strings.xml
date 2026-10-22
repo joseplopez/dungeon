@@ -1160,9 +1160,9 @@
     <string name="craft_label_no_gems">No gems available.</string>
     <string name="craft_label_max_level_reached">MAX LEVEL (+10)</string>
     <string name="craft_format_level">+%1$d</string>
-    <string name="craft_format_gold">%1$d Gil</string>
+    <string name="craft_format_gold" translatable="false">%1$s Gil</string>
     <string name="craft_format_quantity">x%1$d</string>
-    <string name="craft_format_stat">%1$s: %2$d ➔ %3$d</string>
+    <string name="craft_format_stat" translatable="false">%1$s: %2$s ➔ %3$s</string>
     <string name="craft_format_equipped_tag">(Equipped)</string>
     <string name="craft_format_equipped_hero">(Equipped: %1$s)</string>
     <string name="craft_label_stats_preview">STATS PREVIEW</string>

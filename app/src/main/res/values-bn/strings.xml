@@ -1146,9 +1146,7 @@
         <string name="craft_label_no_gems">কোনো রত্ন পাওয়া যায়নি।</string>
         <string name="craft_label_max_level_reached">সর্বোচ্চ স্তর (+10)</string>
         <string name="craft_format_level">+%1$d</string>
-        <string name="craft_format_gold">%1$d গিল</string>
         <string name="craft_format_quantity">x%1$d</string>
-        <string name="craft_format_stat">%1$s: %2$d ➔ %3$d</string>
         <string name="craft_format_equipped_tag">( সজ্জিত )</string>
         <string name="craft_format_equipped_hero">( সজ্জিত: %1$s )</string>
         <string name="craft_label_stats_preview">পরিসংখ্যান পূর্বাবলোকন</string>

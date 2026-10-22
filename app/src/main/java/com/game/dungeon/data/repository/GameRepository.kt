@@ -325,13 +325,22 @@ class GameRepository @Inject constructor(
 
         val requiredLevel = item.enhancementLevel + 1
         val isMythicAscension = requiredLevel > 10
-        
-        // Base gold calculation with exponential scaling past level 10
+
+        // Base gold calculation
         val baseGoldCost = (requiredLevel * 100L * item.floorFound.coerceAtLeast(1)).coerceAtLeast(100L)
+
+        // FIX 1: Lower the exponent base from 1.5 to 1.25 to prevent trillion-gil prices at level 20
         val goldCost = if (isMythicAscension) {
-            (baseGoldCost * (1.5).pow(requiredLevel - 10)).toLong()
+            (baseGoldCost * (1.25).pow(requiredLevel - 10)).toLong()
         } else {
             baseGoldCost
+        }
+
+        // FIX 2: Reduce required shards compounding from 1.5 to 1.15 and base from 5 to 3
+        val requiredOreCount = if (isMythicAscension) {
+            (3 * (1.15).pow(requiredLevel - 10)).toInt()
+        } else {
+            requiredLevel
         }
 
         // Determine required material and quantity
@@ -340,12 +349,6 @@ class GameRepository @Inject constructor(
             Rarity.RARE -> "mithril_ore"
             Rarity.EPIC -> "adamantite_ore"
             Rarity.LEGENDARY, Rarity.MYTHIC -> "orichalcum_ore"
-        }
-        
-        val requiredOreCount = if (isMythicAscension) {
-            (5 * (1.5).pow(requiredLevel - 10)).toInt()
-        } else {
-            requiredLevel
         }
 
         val state = database.gameStateDao.getGameStateOnce()

@@ -1145,9 +1145,7 @@
     <string name="craft_label_no_gems">Hakuna gemu zinazopatikana.</string>
     <string name="craft_label_max_level_reached">KIWANGO CHA JUU (+10)</string>
     <string name="craft_format_level">+%1$d</string>
-    <string name="craft_format_gold">%1$d Gil</string>
     <string name="craft_format_quantity">x%1$d</string>
-    <string name="craft_format_stat">%1$s: %2$d ➔ %3$d</string>
     <string name="craft_format_equipped_tag">(Imevalishwa)</string>
     <string name="craft_format_equipped_hero">(Imevalishwa: %1$s)</string>
     <string name="craft_label_stats_preview">UHAKIKI WA TAKWIMU</string>

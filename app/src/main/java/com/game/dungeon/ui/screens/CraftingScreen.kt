@@ -46,6 +46,7 @@ import com.game.dungeon.ui.theme.*
 import com.game.dungeon.ui.viewmodels.CraftingTab
 import com.game.dungeon.ui.viewmodels.CraftingUiState
 import com.game.dungeon.ui.viewmodels.CraftingViewModel
+import com.game.dungeon.ui.components.formatAmount
 
 @Composable
 fun CraftingScreen(
@@ -390,37 +391,37 @@ private fun EnhanceSection(
                     val nextMult = 1.0 + nextLevel * 0.05
 
                     if (item.attackBonus > 0) {
-                        val currAtk = (item.attackBonus * currentMult).toInt()
-                        val nextAtk = (item.attackBonus * nextMult).toInt()
+                        val currAtk = (item.attackBonus * currentMult).toLong()
+                        val nextAtk = (item.attackBonus * nextMult).toLong()
                         Text(
-                            text = stringResource(R.string.craft_format_stat, stringResource(R.string.stat_attack), currAtk, nextAtk),
+                            text = stringResource(R.string.craft_format_stat, stringResource(R.string.stat_attack), formatAmount(currAtk), formatAmount(nextAtk)),
                             style = PixelSmall,
                             color = Color.White
                         )
                     }
                     if (item.defenseBonus > 0) {
-                        val currDef = (item.defenseBonus * currentMult).toInt()
-                        val nextDef = (item.defenseBonus * nextMult).toInt()
+                        val currDef = (item.defenseBonus * currentMult).toLong()
+                        val nextDef = (item.defenseBonus * nextMult).toLong()
                         Text(
-                            text = stringResource(R.string.craft_format_stat, stringResource(R.string.stat_defense), currDef, nextDef),
+                            text = stringResource(R.string.craft_format_stat, stringResource(R.string.stat_defense), formatAmount(currDef), formatAmount(nextDef)),
                             style = PixelSmall,
                             color = Color.White
                         )
                     }
                     if (item.magicBonus > 0) {
-                        val currMag = (item.magicBonus * currentMult).toInt()
-                        val nextMag = (item.magicBonus * nextMult).toInt()
+                        val currMag = (item.magicBonus * currentMult).toLong()
+                        val nextMag = (item.magicBonus * nextMult).toLong()
                         Text(
-                            text = stringResource(R.string.craft_format_stat, stringResource(R.string.stat_magic), currMag, nextMag),
+                            text = stringResource(R.string.craft_format_stat, stringResource(R.string.stat_magic), formatAmount(currMag), formatAmount(nextMag)),
                             style = PixelSmall,
                             color = Color.White
                         )
                     }
                     if (item.hpBonus > 0) {
-                        val currHp = (item.hpBonus * currentMult).toInt()
-                        val nextHp = (item.hpBonus * nextMult).toInt()
+                        val currHp = (item.hpBonus * currentMult).toLong()
+                        val nextHp = (item.hpBonus * nextMult).toLong()
                         Text(
-                            text = stringResource(R.string.craft_format_stat, stringResource(R.string.stat_hp), currHp, nextHp),
+                            text = stringResource(R.string.craft_format_stat, stringResource(R.string.stat_hp), formatAmount(currHp), formatAmount(nextHp)),
                             style = PixelSmall,
                             color = Color.White
                         )
@@ -465,15 +466,17 @@ private fun EnhanceSection(
                             color = GoldBright
                         )
                         Text(
-                            text = stringResource(R.string.craft_format_gold, goldCost),
+                            // Formatted Gold Cost
+                            text = stringResource(R.string.craft_format_gold, formatAmount(goldCost)),
                             style = PixelSmall,
                             color = if (canAffordGold) Color.Yellow else HpRed
                         )
                         Text(
+                            // Formatted Shard/Ore Costs
                             text = stringResource(
                                 R.string.item_name_template,
                                 stringResource(oreRes),
-                                "$requiredOres / $ownedOres"
+                                "${formatAmount(requiredOres.toLong())} / ${formatAmount(ownedOres.toLong())}"
                             ),
                             style = PixelSmall,
                             color = if (canAffordMaterials) Color.Cyan else HpRed
@@ -1207,7 +1210,11 @@ private fun MythicForgeSection(
                         )
 
                         val statsText = currentSet.statMultipliers.entries.joinToString(" | ") { (key, value) ->
-                            val formattedVal = if (key.endsWith("_MULT")) "+${(value * 100).toInt()}%" else "+${value.toInt()}"
+                            val formattedVal = if (key.endsWith("_MULT")) {
+                                "+${(value * 100).toInt()}%"
+                            } else {
+                                "+${formatAmount(value.toLong())}"
+                            }
                             val statRes = when {
                                 key.startsWith("ATK") -> R.string.stat_attack
                                 key.startsWith("DEF") -> R.string.stat_defense

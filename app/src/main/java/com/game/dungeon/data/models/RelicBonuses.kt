@@ -56,29 +56,22 @@ data class RelicBonuses(
 
     companion object {
         fun from(gs: GameState, codexBonuses: CodexBonuses = CodexBonuses()): RelicBonuses {
-            // Apply logarithmic scaling: base_multiplier * ln(level + 1)
-            // This grants fast early growth that flattens out, keeping gear and hero levels relevant.
-            
-            val atkLvl = gs.attackRelic.toDouble()
-            val hpLvl = gs.hpRelic.toDouble()
-            val mpLvl = gs.mpRelic.toDouble()
-            val magLvl = gs.magicRelic.toDouble()
-            val defLvl = gs.defenseRelic.toDouble()
-            val critDmgLvl = gs.critDamageRelic.toDouble()
+            // Apply Log-Linear Hybrid scaling: logFactor * ln(level + 1) + linearFactor * level
+            // This grants fast early growth that flattens out, but maintains a steady infinite tail.
 
             return RelicBonuses(
-                attackBonus = (400.0 * ln(atkLvl + 1.0) * (1f + codexBonuses.attackMultiplierBonus)).toLong(),
-                hpBonus = (2500.0 * ln(hpLvl + 1.0)).toLong(),
-                mpBonus = (50.0 * ln(mpLvl + 1.0)).toLong(),
-                magicBonus = (400.0 * ln(magLvl + 1.0)).toLong(),
-                defenseBonus = (300.0 * ln(defLvl + 1.0)).toLong(),
+                attackBonus = (calculateHybridRelicBonus(gs.attackRelic, logFactor = 400.0, linearFactor = 8.0) * (1f + codexBonuses.attackMultiplierBonus)).toLong(),
+                hpBonus = calculateHybridRelicBonus(gs.hpRelic, logFactor = 2500.0, linearFactor = 50.0).toLong(),
+                mpBonus = calculateHybridRelicBonus(gs.mpRelic, logFactor = 50.0, linearFactor = 1.0).toLong(),
+                magicBonus = calculateHybridRelicBonus(gs.magicRelic, logFactor = 400.0, linearFactor = 8.0).toLong(),
+                defenseBonus = calculateHybridRelicBonus(gs.defenseRelic, logFactor = 300.0, linearFactor = 6.0).toLong(),
                 goldMultiplier = (1f + gs.goldRelic * 0.05f) + (if (gs.selectedPet == PetType.CAT) PetType.CAT.bonusValue else 0f) + codexBonuses.goldMultiplierBonus,
                 magiciteChanceBonus = gs.magiciteRelic * 0.01f + codexBonuses.magiciteChanceBonus,
                 expMultiplier = gs.expMultiplier,
                 itemStatBonus = gs.itemStatBonus,
                 magicShopLevel = gs.magicShopLevel,
                 critChanceBonus = gs.critChanceRelic + codexBonuses.critChanceBonus,
-                critDamageBonus = (25.0 * ln(critDmgLvl + 1.0)).toLong(),
+                critDamageBonus = calculateHybridRelicBonus(gs.critDamageRelic, logFactor = 25.0, linearFactor = 0.5).toLong(),
                 magnetBonus = gs.magnetBonus,
                 pocketsBonus = gs.pocketsBonus,
                 doubleLootChance = gs.doubleLootChance,
@@ -97,3 +90,21 @@ data class RelicBonuses(
     }
 }
 
+/**
+ * Calculates a Log-Linear Hybrid stat curve.
+ * @param level The current level of the relic.
+ * @param logFactor Controls the massive early-game spike.
+ * @param linearFactor Controls the infinite endgame scaling (+X per level).
+ */
+private fun calculateHybridRelicBonus(level: Int, logFactor: Double, linearFactor: Double): Double {
+    if (level <= 0) return 0.0
+    val lvl = level.toDouble()
+
+    // 1. The Logarithmic curve (Fast early growth, hits a soft cap)
+    val logBoost = kotlin.math.ln(lvl + 1.0) * logFactor
+
+    // 2. The Linear tail (Slow, infinite steady growth so upgrades always matter)
+    val linearBoost = lvl * linearFactor
+
+    return logBoost + linearBoost
+}

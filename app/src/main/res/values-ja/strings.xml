@@ -1145,9 +1145,7 @@
         <string name="craft_label_no_gems">利用可能な宝石がありません。</string>
         <string name="craft_label_max_level_reached">最大レベル (+10)</string>
         <string name="craft_format_level">+%1$d</string>
-        <string name="craft_format_gold">%1$d ギル</string>
         <string name="craft_format_quantity">x%1$d</string>
-        <string name="craft_format_stat">%1$s: %2$d ➔ %3$d</string>
         <string name="craft_format_equipped_tag">(装備中)</string>
         <string name="craft_format_equipped_hero">(装備中: %1$s)</string>
         <string name="craft_label_stats_preview">ステータスプレビュー</string>

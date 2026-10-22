@@ -90,7 +90,7 @@ data class Item(
 
             val roll = (1..100).random()
             val rarity = calculateRarity(roll, totalBoost, minRarity)
-            
+
             val slot = forcedSlot ?: ItemSlot.entries.random()
             val id = UUID.randomUUID().toString()
             val gearCategory = getGearCategory(slot, dimension)
@@ -105,10 +105,10 @@ data class Item(
                 Rarity.LEGENDARY -> R.string.item_rarity_legendary
                 Rarity.MYTHIC -> R.string.item_rarity_mythic
             }
-            
+
             val rarityStr = try { context.getString(rarityRes) } catch (_: Exception) { null } ?: rarity.name
             val fullName = try { context.getString(R.string.item_name_template, rarityStr, categoryName) } catch (_: Exception) { null } ?: "$rarityStr $categoryName"
-            
+
             val bonusMult = when (rarity) {
                 Rarity.COMMON -> 1.0
                 Rarity.RARE -> 1.5
@@ -116,29 +116,31 @@ data class Item(
                 Rarity.LEGENDARY -> 4.0
                 Rarity.MYTHIC -> 10.0
             }
-            
+
             val mythicStatMult = if (rarity == Rarity.LEGENDARY || rarity == Rarity.MYTHIC) (1f + (relicBonuses?.mythicStatBonus ?: 0f)) else 1f
             val statBonus = 1.0 + (relicBonuses?.itemStatBonus ?: 0.0).toDouble()
             val dimBonus = 1 + (dimension - 1) * 0.12
+
+            // finalMult acts as the rarity and relic multiplier for the base stats
             val finalMult = bonusMult * statBonus * dimBonus * mythicStatMult
 
-            // Soften floor scaling for item generation above floor 200 to prevent multi-million stat inflations
-            val effectiveItemFloor = if (floor <= 200) {
-                floor.toDouble()
-            } else {
-                200 + sqrt((floor - 200).toDouble()) * 8
-            }
-
             val (critChance, critDmg) = calculateCritBonuses(rarity)
-            val baseWeaponStat = ((2.0 + effectiveItemFloor / 8.0) * finalMult)
 
-            val atkBonus = if (slot == ItemSlot.WEAPON && !gearCategory.isMagicalWeapon) baseWeaponStat else 0
-            val defBonus = if (slot == ItemSlot.ARMOR || slot == ItemSlot.SHIELD) ((2f + effectiveItemFloor / 6f) * finalMult) else 0
+            // --- QUADRATIC STAT CALCULATION ---
+            val generatedAttack = calculateQuadraticGearStat(floor, baseValue = 10.0, linearFactor = 1.0, quadraticFactor = 0.1) * finalMult
+            val generatedDefense = calculateQuadraticGearStat(floor, baseValue = 10.0, linearFactor = 1.0, quadraticFactor = 0.1) * finalMult
+            val generatedMagic = calculateQuadraticGearStat(floor, baseValue = 10.0, linearFactor = 1.0, quadraticFactor = 0.1) * finalMult
+            val generatedHp = calculateQuadraticGearStat(floor, baseValue = 50.0, linearFactor = 4.0, quadraticFactor = 0.5) * finalMult
+            val generatedMp = calculateQuadraticGearStat(floor, baseValue = 5.0, linearFactor = 0.5, quadraticFactor = 0.05) * finalMult
+
+            val atkBonus = if (slot == ItemSlot.WEAPON && !gearCategory.isMagicalWeapon) generatedAttack else 0.0
+            val defBonus = if (slot == ItemSlot.ARMOR || slot == ItemSlot.SHIELD) generatedDefense else 0.0
             val magBonus = when {
-                slot == ItemSlot.WEAPON && gearCategory.isMagicalWeapon -> baseWeaponStat
-                slot == ItemSlot.ACCESSORY -> ((1f + effectiveItemFloor / 12f) * finalMult)
-                else -> 0
+                slot == ItemSlot.WEAPON && gearCategory.isMagicalWeapon -> generatedAttack
+                slot == ItemSlot.ACCESSORY -> generatedMagic
+                else -> 0.0
             }
+            val mpBonus = if (slot == ItemSlot.ACCESSORY) generatedMp else 0.0
 
             val setId = if (rarity == Rarity.MYTHIC) {
                 MythicSet.entries.random().id
@@ -154,8 +156,8 @@ data class Item(
                 attackBonus = atkBonus.toLong(),
                 defenseBonus = defBonus.toLong(),
                 magicBonus = magBonus.toLong(),
-                hpBonus = ((5.0 + effectiveItemFloor * 0.5) * finalMult).toLong(),
-                mpBonus = if (slot == ItemSlot.ACCESSORY) ((2 + effectiveItemFloor / 15) * finalMult).toLong() else 0,
+                hpBonus = generatedHp.toLong(),
+                mpBonus = mpBonus.toLong(),
                 critChanceBonus = critChance,
                 critDamageBonus = critDmg.toLong(),
                 emoji = emoji,
@@ -422,4 +424,16 @@ data class Item(
             }
         }
     }
+}
+
+/**
+ * Calculates gear stats based on the floor found using a gentle quadratic curve.
+ */
+private fun calculateQuadraticGearStat(floor: Int, baseValue: Double, linearFactor: Double, quadraticFactor: Double): Long {
+    val f = floor.toDouble().coerceAtLeast(1.0)
+
+    val linearBoost = (f - 1.0) * linearFactor
+    val quadraticBoost = (f - 1.0) * (f - 1.0) * quadraticFactor
+
+    return (baseValue + linearBoost + quadraticBoost).toLong()
 }

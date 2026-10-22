@@ -197,45 +197,59 @@ class Hero(
         return leveledUp
     }
 
-    // 1. MUST return Long, not Int
     val baseMaxHp: Long get() {
         if (heroClass == HeroClass.ONION_KNIGHT) {
             return if (level < 30) heroClass.baseHp + (level - 1L) * 2L
-            else 500L + ((level - 30L) * (level - 30L) * 250L)
+            // Onion Knight: 3000x multiplier past lvl 30
+            else 1000L + ((level - 30L) * (level - 30L) * 3000L)
         }
-        return heroClass.baseHp + (level - 1L) * (heroClass.baseHp / 4).coerceAtLeast(12) + ((level - 1L) * (level - 1L) / 10L)
+        // Standard Hero: 85x multiplier hits ~300k HP at Level 60
+        return heroClass.baseHp +
+                (level - 1L) * (heroClass.baseHp / 4).coerceAtLeast(12) +
+                ((level - 1L) * (level - 1L) * 85L)
     }
 
     val baseMaxMp: Long get() {
         if (heroClass == HeroClass.ONION_KNIGHT) {
             return if (level < 30) heroClass.baseMp + (level - 1L)
-            else 200L + ((level - 30L) * (level - 30L) * 15L)
+            else 200L + ((level - 30L) * (level - 30L) * 300L)
         }
-        return heroClass.baseMp + (level - 1L) * (heroClass.baseMp / 10).coerceAtLeast(2)
+        // Standard Hero MP
+        return heroClass.baseMp +
+                (level - 1L) * (heroClass.baseMp / 10).coerceAtLeast(2) +
+                ((level - 1L) * (level - 1L) * 10L)
     }
 
     val baseAttack: Long get() {
         if (heroClass == HeroClass.ONION_KNIGHT) {
             return if (level < 30) heroClass.baseAttack + (level - 1L)
-            else 100L + ((level - 30L) * (level - 30L) * 25L)
+            // Onion Knight: 300x multiplier
+            else 100L + ((level - 30L) * (level - 30L) * 300L)
         }
-        return heroClass.baseAttack + (level - 1L) * (heroClass.baseAttack / 10).coerceAtLeast(1)
+        // Standard Hero: 8x multiplier hits ~28k ATK at Level 60
+        return heroClass.baseAttack +
+                (level - 1L) * (heroClass.baseAttack / 5).coerceAtLeast(2) +
+                ((level - 1L) * (level - 1L) * 8L)
     }
 
     val baseMagic: Long get() {
         if (heroClass == HeroClass.ONION_KNIGHT) {
             return if (level < 30) heroClass.baseMagic + (level - 1L)
-            else 100L + ((level - 30L) * (level - 30L) * 25L)
+            else 100L + ((level - 30L) * (level - 30L) * 300L)
         }
-        return heroClass.baseMagic + (level - 1L) * (heroClass.baseMagic / 10).coerceAtLeast(1)
+        return heroClass.baseMagic +
+                (level - 1L) * (heroClass.baseMagic / 5).coerceAtLeast(2) +
+                ((level - 1L) * (level - 1L) * 8L)
     }
 
     val baseDefense: Long get() {
         if (heroClass == HeroClass.ONION_KNIGHT) {
             return if (level < 30) heroClass.baseDefense + (level - 1L)
-            else 100L + ((level - 30L) * (level - 30L) * 25L)
+            else 100L + ((level - 30L) * (level - 30L) * 300L)
         }
-        return heroClass.baseDefense + (level - 1L) * (heroClass.baseDefense / 8).coerceAtLeast(2)
+        return heroClass.baseDefense +
+                (level - 1L) * (heroClass.baseDefense / 5).coerceAtLeast(2) +
+                ((level - 1L) * (level - 1L) * 8L)
     }
 
     val maxHp: Long get() = baseMaxHp + hpBonus

@@ -1148,9 +1148,7 @@
         <string name="craft_label_no_gems">لا توجد جواهر متاحة.</string>
         <string name="craft_label_max_level_reached">المستوى الأقصى (+10)</string>
         <string name="craft_format_level">+%1$d</string>
-        <string name="craft_format_gold">%1$d جيل</string>
         <string name="craft_format_quantity">x%1$d</string>
-        <string name="craft_format_stat">%1$s: %2$d ➔ %3$d</string>
         <string name="craft_format_equipped_tag">(مجهز)</string>
         <string name="craft_format_equipped_hero">(مجهز: %1$s)</string>
         <string name="craft_label_stats_preview">معاينة الإحصائيات</string>

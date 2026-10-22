@@ -1145,9 +1145,7 @@
         <string name="craft_label_no_gems">Nessuna gema disponibile.</string>
         <string name="craft_label_max_level_reached">LIVELLO MASSIMO (+10)</string>
         <string name="craft_format_level">+%1$d</string>
-        <string name="craft_format_gold">%1$d Gil</string>
         <string name="craft_format_quantity">x%1$d</string>
-        <string name="craft_format_stat">%1$s: %2$d ➔ %3$d</string>
         <string name="craft_format_equipped_tag">(Equipaggiato)</string>
         <string name="craft_format_equipped_hero">(Equipaggiato: %1$s)</string>
         <string name="craft_label_stats_preview">ANTEPRIMA STATISTICHE</string>

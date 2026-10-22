@@ -1147,9 +1147,7 @@
         <string name="craft_label_no_gems">사용 가능한 보석이 없습니다.</string>
         <string name="craft_label_max_level_reached">최대 레벨 (+10)</string>
         <string name="craft_format_level">+%1$d</string>
-        <string name="craft_format_gold">%1$d 길</string>
         <string name="craft_format_quantity">x%1$d</string>
-        <string name="craft_format_stat">%1$s: %2$d ➔ %3$d</string>
         <string name="craft_format_equipped_tag">(장착 중)</string>
         <string name="craft_format_equipped_hero">(장착 중: %1$s)</string>
         <string name="craft_label_stats_preview">능력치 미리보기</string>

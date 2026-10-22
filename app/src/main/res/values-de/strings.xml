@@ -1146,9 +1146,7 @@
         <string name="craft_label_no_gems">Keine Edelsteine verfügbar.</string>
         <string name="craft_label_max_level_reached">MAXIMALSTUFE (+10)</string>
         <string name="craft_format_level">+%1$d</string>
-        <string name="craft_format_gold">%1$d Gil</string>
         <string name="craft_format_quantity">x%1$d</string>
-        <string name="craft_format_stat">%1$s: %2$d ➔ %3$d</string>
         <string name="craft_format_equipped_tag">(Ausrüstet)</string>
         <string name="craft_format_equipped_hero">(Ausrüstet: %1$s)</string>
         <string name="craft_label_stats_preview">WERTE-VORSCHAU</string>
