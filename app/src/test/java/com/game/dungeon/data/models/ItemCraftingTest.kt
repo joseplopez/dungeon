@@ -76,12 +76,12 @@ class ItemCraftingTest {
     }
 
     @Test
-    fun `test enhancement level safely coerced when below 0 or above 10`() {
+    fun `test enhancement level scaling past level 10`() {
         val item = Item(
             id = "test_coercion",
             name = "Coerced Item",
             slot = ItemSlot.ARMOR,
-            rarity = Rarity.RARE,
+            rarity = Rarity.MYTHIC,
             attackBonus = 100,
             defenseBonus = 100,
             emoji = "🛡️",
@@ -90,21 +90,21 @@ class ItemCraftingTest {
 
         // basePowerScore = 100 + 100 = 200
 
-        // Below 0: enhancementLevel = -5 should be coerced to 0 (multiplier 1.0)
-        val negativeEnhanced = item.copy(enhancementLevel = -5)
-        assertEquals(200.0, negativeEnhanced.powerScore, 0.001)
-        assertEquals(100.0, negativeEnhanced.effectiveAttackBonus, 0.001)
-        assertEquals(100.0, negativeEnhanced.effectiveDefenseBonus, 0.001)
+        // Level 0: enhancementLevel = 0 (multiplier 1.0)
+        val baseEnhanced = item.copy(enhancementLevel = 0)
+        assertEquals(200.0, baseEnhanced.powerScore, 0.001)
+        assertEquals(100.0, baseEnhanced.effectiveAttackBonus, 0.001)
+        assertEquals(100.0, baseEnhanced.effectiveDefenseBonus, 0.001)
 
-        // Above 10: enhancementLevel = 15 should be coerced to 10 (multiplier 1.5)
+        // Above 10: enhancementLevel = 15 (multiplier 1.0 + 15 * 0.05 = 1.75)
         val overEnhanced = item.copy(enhancementLevel = 15)
-        assertEquals(300.0, overEnhanced.powerScore, 0.001)
-        assertEquals(150.0, overEnhanced.effectiveAttackBonus, 0.001)
-        assertEquals(150.0, overEnhanced.effectiveDefenseBonus, 0.001)
+        assertEquals(350.0, overEnhanced.powerScore, 0.001)
+        assertEquals(175.0, overEnhanced.effectiveAttackBonus, 0.001)
+        assertEquals(175.0, overEnhanced.effectiveDefenseBonus, 0.001)
 
-        // Way above 10: enhancementLevel = 100 should also coerce to 10 (multiplier 1.5)
+        // Way above 10: enhancementLevel = 100 (multiplier 1.0 + 100 * 0.05 = 6.0)
         val maxCoerced = item.copy(enhancementLevel = 100)
-        assertEquals(300.0, maxCoerced.powerScore, 0.001)
+        assertEquals(1200.0, maxCoerced.powerScore, 0.001)
     }
 
     @Test

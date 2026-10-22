@@ -82,12 +82,13 @@ class CraftingViewModelTest {
         slot: ItemSlot = ItemSlot.WEAPON,
         enhancementLevel: Int = 0,
         sockets: List<SocketSlot> = emptyList(),
+        rarity: Rarity = Rarity.COMMON,
     ): Item {
         return Item(
             id = id,
             name = name,
             slot = slot,
-            rarity = Rarity.COMMON,
+            rarity = rarity,
             attackBonus = 20,
             emoji = "⚔️",
             floorFound = 1,
@@ -220,6 +221,25 @@ class CraftingViewModelTest {
             val state = awaitStateWithMessage(R.string.craft_err_max_enhancement)
 
             assertEquals(R.string.craft_err_max_enhancement, state.userMessageRes)
+
+            cancelAndIgnoreRemainingEvents()
+        }
+    }
+
+    @Test
+    fun `test enhanceSelectedItem on max level mythic item allows enhancement`() = runTest {
+        val mythicItem = createTestItem(enhancementLevel = 10, rarity = Rarity.MYTHIC)
+        val enhancedMythic = mythicItem.copy(enhancementLevel = 11)
+        org.mockito.kotlin.whenever(repository.enhanceEquipment(org.mockito.kotlin.any<Item>())).thenReturn(Result.success(enhancedMythic))
+        viewModel.selectItem(mythicItem)
+
+        viewModel.uiState.test {
+            awaitItem()
+
+            viewModel.enhanceSelectedItem()
+            val state = awaitStateWithMessage(R.string.craft_msg_enhance_success)
+
+            assertEquals(R.string.craft_msg_enhance_success, state.userMessageRes)
 
             cancelAndIgnoreRemainingEvents()
         }

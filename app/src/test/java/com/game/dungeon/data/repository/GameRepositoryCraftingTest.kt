@@ -148,6 +148,27 @@ class GameRepositoryCraftingTest {
         assertTrue(exception?.message?.contains("maximum enhancement level (+10)") == true)
     }
 
+    @Test
+    fun testEnhanceMythicEquipmentPastLevel10() = runBlocking {
+        val mythicItem = Item(
+            id = "mythic_sword",
+            name = "Mythic Sword",
+            slot = ItemSlot.WEAPON,
+            rarity = Rarity.MYTHIC,
+            enhancementLevel = 10,
+            emoji = "⚔️",
+            floorFound = 10,
+        )
+        database.itemDao.upsert(mythicItem)
+        database.gameStateDao.upsert(GameState(gold = 10000000L))
+        database.materialDao.addMaterial("mythic_shard", 100)
+
+        val result = repository.enhanceEquipment("mythic_sword")
+
+        assertTrue(result.isSuccess)
+        assertEquals(11, result.getOrNull()?.enhancementLevel)
+    }
+
     // --- addSocketSlot Tests ---
 
     @Test

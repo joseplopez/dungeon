@@ -23,6 +23,7 @@ import com.game.dungeon.data.models.RelicBonuses
 import com.game.dungeon.data.models.SocketSlot
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlin.math.pow
 import javax.inject.Inject
 import javax.inject.Singleton
 
@@ -317,19 +318,34 @@ class GameRepository @Inject constructor(
         val item = database.itemDao.getItemById(itemId)
             ?: return Result.failure(IllegalArgumentException("Item with ID $itemId not found."))
 
-        if (item.enhancementLevel >= 10) {
+        if (item.enhancementLevel >= 10 && item.rarity != Rarity.MYTHIC) {
             return Result.failure(IllegalStateException("Item is already at maximum enhancement level (+10)."))
         }
 
         val requiredLevel = item.enhancementLevel + 1
-        val goldCost = (requiredLevel * 100L * item.floorFound.coerceAtLeast(1)).coerceAtLeast(100L)
-        val oreId = when (item.rarity) {
+        val isMythicAscension = requiredLevel > 10
+        
+        // Base gold calculation with exponential scaling past level 10
+        val baseGoldCost = (requiredLevel * 100L * item.floorFound.coerceAtLeast(1)).coerceAtLeast(100L)
+        val goldCost = if (isMythicAscension) {
+            (baseGoldCost * (1.5).pow(requiredLevel - 10)).toLong()
+        } else {
+            baseGoldCost
+        }
+
+        // Determine required material and quantity
+        val oreId = if (isMythicAscension) "mythic_shard" else when (item.rarity) {
             Rarity.COMMON -> "iron_ore"
             Rarity.RARE -> "mithril_ore"
             Rarity.EPIC -> "adamantite_ore"
             Rarity.LEGENDARY, Rarity.MYTHIC -> "orichalcum_ore"
         }
-        val requiredOreCount = requiredLevel
+        
+        val requiredOreCount = if (isMythicAscension) {
+            (5 * (1.5).pow(requiredLevel - 10)).toInt()
+        } else {
+            requiredLevel
+        }
 
         val state = database.gameStateDao.getGameStateOnce()
             ?: return Result.failure(IllegalStateException("Game state missing."))

@@ -147,7 +147,7 @@ class CraftingViewModel @Inject constructor(
             return
         }
 
-        if (item.enhancementLevel >= 10) {
+        if (item.enhancementLevel >= 10 && item.rarity != com.game.dungeon.data.models.Rarity.MYTHIC) {
             _userMessageRes.value = R.string.craft_err_max_enhancement
             return
         }

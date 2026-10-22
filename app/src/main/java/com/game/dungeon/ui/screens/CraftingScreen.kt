@@ -386,8 +386,8 @@ private fun EnhanceSection(
                     )
 
                     val nextLevel = item.enhancementLevel + 1
-                    val currentMult = 1.0 + item.enhancementLevel.coerceIn(0, 10) * 0.05
-                    val nextMult = 1.0 + nextLevel.coerceIn(0, 10) * 0.05
+                    val currentMult = 1.0 + item.enhancementLevel * 0.05
+                    val nextMult = 1.0 + nextLevel * 0.05
 
                     if (item.attackBonus > 0) {
                         val currAtk = (item.attackBonus * currentMult).toInt()
@@ -428,17 +428,32 @@ private fun EnhanceSection(
 
                     Spacer(modifier = Modifier.height(8.dp))
 
-                    if (item.enhancementLevel < 10) {
-                        val goldCost = (nextLevel * 100L * item.floorFound.coerceAtLeast(1)).coerceAtLeast(100L)
-                        val (oreRes, oreId) = when (item.rarity) {
-                            Rarity.COMMON -> Pair(R.string.mat_iron_ore_name, "iron_ore")
-                            Rarity.RARE -> Pair(R.string.mat_mithril_ore_name, "mithril_ore")
-                            Rarity.EPIC -> Pair(R.string.mat_adamantite_ore_name, "adamantite_ore")
-                            Rarity.LEGENDARY, Rarity.MYTHIC -> Pair(R.string.mat_orichalcum_ore_name, "orichalcum_ore")
-                        }
+                    val isMythicAscension = nextLevel > 10
+                    val isMaxed = item.enhancementLevel >= 10 && item.rarity != Rarity.MYTHIC
 
-                        // Determine costs and availability
-                        val requiredOres = nextLevel
+                    if (!isMaxed) {
+                        val baseGoldCost = (nextLevel * 100L * item.floorFound.coerceAtLeast(1)).coerceAtLeast(100L)
+                        val goldCost = if (isMythicAscension) {
+                            (baseGoldCost * Math.pow(1.5, (nextLevel - 10).toDouble())).toLong()
+                        } else {
+                            baseGoldCost
+                        }
+                        
+                        val oreId = if (isMythicAscension) "mythic_shard" else when (item.rarity) {
+                            Rarity.COMMON -> "iron_ore"
+                            Rarity.RARE -> "mithril_ore"
+                            Rarity.EPIC -> "adamantite_ore"
+                            Rarity.LEGENDARY, Rarity.MYTHIC -> "orichalcum_ore"
+                        }
+                        
+                        val oreRes = MaterialCatalog.getMaterial(oreId).nameRes
+
+                        val requiredOres = if (isMythicAscension) {
+                            (5 * Math.pow(1.5, (nextLevel - 10).toDouble())).toInt()
+                        } else {
+                            nextLevel
+                        }
+                        
                         val ownedOres = uiState.materialInventory.find { it.material.id == oreId }?.amount ?: 0
 
                         canAffordGold = uiState.gold >= goldCost
@@ -466,27 +481,24 @@ private fun EnhanceSection(
                     }
                 }
 
+                val isMaxed = item.enhancementLevel >= 10 && item.rarity != Rarity.MYTHIC
                 Button(
                     onClick = onEnhance,
-                    // Disabled if max level, processing, or missing materials/gold
-                    enabled = !uiState.isProcessing &&
-                            item.enhancementLevel < 10 &&
-                            canAffordGold &&
-                            canAffordMaterials,
+                    enabled = !uiState.isProcessing && !isMaxed && canAffordGold && canAffordMaterials,
                     modifier = Modifier.fillMaxWidth(),
                     colors = ButtonDefaults.buttonColors(
                         containerColor = GoldAccent,
                         disabledContainerColor = StoneGray
                     )
                 ) {
-                    val btnText = if (item.enhancementLevel >= 10) {
+                    val btnText = if (isMaxed) {
                         stringResource(R.string.craft_label_max_level_reached)
                     } else {
                         stringResource(R.string.craft_btn_enhance, item.enhancementLevel + 1)
                     }
                     Text(
                         text = btnText,
-                        color = if (item.enhancementLevel >= 10 || !canAffordGold || !canAffordMaterials) Color.LightGray else BgDarkest,
+                        color = if (isMaxed || !canAffordGold || !canAffordMaterials) Color.LightGray else BgDarkest,
                         fontWeight = FontWeight.Bold
                     )
                 }
