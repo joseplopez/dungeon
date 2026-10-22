@@ -1309,4 +1309,22 @@
     <string name="mat_topaz_gem_2_desc">+2% HP 보너스</string>
     <string name="mat_topaz_gem_3_desc">+4% HP 보너스</string>
     <string name="effect">효과: %1$s</string>
+    <string name="guts_passive">🛡️ 근성 (패시브)</string>
+    <string name="automatically_intercepts_fatal_attacks">아군을 향한 치명적인 공격을 자동으로 대신 받습니다. 최대 HP가 50% 이상일 때 치명상을 입으면 HP 1로 생존합니다.</string>
+    <string name="boss_flr">보스 %1$d층 • 💎 %2$s</string>
+    <string name="dim_floor">판타지 %1$d • %2$d층 • 💎 %3$s</string>
+    <string name="standard_crystals">✦ 일반 크리스탈</string>
+    <string name="mystic_crystals">✧ 신비한 크리스탈</string>
+    <string name="cost">"비용: "</string>
+    <string name="purchase">구매</string>
+    <string name="not_enough_gil">길 부족</string>
+    <string name="reroll_loot_button">📺 전리품 재추첨</string>
+    <string name="set_adventurer">모험가의 영혼</string>
+    <string name="set_lionheart">라이언하트 수호</string>
+    <string name="set_mirage">신기루 의복</string>
+    <string name="set_mimic">고고의 흉내내기</string>
+    <string name="set_reaper">사신의 수의</string>
+    <string name="set_azure">푸른 전승</string>
+    <string name="skill_black_mage_t4_name">그라비데</string>
+    <string name="skill_black_mage_t4_desc">강력한 중력으로 모든 적을 짓눌러 최대 HP의 1/6을 감소시킵니다.</string>
 </resources>

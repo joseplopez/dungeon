@@ -1354,7 +1354,7 @@ fun RunCompleteOverlay(
 
             if (!hasRerolledLoot) {
                 PixelButton(
-                    label = "📺 Reroll Loot",
+                    label = safeStringResource(R.string.reroll_loot_button),
                     onClick = onRerollLoot,
                     modifier = Modifier
                         .fillMaxWidth()

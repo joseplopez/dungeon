@@ -1321,4 +1321,22 @@
     <string name="mat_topaz_gem_2_desc">+2% صحت کا بونس</string>
     <string name="mat_topaz_gem_3_desc">+4% صحت کا بونس</string>
     <string name="effect">اثر: %1$s</string>
+    <string name="guts_passive">🛡️ ہمت (غیر فعال)</string>
+    <string name="automatically_intercepts_fatal_attacks">صلاحیت کے ساتھ اتحادیوں پر ہونے والے مہلک حملوں کو خود بخود روکتا ہے۔ 50% سے زیادہ صحت پر رہتے ہوئے مہلک حملے سے 1 HP کے ساتھ بچ جاتا ہے۔</string>
+    <string name="boss_flr">باس منزل %1$d • 💎 %2$s</string>
+    <string name="dim_floor">فینٹسی %1$d • منزل %2$d • 💎 %3$s</string>
+    <string name="standard_crystals">✦ معیاری کرسٹل</string>
+    <string name="mystic_crystals">✧ پراسرار کرسٹل</string>
+    <string name="cost">"قیمت: "</string>
+    <string name="purchase">خریدیں</string>
+    <string name="not_enough_gil">کافی گل نہیں ہے</string>
+    <string name="reroll_loot_button">📺 مالِ غنیمت دوبارہ ڈرا کریں</string>
+    <string name="set_adventurer">مہم جو کی روح</string>
+    <string name="set_lionheart">شیر دل کا محافظ</string>
+    <string name="set_mirage">سراب کے لباس</string>
+    <string name="set_mimic">گوگو کی نقل</string>
+    <string name="set_reaper">موت کا کفن</string>
+    <string name="set_azure">نیلا علم</string>
+    <string name="skill_black_mage_t4_name">کششِ ثقل</string>
+    <string name="skill_black_mage_t4_desc">شدید کششِ ثقل سے تمام دشمنوں کو کچلتا ہے، ان کی زیادہ سے زیادہ HP کا 1/6 حصہ کم کرتا ہے۔</string>
 </resources>

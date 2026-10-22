@@ -701,6 +701,7 @@
     <string name="revive_dialog_desc">هل تشاهد إعلاناً قصيراً لإحياء فريقك في بداية هذا الطابق؟ (مرة واحدة في الجولة)</string>
     <string name="revive_button">إحياء (إعلان)</string>
     <string name="give_up_button">استسلام</string>
+    <string name="reroll_loot_button">📺 إعادة تدوير الغنائم</string>
     <string name="ad_gil_reward">جيل مجاني (إعلان)</string>
     <string name="ad_magicite_reward">ماجيسيت مجاني (إعلان)</string>
     <string name="ad_not_ready">الإعلان ليس جاهزاً. يرجى الانتظار لحظة.</string>
@@ -1309,4 +1310,21 @@
     <string name="mat_topaz_gem_2_desc">+2% مكافأة الصحة</string>
     <string name="mat_topaz_gem_3_desc">+4% مكافأة الصحة</string>
     <string name="effect">التأثير: %1$s</string>
-    </resources>
+    <string name="guts_passive">🛡️ الشجاعة (سلبية)</string>
+    <string name="automatically_intercepts_fatal_attacks">يتصدى تلقائيًا للهجمات القاتلة الموجهة للحلفاء. ينجو من الضربات القاتلة بـ 1 صحة إذا تم ضربه فوق 50% من الصحة القصوى.</string>
+    <string name="boss_flr">طابق الزعيم %1$d • 💎 %2$s</string>
+    <string name="dim_floor">بعد %1$d • طابق %2$d • 💎 %3$s</string>
+    <string name="standard_crystals">✦ بلورات قياسية</string>
+    <string name="mystic_crystals">✧ بلورات صوفية</string>
+    <string name="cost">"التكلفة: "</string>
+    <string name="purchase">شراء</string>
+    <string name="not_enough_gil">لا يوجد جيل كافٍ</string>
+    <string name="set_adventurer">روح المغامر</string>
+    <string name="set_lionheart">حارس قلب الأسد</string>
+    <string name="set_mirage">أثواب السراب</string>
+    <string name="set_mimic">محاكاة غوغو</string>
+    <string name="set_reaper">كفن الحصاد</string>
+    <string name="set_azure">الحكمة الزرقاء</string>
+    <string name="skill_black_mage_t4_name">الجاذبية</string>
+    <string name="skill_black_mage_t4_desc">يسحق جميع الأعداء بجاذبية شديدة، ويزيل 1/6 من صحتها القصوى.</string>
+</resources>

@@ -1307,4 +1307,22 @@
     <string name="mat_topaz_gem_2_desc">+2% Bonificación de PV</string>
     <string name="mat_topaz_gem_3_desc">+4% Bonificación de PV</string>
     <string name="effect">Efecto: %1$s</string>
+    <string name="guts_passive">🛡️ Agallas (Pasiva)</string>
+    <string name="automatically_intercepts_fatal_attacks">Intercepta automáticamente ataques fatales destinados a aliados. Sobrevive a golpes mortales con 1 PV si se activa con más del 50% de PV máx.</string>
+    <string name="boss_flr">JEFE PISO %1$d • 💎 %2$s</string>
+    <string name="dim_floor">DIM %1$d • PISO %2$d • 💎 %3$s</string>
+    <string name="standard_crystals">✦ CRISTALES ESTÁNDAR</string>
+    <string name="mystic_crystals">✧ CRISTALES MÍSTICOS</string>
+    <string name="cost">"Costo: "</string>
+    <string name="purchase">COMPRAR</string>
+    <string name="not_enough_gil">SIN SUFICIENTE GIL</string>
+    <string name="reroll_loot_button">📺 Relanzar botín</string>
+    <string name="set_adventurer">Espíritu del Aventurero</string>
+    <string name="set_lionheart">Guardia del Corazón de León</string>
+    <string name="set_mirage">Ropajes de Espejismo</string>
+    <string name="set_mimic">Mimetismo de Gogo</string>
+    <string name="set_reaper">Sábana del Segador</string>
+    <string name="set_azure">Saber Azur</string>
+    <string name="skill_black_mage_t4_name">Gravedad</string>
+    <string name="skill_black_mage_t4_desc">Aplastante gravedad sobre todos los enemigos, reduciendo 1/6 de sus PV máximos.</string>
 </resources>

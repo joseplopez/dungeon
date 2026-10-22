@@ -1308,4 +1308,22 @@
     <string name="mat_topaz_gem_2_desc">+%2 HP Bonusu</string>
     <string name="mat_topaz_gem_3_desc">+%4 HP Bonusu</string>
     <string name="effect">Etki: %1$s</string>
+    <string name="guts_passive">🛡️ Azim (Pasif)</string>
+    <string name="automatically_intercepts_fatal_attacks">Müttefiklere yöneltilen ölümcül saldırıları otomatik olarak engeller. %50 maks HP üzerindeyken vurulursa 1 HP ile hayatta kalır.</string>
+    <string name="boss_flr">PATRON KAT %1$d • 💎 %2$s</string>
+    <string name="dim_floor">FANTEZİ %1$d • KAT %2$d • 💎 %3$s</string>
+    <string name="standard_crystals">✦ STANDART KRİSTALLER</string>
+    <string name="mystic_crystals">✧ MİSTİK KRİSTALLER</string>
+    <string name="cost">"Maliyet: "</string>
+    <string name="purchase">SATIN AL</string>
+    <string name="not_enough_gil">YETERLİ GİL YOK</string>
+    <string name="reroll_loot_button">📺 Ganimei Yeniden Çek</string>
+    <string name="set_adventurer">Macera Ruhu</string>
+    <string name="set_lionheart">Aslanyürek Muhafızı</string>
+    <string name="set_mirage">Serap Giysileri</string>
+    <string name="set_mimic">Gogo\'nun Taklidi</string>
+    <string name="set_reaper">Azrail Kefeni</string>
+    <string name="set_azure">Gökmavisi İlim</string>
+    <string name="skill_black_mage_t4_name">Yerçekimi</string>
+    <string name="skill_black_mage_t4_desc">Yoğun yerçekimi ile tüm düşmanları ezer, maksimum HP\'lerinin 1/6\'sını eksiltir.</string>
 </resources>

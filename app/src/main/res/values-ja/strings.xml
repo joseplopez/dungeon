@@ -1307,4 +1307,22 @@
     <string name="mat_topaz_gem_2_desc">+2% HPボーナス</string>
     <string name="mat_topaz_gem_3_desc">+4% HPボーナス</string>
     <string name="effect">効果: %1$s</string>
-    </resources>
+    <string name="guts_passive">🛡️ 食いしばり (パッシブ)</string>
+    <string name="automatically_intercepts_fatal_attacks">味方への致命的な攻撃を自動的にかばう。最大HPが50%以上の状態で致死ダメージを受けてもHP1で踏みとどまる。</string>
+    <string name="boss_flr">BOSS %1$d階 • 💎 %2$s</string>
+    <string name="dim_floor">ファンタジー%1$d • %2$d階 • 💎 %3$s</string>
+    <string name="standard_crystals">✦ スタンダードクリスタル</string>
+    <string name="mystic_crystals">✧ ミスティッククリスタル</string>
+    <string name="cost">"コスト: "</string>
+    <string name="purchase">購入</string>
+    <string name="not_enough_gil">ギルが足りません</string>
+    <string name="reroll_loot_button">📺 戦利品を再抽選</string>
+    <string name="set_adventurer">冒険者の精神</string>
+    <string name="set_lionheart">ライオンハートの守護</string>
+    <string name="set_mirage">ミラージュベスト</string>
+    <string name="set_mimic">ゴゴのものまね</string>
+    <string name="set_reaper">死神の装束</string>
+    <string name="set_azure">青の伝承</string>
+    <string name="skill_black_mage_t4_name">グラビデ</string>
+    <string name="skill_black_mage_t4_desc">強大な重力で敵全体を押しつぶし、最大HPの1/6のダメージを与える。</string>
+</resources>

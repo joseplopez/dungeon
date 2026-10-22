@@ -1308,4 +1308,22 @@
     <string name="mat_topaz_gem_2_desc">+২% এইচপি বোনাস</string>
     <string name="mat_topaz_gem_3_desc">+৪% এইচপি বোনাস</string>
     <string name="effect">প্রভাব: %1$s</string>
-    </resources>
+    <string name="guts_passive">🛡️ সাহস (প্যাসিভ)</string>
+    <string name="automatically_intercepts_fatal_attacks">সহযোগীদের জন্য মারাত্মক আক্রমণ স্বয়ংক্রিয়ভাবে প্রতিহত করে। ৫০% সর্বোচ্চ HP-র ওপরে থাকাকালীন আঘাত পেলে ১ HP নিয়ে বেঁচে থাকে।</string>
+    <string name="boss_flr">বস তলা %1$d • 💎 %2$s</string>
+    <string name="dim_floor">ডিম %1$d • তলা %2$d • 💎 %3$s</string>
+    <string name="standard_crystals">✦ মানক ক্রিস্টাল</string>
+    <string name="mystic_crystals">✧ রহস্যময় ক্রিস্টাল</string>
+    <string name="cost">"মূল্য: "</string>
+    <string name="purchase">ক্রয় করুন</string>
+    <string name="not_enough_gil">যথেষ্ট গিল নেই</string>
+    <string name="reroll_loot_button">📺 লুট রিরোল করুন</string>
+    <string name="set_adventurer">অভিযাত্রীর আত্মা</string>
+    <string name="set_lionheart">লায়নহার্ট রক্ষী</string>
+    <string name="set_mirage">মিরাজ পোষাক</string>
+    <string name="set_mimic">গোগোর অনুকরণ</string>
+    <string name="set_reaper">রিপারের কফন</string>
+    <string name="set_azure">অ্যাজুর জ্ঞান</string>
+    <string name="skill_black_mage_t4_name">মহাকর্ষ</string>
+    <string name="skill_black_mage_t4_desc">তীব্র মহাকর্ষ দিয়ে সমস্ত শত্রুকে চূর্ণ করে, তাদের সর্বোচ্চ HP-র ১/৬ ভাগ সরিয়ে দেয়।</string>
+</resources>

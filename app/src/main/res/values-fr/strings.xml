@@ -1308,4 +1308,22 @@
     <string name="mat_topaz_gem_2_desc">+2% Bonus de PV</string>
     <string name="mat_topaz_gem_3_desc">+4% Bonus de PV</string>
     <string name="effect">Effet : %1$s</string>
-    </resources>
+    <string name="guts_passive">🛡️ Cran (Passif)</string>
+    <string name="automatically_intercepts_fatal_attacks">Intercepte automatiquement les attaques fatales destinées aux alliés. Survit aux coups mortels avec 1 PV si activé au-dessus de 50% de PV max.</string>
+    <string name="boss_flr">BOSS ÉTG %1$d • 💎 %2$s</string>
+    <string name="dim_floor">DIM %1$d • ÉTAGE %2$d • 💎 %3$s</string>
+    <string name="standard_crystals">✦ CRISTAUX STANDARD</string>
+    <string name="mystic_crystals">✧ CRISTAUX MYSTIQUES</string>
+    <string name="cost">"Coût : "</string>
+    <string name="purchase">ACHETER</string>
+    <string name="not_enough_gil">PAS ASSEZ DE GILS</string>
+    <string name="reroll_loot_button">📺 Relancer le butin</string>
+    <string name="set_adventurer">Esprit de l\'Aventurier</string>
+    <string name="set_lionheart">Garde Cœur de Lion</string>
+    <string name="set_mirage">Vêtements de Mirage</string>
+    <string name="set_mimic">Mimétisme de Gogo</string>
+    <string name="set_reaper">Sudarium de la Faucheuse</string>
+    <string name="set_azure">Savoir Azur</string>
+    <string name="skill_black_mage_t4_name">Gravité</string>
+    <string name="skill_black_mage_t4_desc">Écrase tous les ennemis avec une gravité intense, réduisant 1/6 de leurs PV maximaux.</string>
+</resources>

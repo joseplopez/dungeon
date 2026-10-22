@@ -1307,4 +1307,22 @@
     <string name="mat_topaz_gem_2_desc">+2% Bonus PV</string>
     <string name="mat_topaz_gem_3_desc">+4% Bonus PV</string>
     <string name="effect">Effetto: %1$s</string>
-    </resources>
+    <string name="guts_passive">🛡️ Grinta (Passiva)</string>
+    <string name="automatically_intercepts_fatal_attacks">Intercetta automaticamente gli attacchi fatali destinati agli alleati. Sopravvive a colpi mortali con 1 PV se attivato con oltre il 50% di PV max.</string>
+    <string name="boss_flr">BOSS PIANO %1$d • 💎 %2$s</string>
+    <string name="dim_floor">DIM %1$d • PIANO %2$d • 💎 %3$s</string>
+    <string name="standard_crystals">✦ CRISTALLI STANDARD</string>
+    <string name="mystic_crystals">✧ CRISTALLI MISTICI</string>
+    <string name="cost">"Costo: "</string>
+    <string name="purchase">ACQUISTA</string>
+    <string name="not_enough_gil">GIL INSUFFICIENTI</string>
+    <string name="reroll_loot_button">📺 Rilancia bottino</string>
+    <string name="set_adventurer">Spirito dell\'Avventuriero</string>
+    <string name="set_lionheart">Guardia Cuor di Leone</string>
+    <string name="set_mirage">Vesti di Miraggio</string>
+    <string name="set_mimic">Mimetismo di Gogo</string>
+    <string name="set_reaper">Sdraio del Mietitore</string>
+    <string name="set_azure">Sapienza Azzurra</string>
+    <string name="skill_black_mage_t4_name">Gravità</string>
+    <string name="skill_black_mage_t4_desc">Schiaccia tutti i nemici con un\'intensa gravità, rimuovendo 1/6 dei loro PV massimi.</string>
+</resources>

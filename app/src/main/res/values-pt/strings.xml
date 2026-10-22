@@ -1308,4 +1308,22 @@
     <string name="mat_topaz_gem_2_desc">+2% Bônus de PV</string>
     <string name="mat_topaz_gem_3_desc">+4% Bônus de PV</string>
     <string name="effect">Efeito: %1$s</string>
+    <string name="guts_passive">🛡️ Garra (Passiva)</string>
+    <string name="automatically_intercepts_fatal_attacks">Intercepta automaticamente ataques fatais destinados a aliados. Sobrevive a golpes mortais com 1 PV se ativado acima de 50% do PV máx.</string>
+    <string name="boss_flr">CHEFE AND %1$d • 💎 %2$s</string>
+    <string name="dim_floor">DIM %1$d • ANDAR %2$d • 💎 %3$s</string>
+    <string name="standard_crystals">✦ CRISTAIS PADRÃO</string>
+    <string name="mystic_crystals">✧ CRISTAIS MÍSTICOS</string>
+    <string name="cost">"Custo: "</string>
+    <string name="purchase">COMPRAR</string>
+    <string name="not_enough_gil">GIL INSUFICIENTE</string>
+    <string name="reroll_loot_button">📺 Reroll do Saque</string>
+    <string name="set_adventurer">Espírito do Aventureiro</string>
+    <string name="set_lionheart">Guarda Coração de Leão</string>
+    <string name="set_mirage">Trajes de Espejismo</string>
+    <string name="set_mimic">Mimetismo de Gogo</string>
+    <string name="set_reaper">Sudário do Ceifador</string>
+    <string name="set_azure">Saber Azul</string>
+    <string name="skill_black_mage_t4_name">Gravidade</string>
+    <string name="skill_black_mage_t4_desc">Esmaga todos os inimigos com gravidade intensa, removendo 1/6 do seu PV máximo.</string>
 </resources>

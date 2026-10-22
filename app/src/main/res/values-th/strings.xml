@@ -1308,4 +1308,22 @@
     <string name="mat_topaz_gem_2_desc">+2% โบนัส HP</string>
     <string name="mat_topaz_gem_3_desc">+4% โบนัส HP</string>
     <string name="effect">ผล: %1$s</string>
+    <string name="guts_passive">🛡️ ไม่ยอมแพ้ (พาสซีฟ)</string>
+    <string name="automatically_intercepts_fatal_attacks">สกัดกั้นการโจมตีที่รุนแรงถึงชีวิตที่มุ่งเป้าไปที่พันธมิตรโดยอัตโนมัติ รอดพ้นจากการโจมตีถึงชีวิตด้วย HP 1 หากถูกโจมตีขณะมี HP สูงกว่า 50%</string>
+    <string name="boss_flr">บอส ชั้น %1$d • 💎 %2$s</string>
+    <string name="dim_floor">แฟนตาซี %1$d • ชั้น %2$d • 💎 %3$s</string>
+    <string name="standard_crystals">✦ คริสตัลมาตรฐาน</string>
+    <string name="mystic_crystals">✧ คริสตัลลึกลับ</string>
+    <string name="cost">"ราคา: "</string>
+    <string name="purchase">ซื้อ</string>
+    <string name="not_enough_gil">กิลไม่เพียงพอ</string>
+    <string name="reroll_loot_button">📺 สุ่มของรางวัลใหม่</string>
+    <string name="set_adventurer">วิญญาณแห่งนักผจญภัย</string>
+    <string name="set_lionheart">ยามหัวใจราชสีห์</string>
+    <string name="set_mirage">อาภรณ์ภาพลวงตา</string>
+    <string name="set_mimic">การเลียนแบบของโกโก้</string>
+    <string name="set_reaper">ผ้าห่อศพของยมทูต</string>
+    <string name="set_azure">ตำนานสีคราม</string>
+    <string name="skill_black_mage_t4_name">กราวิตี้</string>
+    <string name="skill_black_mage_t4_desc">บดขยี้ศัตรูทั้งหมดด้วยแรงดึงดูดมหาศาล ลด HP สูงสุดลง 1/6</string>
 </resources>

@@ -1307,5 +1307,23 @@
     <string name="mat_topaz_gem_2_desc">+2% Bonasi ya HP</string>
     <string name="mat_topaz_gem_3_desc">+4% Bonasi ya HP</string>
     <string name="effect">Athari: %1$s</string>
+    <string name="guts_passive">🛡️ Ujasiri (Msimamo)</string>
+    <string name="automatically_intercepts_fatal_attacks">Huzuia kiatomati mashambulizi ya mauti kwa wenzake. Hunusurika pigo la mauti na HP 1 ikipigwa ikiwa juu ya 50% ya HP kuu.</string>
+    <string name="boss_flr">BOSI GHO %1$d • 💎 %2$s</string>
+    <string name="dim_floor">DIM %1$d • GHOROFA %2$d • 💎 %3$s</string>
+    <string name="standard_crystals">✦ VIOO VYA KAWAIDA</string>
+    <string name="mystic_crystals">✧ VIOO VYA AJABU</string>
+    <string name="cost">"Gharama: "</string>
+    <string name="purchase">NUNUA</string>
+    <string name="not_enough_gil">GIL HAIJATOSHA</string>
+    <string name="reroll_loot_button">📺 Geuza Nyara tena</string>
+    <string name="set_adventurer">Roho ya Mvumbuzi</string>
+    <string name="set_lionheart">Mlinzi wa Moyo wa Simba</string>
+    <string name="set_mirage">Mavazi ya Mazingaombwe</string>
+    <string name="set_mimic">Uigizaji wa Gogo</string>
+    <string name="set_reaper">Sanda ya Mvunaji</string>
+    <string name="set_azure">Maarifa ya Bluu</string>
+    <string name="skill_black_mage_t4_name">Mvuto wa Ardhi</string>
+    <string name="skill_black_mage_t4_desc">Huponda maadui wote kwa mvuto mkubwa, ukiondoa 1/6 ya HP yao kuu.</string>
 </resources>
 

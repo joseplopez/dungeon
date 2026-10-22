@@ -1308,4 +1308,22 @@
     <string name="mat_topaz_gem_2_desc">+2% К бонусу ЗДР</string>
     <string name="mat_topaz_gem_3_desc">+4% К бонусу ЗДР</string>
     <string name="effect">Эффект: %1$s</string>
+    <string name="guts_passive">🛡️ Стойкость (Пассивно)</string>
+    <string name="automatically_intercepts_fatal_attacks">Автоматически перехватывает смертельные атаки, предназначенные союзникам. Выживает с 1 ЗДР при смертельном ударе, если ЗДР выше 50%.</string>
+    <string name="boss_flr">БОСС ЭТАЖ %1$d • 💎 %2$s</string>
+    <string name="dim_floor">ИЗМ %1$d • ЭТАЖ %2$d • 💎 %3$s</string>
+    <string name="standard_crystals">✦ СТАНДАРТНЫЕ КРИСТАЛЛЫ</string>
+    <string name="mystic_crystals">✧ МИСТИЧЕСКИЕ КРИСТАЛЛЫ</string>
+    <string name="cost">"Цена: "</string>
+    <string name="purchase">КУПИТЬ</string>
+    <string name="not_enough_gil">НЕДОСТАТОЧНО ГИЛ</string>
+    <string name="reroll_loot_button">📺 Перебросить добычу</string>
+    <string name="set_adventurer">Дух авантюриста</string>
+    <string name="set_lionheart">Страж Львиного Сердца</string>
+    <string name="set_mirage">Одеяния миража</string>
+    <string name="set_mimic">Мимикрия Гого</string>
+    <string name="set_reaper">Саван Жнеца</string>
+    <string name="set_azure">Лазурное знание</string>
+    <string name="skill_black_mage_t4_name">Гравитация</string>
+    <string name="skill_black_mage_t4_desc">Сокрушает всех врагов мощной гравитацией, отнимая 1/6 от их максимального ЗДР.</string>
 </resources>

@@ -1308,4 +1308,22 @@
     <string name="mat_topaz_gem_2_desc">+2% KP-Bonus</string>
     <string name="mat_topaz_gem_3_desc">+4% KP-Bonus</string>
     <string name="effect">Effekt: %1$s</string>
-    </resources>
+    <string name="guts_passive">🛡️ Stehvermögen (Passiv)</string>
+    <string name="automatically_intercepts_fatal_attacks">Fängt tödliche Angriffe auf Verbündete automatisch ab. Überlebt tödliche Treffer mit 1 KP, wenn über 50% max. KP.</string>
+    <string name="boss_flr">BOSS EBN %1$d • 💎 %2$s</string>
+    <string name="dim_floor">DIM %1$d • EBENE %2$d • 💎 %3$s</string>
+    <string name="standard_crystals">✦ STANDARD-KRISTALLE</string>
+    <string name="mystic_crystals">✧ MYSTISCHE KRISTALLE</string>
+    <string name="cost">"Kosten: "</string>
+    <string name="purchase">KAUFEN</string>
+    <string name="not_enough_gil">NICHT GENUG GIL</string>
+    <string name="reroll_loot_button">📺 Beute neu würfeln</string>
+    <string name="set_adventurer">Geist des Abenteurers</string>
+    <string name="set_lionheart">Löwenherz-Wache</string>
+    <string name="set_mirage">Trugbild-Gewand</string>
+    <string name="set_mimic">Gogos Nachahmung</string>
+    <string name="set_reaper">Gewand des Schnitters</string>
+    <string name="set_azure">Azurblaues Wissen</string>
+    <string name="skill_black_mage_t4_name">Gravitation</string>
+    <string name="skill_black_mage_t4_desc">Zermalmt alle Gegner mit intensiver Schwerkraft und zieht 1/6 ihrer maximalen KP ab.</string>
+</resources>
