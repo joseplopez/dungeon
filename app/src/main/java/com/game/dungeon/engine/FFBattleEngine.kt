@@ -77,8 +77,13 @@ class FFBattleEngine(private val context: Context) {
                     relicBonuses = relicBonuses,
                     dimension = dimension
                 )
-                // Exponential difficulty: 100x base, + 10% compounding increase per floor
-                val diffMult = 100.0 * pow(1.10, (currentFloor - 1).toDouble())
+
+                // Hardcore Quadratic Difficulty
+                // Floor 1: ~55x multiplier
+                // Floor 100: ~5,500x multiplier
+                // Floor 200: ~21,000x multiplier
+                val f = currentFloor.toDouble()
+                val diffMult = 50.0 + (f * 5.0) + (f * f * 0.5)
 
                 val scaledHp = (rawBoss.maxHp * diffMult).toLong().coerceAtMost(Long.MAX_VALUE)
                 val scaledAtk = (rawBoss.attack * diffMult).toLong().coerceAtMost(Long.MAX_VALUE)
@@ -1581,9 +1586,13 @@ class FFBattleEngine(private val context: Context) {
         val isCrit = Random.nextInt(100) < attacker.critChance
         val critMult = 1.0f + (attacker.critDamage / 100f)
         val totalAtk = attacker.attack.toDouble()
-        val defK = 500f + target.floor * 2.0
-        val mitigation =
-            (target.defense.toDouble() / (target.defense.toDouble() + defK)).coerceAtMost(0.85)
+
+        // Added quadratic tail for high floors so monsters actually mitigate damage
+        val f = target.floor.toDouble()
+        val quadDefK = if (f > 200) ((f - 200) / 20.0) * ((f - 200) / 20.0) * 0.5 else 0.0
+        val defK = 500.0 + (f * 2.0) + quadDefK
+
+        val mitigation = (target.defense.toDouble() / (target.defense.toDouble() + defK)).coerceAtMost(0.85)
         val baseDmg = maxOf(1.toDouble(), totalAtk * (1 - mitigation) + Random.nextInt(-2, 3))
         val finalDmg = if (isCrit) (baseDmg * critMult).toLong() else baseDmg.toLong()
         return finalDmg to isCrit
@@ -1593,11 +1602,13 @@ class FFBattleEngine(private val context: Context) {
         val isCrit = Random.nextInt(100) < (attacker.critChance / 2)
         val critMult = 1.0 + (attacker.critDamage / 100.0)
         val totalMag = attacker.magic.toDouble() * 1.5
-        val mdefK = 400 + target.floor * 1.5
-        val mitigation =
-            (target.magicDefense.toDouble() / (target.magicDefense.toDouble() + mdefK)).coerceAtMost(
-                0.85
-            )
+
+        // Added quadratic tail for high floors
+        val f = target.floor.toDouble()
+        val quadMDefK = if (f > 200) ((f - 200) / 20.0) * ((f - 200) / 20.0) * 0.5 else 0.0
+        val mdefK = 400.0 + (f * 1.5) + quadMDefK
+
+        val mitigation = (target.magicDefense.toDouble() / (target.magicDefense.toDouble() + mdefK)).coerceAtMost(0.85)
         val baseDmg = maxOf(1.toDouble(), totalMag * (1 - mitigation) + Random.nextInt(-2, 3))
         val finalDmg = if (isCrit) (baseDmg * critMult).toLong() else baseDmg.toLong()
         return finalDmg to isCrit
@@ -1628,14 +1639,16 @@ class FFBattleEngine(private val context: Context) {
 
         // Helper function to calculate damage against a specific defender's stats
         fun calculateDamageFor(defender: Hero): Pair<Long, Boolean> {
-            val k = 150f + enemy.floor * 0.8f
-            val mitigation =
-                (defender.defense.toFloat() / (defender.defense.toFloat() + k)).coerceAtMost(0.85f)
-            val isCrit =
-                Random.nextInt(100) < (if (enemy.isBoss) 20 else if (enemy.floor >= 200) 10 else 0)
-            val critMult = if (isCrit) 1.5f else 1.0f
-            val rawDmg = maxOf(1f, (enemy.attack.toFloat() + Random.nextInt(-2, 3)) * critMult)
-            val dmg = maxOf(1, (rawDmg * (1f - mitigation)).toLong())
+            val f = enemy.floor.toDouble()
+            // Added quadratic tail so Mythic Gear doesn't make heroes instantly immortal
+            val quadK = if (f > 200) ((f - 200) / 20.0) * ((f - 200) / 20.0) * 0.5 else 0.0
+            val k = 150.0 + (f * 0.8) + quadK
+
+            val mitigation = (defender.defense.toDouble() / (defender.defense.toDouble() + k)).coerceAtMost(0.85)
+            val isCrit = Random.nextInt(100) < (if (enemy.isBoss) 20 else if (enemy.floor >= 200) 10 else 0)
+            val critMult = if (isCrit) 1.5 else 1.0
+            val rawDmg = maxOf(1.0, (enemy.attack.toDouble() + Random.nextInt(-2, 3)) * critMult)
+            val dmg = maxOf(1, (rawDmg * (1.0 - mitigation)).toLong())
             return dmg to isCrit
         }
 

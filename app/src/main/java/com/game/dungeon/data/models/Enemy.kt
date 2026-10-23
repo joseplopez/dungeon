@@ -63,9 +63,21 @@ data class Enemy(
             val baseAtk = 7.0 + floor.toDouble() * 2.1
             val baseDef = 1.0 + floor.toDouble() / 2.5
 
-            val floorHpBonus = if (floor > 200) Math.pow((floor - 200).toDouble() / 15.0, 1.25) * 8.0 else 0.0
-            val floorAtkBonus = if (floor > 200) Math.pow((floor - 200).toDouble() / 20.0, 1.20) * 1.8 else 0.0
-            val floorDefBonus = if (floor > 200) Math.pow((floor - 200).toDouble() / 25.0, 1.18) * 1.0 else 0.0
+            // True quadratic scaling for high floors (Floors > 200) to match Gear/Hero curves
+            val floorHpBonus = if (floor > 200) {
+                val scaledFloor = (floor - 200).toDouble() / 5.0 // Steepened HP curve
+                scaledFloor * scaledFloor * 1.5
+            } else 0.0
+
+            val floorAtkBonus = if (floor > 200) {
+                val scaledFloor = (floor - 200).toDouble() / 15.0 // Steepened ATK curve
+                scaledFloor * scaledFloor * 1.2
+            } else 0.0
+
+            val floorDefBonus = if (floor > 200) {
+                val scaledFloor = (floor - 200).toDouble() / 20.0 // Steepened DEF curve
+                scaledFloor * scaledFloor * 0.8
+            } else 0.0
 
             val rawHp = (baseHp + floorHpBonus) * template.hpMult * mobHpBonus * difficultyMult * totalDimMult * floorRamp * bossLateGameDampener
             val rawAtk = (baseAtk + floorAtkBonus) * template.atkMult * globalAtkBoost * difficultyMult * totalDimMult * floorRamp * bossLateGameDampener
