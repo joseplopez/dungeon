@@ -111,7 +111,10 @@ data class GameState(
 
     // Mastery Helpers
     fun getMasteryLevel(heroClass: HeroClass): Int = jobMasteryLevels[heroClass] ?: 0
-    fun getMasteryBonus(heroClass: HeroClass): Int = getMasteryLevel(heroClass) * heroClass.masteryBonusPerLevel
+    fun getMasteryBonus(heroClass: HeroClass): Long {
+        val level = getMasteryLevel(heroClass)
+        return RelicBonuses.calculateMasteryBonus(level, heroClass.masteryBonusPerLevel)
+    }
     fun getMasteryExp(heroClass: HeroClass): Int = jobMasteryExp[heroClass] ?: 0
     fun getMasteryNextLevelExp(heroClass: HeroClass): Int = (getMasteryLevel(heroClass) + 1) * 100
 

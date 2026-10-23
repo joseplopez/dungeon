@@ -30,6 +30,7 @@ import androidx.navigation.NavController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import com.game.dungeon.R
 import com.game.dungeon.data.models.GameState
+import com.game.dungeon.data.models.RelicBonuses
 import com.game.dungeon.data.models.RelicType
 import com.game.dungeon.ui.components.*
 import com.game.dungeon.ui.theme.*
@@ -692,15 +693,18 @@ fun getRelicLevel(relicType: RelicType, gs: GameState): Int {
 
 fun getRelicBonusValue(relicType: RelicType, level: Int): Long {
     return when (relicType) {
-        RelicType.ATTACK -> level * 2L
-        RelicType.HP -> level * 15L
-        RelicType.MP -> level * 10L
-        RelicType.MAGIC -> level * 2L
-        RelicType.DEFENSE -> level * 2L
+        RelicType.ATTACK -> RelicBonuses.calculateRelicStat(level, 5.0, 0.2).toLong()
+        RelicType.HP -> RelicBonuses.calculateRelicStat(level, 25.0, 1.4).toLong()
+        RelicType.MP -> RelicBonuses.calculateRelicStat(level, 1.0, 0.023).toLong()
+        RelicType.MAGIC -> RelicBonuses.calculateRelicStat(level, 5.0, 0.2).toLong()
+        RelicType.DEFENSE -> RelicBonuses.calculateRelicStat(level, 4.0, 0.16).toLong()
+
         RelicType.GOLD -> level * 5L
         RelicType.MAGICITE_FIND -> level.toLong()
         RelicType.CRIT_CHANCE -> level.toLong()
-        RelicType.CRIT_DAMAGE -> level * 5L
+
+        RelicType.CRIT_DAMAGE -> RelicBonuses.calculateRelicStat(level, 0.5, 0.005).toLong()
+
         RelicType.MAGNET -> level * 5L
         RelicType.POCKETS -> level * 10L
         RelicType.DOUBLE_LOOT -> level * 5L

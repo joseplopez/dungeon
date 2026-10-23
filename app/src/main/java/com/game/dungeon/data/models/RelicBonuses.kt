@@ -40,16 +40,9 @@ data class RelicBonuses(
 
     fun getMasteryBonus(heroClass: HeroClass, stat: StatType): Long {
         val level = getMasteryLevel(heroClass)
-        if (level <= 0 || heroClass.masteryStatType != stat) return 0L
+        if (heroClass.masteryStatType != stat) return 0L
 
-        // Rebalanced hybrid scaling:
-        // Early levels grow nicely, but high levels (100+) scale quadratically/linearly to thousands/millions
-        val basePerLevel = heroClass.masteryBonusPerLevel.toDouble()
-
-        // Example curve: Linear component + quadratic tail for late-game scaling
-        val bonus = (level * basePerLevel) + (level * level * 2.5)
-
-        return bonus.toLong()
+        return calculateMasteryBonus(level, heroClass.masteryBonusPerLevel)
     }
 
     val petItemFindBonus: Float get() = if (selectedPet == PetType.CHOCOBO) PetType.CHOCOBO.bonusValue else 0f
@@ -63,23 +56,71 @@ data class RelicBonuses(
     }
 
     companion object {
-        fun from(gs: GameState, codexBonuses: CodexBonuses = CodexBonuses()): RelicBonuses {
-            // Apply Log-Linear Hybrid scaling: logFactor * ln(level + 1) + linearFactor * level
-            // This grants fast early growth that flattens out, but maintains a steady infinite tail.
+        /**
+         * Global Relic Stat Calculator
+         */
+        fun calculateRelicStat(level: Int, linearFactor: Double, quadraticFactor: Double): Double {
+            if (level <= 0) return 0.0
+            val lvl = level.toDouble()
+            return (lvl * linearFactor) + (lvl * lvl * quadraticFactor)
+        }
 
+        /**
+         * Global Mastery Stat Calculator
+         */
+        /**
+         * Global Mastery Stat Calculator
+         * Uses a linear curve for levels 1-50.
+         * Past level 50, triggers a massive quadratic curve scaled by the job's base multiplier.
+         */
+        /**
+         * Global Mastery Stat Calculator
+         * Early game (1-50): Enhanced linear curve (2.5x base).
+         * Endgame (50+): Aggressive quadratic curve scaled by 3.75x to hit 1M+ HP at lvl 166.
+         */
+        fun calculateMasteryBonus(level: Int, basePerLevel: Int): Long {
+            if (level <= 0) return 0L
+
+            val lvl = level.toDouble()
+            val baseMult = basePerLevel.toDouble()
+
+            // Early/Mid game rhythm remains untouched
+            val linearBoost = lvl * baseMult * 2.5
+
+            // Endgame quadratic explosion scaled to reach 1,000,000 HP
+            val quadraticBoost = if (lvl > 50) {
+                (lvl - 50.0) * (lvl - 50.0) * baseMult * 3.75
+            } else {
+                0.0
+            }
+
+            return (linearBoost + quadraticBoost).toLong()
+        }
+        fun from(gs: GameState, codexBonuses: CodexBonuses = CodexBonuses()): RelicBonuses {
             return RelicBonuses(
-                attackBonus = (calculateHybridRelicBonus(gs.attackRelic, logFactor = 400.0, linearFactor = 8.0) * (1f + codexBonuses.attackMultiplierBonus)).toLong(),
-                hpBonus = calculateHybridRelicBonus(gs.hpRelic, logFactor = 2500.0, linearFactor = 50.0).toLong(),
-                mpBonus = calculateHybridRelicBonus(gs.mpRelic, logFactor = 50.0, linearFactor = 1.0).toLong(),
-                magicBonus = calculateHybridRelicBonus(gs.magicRelic, logFactor = 400.0, linearFactor = 8.0).toLong(),
-                defenseBonus = calculateHybridRelicBonus(gs.defenseRelic, logFactor = 300.0, linearFactor = 6.0).toLong(),
+                // Target ~2,500 ATK/MAG at Level 100
+                attackBonus = (calculateRelicStat(gs.attackRelic, linearFactor = 5.0, quadraticFactor = 0.2) * (1f + codexBonuses.attackMultiplierBonus)).toLong(),
+                magicBonus = calculateRelicStat(gs.magicRelic, linearFactor = 5.0, quadraticFactor = 0.2).toLong(),
+
+                // Target ~16,500 HP at Level 100
+                hpBonus = calculateRelicStat(gs.hpRelic, linearFactor = 25.0, quadraticFactor = 1.4).toLong(),
+
+                // Target ~330 MP at Level 100
+                mpBonus = calculateRelicStat(gs.mpRelic, linearFactor = 1.0, quadraticFactor = 0.023).toLong(),
+
+                // Target ~2,000 DEF at Level 100
+                defenseBonus = calculateRelicStat(gs.defenseRelic, linearFactor = 4.0, quadraticFactor = 0.16).toLong(),
+
                 goldMultiplier = (1f + gs.goldRelic * 0.05f) + (if (gs.selectedPet == PetType.CAT) PetType.CAT.bonusValue else 0f) + codexBonuses.goldMultiplierBonus,
                 magiciteChanceBonus = gs.magiciteRelic * 0.01f + codexBonuses.magiciteChanceBonus,
                 expMultiplier = gs.expMultiplier,
                 itemStatBonus = gs.itemStatBonus,
                 magicShopLevel = gs.magicShopLevel,
                 critChanceBonus = gs.critChanceRelic + codexBonuses.critChanceBonus,
-                critDamageBonus = calculateHybridRelicBonus(gs.critDamageRelic, logFactor = 25.0, linearFactor = 0.5).toLong(),
+
+                // Crit Damage kept mostly linear to prevent multiplier explosion
+                critDamageBonus = calculateRelicStat(gs.critDamageRelic, linearFactor = 0.5, quadraticFactor = 0.005).toLong(),
+
                 magnetBonus = gs.magnetBonus,
                 pocketsBonus = gs.pocketsBonus,
                 doubleLootChance = gs.doubleLootChance,
@@ -96,23 +137,6 @@ data class RelicBonuses(
             )
         }
     }
+
 }
 
-/**
- * Calculates a Log-Linear Hybrid stat curve.
- * @param level The current level of the relic.
- * @param logFactor Controls the massive early-game spike.
- * @param linearFactor Controls the infinite endgame scaling (+X per level).
- */
-private fun calculateHybridRelicBonus(level: Int, logFactor: Double, linearFactor: Double): Double {
-    if (level <= 0) return 0.0
-    val lvl = level.toDouble()
-
-    // 1. The Logarithmic curve (Fast early growth, hits a soft cap)
-    val logBoost = kotlin.math.ln(lvl + 1.0) * logFactor
-
-    // 2. The Linear tail (Slow, infinite steady growth so upgrades always matter)
-    val linearBoost = lvl * linearFactor
-
-    return logBoost + linearBoost
-}

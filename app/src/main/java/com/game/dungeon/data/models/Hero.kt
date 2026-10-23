@@ -200,13 +200,14 @@ class Hero(
     val baseMaxHp: Long get() {
         if (heroClass == HeroClass.ONION_KNIGHT) {
             return if (level < 30) heroClass.baseHp + (level - 1L) * 2L
-            // Onion Knight: 3000x multiplier past lvl 30
             else 1000L + ((level - 30L) * (level - 30L) * 3000L)
         }
-        // Standard Hero: 85x multiplier hits ~300k HP at Level 60
-        return heroClass.baseHp +
-                (level - 1L) * (heroClass.baseHp / 4).coerceAtLeast(12) +
-                ((level - 1L) * (level - 1L) * 85L)
+
+        val linearGrowth = (level - 1L) * (heroClass.baseHp / 5).coerceAtLeast(10)
+        // Multiplier increased to 555 to hit ~500k HP at Level 60
+        val quadraticGrowth = if (level > 30) ((level - 30L) * (level - 30L) * 555L) else 0L
+
+        return heroClass.baseHp + linearGrowth + quadraticGrowth
     }
 
     val baseMaxMp: Long get() {
@@ -214,22 +215,24 @@ class Hero(
             return if (level < 30) heroClass.baseMp + (level - 1L)
             else 200L + ((level - 30L) * (level - 30L) * 300L)
         }
-        // Standard Hero MP
-        return heroClass.baseMp +
-                (level - 1L) * (heroClass.baseMp / 10).coerceAtLeast(2) +
-                ((level - 1L) * (level - 1L) * 10L)
+
+        val linearGrowth = (level - 1L) * (heroClass.baseMp / 10).coerceAtLeast(2)
+        val quadraticGrowth = if (level > 30) ((level - 30L) * (level - 30L) * 65L) else 0L
+
+        return heroClass.baseMp + linearGrowth + quadraticGrowth
     }
 
     val baseAttack: Long get() {
         if (heroClass == HeroClass.ONION_KNIGHT) {
             return if (level < 30) heroClass.baseAttack + (level - 1L)
-            // Onion Knight: 300x multiplier
             else 100L + ((level - 30L) * (level - 30L) * 300L)
         }
-        // Standard Hero: 8x multiplier hits ~28k ATK at Level 60
-        return heroClass.baseAttack +
-                (level - 1L) * (heroClass.baseAttack / 5).coerceAtLeast(2) +
-                ((level - 1L) * (level - 1L) * 8L)
+
+        val linearGrowth = (level - 1L) * (heroClass.baseAttack / 6).coerceAtLeast(2)
+        // Scaled to 50 to keep ATK relevant against deep dungeon bosses
+        val quadraticGrowth = if (level > 30) ((level - 30L) * (level - 30L) * 50L) else 0L
+
+        return heroClass.baseAttack + linearGrowth + quadraticGrowth
     }
 
     val baseMagic: Long get() {
@@ -237,9 +240,11 @@ class Hero(
             return if (level < 30) heroClass.baseMagic + (level - 1L)
             else 100L + ((level - 30L) * (level - 30L) * 300L)
         }
-        return heroClass.baseMagic +
-                (level - 1L) * (heroClass.baseMagic / 5).coerceAtLeast(2) +
-                ((level - 1L) * (level - 1L) * 8L)
+
+        val linearGrowth = (level - 1L) * (heroClass.baseMagic / 6).coerceAtLeast(2)
+        val quadraticGrowth = if (level > 30) ((level - 30L) * (level - 30L) * 50L) else 0L
+
+        return heroClass.baseMagic + linearGrowth + quadraticGrowth
     }
 
     val baseDefense: Long get() {
@@ -247,9 +252,11 @@ class Hero(
             return if (level < 30) heroClass.baseDefense + (level - 1L)
             else 100L + ((level - 30L) * (level - 30L) * 300L)
         }
-        return heroClass.baseDefense +
-                (level - 1L) * (heroClass.baseDefense / 5).coerceAtLeast(2) +
-                ((level - 1L) * (level - 1L) * 8L)
+
+        val linearGrowth = (level - 1L) * (heroClass.baseDefense / 6).coerceAtLeast(2)
+        val quadraticGrowth = if (level > 30) ((level - 30L) * (level - 30L) * 50L) else 0L
+
+        return heroClass.baseDefense + linearGrowth + quadraticGrowth
     }
 
     val maxHp: Long get() = baseMaxHp + hpBonus
