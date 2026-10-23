@@ -949,12 +949,17 @@ fun EnemyUnitDisplay(enemy: Enemy, isHit: Boolean, isCritical: Boolean, isBoss: 
         modifier = Modifier.offset(x = shakeOffset.value.dp)
     ) {
         if (isBoss) {
-            Text(enemy.name, style = PixelHeading, color = EnemyRed, maxLines = 1, overflow = TextOverflow.Ellipsis)
+            Text(
+                text = enemy.name,
+                style = PixelHeading,
+                color = EnemyRed,
+                textAlign = TextAlign.Center // Centers multi-line text
+            )
             PixelHpBar(enemy.currentHp, enemy.maxHp, Modifier.width(100.dp))
         } else {
             PixelHpBar(enemy.currentHp, enemy.maxHp, Modifier.width(48.dp))
         }
-        
+
         Box(Modifier.size(if (isBoss) 96.dp else 72.dp)) {
             val flashAlpha = remember { Animatable(0f) }
             val scope = rememberCoroutineScope()
@@ -991,7 +996,12 @@ fun EnemyUnitDisplay(enemy: Enemy, isHit: Boolean, isCritical: Boolean, isBoss: 
             }
         }
         if (!isBoss) {
-            Text(enemy.name, style = PixelSmall, color = EnemyRed, maxLines = 1, overflow = TextOverflow.Ellipsis)
+            Text(
+                text = enemy.name,
+                style = PixelSmall,
+                color = EnemyRed,
+                textAlign = TextAlign.Center // Centers multi-line text
+            )
         }
     }
 }
@@ -1164,8 +1174,8 @@ fun RunCompleteOverlay(
     materialsEarned: Map<String, Int> = emptyMap(),
     originalPartySize: Int,
     isPermadeathProtected: Boolean = false,
-    hasRerolledLoot: Boolean = false, 
-    onRerollLoot: () -> Unit,         
+    hasRerolledLoot: Boolean = false,
+    onRerollLoot: () -> Unit,
     onReturn: () -> Unit
 ) {
     val scrollState = rememberScrollState()
@@ -1219,35 +1229,63 @@ fun RunCompleteOverlay(
                     horizontalAlignment = CenterHorizontally,
                     verticalArrangement = Arrangement.Center
                 ) {
-                    PixelPanel(Modifier.padding(8.dp), borderColor = GoldDark) {
+                    PixelPanel(Modifier.fillMaxWidth().padding(vertical = 8.dp), borderColor = GoldDark) {
                         Column(
-                            Modifier.padding(16.dp),
+                            Modifier.padding(16.dp).fillMaxWidth(),
                             horizontalAlignment = CenterHorizontally,
-                            verticalArrangement = Arrangement.spacedBy(8.dp)
+                            verticalArrangement = Arrangement.spacedBy(24.dp)
                         ) {
-                            Text(safeStringResource(R.string.earned_rewards), style = PixelHeading, color = GoldBright)
-                            Spacer(Modifier.height(8.dp))
-                            
-                            Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                                Text("🪙", fontSize = 24.sp)
-                                Column {
-                                    Text(formatGold(gilEarnedThisRun), style = PixelTitle, color = GoldBright)
-                                    Text(safeStringResource(R.string.currency_gil), style = PixelSmall, color = GoldDark)
-                                }
-                                if (gilLostToPenalty > 0) {
-                                    Spacer(Modifier.width(8.dp))
-                                    Column(horizontalAlignment = CenterHorizontally) {
-                                        Text("-${formatGold(gilLostToPenalty)}", style = PixelHeading, color = EnemyRed)
-                                        Text(safeStringResource(R.string.wipe_penalty), style = PixelSmall, color = EnemyRed)
+                            Text(
+                                safeStringResource(R.string.earned_rewards),
+                                style = PixelHeading,
+                                color = GoldBright,
+                                textAlign = TextAlign.Center
+                            )
+
+                            // Wrap the rows in an inner Column so their left edges align perfectly
+                            Column(
+                                verticalArrangement = Arrangement.spacedBy(16.dp),
+                                horizontalAlignment = Alignment.Start
+                            ) {
+                                // Combined Gil and Penalty Row
+                                Row(
+                                    verticalAlignment = CenterVertically
+                                ) {
+                                    Box(Modifier.width(32.dp), contentAlignment = Center) {
+                                        Text("🪙", fontSize = 24.sp)
+                                    }
+                                    Spacer(Modifier.width(12.dp))
+                                    Column {
+                                        Text(formatGold(gilEarnedThisRun), style = PixelHeading, color = GoldBright, maxLines = 1)
+                                        Text(safeStringResource(R.string.currency_gil), style = PixelSmall, color = GoldDark)
+                                    }
+
+                                    // Penalty appears inline to the right
+                                    if (gilLostToPenalty > 0) {
+                                        Spacer(Modifier.width(16.dp))
+                                        Box(Modifier.width(24.dp), contentAlignment = Center) {
+                                            Text("💀", fontSize = 16.sp)
+                                        }
+                                        Spacer(Modifier.width(8.dp))
+                                        Column {
+                                            Text("-${formatGold(gilLostToPenalty)}", style = PixelBody, color = EnemyRed, maxLines = 1)
+                                            Text(safeStringResource(R.string.wipe_penalty), style = PixelSmall, color = EnemyRed)
+                                        }
                                     }
                                 }
-                            }
-                            
-                            Row(verticalAlignment = CenterVertically, horizontalArrangement = Arrangement.spacedBy(12.dp)) {
-                                Text("💎", fontSize = 24.sp)
-                                Column {
-                                    Text(formatMagicite(magiciteEarnedThisRun), style = PixelTitle, color = Color(0xFFAA44FF))
-                                    Text(safeStringResource(R.string.currency_magicite), style = PixelSmall, color = GoldDark)
+
+                                // Magicite Row
+                                Row(
+                                    verticalAlignment = CenterVertically
+                                ) {
+                                    Box(Modifier.width(32.dp), contentAlignment = Center) {
+                                        Text("💎", fontSize = 24.sp)
+                                    }
+                                    Spacer(Modifier.width(12.dp))
+                                    Column {
+                                        Text(formatMagicite(magiciteEarnedThisRun), style = PixelHeading, color = Color(0xFFAA44FF), maxLines = 1)
+                                        Text(safeStringResource(R.string.currency_magicite), style = PixelSmall, color = GoldDark)
+                                    }
                                 }
                             }
                         }
@@ -1352,27 +1390,30 @@ fun RunCompleteOverlay(
 
             Spacer(Modifier.height(16.dp))
 
-            if (!hasRerolledLoot) {
+            // Updated Bottom Buttons Layout
+            Row(
+                modifier = Modifier.fillMaxWidth(),
+                horizontalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                if (!hasRerolledLoot) {
+                    PixelButton(
+                        label = safeStringResource(R.string.reroll_loot_button),
+                        onClick = onRerollLoot,
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(48.dp),
+                        active = true
+                    )
+                }
                 PixelButton(
-                    label = safeStringResource(R.string.reroll_loot_button),
-                    onClick = onRerollLoot,
+                    label = safeStringResource(R.string.return_to_inn),
+                    onClick = onReturn,
                     modifier = Modifier
-                        .fillMaxWidth()
-                        .height(44.dp),
-                    active = true
+                        .weight(1f)
+                        .height(48.dp)
                 )
-                Spacer(Modifier.height(8.dp))
             }
-
-            PixelButton(
-                safeStringResource(R.string.return_to_inn),
-                onClick = onReturn,
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .height(44.dp)
-            )
         }
-
 
         // Item Detail Overlay (using the one from EquipmentScreen or similar)
         selectedItemForDetail?.let { item ->
@@ -1399,8 +1440,8 @@ fun RunCompleteOverlay(
                             slot = item.slot,
                             modifier = Modifier.size(64.dp)
                         )
-                        Text(item.name, style = PixelHeading, color = Color(item.rarity.color))
-                        
+                        Text(item.name, style = PixelHeading, color = Color(item.rarity.color), textAlign = TextAlign.Center)
+
                         Column(Modifier.fillMaxWidth(), verticalArrangement = Arrangement.spacedBy(4.dp)) {
                             if (item.attackBonus > 0) Text(safeStringResource(R.string.stat_bonus_atk, formatAmount(item.attackBonus)), style = PixelBody, color = GoldBright)
                             if (item.defenseBonus > 0) Text(safeStringResource(R.string.stat_bonus_def, formatAmount(item.defenseBonus)), style = PixelBody, color = GoldBright)
@@ -1411,7 +1452,7 @@ fun RunCompleteOverlay(
                         }
 
                         Spacer(Modifier.height(8.dp))
-                        
+
                         Text(safeStringResource(R.string.item_lvl_rarity_format, item.floorFound, item.rarity.name), style = PixelSmall, color = StoneGray)
 
                         PixelButton(safeStringResource(R.string.close_button), onClick = { selectedItemForDetail = null }, modifier = Modifier
