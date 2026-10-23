@@ -58,24 +58,24 @@ data class Enemy(
             val mobHpBonus = if (template.isBoss) 1.0 else 1.40
             val globalAtkBoost = 1.25
 
-            // Non-linear floor scaling for high floors (Floors > 200 / Dimension 11+)
+            // Linear baseline for early floors (1-200 untouched)
             val baseHp = 25.0 + floor.toDouble() * 16.0
             val baseAtk = 7.0 + floor.toDouble() * 2.1
             val baseDef = 1.0 + floor.toDouble() / 2.5
 
-            // True quadratic scaling for high floors (Floors > 200) to match Gear/Hero curves
+            // Gentle quadratic scaling for normal dungeon (Floors > 200)
             val floorHpBonus = if (floor > 200) {
-                val scaledFloor = (floor - 200).toDouble() / 5.0 // Steepened HP curve
-                scaledFloor * scaledFloor * 1.5
+                val scaledFloor = (floor - 200).toDouble() / 20.0 // Divides the floor difference to keep growth slow
+                scaledFloor * scaledFloor * 5.0
             } else 0.0
 
             val floorAtkBonus = if (floor > 200) {
-                val scaledFloor = (floor - 200).toDouble() / 15.0 // Steepened ATK curve
-                scaledFloor * scaledFloor * 1.2
+                val scaledFloor = (floor - 200).toDouble() / 25.0
+                scaledFloor * scaledFloor * 1.5
             } else 0.0
 
             val floorDefBonus = if (floor > 200) {
-                val scaledFloor = (floor - 200).toDouble() / 20.0 // Steepened DEF curve
+                val scaledFloor = (floor - 200).toDouble() / 30.0
                 scaledFloor * scaledFloor * 0.8
             } else 0.0
 

@@ -172,12 +172,21 @@ data class Item(
         }
 
         private fun calculateRarity(roll: Int, totalBoost: Int, minRarity: Rarity): Rarity {
+            // Make base rarities much stricter and reduce the scaling power of totalBoost
             var rarity = when {
-                roll >= (99 - totalBoost) -> Rarity.LEGENDARY
-                roll >= (91 - totalBoost * 2) -> Rarity.EPIC
-                roll >= (71 - totalBoost * 3) -> Rarity.RARE
+                // Base 1% chance. Boosts have a very minor effect (maxes around ~10% late game)
+                roll >= (100 - (totalBoost / 3)) -> Rarity.LEGENDARY
+
+                // Base 5% chance. Boosts have a moderate effect
+                roll >= (96 - (totalBoost / 2)) -> Rarity.EPIC
+
+                // Base 15% chance. Boosts have a normal effect
+                roll >= (85 - totalBoost) -> Rarity.RARE
+
+                // Everything else is Common
                 else -> Rarity.COMMON
             }
+
             if (rarity.ordinal < minRarity.ordinal) {
                 rarity = minRarity
             }
