@@ -127,17 +127,16 @@ data class Item(
             val (critChance, critDmg) = calculateCritBonuses(rarity)
 
             // --- QUADRATIC STAT CALCULATION ---
-            // ATK / MAG / DEF: Scaled down by 10x.
-            // Target at Floor 35,000 (Mythic): ~135,000 per piece
-            val generatedAttack = calculateQuadraticGearStat(floor, baseValue = 10.0, linearFactor = 1.0, quadraticFactor = 0.000005) * finalMult
-            val generatedDefense = calculateQuadraticGearStat(floor, baseValue = 10.0, linearFactor = 1.0, quadraticFactor = 0.000005) * finalMult
-            val generatedMagic = calculateQuadraticGearStat(floor, baseValue = 10.0, linearFactor = 1.0, quadraticFactor = 0.000005) * finalMult
+            // ATK / MAG / DEF:
+            // Reduced linearFactor from 1.0 to 0.2 to prevent mid-game bloat.
+            val generatedAttack = calculateQuadraticGearStat(floor, baseValue = 10.0, linearFactor = 0.2, quadraticFactor = 0.000005) * finalMult
+            val generatedDefense = calculateQuadraticGearStat(floor, baseValue = 10.0, linearFactor = 0.2, quadraticFactor = 0.000005) * finalMult
+            val generatedMagic = calculateQuadraticGearStat(floor, baseValue = 10.0, linearFactor = 0.2, quadraticFactor = 0.000005) * finalMult
 
-            // HP / MP: Scaled down by 10x.
-            // Target at Floor 35,000 (Mythic): ~800,000 HP per piece
-            val generatedHp = calculateQuadraticGearStat(floor, baseValue = 50.0, linearFactor = 5.0, quadraticFactor = 0.00003) * finalMult
-            val generatedMp = calculateQuadraticGearStat(floor, baseValue = 5.0, linearFactor = 0.5, quadraticFactor = 0.000002) * finalMult
-
+            // HP / MP:
+            // Reduced linearFactor from 5.0 to 1.0.
+            val generatedHp = calculateQuadraticGearStat(floor, baseValue = 50.0, linearFactor = 1.0, quadraticFactor = 0.00003) * finalMult
+            val generatedMp = calculateQuadraticGearStat(floor, baseValue = 5.0, linearFactor = 0.1, quadraticFactor = 0.000002) * finalMult
             val atkBonus = if (slot == ItemSlot.WEAPON && !gearCategory.isMagicalWeapon) generatedAttack else 0.0
             val defBonus = if (slot == ItemSlot.ARMOR || slot == ItemSlot.SHIELD) generatedDefense else 0.0
             val magBonus = when {
