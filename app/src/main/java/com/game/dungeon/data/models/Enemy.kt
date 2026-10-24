@@ -63,21 +63,26 @@ data class Enemy(
             val baseAtk = 7.0 + floor.toDouble() * 2.1
             val baseDef = 1.0 + floor.toDouble() / 2.5
 
-            // Gentle quadratic scaling for normal dungeon (Floors > 200)
-            val floorHpBonus = if (floor > 200) {
-                val scaledFloor = (floor - 200).toDouble() / 20.0 // Divides the floor difference to keep growth slow
-                scaledFloor * scaledFloor * 5.0
-            } else 0.0
+            // Piecewise scaling: Untouched (1-200), Gentle (200-1000), Steep (1000+)
+            val f = floor.toDouble()
 
-            val floorAtkBonus = if (floor > 200) {
-                val scaledFloor = (floor - 200).toDouble() / 25.0
-                scaledFloor * scaledFloor * 1.5
-            } else 0.0
+            val floorHpBonus = when {
+                f > 1000 -> 8000.0 + ((f - 1000) / 10.0) * ((f - 1000) / 10.0) * 15.0
+                f > 200 -> ((f - 200) / 20.0) * ((f - 200) / 20.0) * 5.0
+                else -> 0.0
+            }
 
-            val floorDefBonus = if (floor > 200) {
-                val scaledFloor = (floor - 200).toDouble() / 30.0
-                scaledFloor * scaledFloor * 0.8
-            } else 0.0
+            val floorAtkBonus = when {
+                f > 1000 -> 1536.0 + ((f - 1000) / 10.0) * ((f - 1000) / 10.0) * 5.0
+                f > 200 -> ((f - 200) / 25.0) * ((f - 200) / 25.0) * 1.5
+                else -> 0.0
+            }
+
+            val floorDefBonus = when {
+                f > 1000 -> 568.0 + ((f - 1000) / 10.0) * ((f - 1000) / 10.0) * 3.0
+                f > 200 -> ((f - 200) / 30.0) * ((f - 200) / 30.0) * 0.8
+                else -> 0.0
+            }
 
             val rawHp = (baseHp + floorHpBonus) * template.hpMult * mobHpBonus * difficultyMult * totalDimMult * floorRamp * bossLateGameDampener
             val rawAtk = (baseAtk + floorAtkBonus) * template.atkMult * globalAtkBoost * difficultyMult * totalDimMult * floorRamp * bossLateGameDampener

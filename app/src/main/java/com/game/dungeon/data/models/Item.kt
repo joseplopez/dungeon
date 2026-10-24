@@ -126,17 +126,14 @@ data class Item(
 
             val (critChance, critDmg) = calculateCritBonuses(rarity)
 
-            // --- QUADRATIC STAT CALCULATION ---
-            // ATK / MAG / DEF:
-            // Reduced linearFactor from 1.0 to 0.2 to prevent mid-game bloat.
-            val generatedAttack = calculateQuadraticGearStat(floor, baseValue = 10.0, linearFactor = 0.2, quadraticFactor = 0.000005) * finalMult
-            val generatedDefense = calculateQuadraticGearStat(floor, baseValue = 10.0, linearFactor = 0.2, quadraticFactor = 0.000005) * finalMult
-            val generatedMagic = calculateQuadraticGearStat(floor, baseValue = 10.0, linearFactor = 0.2, quadraticFactor = 0.000005) * finalMult
+            // --- PIECEWISE STAT CALCULATION ---
+            val generatedAttack = calculatePiecewiseGearStat(floor, "ATK_DEF_MAG") * finalMult
+            val generatedDefense = calculatePiecewiseGearStat(floor, "ATK_DEF_MAG") * finalMult
+            val generatedMagic = calculatePiecewiseGearStat(floor, "ATK_DEF_MAG") * finalMult
 
-            // HP / MP:
-            // Reduced linearFactor from 5.0 to 1.0.
-            val generatedHp = calculateQuadraticGearStat(floor, baseValue = 50.0, linearFactor = 1.0, quadraticFactor = 0.00003) * finalMult
-            val generatedMp = calculateQuadraticGearStat(floor, baseValue = 5.0, linearFactor = 0.1, quadraticFactor = 0.000002) * finalMult
+            val generatedHp = calculatePiecewiseGearStat(floor, "HP") * finalMult
+            val generatedMp = calculatePiecewiseGearStat(floor, "MP") * finalMult
+
             val atkBonus = if (slot == ItemSlot.WEAPON && !gearCategory.isMagicalWeapon) generatedAttack else 0.0
             val defBonus = if (slot == ItemSlot.ARMOR || slot == ItemSlot.SHIELD) generatedDefense else 0.0
             val magBonus = when {
@@ -440,21 +437,32 @@ data class Item(
 }
 
 /**
- * Calculates gear stats based on the floor found using a gentle quadratic curve.
+ * Calculates gear stats using a piecewise curve to match enemy scaling exactly.
+ * 1-200: Linear (Untouched)
+ * 201-1000: Gentle Quadratic
+ * 1000+: Steep Quadratic to keep pace with deep endgame monsters
  */
-/**
- * Calculates gear stats using a calibrated curve that keeps early floors low (~500-1000 HP at floor 10)
- * and scales deep floors (like 34,000) into the low millions.
- */
-/**
- * Calculates gear stats using a single, unified quadratic curve.
- * No piecewise jumps, guaranteeing smooth scaling from Floor 1 to 35,000+.
- */
-private fun calculateQuadraticGearStat(floor: Int, baseValue: Double, linearFactor: Double, quadraticFactor: Double): Long {
+private fun calculatePiecewiseGearStat(floor: Int, statType: String): Double {
     val f = floor.toDouble().coerceAtLeast(1.0)
-
-    val linearBoost = (f - 1.0) * linearFactor
-    val quadraticBoost = (f - 1.0) * (f - 1.0) * quadraticFactor
-
-    return (baseValue + linearBoost + quadraticBoost).toLong()
+    return when (statType) {
+        "HP" -> {
+            val base = 50.0 + (f - 1.0) * 5.0
+            val gentle = if (f > 200) ((f - 200) / 20.0) * ((f - 200) / 20.0) * 1.5 else 0.0
+            val steep = if (f > 1000) ((f - 1000) / 10.0) * ((f - 1000) / 10.0) * 8.0 else 0.0
+            base + gentle + steep
+        }
+        "ATK_DEF_MAG" -> {
+            val base = 10.0 + (f - 1.0) * 1.0
+            val gentle = if (f > 200) ((f - 200) / 25.0) * ((f - 200) / 25.0) * 0.5 else 0.0
+            val steep = if (f > 1000) ((f - 1000) / 10.0) * ((f - 1000) / 10.0) * 1.5 else 0.0
+            base + gentle + steep
+        }
+        "MP" -> {
+            val base = 5.0 + (f - 1.0) * 0.1
+            val gentle = if (f > 200) ((f - 200) / 25.0) * ((f - 200) / 25.0) * 0.05 else 0.0
+            val steep = if (f > 1000) ((f - 1000) / 10.0) * ((f - 1000) / 10.0) * 0.1 else 0.0
+            base + gentle + steep
+        }
+        else -> 0.0
+    }
 }

@@ -205,7 +205,7 @@ class Hero(
 
         val linearGrowth = (level - 1L) * (heroClass.baseHp / 5).coerceAtLeast(10)
         // Multiplier increased to 555 to hit ~500k HP at Level 60
-        val quadraticGrowth = if (level > 30) ((level - 30L) * (level - 30L) * 555L) else 0L
+        val quadraticGrowth = if (level > 20) ((level - 20L) * (level - 20L) * 555L) else 0L
 
         return heroClass.baseHp + linearGrowth + quadraticGrowth
     }
@@ -217,7 +217,7 @@ class Hero(
         }
 
         val linearGrowth = (level - 1L) * (heroClass.baseMp / 10).coerceAtLeast(2)
-        val quadraticGrowth = if (level > 30) ((level - 30L) * (level - 30L) * 65L) else 0L
+        val quadraticGrowth = if (level > 20) ((level - 20L) * (level - 20L) * 65L) else 0L
 
         return heroClass.baseMp + linearGrowth + quadraticGrowth
     }
@@ -230,7 +230,7 @@ class Hero(
 
         val linearGrowth = (level - 1L) * (heroClass.baseAttack / 6).coerceAtLeast(2)
         // Scaled to 50 to keep ATK relevant against deep dungeon bosses
-        val quadraticGrowth = if (level > 30) ((level - 30L) * (level - 30L) * 50L) else 0L
+        val quadraticGrowth = if (level > 20) ((level - 20L) * (level - 20L) * 50L) else 0L
 
         return heroClass.baseAttack + linearGrowth + quadraticGrowth
     }
@@ -242,7 +242,7 @@ class Hero(
         }
 
         val linearGrowth = (level - 1L) * (heroClass.baseMagic / 6).coerceAtLeast(2)
-        val quadraticGrowth = if (level > 30) ((level - 30L) * (level - 30L) * 50L) else 0L
+        val quadraticGrowth = if (level > 20) ((level - 20L) * (level - 20L) * 50L) else 0L
 
         return heroClass.baseMagic + linearGrowth + quadraticGrowth
     }
@@ -254,7 +254,7 @@ class Hero(
         }
 
         val linearGrowth = (level - 1L) * (heroClass.baseDefense / 6).coerceAtLeast(2)
-        val quadraticGrowth = if (level > 30) ((level - 30L) * (level - 30L) * 50L) else 0L
+        val quadraticGrowth = if (level > 20) ((level - 20L) * (level - 20L) * 50L) else 0L
 
         return heroClass.baseDefense + linearGrowth + quadraticGrowth
     }

@@ -89,8 +89,8 @@ class RelicsViewModel @Inject constructor(
         }
     }
 
-    fun exchangeGoldForMagicite(goldCost: Long, magiciteAmount: Int) {
-        if (goldCost <= 0 || magiciteAmount <= 0) return
+    fun exchangeGoldForMagicite(goldCost: Long, magiciteAmount: Long) { // CHANGED to Long
+        if (goldCost <= 0 || magiciteAmount <= 0L) return
         val gs = gameState.value ?: return
         if (gs.gold >= goldCost) {
             viewModelScope.launch {
@@ -104,7 +104,7 @@ class RelicsViewModel @Inject constructor(
                     )
                     val params = android.os.Bundle().apply {
                         putLong("gold_spent", goldCost)
-                        putInt("magicite_gained", magiciteAmount)
+                        putLong("magicite_gained", magiciteAmount) // CHANGED to putLong
                     }
                     analytics.logEvent("gold_gems_exchange", params)
                     repository.saveGameState(updatedGs)

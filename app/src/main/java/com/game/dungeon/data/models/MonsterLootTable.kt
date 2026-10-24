@@ -309,115 +309,115 @@ object MonsterLootTable {
         // ── Bosses — Tier 1 (10% – 15% Trophy Chance) ──
         MonsterType.GARLAND to MonsterLootEntry(
             primaryDrop = MaterialDropRule("mithril_ore", 0.06f),
-            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.10f, isBossTrophy = true)
+            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.20f, isBossTrophy = true)
         ),
         MonsterType.ASTOS to MonsterLootEntry(
             primaryDrop = MaterialDropRule("dark_essence", 0.06f),
-            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.12f, isBossTrophy = true)
+            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.22f, isBossTrophy = true)
         ),
         MonsterType.LICH to MonsterLootEntry(
             primaryDrop = MaterialDropRule("dark_essence", 0.07f),
-            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.15f, isBossTrophy = true)
+            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.25f, isBossTrophy = true)
         ),
         MonsterType.LEON to MonsterLootEntry(
             primaryDrop = MaterialDropRule("mithril_ore", 0.06f),
-            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.11f, isBossTrophy = true)
+            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.21f, isBossTrophy = true)
         ),
         MonsterType.BORGHEN to MonsterLootEntry(
             primaryDrop = MaterialDropRule("iron_ore", 0.08f),
-            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.10f, isBossTrophy = true)
+            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.20f, isBossTrophy = true)
         ),
         MonsterType.GOTTOS to MonsterLootEntry(
             primaryDrop = MaterialDropRule("beast_fang", 0.08f),
-            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.12f, isBossTrophy = true)
+            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.22f, isBossTrophy = true)
         ),
         MonsterType.DJINN_BOSS to MonsterLootEntry(
             primaryDrop = MaterialDropRule("fire_essence", 0.08f),
-            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.14f, isBossTrophy = true)
+            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.24f, isBossTrophy = true)
         ),
         MonsterType.NEPTO_DRAGON to MonsterLootEntry(
             primaryDrop = MaterialDropRule("dragon_scale", 0.05f),
-            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.15f, isBossTrophy = true)
+            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.25f, isBossTrophy = true)
         ),
         MonsterType.MIST_DRAGON_BOSS to MonsterLootEntry(
             primaryDrop = MaterialDropRule("dragon_scale", 0.05f),
-            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.12f, isBossTrophy = true)
+            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.22f, isBossTrophy = true)
         ),
         MonsterType.ANTLION_BOSS to MonsterLootEntry(
             primaryDrop = MaterialDropRule("beast_fang", 0.08f),
-            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.11f, isBossTrophy = true)
+            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.21f, isBossTrophy = true)
         ),
         MonsterType.SCARMIGLIONE to MonsterLootEntry(
             primaryDrop = MaterialDropRule("dark_essence", 0.07f),
-            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.14f, isBossTrophy = true)
+            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.24f, isBossTrophy = true)
         ),
         MonsterType.CAGNAZZO to MonsterLootEntry(
             primaryDrop = MaterialDropRule("ice_essence", 0.07f),
-            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.14f, isBossTrophy = true)
+            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.24f, isBossTrophy = true)
         ),
         MonsterType.WING_RAPTOR to MonsterLootEntry(
             primaryDrop = MaterialDropRule("beast_fang", 0.08f),
-            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.10f, isBossTrophy = true)
+            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.20f, isBossTrophy = true)
         ),
         MonsterType.KARLABOS to MonsterLootEntry(
             primaryDrop = MaterialDropRule("ice_essence", 0.07f),
-            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.12f, isBossTrophy = true)
+            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.22f, isBossTrophy = true)
         ),
         MonsterType.IFRIT_BOSS to MonsterLootEntry(
             primaryDrop = MaterialDropRule("fire_essence", 0.08f),
-            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.15f, isBossTrophy = true)
+            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.25f, isBossTrophy = true)
         ),
         MonsterType.WHELK to MonsterLootEntry(
             primaryDrop = MaterialDropRule("lightning_essence", 0.07f),
-            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.10f, isBossTrophy = true)
+            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.20f, isBossTrophy = true)
         ),
         MonsterType.VARGAS to MonsterLootEntry(
             primaryDrop = MaterialDropRule("beast_fang", 0.08f),
-            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.11f, isBossTrophy = true)
+            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.21f, isBossTrophy = true)
         ),
         MonsterType.NUMBER_024 to MonsterLootEntry(
             primaryDrop = MaterialDropRule("dark_essence", 0.07f),
-            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.13f, isBossTrophy = true)
+            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.23f, isBossTrophy = true)
         ),
         MonsterType.ULTROS to MonsterLootEntry(
             primaryDrop = MaterialDropRule("ice_essence", 0.07f),
-            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.12f, isBossTrophy = true)
+            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.22f, isBossTrophy = true)
         ),
         MonsterType.GUARD_SCORPION to MonsterLootEntry(
             primaryDrop = MaterialDropRule("lightning_essence", 0.07f),
-            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.10f, isBossTrophy = true)
+            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.20f, isBossTrophy = true)
         ),
         MonsterType.AIRBUSTER to MonsterLootEntry(
             primaryDrop = MaterialDropRule("iron_ore", 0.08f),
-            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.12f, isBossTrophy = true)
+            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.22f, isBossTrophy = true)
         ),
         MonsterType.NORG to MonsterLootEntry(
             primaryDrop = MaterialDropRule("dark_essence", 0.08f),
-            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.12f, isBossTrophy = true)
+            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.22f, isBossTrophy = true)
         ),
         MonsterType.PLANT_BRAIN to MonsterLootEntry(
             primaryDrop = MaterialDropRule("monster_bone", 0.08f),
-            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.10f, isBossTrophy = true)
+            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.20f, isBossTrophy = true)
         ),
         MonsterType.BLACK_WALTZ to MonsterLootEntry(
             primaryDrop = MaterialDropRule("lightning_essence", 0.07f),
-            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.14f, isBossTrophy = true)
+            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.24f, isBossTrophy = true)
         ),
         MonsterType.ZORN_THORN to MonsterLootEntry(
             primaryDrop = MaterialDropRule("dark_essence", 0.07f),
-            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.12f, isBossTrophy = true)
+            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.22f, isBossTrophy = true)
         ),
         MonsterType.RALVURAHVA to MonsterLootEntry(
             primaryDrop = MaterialDropRule("ice_essence", 0.07f),
-            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.11f, isBossTrophy = true)
+            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.21f, isBossTrophy = true)
         ),
         MonsterType.KLIKK_BOSS to MonsterLootEntry(
             primaryDrop = MaterialDropRule("beast_fang", 0.08f),
-            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.10f, isBossTrophy = true)
+            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.20f, isBossTrophy = true)
         ),
         MonsterType.OBLITZERATOR to MonsterLootEntry(
             primaryDrop = MaterialDropRule("fire_essence", 0.07f),
-            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.13f, isBossTrophy = true)
+            bossTrophyDrop = MaterialDropRule("boss_trophy_1", 0.23f, isBossTrophy = true)
         ),
 
         // ── Bosses — Tier 2 (18% – 22% Trophy Chance) ──

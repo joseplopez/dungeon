@@ -157,8 +157,14 @@ fun EquipmentScreen(
 
             // Sell All Confirmation Dialog Overlay
             if (showSellAllConfirmation && inventory.isNotEmpty()) {
-                val sellableItems = inventory.filter { !it.isLocked }
-                val totalValue = sellableItems.sumOf { it.sellValue }
+                // Filter out locked AND equipped items
+                val sellableItems = inventory.filter { it.ownerId == null && !it.isLocked }
+
+                // Safe sum to prevent Long overflow in the UI
+                val totalValue = sellableItems.fold(0L) { acc, item ->
+                    if (Long.MAX_VALUE - acc < item.sellValue) Long.MAX_VALUE else acc + item.sellValue
+                }
+
                 SellAllConfirmationOverlay(
                     itemCount = sellableItems.size,
                     totalGold = totalValue,

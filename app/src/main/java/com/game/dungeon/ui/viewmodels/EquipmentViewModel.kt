@@ -90,9 +90,9 @@ class EquipmentViewModel @Inject constructor(
         viewModelScope.launch {
             val itemsToSell = inventory.value.filter { it.ownerId == null && !it.isLocked }
             if (itemsToSell.isEmpty()) return@launch
-            itemsToSell.forEach { item ->
-                repository.sellItem(item)
-            }
+
+            // Execute all sales in a single transaction
+            repository.sellItems(itemsToSell)
         }
     }
 

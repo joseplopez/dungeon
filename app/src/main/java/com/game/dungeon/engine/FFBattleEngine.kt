@@ -78,12 +78,9 @@ class FFBattleEngine(private val context: Context) {
                     dimension = dimension
                 )
 
-                // Hardcore Quadratic Difficulty
-                // Floor 1: ~55x multiplier
-                // Floor 100: ~5,500x multiplier
-                // Floor 200: ~21,000x multiplier
-                val f = currentFloor.toDouble()
-                val diffMult = 50.0 + (f * 5.0) + (f * f * 0.5)
+
+                // Exponential difficulty: 100x base, + 5% compounding increase per floor
+                val diffMult = 100.0 * pow(1.05, (currentFloor - 1).toDouble())
 
                 val scaledHp = (rawBoss.maxHp * diffMult).toLong().coerceAtMost(Long.MAX_VALUE)
                 val scaledAtk = (rawBoss.attack * diffMult).toLong().coerceAtMost(Long.MAX_VALUE)
@@ -1640,8 +1637,13 @@ class FFBattleEngine(private val context: Context) {
         // Helper function to calculate damage against a specific defender's stats
         fun calculateDamageFor(defender: Hero): Pair<Long, Boolean> {
             val f = enemy.floor.toDouble()
-            // Added quadratic tail so Mythic Gear doesn't make heroes instantly immortal
-            val quadK = if (f > 200) ((f - 200) / 20.0) * ((f - 200) / 20.0) * 0.5 else 0.0
+
+            // Piecewise curve forces endgame heroes to need MASSIVE defense to hit the 85% cap
+            val quadK = when {
+                f > 1000 -> 800.0 + ((f - 1000) / 10.0) * ((f - 1000) / 10.0) * 2.0
+                f > 200 -> ((f - 200) / 20.0) * ((f - 200) / 20.0) * 0.5
+                else -> 0.0
+            }
             val k = 150.0 + (f * 0.8) + quadK
 
             val mitigation = (defender.defense.toDouble() / (defender.defense.toDouble() + k)).coerceAtMost(0.85)

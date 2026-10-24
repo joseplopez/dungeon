@@ -471,25 +471,35 @@ fun RelicsScreen(
 fun GoldExchangeDialog(
     currentGold: Long,
     currentMagicite: Long,
-    onExchange: (Long, Int) -> Unit,
+    onExchange: (Long, Long) -> Unit, // CHANGED to (Long, Long)
     onDismiss: () -> Unit
 ) {
     // 250,000 Gil = 50 Magicite (Rate: 5,000 Gil per 1 Magicite)
     val exchangeRate = 5000L
 
-    // Calculate exact proportional costs for Half and All
-    val halfMagicite = ((currentGold / 2L) / exchangeRate).toInt().coerceAtLeast(1)
-    val halfCost = halfMagicite * exchangeRate
-
-    val allMagicite = (currentGold / exchangeRate).toInt().coerceAtLeast(1)
+    // Pure Long calculation for ALL
+    val allMagicite = currentGold / exchangeRate
     val allCost = allMagicite * exchangeRate
 
-    // distinctBy prevents duplicate buttons (e.g. if 'All' exactly equals 250k)
-    val packs = listOf(
-        Triple(250_000L, 50, "Base"),
-        Triple(halfCost, halfMagicite, "Half"),
-        Triple(allCost, allMagicite, "All")
-    ).distinctBy { it.first }
+    // Pure Long calculation for HALF
+    val halfMagicite = (allMagicite / 2L).coerceAtLeast(1L)
+    val halfCost = halfMagicite * exchangeRate
+
+    // Build the list with Triple<Long, Long, String>
+    val packs = mutableListOf<Triple<Long, Long, String>>()
+
+    // Always add base
+    packs.add(Triple(250_000L, 50L, "Base"))
+
+    // Only add Half if it's different from Base
+    if (halfCost > 250_000L) {
+        packs.add(Triple(halfCost, halfMagicite, "Half"))
+    }
+
+    // Only add All if it's different from Half and Base
+    if (allCost > 250_000L && allCost != halfCost) {
+        packs.add(Triple(allCost, allMagicite, "All"))
+    }
 
     Dialog(
         onDismissRequest = onDismiss,

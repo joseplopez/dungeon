@@ -273,6 +273,38 @@ class GameRepository @Inject constructor(
         database.gameStateDao.upsert(current.copy(gold = newGold))
         database.itemDao.delete(item)
     }
+
+    // --- NEW: Batch Sell Function ---
+    suspend fun sellItems(items: List<Item>) {
+        if (items.isEmpty()) return
+
+        val current = database.gameStateDao.getGameStateOnce() ?: GameState()
+
+        // Safely sum gold to prevent Long overflow from corrupted endgame gear
+        var totalGoldValue: Long = 0
+        for (item in items) {
+            if (Long.MAX_VALUE - totalGoldValue < item.sellValue) {
+                totalGoldValue = Long.MAX_VALUE
+                break
+            } else {
+                totalGoldValue += item.sellValue
+            }
+        }
+
+        // Add to current gold and cap it at maxGil
+        val newGold = if (Long.MAX_VALUE - current.gold < totalGoldValue) {
+            current.maxGil
+        } else {
+            (current.gold + totalGoldValue).coerceAtMost(current.maxGil)
+        }
+
+        database.withTransaction {
+            database.gameStateDao.upsert(current.copy(gold = newGold))
+            items.forEach { item ->
+                database.itemDao.delete(item)
+            }
+        }
+    }
     suspend fun deleteItem(item: Item) = database.itemDao.delete(item)
     suspend fun deleteItem(id: String) { database.itemDao.getItemById(id)?.let { database.itemDao.delete(it) } }
     suspend fun clearInventory() = database.itemDao.deleteAll()
