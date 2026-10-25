@@ -47,40 +47,30 @@ Please execute this implementation step-by-step exactly as outlined below. Await
 3. **Rank 5 Active Skill:** In `FFBattleEngine.kt` turn calculation, if `equippedTier2Pet` is Rank 5, insert a pet turn (e.g., 120 Speed). When the pet acts, emit `FFBattleEvent.AbilityUsed` (e.g., Fairy casts Heal, Direwolf attacks).
 
 
-
 ---
 
 ### Phase 4: Safari Enemy Spawning & Difficulty
 
 **Goal:** Create the custom Safari Dimension enemies with balanced math and correct visuals.
 
-1. **Custom Dimension (`FFDimensionData.kt`):** Define the Safari Dimension. The enemies in this dimension must correspond to the available pets.
-2. **Sprite Mapping:** Ensure that when rendering an enemy in `DungeonMode.SAFARI`, the UI uses the `PetType` sprites instead of standard monster sprites, so players know which card they are hunting.
 
-
-3. **Difficulty Scaling (`FFBattleEngine.kt`):** Because heroes have NO gear, NO relics, and NO masteries in Safari mode, the enemies must have drastically reduced HP and ATK. Bypass the standard exponential floor scaling. Create a custom linear or soft-capped stat curve for Safari enemies so they are balanced strictly around level 99 base hero stats.
-
-
-
----
+1. **Custom Dimension (`FFDimensionData.kt`):** Define the Safari Dimension. The enemies here must correspond exactly to the available `PetType` roster.
+2. **Sprite Mapping:** When rendering an enemy in `DungeonMode.SAFARI`, use the `PetType` sprites instead of standard monster sprites.
+3. **Difficulty Scaling (`FFBattleEngine.kt`):** Since heroes have NO gear, relics, or masteries in this mode, enemies must have drastically reduced HP and ATK. Bypass the standard exponential floor scaling and use a custom linear or soft-capped stat curve balanced strictly around level 99 base hero stats.
 
 ### Phase 5: Town Integration & Menagerie UI
 
 **Goal:** Move pets to a dedicated screen and build a grid-based card fusion UI.
 
 1. **Town Update (`InnScreen.kt`):**
-* If `isSafariUnlocked()` is true, show a new "Menagerie" button on the guild stage.
-
-
-* If unlocked but `hasSeenSafariUnlockPopup` is false, show a popup explaining Safari mode, then mark it seen.
-
-
+* If `isSafariUnlocked()` is true, show a new 'Menagerie' button on the guild stage.
+* If unlocked but `hasSeenSafariUnlockPopup` is false, show an explanatory popup, then mark it seen.
 * Remove the old Pet tab from the Masteries screen.
 
 
 2. **New Screen (`MenagerieScreen.kt`):**
-* **Top Section:** Show currently equipped Tier 1 and Tier 2 pets, plus the player's current Safari Ticket count. Add contextual buttons here to "Watch Ad (+1 Ticket)" and "Buy Misc Pack (+10 Tickets)".
-* **Tabs:** "Tier 1 (Passives)" and "Tier 2 (Cards)".
+* **Top Section:** Show currently equipped Tier 1 and Tier 2 pets, plus the Safari Ticket count. Add buttons to 'Watch Ad (+1 Ticket)' and 'Buy Misc Pack (+10 Tickets)'.
+* **Tabs:** 'Tier 1 (Passives)' and 'Tier 2 (Cards)'.
 * **Tier 2 Grid:** A 3-column `LazyVerticalGrid`.
 * **Card Design:** Background color matches `rarity`. Top-Left hexagon for `currentRank`. Top-Right pill for fractional progress (`cardsCollected / needed`). Center sprite. Bottom name banner.
-* **Locks:** If Tier 1 equivalent is NOT level 50, overlay the card with a dark tint and "Requires Level 50 Tier 1". If Safari is locked, overlay the entire Tier 2 tab with the Dimension 11 / Floor 1000 requirement.
+* **Locks:** If Tier 1 equivalent is `< 100`, overlay the Tier 2 card with a dark tint and 'Requires Level 50 Tier 1'. If Safari is locked, overlay the Tier 2 tab with the Dimension 11 / Floor 1000 requirement."

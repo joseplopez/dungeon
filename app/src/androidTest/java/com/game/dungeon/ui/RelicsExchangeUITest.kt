@@ -19,7 +19,7 @@ class RelicsExchangeUITest {
     @Test
     fun testGoldExchangeDialog_SufficientGold_RendersAndTriggersExchange() {
         var exchangedCost = 0L
-        var exchangedMagicite = 0
+        var exchangedMagicite = 0L
 
         composeTestRule.setContent {
             PixelTheme {

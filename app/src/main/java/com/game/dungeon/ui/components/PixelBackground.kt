@@ -99,10 +99,306 @@ fun DungeonBackground(biomeType: BiomeType? = BiomeType.GENERIC_DUNGEON) {
             BiomeType.BEVELLE_TEMPLE -> drawBevelleTemple(scrollOffset, slowPulse)
             BiomeType.OMEGA_RUINS -> drawOmegaRuins(scrollOffset, fastTick)
             BiomeType.SIN_INTERIOR -> drawSinInterior(scrollOffset, slowPulse)
+            BiomeType.CALM_LANDS -> drawCalmLands(scrollOffset, slowPulse, fastTick)
             BiomeType.GENERIC_DUNGEON -> drawGenericDungeon(scrollOffset, torchFlicker)
         }
     }
 }
+
+private fun DrawScope.drawCalmLands(
+    scrollOffset: Float,
+    slowPulse: Float,
+    fastTick: Float
+) {
+    val W = size.width
+    val H = size.height
+
+    // =========================================================================
+    // LAYER 1: VAST BLUE SKY & HIGH-ALTITUDE WISPY CLOUDS
+    // =========================================================================
+    drawRect(
+        Brush.verticalGradient(
+            listOf(Color(0xFF3B82F6), Color(0xFF60A5FA), Color(0xFFBFDBFE))
+        ),
+        size = size
+    )
+
+    // Parallax Cirrus Clouds
+    repeat(4) { i ->
+        val cloudY = H * (0.05f + i * 0.1f)
+        val cloudPath = Path().apply {
+            moveTo(-W * 0.2f, cloudY)
+            var x = -W * 0.2f
+            while (x <= W * 1.2f) {
+                val wave = sin((x + scrollOffset * 0.15f) * 0.005f + i) * (H * 0.03f)
+                lineTo(x, cloudY + wave)
+                x += 50f
+            }
+            lineTo(W * 1.2f, cloudY + H * 0.15f)
+            lineTo(-W * 0.2f, cloudY + H * 0.15f)
+            close()
+        }
+        val cloudAlpha = 0.2f + sin(slowPulse * PI.toFloat() + i) * 0.1f
+        drawPath(
+            cloudPath,
+            Brush.verticalGradient(
+                listOf(Color.White.copy(alpha = cloudAlpha.toFloat()), Color.Transparent)
+            )
+        )
+    }
+
+    // =========================================================================
+    // LAYER 2: THE GREAT RIFT & DISTANT CLIFFS
+    // =========================================================================
+    val cliffTopY = H * 0.35f
+    val cliffPath = Path().apply {
+        moveTo(0f, H * 0.45f)
+        lineTo(W * 0.2f, H * 0.42f)
+        lineTo(W * 0.35f, cliffTopY)
+        lineTo(W * 0.6f, cliffTopY - H * 0.02f)
+        lineTo(W * 0.75f, cliffTopY + H * 0.04f)
+        lineTo(W, cliffTopY - H * 0.05f)
+        lineTo(W, H * 0.6f)
+        lineTo(0f, H * 0.6f)
+        close()
+    }
+
+    // Cliff rock face
+    drawPath(
+        cliffPath,
+        Brush.verticalGradient(listOf(Color(0xFF8B7355), Color(0xFF5C4033), Color(0xFF3E2723)))
+    )
+
+    // Cliff top grass
+    val cliffGrassPath = Path().apply {
+        moveTo(0f, H * 0.45f)
+        lineTo(W * 0.2f, H * 0.42f)
+        lineTo(W * 0.35f, cliffTopY)
+        lineTo(W * 0.6f, cliffTopY - H * 0.02f)
+        lineTo(W * 0.75f, cliffTopY + H * 0.04f)
+        lineTo(W, cliffTopY - H * 0.05f)
+        lineTo(W, cliffTopY)
+        lineTo(W * 0.75f, cliffTopY + H * 0.08f)
+        lineTo(W * 0.6f, cliffTopY + H * 0.02f)
+        lineTo(W * 0.35f, cliffTopY + H * 0.03f)
+        lineTo(0f, H * 0.48f)
+        close()
+    }
+    drawPath(cliffGrassPath, Color(0xFF6B8E23))
+
+    // Cliff face vertical striations and ridges
+    val cliffRng = java.util.Random(101)
+    repeat(30) {
+        val cx = cliffRng.nextFloat() * W
+        val cy = cliffTopY + (cliffRng.nextFloat() * H * 0.15f)
+        val ch = 30f + cliffRng.nextFloat() * 60f
+        drawLine(
+            Color(0xFF3E2723).copy(alpha = 0.6f),
+            Offset(cx, cy),
+            Offset(cx, cy + ch),
+            strokeWidth = 2f + cliffRng.nextFloat() * 3f
+        )
+        drawLine(
+            Color(0xFFD2B48C).copy(alpha = 0.3f),
+            Offset(cx + 2f, cy),
+            Offset(cx + 2f, cy + ch),
+            strokeWidth = 1f + cliffRng.nextFloat() * 2f
+        )
+    }
+
+    // =========================================================================
+    // LAYER 3: ROLLING GREEN PLAINS (MIDGROUND & FOREGROUND)
+    // =========================================================================
+    val midPlainsPath = Path().apply {
+        moveTo(0f, H * 0.52f)
+        quadraticTo(W * 0.25f, H * 0.48f, W * 0.5f, H * 0.55f)
+        quadraticTo(W * 0.8f, H * 0.6f, W, H * 0.52f)
+        lineTo(W, H)
+        lineTo(0f, H)
+        close()
+    }
+    drawPath(
+        midPlainsPath,
+        Brush.verticalGradient(listOf(Color(0xFF556B2F), Color(0xFF3A5F0B)))
+    )
+
+    val forePlainsPath = Path().apply {
+        moveTo(0f, H * 0.65f)
+        quadraticTo(W * 0.3f, H * 0.7f, W * 0.6f, H * 0.62f)
+        quadraticTo(W * 0.85f, H * 0.55f, W, H * 0.68f)
+        lineTo(W, H)
+        lineTo(0f, H)
+        close()
+    }
+    drawPath(
+        forePlainsPath,
+        Brush.verticalGradient(listOf(Color(0xFF6B8E23), Color(0xFF2E4F00)))
+    )
+
+    // Wind-swept grass textures drifting left
+    val grassRng = java.util.Random(42)
+    repeat(50) { i ->
+        val gx = (grassRng.nextFloat() * W * 1.5f - scrollOffset * 0.6f) % (W * 1.5f)
+        val drawX = if (gx < -100f) gx + W * 1.5f else gx
+        val gy = H * 0.55f + grassRng.nextFloat() * H * 0.4f
+
+        if (drawX in -20f..W + 20f) {
+            val windBend = 10f + sin(scrollOffset * 0.05f + i) * 5f
+            val bladePath = Path().apply {
+                moveTo(drawX, gy)
+                quadraticTo(drawX - windBend, gy - 8f, drawX - windBend * 1.5f, gy - 15f)
+            }
+            drawPath(bladePath, Color(0xFF9ACD32).copy(alpha = 0.6f), style = Stroke(1.5f))
+        }
+    }
+
+    // =========================================================================
+    // LAYER 4: THE MONSTER ARENA CAVE TENT (RIGHT FOREGROUND)
+    // =========================================================================
+    val arenaX = W * 0.55f
+    val arenaY = H * 0.45f
+    val arenaW = W * 0.45f
+    val arenaH = H * 0.55f
+
+    // 1. Rocky Cave Base
+    val caveRockPath = Path().apply {
+        moveTo(arenaX, H)
+        lineTo(arenaX - W * 0.05f, arenaY + H * 0.2f)
+        quadraticTo(arenaX + W * 0.1f, arenaY - H * 0.05f, arenaX + arenaW, arenaY)
+        lineTo(W, H)
+        close()
+    }
+    drawPath(caveRockPath, Brush.radialGradient(
+        listOf(Color(0xFF4A5D23), Color(0xFF383838), Color(0xFF1C1C1C)),
+        center = Offset(arenaX + arenaW / 2f, arenaY + arenaH / 2f),
+        radius = arenaW
+    ))
+
+    // 2. Dark Cave Entrance
+    val caveMouthPath = Path().apply {
+        moveTo(arenaX + arenaW * 0.2f, H)
+        lineTo(arenaX + arenaW * 0.25f, arenaY + H * 0.15f)
+        quadraticTo(arenaX + arenaW * 0.45f, arenaY + H * 0.05f, arenaX + arenaW * 0.65f, arenaY + H * 0.15f)
+        lineTo(arenaX + arenaW * 0.7f, H)
+        close()
+    }
+    drawPath(caveMouthPath, Color(0xFF0A0A0A))
+
+    // 3. Wooden Frame (Posts & Lintel)
+    val postLeftX = arenaX + arenaW * 0.22f
+    val postRightX = arenaX + arenaW * 0.68f
+    val lintelY = arenaY + H * 0.12f
+
+    drawRect(Color(0xFF5C4033), Offset(postLeftX - 10f, lintelY), Size(20f, H - lintelY))
+    drawRect(Color(0xFF5C4033), Offset(postRightX - 10f, lintelY), Size(20f, H - lintelY))
+    drawRect(Color(0xFF4A3020), Offset(postLeftX - 8f, lintelY), Size(10f, H - lintelY)) // Shading
+
+    val lintelPath = Path().apply {
+        moveTo(arenaX + arenaW * 0.1f, lintelY + 20f)
+        lineTo(arenaX + arenaW * 0.15f, lintelY - 10f)
+        lineTo(arenaX + arenaW * 0.75f, lintelY - 5f)
+        lineTo(arenaX + arenaW * 0.8f, lintelY + 15f)
+        close()
+    }
+    drawPath(lintelPath, Color(0xFF8B5A2B))
+    drawPath(lintelPath, Color(0xFF3E2723), style = Stroke(3f))
+
+    // 4. Colorful Triangular Banner (Monster Signage)
+    val bannerPath = Path().apply {
+        moveTo(arenaX + arenaW * 0.18f, lintelY)
+        lineTo(arenaX + arenaW * 0.72f, lintelY)
+        lineTo(arenaX + arenaW * 0.72f, lintelY + 40f)
+
+        // Zig-zag bottom edge
+        var bx = arenaX + arenaW * 0.72f
+        val step = (arenaW * 0.54f) / 6f
+        var up = true
+        while (bx > arenaX + arenaW * 0.18f) {
+            val nextX = bx - step
+            val nextY = if (up) lintelY + 20f else lintelY + 40f
+            lineTo(nextX, nextY)
+            bx = nextX
+            up = !up
+        }
+        close()
+    }
+    drawPath(bannerPath, Brush.horizontalGradient(listOf(Color(0xFFC71585), Color(0xFFFFD700), Color(0xFFC71585))))
+    drawPath(bannerPath, Color(0xFF800080), style = Stroke(2f))
+
+    // 5. Giant Ornamental Sword Structure (Right side of tent)
+    val swordX = postRightX + 25f
+    val swordY = lintelY - 30f
+
+    // Sword Blade
+    val swordBlade = Path().apply {
+        moveTo(swordX, swordY)
+        lineTo(swordX + 25f, H * 0.85f)
+        lineTo(swordX + 15f, H * 0.85f)
+        close()
+    }
+    drawPath(swordBlade, Brush.verticalGradient(listOf(Color(0xFFB0C4DE), Color(0xFF708090))))
+    drawPath(swordBlade, Color(0xFF2F4F4F), style = Stroke(2f))
+
+    // Sword Guard (Bird Wing shape)
+    val swordGuard = Path().apply {
+        moveTo(swordX, swordY + 40f)
+        quadraticTo(swordX + 60f, swordY, swordX + 80f, swordY - 40f)
+        quadraticTo(swordX + 70f, swordY + 30f, swordX + 20f, swordY + 60f)
+        close()
+    }
+    drawPath(swordGuard, Brush.linearGradient(listOf(Color(0xFF4682B4), Color(0xFF191970))))
+    drawPath(swordGuard, Color(0xFFD4AF37), style = Stroke(3f)) // Gold trim
+
+    // 6. Colorful Ground Rug
+    val rugPath = Path().apply {
+        moveTo(arenaX + arenaW * 0.15f, H)
+        lineTo(postLeftX + 15f, H * 0.85f)
+        lineTo(postRightX - 15f, H * 0.85f)
+        lineTo(arenaX + arenaW * 0.85f, H)
+        close()
+    }
+    drawPath(rugPath, Brush.linearGradient(listOf(Color(0xFF00CED1), Color(0xFFFF1493))))
+    drawPath(rugPath, Color(0xFFFFD700), style = Stroke(4f)) // Gold border
+
+    // =========================================================================
+    // LAYER 5: VFX - BLOWING WIND AND LIGHT MOTES
+    // =========================================================================
+    val moteRng = java.util.Random(999)
+    repeat(25) { i ->
+        val mx = (moteRng.nextFloat() * W * 1.2f - scrollOffset * 1.2f) % (W * 1.2f)
+        val drawX = if (mx < 0) mx + W * 1.2f else mx
+        val my = H * 0.4f + moteRng.nextFloat() * H * 0.6f
+
+        if (drawX in 0f..W) {
+            val alpha = 0.2f + sin(fastTick * PI.toFloat() + i) * 0.3f
+            drawCircle(
+                Color.White.copy(alpha = alpha.toFloat()),
+                radius = 1.5f + (i % 2),
+                center = Offset(drawX, my)
+            )
+            // Wind streaks
+            if (i % 3 == 0) {
+                drawLine(
+                    Color.White.copy(alpha = alpha.toFloat() * 0.5f),
+                    Offset(drawX, my),
+                    Offset(drawX + 15f + moteRng.nextFloat() * 20f, my),
+                    strokeWidth = 1f
+                )
+            }
+        }
+    }
+
+    // Atmospheric Vignette
+    drawRect(
+        Brush.radialGradient(
+            colors = listOf(Color.Transparent, Color(0x33000000)),
+            center = Offset(W / 2f, H / 2f),
+            radius = W * 0.8f
+        ),
+        size = size
+    )
+}
+
 
 private fun DrawScope.drawCorneliaCastle(scrollOffset: Float, torchFlicker: Float) {
     val W = size.width

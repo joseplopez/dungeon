@@ -2,6 +2,7 @@ package com.game.dungeon.data.models
 
 enum class MonsterType {
     // ── Regular Monsters ──
+
     GOBLIN,
     WOLF,
     PIRATE,
