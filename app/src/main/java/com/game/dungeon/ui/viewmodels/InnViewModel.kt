@@ -389,6 +389,34 @@ class InnViewModel @Inject constructor(
         }
     }
 
+    fun watchSafariTicketAd(activity: Activity) {
+        adManager.showRewardedAd(activity) {
+            viewModelScope.launch {
+                repository.addSafariTickets(1)
+                Toast.makeText(activity, "+1 Safari Ticket!", Toast.LENGTH_SHORT).show()
+            }
+        }
+    }
+
+    fun buyMiscPack(activity: Activity) {
+        billingManager.launchBillingFlow(
+            activity = activity,
+            product = InAppProduct.MISC_PRODUCT,
+            onSuccess = {
+                viewModelScope.launch {
+                    repository.addGearSwitches(5)
+                    repository.addSafariTickets(10)
+                    Toast.makeText(activity, "Misc Pack Purchased! +10 Safari Tickets!", Toast.LENGTH_SHORT).show()
+                }
+            },
+            onError = { error ->
+                if (error != "Cancelled") {
+                    Toast.makeText(activity, error, Toast.LENGTH_SHORT).show()
+                }
+            }
+        )
+    }
+
     // --- QoL Features ---
 
     fun quickEquipAllHeroes() {

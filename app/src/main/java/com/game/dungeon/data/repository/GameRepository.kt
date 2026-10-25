@@ -673,6 +673,11 @@ class GameRepository @Inject constructor(
         saveGameState(currentState.addGearSwitches(amount))
     }
 
+    suspend fun addSafariTickets(amount: Int) {
+        val currentState = getGameStateOnce() ?: GameState()
+        saveGameState(currentState.addSafariTickets(amount))
+    }
+
     suspend fun swapItemStats(itemId: String): Boolean {
         val currentState = getGameStateOnce() ?: return false
         if (currentState.gearSwitchesAvailable <= 0) return false

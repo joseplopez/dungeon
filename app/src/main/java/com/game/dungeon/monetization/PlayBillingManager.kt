@@ -190,6 +190,7 @@ class PlayBillingManager @Inject constructor(
         scope.launch {
             if (product.id == InAppProduct.MISC_PACK) {
                 repository.addGearSwitches(5)
+                repository.addSafariTickets(10)
             } else if (product.id == InAppProduct.PERMADEATH_PROTECTION) {
                 repository.unlockPermadeathProtection()
             } else {

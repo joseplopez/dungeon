@@ -91,6 +91,10 @@ data class GameState(
     fun consumeGearSwitch(): GameState {
         return copy(gearSwitchesAvailable = (this.gearSwitchesAvailable - 1).coerceAtLeast(0))
     }
+
+    fun addSafariTickets(amount: Int): GameState {
+        return copy(safariTickets = (this.safariTickets + amount).coerceAtLeast(0))
+    }
     val maxGil: Long get() =
         if (vaultLevel >= UpgradeType.VAULT.maxLevel) {
             Long.MAX_VALUE

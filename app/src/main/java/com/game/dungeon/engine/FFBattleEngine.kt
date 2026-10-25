@@ -25,6 +25,7 @@ sealed class FFBattleEvent {
     data class BardSong(val heroId: String, @StringRes val songRes: Int, @StringRes val effectRes: Int) : FFBattleEvent()
     data class FloorComplete(val floor: Int, val gilEarned: Long, val magiciteEarned: Long, val itemsFound: List<Item>, val updatedHeroes: List<Hero>, val updatedBenchedHeroes: List<Hero> = emptyList(), val leveledUpHeroIds: List<String> = emptyList()) : FFBattleEvent()    data class BossDefeated(val bossName: String, val dimensionComplete: Boolean, val materialsDropped: Map<String, Int> = emptyMap()) : FFBattleEvent()
     data class MaterialDropped(val materialId: String, val amount: Int = 1) : FFBattleEvent()
+    data class SafariTicketDropped(val amount: Int = 1) : FFBattleEvent()
     object AllHeroesFell : FFBattleEvent()
 }
 
@@ -332,6 +333,9 @@ class FFBattleEngine(private val context: Context) {
                             ?: runCatching { context.resources?.getString(bossTemplate.nameRes) }.getOrNull()
                             ?: "Boss"
                     onEvent(FFBattleEvent.BossDefeated(bossName, currentFloor >= maxFloor))
+                    if (Random.nextFloat() < 0.10f) {
+                        onEvent(FFBattleEvent.SafariTicketDropped(1))
+                    }
                 }
 
                 aliveHeroes.removeAll { !it.isAlive }

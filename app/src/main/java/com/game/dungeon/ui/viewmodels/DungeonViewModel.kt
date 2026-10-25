@@ -555,6 +555,20 @@ class DungeonViewModel @Inject constructor(
             battleState.update { it.copy(showBossBanner=false) }
         }
       }
+      is FFBattleEvent.SafariTicketDropped -> {
+        viewModelScope.launch(Dispatchers.IO) {
+            repo.addSafariTickets(event.amount)
+        }
+        battleState.update { state ->
+            state.copy(
+                battleLog = (state.battleLog + FFLogEntry(
+                    messageRes = R.string.log_generic,
+                    args = listOf("🎟️ Dropped Safari Ticket x${event.amount}"),
+                    type = LogType.LOOT
+                )).takeLast(25)
+            )
+        }
+      }
       is FFBattleEvent.SummonUsed -> {
         val hero = battleState.value.heroes.find { h -> h.id == event.heroId }
         val animInfo = AbilityAnimationInfo(
