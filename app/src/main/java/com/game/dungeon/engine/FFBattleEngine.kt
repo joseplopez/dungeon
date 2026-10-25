@@ -23,8 +23,7 @@ sealed class FFBattleEvent {
     data class MagiciteStolen(val heroId: String, val amount: Long) : FFBattleEvent()
     data class SummonUsed(val heroId: String, val summonName: String, val totalDamage: Long) : FFBattleEvent()
     data class BardSong(val heroId: String, @StringRes val songRes: Int, @StringRes val effectRes: Int) : FFBattleEvent()
-    data class FloorComplete(val floor: Int, val gilEarned: Long, val magiciteEarned: Long, val itemsFound: List<Item>, val updatedHeroes: List<Hero>, val leveledUpHeroIds: List<String> = emptyList()) : FFBattleEvent()
-    data class BossDefeated(val bossName: String, val dimensionComplete: Boolean, val materialsDropped: Map<String, Int> = emptyMap()) : FFBattleEvent()
+    data class FloorComplete(val floor: Int, val gilEarned: Long, val magiciteEarned: Long, val itemsFound: List<Item>, val updatedHeroes: List<Hero>, val updatedBenchedHeroes: List<Hero> = emptyList(), val leveledUpHeroIds: List<String> = emptyList()) : FFBattleEvent()    data class BossDefeated(val bossName: String, val dimensionComplete: Boolean, val materialsDropped: Map<String, Int> = emptyMap()) : FFBattleEvent()
     data class MaterialDropped(val materialId: String, val amount: Int = 1) : FFBattleEvent()
     object AllHeroesFell : FFBattleEvent()
 }
@@ -32,6 +31,7 @@ sealed class FFBattleEvent {
 class FFBattleEngine(private val context: Context) {
     suspend fun runBattle(
         heroes: List<Hero>,
+        benchedHeroes: List<Hero> = emptyList(), // ADD THIS
         dimension: FFDimension,
         startFloor: Int,
         speed: BattleSpeed,
@@ -43,6 +43,8 @@ class FFBattleEngine(private val context: Context) {
         var currentFloor = startFloor
         val maxFloor = if (mode == DungeonMode.BOSS_LAIR) Int.MAX_VALUE else dimension.maxFloor
         val aliveHeroes = heroes.map { it.copy() }.toMutableList()
+        val activeBenched = benchedHeroes.map { it.copy() }.toMutableList() // ADD THIS
+
         var totalGil = 0L
         var totalMagicite = 0L
         var lastAbilityClass: HeroClass? = null
@@ -58,6 +60,22 @@ class FFBattleEngine(private val context: Context) {
 
             // Track all heroes that level up during the entire floor duration
             val floorLeveledUpHeroIds = mutableSetOf<String>()
+
+            // --- ADD THIS INTERCEPTOR ---
+            val floorOnEvent: (FFBattleEvent) -> Unit = { event ->
+                onEvent(event)
+                if (event is FFBattleEvent.EnemyDefeated) {
+                    val benchExp = (event.expDropped * 0.25).toLong()
+                    if (benchExp > 0) {
+                        activeBenched.forEach { hero ->
+                            val result = hero.addExperience(benchExp)
+                            if (result) floorLeveledUpHeroIds.add(hero.id)
+                            onEvent(FFBattleEvent.ExpGained(hero.id, benchExp, result, hero.level))
+                        }
+                    }
+                }
+            }
+            // ----------------------------
 
             // Spawn enemies for this floor
             val bossTemplate = if (mode == DungeonMode.BOSS_LAIR) {
@@ -153,7 +171,7 @@ class FFBattleEngine(private val context: Context) {
                                         floorBaseGilEarned += gil
                                         floorMagiciteEarned += magicite
                                     },
-                                    onEvent
+                                    floorOnEvent
                                 )
                                 delay(speed.delayMs)
                             }
@@ -166,7 +184,7 @@ class FFBattleEngine(private val context: Context) {
                                     actor,
                                     aliveHeroes,
                                     relicBonuses,
-                                    onEvent
+                                    floorOnEvent
                                 ) // Added relicBonuses here
                                 delay(speed.delayMs)
                             }
@@ -188,6 +206,16 @@ class FFBattleEngine(private val context: Context) {
                     val result = hero.addExperience(completionExp)
                     if (result) floorLeveledUpHeroIds.add(hero.id)
                     onEvent(FFBattleEvent.ExpGained(hero.id, completionExp, result, hero.level))
+                }
+
+                // --- ADD BENCH COMPLETION XP ---
+                val benchCompletionExp = (completionExp * 0.25).toLong()
+                if (benchCompletionExp > 0) {
+                    activeBenched.forEach { hero ->
+                        val result = hero.addExperience(benchCompletionExp)
+                        if (result) floorLeveledUpHeroIds.add(hero.id)
+                        onEvent(FFBattleEvent.ExpGained(hero.id, benchCompletionExp, result, hero.level))
+                    }
                 }
 
                 // Loot chance
@@ -311,7 +339,9 @@ class FFBattleEngine(private val context: Context) {
                 onEvent(
                     FFBattleEvent.FloorComplete(
                         currentFloor, gilEarned, magiciteEarned, itemsFound,
-                        aliveHeroes.map { it.copy() }, floorLeveledUpHeroIds.toList()
+                        aliveHeroes.map { it.copy() },
+                        activeBenched.map { it.copy() }, // ADD THIS
+                        floorLeveledUpHeroIds.toList()
                     )
                 )
 

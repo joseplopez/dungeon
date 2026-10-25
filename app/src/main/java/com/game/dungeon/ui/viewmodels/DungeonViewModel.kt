@@ -140,6 +140,7 @@ class DungeonViewModel @Inject constructor(
     val currentBiome: FFBiome? = null,
     val dimension: FFDimension? = null,
     val heroes: List<Hero> = emptyList(),
+    val benchedHeroes: List<Hero> = emptyList(),
     val enemies: List<Enemy> = emptyList(),
     val battleLog: List<FFLogEntry> = emptyList(),
     val speed: BattleSpeed = BattleSpeed.NORMAL,
@@ -198,13 +199,19 @@ class DungeonViewModel @Inject constructor(
         val relics = RelicBonuses.from(gs, codexBonuses)
         val savedSpeed = userPreferencesRepo.battleSpeed.first()
 
+        // --- FETCH BENCH ---
+        val partyIds = party.map { it.id }.toSet()
+        val allHeroes = repo.getRoster().first()
+        val benchedHeroes = allHeroes.filter { it.id !in partyIds }
+        // -------------------
+
         // Fetch items for all heroes to bake stats
         val partyWithStats = party.map { hero ->
             val items = repo.getEquippedItems(hero.id).first()
             val stats = hero.calculateStats(items, relics)
             
-            val newHpBonus = (stats["HP"] ?: hero.baseMaxHp.toLong()) - hero.baseMaxHp
-            val newMpBonus = (stats["MP"] ?: hero.baseMaxMp.toLong()) - hero.baseMaxMp
+            val newHpBonus = (stats["HP"] ?: hero.baseMaxHp) - hero.baseMaxHp
+            val newMpBonus = (stats["MP"] ?: hero.baseMaxMp) - hero.baseMaxMp
             val oldMaxHp = hero.maxHp
             val oldMaxMp = hero.maxMp
 
@@ -227,6 +234,7 @@ class DungeonViewModel @Inject constructor(
             startFloor = startFloor.coerceAtLeast(1),
             currentFloor = startFloor.coerceAtLeast(1),
             currentBiome = dimension.getBiomeForFloor(startFloor.coerceAtLeast(1)),
+            benchedHeroes = benchedHeroes,
             dimension = dimension,
             heroes = partyWithStats,
             originalPartySize = party.size,
@@ -242,6 +250,7 @@ class DungeonViewModel @Inject constructor(
                 heroes = battleState.value.heroes,
                 dimension = dimension,
                 startFloor = startFloor.coerceAtLeast(1),
+                benchedHeroes = battleState.value.benchedHeroes,
                 speed = battleState.value.speed,
                 relicBonuses = relics,
                 mode = mode,
@@ -332,7 +341,8 @@ class DungeonViewModel @Inject constructor(
                           engineHero?.copy(level = event.newLevel) ?: h
                       } else h
                   },
-                  battleLog = (state.battleLog + logEntries).takeLast(25)
+                  battleLog = (state.battleLog + logEntries).takeLast(25),
+                  benchedHeroes = state.benchedHeroes.map { h -> if (h.id == event.heroId) h.copy(level = event.newLevel) else h }, // ADD THIS
               )
           }
       }
@@ -470,6 +480,7 @@ class DungeonViewModel @Inject constructor(
             heroes = event.updatedHeroes,
             gilEarnedThisRun = state.gilEarnedThisRun + actualGil,
             magiciteEarnedThisRun = state.magiciteEarnedThisRun + actualMagicite,
+              benchedHeroes = event.updatedBenchedHeroes,
             lastFloorGil = actualGil,
             lastFloorMagicite = actualMagicite,
             itemsFoundThisRun = state.itemsFoundThisRun + event.itemsFound,
@@ -488,6 +499,7 @@ class DungeonViewModel @Inject constructor(
             event.updatedHeroes.forEach { hero ->
                 repo.saveHero(hero)
             }
+            event.updatedBenchedHeroes.forEach { hero -> repo.saveHero(hero) }
 
             // Fetch latest GameState from DB to ensure atomic, non-stale updates
             val currentGs = repo.getGameStateOnce() ?: GameState()
@@ -841,7 +853,7 @@ class DungeonViewModel @Inject constructor(
     val dimension = battleState.value.dimension ?: return
     val currentParty = battleState.value.heroes
     val currentFloor = battleState.value.currentFloor
-    
+
     battleJob?.cancel()
     battleJob = viewModelScope.launch {
         val codexBonuses = repo.getCodexBonuses()
@@ -852,6 +864,7 @@ class DungeonViewModel @Inject constructor(
             startFloor = currentFloor,
             speed = speed,
             relicBonuses = relics,
+            benchedHeroes = battleState.value.benchedHeroes,
             mode = battleState.value.dungeonMode,
             isPaused = { battleState.value.isPaused }
         ) { event -> handleEvent(event) }
@@ -889,6 +902,7 @@ class DungeonViewModel @Inject constructor(
                   startFloor = state.startFloor,
                   speed = state.speed,
                   relicBonuses = relics,
+                  benchedHeroes = battleState.value.benchedHeroes,
                   mode = state.dungeonMode,
                   isPaused = { battleState.value.isPaused }
               ) { event -> handleEvent(event) }
@@ -916,6 +930,10 @@ class DungeonViewModel @Inject constructor(
       
       val gs = repo.getGameStateOnce() ?: GameState()
       val isProtectionActive = gs.isPermadeathProtectionActive
+
+      battleState.value.benchedHeroes.forEach { hero ->
+          repo.saveHero(hero)
+      }
 
       // Save current state of surviving heroes and remove/restore dead ones
       battleState.value.heroes.forEach { hero ->

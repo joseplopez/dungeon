@@ -440,27 +440,31 @@ data class Item(
  * Calculates gear stats using a piecewise curve to match enemy scaling exactly.
  * 1-200: Linear (Untouched)
  * 201-1000: Gentle Quadratic
- * 1000+: Steep Quadratic to keep pace with deep endgame monsters
+ * 1000+: Steep Quadratic (reduced base factors to account for massive endgame Rarity & Relic multipliers)
  */
 private fun calculatePiecewiseGearStat(floor: Int, statType: String): Double {
     val f = floor.toDouble().coerceAtLeast(1.0)
+
     return when (statType) {
         "HP" -> {
             val base = 50.0 + (f - 1.0) * 5.0
             val gentle = if (f > 200) ((f - 200) / 20.0) * ((f - 200) / 20.0) * 1.5 else 0.0
-            val steep = if (f > 1000) ((f - 1000) / 10.0) * ((f - 1000) / 10.0) * 8.0 else 0.0
+            // Reduced from 8.0 to 0.5
+            val steep = if (f > 1000) ((f - 1000) / 10.0) * ((f - 1000) / 10.0) * 0.5 else 0.0
             base + gentle + steep
         }
         "ATK_DEF_MAG" -> {
             val base = 10.0 + (f - 1.0) * 1.0
             val gentle = if (f > 200) ((f - 200) / 25.0) * ((f - 200) / 25.0) * 0.5 else 0.0
-            val steep = if (f > 1000) ((f - 1000) / 10.0) * ((f - 1000) / 10.0) * 1.5 else 0.0
+            // Reduced from 1.5 to 0.1
+            val steep = if (f > 1000) ((f - 1000) / 10.0) * ((f - 1000) / 10.0) * 0.1 else 0.0
             base + gentle + steep
         }
         "MP" -> {
             val base = 5.0 + (f - 1.0) * 0.1
             val gentle = if (f > 200) ((f - 200) / 25.0) * ((f - 200) / 25.0) * 0.05 else 0.0
-            val steep = if (f > 1000) ((f - 1000) / 10.0) * ((f - 1000) / 10.0) * 0.1 else 0.0
+            // Reduced from 0.1 to 0.01
+            val steep = if (f > 1000) ((f - 1000) / 10.0) * ((f - 1000) / 10.0) * 0.01 else 0.0
             base + gentle + steep
         }
         else -> 0.0
