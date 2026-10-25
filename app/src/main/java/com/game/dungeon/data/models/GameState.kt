@@ -95,6 +95,12 @@ data class GameState(
     fun addSafariTickets(amount: Int): GameState {
         return copy(safariTickets = (this.safariTickets + amount).coerceAtLeast(0))
     }
+
+    fun addMonsterCard(petId: String): GameState {
+        val existing = tier2Pets[petId] ?: Tier2Pet(petId = petId)
+        val updated = existing.copy(cardsCollected = existing.cardsCollected + 1)
+        return copy(tier2Pets = tier2Pets + (petId to updated))
+    }
     val maxGil: Long get() =
         if (vaultLevel >= UpgradeType.VAULT.maxLevel) {
             Long.MAX_VALUE

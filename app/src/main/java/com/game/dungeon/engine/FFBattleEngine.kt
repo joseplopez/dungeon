@@ -26,8 +26,11 @@ sealed class FFBattleEvent {
     data class FloorComplete(val floor: Int, val gilEarned: Long, val magiciteEarned: Long, val itemsFound: List<Item>, val updatedHeroes: List<Hero>, val updatedBenchedHeroes: List<Hero> = emptyList(), val leveledUpHeroIds: List<String> = emptyList()) : FFBattleEvent()    data class BossDefeated(val bossName: String, val dimensionComplete: Boolean, val materialsDropped: Map<String, Int> = emptyMap()) : FFBattleEvent()
     data class MaterialDropped(val materialId: String, val amount: Int = 1) : FFBattleEvent()
     data class SafariTicketDropped(val amount: Int = 1) : FFBattleEvent()
+    data class MonsterCardDropped(val petId: String) : FFBattleEvent()
     object AllHeroesFell : FFBattleEvent()
 }
+
+data class PetUnit(val pet: Tier2Pet, val speed: Int = 120)
 
 class FFBattleEngine(private val context: Context) {
     suspend fun runBattle(
@@ -38,6 +41,7 @@ class FFBattleEngine(private val context: Context) {
         speed: BattleSpeed,
         relicBonuses: RelicBonuses,
         mode: DungeonMode = DungeonMode.REGULAR,
+        equippedTier2Pet: Tier2Pet? = null,
         isPaused: () -> Boolean = { false },
         onEvent: (FFBattleEvent) -> Unit
     ) {
@@ -139,15 +143,20 @@ class FFBattleEngine(private val context: Context) {
 
             // Floor battle loop
             while (enemies.any { it.currentHp > 0 } && aliveHeroes.any { it.isAlive }) {
-                val turnOrder =
-                    (aliveHeroes.filter { it.isAlive } + enemies.filter { it.currentHp > 0 })
-                        .sortedByDescending {
-                            when (it) {
-                                is Hero -> it.speed
-                                is Enemy -> it.speed
-                                else -> 0
-                            }
-                        }
+                val aliveHeroUnits = aliveHeroes.filter { it.isAlive }
+                val aliveEnemies = enemies.filter { it.currentHp > 0 }
+                val hasPetTurn = equippedTier2Pet != null && equippedTier2Pet.currentRank >= 5
+
+                val turnOrder: List<Any> = (
+                    aliveHeroUnits + aliveEnemies + (if (hasPetTurn) listOf(PetUnit(equippedTier2Pet!!)) else emptyList())
+                ).sortedByDescending {
+                    when (it) {
+                        is Hero -> it.speed
+                        is Enemy -> it.speed
+                        is PetUnit -> it.speed
+                        else -> 0
+                    }
+                }
 
                 for (actor in turnOrder) {
                     while (isPaused()) {
@@ -187,6 +196,26 @@ class FFBattleEngine(private val context: Context) {
                                     relicBonuses,
                                     floorOnEvent
                                 ) // Added relicBonuses here
+                                delay(speed.delayMs)
+                            }
+                        }
+
+                        is PetUnit -> {
+                            if (enemies.any { it.currentHp > 0 } && aliveHeroes.any { it.isAlive }) {
+                                executePetTurn(
+                                    actor.pet,
+                                    aliveHeroes,
+                                    enemies,
+                                    dimension,
+                                    relicBonuses,
+                                    floorLeveledUpHeroIds,
+                                    mode,
+                                    { gil, magicite ->
+                                        floorBaseGilEarned += gil
+                                        floorMagiciteEarned += magicite
+                                    },
+                                    floorOnEvent
+                                )
                                 delay(speed.delayMs)
                             }
                         }
@@ -400,6 +429,9 @@ class FFBattleEngine(private val context: Context) {
                 materials
             )
         )
+        if (mode == DungeonMode.SAFARI && Random.nextFloat() < 0.30f) {
+            onEvent(FFBattleEvent.MonsterCardDropped(enemy.type.name))
+        }
         materials.forEach { (matId, amt) ->
             onEvent(FFBattleEvent.MaterialDropped(matId, amt))
         }
@@ -1643,6 +1675,79 @@ class FFBattleEngine(private val context: Context) {
         val baseDmg = maxOf(1.toDouble(), totalMag * (1 - mitigation) + Random.nextInt(-2, 3))
         val finalDmg = if (isCrit) (baseDmg * critMult).toLong() else baseDmg.toLong()
         return finalDmg to isCrit
+    }
+
+    private fun executePetTurn(
+        pet: Tier2Pet,
+        allies: List<Hero>,
+        enemies: MutableList<Enemy>,
+        dimension: FFDimension,
+        relicBonuses: RelicBonuses,
+        levelUpTracker: MutableSet<String>,
+        mode: DungeonMode,
+        onLootCollected: (Long, Long) -> Unit,
+        onEvent: (FFBattleEvent) -> Unit
+    ) {
+        val aliveAllies = allies.filter { it.isAlive }
+        val aliveEnemies = enemies.filter { it.currentHp > 0 }
+        if (aliveAllies.isEmpty() || aliveEnemies.isEmpty()) return
+
+        val petName = pet.petId.lowercase().replaceFirstChar { it.uppercase() }
+        val isHealer = pet.petId.uppercase().contains("MOOGLE") || pet.petId.uppercase().contains("FAIRY")
+
+        if (isHealer) {
+            val wounded = aliveAllies.minByOrNull { it.currentHp.toFloat() / it.maxHp.toFloat() } ?: aliveAllies.random()
+            val healAmount = (wounded.maxHp * 0.25f).toInt().coerceAtLeast(100)
+            onEvent(
+                FFBattleEvent.AbilityUsed(
+                    heroId = "pet_${pet.petId}",
+                    nameRes = R.string.log_generic,
+                    descRes = R.string.log_generic,
+                    args = listOf("🐾 $petName Healing Touch")
+                )
+            )
+            wounded.currentHp = (wounded.currentHp + healAmount).coerceAtMost(wounded.maxHp)
+            onEvent(FFBattleEvent.HealCast("pet_${pet.petId}", wounded.id, healAmount))
+        } else {
+            val target = aliveEnemies.minByOrNull { it.currentHp } ?: return
+            val isCrit = pet.petId.uppercase().contains("CACTUAR") || pet.petId.uppercase().contains("TONBERRY")
+            val damage = if (isCrit) 1500L else 800L
+
+            onEvent(
+                FFBattleEvent.AbilityUsed(
+                    heroId = "pet_${pet.petId}",
+                    nameRes = R.string.log_generic,
+                    descRes = R.string.log_generic,
+                    args = listOf("🐾 $petName Companion Strike")
+                )
+            )
+
+            val wasAlive = target.currentHp > 0
+            target.currentHp -= damage
+            onEvent(
+                FFBattleEvent.DamageDealt(
+                    attackerId = "pet_${pet.petId}",
+                    targetId = target.id,
+                    damage = damage,
+                    isMagic = false,
+                    isCritical = isCrit
+                )
+            )
+
+            if (wasAlive && target.currentHp <= 0) {
+                enemies.remove(target)
+                handleEnemyDefeated(
+                    target,
+                    dimension,
+                    relicBonuses,
+                    allies,
+                    levelUpTracker,
+                    mode,
+                    onLootCollected,
+                    onEvent
+                )
+            }
+        }
     }
 
     private fun executeEnemyTurn(
