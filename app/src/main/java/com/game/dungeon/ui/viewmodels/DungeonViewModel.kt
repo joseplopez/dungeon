@@ -875,40 +875,73 @@ class DungeonViewModel @Inject constructor(
       battleJob?.cancel()
       battleState.update { it.copy(showRetreatReviveDialog = true) }
   }
+    fun retryRun() {
+        battleJob?.cancel()
+        viewModelScope.launch {
+            val state = battleState.value
+            val gs = repo.getGameStateOnce() ?: GameState()
+            val dimension = FFDimensionData.getDimension(gs.currentDimension)
+            val codexBonuses = repo.getCodexBonuses()
+            val relics = RelicBonuses.from(gs, codexBonuses)
 
-  fun retryRun() {
-      battleJob?.cancel()
-      viewModelScope.launch {
-          val state = battleState.value
-          
-          battleState.update { it.copy(
-              currentFloor = state.startFloor,
-              runLoopCount = state.runLoopCount + 1,
-              showRetreatReviveDialog = false,
-              isRunning = true,
-              runComplete = false
-          ) }
-          
-          val gs = repo.getGameStateOnce() ?: GameState()
-          val dimension = FFDimensionData.getDimension(gs.currentDimension)
-          val codexBonuses = repo.getCodexBonuses()
-          val relics = RelicBonuses.from(gs, codexBonuses)
-          
-          // Restart battle loop directly (keeps Gil/Magicite accumulators intact)
-          battleJob = launch {
-              engine.runBattle(
-                  heroes = state.heroes,
-                  dimension = dimension,
-                  startFloor = state.startFloor,
-                  speed = state.speed,
-                  relicBonuses = relics,
-                  benchedHeroes = battleState.value.benchedHeroes,
-                  mode = state.dungeonMode,
-                  isPaused = { battleState.value.isPaused }
-              ) { event -> handleEvent(event) }
-          }
-      }
-  }
+            // Gather all hero IDs that were in this run (both alive and dead)
+            val allRunHeroIds = state.heroes.map { it.id }.toSet() + state.pendingFallenHeroIds
+
+            // Fetch raw heroes from roster
+            val roster = repo.getRoster().first()
+            val rawParty = roster.filter { it.id in allRunHeroIds }
+
+            // Recalculate stats with equipment and heal fully for the loop
+            val partyWithStats = rawParty.map { hero ->
+                val items = repo.getEquippedItems(hero.id).first()
+                val stats = hero.calculateStats(items, relics)
+
+                val newHpBonus = (stats["HP"] ?: hero.baseMaxHp) - hero.baseMaxHp
+                val newMpBonus = (stats["MP"] ?: hero.baseMaxMp) - hero.baseMaxMp
+
+                hero.copy(
+                    currentHp = hero.baseMaxHp + newHpBonus, // Fully heal
+                    currentMp = hero.baseMaxMp + newMpBonus
+                ).apply {
+                    attackBonus = (stats["ATK"] ?: baseAttack.toLong()) - baseAttack
+                    defenseBonus = (stats["DEF"] ?: baseDefense.toLong()) - baseDefense
+                    magicBonus = (stats["MAG"] ?: baseMagic.toLong()) - baseMagic
+                    hpBonus = newHpBonus
+                    mpBonus = newMpBonus
+                    critChance = stats["CRIT_CHANCE"]?.toInt() ?: 5
+                    critDamage = stats["CRIT_DAMAGE"] ?: 50
+                    jobMasteryLevel = relics.jobMasteryLevels[hero.heroClass] ?: 0
+                }
+            }
+
+            battleState.update { it.copy(
+                heroes = partyWithStats,
+                pendingFallenHeroIds = emptySet(),
+                fallenHeroes = emptyList(),
+                dyingHeroIds = emptySet(),
+                currentFloor = state.startFloor,
+                runLoopCount = state.runLoopCount + 1,
+                showRetreatReviveDialog = false,
+                showReviveDialog = false,
+                isRunning = true,
+                runComplete = false
+            ) }
+
+            // Restart battle loop directly (keeps Gil/Magicite accumulators intact)
+            battleJob = launch {
+                engine.runBattle(
+                    heroes = partyWithStats,
+                    dimension = dimension,
+                    startFloor = state.startFloor,
+                    speed = state.speed,
+                    relicBonuses = relics,
+                    benchedHeroes = battleState.value.benchedHeroes,
+                    mode = state.dungeonMode,
+                    isPaused = { battleState.value.isPaused }
+                ) { event -> handleEvent(event) }
+            }
+        }
+    }
 
   private fun forceRetreat() {
       battleJob?.cancel()

@@ -242,6 +242,7 @@ fun DungeonScreen(
             ReviveDialog(
                 isPermadeathProtected = isPermadeathProtected,
                 onRevive = { activity?.let { viewModel.watchReviveAd(it) } },
+                onRetry = { viewModel.retryRun() },
                 onGiveUp = { viewModel.finalizeRun() }
             )
         }
@@ -292,10 +293,10 @@ fun RetreatReviveDialog(
                 verticalArrangement = Arrangement.spacedBy(16.dp)
             ) {
                 Text(
-                    text = if (hasFallenHeroes) (if (isPermadeathProtected) "🛡️" else "⚠️") else "⛺", 
+                    text = if (hasFallenHeroes) (if (isPermadeathProtected) "🛡️" else "⚠️") else "⛺",
                     fontSize = 48.sp
                 )
-                
+
                 Text(
                     text = if (hasFallenHeroes) {
                         if (isPermadeathProtected) stringResource(R.string.heroes_down) else safeStringResource(R.string.retreat_rescue_title)
@@ -305,7 +306,7 @@ fun RetreatReviveDialog(
                     style = PixelTitle,
                     color = if (hasFallenHeroes && !isPermadeathProtected) EnemyRed else GoldBright
                 )
-                
+
                 Text(
                     text = if (hasFallenHeroes) {
                         if (isPermadeathProtected) stringResource(R.string.some_heroes_fell) else safeStringResource(R.string.retreat_rescue_desc)
@@ -318,7 +319,7 @@ fun RetreatReviveDialog(
                 )
 
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    if (hasFallenHeroes) {
+                    if (hasFallenHeroes && !isPermadeathProtected) {
                         PixelButton(
                             safeStringResource(R.string.rescue_ad_button),
                             onClick = onRescue,
@@ -333,9 +334,9 @@ fun RetreatReviveDialog(
                             active = true
                         )
                     }
-                    
+
                     PixelButton(
-                        if (hasFallenHeroes) safeStringResource(R.string.retreat_anyway_button) else safeStringResource(R.string.retreat_button),
+                        if (hasFallenHeroes && !isPermadeathProtected) safeStringResource(R.string.retreat_anyway_button) else safeStringResource(R.string.retreat_button),
                         onClick = onRetreat,
                         modifier = Modifier.fillMaxWidth().height(44.dp)
                     )
@@ -349,6 +350,7 @@ fun RetreatReviveDialog(
 fun ReviveDialog(
     isPermadeathProtected: Boolean = false,
     onRevive: () -> Unit,
+    onRetry: () -> Unit,
     onGiveUp: () -> Unit
 ) {
     Dialog(
@@ -384,14 +386,25 @@ fun ReviveDialog(
                 )
 
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                    PixelButton(
-                        label = safeStringResource(R.string.revive_button),
-                        onClick = onRevive,
-                        modifier = Modifier
-                            .fillMaxWidth()
-                            .height(48.dp),
-                        active = true
-                    )
+                    if (isPermadeathProtected) {
+                        PixelButton(
+                            label = safeStringResource(R.string.loop_run_button),
+                            onClick = onRetry,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(48.dp),
+                            active = true
+                        )
+                    } else {
+                        PixelButton(
+                            label = safeStringResource(R.string.revive_button),
+                            onClick = onRevive,
+                            modifier = Modifier
+                                .fillMaxWidth()
+                                .height(48.dp),
+                            active = true
+                        )
+                    }
                     PixelButton(
                         label = if (isPermadeathProtected) safeStringResource(R.string.return_to_inn) else safeStringResource(R.string.give_up_button),
                         onClick = onGiveUp,
