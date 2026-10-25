@@ -3,6 +3,15 @@ package com.game.dungeon.data.models
 import androidx.annotation.StringRes
 import com.game.dungeon.R
 
+data class Tier2Pet(
+    val petId: String,
+    val rarity: Rarity = Rarity.COMMON,
+    val cardsCollected: Int = 0,
+    val currentRank: Int = 0
+) {
+    fun getStatMultiplier(): Float = 1f + (currentRank * 0.01f)
+}
+
 enum class PetType(
     @StringRes val nameRes: Int,
     @StringRes val descRes: Int,

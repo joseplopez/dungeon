@@ -78,7 +78,11 @@ data class GameState(
     val highestBossLairFloor: Int = 1,
     val hasPermadeathProtectionUnlocked: Boolean = false,
     val isPermadeathProtectionActive: Boolean = false,
-    val gearSwitchesAvailable: Int = 0
+    val gearSwitchesAvailable: Int = 0,
+    val hasSeenSafariUnlockPopup: Boolean = false,
+    val safariTickets: Int = 0,
+    val tier2Pets: Map<String, Tier2Pet> = emptyMap(),
+    val equippedTier2PetId: String? = null
 ) {
     fun addGearSwitches(amount: Int): GameState {
         return copy(gearSwitchesAvailable = this.gearSwitchesAvailable + amount)
@@ -145,7 +149,7 @@ data class GameState(
     }
 
     // Pet Helpers
-    fun getPetLevel(petType: PetType): Int = (petLevels[petType] ?: 0).coerceAtLeast(1)
+    fun getPetLevel(petType: PetType): Int = (petLevels[petType] ?: 0).coerceAtLeast(1).coerceAtMost(50)
     fun getPetExp(petType: PetType): Int = petExp[petType] ?: 0
     fun getPetNextLevelExp(petType: PetType): Int = getPetLevel(petType) * 200
 
@@ -162,15 +166,21 @@ data class GameState(
     val petCritDamageBonus: Int get() = if (selectedPet == PetType.TONBERRY) getPetBonusValue(PetType.TONBERRY).toInt() else 0
 
     fun addPetExp(petType: PetType, amount: Int): GameState {
-        val currentExp = getPetExp(petType)
         val currentLevel = getPetLevel(petType)
+        if (currentLevel >= 50) return this
+
+        val currentExp = getPetExp(petType)
         
         var newExp = currentExp + amount
         var newLevel = currentLevel
         
-        while (newExp >= newLevel * 200) {
+        while (newLevel < 50 && newExp >= newLevel * 200) {
             newExp -= newLevel * 200
             newLevel++
+        }
+
+        if (newLevel >= 50) {
+            newExp = 0
         }
         
         return copy(
@@ -178,6 +188,8 @@ data class GameState(
             petExp = petExp.toMutableMap().apply { put(petType, newExp) }
         )
     }
+
+    fun isSafariUnlocked(): Boolean = currentDimension >= 11 && lifetimeHighestFloor >= 1000
 
     val allStandardCrystalsUnlocked: Boolean get() {
         val standardColors = CrystalColor.entries.filter { it != CrystalColor.CLEAR && it != CrystalColor.HIDDEN }

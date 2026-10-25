@@ -110,4 +110,16 @@ class Converters {
         val type = object : TypeToken<List<com.game.dungeon.data.models.SocketSlot>>() {}.type
         return gson.fromJson(value, type) ?: emptyList()
     }
+
+    @TypeConverter
+    fun fromTier2PetMap(value: Map<String, com.game.dungeon.data.models.Tier2Pet>?): String {
+        return gson.toJson(value ?: emptyMap<String, com.game.dungeon.data.models.Tier2Pet>())
+    }
+
+    @TypeConverter
+    fun toTier2PetMap(value: String?): Map<String, com.game.dungeon.data.models.Tier2Pet> {
+        if (value.isNullOrEmpty()) return emptyMap()
+        val type = object : TypeToken<Map<String, com.game.dungeon.data.models.Tier2Pet>>() {}.type
+        return gson.fromJson(value, type) ?: emptyMap()
+    }
 }

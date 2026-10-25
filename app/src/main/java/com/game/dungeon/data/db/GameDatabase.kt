@@ -9,7 +9,7 @@ import com.game.dungeon.data.models.GameState
 import com.game.dungeon.data.models.Hero
 import com.game.dungeon.data.models.Item
 
-@Database(entities = [GameState::class, Hero::class, Item::class, MaterialEntity::class, CodexEntity::class], version = 34, exportSchema = true)
+@Database(entities = [GameState::class, Hero::class, Item::class, MaterialEntity::class, CodexEntity::class], version = 35, exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class GameDatabase : RoomDatabase() {
     abstract val gameStateDao: GameStateDao
@@ -19,6 +19,18 @@ abstract class GameDatabase : RoomDatabase() {
     abstract val codexDao: CodexDao
 
     companion object {
+        val MIGRATION_34_35 = object : Migration(34, 35) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                try {
+                    ensureColumn(db, "game_state", "hasSeenSafariUnlockPopup", "INTEGER NOT NULL DEFAULT 0")
+                    ensureColumn(db, "game_state", "safariTickets", "INTEGER NOT NULL DEFAULT 0")
+                    ensureColumn(db, "game_state", "tier2Pets", "TEXT NOT NULL DEFAULT '{}'")
+                    ensureColumn(db, "game_state", "equippedTier2PetId", "TEXT DEFAULT NULL")
+                } catch (e: Exception) {
+                    wipeDatabase(db)
+                }
+            }
+        }
         val MIGRATION_33_34 = object : Migration(33, 34) {
             override fun migrate(db: SupportSQLiteDatabase) {
                 try {
