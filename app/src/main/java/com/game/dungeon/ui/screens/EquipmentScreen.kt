@@ -1,5 +1,6 @@
 package com.game.dungeon.ui.screens
 
+import android.app.Activity
 import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.RepeatMode
 import androidx.compose.animation.core.animateFloat
@@ -56,10 +57,12 @@ fun EquipmentScreen(
     onBack: () -> Unit
 ) {
     val context = LocalContext.current
+    val activity = context as? Activity
     val hero by viewModel.selectedHero.collectAsState()
     val equipped by viewModel.equippedItems.collectAsState()
     val inventory by viewModel.inventory.collectAsState()
     val relicBonuses by viewModel.relicBonuses.collectAsState()
+    val gearSwitches by viewModel.gearSwitchesAvailable.collectAsState()
 
     val heroUiState by heroViewModel.uiState.collectAsState()
     val currentHeroItemState = heroUiState.heroes.find { it.hero.id == heroId }
@@ -149,6 +152,7 @@ fun EquipmentScreen(
                         inventory = inventory,
                         onSelectItem = { selectedItemForDetail = it },
                         onSellAllClick = { showSellAllConfirmation = true },
+                        onBuyMiscPack = { activity?.let { viewModel.buyMiscPack(it) } },
                         animTime = animTime,
                         modifier = Modifier.weight(0.28f)
                     )
@@ -183,6 +187,7 @@ fun EquipmentScreen(
                     hero = hero,
                     equipped = equipped,
                     isEquipped = equipped.any { it.id == item.id },
+                    gearSwitches = gearSwitches,
                     animTime = animTime,
                     onEquip = {
                         viewModel.equipItem(item)
@@ -199,6 +204,10 @@ fun EquipmentScreen(
                     onToggleLock = {
                         viewModel.toggleItemLock(item)
                         selectedItemForDetail = item.copy(isLocked = !item.isLocked)
+                    },
+                    onSwapStats = { itemToSwap ->
+                        viewModel.swapItemStats(itemToSwap)
+                        selectedItemForDetail = itemToSwap.swapAtkAndMatk()
                     },
                     onClose = { selectedItemForDetail = null }
                 )
@@ -559,6 +568,7 @@ fun InventoryChestPanel(
     onSelectItem: (Item) -> Unit,
     modifier: Modifier = Modifier,
     onSellAllClick: () -> Unit = {},
+    onBuyMiscPack: () -> Unit = {},
     animTime: Float = 0f
 ) {
     Box(
@@ -651,6 +661,19 @@ fun InventoryChestPanel(
                     }
                 }
             }
+
+            Spacer(Modifier.height(4.dp))
+
+            PixelButton(
+                label = safeStringResource(R.string.misc_pack_button_label),
+                onClick = onBuyMiscPack,
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .height(26.dp),
+                active = true,
+                horizontalPadding = 4.dp,
+                fontSize = 8.sp
+            )
 
             Spacer(Modifier.height(4.dp))
 
@@ -781,11 +804,13 @@ private fun ItemDetailOverlay(
     hero: Hero? = null,
     equipped: List<Item> = emptyList(),
     isEquipped: Boolean,
+    gearSwitches: Int = 0,
     animTime: Float = 0f,
     onEquip: () -> Unit,
     onUnequip: () -> Unit,
     onSell: () -> Unit,
     onToggleLock: () -> Unit,
+    onSwapStats: (Item) -> Unit = {},
     onClose: () -> Unit
 ) {
     val scrollState = rememberScrollState()
@@ -949,6 +974,26 @@ private fun ItemDetailOverlay(
                             }
                         }
                     }
+                }
+
+                if (item.attackBonus > 0 || item.magicBonus > 0) {
+                    Spacer(Modifier.height(4.dp))
+                    PixelButton(
+                        label = safeStringResource(R.string.swap_atk_matk_button),
+                        active = gearSwitches > 0,
+                        enabled = gearSwitches > 0,
+                        onClick = {
+                            onSwapStats(item)
+                        },
+                        modifier = Modifier
+                            .fillMaxWidth()
+                            .height(36.dp)
+                    )
+                    Text(
+                        text = safeStringResource(R.string.switches_available_format, gearSwitches),
+                        style = PixelSmall,
+                        color = StoneGray
+                    )
                 }
 
                 Spacer(Modifier.height(8.dp))

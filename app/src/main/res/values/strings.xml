@@ -1324,6 +1324,10 @@
     <string name="permadeath_protection_title">PERMADEATH PROTECTION</string>
     <string name="permadeath_protection_desc">Protect your heroes from permanent death when party wipes occur!</string>
     <string name="buy_protection_button">BUY PROTECTION</string>
+    <string name="misc_pack_title">Misc Pack (+5 Gear Switches)</string>
+    <string name="misc_pack_button_label">Misc Pack: +5 Gear Switches</string>
+    <string name="swap_atk_matk_button">Swap ATK/MATK (Cost: 1 Switch)</string>
+    <string name="switches_available_format">Switches Available: %1$d</string>
 
     <!-- Boss Lair Feature -->
     <string name="boss_lair_title">Boss Lair</string>

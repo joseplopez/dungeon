@@ -171,7 +171,7 @@ class PlayBillingManager @Inject constructor(
                         pendingSuccessCallback?.invoke(currentProduct)
                     } else {
                         // Match product by ID if pendingProduct was cleared
-                        val matchedProduct = (InAppProduct.GIL_PRODUCTS + InAppProduct.MAGICITE_PRODUCTS + listOf(InAppProduct.SPEED_PRODUCT, InAppProduct.PERMADEATH_PRODUCT))
+                        val matchedProduct = (InAppProduct.GIL_PRODUCTS + InAppProduct.MAGICITE_PRODUCTS + listOf(InAppProduct.SPEED_PRODUCT, InAppProduct.PERMADEATH_PRODUCT, InAppProduct.MISC_PRODUCT))
                             .find { product -> purchase.products.contains(product.id) }
                         if (matchedProduct != null) {
                             handleProductReward(matchedProduct)
@@ -188,7 +188,9 @@ class PlayBillingManager @Inject constructor(
 
     private fun handleProductReward(product: InAppProduct) {
         scope.launch {
-            if (product.id == InAppProduct.PERMADEATH_PROTECTION) {
+            if (product.id == InAppProduct.MISC_PACK) {
+                repository.addGearSwitches(5)
+            } else if (product.id == InAppProduct.PERMADEATH_PROTECTION) {
                 repository.unlockPermadeathProtection()
             } else {
                 when (product.resourceType) {

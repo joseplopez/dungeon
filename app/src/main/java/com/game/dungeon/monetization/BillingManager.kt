@@ -29,6 +29,7 @@ data class InAppProduct(
 
         const val PREMIUM_SPEED = "premium_speed_10x"
         const val PERMADEATH_PROTECTION = "premium_permadeath_protection"
+        const val MISC_PACK = "misc_pack_99"
 
         val ALL_PRODUCT_IDS = listOf(
             GIL_PACK_SMALL,
@@ -38,7 +39,8 @@ data class InAppProduct(
             MAGICITE_PACK_MEDIUM,
             MAGICITE_PACK_LARGE,
             PREMIUM_SPEED,
-            PERMADEATH_PROTECTION
+            PERMADEATH_PROTECTION,
+            MISC_PACK
         )
 
         val SPEED_PRODUCT = InAppProduct(
@@ -57,6 +59,15 @@ data class InAppProduct(
             defaultPrice = "$2.49",
             titleResId = R.string.permadeath_protection_title,
             iconEmoji = "🛡️"
+        )
+
+        val MISC_PRODUCT = InAppProduct(
+            id = MISC_PACK,
+            resourceType = ResourceType.GIL,
+            rewardAmount = 0L,
+            defaultPrice = "$0.99",
+            titleResId = R.string.misc_pack_title,
+            iconEmoji = "🔄"
         )
 
         val GIL_PRODUCTS = listOf(

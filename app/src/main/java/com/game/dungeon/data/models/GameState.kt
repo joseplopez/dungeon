@@ -77,8 +77,16 @@ data class GameState(
     val hasSeenBossLairPopup: Boolean = false,
     val highestBossLairFloor: Int = 1,
     val hasPermadeathProtectionUnlocked: Boolean = false,
-    val isPermadeathProtectionActive: Boolean = false
+    val isPermadeathProtectionActive: Boolean = false,
+    val gearSwitchesAvailable: Int = 0
 ) {
+    fun addGearSwitches(amount: Int): GameState {
+        return copy(gearSwitchesAvailable = this.gearSwitchesAvailable + amount)
+    }
+
+    fun consumeGearSwitch(): GameState {
+        return copy(gearSwitchesAvailable = (this.gearSwitchesAvailable - 1).coerceAtLeast(0))
+    }
     val maxGil: Long get() =
         if (vaultLevel >= UpgradeType.VAULT.maxLevel) {
             Long.MAX_VALUE

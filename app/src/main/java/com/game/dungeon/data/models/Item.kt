@@ -52,6 +52,13 @@ data class Item(
     @ColumnInfo(defaultValue = "NULL") val setId: String? = null,
     val isLocked: Boolean = false
 ) {
+    fun swapAtkAndMatk(): Item {
+        return this.copy(
+            attackBonus = this.magicBonus,
+            magicBonus = this.attackBonus
+        )
+    }
+
     val sellValue: Long get() = (floorFound * 5L + rarity.ordinal * 20L).coerceAtLeast(5L)
 
     val basePowerScore: Long get() = attackBonus + defenseBonus + magicBonus + (hpBonus / 5) + (mpBonus / 2) + (critChanceBonus * 2) + (critDamageBonus / 2)

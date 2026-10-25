@@ -667,4 +667,21 @@ class GameRepository @Inject constructor(
 
         return Result.success(updatedHero)
     }
+
+    suspend fun addGearSwitches(amount: Int) {
+        val currentState = getGameStateOnce() ?: GameState()
+        saveGameState(currentState.addGearSwitches(amount))
+    }
+
+    suspend fun swapItemStats(itemId: String): Boolean {
+        val currentState = getGameStateOnce() ?: return false
+        if (currentState.gearSwitchesAvailable <= 0) return false
+
+        val item = database.itemDao.getItemById(itemId) ?: return false
+        val updatedItem = item.swapAtkAndMatk()
+
+        database.itemDao.upsert(updatedItem)
+        saveGameState(currentState.consumeGearSwitch())
+        return true
+    }
 }

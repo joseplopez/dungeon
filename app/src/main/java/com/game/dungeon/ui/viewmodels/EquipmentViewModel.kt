@@ -1,12 +1,16 @@
 package com.game.dungeon.ui.viewmodels
 
+import android.app.Activity
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.game.dungeon.data.models.Hero
 import com.game.dungeon.data.models.Item
 import com.game.dungeon.data.models.ItemSlot
 import com.game.dungeon.data.repository.GameRepository
+import com.game.dungeon.monetization.BillingManager
+import com.game.dungeon.monetization.InAppProduct
 import dagger.hilt.android.lifecycle.HiltViewModel
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.ExperimentalCoroutinesApi
 import kotlinx.coroutines.flow.*
 import kotlinx.coroutines.launch
@@ -15,7 +19,8 @@ import javax.inject.Inject
 @OptIn(ExperimentalCoroutinesApi::class)
 @HiltViewModel
 class EquipmentViewModel @Inject constructor(
-    private val repository: GameRepository
+    private val repository: GameRepository,
+    private val billingManager: BillingManager
 ) : ViewModel() {
 
     private val _selectedHeroId = MutableStateFlow<String?>(null)
@@ -42,6 +47,27 @@ class EquipmentViewModel @Inject constructor(
     val relicBonuses: StateFlow<com.game.dungeon.data.models.RelicBonuses?> = repository.getGameState()
         .map { it?.let { com.game.dungeon.data.models.RelicBonuses.from(it) } }
         .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
+
+    val gearSwitchesAvailable: StateFlow<Int> = repository.getGameState()
+        .map { it?.gearSwitchesAvailable ?: 0 }
+        .stateIn(viewModelScope, SharingStarted.Lazily, 0)
+
+    fun buyMiscPack(activity: Activity) {
+        billingManager.launchBillingFlow(
+            activity = activity,
+            product = InAppProduct.MISC_PRODUCT,
+            onSuccess = {
+                // Granted automatically by PlayBillingManager or updated via repository state
+            },
+            onError = { /* Handle error */ }
+        )
+    }
+
+    fun swapItemStats(item: Item) {
+        viewModelScope.launch(Dispatchers.IO) {
+            repository.swapItemStats(item.id)
+        }
+    }
 
     fun selectHero(heroId: String) {
         _selectedHeroId.value = heroId
