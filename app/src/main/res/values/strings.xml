@@ -239,6 +239,11 @@
     <string name="biome_omega_ruins">Omega Ruins</string>
     <string name="biome_sin_interior">Inside Sin</string>
 
+    <!-- Safari Dimension Strings -->
+    <string name="safari_dimension_title">Safari Dimension</string>
+    <string name="safari_dimension_subtitle">Wild Menagerie</string>
+    <string name="safari_dimension_story">A wild realm where companion monsters roam free. Base stats only!</string>
+
     <!-- Dimension 11 Strings -->
     <string name="dim11_title">The Infinite Void</string>
     <string name="dim11_subtitle">Final Fantasy Forever</string>

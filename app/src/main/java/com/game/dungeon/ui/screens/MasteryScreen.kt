@@ -42,10 +42,8 @@ fun MasteryScreen(
 ) {
     val gs by viewModel.gameState.collectAsState()
     
-    var selectedTab by remember { mutableIntStateOf(0) }
     var showSupportDialog by remember { mutableStateOf(false) }
     var selectedJobDetail by remember { mutableStateOf<HeroClass?>(null) }
-    val tabs = listOf(safeStringResource(R.string.tab_job_mastery), safeStringResource(R.string.tab_pets))
 
     Box(Modifier
         .fillMaxSize()
@@ -72,35 +70,13 @@ fun MasteryScreen(
                 }
             }
 
-            TabRow(
-                selectedTabIndex = selectedTab,
-                containerColor = BgMedium,
-                contentColor = GoldBright,
-                divider = { PixelDivider() }
-            ) {
-                tabs.forEachIndexed { index, title ->
-                    Tab(
-                        selected = selectedTab == index,
-                        onClick = { selectedTab = index },
-                        text = { Text(title, style = PixelBody, color = if (selectedTab == index) GoldBright else GoldDark) }
-                    )
-                }
-            }
-
             Box(Modifier
                 .weight(1f)
                 .padding(8.dp)) {
-                when (selectedTab) {
-                    0 -> JobMasteryTab(
-                        gs = gs ?: GameState(),
-                        onSelectJob = { selectedJobDetail = it }
-                    )
-                    1 -> PetsTab(
-                        gs = gs ?: GameState(), 
-                        onSelect = { viewModel.selectPet(it) },
-                        onUnlock = { viewModel.unlockPet(it) }
-                    )
-                }
+                JobMasteryTab(
+                    gs = gs ?: GameState(),
+                    onSelectJob = { selectedJobDetail = it }
+                )
             }
             
             BottomPixelNav(navController.currentBackStackEntry?.destination?.route, navController)

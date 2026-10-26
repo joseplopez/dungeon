@@ -44,6 +44,7 @@ import com.game.dungeon.ui.screens.EquipmentScreen
 import com.game.dungeon.ui.screens.InnScreen
 import com.game.dungeon.ui.screens.LeaderboardScreen
 import com.game.dungeon.ui.screens.MasteryScreen
+import com.game.dungeon.ui.screens.MenagerieScreen
 import com.game.dungeon.ui.screens.RelicsScreen
 import com.game.dungeon.ui.screens.TownScreen
 import com.game.dungeon.ui.theme.BgDarkest
@@ -148,6 +149,9 @@ class MainActivity : ComponentActivity() {
                                     onNavigateToMastery = {
                                         navController.navigate("mastery")
                                     },
+                                    onNavigateToMenagerie = {
+                                        navController.navigate("menagerie")
+                                    },
                                     navController = navController,
                                     isMuted = isMuted,
                                     onToggleMusic = { isMuted = !isMuted },
@@ -222,6 +226,20 @@ class MainActivity : ComponentActivity() {
                                     navController = navController,
                                     isMuted = isMuted,
                                     onToggleMusic = { isMuted = !isMuted },
+                                    viewModel = innViewModel
+                                )
+                            }
+                            composable("menagerie") {
+                                MenagerieScreen(
+                                    navController = navController,
+                                    isMuted = isMuted,
+                                    onToggleMusic = { isMuted = !isMuted },
+                                    onStartSafariRun = { party ->
+                                        dungeonViewModel.startRun(party, 1, mode = com.game.dungeon.data.models.DungeonMode.SAFARI)
+                                        navController.navigate("dungeon") {
+                                            popUpTo("menagerie")
+                                        }
+                                    },
                                     viewModel = innViewModel
                                 )
                             }

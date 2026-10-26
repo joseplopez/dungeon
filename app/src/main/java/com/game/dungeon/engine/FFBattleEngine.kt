@@ -129,11 +129,12 @@ class FFBattleEngine(private val context: Context) {
                         currentFloor,
                         context,
                         relicBonuses = relicBonuses,
-                        dimension = dimension
+                        dimension = dimension,
+                        mode = mode
                     )
                 )
             } else {
-                spawnEnemies(dimension, currentFloor, context, relicBonuses).toMutableList()
+                spawnEnemies(dimension, currentFloor, context, relicBonuses, mode).toMutableList()
             }
 
             var floorBaseGilEarned: Long = 0
@@ -389,9 +390,11 @@ class FFBattleEngine(private val context: Context) {
         dimension: FFDimension,
         floor: Int,
         context: Context,
-        relicBonuses: RelicBonuses
+        relicBonuses: RelicBonuses,
+        mode: DungeonMode = DungeonMode.REGULAR
     ): List<Enemy> {
-        val templates = FFDimensionData.getEnemiesForFloor(dimension, floor)
+        val targetDim = if (mode == DungeonMode.SAFARI) FFDimensionData.safariDimension else dimension
+        val templates = if (mode == DungeonMode.SAFARI) targetDim.enemies else FFDimensionData.getEnemiesForFloor(targetDim, floor)
         if (templates.isEmpty()) return emptyList()
         val count = Random.nextInt(1, 4)
         return List(count) {
@@ -400,7 +403,8 @@ class FFBattleEngine(private val context: Context) {
                 floor,
                 context,
                 relicBonuses = relicBonuses,
-                dimension = dimension
+                dimension = targetDim,
+                mode = mode
             )
         }
     }

@@ -192,7 +192,7 @@ class DungeonViewModel @Inject constructor(
   fun startRun(party: List<Hero>, startFloor: Int = 1, mode: DungeonMode = DungeonMode.REGULAR) {
     battleJob?.cancel()
     val gs = gameState.value ?: GameState()
-    val dimension = FFDimensionData.getDimension(gs.currentDimension)
+    val dimension = if (mode == DungeonMode.SAFARI) FFDimensionData.safariDimension else FFDimensionData.getDimension(gs.currentDimension)
 
     viewModelScope.launch {
         val codexBonuses = repo.getCodexBonuses()
@@ -744,7 +744,7 @@ class DungeonViewModel @Inject constructor(
                   val gs = repo.getGameStateOnce() ?: GameState()
                   val codex = repo.getCodexBonuses()
                   val relics = RelicBonuses.from(gs, codex)
-                  val dimension = FFDimensionData.getDimension(gs.currentDimension)
+                  val dimension = if (state.dungeonMode == DungeonMode.SAFARI) FFDimensionData.safariDimension else FFDimensionData.getDimension(gs.currentDimension)
 
                   val bossesKilled = state.bossesKilledThisRun
                   val newItems = mutableListOf<Item>()
@@ -933,7 +933,7 @@ class DungeonViewModel @Inject constructor(
         viewModelScope.launch {
             val state = battleState.value
             val gs = repo.getGameStateOnce() ?: GameState()
-            val dimension = FFDimensionData.getDimension(gs.currentDimension)
+            val dimension = if (state.dungeonMode == DungeonMode.SAFARI) FFDimensionData.safariDimension else FFDimensionData.getDimension(gs.currentDimension)
             val codexBonuses = repo.getCodexBonuses()
             val relics = RelicBonuses.from(gs, codexBonuses)
 

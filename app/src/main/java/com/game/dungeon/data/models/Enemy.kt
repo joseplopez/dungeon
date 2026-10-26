@@ -29,8 +29,38 @@ data class Enemy(
             context: Context,
             difficultyMult: Float = 1.0f,
             relicBonuses: RelicBonuses? = null,
-            dimension: FFDimension = FFDimensionData.getDimension(1)
+            dimension: FFDimension = FFDimensionData.getDimension(1),
+            mode: DungeonMode = DungeonMode.REGULAR
         ): Enemy {
+            if (mode == DungeonMode.SAFARI || dimension.number == 99) {
+                val f = floor.toDouble()
+                val safariHp = (150_000.0 + f * 25_000.0) * template.hpMult * difficultyMult
+                val safariAtk = (15_000.0 + f * 1_500.0) * template.atkMult * difficultyMult
+                val safariDef = (5.0 + f * 1.0) * template.defMult * difficultyMult
+
+                val safeHp = safariHp.coerceIn(10.0, Double.MAX_VALUE).toLong()
+                val safeAtk = safariAtk.coerceIn(1.0, Double.MAX_VALUE).toLong()
+                val safeDef = safariDef.coerceIn(0.0, Double.MAX_VALUE).toLong()
+
+                val enemyName = try { context.getString(template.nameRes) } catch (_: Exception) { null } ?: "Safari Pet"
+
+                return Enemy(
+                    type = template.type,
+                    name = enemyName,
+                    emoji = template.emoji,
+                    maxHp = safeHp,
+                    currentHp = safeHp,
+                    attack = safeAtk,
+                    defense = safeDef,
+                    magicDefense = (safeDef * 0.8).toLong(),
+                    speed = (10 + (floor / 10)).coerceAtMost(50),
+                    gilReward = (50L + floor * 10L),
+                    magiciteDropped = 0,
+                    floor = floor,
+                    isBoss = template.isBoss
+                )
+            }
+
             // ── DIMENSION SCALING ──
             // Dim 1-10: 0.75x to 3.0x. Dim 11+: accelerated scaling (+0.80x per dim past 10)
             val dimMult = if (dimension.number <= 10) {

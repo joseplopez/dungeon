@@ -108,6 +108,7 @@ fun DungeonScreen(
                     isCritical = state.isCriticalHit,
                     dimension = dimension,
                     floor = state.currentFloor,
+                    dungeonMode = state.dungeonMode,
                     floatingLootEffects = state.floatingLootEffects,
                     onRemoveLootEffect = { viewModel.removeFloatingLootEffect(it) }
                 )
@@ -605,6 +606,7 @@ fun BattleArea(
     isCritical: Boolean,
     dimension: FFDimension?,
     floor: Int,
+    dungeonMode: DungeonMode = DungeonMode.REGULAR,
     floatingLootEffects: List<DungeonViewModel.FloatingLootEffect> = emptyList(),
     onRemoveLootEffect: (Long) -> Unit = {}
 ) {
@@ -647,7 +649,8 @@ fun BattleArea(
                     dimension = dimension,
                     floor = floor,
                     sideWidth = sideWidth,
-                    totalHeight = totalHeight
+                    totalHeight = totalHeight,
+                    dungeonMode = dungeonMode
                 )
 
                 if (floatingLootEffects.isNotEmpty()) {
@@ -754,7 +757,8 @@ private fun EnemiesSide(
     dimension: FFDimension?,
     floor: Int,
     sideWidth: androidx.compose.ui.unit.Dp,
-    totalHeight: androidx.compose.ui.unit.Dp
+    totalHeight: androidx.compose.ui.unit.Dp,
+    dungeonMode: DungeonMode = DungeonMode.REGULAR
 ) {
     val enemyCount = enemies.size
     val spacing = 4.dp
@@ -816,7 +820,8 @@ private fun EnemiesSide(
                             enemy = enemy,
                             isHit = hitEnemyId == enemy.id,
                             isCritical = isCritical && hitEnemyId == enemy.id,
-                            isBoss = isBoss
+                            isBoss = isBoss,
+                            dungeonMode = dungeonMode
                         )
                     }
                 }
@@ -943,7 +948,7 @@ fun HeroUnitDisplay(hero: Hero, isAttacking: Boolean, isHit: Boolean, isCritical
 }
 
 @Composable
-fun EnemyUnitDisplay(enemy: Enemy, isHit: Boolean, isCritical: Boolean, isBoss: Boolean) {
+fun EnemyUnitDisplay(enemy: Enemy, isHit: Boolean, isCritical: Boolean, isBoss: Boolean, dungeonMode: DungeonMode = DungeonMode.REGULAR) {
     val shakeOffset = remember { Animatable(0f) }
 
     LaunchedEffect(isHit) {
@@ -999,7 +1004,8 @@ fun EnemyUnitDisplay(enemy: Enemy, isHit: Boolean, isCritical: Boolean, isBoss: 
                                 blendMode = BlendMode.SrcIn
                             )
                         }
-                    }
+                    },
+                dungeonMode = dungeonMode
             )
 
             if (isHit) {

@@ -317,6 +317,35 @@ class InnViewModel @Inject constructor(
         _startFloor.value = floor.coerceIn(1, limit)
     }
 
+    fun markSafariUnlockPopupSeen() {
+        viewModelScope.launch {
+            repository.setHasSeenSafariUnlockPopup(true)
+        }
+    }
+
+    fun equipTier2Pet(petId: String?) {
+        viewModelScope.launch {
+            repository.equipTier2Pet(petId)
+        }
+    }
+
+    fun rankUpTier2Pet(petId: String) {
+        viewModelScope.launch {
+            repository.rankUpTier2Pet(petId)
+        }
+    }
+
+    fun consumeSafariTicketForRun(): Boolean {
+        val gs = gameState.value ?: return false
+        if (gs.safariTickets >= 1) {
+            viewModelScope.launch {
+                repository.addSafariTickets(-1)
+            }
+            return true
+        }
+        return false
+    }
+
     fun selectPet(pet: PetType?) {
         viewModelScope.launch {
             val currentGs = repository.getGameStateOnce() ?: return@launch

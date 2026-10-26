@@ -80,7 +80,7 @@ data class GameState(
     val isPermadeathProtectionActive: Boolean = false,
     val gearSwitchesAvailable: Int = 0,
     val hasSeenSafariUnlockPopup: Boolean = false,
-    val safariTickets: Int = 0,
+    val safariTickets: Int = BuildConfig.INITIAL_SAFARI_TICKETS,
     val tier2Pets: Map<String, Tier2Pet> = emptyMap(),
     val equippedTier2PetId: String? = null
 ) {
@@ -199,7 +199,8 @@ data class GameState(
         )
     }
 
-    fun isSafariUnlocked(): Boolean = currentDimension >= 11 && lifetimeHighestFloor >= 1000
+    fun isSafariUnlocked(ignoreDebugFlag: Boolean = false): Boolean =
+        (!ignoreDebugFlag && BuildConfig.ENABLE_SAFARI_TESTING) || (currentDimension >= 11 && lifetimeHighestFloor >= 1000)
 
     val allStandardCrystalsUnlocked: Boolean get() {
         val standardColors = CrystalColor.entries.filter { it != CrystalColor.CLEAR && it != CrystalColor.HIDDEN }

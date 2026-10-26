@@ -311,7 +311,7 @@ class GameRepositoryCraftingTest {
             name = "Warrior",
             currentHp = 100,
             currentMp = 20,
-            level = 50,
+            level = 20,
             aiPriority = AIPriority.ATTACK,
         )
         database.heroDao.upsert(hero)

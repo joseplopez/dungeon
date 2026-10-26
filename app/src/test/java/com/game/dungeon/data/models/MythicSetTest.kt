@@ -26,7 +26,7 @@ class MythicSetTest {
 
     @Test
     fun testAll12MythicSetsExist() {
-        assertEquals(12, MythicSet.entries.size)
+        assertEquals(18, MythicSet.entries.size)
         for (set in MythicSet.entries) {
             val retrieved = MythicSet.fromId(set.id)
             assertEquals(set, retrieved)

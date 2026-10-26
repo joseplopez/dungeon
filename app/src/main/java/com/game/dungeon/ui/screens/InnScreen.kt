@@ -41,6 +41,7 @@ fun InnScreen(
     onNavigateToDungeon: (List<Hero>, Int) -> Unit,
     onNavigateToEquipment: (String) -> Unit,
     onNavigateToMastery: () -> Unit,
+    onNavigateToMenagerie: () -> Unit,
     navController: NavController,
     isMuted: Boolean,
     onToggleMusic: () -> Unit,
@@ -59,6 +60,7 @@ fun InnScreen(
     val highestFloor = gs?.highestFloor ?: 0
     val currentDimension = gs?.currentDimension ?: 1
     val pathfinderLevel = gs?.pathfinderLevel ?: 0
+    val isSafariUnlocked = gs?.isSafariUnlocked() == true
 
     val showResourceShop by viewModel.showResourceShop.collectAsState()
     val resourceShopType by viewModel.resourceShopType.collectAsState()
@@ -106,6 +108,7 @@ fun InnScreen(
                     canSend = canSendToDungeon,
                     hasPermadeathProtectionUnlocked = gs?.hasPermadeathProtectionUnlocked ?: false,
                     isPermadeathProtectionActive = gs?.isPermadeathProtectionActive ?: false,
+                    isSafariUnlocked = isSafariUnlocked,
                     onBuyPermadeathProtection = { activity?.let { viewModel.buyPermadeathProtection(it) } },
                     onTogglePermadeathProtection = { active -> viewModel.togglePermadeathProtection(active) },
                     onSelectJobToHire = { job -> selectedHireJob = job },
@@ -119,7 +122,8 @@ fun InnScreen(
                             viewModel.resetStartFloor()
                         }
                     },
-                    onNavigateToMastery = onNavigateToMastery
+                    onNavigateToMastery = onNavigateToMastery,
+                    onNavigateToMenagerie = onNavigateToMenagerie
                 )
 
                 val hasNoLastParty = gs?.lastPartyClasses.isNullOrEmpty()
@@ -222,6 +226,12 @@ fun InnScreen(
             onDismiss = { showSupportDialog = false }
         )
     }
+
+    if (isSafariUnlocked && gs?.hasSeenSafariUnlockPopup == false) {
+        SafariUnlockDialog(
+            onDismiss = { viewModel.markSafariUnlockPopupSeen() }
+        )
+    }
 }
 
 // ============================================================================
@@ -238,12 +248,14 @@ fun GuildStageArea(
     canSend: Boolean,
     hasPermadeathProtectionUnlocked: Boolean,
     isPermadeathProtectionActive: Boolean,
+    isSafariUnlocked: Boolean = false,
     onBuyPermadeathProtection: () -> Unit,
     onTogglePermadeathProtection: (Boolean) -> Unit,
     onSelectJobToHire: (HeroClass) -> Unit,
     onRest: () -> Unit,
     onDepartClick: () -> Unit,
-    onNavigateToMastery: () -> Unit
+    onNavigateToMastery: () -> Unit,
+    onNavigateToMenagerie: () -> Unit = {}
 ) {
     Box(
         modifier = modifier
@@ -383,6 +395,16 @@ fun GuildStageArea(
                         .weight(1f)
                         .height(42.dp)
                 )
+                if (isSafariUnlocked) {
+                    PixelButton(
+                        label = "🐾 Menagerie",
+                        onClick = onNavigateToMenagerie,
+                        horizontalPadding = 4.dp,
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(42.dp)
+                    )
+                }
                 PixelButton(
                     label = if (restCost > 0) safeStringResource(R.string.rest_at_inn_cost, restCost) else safeStringResource(R.string.rest_at_inn_free),
                     onClick = onRest,
@@ -1138,6 +1160,75 @@ fun HiddenJobUnlockDialog(heroClass: HeroClass, onDismiss: () -> Unit) {
                     modifier = Modifier
                         .fillMaxWidth()
                         .height(48.dp)
+                )
+            }
+        }
+    }
+}
+
+@Composable
+fun SafariUnlockDialog(
+    onDismiss: () -> Unit
+) {
+    Dialog(
+        onDismissRequest = onDismiss,
+        properties = DialogProperties(usePlatformDefaultWidth = false)
+    ) {
+        GoldenBorderBox(
+            Modifier
+                .fillMaxWidth(0.90f)
+                .fillMaxHeight(0.90f)
+                .widthIn(max = 420.dp)
+                .background(BgDarkest)
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxSize()
+                    .padding(16.dp),
+                horizontalAlignment = CenterHorizontally,
+                verticalArrangement = Arrangement.SpaceBetween
+            ) {
+                Text(
+                    text = "🐾 Safari Menagerie Unlocked!",
+                    style = PixelHeading,
+                    color = GoldBright,
+                    textAlign = TextAlign.Center
+                )
+
+                Spacer(Modifier.height(8.dp))
+
+                Column(
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxWidth()
+                        .verticalScroll(rememberScrollState()),
+                    horizontalAlignment = CenterHorizontally,
+                    verticalArrangement = Arrangement.spacedBy(10.dp)
+                ) {
+                    Text("🦁", fontSize = 48.sp)
+                    Text(
+                        "Welcome to the Menagerie and the Safari Dimension! Here you can capture monster cards, upgrade companion pets, and harness Tier 2 pet skills.",
+                        style = PixelBody,
+                        color = Color.White,
+                        textAlign = TextAlign.Center
+                    )
+                    Text(
+                        "Collect cards in Safari runs where heroes rely strictly on base stats and pet multipliers!",
+                        style = PixelSmall,
+                        color = StoneGray,
+                        textAlign = TextAlign.Center
+                    )
+                }
+
+                Spacer(Modifier.height(8.dp))
+
+                PixelButton(
+                    label = "Got It!",
+                    onClick = onDismiss,
+                    active = true,
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(44.dp)
                 )
             }
         }

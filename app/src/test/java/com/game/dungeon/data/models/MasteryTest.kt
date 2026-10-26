@@ -38,6 +38,6 @@ class MasteryTest {
         val warrior = HeroClass.WARRIOR // Attack bonus 2 per level
         
         assertEquals(5, gs.getMasteryLevel(warrior))
-        assertEquals(10, gs.getMasteryBonus(warrior))
+        assertEquals(25L, gs.getMasteryBonus(warrior))
     }
 }

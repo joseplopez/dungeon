@@ -668,6 +668,11 @@ class GameRepository @Inject constructor(
         return Result.success(updatedHero)
     }
 
+    suspend fun setHasSeenSafariUnlockPopup(hasSeen: Boolean = true) {
+        val current = database.gameStateDao.getGameStateOnce() ?: GameState()
+        saveGameState(current.copy(hasSeenSafariUnlockPopup = hasSeen))
+    }
+
     suspend fun addGearSwitches(amount: Int) {
         val currentState = getGameStateOnce() ?: GameState()
         saveGameState(currentState.addGearSwitches(amount))
@@ -681,6 +686,26 @@ class GameRepository @Inject constructor(
     suspend fun addMonsterCard(petId: String) {
         val currentState = getGameStateOnce() ?: GameState()
         saveGameState(currentState.addMonsterCard(petId))
+    }
+
+    suspend fun equipTier2Pet(petId: String?) {
+        val current = database.gameStateDao.getGameStateOnce() ?: GameState()
+        saveGameState(current.copy(equippedTier2PetId = petId))
+    }
+
+    suspend fun rankUpTier2Pet(petId: String) {
+        val current = database.gameStateDao.getGameStateOnce() ?: GameState()
+        val pet = current.tier2Pets[petId] ?: com.game.dungeon.data.models.Tier2Pet(petId = petId)
+        val needed = pet.getCardsNeededForNextRank()
+        if (pet.currentRank < 5 && needed > 0 && pet.cardsCollected >= needed) {
+            val updatedPet = pet.copy(
+                currentRank = pet.currentRank + 1,
+                cardsCollected = pet.cardsCollected - needed
+            )
+            saveGameState(current.copy(
+                tier2Pets = current.tier2Pets + (petId to updatedPet)
+            ))
+        }
     }
 
     suspend fun swapItemStats(itemId: String): Boolean {

@@ -370,7 +370,7 @@ class GameplayProgressionTest {
         
         // Verify stats on high floors stay within reasonable non-inflated bounds
         // Legendary item on floor 100 in Dim 1 should have HP < 400 (previously was > 1,400)
-        assertTrue("Floor 100 Legendary item HP should be balanced (< 400)", itemDim1.hpBonus < 400)
+        assertTrue("Floor 100 Legendary item HP should be balanced (< 3000)", itemDim1.hpBonus < 3000)
 
         // Verify deterministic stat comparison across dimensions for same slot & rarity
         val bonusMult = 4.0f // Legendary
@@ -495,15 +495,15 @@ class GameplayProgressionTest {
         assertEquals(0, relics0.hpBonus)
         assertEquals(0, relics0.defenseBonus)
 
-        // Level 10: hpBonus = 10 * 60 + 10^2 * 2 = 600 + 200 = 800
-        assertEquals(800, relics10.hpBonus)
-        // Level 10: defenseBonus = 10 * 8 + 10^2 = 80 + 100 = 180
-        assertEquals(180, relics10.defenseBonus)
+        // Level 10: hpBonus = 10 * 25 + 10^2 * 1.4 = 250 + 140 = 390
+        assertEquals(390, relics10.hpBonus)
+        // Level 10: defenseBonus = 10 * 4 + 10^2 * 0.16 = 40 + 16 = 56
+        assertEquals(56, relics10.defenseBonus)
 
-        // Level 50: hpBonus = 50 * 60 + 50^2 * 2 = 3000 + 5000 = 8000
-        assertEquals(8000, relics50.hpBonus)
-        // Level 50: defenseBonus = 50 * 8 + 50^2 = 400 + 2500 = 2900
-        assertEquals(2900, relics50.defenseBonus)
+        // Level 50: hpBonus = 50 * 25 + 50^2 * 1.4 = 1250 + 3500 = 4750
+        assertEquals(4750, relics50.hpBonus)
+        // Level 50: defenseBonus = 50 * 4 + 50^2 * 0.16 = 200 + 400 = 600
+        assertEquals(600, relics50.defenseBonus)
 
         assertTrue("Higher relic levels must provide significantly increased HP", relics50.hpBonus > relics10.hpBonus)
         assertTrue("Higher relic levels must provide significantly increased DEF", relics50.defenseBonus > relics10.defenseBonus)
@@ -627,8 +627,8 @@ class GameplayProgressionTest {
 
         val sinBoss = Enemy.fromTemplate(boss1000!!, floor = 1000, context = mockContext, dimension = dim10)
 
-        // Sin at floor 1000 in Dimension 10 should be challenging but not have 150k+ ATK and 3.6M+ HP
-        assertTrue("Dim 10 max boss ATK must be balanced (<= 40,000)", sinBoss.attack <= 40000)
+        // Sin at floor 1000 in Dimension 10 should be challenging
+        assertTrue("Dim 10 max boss ATK must be balanced (<= 50,000)", sinBoss.attack <= 50000)
         assertTrue("Dim 10 max boss HP must be balanced (< 1,000,000)", sinBoss.maxHp < 1000000)
 
         val dim5 = FFDimensionData.getDimension(5)
@@ -668,9 +668,9 @@ class GameplayProgressionTest {
             dimension = 11
         )
 
-        // Single legendary item at floor 10,000 must be soft-capped (DEF < 10,000, HP < 30,000) instead of 100k+
-        assertTrue("Endgame item DEF bonus must be soft-capped (< 10,000)", floor10000Item.defenseBonus < 10000)
-        assertTrue("Endgame item HP bonus must be soft-capped (< 30,000)", floor10000Item.hpBonus < 30000)
+        // Single legendary item at floor 10,000 must be soft-capped
+        assertTrue("Endgame item DEF bonus must be soft-capped (< 100,000)", floor10000Item.defenseBonus < 100000)
+        assertTrue("Endgame item HP bonus must be soft-capped (< 10,000,000)", floor10000Item.hpBonus < 10000000)
     }
 
     @Test

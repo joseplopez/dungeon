@@ -517,6 +517,25 @@ object FFDimensionData {
         )
     }
 
+    val safariDimension: FFDimension by lazy {
+        FFDimension(
+            number = 99,
+            titleRes = R.string.safari_dimension_title,
+            subtitleRes = R.string.safari_dimension_subtitle,
+            mainColor = 0xFF1A3A2A,
+            accentColor = 0xFF88FF88,
+            storyRes = R.string.safari_dimension_story,
+            biomes = listOf(FFBiome(R.string.safari_dimension_title, 1..999999, BiomeType.CORNELIA_CASTLE)),
+            enemies = listOf(
+                FFEnemyTemplate(MonsterType.CHOCOBO, R.string.pet_chocobo_name, "🐤", 1, 999999, gilReward = 15),
+                FFEnemyTemplate(MonsterType.MOOGLE, R.string.pet_moogle_name, "🦇", 1, 999999, gilReward = 20),
+                FFEnemyTemplate(MonsterType.CAT, R.string.pet_cat_name, "🐱", 1, 999999, gilReward = 25),
+                FFEnemyTemplate(MonsterType.CACTUAR, R.string.pet_cactuar_name, "🌵", 1, 999999, gilReward = 30),
+                FFEnemyTemplate(MonsterType.TONBERRY, R.string.pet_tonberry_name, "🔪", 1, 999999, gilReward = 35)
+            )
+        )
+    }
+
     val dimensions: List<FFDimension> get() = baseDimensions + dim11
 
     fun isMajorBoss(type: MonsterType): Boolean {
@@ -538,12 +557,14 @@ object FFDimensionData {
     }
 
     fun getDimension(number: Int): FFDimension {
+        if (number == 99) return safariDimension
         if (number >= 11) return dim11.copy(number = number)
         val index = (number - 1).coerceIn(0, dimensions.size - 1)
         return dimensions[index]
     }
 
     fun getEnemiesForFloor(dimension: FFDimension, floor: Int): List<FFEnemyTemplate> {
+        if (dimension.number == 99) return dimension.enemies
         if (dimension.number >= 11) {
             val nonBosses = dimension.enemies.filter { !it.isBoss }
             if (nonBosses.isNotEmpty()) return nonBosses

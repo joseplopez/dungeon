@@ -22,6 +22,9 @@ android {
         buildConfigField("int", "INITIAL_MASTERY_LEVEL", "0")
         buildConfigField("boolean", "DEBUG_MYTHIC_CRAFTING", "false")
         buildConfigField("boolean", "ENABLE_BOSS_LAIR_TESTING", "false")
+        buildConfigField("boolean", "ENABLE_SAFARI_TESTING", "false")
+        buildConfigField("int", "INITIAL_SAFARI_TICKETS", "0")
+        buildConfigField("int", "INITIAL_HERO_LEVEL", "1")
         buildConfigField("int", "INITIAL_MYTHIC_SHARDS", "0")
         buildConfigField("int", "INITIAL_BOSS_TROPHY_3", "0")
     }
@@ -42,6 +45,9 @@ android {
             buildConfigField("int", "INITIAL_MASTERY_LEVEL", "0")
             buildConfigField("boolean", "DEBUG_MYTHIC_CRAFTING", "true")
             buildConfigField("boolean", "ENABLE_BOSS_LAIR_TESTING", "true")
+            buildConfigField("boolean", "ENABLE_SAFARI_TESTING", "true")
+            buildConfigField("int", "INITIAL_SAFARI_TICKETS", "100")
+            buildConfigField("int", "INITIAL_HERO_LEVEL", "60")
             buildConfigField("int", "INITIAL_MYTHIC_SHARDS", "500")
             buildConfigField("int", "INITIAL_BOSS_TROPHY_3", "50")
             manifestPlaceholders["admobAppId"] = "ca-app-pub-3940256099942544~3347511713"
@@ -62,6 +68,9 @@ android {
             buildConfigField("String", "REWARDED_AD_UNIT_ID", "\"ca-app-pub-9749336798654274/8225555430\"")
             buildConfigField("boolean", "DEBUG_MYTHIC_CRAFTING", "false")
             buildConfigField("boolean", "ENABLE_BOSS_LAIR_TESTING", "false")
+            buildConfigField("boolean", "ENABLE_SAFARI_TESTING", "false")
+            buildConfigField("int", "INITIAL_SAFARI_TICKETS", "0")
+            buildConfigField("int", "INITIAL_HERO_LEVEL", "1")
             buildConfigField("int", "INITIAL_MYTHIC_SHARDS", "0")
             buildConfigField("int", "INITIAL_BOSS_TROPHY_3", "0")
         }

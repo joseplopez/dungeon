@@ -50,7 +50,7 @@ class LeaderboardViewModelTest {
     private lateinit var friendRepository: FriendRepository
     private lateinit var viewModel: LeaderboardViewModel
 
-    private val gameStateFlow = MutableStateFlow<GameState?>(null)
+    private val gameStateFlow = MutableStateFlow<GameState?>(GameState(playerId = "p1", currentDimension = 11))
     private val partyFlow = MutableStateFlow(emptyList<com.game.dungeon.data.models.Hero>())
 
     @Before

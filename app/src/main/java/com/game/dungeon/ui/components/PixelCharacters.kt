@@ -10,6 +10,7 @@ import androidx.compose.ui.geometry.Size
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.drawscope.DrawScope
 import androidx.compose.ui.unit.dp
+import com.game.dungeon.data.models.DungeonMode
 import com.game.dungeon.data.models.HeroClass
 import com.game.dungeon.data.models.MonsterType
 import com.game.dungeon.data.models.PetType
@@ -10011,6 +10012,10 @@ private fun DrawScope.drawBossSpriteFF6To10(monsterType: MonsterType) {
 
 private fun DrawScope.drawRegularMonsterSprite(monsterType: MonsterType) {
     when (monsterType) {
+        MonsterType.CHOCOBO -> drawPetSprite(PetType.CHOCOBO)
+        MonsterType.MOOGLE -> drawPetSprite(PetType.MOOGLE)
+        MonsterType.CAT -> drawPetSprite(PetType.CAT)
+        MonsterType.CACTUAR -> drawPetSprite(PetType.CACTUAR)
         MonsterType.RED_FLAN, MonsterType.SLIME, MonsterType.WATER_FLAN, MonsterType.FARIIS, MonsterType.SKULL_EATER -> drawSlime()
         MonsterType.GOBLIN -> drawGoblin()
         MonsterType.OGRE, MonsterType.GARGOYLE, MonsterType.ORC -> drawOgre()
@@ -10040,8 +10045,24 @@ private fun DrawScope.drawRegularMonsterSprite(monsterType: MonsterType) {
     }
 }
 
-@Composable fun EnemySprite(monsterType: MonsterType, modifier: Modifier = Modifier) = Canvas(modifier) {
-    drawMonsterSprite(monsterType)
+@Composable fun EnemySprite(
+    monsterType: MonsterType,
+    modifier: Modifier = Modifier,
+    dungeonMode: DungeonMode = DungeonMode.REGULAR
+) = Canvas(modifier) {
+    if (dungeonMode == DungeonMode.SAFARI) {
+        val petType = when (monsterType) {
+            MonsterType.CHOCOBO -> PetType.CHOCOBO
+            MonsterType.MOOGLE -> PetType.MOOGLE
+            MonsterType.CAT -> PetType.CAT
+            MonsterType.CACTUAR -> PetType.CACTUAR
+            MonsterType.TONBERRY -> PetType.TONBERRY
+            else -> PetType.entries[(monsterType.ordinal).coerceAtLeast(0) % PetType.entries.size]
+        }
+        drawPetSprite(petType)
+    } else {
+        drawMonsterSprite(monsterType)
+    }
 }
 
 @Composable fun EnemySprite(enemyName: String, modifier: Modifier = Modifier) {
@@ -10051,7 +10072,7 @@ private fun DrawScope.drawRegularMonsterSprite(monsterType: MonsterType) {
     EnemySprite(monsterType = type, modifier = modifier)
 }
 
-@Composable fun PetSprite(petType: PetType, modifier: Modifier = Modifier) = Canvas(modifier) {
+fun DrawScope.drawPetSprite(petType: PetType) {
     val p = px32()
     when (petType) {
         PetType.CHOCOBO -> {
@@ -10090,6 +10111,10 @@ private fun DrawScope.drawRegularMonsterSprite(monsterType: MonsterType) {
         }
         PetType.TONBERRY -> drawTonberry()
     }
+}
+
+@Composable fun PetSprite(petType: PetType, modifier: Modifier = Modifier) = Canvas(modifier) {
+    drawPetSprite(petType)
 }
 
 // --- TOWN NPC SPRITES ---

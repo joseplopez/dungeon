@@ -19,7 +19,7 @@ class SafariPhase1Test {
 
     @Test
     fun testGameState_safariDefaults() {
-        val gs = GameState()
+        val gs = GameState(safariTickets = 0)
         assertFalse(gs.hasSeenSafariUnlockPopup)
         assertEquals(0, gs.safariTickets)
         assertTrue(gs.tier2Pets.isEmpty())
@@ -29,16 +29,16 @@ class SafariPhase1Test {
     @Test
     fun testIsSafariUnlocked() {
         var gs = GameState(currentDimension = 10, lifetimeHighestFloor = 1000)
-        assertFalse(gs.isSafariUnlocked())
+        assertFalse(gs.isSafariUnlocked(ignoreDebugFlag = true))
 
         gs = GameState(currentDimension = 11, lifetimeHighestFloor = 999)
-        assertFalse(gs.isSafariUnlocked())
+        assertFalse(gs.isSafariUnlocked(ignoreDebugFlag = true))
 
         gs = GameState(currentDimension = 11, lifetimeHighestFloor = 1000)
-        assertTrue(gs.isSafariUnlocked())
+        assertTrue(gs.isSafariUnlocked(ignoreDebugFlag = true))
 
         gs = GameState(currentDimension = 12, lifetimeHighestFloor = 1500)
-        assertTrue(gs.isSafariUnlocked())
+        assertTrue(gs.isSafariUnlocked(ignoreDebugFlag = true))
     }
 
     @Test

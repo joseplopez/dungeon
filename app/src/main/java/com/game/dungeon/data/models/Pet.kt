@@ -10,6 +10,19 @@ data class Tier2Pet(
     val currentRank: Int = 0
 ) {
     fun getStatMultiplier(): Float = 1f + (currentRank * 0.01f)
+
+    fun getCardsNeededForNextRank(): Int {
+        return when (currentRank) {
+            0 -> 5
+            1 -> 10
+            2 -> 20
+            3 -> 35
+            4 -> 50
+            else -> 0
+        }
+    }
+
+    fun canRankUp(): Boolean = currentRank < 5 && cardsCollected >= getCardsNeededForNextRank() && getCardsNeededForNextRank() > 0
 }
 
 enum class PetType(
@@ -18,13 +31,14 @@ enum class PetType(
     val emoji: String,
     val bonusType: PetBonusType,
     val bonusValue: Float,
-    val unlockCost: Int
+    val unlockCost: Int,
+    val rarity: Rarity = Rarity.COMMON
 ) {
-    CHOCOBO(R.string.pet_chocobo_name, R.string.pet_chocobo_desc, "🐤", PetBonusType.ITEM_FIND, 0.20f, 10000),
-    MOOGLE(R.string.pet_moogle_name, R.string.pet_moogle_desc, "🦇", PetBonusType.EXP_BOOST, 0.50f, 50000),
-    CAT(R.string.pet_cat_name, R.string.pet_cat_desc, "🐱", PetBonusType.GIL_FIND, 0.30f, 25000),
-    CACTUAR(R.string.pet_cactuar_name, R.string.pet_cactuar_desc, "🌵", PetBonusType.CRIT_CHANCE, 15f, 100000),
-    TONBERRY(R.string.pet_tonberry_name, R.string.pet_tonberry_desc, "🔪", PetBonusType.CRIT_DAMAGE, 100f, 250000)
+    CHOCOBO(R.string.pet_chocobo_name, R.string.pet_chocobo_desc, "🐤", PetBonusType.ITEM_FIND, 0.20f, 10000, Rarity.COMMON),
+    MOOGLE(R.string.pet_moogle_name, R.string.pet_moogle_desc, "🦇", PetBonusType.EXP_BOOST, 0.50f, 50000, Rarity.RARE),
+    CAT(R.string.pet_cat_name, R.string.pet_cat_desc, "🐱", PetBonusType.GIL_FIND, 0.30f, 25000, Rarity.COMMON),
+    CACTUAR(R.string.pet_cactuar_name, R.string.pet_cactuar_desc, "🌵", PetBonusType.CRIT_CHANCE, 15f, 100000, Rarity.EPIC),
+    TONBERRY(R.string.pet_tonberry_name, R.string.pet_tonberry_desc, "🔪", PetBonusType.CRIT_DAMAGE, 100f, 250000, Rarity.LEGENDARY)
 }
 
 enum class PetBonusType(@StringRes val nameRes: Int) {

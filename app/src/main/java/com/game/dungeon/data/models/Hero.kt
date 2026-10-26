@@ -13,8 +13,8 @@ class Hero(
     val name: String,             // random FF-style name from a list
     var currentHp: Long,
     var currentMp: Long,
-    var level: Int = 1,           // Starting level is 1
-    var maxLevel: Int = 20,       // Max level cap (default 20 for newly recruited heroes)
+    var level: Int = com.game.dungeon.BuildConfig.INITIAL_HERO_LEVEL.coerceAtLeast(1),           // Starting level (configurable via BuildConfig)
+    var maxLevel: Int = maxOf(20, com.game.dungeon.BuildConfig.INITIAL_HERO_LEVEL.coerceAtLeast(1)),       // Max level cap
     var exp: Long = 0,             // Current experience
     var expToNextLevel: Long = 10, // XP needed for next level
     var abilityCharge: Int = 0,   // 0-3, triggers special at 3
@@ -326,15 +326,27 @@ class Hero(
     }
 
     companion object {
-        fun create(heroClass: HeroClass, context: android.content.Context): Hero {
+        fun create(
+            heroClass: HeroClass,
+            context: android.content.Context,
+            initialLevel: Int = com.game.dungeon.BuildConfig.INITIAL_HERO_LEVEL
+        ): Hero {
             val names = context.resources.getStringArray(R.array.hero_names)
             val name = names.random()
-            return Hero(
-                heroClass = heroClass, name = name,
-                currentHp = heroClass.baseHp.toLong(),
-                currentMp = heroClass.baseMp.toLong(),
+            val startLevel = initialLevel.coerceAtLeast(1)
+            val startMaxLevel = maxOf(20, startLevel)
+            val hero = Hero(
+                heroClass = heroClass,
+                name = name,
+                currentHp = 0,
+                currentMp = 0,
+                level = startLevel,
+                maxLevel = startMaxLevel,
                 aiPriority = heroClass.defaultPriority
             )
+            hero.currentHp = hero.maxHp
+            hero.currentMp = hero.maxMp
+            return hero
         }
     }
 }
