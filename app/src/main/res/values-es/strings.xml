@@ -1337,10 +1337,10 @@
 
     <!-- Safari Dimension Strings -->
     <string name="safari_dimension_title">Dimensión Safári</string>
-    <string name="safari_dimension_subtitle">Menajería Salvaje</string>
+    <string name="safari_dimension_subtitle">Santuario Salvaje</string>
     <string name="safari_dimension_story">Un reino salvaje donde los monstruos compañeros deambulan libres. ¡Solo estadísticas base!</string>
 
-    <string name="menagerie">🐾 MENAJERÍA</string>
+    <string name="menagerie">🐾 MASCOTAS</string>
 
     <!-- Menagerie & Safari Extracted Strings -->
     <string name="safari_tickets_format">🎟️ %1$d</string>
@@ -1359,8 +1359,8 @@
     <string name="btn_i_understand">Entendido</string>
     <string name="companion_cards_title">Cartas de Compañero</string>
     <string name="safari_tickets_title">Entradas de Safari</string>
-    <string name="safari_unlock_title">🐾 ¡Menajería del Safari Desbloqueada!</string>
-    <string name="safari_unlock_desc_1">¡Bienvenido a la Menajería y a la Dimensión Safari! Aquí puedes capturar cartas de monstruos, mejorar mascotas compañeras y aprovechar las habilidades de mascota de Nivel 2.</string>
+    <string name="safari_unlock_title">🐾 ¡Santuario del Safari Desbloqueada!</string>
+    <string name="safari_unlock_desc_1">¡Bienvenido al Bestiario y a la Dimensión Safari! Aquí puedes capturar cartas de monstruos, mejorar mascotas compañeras y aprovechar las habilidades de mascota de Nivel 2.</string>
     <string name="safari_unlock_desc_2">¡Colecciona cartas en incursiones de Safari donde los héroes dependen estrictamente de las estadísticas base y multiplicadores de mascotas!</string>
     <string name="btn_got_it">¡Entendido!</string>
     <string name="toast_safari_ticket_reward">¡+1 Entrada de Safari!</string>

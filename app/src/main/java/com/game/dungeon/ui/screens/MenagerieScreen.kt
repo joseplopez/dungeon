@@ -139,10 +139,18 @@ fun MenagerieScreen(
                     onClick = { selectedTab = 0 },
                     text = { Text(safeStringResource(R.string.tab_tier_1_passives), style = PixelBody, color = if (selectedTab == 0) GoldBright else GoldDark) }
                 )
+                // Tier 2 is locked until Safari is unlocked
                 Tab(
                     selected = selectedTab == 1,
-                    onClick = { selectedTab = 1 },
-                    text = { Text(safeStringResource(R.string.tab_tier_2_cards), style = PixelBody, color = if (selectedTab == 1) GoldBright else GoldDark) }
+                    onClick = { if (isSafariUnlocked) selectedTab = 1 },
+                    enabled = isSafariUnlocked,
+                    text = {
+                        Text(
+                            text = if (isSafariUnlocked) safeStringResource(R.string.tab_tier_2_cards) else "🔒 " + safeStringResource(R.string.tab_tier_2_cards),
+                            style = PixelBody,
+                            color = if (selectedTab == 1) GoldBright else if (isSafariUnlocked) GoldDark else StoneGray
+                        )
+                    }
                 )
             }
 

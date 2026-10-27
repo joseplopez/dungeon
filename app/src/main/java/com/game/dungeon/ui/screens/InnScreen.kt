@@ -395,16 +395,16 @@ fun GuildStageArea(
                         .weight(1f)
                         .height(42.dp)
                 )
-                if (isSafariUnlocked) {
-                    PixelButton(
-                        label = safeStringResource(R.string.menagerie),
-                        onClick = onNavigateToMenagerie,
-                        horizontalPadding = 4.dp,
-                        modifier = Modifier
-                            .weight(1f)
-                            .height(42.dp)
-                    )
-                }
+
+                PixelButton(
+                    label = safeStringResource(R.string.menagerie),
+                    onClick = onNavigateToMenagerie,
+                    horizontalPadding = 4.dp,
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(42.dp)
+                )
+
                 PixelButton(
                     label = if (restCost > 0) safeStringResource(R.string.rest_at_inn_cost, restCost) else safeStringResource(R.string.rest_at_inn_free),
                     onClick = onRest,
