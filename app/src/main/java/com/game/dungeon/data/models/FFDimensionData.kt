@@ -525,7 +525,7 @@ object FFDimensionData {
             mainColor = 0xFF1A3A2A,
             accentColor = 0xFF88FF88,
             storyRes = R.string.safari_dimension_story,
-            biomes = listOf(FFBiome(R.string.safari_dimension_title, 1..999999, BiomeType.CORNELIA_CASTLE)),
+            biomes = listOf(FFBiome(R.string.safari_dimension_title, 1..999999, BiomeType.CALM_LANDS)),
             enemies = listOf(
                 FFEnemyTemplate(MonsterType.CHOCOBO, R.string.pet_chocobo_name, "🐤", 1, 999999, gilReward = 15),
                 FFEnemyTemplate(MonsterType.MOOGLE, R.string.pet_moogle_name, "🦇", 1, 999999, gilReward = 20),

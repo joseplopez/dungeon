@@ -83,7 +83,9 @@ class FFBattleEngine(private val context: Context) {
             // ----------------------------
 
             // Spawn enemies for this floor
-            val bossTemplate = if (mode == DungeonMode.BOSS_LAIR) {
+            val bossTemplate = if (mode == DungeonMode.SAFARI) {
+                null // SAFARI: Pure monster hunting, no dimension bosses
+            } else if (mode == DungeonMode.BOSS_LAIR) {
                 if (allBossTemplates.isNotEmpty()) allBossTemplates[(currentFloor - 1) % allBossTemplates.size] else FFDimensionData.getBossForFloor(
                     dimension,
                     currentFloor
@@ -134,7 +136,7 @@ class FFBattleEngine(private val context: Context) {
                     )
                 )
             } else {
-                spawnEnemies(dimension, currentFloor, context, relicBonuses, mode).toMutableList()
+                spawnEnemies(dimension, currentFloor, context, relicBonuses, mode, aliveHeroes).toMutableList()
             }
 
             var floorBaseGilEarned: Long = 0
@@ -195,6 +197,7 @@ class FFBattleEngine(private val context: Context) {
                                     actor,
                                     aliveHeroes,
                                     relicBonuses,
+                                    mode,
                                     floorOnEvent
                                 ) // Added relicBonuses here
                                 delay(speed.delayMs)
@@ -252,7 +255,9 @@ class FFBattleEngine(private val context: Context) {
                 // Loot chance
                 val itemsFound = mutableListOf<Item>()
 
-                if (mode == DungeonMode.BOSS_LAIR) {
+                if (mode == DungeonMode.SAFARI) {
+                    // SAFARI: Zero gear drops on floor completion
+                } else if (mode == DungeonMode.BOSS_LAIR) {
                     // Custom Loot Math (Boss Lair ONLY):
                     // 1. Mythic Shards: 25% drop chance per boss kill. Yields multiple shards.
                     if (Random.nextFloat() < 0.25f) {
@@ -363,10 +368,18 @@ class FFBattleEngine(private val context: Context) {
                             ?: runCatching { context.resources?.getString(bossTemplate.nameRes) }.getOrNull()
                             ?: "Boss"
                     onEvent(FFBattleEvent.BossDefeated(bossName, currentFloor >= maxFloor))
-                    if (Random.nextFloat() < 0.10f) {
-                        onEvent(FFBattleEvent.SafariTicketDropped(1))
+                    // SAFARI TICKET BALANCE:
+                    // Regular Mode: 10% chance (1 boss every 10 floors = ~1 ticket per 100 floors)
+                    // Boss Lair: 1% chance (1 boss every floor = ~1 ticket per 100 floors)
+                    if (dimension.number>10) {
+                        val ticketChance = if (mode == DungeonMode.BOSS_LAIR) 0.01f else 1.00f
+                        if (Random.nextFloat() < ticketChance) {
+                            onEvent(FFBattleEvent.SafariTicketDropped(1))
+                        }
                     }
                 }
+
+
 
                 aliveHeroes.removeAll { !it.isAlive }
 
@@ -391,12 +404,53 @@ class FFBattleEngine(private val context: Context) {
         floor: Int,
         context: Context,
         relicBonuses: RelicBonuses,
-        mode: DungeonMode = DungeonMode.REGULAR
+        mode: DungeonMode = DungeonMode.REGULAR,
+        activeHeroes: List<Hero> = emptyList() // ADD THIS PARAMETER
     ): List<Enemy> {
         val targetDim = if (mode == DungeonMode.SAFARI) FFDimensionData.safariDimension else dimension
         val templates = if (mode == DungeonMode.SAFARI) targetDim.enemies else FFDimensionData.getEnemiesForFloor(targetDim, floor)
         if (templates.isEmpty()) return emptyList()
-        val count = Random.nextInt(1, 4)
+        val count  = Random.nextInt(1, 4)
+
+        // SAFARI: Dynamic Level Scaling
+        if (mode == DungeonMode.SAFARI && activeHeroes.isNotEmpty()) {
+            // Updated to match actual Level 60 naked stats: ~889k HP and ~80k ATK
+            val baselineLvl60Hp = 800_000L
+            val baselineLvl60Atk = 80_000L
+
+            val avgHeroHp = activeHeroes.map { it.maxHp }.average().toLong().coerceAtLeast(baselineLvl60Hp)
+            val avgHeroAtk = activeHeroes.map { maxOf(it.attack, it.magic) }.average().toLong().coerceAtLeast(baselineLvl60Atk)
+
+            return List(count) {
+                val template = templates.random()
+                val baseEnemy = Enemy.fromTemplate(
+                    template = template,
+                    floor = floor,
+                    context = context,
+                    relicBonuses = relicBonuses,
+                    dimension = targetDim,
+                    mode = mode
+                )
+                // HP: Scaled to take roughly 3-4 hits from the baseline/average hero.
+                val scaledHp = (avgHeroAtk * 0.55 * template.hpMult).toLong().coerceAtLeast(10L)
+                // ATK: Brute-forces the 85% defense mitigation cap.
+                // We multiply by 2.35 so that AFTER blocking 85%, the hero still loses ~35% of their HP.
+                val scaledAtk = (avgHeroHp * 2.35 * template.atkMult).toLong().coerceAtLeast(5L)
+
+                // DEF/MDEF: Scaled to roughly 50% of the hero's attack so damage curves smoothly.
+                val scaledDef = (avgHeroAtk * 0.5 * template.defMult).toLong().coerceAtLeast(5L)
+
+                baseEnemy.copy(
+                    maxHp = scaledHp,
+                    currentHp = scaledHp,
+                    attack = scaledAtk,
+                    defense = scaledDef,
+                    magicDefense = scaledDef,
+                    gilReward = 0L,
+                    magiciteDropped = 0L
+                )
+            }
+        }
         return List(count) {
             Enemy.fromTemplate(
                 templates.random(),
@@ -421,23 +475,35 @@ class FFBattleEngine(private val context: Context) {
     ) {
         val expMult = if (mode == DungeonMode.BOSS_LAIR) 100 else 1
         val exp = ((enemy.floor * 2) * relicBonuses.expMultiplier * expMult).toLong()
-        val materials = calculateMaterialDrops(enemy, enemy.floor, dimension, relicBonuses, mode)
-        onLootCollected(enemy.gilDropped, enemy.magiciteDropped)
+        // SAFARI: Zero out normal materials and gear
+        // SAFARI: Zero out normal materials, gil, and magicite
+        val gil = if (mode == DungeonMode.SAFARI) 0L else enemy.gilDropped
+        val magicite = if (mode == DungeonMode.SAFARI) 0L else enemy.magiciteDropped
+        val materials = if (mode == DungeonMode.SAFARI) emptyMap() else calculateMaterialDrops(enemy, enemy.floor, dimension, relicBonuses, mode)
+
+        onLootCollected(gil, magicite)
         onEvent(
             FFBattleEvent.EnemyDefeated(
                 enemy.id,
                 enemy.type,
-                enemy.gilDropped,
-                enemy.magiciteDropped,
+                gil,
+                magicite,
                 exp,
                 materials
             )
         )
-        if (mode == DungeonMode.SAFARI && Random.nextFloat() < 0.30f) {
-            onEvent(FFBattleEvent.MonsterCardDropped(enemy.type.name))
-        }
-        materials.forEach { (matId, amt) ->
-            onEvent(FFBattleEvent.MaterialDropped(matId, amt))
+
+        // SAFARI: Exactly 5% flat card drop rate, ignoring all multipliers/relics
+        if (mode == DungeonMode.SAFARI) {
+            if (kotlin.random.Random.nextFloat() < 0.05f) {
+                val droppedPet = PetType.entries.random()
+                onEvent(FFBattleEvent.MonsterCardDropped(droppedPet.name))
+            }
+        } else {
+            // Standard monster card or regular drop logic
+            materials.forEach { (matId, amt) ->
+                onEvent(FFBattleEvent.MaterialDropped(matId, amt))
+            }
         }
         awardExpToParty(allies, exp, levelUpTracker, onEvent)
     }
@@ -449,6 +515,7 @@ class FFBattleEngine(private val context: Context) {
         relicBonuses: RelicBonuses,
         mode: DungeonMode = DungeonMode.REGULAR
     ): Map<String, Int> {
+        if (mode == DungeonMode.SAFARI) return emptyMap()
         if (mode == DungeonMode.BOSS_LAIR) {
             return if (Random.nextFloat() < 0.25f) mapOf(
                 "mythic_shard" to Random.nextInt(
@@ -544,8 +611,10 @@ class FFBattleEngine(private val context: Context) {
         onEvent: (FFBattleEvent) -> Unit
     ) {
         onEvent(FFBattleEvent.TurnStart(hero.id, hero.name))
-        val masteryLvl = relicBonuses.getMasteryLevel(hero.heroClass)
+        // SAFARI FIX: Use raw level for mastery since relics are disabled
+        val masteryLvl = if (mode == DungeonMode.SAFARI) hero.level else relicBonuses.getMasteryLevel(hero.heroClass)
         hero.jobMasteryLevel = masteryLvl
+
         val activeSkill = JobAbilityData.getActiveAbilityForLevel(hero.heroClass, masteryLvl)
         if (activeSkill != null) {
             hero.abilityCharge++
@@ -721,9 +790,9 @@ class FFBattleEngine(private val context: Context) {
         if (hero.heroClass != HeroClass.MIME) {
             setLastAbility(hero.heroClass)
         }
-        val masteryLvl = relicBonuses.getMasteryLevel(hero.heroClass)
-        val activeSkill =
-            JobAbilityData.getActiveAbilityForLevel(hero.heroClass, masteryLvl) ?: return
+        // SAFARI FIX: Use raw level for mastery
+        val masteryLvl = if (mode == DungeonMode.SAFARI) hero.level else relicBonuses.getMasteryLevel(hero.heroClass)
+        val activeSkill = JobAbilityData.getActiveAbilityForLevel(hero.heroClass, masteryLvl) ?: return
         onEvent(
             FFBattleEvent.AbilityUsed(
                 hero.id,
@@ -1758,6 +1827,7 @@ class FFBattleEngine(private val context: Context) {
         enemy: Enemy,
         heroes: MutableList<Hero>,
         relicBonuses: RelicBonuses,
+        mode: DungeonMode = DungeonMode.REGULAR, // ADD THIS
         onEvent: (FFBattleEvent) -> Unit
     ) {
         val aliveHeroes = heroes.filter { it.isAlive }
@@ -1840,9 +1910,9 @@ class FFBattleEngine(private val context: Context) {
         }
 
         // 2. Tank Guts: Knights and Paladins survive fatal hits with 1 HP if above 50% Health
-        val masteryLvl = relicBonuses.getMasteryLevel(target.heroClass)
-        val isCurrentlyTank =
-            target.heroClass == HeroClass.KNIGHT || target.heroClass == HeroClass.PALADIN
+        // SAFARI FIX: Use raw level for mastery
+        val masteryLvl = if (mode == DungeonMode.SAFARI) target.level else relicBonuses.getMasteryLevel(target.heroClass)
+        val isCurrentlyTank = target.heroClass == HeroClass.KNIGHT || target.heroClass == HeroClass.PALADIN
         val hasGuts = isCurrentlyTank && masteryLvl >= 25
 
         if (hasGuts && target.currentHp > (target.maxHp * 0.5f) && dmg >= target.currentHp) {

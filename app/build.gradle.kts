@@ -27,6 +27,7 @@ android {
         buildConfigField("int", "INITIAL_HERO_LEVEL", "1")
         buildConfigField("int", "INITIAL_MYTHIC_SHARDS", "0")
         buildConfigField("int", "INITIAL_BOSS_TROPHY_3", "0")
+        buildConfigField("int", "INITIAL_PET_LEVEL", "0") // ADD THIS
     }
 
     signingConfigs {
@@ -47,9 +48,10 @@ android {
             buildConfigField("boolean", "ENABLE_BOSS_LAIR_TESTING", "true")
             buildConfigField("boolean", "ENABLE_SAFARI_TESTING", "true")
             buildConfigField("int", "INITIAL_SAFARI_TICKETS", "100")
-            buildConfigField("int", "INITIAL_HERO_LEVEL", "60")
+            buildConfigField("int", "INITIAL_HERO_LEVEL", "100")
             buildConfigField("int", "INITIAL_MYTHIC_SHARDS", "500")
             buildConfigField("int", "INITIAL_BOSS_TROPHY_3", "50")
+            buildConfigField("int", "INITIAL_PET_LEVEL", "100") // ADD THIS
             manifestPlaceholders["admobAppId"] = "ca-app-pub-3940256099942544~3347511713"
             buildConfigField("String", "REWARDED_AD_UNIT_ID", "\"ca-app-pub-3940256099942544/5224354917\"")
         }

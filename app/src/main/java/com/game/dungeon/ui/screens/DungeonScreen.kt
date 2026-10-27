@@ -19,6 +19,7 @@ import androidx.compose.ui.Alignment.Companion.CenterHorizontally
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Alignment.Companion.End
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.drawWithContent
 import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.geometry.Size
@@ -226,7 +227,9 @@ fun DungeonScreen(
                 fallenHeroes = summary?.fallenHeroes ?: state.fallenHeroes,
                 itemsFoundThisRun = summary?.itemsFoundThisRun ?: state.itemsFoundThisRun,
                 materialsEarned = summary?.materialsEarned ?: state.materialsFoundThisRun,
+                cardsFoundThisRun = summary?.cardsFoundThisRun ?: state.cardsFoundThisRun, // ADD THIS
                 originalPartySize = summary?.originalPartySize ?: state.originalPartySize,
+                safariTicketsEarned = summary?.safariTicketsEarnedThisRun ?: state.safariTicketsEarnedThisRun,
                 isPermadeathProtected = isPermadeathProtected,
                 hasRerolledLoot = state.hasRerolledLoot,
                 onRerollLoot = { activity?.let { viewModel.rerollRunRewards(it) } },
@@ -1191,6 +1194,8 @@ fun RunCompleteOverlay(
     fallenHeroes: List<Hero>,
     itemsFoundThisRun: List<Item>,
     materialsEarned: Map<String, Int> = emptyMap(),
+    cardsFoundThisRun: Map<String, Int> = emptyMap(), // ADD THIS
+    safariTicketsEarned: Int = 0,
     originalPartySize: Int,
     isPermadeathProtected: Boolean = false,
     hasRerolledLoot: Boolean = false,
@@ -1404,6 +1409,37 @@ fun RunCompleteOverlay(
                             }
                         }
                     }
+                    // --- SAFARI COMPANION CARDS ---
+                    if (cardsFoundThisRun.isNotEmpty()) {
+                        Text("Companion Cards", style = PixelHeading, color = GoldBright)
+
+                        LazyRow(
+                            horizontalArrangement = Arrangement.spacedBy(8.dp),
+                            modifier = Modifier.fillMaxWidth()
+                        ) {
+                            items(cardsFoundThisRun.toList()) { (petId, amount) ->
+                                val petType = PetType.entries.find { it.name == petId }
+                                if (petType != null) {
+                                    MiniTier2Card(petType = petType, amount = amount)
+                                }
+                            }
+                        }
+                    }
+                    // Safari Tickets Row (Only shows if you found any)
+                    if (safariTicketsEarned > 0) {
+                        Row(
+                            verticalAlignment = CenterVertically
+                        ) {
+                            Box(Modifier.width(32.dp), contentAlignment = Center) {
+                                Text("🎟️", fontSize = 24.sp)
+                            }
+                            Spacer(Modifier.width(12.dp))
+                            Column {
+                                Text("+$safariTicketsEarned", style = PixelHeading, color = GoldBright, maxLines = 1)
+                                Text("Safari Tickets", style = PixelSmall, color = GoldDark)
+                            }
+                        }
+                    }
                 }
             }
 
@@ -1484,3 +1520,79 @@ fun RunCompleteOverlay(
     }
 }
 
+@Composable
+fun MiniTier2Card(
+    petType: PetType,
+    amount: Int
+) {
+    val rarityColor = when (petType.rarity) {
+        Rarity.COMMON -> Color(0xFF3A4B5C)
+        Rarity.RARE -> Color(0xFF1E2E4A)
+        Rarity.EPIC -> Color(0xFF4A1E4A)
+        Rarity.LEGENDARY -> Color(0xFF6B4C12)
+        Rarity.MYTHIC -> Color(0xFF4A1E2E)
+    }
+
+    Box(
+        Modifier
+            .width(64.dp)
+            .aspectRatio(0.7f) // Keep the strict trading card shape
+            .clip(RoundedCornerShape(4.dp))
+            .background(
+                brush = androidx.compose.ui.graphics.Brush.verticalGradient(
+                    colors = listOf(BgDarkest, rarityColor)
+                )
+            )
+            .border(1.dp, Color.DarkGray, RoundedCornerShape(4.dp))
+    ) {
+        // --- TOP RIGHT: Stack Amount ---
+        if (amount > 1) {
+            Box(
+                Modifier
+                    .padding(2.dp)
+                    .align(Alignment.TopEnd)
+                    .background(Color.Black.copy(alpha = 0.8f), RoundedCornerShape(2.dp))
+                    .padding(horizontal = 4.dp, vertical = 2.dp)
+            ) {
+                Text(
+                    text = "x$amount",
+                    style = PixelSmall,
+                    color = GoldBright,
+                    fontSize = 8.sp,
+                    fontWeight = FontWeight.Bold
+                )
+            }
+        }
+
+        // --- CENTER: Sprite ---
+        Box(
+            Modifier
+                .fillMaxSize()
+                .padding(top = 8.dp, bottom = 18.dp) // Leave space for the name banner
+                .padding(4.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            PetSprite(petType, Modifier.fillMaxSize())
+        }
+
+        // --- BOTTOM: Name Banner ---
+        Box(
+            Modifier
+                .align(Alignment.BottomCenter)
+                .fillMaxWidth()
+                .background(Color.Black.copy(alpha = 0.85f))
+                .padding(vertical = 2.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            Text(
+                text = safeStringResource(petType.nameRes),
+                style = PixelSmall,
+                color = GoldBright,
+                fontSize = 8.sp,
+                fontWeight = FontWeight.Bold,
+                maxLines = 1,
+                overflow = TextOverflow.Ellipsis
+            )
+        }
+    }
+}

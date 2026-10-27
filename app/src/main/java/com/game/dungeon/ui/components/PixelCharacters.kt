@@ -10073,42 +10073,11 @@ private fun DrawScope.drawRegularMonsterSprite(monsterType: MonsterType) {
 }
 
 fun DrawScope.drawPetSprite(petType: PetType) {
-    val p = px32()
     when (petType) {
-        PetType.CHOCOBO -> {
-            p(12f, 8f, 10f, 10f, FFGold) // Body
-            p(16f, 4f, 6f, 6f, FFGold) // Head
-            p(20f, 6f, 3f, 2f, FFOrange) // Beak
-            p(18f, 6f, 1f, 1f, Color.Black) // Eye
-            p(12f, 18f, 2f, 6f, FFOrange) // Leg
-            p(18f, 18f, 2f, 6f, FFOrange) // Leg
-        }
-        PetType.MOOGLE -> {
-            p(12f, 10f, 8f, 10f, Color.White) // Body
-            p(11f, 4f, 10f, 8f, Color.White) // Head
-            p(15f, 2f, 2f, 3f, Color.Red) // Pom-pom
-            p(12f, 8f, 1f, 1f, Color.Black) // Eye
-            p(19f, 8f, 1f, 1f, Color.Black) // Eye
-            p(8f, 10f, 4f, 6f, FFPurple) // Wing
-            p(20f, 10f, 4f, 6f, FFPurple) // Wing
-        }
-        PetType.CAT -> {
-            p(10f, 12f, 12f, 10f, Color.White) // Body
-            p(11f, 6f, 10f, 8f, Color.White) // Head
-            p(10f, 4f, 3f, 3f, Color.White) // Ear
-            p(19f, 4f, 3f, 3f, Color.White) // Ear
-            p(13f, 8f, 1f, 1f, Color.Black) // Eye
-            p(18f, 8f, 1f, 1f, Color.Black) // Eye
-            p(22f, 14f, 2f, 8f, Color.White) // Tail
-        }
-        PetType.CACTUAR -> {
-            p(12f, 6f, 8f, 20f, FFGreen) // Body
-            p(6f, 10f, 8f, 2f, FFGreen) // Arm L
-            p(18f, 18f, 8f, 2f, FFGreen) // Arm R
-            p(14f, 10f, 1f, 1f, Color.Black) // Eye
-            p(17f, 10f, 1f, 1f, Color.Black) // Eye
-            p(15f, 14f, 2f, 2f, Color.Black) // Mouth
-        }
+        PetType.CHOCOBO -> drawChocobo()
+        PetType.MOOGLE -> drawMogu()
+        PetType.CAT -> drawCat()
+        PetType.CACTUAR -> drawCactilio()
         PetType.TONBERRY -> drawTonberry()
     }
 }

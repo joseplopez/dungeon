@@ -120,13 +120,20 @@ class GameRepository @Inject constructor(
     fun getGameState(): Flow<GameState?> = database.gameStateDao.getGameState()
     suspend fun getGameStateOnce(): GameState? = database.gameStateDao.getGameStateOnce()
     suspend fun saveGameState(state: GameState) = database.gameStateDao.upsert(state)
-    fun newGame(): GameState = GameState(
-        jobMasteryLevels = if (com.game.dungeon.BuildConfig.INITIAL_MASTERY_LEVEL > 0) {
-            com.game.dungeon.data.models.HeroClass.entries.associateWith { com.game.dungeon.BuildConfig.INITIAL_MASTERY_LEVEL }
-        } else {
-            emptyMap()
-        }
-    )
+    fun newGame(): GameState {
+        val initialPetLevel = com.game.dungeon.BuildConfig.INITIAL_PET_LEVEL
+
+        return GameState(
+            jobMasteryLevels = if (com.game.dungeon.BuildConfig.INITIAL_MASTERY_LEVEL > 0) {
+                com.game.dungeon.data.models.HeroClass.entries.associateWith { com.game.dungeon.BuildConfig.INITIAL_MASTERY_LEVEL }
+            } else {
+                emptyMap()
+            },
+            // ADD THESE TWO LINES:
+            petLevels = if (initialPetLevel > 0) com.game.dungeon.data.models.PetType.entries.associateWith { initialPetLevel } else emptyMap(),
+            unlockedPets = if (initialPetLevel > 0) com.game.dungeon.data.models.PetType.entries.toSet() else emptySet()
+        )
+    }
 
     suspend fun addGil(amount: Long, bypassCap: Boolean = false) {
         val current = database.gameStateDao.getGameStateOnce() ?: GameState()

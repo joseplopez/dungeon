@@ -15,6 +15,9 @@ data class FFDimension(
     val maxFloor: Int get() = if (number >= 11) 99999999 else number * 100
 
     fun getBiomeForFloor(floor: Int): FFBiome {
+        if (biomes.isNotEmpty() && biomes.first().backgroundType == BiomeType.CALM_LANDS) {
+            return biomes.first().copy(floorRange = 1..Int.MAX_VALUE)
+        }
         if (number >= 11) {
             val biomesList = listOf(
                 FFBiome(com.game.dungeon.R.string.biome_cornelia, 1..10, BiomeType.CORNELIA_CASTLE),

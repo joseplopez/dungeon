@@ -323,12 +323,6 @@ class InnViewModel @Inject constructor(
         }
     }
 
-    fun equipTier2Pet(petId: String?) {
-        viewModelScope.launch {
-            repository.equipTier2Pet(petId)
-        }
-    }
-
     fun rankUpTier2Pet(petId: String) {
         viewModelScope.launch {
             repository.rankUpTier2Pet(petId)
@@ -345,11 +339,52 @@ class InnViewModel @Inject constructor(
         }
         return false
     }
-
     fun selectPet(pet: PetType?) {
         viewModelScope.launch {
             val currentGs = repository.getGameStateOnce() ?: return@launch
-            repository.saveGameState(currentGs.copy(selectedPet = pet))
+            val isCurrentlyEquipped = currentGs.selectedPet == pet
+
+            val updatedGs = if (isCurrentlyEquipped || pet == null) {
+                // Toggle off
+                currentGs.copy(selectedPet = null)
+            } else {
+                // Equip Tier 1 AND force clear Tier 2
+                currentGs.copy(
+                    selectedPet = pet,
+                    equippedTier2PetId = null
+                )
+            }
+            repository.saveGameState(updatedGs)
+        }
+    }
+
+    fun equipTier2Pet(petId: String?) {
+        val gs = gameState.value ?: return
+
+        // FIX: Backend validation. Ensure Tier 1 is at least Level 50 before equipping Tier 2.
+        if (petId != null) {
+            val petType = PetType.entries.find { it.name == petId }
+            if (petType != null) {
+                val tier1Level = gs.getPetLevel(petType)
+                if (tier1Level < 50) return
+            }
+        }
+
+        viewModelScope.launch {
+            val currentGs = repository.getGameStateOnce() ?: return@launch
+            val isCurrentlyEquipped = currentGs.equippedTier2PetId == petId
+
+            val updatedGs = if (isCurrentlyEquipped || petId == null) {
+                // Toggle off
+                currentGs.copy(equippedTier2PetId = null)
+            } else {
+                // Equip Tier 2 AND force clear Tier 1
+                currentGs.copy(
+                    equippedTier2PetId = petId,
+                    selectedPet = null
+                )
+            }
+            repository.saveGameState(updatedGs)
         }
     }
 

@@ -3,7 +3,6 @@ package com.game.dungeon.ui.viewmodels
 import android.app.Activity
 import android.content.Context
 import androidx.annotation.StringRes
-import androidx.compose.runtime.toLong
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.game.dungeon.R
@@ -127,8 +126,10 @@ class DungeonViewModel @Inject constructor(
     val gilEarnedThisRun: Long = 0,
     val magiciteEarnedThisRun: Long = 0,
     val gilLostToPenalty: Long = 0,
+    val safariTicketsEarnedThisRun: Int = 0,
     val itemsFoundThisRun: List<Item> = emptyList(),
     val materialsEarned: Map<String, Int> = emptyMap(),
+    val cardsFoundThisRun: Map<String, Int> = emptyMap(), // ADD THIS
     val fallenHeroes: List<Hero> = emptyList(),
     val originalPartySize: Int = 0
   )
@@ -150,6 +151,7 @@ class DungeonViewModel @Inject constructor(
     val runSummary: RunSummary? = null,
     val gilEarnedThisRun: Long = 0,
     val magiciteEarnedThisRun: Long = 0,
+    val safariTicketsEarnedThisRun: Int = 0,
     val lastFloorGil: Long = 0,
     val lastFloorMagicite: Long = 0,
     val gilLostToPenalty: Long = 0,
@@ -175,6 +177,7 @@ class DungeonViewModel @Inject constructor(
     val showRetreatReviveDialog: Boolean = false,
     val pendingFallenHeroIds: Set<String> = emptySet(),
     val materialsFoundThisRun: Map<String, Int> = emptyMap(),
+    val cardsFoundThisRun: Map<String, Int> = emptyMap(), // ADD THIS
     val lastDefeatedSlotIndex: Int = 0,
     val floatingLootEffects: List<FloatingLootEffect> = emptyList(),
     val dungeonMode: DungeonMode = DungeonMode.REGULAR,
@@ -189,70 +192,26 @@ class DungeonViewModel @Inject constructor(
   )
   enum class LogType { HERO_ATTACK, ENEMY_ATTACK, ABILITY, SUMMON, HEAL, SYSTEM, BOSS, HERO_FELL, LOOT }
 
-  fun startRun(party: List<Hero>, startFloor: Int = 1, mode: DungeonMode = DungeonMode.REGULAR) {
-    battleJob?.cancel()
-    val gs = gameState.value ?: GameState()
-    val dimension = if (mode == DungeonMode.SAFARI) FFDimensionData.safariDimension else FFDimensionData.getDimension(gs.currentDimension)
+    fun startRun(party: List<Hero>, startFloor: Int = 1, mode: DungeonMode = DungeonMode.REGULAR) {
+        battleJob?.cancel()
+        val gs = gameState.value ?: GameState()
+        val dimension = if (mode == DungeonMode.SAFARI) FFDimensionData.safariDimension else FFDimensionData.getDimension(gs.currentDimension)
 
-    viewModelScope.launch {
-        val codexBonuses = repo.getCodexBonuses()
-        val relics = RelicBonuses.from(gs, codexBonuses)
-        val savedSpeed = userPreferencesRepo.battleSpeed.first()
+        viewModelScope.launch {
+            val codexBonuses = repo.getCodexBonuses()
+            val relics = RelicBonuses.from(gs, codexBonuses)
+            val savedSpeed = userPreferencesRepo.battleSpeed.first()
 
-        // --- FETCH BENCH ---
-        val partyIds = party.map { it.id }.toSet()
-        val allHeroes = repo.getRoster().first()
-        val benchedHeroes = allHeroes.filter { it.id !in partyIds }
-        // -------------------
+            val partyIds = party.map { it.id }.toSet()
+            val allHeroes = repo.getRoster().first()
+            val benchedHeroes = allHeroes.filter { it.id !in partyIds }
 
-        val equippedPet = gs.equippedTier2PetId?.let { gs.tier2Pets[it] }
+            val equippedPet = gs.equippedTier2PetId?.let { gs.tier2Pets[it] }
 
-        // Fetch items for all heroes to bake stats
-        val partyWithStats = party.map { hero ->
-            if (mode == DungeonMode.SAFARI) {
-                val mult = equippedPet?.getStatMultiplier() ?: 1f
-                val calcMaxHp = (hero.baseMaxHp * mult).toLong()
-                val calcMaxMp = (hero.baseMaxMp * mult).toLong()
-                val calcAtk = (hero.baseAttack * mult).toLong()
-                val calcMag = (hero.baseMagic * mult).toLong()
-
-                hero.copy(
-                    currentHp = if (hero.currentHp >= hero.baseMaxHp) calcMaxHp else hero.currentHp.coerceAtMost(calcMaxHp),
-                    currentMp = if (hero.currentMp >= hero.baseMaxMp) calcMaxMp else hero.currentMp.coerceAtMost(calcMaxMp)
-                ).apply {
-                    attackBonus = calcAtk - hero.baseAttack
-                    defenseBonus = 0L
-                    magicBonus = calcMag - hero.baseMagic
-                    hpBonus = calcMaxHp - hero.baseMaxHp
-                    mpBonus = calcMaxMp - hero.baseMaxMp
-                    critChance = 5
-                    critDamage = 50L
-                    jobMasteryLevel = 0
-                }
-            } else {
-                val items = repo.getEquippedItems(hero.id).first()
-                val stats = hero.calculateStats(items, relics)
-                
-                val newHpBonus = (stats["HP"] ?: hero.baseMaxHp) - hero.baseMaxHp
-                val newMpBonus = (stats["MP"] ?: hero.baseMaxMp) - hero.baseMaxMp
-                val oldMaxHp = hero.maxHp
-                val oldMaxMp = hero.maxMp
-
-                hero.copy(
-                    currentHp = if (hero.currentHp >= oldMaxHp) hero.baseMaxHp + newHpBonus else hero.currentHp,
-                    currentMp = if (hero.currentMp >= oldMaxMp) hero.baseMaxMp + newMpBonus else hero.currentMp
-                ).apply {
-                    attackBonus = (stats["ATK"] ?: baseAttack.toLong()) - baseAttack
-                    defenseBonus = (stats["DEF"] ?: baseDefense.toLong()) - baseDefense
-                    magicBonus = (stats["MAG"] ?: baseMagic.toLong()) - baseMagic
-                    hpBonus = newHpBonus
-                    mpBonus = newMpBonus
-                    critChance = stats["CRIT_CHANCE"]?.toInt() ?: 5
-                    critDamage = stats["CRIT_DAMAGE"] ?: 50
-                    jobMasteryLevel = relics.jobMasteryLevels[hero.heroClass] ?: 0
-                }
+            // FIX: Use the unified stat baker
+            val partyWithStats = party.map { hero ->
+                bakeHeroStats(hero, mode, relics, equippedPet, repo)
             }
-        }
 
         battleState.value = FFBattleState(
             startFloor = startFloor.coerceAtLeast(1),
@@ -586,6 +545,7 @@ class DungeonViewModel @Inject constructor(
         }
         battleState.update { state ->
             state.copy(
+                safariTicketsEarnedThisRun = state.safariTicketsEarnedThisRun + event.amount,
                 battleLog = (state.battleLog + FFLogEntry(
                     messageRes = R.string.log_generic,
                     args = listOf("🎟️ Dropped Safari Ticket x${event.amount}"),
@@ -598,8 +558,11 @@ class DungeonViewModel @Inject constructor(
         viewModelScope.launch(Dispatchers.IO) {
             repo.addMonsterCard(event.petId)
         }
+
         battleState.update { state ->
+            val currentCount = state.cardsFoundThisRun[event.petId] ?: 0 // Count accumulated cards
             state.copy(
+                cardsFoundThisRun = state.cardsFoundThisRun + (event.petId to (currentCount + 1)),
                 battleLog = (state.battleLog + FFLogEntry(
                     messageRes = R.string.log_generic,
                     args = listOf("🎴 Dropped Monster Card: ${event.petId}"),
@@ -831,7 +794,8 @@ class DungeonViewModel @Inject constructor(
       val grossEarned = currentState.gilEarnedThisRun
       val magicite = currentState.magiciteEarnedThisRun
       val floor = currentState.currentFloor
-      
+
+
       analytics.logRunFinished(floor, grossEarned, magicite, if (currentState.heroes.isEmpty()) "DEFEAT" else "RETREAT")
 
       // Death Penalty
@@ -860,14 +824,17 @@ class DungeonViewModel @Inject constructor(
               }
           }
       }
-      
-      val summary = RunSummary(
+        val isSafari = currentState.dungeonMode == DungeonMode.SAFARI
+
+        val summary = RunSummary(
           currentFloor = floor,
-          gilEarnedThisRun = netGil,
-          magiciteEarnedThisRun = magicite,
-          gilLostToPenalty = penalty.toLong(),
-          itemsFoundThisRun = currentState.itemsFoundThisRun,
-          materialsEarned = currentState.materialsFoundThisRun,
+            gilEarnedThisRun = if (isSafari) 0L else currentState.gilEarnedThisRun,
+            magiciteEarnedThisRun = if (isSafari) 0L else currentState.magiciteEarnedThisRun,
+            gilLostToPenalty = if (isSafari) 0L else currentState.gilLostToPenalty,
+            itemsFoundThisRun = if (isSafari) emptyList() else currentState.itemsFoundThisRun,
+            materialsEarned = if (isSafari) emptyMap() else currentState.materialsFoundThisRun,
+          safariTicketsEarnedThisRun = currentState.safariTicketsEarnedThisRun,
+          cardsFoundThisRun = currentState.cardsFoundThisRun, // ADD THIS
           fallenHeroes = currentState.fallenHeroes,
           originalPartySize = currentState.originalPartySize
       )
@@ -937,34 +904,19 @@ class DungeonViewModel @Inject constructor(
             val codexBonuses = repo.getCodexBonuses()
             val relics = RelicBonuses.from(gs, codexBonuses)
 
-            // Gather all hero IDs that were in this run (both alive and dead)
-            val allRunHeroIds = state.heroes.map { it.id }.toSet() + state.pendingFallenHeroIds
+            val equippedPet = gs.equippedTier2PetId?.let { gs.tier2Pets[it] }
 
-            // Fetch raw heroes from roster
+            val allRunHeroIds = state.heroes.map { it.id }.toSet() + state.pendingFallenHeroIds
             val roster = repo.getRoster().first()
             val rawParty = roster.filter { it.id in allRunHeroIds }
 
-            // Recalculate stats with equipment and heal fully for the loop
+            // FIX: Use the unified stat baker and ensure they start the retry fully healed
             val partyWithStats = rawParty.map { hero ->
-                val items = repo.getEquippedItems(hero.id).first()
-                val stats = hero.calculateStats(items, relics)
-
-                val newHpBonus = (stats["HP"] ?: hero.baseMaxHp) - hero.baseMaxHp
-                val newMpBonus = (stats["MP"] ?: hero.baseMaxMp) - hero.baseMaxMp
-
-                hero.copy(
-                    currentHp = hero.baseMaxHp + newHpBonus, // Fully heal
-                    currentMp = hero.baseMaxMp + newMpBonus
-                ).apply {
-                    attackBonus = (stats["ATK"] ?: baseAttack.toLong()) - baseAttack
-                    defenseBonus = (stats["DEF"] ?: baseDefense.toLong()) - baseDefense
-                    magicBonus = (stats["MAG"] ?: baseMagic.toLong()) - baseMagic
-                    hpBonus = newHpBonus
-                    mpBonus = newMpBonus
-                    critChance = stats["CRIT_CHANCE"]?.toInt() ?: 5
-                    critDamage = stats["CRIT_DAMAGE"] ?: 50
-                    jobMasteryLevel = relics.jobMasteryLevels[hero.heroClass] ?: 0
-                }
+                val bakedHero = bakeHeroStats(hero, state.dungeonMode, relics, equippedPet, repo)
+                bakedHero.copy(
+                    currentHp = bakedHero.maxHp,
+                    currentMp = bakedHero.maxMp
+                )
             }
 
             battleState.update { it.copy(
@@ -1053,6 +1005,8 @@ class DungeonViewModel @Inject constructor(
           gilLostToPenalty = 0,
           itemsFoundThisRun = currentState.itemsFoundThisRun,
           materialsEarned = currentState.materialsFoundThisRun,
+          safariTicketsEarnedThisRun = currentState.safariTicketsEarnedThisRun,
+          cardsFoundThisRun = currentState.cardsFoundThisRun, // ADD THIS
           fallenHeroes = currentState.fallenHeroes,
           originalPartySize = currentState.originalPartySize
       )
@@ -1095,3 +1049,71 @@ class DungeonViewModel @Inject constructor(
   }
   private fun findIsHero(state: FFBattleState, id: String) = state.heroes.any { it.id==id } || id.startsWith("pet_")
 }
+
+private suspend fun bakeHeroStats(
+    hero: Hero,
+    mode: DungeonMode,
+    relics: RelicBonuses,
+    equippedPet: Tier2Pet?,
+    repo: GameRepository
+): Hero {
+    return if (mode == DungeonMode.SAFARI) {
+        // STRICT SAFARI: Base stats only. No items, no relics, no pet multiplier.
+        val calcMaxHp = hero.baseMaxHp
+        val calcMaxMp = hero.baseMaxMp
+
+        hero.copy(
+            currentHp = if (hero.currentHp >= hero.baseMaxHp) calcMaxHp else hero.currentHp.coerceAtMost(calcMaxHp),
+            currentMp = if (hero.currentMp >= hero.baseMaxMp) calcMaxMp else hero.currentMp.coerceAtMost(calcMaxMp)
+        ).apply {
+            attackBonus = 0L
+            defenseBonus = 0L
+            magicBonus = 0L
+            hpBonus = 0L
+            mpBonus = 0L
+            critChance = 5
+            critDamage = 50L
+            jobMasteryLevel = 0
+        }
+    } else {
+        // REGULAR / BOSS LAIR: Apply items, relics, AND dual Tier 2 Pet stats
+        val items = repo.getEquippedItems(hero.id).first()
+        val stats = hero.calculateStats(items, relics)
+
+        val mult = equippedPet?.getStatMultiplier() ?: 1f
+        val boosts = equippedPet?.let { PetType.entries.find { p -> p.name == it.petId }?.tier2Boosts } ?: emptyList()
+
+        val rawHp = stats["HP"] ?: hero.baseMaxHp
+        val rawMp = stats["MP"] ?: hero.baseMaxMp
+        val rawAtk = stats["ATK"] ?: hero.baseAttack
+        val rawDef = stats["DEF"] ?: hero.baseDefense
+        val rawMag = stats["MAG"] ?: hero.baseMagic
+
+        // Apply multiplier only if the pet specifically targets that stat
+        val finalMaxHp = if (boosts.contains(CombatStat.HP)) (rawHp * mult).toLong() else rawHp
+        val finalMaxMp = if (boosts.contains(CombatStat.MP)) (rawMp * mult).toLong() else rawMp
+        val finalAtk = if (boosts.contains(CombatStat.ATK)) (rawAtk * mult).toLong() else rawAtk
+        val finalDef = if (boosts.contains(CombatStat.DEF)) (rawDef * mult).toLong() else rawDef
+        val finalMag = if (boosts.contains(CombatStat.MAG)) (rawMag * mult).toLong() else rawMag
+
+        val newHpBonus = finalMaxHp - hero.baseMaxHp
+        val newMpBonus = finalMaxMp - hero.baseMaxMp
+        val oldMaxHp = hero.maxHp
+        val oldMaxMp = hero.maxMp
+
+        hero.copy(
+            currentHp = if (hero.currentHp >= oldMaxHp) hero.baseMaxHp + newHpBonus else hero.currentHp,
+            currentMp = if (hero.currentMp >= oldMaxMp) hero.baseMaxMp + newMpBonus else hero.currentMp
+        ).apply {
+            attackBonus = finalAtk - baseAttack
+            defenseBonus = finalDef - baseDefense
+            magicBonus = finalMag - baseMagic
+            hpBonus = newHpBonus
+            mpBonus = newMpBonus
+            critChance = stats["CRIT_CHANCE"]?.toInt() ?: 5
+            critDamage = stats["CRIT_DAMAGE"] ?: 50
+            jobMasteryLevel = relics.jobMasteryLevels[hero.heroClass] ?: 0
+        }
+    }
+}
+

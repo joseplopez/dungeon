@@ -3,12 +3,15 @@ package com.game.dungeon.ui.screens
 import android.app.Activity
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.lazy.grid.GridCells
 import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.items
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.Tab
 import androidx.compose.material3.TabRow
 import androidx.compose.material3.Text
@@ -16,6 +19,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
@@ -46,6 +50,7 @@ fun MenagerieScreen(
 
     var selectedTab by remember { mutableIntStateOf(0) }
     var showSupportDialog by remember { mutableStateOf(false) }
+    var showSafariInfo by remember { mutableStateOf(false) } // ADD THIS STATE
 
     val state = gs ?: GameState()
     val isSafariUnlocked = state.isSafariUnlocked()
@@ -65,9 +70,7 @@ fun MenagerieScreen(
                     .background(BgDarkest)
             ) {
                 Row(
-                    Modifier
-                        .fillMaxSize()
-                        .padding(horizontal = 12.dp),
+                    Modifier.fillMaxSize().padding(horizontal = 12.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
@@ -76,31 +79,46 @@ fun MenagerieScreen(
                         onClick = { navController.popBackStack() },
                         modifier = Modifier.height(36.dp)
                     )
-                    Text("🐾 MENAGERIE", style = PixelHeading, color = GoldBright)
+
+                    // Hide the title on Tier 2 to make room for the Safari buttons
+                    if (selectedTab == 0 || !isSafariUnlocked) {
+                        Text("🐾 MENAGERIE", style = PixelHeading, color = GoldBright)
+                    }
+
                     Row(
                         verticalAlignment = Alignment.CenterVertically,
-                        horizontalArrangement = Arrangement.spacedBy(8.dp)
+                        horizontalArrangement = Arrangement.spacedBy(6.dp)
                     ) {
+                        // Conditionally render Safari Actions in the top bar
+                        if (selectedTab == 1 && isSafariUnlocked) {
+                            val canStartSafari = state.safariTickets >= 1 && activeParty.isNotEmpty()
+                            Text("🎟️ ${state.safariTickets}", style = PixelBody, color = GoldBright)
+                            // ADD THE INFO BUTTON HERE:
+                            PixelButton(label = "ℹ️", onClick = { showSafariInfo = true }, modifier = Modifier.height(28.dp).width(36.dp), horizontalPadding = 0.dp)
+                            PixelButton(label = "📺", onClick = { activity?.let { viewModel.watchSafariTicketAd(it) } }, modifier = Modifier.height(28.dp).width(36.dp), horizontalPadding = 0.dp)
+                            PixelButton(label = "💰", onClick = { activity?.let { viewModel.buyMiscPack(it) } }, modifier = Modifier.height(28.dp).width(36.dp), horizontalPadding = 0.dp)
+                            PixelButton(
+                                label = "ENTER SAFARI",
+                                onClick = {
+                                    if (viewModel.consumeSafariTicketForRun()) {
+                                        onStartSafariRun(activeParty)
+                                    }
+                                },
+                                enabled = canStartSafari,
+                                active = canStartSafari,
+                                modifier = Modifier.height(28.dp),
+                                fontSize = 10.sp,
+                                horizontalPadding = 8.dp
+                            )
+                        }
+
                         SupportIconButton(onClick = { showSupportDialog = true })
                         MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
                     }
                 }
             }
 
-            // Top Section: Currently Equipped Pets & Safari Ticket Actions
-            MenagerieTopSection(
-                gs = state,
-                canStartSafari = (isSafariUnlocked && state.safariTickets >= 1 && activeParty.isNotEmpty()),
-                onWatchAd = { activity?.let { viewModel.watchSafariTicketAd(it) } },
-                onBuyMiscPack = { activity?.let { viewModel.buyMiscPack(it) } },
-                onEnterSafari = {
-                    if (viewModel.consumeSafariTicketForRun()) {
-                        onStartSafariRun(activeParty)
-                    }
-                }
-            )
-
-            // Tabs
+            // Tabs immediately follow the Header now
             TabRow(
                 selectedTabIndex = selectedTab,
                 containerColor = BgMedium,
@@ -119,22 +137,26 @@ fun MenagerieScreen(
                 )
             }
 
+            // Expanded Content Area
             Box(
                 Modifier
                     .weight(1f)
                     .padding(8.dp)
             ) {
                 when (selectedTab) {
-                    0 -> Tier1PassivesTab(
-                        gs = state,
-                        onSelect = { viewModel.selectPet(it) },
-                        onUnlock = { viewModel.unlockPet(it) }
-                    )
+                    0 -> {
+                        // Optional: Show equipped Tier 1 here if you want
+                        Tier1PassivesTab(
+                            gs = state,
+                            onSelect = { viewModel.selectPet(it) },
+                            onUnlock = { viewModel.unlockPet(it) }
+                        )
+                    }
                     1 -> Tier2CardsTab(
                         gs = state,
                         isSafariUnlocked = isSafariUnlocked,
                         onEquipTier2 = { petId -> viewModel.equipTier2Pet(petId) },
-                        onRankUpTier2 = { petId -> viewModel.rankUpTier2Pet(petId) }
+                        onRankUpTier2 = { petId -> viewModel.rankUpTier2Pet(petId) },
                     )
                 }
             }
@@ -145,97 +167,12 @@ fun MenagerieScreen(
         if (showSupportDialog) {
             SupportDialog(onDismiss = { showSupportDialog = false })
         }
-    }
-}
-
-@Composable
-fun MenagerieTopSection(
-    gs: GameState,
-    canStartSafari: Boolean,
-    onWatchAd: () -> Unit,
-    onBuyMiscPack: () -> Unit,
-    onEnterSafari: () -> Unit
-) {
-    GoldenBorderBox(
-        Modifier
-            .fillMaxWidth()
-            .padding(6.dp)
-            .background(BgMedium)
-    ) {
-        Column(
-            Modifier
-                .fillMaxWidth()
-                .padding(8.dp),
-            verticalArrangement = Arrangement.spacedBy(6.dp)
-        ) {
-            Row(
-                Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                // Tier 1 Equipped
-                val t1Name = gs.selectedPet?.let { safeStringResource(it.nameRes) } ?: "None"
-                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                    Text("Tier 1:", style = PixelSmall, color = StoneGray)
-                    Text(t1Name, style = PixelSmall, color = GoldBright, fontWeight = FontWeight.Bold)
-                }
-
-                // Tier 2 Equipped
-                val t2Pet = gs.equippedTier2PetId?.let { gs.tier2Pets[it] }
-                val t2Name = gs.equippedTier2PetId?.let { id ->
-                    PetType.entries.find { it.name == id }?.let { safeStringResource(it.nameRes) } ?: id
-                } ?: "None"
-                val t2Mult = t2Pet?.let { "${((it.getStatMultiplier() - 1f) * 100f).toInt()}%" } ?: "0%"
-                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                    Text("Tier 2:", style = PixelSmall, color = StoneGray)
-                    Text("$t2Name (+$t2Mult)", style = PixelSmall, color = SystemCyan, fontWeight = FontWeight.Bold)
-                }
-
-                // Tickets count
-                Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
-                    Text("🎟️ Tickets:", style = PixelSmall, color = GoldBright)
-                    Text(gs.safariTickets.toString(), style = PixelHeading, color = GoldBright)
-                }
-            }
-
-            Row(
-                Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.spacedBy(4.dp),
-                verticalAlignment = Alignment.CenterVertically
-            ) {
-                PixelButton(
-                    label = "📺 Watch Ad (+1)",
-                    onClick = onWatchAd,
-                    horizontalPadding = 2.dp,
-                    fontSize = 8.sp,
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(32.dp)
-                )
-                PixelButton(
-                    label = "💰 Buy Pack (+10)",
-                    onClick = onBuyMiscPack,
-                    horizontalPadding = 2.dp,
-                    fontSize = 8.sp,
-                    modifier = Modifier
-                        .weight(1f)
-                        .height(32.dp)
-                )
-                PixelButton(
-                    label = "🦁 Enter Safari (1 Ticket)",
-                    onClick = onEnterSafari,
-                    enabled = canStartSafari,
-                    active = canStartSafari,
-                    horizontalPadding = 2.dp,
-                    fontSize = 8.sp,
-                    modifier = Modifier
-                        .weight(1.3f)
-                        .height(32.dp)
-                )
-            }
+        if (showSafariInfo) {
+            SafariInfoDialog(onDismiss = { showSafariInfo = false })
         }
     }
 }
+
 
 @Composable
 fun Tier1PassivesTab(
@@ -261,10 +198,18 @@ fun Tier2CardsTab(
                 .padding(24.dp),
             contentAlignment = Alignment.Center
         ) {
-            Column(horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.spacedBy(12.dp)) {
-                Text("🔒 SAFARI DIMENSION LOCKED", style = PixelHeading, color = EnemyRed, fontSize = 16.sp)
+            Column(
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(12.dp)
+            ) {
                 Text(
-                    "Reach Dimension 11 & Lifetime Floor 1000 to unlock Tier 2 Companion Cards.",
+                    text = "🔒 SAFARI DIMENSION LOCKED",
+                    style = PixelHeading,
+                    color = EnemyRed,
+                    fontSize = 16.sp
+                )
+                Text(
+                    text = "Reach Dimension 11 & Lifetime Floor 1000 to unlock Tier 2 Companion Cards.",
                     style = PixelBody,
                     color = Color.White,
                     textAlign = TextAlign.Center
@@ -272,11 +217,15 @@ fun Tier2CardsTab(
             }
         }
     } else {
+        // The Cards Grid
         LazyVerticalGrid(
-            columns = GridCells.Fixed(3),
-            horizontalArrangement = Arrangement.spacedBy(8.dp),
-            verticalArrangement = Arrangement.spacedBy(8.dp),
-            modifier = Modifier.fillMaxSize()
+            // Fixed(5) ensures the 5 cards perfectly stretch to fill the entire horizontal space
+            columns = GridCells.Fixed(5),
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(horizontal = 8.dp, vertical = 8.dp)
         ) {
             items(PetType.entries) { petType ->
                 val petId = petType.name
@@ -308,157 +257,233 @@ fun Tier2CardItem(
     onRankUp: () -> Unit
 ) {
     val rarityColor = when (petType.rarity) {
-        Rarity.COMMON -> Color(0xFF2E3A2E)
+        Rarity.COMMON -> Color(0xFF3A4B5C)
         Rarity.RARE -> Color(0xFF1E2E4A)
-        Rarity.EPIC -> Color(0xFF3E1E4A)
-        Rarity.LEGENDARY -> Color(0xFF4A3A1E)
+        Rarity.EPIC -> Color(0xFF4A1E4A)
+        Rarity.LEGENDARY -> Color(0xFF6B4C12)
         Rarity.MYTHIC -> Color(0xFF4A1E2E)
     }
 
     val neededCards = tier2Pet.getCardsNeededForNextRank()
     val canRankUp = tier2Pet.canRankUp()
+    val isRankZero = tier2Pet.currentRank == 0
 
     Box(
         Modifier
             .fillMaxWidth()
-            .height(175.dp)
-            .background(rarityColor, RoundedCornerShape(6.dp))
-            .border(2.dp, if (isEquipped) GoldBright else GoldDark, RoundedCornerShape(6.dp))
-            .padding(6.dp)
+            .aspectRatio(0.7f) // Strict trading card shape
+            .clip(RoundedCornerShape(8.dp))
+            .background(
+                brush = androidx.compose.ui.graphics.Brush.verticalGradient(
+                    colors = listOf(BgDarkest, rarityColor)
+                )
+            )
+            .border(
+                width = if (isEquipped) 3.dp else 1.dp,
+                color = if (isEquipped) GoldBright else Color.DarkGray,
+                shape = RoundedCornerShape(8.dp)
+            )
+            .clickable(enabled = !isTier1Locked && !isRankZero) {
+                onEquip()
+            }
     ) {
-        Column(
-            Modifier.fillMaxSize(),
-            verticalArrangement = Arrangement.SpaceBetween
+        // --- TOP LEFT: Rank Badge ---
+        Box(
+            Modifier
+                .padding(8.dp)
+                .align(Alignment.TopStart)
+                .background(Color.Black.copy(alpha = 0.6f), RoundedCornerShape(4.dp))
+                .border(1.dp, if (!isRankZero) GoldBright else Color.DarkGray, RoundedCornerShape(4.dp))
+                .padding(horizontal = 6.dp, vertical = 4.dp)
         ) {
-            // Top Row: Left Hexagon Rank, Right Cards Progress Pill
+            Text(
+                text = "Rank ${tier2Pet.currentRank}",
+                style = PixelSmall,
+                color = if (!isRankZero) GoldBright else StoneGray,
+                fontSize = 10.sp, // Increased from 8
+                fontWeight = FontWeight.Bold
+            )
+        }
+
+        // --- TOP RIGHT: Element Icon ---
+        Text(
+            text = petType.emoji,
+            modifier = Modifier
+                .padding(8.dp)
+                .align(Alignment.TopEnd),
+            fontSize = 16.sp // Increased from 12
+        )
+
+        // --- CENTER: Sprite ---
+        Box(
+            Modifier
+                .fillMaxSize()
+                .padding(top = 36.dp, bottom = 72.dp) // Keeps sprite clear of top badges and bottom panel
+                .padding(12.dp),
+            contentAlignment = Alignment.Center
+        ) {
+            // Fills the available center space so the sprite grows dynamically
+            PetSprite(petType, Modifier.fillMaxSize())
+        }
+
+        // --- COMPACT TOP CHECKMARK ---
+        if (isEquipped) {
+            Text(
+                text = "✅",
+                fontSize = 14.sp,
+                modifier = Modifier
+                    .align(Alignment.TopCenter)
+                    .padding(top = 4.dp)
+            )
+        }
+
+        // --- BOTTOM: Info & Action Panel ---
+        Column(
+            Modifier
+                .align(Alignment.BottomCenter)
+                .fillMaxWidth()
+                .background(Color.Black.copy(alpha = 0.85f))
+                .padding(6.dp),
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            Text(
+                text = safeStringResource(petType.nameRes),
+                style = PixelBody,
+                color = GoldBright,
+                fontSize = 12.sp, // Increased from 10
+                fontWeight = FontWeight.Bold
+            )
+
+            // Dual-Stats Text
+            val boostText = petType.tier2Boosts.joinToString(" & ") { it.displayName }
+            Text(
+                text = "+${(tier2Pet.currentRank * 3)}% $boostText",
+                style = PixelSmall,
+                color = if (isRankZero) StoneGray else HpGreen,
+                fontSize = 10.sp // Increased from 8
+            )
+
+            Spacer(Modifier.height(6.dp))
+
+            if (canRankUp) {
+                PixelButton(
+                    label = "⬆ Rank Up",
+                    onClick = onRankUp,
+                    active = true,
+                    horizontalPadding = 0.dp,
+                    fontSize = 10.sp, // Increased from 8
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(28.dp) // Increased for easier tapping
+                )
+                Spacer(Modifier.height(6.dp))
+            }
+
+            // Collection Progress Bar at the very bottom
+            val progress = if (tier2Pet.currentRank >= 5) 1f else (tier2Pet.cardsCollected.toFloat() / neededCards.toFloat())
+            val cardsText = if (tier2Pet.currentRank >= 5) "MAX" else "${tier2Pet.cardsCollected}/$neededCards"
+
             Row(
                 Modifier.fillMaxWidth(),
-                horizontalArrangement = Arrangement.SpaceBetween,
                 verticalAlignment = Alignment.CenterVertically
             ) {
-                // Top-Left Hexagon Rank Badge
-                Box(
-                    Modifier
-                        .size(24.dp)
-                        .background(GoldDark, RoundedCornerShape(4.dp))
-                        .border(1.dp, GoldBright, RoundedCornerShape(4.dp)),
-                    contentAlignment = Alignment.Center
-                ) {
-                    Text(
-                        "R${tier2Pet.currentRank}",
-                        style = PixelSmall,
-                        color = Color.White,
-                        fontSize = 9.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                }
-
-                // Top-Right Cards Pill
-                val cardsText = if (tier2Pet.currentRank >= 5) "MAX" else "${tier2Pet.cardsCollected}/$neededCards"
-                Box(
-                    Modifier
-                        .background(BgDarkest, RoundedCornerShape(10.dp))
-                        .border(1.dp, SystemCyan, RoundedCornerShape(10.dp))
-                        .padding(horizontal = 6.dp, vertical = 2.dp)
-                ) {
-                    Text(
-                        cardsText,
-                        style = PixelSmall,
-                        color = SystemCyan,
-                        fontSize = 8.sp,
-                        fontWeight = FontWeight.Bold
-                    )
-                }
-            }
-
-            // Center Sprite
-            Box(
-                Modifier
-                    .fillMaxWidth()
-                    .weight(1f),
-                contentAlignment = Alignment.Center
-            ) {
-                PetSprite(petType, Modifier.size(44.dp))
-            }
-
-            // Bottom Name Banner & Stat Boost
-            Column(
-                Modifier.fillMaxWidth(),
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-                Text(
-                    safeStringResource(petType.nameRes),
-                    style = PixelBody,
-                    color = GoldBright,
-                    fontSize = 10.sp,
-                    fontWeight = FontWeight.Bold
+                androidx.compose.material3.LinearProgressIndicator(
+                    progress = progress,
+                    modifier = Modifier
+                        .weight(1f)
+                        .height(6.dp) // Slightly thicker bar
+                        .clip(RoundedCornerShape(3.dp)),
+                    color = SystemCyan,
+                    trackColor = Color.DarkGray
                 )
                 Text(
-                    "+${tier2Pet.currentRank}% Stat Multiplier",
+                    text = cardsText,
                     style = PixelSmall,
-                    color = HpGreen,
-                    fontSize = 8.sp
+                    color = Color.White,
+                    fontSize = 8.sp, // Increased from 6
+                    modifier = Modifier.padding(start = 6.dp)
                 )
-
-                Spacer(Modifier.height(4.dp))
-
-                // Actions Row: Upgrade / Equip
-                Row(
-                    Modifier.fillMaxWidth(),
-                    horizontalArrangement = Arrangement.spacedBy(4.dp)
-                ) {
-                    if (canRankUp) {
-                        PixelButton(
-                            label = "⬆ Rank Up",
-                            onClick = onRankUp,
-                            active = true,
-                            horizontalPadding = 2.dp,
-                            fontSize = 8.sp,
-                            modifier = Modifier
-                                .weight(1f)
-                                .height(26.dp)
-                        )
-                    }
-
-                    if (tier2Pet.currentRank > 0) {
-                        PixelButton(
-                            label = if (isEquipped) "Equipped" else "Equip",
-                            onClick = onEquip,
-                            active = isEquipped,
-                            horizontalPadding = 2.dp,
-                            fontSize = 8.sp,
-                            modifier = Modifier
-                                .weight(1f)
-                                .height(26.dp)
-                        )
-                    }
-                }
             }
         }
 
-        // Overlay if Tier 1 pet is < level 50
+        // --- OVERLAY: Tier 1 Locked ---
         if (isTier1Locked) {
             Box(
                 Modifier
                     .fillMaxSize()
-                    .background(Color.Black.copy(alpha = 0.85f), RoundedCornerShape(6.dp))
+                    .background(Color.Black.copy(alpha = 0.85f))
                     .padding(8.dp),
                 contentAlignment = Alignment.Center
             ) {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    verticalArrangement = Arrangement.spacedBy(4.dp)
+                    verticalArrangement = Arrangement.spacedBy(6.dp)
                 ) {
-                    Text("🔒", fontSize = 20.sp)
+                    Text("🔒", fontSize = 28.sp)
                     Text(
-                        "Requires Level 50 Tier 1",
+                        text = "Requires Level 50 Tier 1",
                         style = PixelSmall,
                         color = EnemyRed,
-                        fontSize = 8.sp,
+                        fontSize = 10.sp,
                         textAlign = TextAlign.Center,
                         fontWeight = FontWeight.Bold
                     )
                 }
+            }
+        }
+    }
+}
+
+@Composable
+fun SafariInfoDialog(onDismiss: () -> Unit) {
+    val scrollState = rememberScrollState()
+
+    androidx.compose.ui.window.Dialog(
+        onDismissRequest = onDismiss,
+        properties = androidx.compose.ui.window.DialogProperties(usePlatformDefaultWidth = false)
+    ) {
+        PixelPanel(
+            Modifier
+                .fillMaxWidth(0.88f)
+                .widthIn(max = 380.dp)
+                .heightIn(max = 400.dp)
+                .background(BgDarkest),
+            borderColor = SystemCyan
+        ) {
+            Column(
+                Modifier.padding(20.dp),
+                horizontalAlignment = Alignment.CenterHorizontally,
+                verticalArrangement = Arrangement.spacedBy(16.dp)
+            ) {
+                Text("🌿", fontSize = 48.sp)
+                Text(
+                    text = "The Untamed Wilds",
+                    style = PixelTitle,
+                    color = SystemCyan,
+                    textAlign = TextAlign.Center
+                )
+
+                // Scrollable container for the lore text
+                Column(
+                    modifier = Modifier
+                        .weight(1f, fill = false)
+                        .verticalScroll(scrollState),
+                    horizontalAlignment = Alignment.CenterHorizontally
+                ) {
+                    Text(
+                        text = "Much like the serene yet perilous Calm Lands of old, this natural sanctuary is untouched by civilization's forge.\n\nHere, your equipment loses its edge, your relics fade, and all pet boosts vanish. Your heroes must face the wilds completely unbuffed, relying solely on their raw base stats and level.\n\nIn this pure hunt, beasts yield no materials or gear—only a chance to drop their rare Companion Cards. Survival is the only law.\n\nTo enter the hunt, you must offer Safari Tickets. You can scavenge these rare passes by proving your might and defeating Bosses in regular dimensions and the Boss Lair.",
+                        style = PixelBody,
+                        color = Color.White,
+                        textAlign = TextAlign.Center
+                    )
+                }
+
+                PixelButton(
+                    label = "I Understand",
+                    onClick = onDismiss,
+                    modifier = Modifier.fillMaxWidth().height(48.dp),
+                    active = true
+                )
             }
         }
     }
