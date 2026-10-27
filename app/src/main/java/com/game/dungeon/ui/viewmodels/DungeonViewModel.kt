@@ -901,6 +901,12 @@ class DungeonViewModel @Inject constructor(
         viewModelScope.launch {
             val state = battleState.value
             val gs = repo.getGameStateOnce() ?: GameState()
+
+            // FIX: Consume a ticket if retrying in Safari mode
+            if (state.dungeonMode == DungeonMode.SAFARI) {
+                if (gs.safariTickets < 1) return@launch // Failsafe block
+                repo.addSafariTickets(-1)
+            }
             val dimension = if (state.dungeonMode == DungeonMode.SAFARI) FFDimensionData.safariDimension else FFDimensionData.getDimension(gs.currentDimension)
             val codexBonuses = repo.getCodexBonuses()
             val relics = RelicBonuses.from(gs, codexBonuses)

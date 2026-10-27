@@ -640,7 +640,6 @@
     <string name="tab_pets">펫</string>
     <string name="mastery_bonus_label">보너스</string>
     <string name="mastery_exp_format">%1$d / %2$d EXP</string>
-    <string name="pet_bonus_format">+%%1$.1f%%% %2$s</string>
     <string name="mastery_bonus_stat_format">+%1$d %2$s</string>
     <string name="select_companion_label">동료를 선택하세요</string>
     <string name="pet_none">없음</string>

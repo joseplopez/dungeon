@@ -6,6 +6,7 @@ import androidx.lifecycle.viewModelScope
 import com.game.dungeon.data.models.Hero
 import com.game.dungeon.data.models.Item
 import com.game.dungeon.data.models.ItemSlot
+import com.game.dungeon.data.models.Tier2Pet
 import com.game.dungeon.data.repository.GameRepository
 import com.game.dungeon.monetization.BillingManager
 import com.game.dungeon.monetization.InAppProduct
@@ -51,6 +52,10 @@ class EquipmentViewModel @Inject constructor(
     val gearSwitchesAvailable: StateFlow<Int> = repository.getGameState()
         .map { it?.gearSwitchesAvailable ?: 0 }
         .stateIn(viewModelScope, SharingStarted.Lazily, 0)
+
+    val equippedTier2Pet: StateFlow<Tier2Pet?> = repository.getGameState()
+        .map { gs -> gs?.equippedTier2PetId?.let { gs.tier2Pets[it] } }
+        .stateIn(viewModelScope, SharingStarted.WhileSubscribed(5000), null)
 
     fun buyMiscPack(activity: Activity) {
         billingManager.launchBillingFlow(

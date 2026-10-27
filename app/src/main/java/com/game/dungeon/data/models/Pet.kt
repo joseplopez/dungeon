@@ -23,19 +23,19 @@ enum class PetType(
     val tier2Boosts: List<CombatStat> // ADD THIS
 ) {
     // TANK (HP & Defense)
-    CHOCOBO(R.string.pet_chocobo_name, R.string.pet_chocobo_desc, "🐤", PetBonusType.ITEM_FIND, 0.20f, 10000, Rarity.COMMON, listOf(CombatStat.HP, CombatStat.DEF)),
+    CHOCOBO(R.string.pet_chocobo_name, R.string.pet_chocobo_desc, "🐤", PetBonusType.ITEM_FIND, 0.02f, 10000, Rarity.COMMON, listOf(CombatStat.HP, CombatStat.DEF)),
 
     // PURE MAGE (Magic & MP)
-    MOOGLE(R.string.pet_moogle_name, R.string.pet_moogle_desc, "🦇", PetBonusType.EXP_BOOST, 0.50f, 50000, Rarity.RARE, listOf(CombatStat.MAG, CombatStat.MP)),
+    MOOGLE(R.string.pet_moogle_name, R.string.pet_moogle_desc, "🦇", PetBonusType.EXP_BOOST, 0.05f, 50000, Rarity.RARE, listOf(CombatStat.MAG, CombatStat.MP)),
 
     // SUSTAIN (HP & MP)
-    CAT(R.string.pet_cat_name, R.string.pet_cat_desc, "🐱", PetBonusType.GIL_FIND, 0.30f, 25000, Rarity.COMMON, listOf(CombatStat.HP, CombatStat.MP)),
+    CAT(R.string.pet_cat_name, R.string.pet_cat_desc, "🐱", PetBonusType.GIL_FIND, 0.03f, 25000, Rarity.COMMON, listOf(CombatStat.HP, CombatStat.MP)),
 
     // GLASS CANNON (Attack & Magic)
-    CACTUAR(R.string.pet_cactuar_name, R.string.pet_cactuar_desc, "🌵", PetBonusType.CRIT_CHANCE, 15f, 100000, Rarity.EPIC, listOf(CombatStat.ATK, CombatStat.MAG)),
+    CACTUAR(R.string.pet_cactuar_name, R.string.pet_cactuar_desc, "🌵", PetBonusType.CRIT_CHANCE, 0.15f, 100000, Rarity.EPIC, listOf(CombatStat.ATK, CombatStat.MAG)),
 
     // BRUISER (Attack & Defense)
-    TONBERRY(R.string.pet_tonberry_name, R.string.pet_tonberry_desc, "🔪", PetBonusType.CRIT_DAMAGE, 100f, 250000, Rarity.LEGENDARY, listOf(CombatStat.ATK, CombatStat.DEF))
+    TONBERRY(R.string.pet_tonberry_name, R.string.pet_tonberry_desc, "🔪", PetBonusType.CRIT_DAMAGE, 1.00f, 250000, Rarity.LEGENDARY, listOf(CombatStat.ATK, CombatStat.DEF))
 }
 
 // Keep Tier2Pet multiplier at 3% per rank
@@ -45,16 +45,23 @@ data class Tier2Pet(
     val cardsCollected: Int = 0,
     val currentRank: Int = 0
 ) {
-    fun getStatMultiplier(): Float = 1f + (currentRank * 0.03f) // 3% to both stats per rank
+    fun getStatMultiplier(): Float = 1f + when (currentRank) {
+        1 -> 0.03f // 3%
+        2 -> 0.07f // 4%
+        3 -> 0.12f // 5%
+        4 -> 0.18f // 6%
+        5 -> 0.30f // 12% (Big jump at max rank!)
+        else -> 0f // Rank 0
+    }
 
     fun getCardsNeededForNextRank(): Int {
 // ... rest of Tier2Pet remains identical ...
         return when (currentRank) {
-            0 -> 5
-            1 -> 10
-            2 -> 20
-            3 -> 35
-            4 -> 50
+            0 -> 10
+            1 -> 30
+            2 -> 60
+            3 -> 120
+            4 -> 250
             else -> 0
         }
     }

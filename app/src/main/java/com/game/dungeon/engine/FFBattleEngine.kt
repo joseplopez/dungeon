@@ -372,7 +372,7 @@ class FFBattleEngine(private val context: Context) {
                     // Regular Mode: 10% chance (1 boss every 10 floors = ~1 ticket per 100 floors)
                     // Boss Lair: 1% chance (1 boss every floor = ~1 ticket per 100 floors)
                     if (dimension.number>10) {
-                        val ticketChance = if (mode == DungeonMode.BOSS_LAIR) 0.01f else 1.00f
+                        val ticketChance = if (mode == DungeonMode.BOSS_LAIR) 0.001f else 0.05f
                         if (Random.nextFloat() < ticketChance) {
                             onEvent(FFBattleEvent.SafariTicketDropped(1))
                         }

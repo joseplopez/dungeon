@@ -247,6 +247,8 @@ fun DungeonScreen(
                 isPermadeathProtected = isPermadeathProtected,
                 onRevive = { activity?.let { viewModel.watchReviveAd(it) } },
                 onRetry = { viewModel.retryRun() },
+                dungeonMode = state.dungeonMode,
+                safariTickets = gameState?.safariTickets ?: 0,
                 onGiveUp = { viewModel.finalizeRun() }
             )
         }
@@ -257,6 +259,8 @@ fun DungeonScreen(
                 hasFallenHeroes = state.pendingFallenHeroIds.isNotEmpty() && !state.reviveUsedThisRun,
                 onRescue = { activity?.let { viewModel.watchRetreatReviveAd(it) } },
                 onRetreat = { viewModel.declineRetreatRevive() },
+                dungeonMode = state.dungeonMode,
+                safariTickets = gameState?.safariTickets ?: 0,
                 onRetry = { viewModel.retryRun() }
             )
         }
@@ -280,9 +284,15 @@ fun RetreatReviveDialog(
     isPermadeathProtected: Boolean = false,
     hasFallenHeroes: Boolean,
     onRescue: () -> Unit,
+    dungeonMode: DungeonMode,
+    safariTickets: Int,
     onRetreat: () -> Unit,
     onRetry: () -> Unit
 ) {
+    val isSafari = dungeonMode == DungeonMode.SAFARI
+    val canRetry = if (isSafari) safariTickets >= 1 else true
+    val retryLabel = if (isSafari) "🎟️ 1 " + safeStringResource(R.string.loop_run_button) else safeStringResource(R.string.loop_run_button)
+
     Dialog(onDismissRequest = {}, properties = DialogProperties(usePlatformDefaultWidth = false)) {
         PixelPanel(
             Modifier
@@ -332,8 +342,9 @@ fun RetreatReviveDialog(
                         )
                     } else {
                         PixelButton(
-                            safeStringResource(R.string.loop_run_button),
+                            label = retryLabel,
                             onClick = onRetry,
+                            enabled = canRetry,
                             modifier = Modifier.fillMaxWidth().height(48.dp),
                             active = true
                         )
@@ -353,10 +364,16 @@ fun RetreatReviveDialog(
 @Composable
 fun ReviveDialog(
     isPermadeathProtected: Boolean = false,
+    dungeonMode: DungeonMode,
+    safariTickets: Int,
     onRevive: () -> Unit,
     onRetry: () -> Unit,
     onGiveUp: () -> Unit
 ) {
+    val isSafari = dungeonMode == DungeonMode.SAFARI
+    val canRetry = if (isSafari) safariTickets >= 1 else true
+    val retryLabel = if (isSafari) "🎟️ 1 " + safeStringResource(R.string.loop_run_button) else safeStringResource(R.string.loop_run_button)
+
     Dialog(
         onDismissRequest = {},
         properties = DialogProperties(usePlatformDefaultWidth = false)
@@ -392,8 +409,9 @@ fun ReviveDialog(
                 Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
                     if (isPermadeathProtected) {
                         PixelButton(
-                            label = safeStringResource(R.string.loop_run_button),
+                            label = retryLabel,
                             onClick = onRetry,
+                            enabled = canRetry,
                             modifier = Modifier
                                 .fillMaxWidth()
                                 .height(48.dp),

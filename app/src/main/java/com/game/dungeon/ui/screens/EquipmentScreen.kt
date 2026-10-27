@@ -35,12 +35,15 @@ import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.hilt.navigation.compose.hiltViewModel
 import com.game.dungeon.R
+import com.game.dungeon.data.models.CombatStat
 import com.game.dungeon.data.models.Hero
 import com.game.dungeon.data.models.Item
 import com.game.dungeon.data.models.ItemSlot
 import com.game.dungeon.data.models.MaterialCatalog
 import com.game.dungeon.data.models.MythicSet
+import com.game.dungeon.data.models.PetType
 import com.game.dungeon.data.models.Rarity
+import com.game.dungeon.data.models.Tier2Pet
 import com.game.dungeon.ui.components.*
 import com.game.dungeon.ui.theme.*
 import com.game.dungeon.ui.viewmodels.EquipmentViewModel
@@ -63,6 +66,7 @@ fun EquipmentScreen(
     val inventory by viewModel.inventory.collectAsState()
     val relicBonuses by viewModel.relicBonuses.collectAsState()
     val gearSwitches by viewModel.gearSwitchesAvailable.collectAsState()
+    val equippedTier2Pet by viewModel.equippedTier2Pet.collectAsState() // ADD THIS
 
     val heroUiState by heroViewModel.uiState.collectAsState()
     val currentHeroItemState = heroUiState.heroes.find { it.hero.id == heroId }
@@ -126,6 +130,7 @@ fun EquipmentScreen(
                             hero = h,
                             equipped = equipped,
                             relicBonuses = relicBonuses,
+                            equippedTier2Pet = equippedTier2Pet, // ADD THIS
                             modifier = Modifier.weight(0.28f)
                         )
                     } ?: Spacer(Modifier.weight(0.28f))
@@ -269,11 +274,23 @@ private fun OrnateStatPanel(
     hero: Hero,
     equipped: List<Item>,
     relicBonuses: com.game.dungeon.data.models.RelicBonuses?,
+    equippedTier2Pet: Tier2Pet?,
     modifier: Modifier = Modifier
 ) {
     val baseOnly = hero.calculateStats(emptyList(), null)
-    val totalStats = hero.calculateStats(equipped, relicBonuses)
+    val rawTotalStats = hero.calculateStats(equipped, relicBonuses)
 
+    val petMult = equippedTier2Pet?.getStatMultiplier() ?: 1f
+    val boosts = equippedTier2Pet?.let { pet -> PetType.entries.find { it.name == pet.petId }?.tier2Boosts } ?: emptyList()
+
+    val totalStats = rawTotalStats.toMutableMap()
+    if (petMult > 1f) {
+        if (boosts.contains(CombatStat.HP)) totalStats["HP"] = ((totalStats["HP"] ?: 0L) * petMult).toLong()
+        if (boosts.contains(CombatStat.MP)) totalStats["MP"] = ((totalStats["MP"] ?: 0L) * petMult).toLong()
+        if (boosts.contains(CombatStat.ATK)) totalStats["ATK"] = ((totalStats["ATK"] ?: 0L) * petMult).toLong()
+        if (boosts.contains(CombatStat.DEF)) totalStats["DEF"] = ((totalStats["DEF"] ?: 0L) * petMult).toLong()
+        if (boosts.contains(CombatStat.MAG)) totalStats["MAG"] = ((totalStats["MAG"] ?: 0L) * petMult).toLong()
+    }
     val statRows = remember {
         listOf(
             Triple("❤️", R.string.stat_hp, "HP"),

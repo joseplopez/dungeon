@@ -599,15 +599,15 @@
 
     <!-- Pets -->
     <string name="pet_chocobo_name">Chocobo</string>
-    <string name="pet_chocobo_desc">+20%%% Hallazgo de Objetos</string>
+    <string name="pet_chocobo_desc">+20% Hallazgo de Objetos</string>
     <string name="pet_moogle_name">Moogle</string>
-    <string name="pet_moogle_desc">+50%%% Ganancia de EXP</string>
+    <string name="pet_moogle_desc">+50% Ganancia de EXP</string>
     <string name="pet_cat_name">Gato de la Suerte</string>
-    <string name="pet_cat_desc">+30%%% Ganancia de Gils</string>
+    <string name="pet_cat_desc">+30% Ganancia de Gils</string>
     <string name="pet_cactuar_name">Cactilio</string>
-    <string name="pet_cactuar_desc">+15%%% Tasa Crítica</string>
+    <string name="pet_cactuar_desc">+15% Tasa Crítica</string>
     <string name="pet_tonberry_name">Tonberry</string>
-    <string name="pet_tonberry_desc">+100%%% Daño Crítico</string>
+    <string name="pet_tonberry_desc">+100% Daño Crítico</string>
 
     <!-- Battle Abilities -->
     <string name="ability_cover_name">Cobertura</string>
@@ -639,7 +639,7 @@
     <string name="tab_pets">MASCOTAS</string>
     <string name="mastery_bonus_label">BONIFICACIÓN</string>
     <string name="mastery_exp_format">%1$d / %2$d EXP</string>
-    <string name="pet_bonus_format">+%%1$.1f%%% %2$s</string>
+
     <string name="mastery_bonus_stat_format">+%1$d %2$s</string>
     <string name="select_companion_label">SELECCIONA UN COMPAÑERO</string>
     <string name="pet_none">NINGUNO</string>
