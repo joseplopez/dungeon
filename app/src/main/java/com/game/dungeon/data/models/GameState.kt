@@ -263,3 +263,32 @@ enum class UpgradeType(
     }
 }
 
+/**
+ * Performs saturating addition on Long values. 
+ * Prevents overflow into negative numbers by capping at Long.MAX_VALUE.
+ */
+fun Long.saturatingAdd(amount: Long): Long {
+    return if (amount >= 0L) {
+        val sum = this + amount
+        if (sum < this) Long.MAX_VALUE else sum
+    } else {
+        val sum = this + amount
+        if (sum > this) 0L else sum.coerceAtLeast(0L)
+    }
+}
+
+/**
+ * Self-healing migration for existing production saves affected by integer overflow.
+ */
+fun GameState.sanitize(): GameState {
+    var fixed = this
+    if (fixed.gold < 0L) fixed = fixed.copy(gold = Long.MAX_VALUE)
+    if (fixed.magicite < 0L) fixed = fixed.copy(magicite = Long.MAX_VALUE)
+    if (fixed.totalGilEarned < 0L) fixed = fixed.copy(totalGilEarned = Long.MAX_VALUE)
+    if (fixed.totalMagiciteEarned < 0L) fixed = fixed.copy(totalMagiciteEarned = Long.MAX_VALUE)
+    if (fixed.gilEarnedThisDim < 0L) fixed = fixed.copy(gilEarnedThisDim = Long.MAX_VALUE)
+    if (fixed.magiciteEarnedThisDim < 0L) fixed = fixed.copy(magiciteEarnedThisDim = Long.MAX_VALUE)
+    return fixed
+}
+
+

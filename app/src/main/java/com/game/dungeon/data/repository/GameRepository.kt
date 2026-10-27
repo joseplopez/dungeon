@@ -8,6 +8,8 @@ import com.game.dungeon.data.db.MaterialEntity
 import com.game.dungeon.data.models.CodexBonuses
 import com.game.dungeon.data.models.CodexMilestone
 import com.game.dungeon.data.models.GameState
+import com.game.dungeon.data.models.sanitize
+import com.game.dungeon.data.models.saturatingAdd
 import com.game.dungeon.data.models.Hero
 import com.game.dungeon.data.models.Item
 import com.game.dungeon.data.models.ItemSlot
@@ -117,9 +119,28 @@ class GameRepository @Inject constructor(
         return CodexMilestone.calculateBonuses(percentage)
     }
 
-    fun getGameState(): Flow<GameState?> = database.gameStateDao.getGameState()
-    suspend fun getGameStateOnce(): GameState? = database.gameStateDao.getGameStateOnce()
-    suspend fun saveGameState(state: GameState) = database.gameStateDao.upsert(state)
+    fun getGameState(): Flow<GameState?> = database.gameStateDao.getGameState().map { raw ->
+        if (raw == null) null
+        else {
+            val sanitized = raw.sanitize()
+            if (sanitized != raw) {
+                database.gameStateDao.upsert(sanitized)
+            }
+            sanitized
+        }
+    }
+
+    suspend fun getGameStateOnce(): GameState? {
+        val raw = database.gameStateDao.getGameStateOnce() ?: return null
+        val sanitized = raw.sanitize()
+        if (sanitized != raw) {
+            database.gameStateDao.upsert(sanitized)
+        }
+        return sanitized
+    }
+
+    suspend fun saveGameState(state: GameState) = database.gameStateDao.upsert(state.sanitize())
+
     fun newGame(): GameState {
         val initialPetLevel = com.game.dungeon.BuildConfig.INITIAL_PET_LEVEL
 
@@ -136,22 +157,19 @@ class GameRepository @Inject constructor(
     }
 
     suspend fun addGil(amount: Long, bypassCap: Boolean = false) {
-        val current = database.gameStateDao.getGameStateOnce() ?: GameState()
-        val newGold = if (bypassCap) {
-            current.gold + amount
-        } else {
-            (current.gold + amount).coerceAtMost(current.maxGil)
-        }
-        val newTotal = if (amount > 0) current.totalGilEarned + amount else current.totalGilEarned
-        database.gameStateDao.upsert(current.copy(gold = newGold, totalGilEarned = newTotal))
+        val current = getGameStateOnce() ?: GameState()
+        val targetCap = if (bypassCap) Long.MAX_VALUE else current.maxGil
+        val newGold = current.gold.saturatingAdd(amount).coerceAtMost(targetCap)
+        val newTotal = if (amount > 0) current.totalGilEarned.saturatingAdd(amount) else current.totalGilEarned
+        saveGameState(current.copy(gold = newGold, totalGilEarned = newTotal))
     }
 
     suspend fun addMagicite(amount: Long) {
-        val current = database.gameStateDao.getGameStateOnce() ?: GameState()
-        database.gameStateDao.upsert(current.copy(
-            magicite = current.magicite + amount,
-            magiciteEarnedThisDim = current.magiciteEarnedThisDim + amount,
-            totalMagiciteEarned = current.totalMagiciteEarned + amount
+        val current = getGameStateOnce() ?: GameState()
+        saveGameState(current.copy(
+            magicite = current.magicite.saturatingAdd(amount),
+            magiciteEarnedThisDim = current.magiciteEarnedThisDim.saturatingAdd(amount),
+            totalMagiciteEarned = current.totalMagiciteEarned.saturatingAdd(amount)
         ))
     }
 
@@ -228,9 +246,9 @@ class GameRepository @Inject constructor(
     }
 
     suspend fun trackDimensionStats(gil: Long, items: Int, bosses: Int) {
-        val current = database.gameStateDao.getGameStateOnce() ?: return
-        database.gameStateDao.upsert(current.copy(
-            gilEarnedThisDim = current.gilEarnedThisDim + gil,
+        val current = getGameStateOnce() ?: return
+        saveGameState(current.copy(
+            gilEarnedThisDim = current.gilEarnedThisDim.saturatingAdd(gil),
             itemsFoundThisDim = current.itemsFoundThisDim + items,
             bossesKilledThisDim = current.bossesKilledThisDim + bosses
         ))
@@ -275,9 +293,9 @@ class GameRepository @Inject constructor(
     suspend fun saveItem(item: Item) = database.itemDao.upsert(item)
     suspend fun saveItems(items: List<Item>) = database.itemDao.upsertAll(items)
     suspend fun sellItem(item: Item) {
-        val current = database.gameStateDao.getGameStateOnce() ?: GameState()
-        val newGold = (current.gold + item.sellValue).coerceAtMost(current.maxGil)
-        database.gameStateDao.upsert(current.copy(gold = newGold))
+        val current = getGameStateOnce() ?: GameState()
+        val newGold = current.gold.saturatingAdd(item.sellValue).coerceAtMost(current.maxGil)
+        saveGameState(current.copy(gold = newGold))
         database.itemDao.delete(item)
     }
 
@@ -285,28 +303,17 @@ class GameRepository @Inject constructor(
     suspend fun sellItems(items: List<Item>) {
         if (items.isEmpty()) return
 
-        val current = database.gameStateDao.getGameStateOnce() ?: GameState()
+        val current = getGameStateOnce() ?: GameState()
 
-        // Safely sum gold to prevent Long overflow from corrupted endgame gear
-        var totalGoldValue: Long = 0
+        var totalGoldValue = 0L
         for (item in items) {
-            if (Long.MAX_VALUE - totalGoldValue < item.sellValue) {
-                totalGoldValue = Long.MAX_VALUE
-                break
-            } else {
-                totalGoldValue += item.sellValue
-            }
+            totalGoldValue = totalGoldValue.saturatingAdd(item.sellValue)
         }
 
-        // Add to current gold and cap it at maxGil
-        val newGold = if (Long.MAX_VALUE - current.gold < totalGoldValue) {
-            current.maxGil
-        } else {
-            (current.gold + totalGoldValue).coerceAtMost(current.maxGil)
-        }
+        val newGold = current.gold.saturatingAdd(totalGoldValue).coerceAtMost(current.maxGil)
 
         database.withTransaction {
-            database.gameStateDao.upsert(current.copy(gold = newGold))
+            saveGameState(current.copy(gold = newGold))
             items.forEach { item ->
                 database.itemDao.delete(item)
             }

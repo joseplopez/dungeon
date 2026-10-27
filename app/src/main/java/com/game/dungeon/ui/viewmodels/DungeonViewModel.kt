@@ -457,13 +457,14 @@ class DungeonViewModel @Inject constructor(
           val boostMultiplier = if (state.boostFloorsRemaining > 0) 2 else 1
           val actualGil = event.gilEarned * boostMultiplier
           val actualMagicite = event.magiciteEarned * boostMultiplier
+          val isSafari = state.dungeonMode == DungeonMode.SAFARI
 
           state.copy(
             currentFloor = event.floor + 1,
             currentBiome = newBiome ?: state.currentBiome,
             heroes = event.updatedHeroes,
-            gilEarnedThisRun = state.gilEarnedThisRun + actualGil,
-            magiciteEarnedThisRun = state.magiciteEarnedThisRun + actualMagicite,
+            gilEarnedThisRun = if (isSafari) 0L else state.gilEarnedThisRun.saturatingAdd(actualGil),
+            magiciteEarnedThisRun = if (isSafari) 0L else state.magiciteEarnedThisRun.saturatingAdd(actualMagicite),
               benchedHeroes = event.updatedBenchedHeroes,
             lastFloorGil = actualGil,
             lastFloorMagicite = actualMagicite,
@@ -597,7 +598,7 @@ class DungeonViewModel @Inject constructor(
       is FFBattleEvent.MagiciteStolen -> {
           battleState.update { state ->
               state.copy(
-                  magiciteEarnedThisRun = state.magiciteEarnedThisRun + event.amount,
+                  magiciteEarnedThisRun = state.magiciteEarnedThisRun.saturatingAdd(event.amount),
                   battleLog = (state.battleLog + FFLogEntry(R.string.log_magicite_stolen, listOf(findName(state, event.heroId), formatAmount(event.amount)), LogType.ABILITY)).takeLast(25)
               )
           }
@@ -799,8 +800,8 @@ class DungeonViewModel @Inject constructor(
       analytics.logRunFinished(floor, grossEarned, magicite, if (currentState.heroes.isEmpty()) "DEFEAT" else "RETREAT")
 
       // Death Penalty
-      val penalty = if (currentState.heroes.isEmpty()) (grossEarned * 0.30f).toInt() else 0
-      val netGil = (grossEarned - penalty)
+      val penalty = if (currentState.heroes.isEmpty()) (grossEarned * 0.30f).toLong() else 0L
+      val netGil = (grossEarned - penalty).coerceAtLeast(0L)
       
       repo.addGil(netGil)
       repo.addMagicite(magicite)
@@ -843,7 +844,7 @@ class DungeonViewModel @Inject constructor(
           isRunning = false, 
           runComplete = true, 
           showReviveDialog = false,
-          gilLostToPenalty = penalty.toLong(),
+          gilLostToPenalty = penalty,
           runSummary = summary,
           battleLog = (it.battleLog + FFLogEntry(if (penalty > 0) R.string.log_total_wipe else R.string.retreat_button, emptyList(), LogType.HERO_FELL)).takeLast(25)
       ) }
