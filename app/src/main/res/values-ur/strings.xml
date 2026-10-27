@@ -1348,4 +1348,37 @@
     <string name="speed_3x" translatable="false">3x</string>
     <string name="speed_10x_unlocked" translatable="false">10x ⚡</string>
     <string name="speed_10x_locked" translatable="false">10x 🔒</string>
+
+    <!-- Safari Dimension Strings -->
+    <string name="safari_dimension_title">سفاری کی دنیا</string>
+    <string name="safari_dimension_subtitle">وحشی چڑیا گھر</string>
+    <string name="safari_dimension_story">ایک وحشی دنیا جہاں ساتھی راکشس آزاد گھومتے ہیں۔ صرف بنیادی خصوصیات!</string>
+
+    <string name="menagerie">🐾 چڑیا گھر</string>
+
+    <!-- Menagerie & Safari Extracted Strings -->
+    <string name="safari_tickets_format">🎟️ %1$d</string>
+    <string name="btn_enter_safari">سفاری میں داخل ہوں</string>
+    <string name="tab_tier_1_passives">درجہ 1 (پاسِو)</string>
+    <string name="tab_tier_2_cards">درجہ 2 (کارڈز)</string>
+    <string name="safari_locked_title">🔒 سفاری کی دنیا مقفل ہے</string>
+    <string name="safari_locked_desc">درجہ 2 کے ساتھی کارڈز کو انلاک کرنے کے لیے ڈائمینشن 11 اور لائف ٹائم فلور 1000 تک پہنچیں۔</string>
+    <string name="tier2_rank_format">رینک %1$d</string>
+    <string name="tier2_boost_format">+%1$d%% %2$s</string>
+    <string name="btn_rank_up">⬆ رینک بڑھائیں</string>
+    <string name="cards_progress_format">%1$d/%2$d</string>
+    <string name="tier1_level_required">درجہ 1 کا لیول 50 درکار ہے</string>
+    <string name="safari_info_title">سرکش بیابان</string>
+    <string name="safari_info_desc">قدیم زمانے کے پرسکون لیکن پرخطر پرامن علاقوں کی طرح، یہ قدرتی پناہ گاہ بھی تہذیب سے پاک ہے۔\n\nیہاں، آپ کے سامان کی دھار ختم ہو جاتی ہے، آپ کے تبرکات دھندلا جاتے ہیں، اور پالتو جانوروں کے تمام بوسٹس غائب ہو جاتے ہیں۔ آپ کے ہیروز کو بغیر کسی بونس کے صرف اپنی بنیادی خصوصیات اور لیول پر بھروسہ کرتے ہوئے بیابان کا سامنا کرنا پڑے گا۔\n\nاس خالص شکار میں، راکشس کوئی سامان یا مٹیریل نہیں دیتے—صرف ان کے نایاب ساتھی کارڈز حاصل کرنے کا ایک موقع ہوتا ہے۔ بقا ہی واحد قانون ہے۔\n\nشکار میں داخل ہونے کے لیے، آپ کو سفاری ٹکٹ پیش کرنے ہوں گے۔ آپ عام دنیاؤں اور باس کے اڈے میں باسز کو شکست دے کر اپنی طاقت ثابت کر کے یہ نایاب پاس حاصل کر سکتے ہیں۔</string>
+    <string name="btn_i_understand">میں سمجھ گیا</string>
+    <string name="companion_cards_title">ساتھی کارڈز</string>
+    <string name="safari_tickets_title">سفاری ٹکٹس</string>
+    <string name="safari_unlock_title">🐾 سفاری چڑیا گھر انلاک ہو گیا!</string>
+    <string name="safari_unlock_desc_1">چڑیا گھر اور سفاری کی دنیا میں خوش آمدید! یہاں آپ مونسٹر کارڈز حاصل کر سکتے ہیں، ساتھی پالتو جانوروں کو اپ گریڈ کر سکتے ہیں، اور درجہ 2 کے پالتو جانوروں کی مہارتیں استعمال کر سکتے ہیں۔</string>
+    <string name="safari_unlock_desc_2">سفاری باریوں میں کارڈز جمع کریں جہاں ہیروز مکمل طور پر بنیادی خصوصیات اور پالتو جانوروں کے ملٹی پلائرز پر انحصار کرتے ہیں!</string>
+    <string name="btn_got_it">سمجھ گیا!</string>
+    <string name="toast_safari_ticket_reward">+1 سفاری ٹکٹ!</string>
+    <string name="toast_misc_pack_purchased">متفرق پیک خرید لیا گیا! +10 سفاری ٹکٹس!</string>
+    <string name="log_safari_ticket_dropped">🎟️ حاصل ہوا سفاری ٹکٹ x%1$d</string>
+    <string name="log_monster_card_dropped">🎴 حاصل ہوا مونسٹر کارڈ: %1$s</string>
 </resources>

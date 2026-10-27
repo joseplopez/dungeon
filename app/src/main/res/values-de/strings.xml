@@ -1335,4 +1335,37 @@
     <string name="speed_3x" translatable="false">3x</string>
     <string name="speed_10x_unlocked" translatable="false">10x ⚡</string>
     <string name="speed_10x_locked" translatable="false">10x 🔒</string>
+
+    <!-- Safari Dimension Strings -->
+    <string name="safari_dimension_title">Safari-Dimension</string>
+    <string name="safari_dimension_subtitle">Wilde Menagerie</string>
+    <string name="safari_dimension_story">Ein wildes Reich, in dem Begleitermonster frei umherstreifen. Nur Basiswerte!</string>
+
+    <string name="menagerie">🐾 MENAGERIE</string>
+
+    <!-- Menagerie & Safari Extracted Strings -->
+    <string name="safari_tickets_format">🎟️ %1$d</string>
+    <string name="btn_enter_safari">SAFARI BETRETEN</string>
+    <string name="tab_tier_1_passives">Rang 1 (Passiv)</string>
+    <string name="tab_tier_2_cards">Rang 2 (Karten)</string>
+    <string name="safari_locked_title">🔒 SAFARI-DIMENSION GESPERRT</string>
+    <string name="safari_locked_desc">Erreiche Dimension 11 &amp; Gesamtebene 1000, um Begleiterkarten von Rang 2 freizuschalten.</string>
+    <string name="tier2_rank_format">Rang %1$d</string>
+    <string name="tier2_boost_format">+%1$d%% %2$s</string>
+    <string name="btn_rank_up">⬆ Rang erhöhen</string>
+    <string name="cards_progress_format">%1$d/%2$d</string>
+    <string name="tier1_level_required">Erfordert Level 50 auf Rang 1</string>
+    <string name="safari_info_title">Ungezähmte Wildnis</string>
+    <string name="safari_info_desc">Ähnlich wie die friedlichen, aber gefährlichen Stillen Ebenen vergangener Zeiten ist dieses Naturreservat unberührt von der Zivilisation.\n\nHier verliert deine Ausrüstung ihre Schärfe, deine Relikte verblassen und alle Begleiter-Boni verschwinden. Deine Helden müssen sich der Wildnis völlig ohne Stärkungen stellen und sich allein auf ihre reinen Basiswerte und ihr Level verlassen.\n\nIn dieser reinen Jagd gewähren Bestien keine Materialien oder Ausrüstung – nur die Chance, ihre seltenen Begleiterkarten fallen zu lassen. Überleben ist das einzige Gesetz.\n\nUm an der Jagd teilzunehmen, musst du Safari-Tickets opfern. Du kannst diese seltenen Pässe erbeuten, indem du deinen Mut unter Beweis stellst und Bosse in normalen Dimensionen sowie in der Boss-Höhle besiegst.</string>
+    <string name="btn_i_understand">Verstanden</string>
+    <string name="companion_cards_title">Begleiterkarten</string>
+    <string name="safari_tickets_title">Safari-Tickets</string>
+    <string name="safari_unlock_title">🐾 Safari-Menagerie freigeschaltet!</string>
+    <string name="safari_unlock_desc_1">Willkommen in der Menagerie und der Safari-Dimension! Hier kannst du Monsterkarten fangen, Begleiter verbessern und Fertigkeiten von Rang-2-Begleitern nutzen.</string>
+    <string name="safari_unlock_desc_2">Sammle Karten in Safari-Läufen, in denen sich die Helden ausschließlich auf Basiswerte und Begleiter-Multiplikatoren verlassen!</string>
+    <string name="btn_got_it">Verstanden!</string>
+    <string name="toast_safari_ticket_reward">+1 Safari-Ticket!</string>
+    <string name="toast_misc_pack_purchased">Verschiedenes-Paket gekauft! +10 Safari-Tickets!</string>
+    <string name="log_safari_ticket_dropped">🎟️ Safari-Ticket erhalten x%1$d</string>
+    <string name="log_monster_card_dropped">🎴 Monsterkarte erhalten: %1$s</string>
 </resources>

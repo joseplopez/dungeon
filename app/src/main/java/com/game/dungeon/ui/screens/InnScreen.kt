@@ -397,7 +397,7 @@ fun GuildStageArea(
                 )
                 if (isSafariUnlocked) {
                     PixelButton(
-                        label = "🐾 Menagerie",
+                        label = safeStringResource(R.string.menagerie),
                         onClick = onNavigateToMenagerie,
                         horizontalPadding = 4.dp,
                         modifier = Modifier
@@ -1189,7 +1189,7 @@ fun SafariUnlockDialog(
                 verticalArrangement = Arrangement.SpaceBetween
             ) {
                 Text(
-                    text = "🐾 Safari Menagerie Unlocked!",
+                    text = safeStringResource(R.string.safari_unlock_title),
                     style = PixelHeading,
                     color = GoldBright,
                     textAlign = TextAlign.Center
@@ -1207,13 +1207,13 @@ fun SafariUnlockDialog(
                 ) {
                     Text("🦁", fontSize = 48.sp)
                     Text(
-                        "Welcome to the Menagerie and the Safari Dimension! Here you can capture monster cards, upgrade companion pets, and harness Tier 2 pet skills.",
+                        safeStringResource(R.string.safari_unlock_desc_1),
                         style = PixelBody,
                         color = Color.White,
                         textAlign = TextAlign.Center
                     )
                     Text(
-                        "Collect cards in Safari runs where heroes rely strictly on base stats and pet multipliers!",
+                        safeStringResource(R.string.safari_unlock_desc_2),
                         style = PixelSmall,
                         color = StoneGray,
                         textAlign = TextAlign.Center
@@ -1223,7 +1223,7 @@ fun SafariUnlockDialog(
                 Spacer(Modifier.height(8.dp))
 
                 PixelButton(
-                    label = "Got It!",
+                    label = safeStringResource(R.string.btn_got_it),
                     onClick = onDismiss,
                     active = true,
                     modifier = Modifier

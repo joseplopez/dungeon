@@ -1335,4 +1335,37 @@
     <string name="speed_3x" translatable="false">3x</string>
     <string name="speed_10x_unlocked" translatable="false">10x ⚡</string>
     <string name="speed_10x_locked" translatable="false">10x 🔒</string>
+
+    <!-- Safari Dimension Strings -->
+    <string name="safari_dimension_title">Dimensão Safári</string>
+    <string name="safari_dimension_subtitle">Menagerie Selvagem</string>
+    <string name="safari_dimension_story">Um reino selvagem onde monstros companheiros perambulam livres. Apenas atributos base!</string>
+
+    <string name="menagerie">🐾 MENAGORIE</string>
+
+    <!-- Menagerie & Safari Extracted Strings -->
+    <string name="safari_tickets_format">🎟️ %1$d</string>
+    <string name="btn_enter_safari">ENTRAR NO SAFÁRI</string>
+    <string name="tab_tier_1_passives">Nível 1 (Passivas)</string>
+    <string name="tab_tier_2_cards">Nível 2 (Cartas)</string>
+    <string name="safari_locked_title">🔒 DIMENSÃO SAFÁRI BLOQUEADA</string>
+    <string name="safari_locked_desc">Alcance a Dimensão 11 e o Andar Histórico 1000 para desbloquear as Cartas de Companheiro de Nível 2.</string>
+    <string name="tier2_rank_format">Rank %1$d</string>
+    <string name="tier2_boost_format">+%1$d%% %2$s</string>
+    <string name="btn_rank_up">⬆ Subir Rank</string>
+    <string name="cards_progress_format">%1$d/%2$d</string>
+    <string name="tier1_level_required">Requer Nível 50 de Nível 1</string>
+    <string name="safari_info_title">A Natureza Indomável</string>
+    <string name="safari_info_desc">Assim como as serenas, porém perigosas Terras da Calmaria de antigamente, este santuário natural não foi tocado pela forja da civilização.\n\nAqui, seu equipamento perde a força, suas relíquias desaparecem e todos os bônus de mascotes somem. Seus heróis devem enfrentar a selva completamente sem bônus, confiando apenas em seus atributos base puros e nível.\n\nNesta caça pura, as feras não concedem materiais nem equipamentos — apenas uma chance de soltar suas raras Cartas de Companheiro. A sobrevivência é a única lei.\n\nPara entrar na caça, você deve oferecer Ingressos de Safári. Você pode obter esses passes raros provando sua força e derrotando Chefes nas dimensões normais e na Guarida dos Chefes.</string>
+    <string name="btn_i_understand">Entendido</string>
+    <string name="companion_cards_title">Cartas de Companheiro</string>
+    <string name="safari_tickets_title">Ingressos de Safári</string>
+    <string name="safari_unlock_title">🐾 Menagerie do Safári Desbloqueada!</string>
+    <string name="safari_unlock_desc_1">Bem-vindo à Menagerie e à Dimensão Safári! Aqui você pode capturar cartas de monstros, aprimorar mascotes companheiros e usar habilidades de mascote de Nível 2.</string>
+    <string name="safari_unlock_desc_2">Colete cartas em jornadas de Safári onde os heróis dependem estritamente de atributos base e multiplicadores de mascotes!</string>
+    <string name="btn_got_it">Entendi!</string>
+    <string name="toast_safari_ticket_reward">+1 Ingresso de Safári!</string>
+    <string name="toast_misc_pack_purchased">Pacote Diversos Comprado! +10 Ingressos de Safári!</string>
+    <string name="log_safari_ticket_dropped">🎟️ Soltou Ingresso de Safári x%1$d</string>
+    <string name="log_monster_card_dropped">🎴 Soltou Carta de Monstro: %1$s</string>
 </resources>

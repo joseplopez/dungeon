@@ -1411,7 +1411,7 @@ fun RunCompleteOverlay(
                     }
                     // --- SAFARI COMPANION CARDS ---
                     if (cardsFoundThisRun.isNotEmpty()) {
-                        Text("Companion Cards", style = PixelHeading, color = GoldBright)
+                        Text(safeStringResource(R.string.companion_cards_title), style = PixelHeading, color = GoldBright)
 
                         LazyRow(
                             horizontalArrangement = Arrangement.spacedBy(8.dp),
@@ -1436,7 +1436,7 @@ fun RunCompleteOverlay(
                             Spacer(Modifier.width(12.dp))
                             Column {
                                 Text("+$safariTicketsEarned", style = PixelHeading, color = GoldBright, maxLines = 1)
-                                Text("Safari Tickets", style = PixelSmall, color = GoldDark)
+                                Text(safeStringResource(R.string.safari_tickets_title), style = PixelSmall, color = GoldDark)
                             }
                         }
                     }
@@ -1555,7 +1555,7 @@ fun MiniTier2Card(
                     .padding(horizontal = 4.dp, vertical = 2.dp)
             ) {
                 Text(
-                    text = "x$amount",
+                    text = safeStringResource(R.string.craft_format_quantity, amount),
                     style = PixelSmall,
                     color = GoldBright,
                     fontSize = 8.sp,

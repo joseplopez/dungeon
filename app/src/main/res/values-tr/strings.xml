@@ -1335,4 +1335,37 @@
     <string name="speed_3x" translatable="false">3x</string>
     <string name="speed_10x_unlocked" translatable="false">10x ⚡</string>
     <string name="speed_10x_locked" translatable="false">10x 🔒</string>
+
+    <!-- Safari Dimension Strings -->
+    <string name="safari_dimension_title">Safari Boyutu</string>
+    <string name="safari_dimension_subtitle">Vahşi Hayvanat Bahçesi</string>
+    <string name="safari_dimension_story">Yoldaş canavarların özgürce dolaştığı vahşi bir diyar. Yalnızca temel nitelikler!</string>
+
+    <string name="menagerie">🐾 VAHŞİ PARKI</string>
+
+    <!-- Menagerie & Safari Extracted Strings -->
+    <string name="safari_tickets_format">🎟️ %1$d</string>
+    <string name="btn_enter_safari">SAFARİ'YE GİR</string>
+    <string name="tab_tier_1_passives">Aşama 1 (Pasifler)</string>
+    <string name="tab_tier_2_cards">Aşama 2 (Kartlar)</string>
+    <string name="safari_locked_title">🔒 SAFARİ BOYUTU KİLİTLİ</string>
+    <string name="safari_locked_desc">Aşama 2 Yoldaş Kartlarının kilidini açmak için Boyut 11 ve Ömür Boyu Kat 1000'e ulaşın.</string>
+    <string name="tier2_rank_format">Rütbe %1$d</string>
+    <string name="tier2_boost_format">+%%%1$d %2$s</string>
+    <string name="btn_rank_up">⬆ Rütbe Yükselt</string>
+    <string name="cards_progress_format">%1$d/%2$d</string>
+    <string name="tier1_level_required">Aşama 1 Seviye 50 Gerektirir</string>
+    <string name="safari_info_title">Vahşi Doğa</string>
+    <string name="safari_info_desc">Eski zamanların huzurlu ama bir o kadar da tehlikeli toprakları gibi, bu doğal sığınak da medeniyetin dokunuşundan uzaktır.\n\nBurada ekipmanlarınız keskinliğini yitirir, kalıntılarınız solup gider ve tüm evcil hayvan güçlendirmeleri yok olur. Kahramanlarınız vahşi doğayla tamamen güçlendirmesiz karşılaşmalı, yalnızca saf temel niteliklerine ve seviyelerine güvenmelidir.\n\nBu saf avda, canavarlar hiçbir malzeme veya ekipman vermez; yalnızca nadir Yoldaş Kartlarını düşürme şansı sunar. Hayatta kalmak tek kuraldır.\n\nAva katılmak için Safari Biletleri sunmalısınız. Normal boyutlarda ve Patron İni'nde Patronları yenip gücünüzü kanıtlayarak bu nadir biletleri toplayabilirsiniz.</string>
+    <string name="btn_i_understand">Anladım</string>
+    <string name="companion_cards_title">Yoldaş Kartları</string>
+    <string name="safari_tickets_title">Safari Biletleri</string>
+    <string name="safari_unlock_title">🐾 Safari Hayvanat Bahçesi Açıldı!</string>
+    <string name="safari_unlock_desc_1">Hayvanat Bahçesi ve Safari Boyutuna hoş geldiniz! Burada canavar kartlarını yakalayabilir, yoldaş evcil hayvanları yükseltebilir ve Aşama 2 evcil hayvan becerilerini kullanabilirsiniz.</string>
+    <string name="safari_unlock_desc_2">Kahramanların tamamen temel niteliklere ve evcil hayvan çarpanlarına dayandığı Safari turlarında kart toplayın!</string>
+    <string name="btn_got_it">Anladım!</string>
+    <string name="toast_safari_ticket_reward">+1 Safari Bileti!</string>
+    <string name="toast_misc_pack_purchased">Çeşitli Paketi Satın Alındı! +10 Safari Bileti!</string>
+    <string name="log_safari_ticket_dropped">🎟️ Düşen Safari Bileti x%1$d</string>
+    <string name="log_monster_card_dropped">🎴 Düşen Canavar Kartı: %1$s</string>
 </resources>

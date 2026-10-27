@@ -1336,4 +1336,37 @@
     <string name="speed_3x" translatable="false">3x</string>
     <string name="speed_10x_unlocked" translatable="false">10x ⚡</string>
     <string name="speed_10x_locked" translatable="false">10x 🔒</string>
+
+    <!-- Safari Dimension Strings -->
+    <string name="safari_dimension_title">بعد السفاري</string>
+    <string name="safari_dimension_subtitle">المحمية البرية</string>
+    <string name="safari_dimension_story">عالم بري تتجول فيه الوحوش المرافقة بحرية. الإحصائيات الأساسية فقط!</string>
+
+    <string name="menagerie">🐾 المحمية</string>
+
+    <!-- Menagerie & Safari Extracted Strings -->
+    <string name="safari_tickets_format">🎟️ %1$d</string>
+    <string name="btn_enter_safari">دخول السفاري</string>
+    <string name="tab_tier_1_passives">الفئة 1 (القدرات الكامنة)</string>
+    <string name="tab_tier_2_cards">الفئة 2 (البطاقات)</string>
+    <string name="safari_locked_title">🔒 بعد السفاري مقفل</string>
+    <string name="safari_locked_desc">وصل إلى البعد 11 والطابق الإجمالي 1000 لفتح بطاقات المرافقين من الفئة 2.</string>
+    <string name="tier2_rank_format">الرتبة %1$d</string>
+    <string name="tier2_boost_format">+%1$d%% %2$s</string>
+    <string name="btn_rank_up">⬆ رفع الرتبة</string>
+    <string name="cards_progress_format">%1$d/%2$d</string>
+    <string name="tier1_level_required">يتطلب المستوى 50 من الفئة 1</string>
+    <string name="safari_info_title">البرية الجامحة</string>
+    <string name="safari_info_desc">مثل الأراضي الهادئة والمحفوفة بالمخاطر في الماضي، فإن هذا الملاذ الطبيعي لم تلمسه يد الحضارة.\n\nهنا، تفقد معداتك حدتها، وتتلاشى الآثار، وتختفي جميع تعزيزات الألياف. يجب على أبطالك مواجهة البرية بدون أي تعزيزات، والاعتماد فقط على إحصائياتهم الأساسية ومستواهم.\n\nفي هذا الصيد النقي، لا تمنح الوحوش أي مواد أو معدات—فقط فرصة للحصول على بطاقات المرافقين النادرة. البقاء هو القانون الوحيد.\n\nللدخول إلى الصيد، يجب تقديم تذاكر السفاري. يمكنك جمع هذه التذاكر النادرة من خلال إثبات قوتك وهزيمة الزعماء في الأبعاد العادية وعرين الزعماء.</string>
+    <string name="btn_i_understand">أفهم ذلك</string>
+    <string name="companion_cards_title">بطاقات المرافقين</string>
+    <string name="safari_tickets_title">تذاكر السفاري</string>
+    <string name="safari_unlock_title">🐾 تم فتح محمية السفاري!</string>
+    <string name="safari_unlock_desc_1">مرحبًا بك في المحمية وبعد السفاري! هنا يمكنك التقاط بطاقات الوحوش، وترقية الحيوانات الأليفة المرافقة، واستغلال مهارات الألياف من الفئة 2.</string>
+    <string name="safari_unlock_desc_2">اجمع البطاقات في جولات السفاري حيث يعتمد الأبطال تمامًا على الإحصائيات الأساسية ومضاعفات الألياف!</string>
+    <string name="btn_got_it">فهمت!</string>
+    <string name="toast_safari_ticket_reward">+1 تذكرة سفاري!</string>
+    <string name="toast_misc_pack_purchased">تم شراء الحزمة المتنوعة! +10 تذاكر سفاري!</string>
+    <string name="log_safari_ticket_dropped">🎟️ تم الحصول على تذكرة سفاري x%1$d</string>
+    <string name="log_monster_card_dropped">🎴 تم الحصول على بطاقة وحش: %1$s</string>
 </resources>

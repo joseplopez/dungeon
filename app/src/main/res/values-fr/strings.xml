@@ -1335,4 +1335,37 @@
     <string name="speed_3x" translatable="false">3x</string>
     <string name="speed_10x_unlocked" translatable="false">10x ⚡</string>
     <string name="speed_10x_locked" translatable="false">10x 🔒</string>
+
+    <!-- Safari Dimension Strings -->
+    <string name="safari_dimension_title">Dimension Safari</string>
+    <string name="safari_dimension_subtitle">Ménagerie Sauvage</string>
+    <string name="safari_dimension_story">Un royaume sauvage où les monstres compagnons errent en liberté. Statistiques de base uniquement !</string>
+
+    <string name="menagerie">🐾 MÉNAGERIE</string>
+
+    <!-- Menagerie & Safari Extracted Strings -->
+    <string name="safari_tickets_format">🎟️ %1$d</string>
+    <string name="btn_enter_safari">ENTRER DANS LE SAFARI</string>
+    <string name="tab_tier_1_passives">Rang 1 (Passifs)</string>
+    <string name="tab_tier_2_cards">Rang 2 (Cartes)</string>
+    <string name="safari_locked_title">🔒 DIMENSION SAFARI VERROUILLÉE</string>
+    <string name="safari_locked_desc">Atteignez la Dimension 11 et l\'Étage cumulé 1000 pour débloquer les Cartes de Compagnon de Rang 2.</string>
+    <string name="tier2_rank_format">Rang %1$d</string>
+    <string name="tier2_boost_format">+%1$d%% %2$s</string>
+    <string name="btn_rank_up">⬆ Augmenter le Rang</string>
+    <string name="cards_progress_format">%1$d/%2$d</string>
+    <string name="tier1_level_required">Niveau 50 au Rang 1 requis</string>
+    <string name="safari_info_title">Les Terres Sauvages</string>
+    <string name="safari_info_desc">Tout comme la Félicité d\'autrefois, sereine mais périlleuse, ce sanctuaire naturel n\'a pas été touché par la civilisation.\n\nIci, votre équipement perd son tranchant, vos reliques s\'estompent et tous les bonus de familiers disparaissent. Vos héros doivent affronter la nature sauvage sans aucun bonus, en ne comptant que sur leurs statistiques de base et leur niveau.\n\nDans cette chasse pure, les bêtes ne donnent ni matériaux ni équipement — seulement une chance de retenir leurs rares Cartes de Compagnon. La survie est la seule loi.\n\nPour entrer dans la chasse, vous devez offrir des Tickets de Safari. Vous pouvez récupérer ces laissez-passer rares en prouvant votre valeur et en vainquant les Boss dans les dimensions normales et le Repaire du Boss.</string>
+    <string name="btn_i_understand">J\'ai compris</string>
+    <string name="companion_cards_title">Cartes de Compagnon</string>
+    <string name="safari_tickets_title">Tickets de Safari</string>
+    <string name="safari_unlock_title">🐾 Ménagerie du Safari Débloquée !</string>
+    <string name="safari_unlock_desc_1">Bienvenue dans la Ménagerie et la Dimension Safari ! Ici, vous pouvez capturer des cartes de monstres, améliorer des familiers compagnons et utiliser les compétences de familiers de Rang 2.</string>
+    <string name="safari_unlock_desc_2">Collectionnez des cartes lors des aventures de Safari où les héros dépendent strictement des statistiques de base et des multiplicateurs de familiers !</string>
+    <string name="btn_got_it">Compris !</string>
+    <string name="toast_safari_ticket_reward">+1 Ticket de Safari !</string>
+    <string name="toast_misc_pack_purchased">Pack Divers Acheté ! +10 Tickets de Safari !</string>
+    <string name="log_safari_ticket_dropped">🎟️ Ticket de Safari obtenu x%1$d</string>
+    <string name="log_monster_card_dropped">🎴 Carte de Monstre obtenue : %1$s</string>
 </resources>

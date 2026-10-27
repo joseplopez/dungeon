@@ -239,10 +239,6 @@
     <string name="biome_omega_ruins">Omega Ruins</string>
     <string name="biome_sin_interior">Inside Sin</string>
 
-    <!-- Safari Dimension Strings -->
-    <string name="safari_dimension_title">Safari Dimension</string>
-    <string name="safari_dimension_subtitle">Wild Menagerie</string>
-    <string name="safari_dimension_story">A wild realm where companion monsters roam free. Base stats only!</string>
 
     <!-- Dimension 11 Strings -->
     <string name="dim11_title">The Infinite Void</string>
@@ -1393,5 +1389,39 @@
     <string name="speed_3x" translatable="false">3x</string>
     <string name="speed_10x_unlocked" translatable="false">10x ⚡</string>
     <string name="speed_10x_locked" translatable="false">10x 🔒</string>
+
+
+    <!-- Safari Dimension Strings -->
+    <string name="safari_dimension_title">Safari Dimension</string>
+    <string name="safari_dimension_subtitle">Wild Menagerie</string>
+    <string name="safari_dimension_story">A wild realm where companion monsters roam free. Base stats only!</string>
+
+    <string name="menagerie">🐾 MENAGERIE</string>
+
+    <!-- Menagerie & Safari Extracted Strings -->
+    <string name="safari_tickets_format">🎟️ %1$d</string>
+    <string name="btn_enter_safari">ENTER SAFARI</string>
+    <string name="tab_tier_1_passives">Tier 1 (Passives)</string>
+    <string name="tab_tier_2_cards">Tier 2 (Cards)</string>
+    <string name="safari_locked_title">🔒 SAFARI DIMENSION LOCKED</string>
+    <string name="safari_locked_desc">Reach Dimension 11 &amp; Lifetime Floor 1000 to unlock Tier 2 Companion Cards.</string>
+    <string name="tier2_rank_format">Rank %1$d</string>
+    <string name="tier2_boost_format">+%1$d%% %2$s</string>
+    <string name="btn_rank_up">⬆ Rank Up</string>
+    <string name="cards_progress_format">%1$d/%2$d</string>
+    <string name="tier1_level_required">Requires Level 50 Tier 1</string>
+    <string name="safari_info_title">The Untamed Wilds</string>
+    <string name="safari_info_desc">Much like the serene yet perilous Calm Lands of old, this natural sanctuary is untouched by civilization\'s forge.\n\nHere, your equipment loses its edge, your relics fade, and all pet boosts vanish. Your heroes must face the wilds completely unbuffed, relying solely on their raw base stats and level.\n\nIn this pure hunt, beasts yield no materials or gear—only a chance to drop their rare Companion Cards. Survival is the only law.\n\nTo enter the hunt, you must offer Safari Tickets. You can scavenge these rare passes by proving your might and defeating Bosses in regular dimensions and the Boss Lair.</string>
+    <string name="btn_i_understand">I Understand</string>
+    <string name="companion_cards_title">Companion Cards</string>
+    <string name="safari_tickets_title">Safari Tickets</string>
+    <string name="safari_unlock_title">🐾 Safari Menagerie Unlocked!</string>
+    <string name="safari_unlock_desc_1">Welcome to the Menagerie and the Safari Dimension! Here you can capture monster cards, upgrade companion pets, and harness Tier 2 pet skills.</string>
+    <string name="safari_unlock_desc_2">Collect cards in Safari runs where heroes rely strictly on base stats and pet multipliers!</string>
+    <string name="btn_got_it">Got It!</string>
+    <string name="toast_safari_ticket_reward">+1 Safari Ticket!</string>
+    <string name="toast_misc_pack_purchased">Misc Pack Purchased! +10 Safari Tickets!</string>
+    <string name="log_safari_ticket_dropped">🎟️ Dropped Safari Ticket x%1$d</string>
+    <string name="log_monster_card_dropped">🎴 Dropped Monster Card: %1$s</string>
 
 </resources>

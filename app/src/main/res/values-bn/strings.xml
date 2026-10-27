@@ -1335,4 +1335,37 @@
     <string name="speed_3x" translatable="false">3x</string>
     <string name="speed_10x_unlocked" translatable="false">10x ⚡</string>
     <string name="speed_10x_locked" translatable="false">10x 🔒</string>
+
+    <!-- Safari Dimension Strings -->
+    <string name="safari_dimension_title">সফারি মাত্রা</string>
+    <string name="safari_dimension_subtitle">বন্য পশুশালা</string>
+    <string name="safari_dimension_story">একটি বন্য রাজ্য যেখানে সঙ্গী দানবরা মুক্তভাবে ঘুরে বেড়ায়। কেবল মূল পরিসংখ্যান!</string>
+
+    <string name="menagerie">🐾 পশুশালা</string>
+
+    <!-- Menagerie & Safari Extracted Strings -->
+    <string name="safari_tickets_format">🎟️ %1$d</string>
+    <string name="btn_enter_safari">সফারিতে প্রবেশ করুন</string>
+    <string name="tab_tier_1_passives">টিয়ার ১ (প্যাসিভ)</string>
+    <string name="tab_tier_2_cards">টিয়ার ২ (কার্ড)</string>
+    <string name="safari_locked_title">🔒 সফারি মাত্রা লক করা আছে</string>
+    <string name="safari_locked_desc">টিয়ার ২ এর সঙ্গী কার্ড আনলক করতে মাত্রা ১১ এবং আজীবন তলা ১০০০ এ পৌঁছান।</string>
+    <string name="tier2_rank_format">র‍্যাঙ্ক %1$d</string>
+    <string name="tier2_boost_format">+%1$d%% %2$s</string>
+    <string name="btn_rank_up">⬆ র‍্যাঙ্ক আপ</string>
+    <string name="cards_progress_format">%1$d/%2$d</string>
+    <string name="tier1_level_required">টিয়ার ১ এর লেভেল ৫০ প্রয়োজন</string>
+    <string name="safari_info_title">অদম্য অরণ্য</string>
+    <string name="safari_info_desc">প্রাচীনকালের শান্ত অথচ বিপজ্জনক ভূমির মতোই, এই প্রাকৃতিক অভয়ারণ্যটি সভ্যতার ছোঁয়ামুক্ত।\n\nএখানে, আপনার সরঞ্জাম তার কার্যকারিতা হারায়, আপনার ধ্বংসাবশেষ মিলিয়ে যায় এবং পোষা প্রাণীর সমস্ত বুস্ট অদৃশ্য হয়ে যায়। আপনার বীরদের সম্পূর্ণ বুস্ট ছাড়া, কেবল তাদের কাঁচা মূল পরিসংখ্যান এবং লেভেলের ওপর নির্ভর করে বন্যভূমির মুখোমুখি হতে হবে।\n\nএই বিশুদ্ধ শিকারে, পশুরা কোনো সামগ্রী বা সরঞ্জাম দেয় না—কেবল তাদের বিরল সঙ্গী কার্ড ড্রপ করার একটি সুযোগ থাকে। টিকে থাকাই একমাত্র নিয়ম।\n\nশিকারে প্রবেশ করতে, আপনাকে সফারি টিকিট প্রদান করতে হবে। সাধারণ মাত্রা এবং বসের ডেরায় বসদের পরাজিত করে আপনার শক্তি প্রমাণ করে আপনি এই বিরল পাসগুলি সংগ্রহ করতে পারেন।</string>
+    <string name="btn_i_understand">আমি বুঝতে পেরেছি</string>
+    <string name="companion_cards_title">সঙ্গী কার্ড</string>
+    <string name="safari_tickets_title">সফারি টিকিট</string>
+    <string name="safari_unlock_title">🐾 সফারি পশুশালা আনলক হয়েছে!</string>
+    <string name="safari_unlock_desc_1">পশুশালা এবং সফারি মাত্রায় স্বাগতম! এখানে আপনি দানব কার্ড ক্যাপচার করতে, সঙ্গী পোষা প্রাণী আপগ্রেড করতে এবং টিয়ার ২ এর পোষা প্রাণীর দক্ষতা ব্যবহার করতে পারেন।</string>
+    <string name="safari_unlock_desc_2">সফারি অভিযানে কার্ড সংগ্রহ করুন যেখানে বীররা পুরোপুরি মূল পরিসংখ্যান এবং পোষা প্রাণীর গুনাণকের ওপর নির্ভর করে!</string>
+    <string name="btn_got_it">বুঝেছি!</string>
+    <string name="toast_safari_ticket_reward">+১টি সফারি টিকিট!</string>
+    <string name="toast_misc_pack_purchased">বিবিধ প্যাক কেনা হয়েছে! +১০টি সফারি টিকিট!</string>
+    <string name="log_safari_ticket_dropped">🎟️ সফারি টিকিট ড্রপ করেছে x%1$d</string>
+    <string name="log_monster_card_dropped">🎴 দানব কার্ড ড্রপ করেছে: %1$s</string>
 </resources>

@@ -1334,4 +1334,37 @@
     <string name="speed_3x" translatable="false">3x</string>
     <string name="speed_10x_unlocked" translatable="false">10x ⚡</string>
     <string name="speed_10x_locked" translatable="false">10x 🔒</string>
+
+    <!-- Safari Dimension Strings -->
+    <string name="safari_dimension_title">サファリ次元</string>
+    <string name="safari_dimension_subtitle">野生の動物園</string>
+    <string name="safari_dimension_story">お供のモンスターたちが自由に roam する野生の領域。基礎ステータスのみ！</string>
+
+    <string name="menagerie">🐾 動物園</string>
+
+    <!-- Menagerie & Safari Extracted Strings -->
+    <string name="safari_tickets_format">🎟️ %1$d</string>
+    <string name="btn_enter_safari">サファリに入る</string>
+    <string name="tab_tier_1_passives">ティア1 (パッシブ)</string>
+    <string name="tab_tier_2_cards">ティア2 (カード)</string>
+    <string name="safari_locked_title">🔒 サファリ次元はロックされています</string>
+    <string name="safari_locked_desc">次元11と通算1000階に到達して、ティア2のお供カードを解放しましょう。</string>
+    <string name="tier2_rank_format">ランク %1$d</string>
+    <string name="tier2_boost_format">+%1$d%% %2$s</string>
+    <string name="btn_rank_up">⬆ ランクアップ</string>
+    <string name="cards_progress_format">%1$d/%2$d</string>
+    <string name="tier1_level_required">ティア1レベル50が必要</string>
+    <string name="safari_info_title">手つかずの荒野</string>
+    <string name="safari_info_desc">かつての穏やかでありながら危険なナギ節の平原のように、この自然の聖域は文明の手に触れられていません。\n\nここでは装備はその鋭さを失い、レリックは効力を失い、ペットの強化もすべて消滅します。ヒーローたちはバフを一切持たず、純粋な基礎ステータスとレベルのみを頼りに荒野に挑まなければなりません。\n\nこの純粋な狩りでは、魔物から素材や装備は手に入りません。手に入るのはレアなお供カードをドロップするチャンスのみです。生き残ることだけが唯一の掟です。\n\n狩りに参加するには、サファリチケットを捧げる必要があります。これらのレアなチケットは、通常の次元やボスのネグラでボスを倒し、力を証明することで手に入れることができます。</string>
+    <string name="btn_i_understand"> understand</string>
+    <string name="companion_cards_title">お供カード</string>
+    <string name="safari_tickets_title">サファリチケット</string>
+    <string name="safari_unlock_title">🐾 サファリ動物園解放！</string>
+    <string name="safari_unlock_desc_1">動物園とサファリ次元へようこそ！ここではモンスターカードを捕獲したり、お供ペットを強化したり、ティア2のペットスキルを活用できます。</string>
+    <string name="safari_unlock_desc_2">ヒーローが基礎ステータスとペットの倍率のみに頼るサファリ周回でカードを集めましょう！</string>
+    <string name="btn_got_it">了解！</string>
+    <string name="toast_safari_ticket_reward">+1 サファリチケット！</string>
+    <string name="toast_misc_pack_purchased">バラエティパックを購入しました！ +10 サファリチケット！</string>
+    <string name="log_safari_ticket_dropped">🎟️ サファリチケットをドロップ x%1$d</string>
+    <string name="log_monster_card_dropped">🎴 モンスターカードをドロップ: %1$s</string>
 </resources>

@@ -1335,4 +1335,37 @@
     <string name="speed_3x" translatable="false">3x</string>
     <string name="speed_10x_unlocked" translatable="false">10x ⚡</string>
     <string name="speed_10x_locked" translatable="false">10x 🔒</string>
+
+    <!-- Safari Dimension Strings -->
+    <string name="safari_dimension_title">มิติซาฟารี</string>
+    <string name="safari_dimension_subtitle">สวนสัตว์มอนสเตอร์</string>
+    <string name="safari_dimension_story">ดินแดนป่าที่มอนสเตอร์คู่หูท่องเที่ยวอย่างอิสระ ใช้สเตตัสพื้นฐานเท่านั้น!</string>
+
+    <string name="menagerie">🐾 สวนสัตว์</string>
+
+    <!-- Menagerie & Safari Extracted Strings -->
+    <string name="safari_tickets_format">🎟️ %1$d</string>
+    <string name="btn_enter_safari">เข้าสู่ซาฟารี</string>
+    <string name="tab_tier_1_passives">ระดับ 1 (สกิลติดตัว)</string>
+    <string name="tab_tier_2_cards">ระดับ 2 (การ์ด)</string>
+    <string name="safari_locked_title">🔒 มิติซาฟารีถูกล็อก</string>
+    <string name="safari_locked_desc">ถึงมิติ 11 และชั้นสะสม 1000 เพื่อปลดล็อกการ์ดคู่หูระดับ 2</string>
+    <string name="tier2_rank_format">แรงก์ %1$d</string>
+    <string name="tier2_boost_format">+%1$d%% %2$s</string>
+    <string name="btn_rank_up">⬆ เลื่อนแรงก์</string>
+    <string name="cards_progress_format">%1$d/%2$d</string>
+    <string name="tier1_level_required">ต้องการระดับ 1 เลเวล 50</string>
+    <string name="safari_info_title">พงไพรป่าดิบ</string>
+    <string name="safari_info_desc">เช่นเดียวกับทุ่งหญ้าอันสงบเงียบทว่าแฝงด้วยอันตรายในอดีต เขตรักษาพันธุ์ธรรมชาติแห่งนี้ไม่เคยถูกแตะต้องโดยอารยธรรม\n\nที่นี่ อุปกรณ์ของคุณจะสูญเสียความคม เรลิกจะไร้ผล และบัฟสัตว์เลี้ยงทั้งหมดจะหายไป ฮีโร่ของคุณต้องเผชิญหน้ากับป่าโดยปราศจากบัฟใดๆ โดยพึ่งพาเพียงสเตตัสพื้นฐานและเลเวลเท่านั้น\n\nในการล่าอันบริสุทธิ์นี้ สัตว์ร้ายจะไม่ดรอปวัตถุดิบหรืออุปกรณ์ มีเพียงโอกาสดรอปการ์ดคู่หูระดับหายากเท่านั้น การอยู่รอดคือ กฎเพียงข้อเดียว\n\nการจะเข้าร่วมการล่า คุณต้องใช้ตั๋วซาฟารี คุณสามารถหาตั๋วหายากเหล่านี้ได้จากการพิสูจน์ความแข็งแกร่งและเอาชนะบอสในมิติทั่วไปและรังบอส</string>
+    <string name="btn_i_understand">เข้าใจแล้ว</string>
+    <string name="companion_cards_title">การ์ดคู่หู</string>
+    <string name="safari_tickets_title">ตั๋วซาฟารี</string>
+    <string name="safari_unlock_title">🐾 ปลดล็อกสวนสัตว์ซาฟารีแล้ว!</string>
+    <string name="safari_unlock_desc_1">ยินดีต้อนรับสู่สวนสัตว์และมิติซาฟารี! ที่นี่คุณสามารถสะสมการ์ดมอนสเตอร์ อัปเกรดสัตว์เลี้ยงคู่หู และใช้สกิลสัตว์เลี้ยงระดับ 2 ได้</string>
+    <string name="safari_unlock_desc_2">สะสมการ์ดในการลุยซาฟารีที่ฮีโร่ต้องพึ่งพาเฉพาะสเตตัสพื้นฐานและตัวคูณสัตว์เลี้ยงเท่านั้น!</string>
+    <string name="btn_got_it">รับทราบ!</string>
+    <string name="toast_safari_ticket_reward">+1 ตั๋วซาฟารี!</string>
+    <string name="toast_misc_pack_purchased">ซื้อแพ็กเบ็ดเตล็ดสำเร็จ! +10 ตั๋วซาฟารี!</string>
+    <string name="log_safari_ticket_dropped">🎟️ ได้รับตั๋วซาฟารี x%1$d</string>
+    <string name="log_monster_card_dropped">🎴 ได้รับการ์ดมอนสเตอร์: %1$s</string>
 </resources>

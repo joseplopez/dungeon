@@ -1334,4 +1334,37 @@
     <string name="speed_3x" translatable="false">3x</string>
     <string name="speed_10x_unlocked" translatable="false">10x ⚡</string>
     <string name="speed_10x_locked" translatable="false">10x 🔒</string>
+
+    <!-- Safari Dimension Strings -->
+    <string name="safari_dimension_title">Вимір Сафарі</string>
+    <string name="safari_dimension_subtitle">Дикий Звіринець</string>
+    <string name="safari_dimension_story">Дикий світ, де вільно блукають монстри-супутники. Тільки базові характеристики!</string>
+
+    <string name="menagerie">🐾 ЗВІРИНЕЦЬ</string>
+
+    <!-- Menagerie & Safari Extracted Strings -->
+    <string name="safari_tickets_format">🎟️ %1$d</string>
+    <string name="btn_enter_safari">УВІЙТИ В САФАРІ</string>
+    <string name="tab_tier_1_passives">Рівень 1 (Пасивні)</string>
+    <string name="tab_tier_2_cards">Рівень 2 (Карти)</string>
+    <string name="safari_locked_title">🔒 ВИМІР САФАРІ ЗАБЛОКОВАНО</string>
+    <string name="safari_locked_desc">Досягніть Виміру 11 та 1000 Поверху за весь час, щоб розблокувати Карти Супутників 2-го Рівня.</string>
+    <string name="tier2_rank_format">Ранг %1$d</string>
+    <string name="tier2_boost_format">+%1$d%% %2$s</string>
+    <string name="btn_rank_up">⬆ Підвищити Ранг</string>
+    <string name="cards_progress_format">%1$d/%2$d</string>
+    <string name="tier1_level_required">Потрібен 50-й рівень 1-го Рівня</string>
+    <string name="safari_info_title">Непокірні Дикі Землі</string>
+    <string name="safari_info_desc">Подібно до спокійних, але небезпечних Тихих Земель минулого, цей природний заповідник не зачеплений цивілізацією.\n\nТут ваше спорядження втрачає силу, ваші реліквії згасають, а всі підсилення улюбленців зникають. Ваші герої повинні зустрітися з дикою природою без жодних бонусів, покладаючись виключно на свої базові характеристики та рівень.\n\nУ цьому чистому полюванні монстри не дають матеріалів або спорядження — лише шанс отримати їхні рідкісні Карти Супутників. Виживання — єдиний закон.\n\nЩоб розпочати полювання, ви повинні надати Квитки Сафарі. Ви можете здобути ці рідкісні перепустки, довівши свою силу та перемігши Босів у звичайних вимірах і Лігві Босів.</string>
+    <string name="btn_i_understand">Зрозуміло</string>
+    <string name="companion_cards_title">Карти Супутників</string>
+    <string name="safari_tickets_title">Квитки Сафарі</string>
+    <string name="safari_unlock_title">🐾 Звіринець Сафарі Розблоковано!</string>
+    <string name="safari_unlock_desc_1">Ласкаво просимо до Звіринця та Виміру Сафарі! Тут ви можете ловити карти монстрів, покращувати улюбленців-супутників та використовувати навички улюбленців 2-го Рівня.</string>
+    <string name="safari_unlock_desc_2">Збирайте карти під час забігів у Сафарі, де герої покладаються суворо на базові характеристики та множники улюбленців!</string>
+    <string name="btn_got_it">Зрозуміло!</string>
+    <string name="toast_safari_ticket_reward">+1 Квиток Сафарі!</string>
+    <string name="toast_misc_pack_purchased">Різний Набір Куплено! +10 Квитків Сафарі!</string>
+    <string name="log_safari_ticket_dropped">🎟️ Отримано Квиток Сафарі x%1$d</string>
+    <string name="log_monster_card_dropped">🎴 Отримано Карту Монстра: %1$s</string>
 </resources>

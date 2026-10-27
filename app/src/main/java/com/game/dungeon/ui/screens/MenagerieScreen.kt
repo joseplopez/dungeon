@@ -23,6 +23,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -70,7 +71,9 @@ fun MenagerieScreen(
                     .background(BgDarkest)
             ) {
                 Row(
-                    Modifier.fillMaxSize().padding(horizontal = 12.dp),
+                    Modifier
+                        .fillMaxSize()
+                        .padding(horizontal = 12.dp),
                     verticalAlignment = Alignment.CenterVertically,
                     horizontalArrangement = Arrangement.SpaceBetween
                 ) {
@@ -82,7 +85,7 @@ fun MenagerieScreen(
 
                     // Hide the title on Tier 2 to make room for the Safari buttons
                     if (selectedTab == 0 || !isSafariUnlocked) {
-                        Text("🐾 MENAGERIE", style = PixelHeading, color = GoldBright)
+                        Text(safeStringResource(R.string.menagerie), style = PixelHeading, color = GoldBright)
                     }
 
                     Row(
@@ -92,13 +95,19 @@ fun MenagerieScreen(
                         // Conditionally render Safari Actions in the top bar
                         if (selectedTab == 1 && isSafariUnlocked) {
                             val canStartSafari = state.safariTickets >= 1 && activeParty.isNotEmpty()
-                            Text("🎟️ ${state.safariTickets}", style = PixelBody, color = GoldBright)
+                            Text(safeStringResource(R.string.safari_tickets_format, state.safariTickets), style = PixelBody, color = GoldBright)
                             // ADD THE INFO BUTTON HERE:
-                            PixelButton(label = "ℹ️", onClick = { showSafariInfo = true }, modifier = Modifier.height(28.dp).width(36.dp), horizontalPadding = 0.dp)
-                            PixelButton(label = "📺", onClick = { activity?.let { viewModel.watchSafariTicketAd(it) } }, modifier = Modifier.height(28.dp).width(36.dp), horizontalPadding = 0.dp)
-                            PixelButton(label = "💰", onClick = { activity?.let { viewModel.buyMiscPack(it) } }, modifier = Modifier.height(28.dp).width(36.dp), horizontalPadding = 0.dp)
+                            PixelButton(label = "ℹ️", onClick = { showSafariInfo = true }, modifier = Modifier
+                                .height(28.dp)
+                                .width(36.dp), horizontalPadding = 0.dp)
+                            PixelButton(label = "📺", onClick = { activity?.let { viewModel.watchSafariTicketAd(it) } }, modifier = Modifier
+                                .height(28.dp)
+                                .width(36.dp), horizontalPadding = 0.dp)
+                            PixelButton(label = "💰", onClick = { activity?.let { viewModel.buyMiscPack(it) } }, modifier = Modifier
+                                .height(28.dp)
+                                .width(36.dp), horizontalPadding = 0.dp)
                             PixelButton(
-                                label = "ENTER SAFARI",
+                                label = safeStringResource(R.string.btn_enter_safari),
                                 onClick = {
                                     if (viewModel.consumeSafariTicketForRun()) {
                                         onStartSafariRun(activeParty)
@@ -128,12 +137,12 @@ fun MenagerieScreen(
                 Tab(
                     selected = selectedTab == 0,
                     onClick = { selectedTab = 0 },
-                    text = { Text("Tier 1 (Passives)", style = PixelBody, color = if (selectedTab == 0) GoldBright else GoldDark) }
+                    text = { Text(safeStringResource(R.string.tab_tier_1_passives), style = PixelBody, color = if (selectedTab == 0) GoldBright else GoldDark) }
                 )
                 Tab(
                     selected = selectedTab == 1,
                     onClick = { selectedTab = 1 },
-                    text = { Text("Tier 2 (Cards)", style = PixelBody, color = if (selectedTab == 1) GoldBright else GoldDark) }
+                    text = { Text(safeStringResource(R.string.tab_tier_2_cards), style = PixelBody, color = if (selectedTab == 1) GoldBright else GoldDark) }
                 )
             }
 
@@ -203,13 +212,13 @@ fun Tier2CardsTab(
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 Text(
-                    text = "🔒 SAFARI DIMENSION LOCKED",
+                    text = safeStringResource(R.string.safari_locked_title),
                     style = PixelHeading,
                     color = EnemyRed,
                     fontSize = 16.sp
                 )
                 Text(
-                    text = "Reach Dimension 11 & Lifetime Floor 1000 to unlock Tier 2 Companion Cards.",
+                    text = safeStringResource(R.string.safari_locked_desc),
                     style = PixelBody,
                     color = Color.White,
                     textAlign = TextAlign.Center
@@ -293,11 +302,15 @@ fun Tier2CardItem(
                 .padding(8.dp)
                 .align(Alignment.TopStart)
                 .background(Color.Black.copy(alpha = 0.6f), RoundedCornerShape(4.dp))
-                .border(1.dp, if (!isRankZero) GoldBright else Color.DarkGray, RoundedCornerShape(4.dp))
+                .border(
+                    1.dp,
+                    if (!isRankZero) GoldBright else Color.DarkGray,
+                    RoundedCornerShape(4.dp)
+                )
                 .padding(horizontal = 6.dp, vertical = 4.dp)
         ) {
             Text(
-                text = "Rank ${tier2Pet.currentRank}",
+                text = safeStringResource(R.string.tier2_rank_format, tier2Pet.currentRank),
                 style = PixelSmall,
                 color = if (!isRankZero) GoldBright else StoneGray,
                 fontSize = 10.sp, // Increased from 8
@@ -357,7 +370,7 @@ fun Tier2CardItem(
             // Dual-Stats Text
             val boostText = petType.tier2Boosts.joinToString(" & ") { it.displayName }
             Text(
-                text = "+${(tier2Pet.currentRank * 3)}% $boostText",
+                text = safeStringResource(R.string.tier2_boost_format, tier2Pet.currentRank * 3, boostText),
                 style = PixelSmall,
                 color = if (isRankZero) StoneGray else HpGreen,
                 fontSize = 10.sp // Increased from 8
@@ -367,7 +380,7 @@ fun Tier2CardItem(
 
             if (canRankUp) {
                 PixelButton(
-                    label = "⬆ Rank Up",
+                    label = safeStringResource(R.string.btn_rank_up),
                     onClick = onRankUp,
                     active = true,
                     horizontalPadding = 0.dp,
@@ -381,7 +394,7 @@ fun Tier2CardItem(
 
             // Collection Progress Bar at the very bottom
             val progress = if (tier2Pet.currentRank >= 5) 1f else (tier2Pet.cardsCollected.toFloat() / neededCards.toFloat())
-            val cardsText = if (tier2Pet.currentRank >= 5) "MAX" else "${tier2Pet.cardsCollected}/$neededCards"
+            val cardsText = if (tier2Pet.currentRank >= 5) safeStringResource(R.string.max_level) else safeStringResource(R.string.cards_progress_format, tier2Pet.cardsCollected, neededCards)
 
             Row(
                 Modifier.fillMaxWidth(),
@@ -421,7 +434,7 @@ fun Tier2CardItem(
                 ) {
                     Text("🔒", fontSize = 28.sp)
                     Text(
-                        text = "Requires Level 50 Tier 1",
+                        text = safeStringResource(R.string.tier1_level_required),
                         style = PixelSmall,
                         color = EnemyRed,
                         fontSize = 10.sp,
@@ -457,7 +470,7 @@ fun SafariInfoDialog(onDismiss: () -> Unit) {
             ) {
                 Text("🌿", fontSize = 48.sp)
                 Text(
-                    text = "The Untamed Wilds",
+                    text = safeStringResource(R.string.safari_info_title),
                     style = PixelTitle,
                     color = SystemCyan,
                     textAlign = TextAlign.Center
@@ -471,7 +484,7 @@ fun SafariInfoDialog(onDismiss: () -> Unit) {
                     horizontalAlignment = Alignment.CenterHorizontally
                 ) {
                     Text(
-                        text = "Much like the serene yet perilous Calm Lands of old, this natural sanctuary is untouched by civilization's forge.\n\nHere, your equipment loses its edge, your relics fade, and all pet boosts vanish. Your heroes must face the wilds completely unbuffed, relying solely on their raw base stats and level.\n\nIn this pure hunt, beasts yield no materials or gear—only a chance to drop their rare Companion Cards. Survival is the only law.\n\nTo enter the hunt, you must offer Safari Tickets. You can scavenge these rare passes by proving your might and defeating Bosses in regular dimensions and the Boss Lair.",
+                        text = safeStringResource(R.string.safari_info_desc),
                         style = PixelBody,
                         color = Color.White,
                         textAlign = TextAlign.Center
@@ -479,9 +492,11 @@ fun SafariInfoDialog(onDismiss: () -> Unit) {
                 }
 
                 PixelButton(
-                    label = "I Understand",
+                    label = safeStringResource(R.string.btn_i_understand),
                     onClick = onDismiss,
-                    modifier = Modifier.fillMaxWidth().height(48.dp),
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(48.dp),
                     active = true
                 )
             }

@@ -1335,4 +1335,37 @@
     <string name="speed_3x" translatable="false">3x</string>
     <string name="speed_10x_unlocked" translatable="false">10x ⚡</string>
     <string name="speed_10x_locked" translatable="false">10x 🔒</string>
+
+    <!-- Safari Dimension Strings -->
+    <string name="safari_dimension_title">Измерение Сафари</string>
+    <string name="safari_dimension_subtitle">Дикий Зверинец</string>
+    <string name="safari_dimension_story">Дикий мир, где свободно бродят монстры-спутники. Только базовые характеристики!</string>
+
+    <string name="menagerie">🐾 ЗВЕРИНЕЦ</string>
+
+    <!-- Menagerie & Safari Extracted Strings -->
+    <string name="safari_tickets_format">🎟️ %1$d</string>
+    <string name="btn_enter_safari">ВОЙТИ В САФАРИ</string>
+    <string name="tab_tier_1_passives">Уровень 1 (Пассивные)</string>
+    <string name="tab_tier_2_cards">Уровень 2 (Карты)</string>
+    <string name="safari_locked_title">🔒 ИЗМЕРЕНИЕ САФАРИ ЗАБЛОКИРОВАНО</string>
+    <string name="safari_locked_desc">Достигните 11-го Измерения и 1000-го Этажа за всё время, чтобы разблокировать Карты Спутников 2-го Уровня.</string>
+    <string name="tier2_rank_format">Ранг %1$d</string>
+    <string name="tier2_boost_format">+%1$d%% %2$s</string>
+    <string name="btn_rank_up">⬆ Повысить Ранг</string>
+    <string name="cards_progress_format">%1$d/%2$d</string>
+    <string name="tier1_level_required">Требуется 50-й уровень 1-го Уровня</string>
+    <string name="safari_info_title">Непокорные Дикие Земли</string>
+    <string name="safari_info_desc">Подобно безмятежным, но опасным Тихим Землям прошлого, этот природный заповедник не тронут цивилизацией.\n\nЗдесь ваше снаряжение теряет силу, ваши реликвии угасают, а все усиления питомцев исчезают. Ваши герои должны встретиться с дикой природой без каких-либо бонусов, полагаясь исключительно на свои базовые характеристики и уровень.\n\nВ этой чистой охоте монстры не дают материалов или снаряжения — только шанс получить их редкие Карты Спутников. Выживание — единственный закон.\n\nЧтобы начать охоту, вы должны предъявить Билеты Сафари. Вы можете добыть эти редкие пропуски, доказав свою силу и победив Боссов в обычных измерениях и Логове Боссов.</string>
+    <string name="btn_i_understand">Понятно</string>
+    <string name="companion_cards_title">Карты Спутников</string>
+    <string name="safari_tickets_title">Билеты Сафари</string>
+    <string name="safari_unlock_title">🐾 Зверинец Сафари Разблокирован!</string>
+    <string name="safari_unlock_desc_1">Добро пожаловать в Зверинец и Измерение Сафари! Здесь вы можете ловить карты монстров, улучшать питомцев-спутников и использовать навыки питомцев 2-го Уровня.</string>
+    <string name="safari_unlock_desc_2">Собирайте карты в заходах Сафари, где герои полагаются строго на базовые характеристики и множители питомцев!</string>
+    <string name="btn_got_it">Понятно!</string>
+    <string name="toast_safari_ticket_reward">+1 Билет Сафари!</string>
+    <string name="toast_misc_pack_purchased">Разный Набор Куплен! +10 Билетов Сафари!</string>
+    <string name="log_safari_ticket_dropped">🎟️ Выпал Билет Сафари x%1$d</string>
+    <string name="log_monster_card_dropped">🎴 Выпала Карта Монстра: %1$s</string>
 </resources>

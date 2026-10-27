@@ -1334,5 +1334,38 @@
     <string name="speed_3x" translatable="false">3x</string>
     <string name="speed_10x_unlocked" translatable="false">10x ⚡</string>
     <string name="speed_10x_locked" translatable="false">10x 🔒</string>
+
+    <!-- Safari Dimension Strings -->
+    <string name="safari_dimension_title">Mwelekeo wa Safari</string>
+    <string name="safari_dimension_subtitle">Hifadhi ya Wanyama</string>
+    <string name="safari_dimension_story">Ulimwengu wa mwitu ambapo monsters wenzako wanazurura huru. Takwimu za msingi tu!</string>
+
+    <string name="menagerie">🐾 HIFADHI YA WANYAMA</string>
+
+    <!-- Menagerie & Safari Extracted Strings -->
+    <string name="safari_tickets_format">🎟️ %1$d</string>
+    <string name="btn_enter_safari">INGIA SAFARI</string>
+    <string name="tab_tier_1_passives">Kiwango cha 1 (Sifa za Kimya)</string>
+    <string name="tab_tier_2_cards">Kiwango cha 2 (Kadi)</string>
+    <string name="safari_locked_title">🔒 MWELEKEO WA SAFARI IMEFUNGWA</string>
+    <string name="safari_locked_desc">Fikia Mwelekeo wa 11 na Ghorofa ya Maisha 1000 ili kufungua Kadi za Wenzako za Kiwango cha 2.</string>
+    <string name="tier2_rank_format">Cheo %1$d</string>
+    <string name="tier2_boost_format">+%1$d%% %2$s</string>
+    <string name="btn_rank_up">⬆ Ongeza Cheo</string>
+    <string name="cards_progress_format">%1$d/%2$d</string>
+    <string name="tier1_level_required">Inahitaji Kiwango cha 50 Kiwango cha 1</string>
+    <string name="safari_info_title">Mwitu Yasiyotawaliwa</string>
+    <string name="safari_info_desc">Kama tulivyoona katika Nchi za Utulivu lakini zenye hatari za zamani, hifadhi hii ya asili haijaguswa na ustaarabu.\n\nHapa, zana zakos zinapoteza makali, mabaki yako yanatoweka, na viongezo vyote vya wanyama vinatoweka. Mashujaa wako lazima wakabiliane na mwitu bila ulinzi wowote, bakio la takwimu zao za msingi na kiwango.\n\nKatika uwindaji hapa, wanyama hawatoi vifaa au zana — fursa tu ya kudondosha Kadi zao adimu za Wenzako. Kupona ndiyo sheria pekee.\n\nKuingia kwenye uwindaji, lazima utoe Tiketi za Safari. Unaweza kupata pasi hizi adimu kwa kuthibitisha nguvu yako na kuwashinda Mabosi katika mwelekeo wa kawaida na Pango la Bosi.</string>
+    <string name="btn_i_understand">Nawafahamu</string>
+    <string name="companion_cards_title">Kadi za Wenzako</string>
+    <string name="safari_tickets_title">Tiketi za Safari</string>
+    <string name="safari_unlock_title">🐾 Hifadhi ya Wanyama ya Safari Imefunguliwa!</string>
+    <string name="safari_unlock_desc_1">Karibu kwenye Hifadhi ya Wanyama na Mwelekeo wa Safari! Hapa unaweza kukamata kadi za monsters, kuboresha wanyama wenzako, na kutumia ujuzi wa wanyama wa Kiwango cha 2.</string>
+    <string name="safari_unlock_desc_2">Kusanya kadi kwenye Safari ambapo mashujaa wanategemea tu takwimu za msingi na viongezo vya wanyama!</string>
+    <string name="btn_got_it">Nimeelewa!</string>
+    <string name="toast_safari_ticket_reward">+1 Tiketi ya Safari!</string>
+    <string name="toast_misc_pack_purchased">Kifurushi Mbalimbali Kimenunuliwa! +10 Tiketi za Safari!</string>
+    <string name="log_safari_ticket_dropped">🎟️ Imedondoshwa Tiketi ya Safari x%1$d</string>
+    <string name="log_monster_card_dropped">🎴 Imedondoshwa Kadi ya Monster: %1$s</string>
 </resources>
 

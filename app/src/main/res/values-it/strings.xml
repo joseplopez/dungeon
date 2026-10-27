@@ -1334,4 +1334,37 @@
     <string name="speed_3x" translatable="false">3x</string>
     <string name="speed_10x_unlocked" translatable="false">10x ⚡</string>
     <string name="speed_10x_locked" translatable="false">10x 🔒</string>
+
+    <!-- Safari Dimension Strings -->
+    <string name="safari_dimension_title">Dimensione Safari</string>
+    <string name="safari_dimension_subtitle">Serraglio Selvaggio</string>
+    <string name="safari_dimension_story">Un regno selvaggio dove i mostri compagni vagano liberi. Solo statistiche di base!</string>
+
+    <string name="menagerie">🐾 SERRAGLIO</string>
+
+    <!-- Menagerie & Safari Extracted Strings -->
+    <string name="safari_tickets_format">🎟️ %1$d</string>
+    <string name="btn_enter_safari">ENTRA NEL SAFARI</string>
+    <string name="tab_tier_1_passives">Grado 1 (Passive)</string>
+    <string name="tab_tier_2_cards">Grado 2 (Carte)</string>
+    <string name="safari_locked_title">🔒 DIMENSIONE SAFARI BLOCCATA</string>
+    <string name="safari_locked_desc">Raggiungi la Dimensione 11 e il Piano totale 1000 per sbloccare le Carte Compagno di Grado 2.</string>
+    <string name="tier2_rank_format">Rango %1$d</string>
+    <string name="tier2_boost_format">+%1$d%% %2$s</string>
+    <string name="btn_rank_up">⬆ Aumenta Rango</string>
+    <string name="cards_progress_format">%1$d/%2$d</string>
+    <string name="tier1_level_required">Richiede Livello 50 Grado 1</string>
+    <string name="safari_info_title">La Natura Indomabile</string>
+    <string name="safari_info_desc">Proprio come le serene ma pericolose Terre della Calma di un tempo, questo santuario naturale è incontaminato dalla civiltà.\n\nQui il tuo equipaggiamento perde la sua efficacia, le tue reliquie svaniscono e tutti i potenziamenti dei compagni scompaiono. I tuoi eroi devono affrontare la natura totalmente privi di bonus, affidandosi unicamente alle loro statistiche di base e al livello.\n\nIn questa caccia pura, le bestie non rilasciano materiali o equipaggiamento, ma solo una possibilità di ottenere le loro rare Carte Compagno. La sopravvivenza è l\'unica legge.\n\nPer entrare nella caccia, devi offrire i Biglietti Safari. Puoi raccogliere questi rari pass dimostrando il tuo valore e sconfiggendo i Boss nelle dimensioni normali e nel Covo del Boss.</string>
+    <string name="btn_i_understand">Ho capito</string>
+    <string name="companion_cards_title">Carte Compagno</string>
+    <string name="safari_tickets_title">Biglietti Safari</string>
+    <string name="safari_unlock_title">🐾 Serraglio del Safari Sbloccato!</string>
+    <string name="safari_unlock_desc_1">Benvenuto nel Serraglio e nella Dimensione Safari! Qui puoi catturare carte mostro, potenziare i compagni e sfruttare le abilità dei compagni di Grado 2.</string>
+    <string name="safari_unlock_desc_2">Raccogli le carte durante le spedizioni Safari, dove gli eroi dipendono esclusivamente dalle statistiche di base e dai moltiplicatori dei compagni!</string>
+    <string name="btn_got_it">Capito!</string>
+    <string name="toast_safari_ticket_reward">+1 Biglietto Safari!</string>
+    <string name="toast_misc_pack_purchased">Pacchetto Varie Acquistato! +10 Biglietti Safari!</string>
+    <string name="log_safari_ticket_dropped">🎟️ Ottenuto Biglietto Safari x%1$d</string>
+    <string name="log_monster_card_dropped">🎴 Ottenuta Carta Mostro: %1$s</string>
 </resources>
