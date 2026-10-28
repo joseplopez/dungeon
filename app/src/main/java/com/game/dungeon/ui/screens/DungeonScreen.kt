@@ -989,17 +989,17 @@ fun EnemyUnitDisplay(enemy: Enemy, isHit: Boolean, isCritical: Boolean, isBoss: 
     ) {
         if (isBoss) {
             Text(
-                text = enemy.name,
+                text = "💀 ${enemy.name}",
                 style = PixelHeading,
                 color = EnemyRed,
                 textAlign = TextAlign.Center // Centers multi-line text
             )
-            PixelHpBar(enemy.currentHp, enemy.maxHp, Modifier.width(100.dp))
+            PixelHpBar(enemy.currentHp, enemy.maxHp, Modifier.width(250.dp))
         } else {
             PixelHpBar(enemy.currentHp, enemy.maxHp, Modifier.width(48.dp))
         }
 
-        Box(Modifier.size(if (isBoss) 96.dp else 72.dp)) {
+        Box(Modifier.size(if (isBoss) 300.dp else 72.dp)) {
             val flashAlpha = remember { Animatable(0f) }
             val scope = rememberCoroutineScope()
 

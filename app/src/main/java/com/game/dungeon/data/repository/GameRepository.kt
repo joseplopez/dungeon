@@ -375,16 +375,19 @@ class GameRepository @Inject constructor(
         // Base gold calculation
         val baseGoldCost = (requiredLevel * 100L * item.floorFound.coerceAtLeast(1)).coerceAtLeast(100L)
 
-        // FIX 1: Lower the exponent base from 1.5 to 1.25 to prevent trillion-gil prices at level 20
+        // NEW: Quadratic Scaling
+        val levelOver10 = if (isMythicAscension) (requiredLevel - 10) else 0
+
+        // Gold: Increases smoothly based on the square of levels past 10
         val goldCost = if (isMythicAscension) {
-            (baseGoldCost * (1.25).pow(requiredLevel - 10)).toLong()
+            (baseGoldCost * (1f + 0.10f * (levelOver10 * levelOver10))).toLong()
         } else {
             baseGoldCost
         }
 
-        // FIX 2: Reduce required shards compounding from 1.5 to 1.15 and base from 5 to 3
+        // Shards: Base 3 + squared progression (Lvl 11 = 4, Lvl 15 = 28, Lvl 20 = 103)
         val requiredOreCount = if (isMythicAscension) {
-            (3 * (1.15).pow(requiredLevel - 10)).toInt()
+            3 + (levelOver10 * levelOver10)
         } else {
             requiredLevel
         }
@@ -411,13 +414,23 @@ class GameRepository @Inject constructor(
 
         val updatedItem = item.copy(enhancementLevel = requiredLevel)
 
-        database.withTransaction {
-            // Deduct cost
-            database.gameStateDao.upsert(state.copy(gold = state.gold - goldCost))
-            database.materialDao.deductMaterial(oreId, requiredOreCount)
+        // BUG FIX: Ensure the deduction actually passes before saving the item
+        var deductionSuccessful = false
 
-            // Save updated item (preserves id, ownerId, etc.)
-            database.itemDao.upsert(updatedItem)
+        database.withTransaction {
+            val deductResult = deductMaterial(oreId, requiredOreCount)
+            if (deductResult) {
+                database.gameStateDao.upsert(state.copy(gold = state.gold - goldCost))
+                database.itemDao.upsert(updatedItem)
+                deductionSuccessful = true
+            } else {
+                // If it fails, throw an exception to abort the withTransaction block
+                return@withTransaction
+            }
+        }
+
+        if (!deductionSuccessful) {
+            return Result.failure(IllegalStateException("Failed to consume materials. Transaction aborted."))
         }
 
         return Result.success(updatedItem)

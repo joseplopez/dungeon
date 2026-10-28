@@ -300,15 +300,29 @@ class Hero(
         )
 
         // Mythic Set Bonuses Calculation
-        val setGroups = equippedItems.mapNotNull { it.setId }.groupingBy { it }.eachCount()
-        for ((setId, count) in setGroups) {
+        val setGroups = equippedItems.filter { it.setId != null }.groupBy { it.setId!! }
+
+        for ((setId, itemsInSet) in setGroups) {
             val mythicSet = MythicSet.fromId(setId) ?: continue
-            if (count >= mythicSet.requiredPieces && this.heroClass == mythicSet.targetClass) {
+
+            if (itemsInSet.size >= mythicSet.requiredPieces && this.heroClass == mythicSet.targetClass) {
+
+                // NEW: Calculate the average enhancement level of the set pieces
+                val avgEnhancement = itemsInSet.map { it.enhancementLevel }.average().toFloat()
+
+                // NEW: Add a very slow 0.5% (0.005f) multiplier per average level.
+                // At average +10, this adds +0.05 (5%). At average +20, this adds +0.10 (10%).
+                val enhancementBonus = avgEnhancement * 0.005f
+
                 for ((key, value) in mythicSet.statMultipliers) {
                     if (key.endsWith("_MULT")) {
                         val statKey = key.removeSuffix("_MULT")
                         val current = statMap[statKey] ?: 0
-                        statMap[statKey] = current + (current * value.toDouble()).toLong()
+
+                        // Apply the base multiplier + the new enhancement bonus
+                        val finalMult = value + enhancementBonus
+                        statMap[statKey] = current + (current * finalMult.toDouble()).toLong()
+
                     } else if (key.endsWith("_ADD")) {
                         val statKey = when (key) {
                             "CRIT_CHANCE_ADD" -> "CRIT_CHANCE"
@@ -316,6 +330,7 @@ class Hero(
                             else -> key.removeSuffix("_ADD")
                         }
                         val current = statMap[statKey] ?: 0
+                        // Flat additions (like Crit Chance) remain untouched to prevent breaking crit caps
                         statMap[statKey] = current + value.toLong()
                     }
                 }

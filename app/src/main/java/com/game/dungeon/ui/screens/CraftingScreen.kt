@@ -1209,9 +1209,19 @@ private fun MythicForgeSection(
                             color = GoldAccent
                         )
 
+                        val equippedSetItems = uiState.equippedItems.filter { it.setId == currentSet.id }
+                        val avgEnhancement = if (equippedSetItems.isNotEmpty()) {
+                            equippedSetItems.map { it.enhancementLevel }.average().toFloat()
+                        } else {
+                            0f
+                        }
+                        val enhancementBonus = avgEnhancement * 0.005f
+
                         val statsText = currentSet.statMultipliers.entries.joinToString(" | ") { (key, value) ->
                             val formattedVal = if (key.endsWith("_MULT")) {
-                                "+${(value * 100).toInt()}%"
+                                val percent = (value + enhancementBonus) * 100
+                                val displayPercent = kotlin.math.round(percent * 10f) / 10f
+                                if (displayPercent % 1f == 0f) "+${displayPercent.toInt()}%" else "+$displayPercent%"
                             } else {
                                 "+${formatAmount(value.toLong())}"
                             }

@@ -99,17 +99,17 @@ data class RelicBonuses(
         fun from(gs: GameState, codexBonuses: CodexBonuses = CodexBonuses()): RelicBonuses {
             return RelicBonuses(
                 // Target ~2,500 ATK/MAG at Level 100
-                attackBonus = (calculateRelicStat(gs.attackRelic, linearFactor = 5.0, quadraticFactor = 0.2) * (1f + codexBonuses.attackMultiplierBonus)).toLong(),
-                magicBonus = calculateRelicStat(gs.magicRelic, linearFactor = 5.0, quadraticFactor = 0.2).toLong(),
+                attackBonus = (calculateRelicStat(gs.attackRelic, linearFactor = 5.0, quadraticFactor = 0.005) * (1f + codexBonuses.attackMultiplierBonus)).toLong(),
+                magicBonus = calculateRelicStat(gs.magicRelic, linearFactor = 5.0, quadraticFactor = 0.02).toLong(),
 
                 // Target ~16,500 HP at Level 100
-                hpBonus = calculateRelicStat(gs.hpRelic, linearFactor = 25.0, quadraticFactor = 1.4).toLong(),
+                hpBonus = calculateRelicStat(gs.hpRelic, linearFactor = 25.0, quadraticFactor = 0.9).toLong(),
 
                 // Target ~330 MP at Level 100
-                mpBonus = calculateRelicStat(gs.mpRelic, linearFactor = 1.0, quadraticFactor = 0.023).toLong(),
+                mpBonus = calculateRelicStat(gs.mpRelic, linearFactor = 1.0, quadraticFactor = 0.03).toLong(),
 
                 // Target ~2,000 DEF at Level 100
-                defenseBonus = calculateRelicStat(gs.defenseRelic, linearFactor = 4.0, quadraticFactor = 0.16).toLong(),
+                defenseBonus = calculateRelicStat(gs.defenseRelic, linearFactor = 4.0, quadraticFactor = 0.016).toLong(),
 
                 goldMultiplier = (1f + gs.goldRelic * 0.05f) + (if (gs.selectedPet == PetType.CAT) PetType.CAT.bonusValue else 0f) + codexBonuses.goldMultiplierBonus,
                 magiciteChanceBonus = gs.magiciteRelic * 0.01f + codexBonuses.magiciteChanceBonus,
@@ -119,7 +119,7 @@ data class RelicBonuses(
                 critChanceBonus = gs.critChanceRelic + codexBonuses.critChanceBonus,
 
                 // Crit Damage kept mostly linear to prevent multiplier explosion
-                critDamageBonus = calculateRelicStat(gs.critDamageRelic, linearFactor = 0.5, quadraticFactor = 0.005).toLong(),
+                critDamageBonus = calculateRelicStat(gs.critDamageRelic, linearFactor = 0.5, quadraticFactor = 0.0005).toLong(),
 
                 magnetBonus = gs.magnetBonus,
                 pocketsBonus = gs.pocketsBonus,

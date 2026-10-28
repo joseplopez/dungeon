@@ -960,8 +960,22 @@ private fun ItemDetailOverlay(
                             )
 
                             // 2. SHOW THE STAT BOOSTS
+                            val equippedSetItems = equipped.filter { it.setId == mythicSet.id }
+                            val avgEnhancement = if (equippedSetItems.isNotEmpty()) {
+                                equippedSetItems.map { it.enhancementLevel }.average().toFloat()
+                            } else {
+                                0f
+                            }
+                            val enhancementBonus = avgEnhancement * 0.005f
+
                             val statsText = mythicSet.statMultipliers.entries.joinToString(" | ") { (key, value) ->
-                                val formattedVal = if (key.endsWith("_MULT")) "+${(value * 100).toInt()}%" else "+${value.toInt()}"
+                                val formattedVal = if (key.endsWith("_MULT")) {
+                                    val percent = (value + enhancementBonus) * 100
+                                    val displayPercent = kotlin.math.round(percent * 10f) / 10f
+                                    if (displayPercent % 1f == 0f) "+${displayPercent.toInt()}%" else "+$displayPercent%"
+                                } else {
+                                    "+${value.toInt()}"
+                                }
                                 val formattedKey = key.replace("_MULT", "").replace("_ADD", "")
                                 "$formattedVal $formattedKey"
                             }
