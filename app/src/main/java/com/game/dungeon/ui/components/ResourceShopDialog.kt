@@ -40,8 +40,8 @@ fun ResourceShopDialog(
     val activity = LocalContext.current as? Activity
     var selectedTab by remember { mutableStateOf(initialResourceType) }
 
-    val freeGilReward = (totalGilEarned * 0.0025f).toLong().coerceAtLeast(100L)
-    val freeMagiciteReward = (totalMagiciteEarned * 0.005f).toInt().coerceAtLeast(10)
+    val freeGilReward = maxOf(100L, (totalGilEarned * 0.10).toLong())
+    val freeMagiciteReward = maxOf(10L, (totalMagiciteEarned * 0.10).toLong())
 
     Dialog(
         onDismissRequest = onDismiss,
@@ -217,6 +217,9 @@ fun ResourceShopDialog(
                         val productDetails = productDetailsMap[product.id]
                         val priceText = productDetails?.oneTimePurchaseOfferDetailsList?.firstOrNull()?.formattedPrice ?: product.defaultPrice
 
+                        // Calcula el valor escalat dinàmicament per a aquest producte basat en el GameState de l'usuari
+                        val dynamicRewardAmount = product.getDynamicReward(totalGilEarned, totalMagiciteEarned)
+
                         GoldenBorderBox(
                             modifier = Modifier
                                 .fillMaxWidth()
@@ -244,10 +247,11 @@ fun ResourceShopDialog(
                                             color = GoldBright
                                         )
                                         Text(
+                                            // Subsituit el format fixe pel dinàmic
                                             text = if (product.resourceType == ResourceType.GIL) {
-                                                safeStringResource(R.string.reward_gil_plus_no_emoji, formatGold(product.rewardAmount))
+                                                safeStringResource(R.string.reward_gil_plus_no_emoji, formatGold(dynamicRewardAmount))
                                             } else {
-                                                safeStringResource(R.string.reward_magicite_plus_no_emoji, formatMagicite(product.rewardAmount))
+                                                safeStringResource(R.string.reward_magicite_plus_no_emoji, formatMagicite(dynamicRewardAmount))
                                             },
                                             style = PixelSmall,
                                             color = if (product.resourceType == ResourceType.GIL) GoldBright else Color(0xFF00E5FF)
@@ -271,4 +275,21 @@ fun ResourceShopDialog(
             }
         }
     }
+}
+
+fun InAppProduct.getDynamicReward(totalGilEarned: Long, totalMagiciteEarned: Long): Long {
+    val maxEarned = if (this.resourceType == ResourceType.GIL) {
+        totalGilEarned
+    } else {
+        totalMagiciteEarned
+    }
+
+    val dynamicAmount = when (this.id) {
+        InAppProduct.GIL_PACK_SMALL, InAppProduct.MAGICITE_PACK_SMALL -> (maxEarned * 0.10).toLong()
+        InAppProduct.GIL_PACK_MEDIUM, InAppProduct.MAGICITE_PACK_MEDIUM -> (maxEarned * 0.50).toLong()
+        InAppProduct.GIL_PACK_LARGE, InAppProduct.MAGICITE_PACK_LARGE -> maxEarned
+        else -> 0L
+    }
+
+    return maxOf(this.rewardAmount, dynamicAmount)
 }

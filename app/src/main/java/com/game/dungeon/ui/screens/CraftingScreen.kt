@@ -433,28 +433,29 @@ private fun EnhanceSection(
                     val isMaxed = item.enhancementLevel >= 10 && item.rarity != Rarity.MYTHIC
 
                     if (!isMaxed) {
-                        val baseGoldCost = (nextLevel * 100L * item.floorFound.coerceAtLeast(1)).coerceAtLeast(100L)
+                        val baseGoldCost = (nextLevel * 125L * item.floorFound.coerceAtLeast(1)).coerceAtLeast(100L)
                         val goldCost = if (isMythicAscension) {
-                            (baseGoldCost * Math.pow(1.5, (nextLevel - 10).toDouble())).toLong()
+                            (baseGoldCost * Math.pow(1.7, (nextLevel - 10).toDouble())).toLong()
                         } else {
                             baseGoldCost
                         }
-                        
+
                         val oreId = if (isMythicAscension) "mythic_shard" else when (item.rarity) {
                             Rarity.COMMON -> "iron_ore"
                             Rarity.RARE -> "mithril_ore"
                             Rarity.EPIC -> "adamantite_ore"
                             Rarity.LEGENDARY, Rarity.MYTHIC -> "orichalcum_ore"
                         }
-                        
+
                         val oreRes = MaterialCatalog.getMaterial(oreId).nameRes
 
+                        // Strictly linear material cost (+10 shards per ascension level)
                         val requiredOres = if (isMythicAscension) {
-                            (5 * Math.pow(1.5, (nextLevel - 10).toDouble())).toInt()
+                            ((nextLevel - 10) * 10)
                         } else {
                             nextLevel
                         }
-                        
+
                         val ownedOres = uiState.materialInventory.find { it.material.id == oreId }?.amount ?: 0
 
                         canAffordGold = uiState.gold >= goldCost

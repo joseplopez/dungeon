@@ -50,12 +50,33 @@ class InnViewModel @Inject constructor(
             activity = activity,
             product = product,
             onSuccess = { boughtProduct ->
-                val message = if (boughtProduct.resourceType == ResourceType.GIL) {
-                    activity.getString(com.game.dungeon.R.string.purchase_success_gil, com.game.dungeon.ui.components.formatGold(boughtProduct.rewardAmount))
-                } else {
-                    activity.getString(com.game.dungeon.R.string.purchase_success_magicite, boughtProduct.rewardAmount.toInt())
+                viewModelScope.launch {
+                    val currentGs = repository.getGameStateOnce() ?: return@launch
+
+                    // Calculate dynamically scaled reward
+                    val finalReward = calculateDynamicReward(boughtProduct, currentGs)
+
+                    // Apply the scaled reward directly to GameState
+                    if (boughtProduct.resourceType == ResourceType.GIL) {
+                        repository.saveGameState(currentGs.copy(
+                            gold = currentGs.gold + finalReward,
+                            totalGilEarned = currentGs.totalGilEarned + finalReward
+                        ))
+                    } else if (boughtProduct.resourceType == ResourceType.MAGICITE) {
+                        repository.saveGameState(currentGs.copy(
+                            magicite = currentGs.magicite + finalReward,
+                            totalMagiciteEarned = currentGs.totalMagiciteEarned + finalReward
+                        ))
+                    }
+
+                    // Show success Toast with dynamic amount
+                    val message = if (boughtProduct.resourceType == ResourceType.GIL) {
+                        activity.getString(com.game.dungeon.R.string.purchase_success_gil, com.game.dungeon.ui.components.formatGold(finalReward))
+                    } else {
+                        activity.getString(com.game.dungeon.R.string.purchase_success_magicite, finalReward.toInt())
+                    }
+                    Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
                 }
-                Toast.makeText(activity, message, Toast.LENGTH_SHORT).show()
             },
             onError = { error ->
                 val message = if (error == "Cancelled") {
@@ -437,7 +458,8 @@ class InnViewModel @Inject constructor(
         adManager.showRewardedAd(activity) {
             viewModelScope.launch {
                 val currentGs = repository.getGameStateOnce() ?: return@launch
-                val reward = (currentGs.totalGilEarned * 0.0025f).toLong().coerceAtLeast(25L)
+                // Dynamic reward: 10% of max earned, or flat 100
+                val reward = maxOf(100L, (currentGs.totalGilEarned * 0.10).toLong())
                 repository.addGil(reward)
             }
         }
@@ -447,8 +469,9 @@ class InnViewModel @Inject constructor(
         adManager.showRewardedAd(activity) {
             viewModelScope.launch {
                 val currentGs = repository.getGameStateOnce() ?: return@launch
-                val reward = (currentGs.totalMagiciteEarned * 0.005).coerceAtLeast(2.0)
-                repository.addMagicite(reward.toLong())
+                // Dynamic reward: 10% of max earned, or flat 10
+                val reward = maxOf(10L, (currentGs.totalMagiciteEarned * 0.10).toLong())
+                repository.addMagicite(reward)
             }
         }
     }
@@ -601,4 +624,21 @@ class InnViewModel @Inject constructor(
             }
         }
     }
+}
+
+private fun calculateDynamicReward(product: InAppProduct, gs: GameState): Long {
+    val maxEarned = if (product.resourceType == ResourceType.GIL) {
+        gs.totalGilEarned
+    } else {
+        gs.totalMagiciteEarned
+    }
+
+    val dynamicAmount = when (product.id) {
+        InAppProduct.GIL_PACK_SMALL, InAppProduct.MAGICITE_PACK_SMALL -> (maxEarned * 0.10).toLong()
+        InAppProduct.GIL_PACK_MEDIUM, InAppProduct.MAGICITE_PACK_MEDIUM -> (maxEarned * 0.50).toLong()
+        InAppProduct.GIL_PACK_LARGE, InAppProduct.MAGICITE_PACK_LARGE -> maxEarned
+        else -> 0L
+    }
+
+    return maxOf(product.rewardAmount, dynamicAmount)
 }
