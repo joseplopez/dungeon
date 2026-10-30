@@ -1266,7 +1266,7 @@
     <string name="currency_gil">GIL</string>
     <string name="currency_magicite">MAGICITE</string>
     <string name="gold_amount_format">%1$s G</string>
-    <string name="reward_gil_plus">🪙 +%1$s Gil</string>
+    <string name="reward_gil_plus">💰+%1$s Gil</string>
     <string name="reward_magicite_plus">💎 +%1$s Magicite</string>
     <string name="reward_gil_plus_no_emoji">+%1$s Gil</string>
     <string name="reward_magicite_plus_no_emoji">+%1$s Magicite</string>
@@ -1324,10 +1324,7 @@
     <string name="permadeath_protection_title">PERMADEATH PROTECTION</string>
     <string name="permadeath_protection_desc">Protect your heroes from permanent death when party wipes occur!</string>
     <string name="buy_protection_button">BUY PROTECTION</string>
-    <string name="misc_pack_title">Misc Pack (+5 Gear Switches)</string>
-    <string name="misc_pack_button_label">Misc Pack: +5 Gear Switches</string>
-    <string name="swap_atk_matk_button">Swap ATK/MATK (Cost: 1 Switch)</string>
-    <string name="switches_available_format">Switches Available: %1$d</string>
+
 
     <!-- Boss Lair Feature -->
     <string name="boss_lair_title">Boss Lair</string>
@@ -1422,6 +1419,67 @@
     <string name="toast_misc_pack_purchased">Misc Pack Purchased! +10 Safari Tickets!</string>
     <string name="log_safari_ticket_dropped">🎟️ Dropped Safari Ticket x%1$d</string>
     <string name="log_monster_card_dropped">🎴 Dropped Monster Card: %1$s</string>
+    <string name="gacha_watch_ad_ticket" translatable="false">📺 +1 🎟️</string>
+    <string name="gacha_buy_tickets" translatable="false">🛒 10 🎟️\n(%1$s)</string>
+    <string name="gacha_pity_count_format" translatable="false">%1$d/10</string>
+    <string name="gacha_material_name_template" translatable="false">%1$s%2$s</string>
+    <string name="gacha_gil_amount_format" translatable="false">💰 %1$s</string>
+    <string name="gacha_magicite_amount_format" translatable="false">💎 %1$s</string>
+    <string name="gacha_material_quantity_format" translatable="false">x%1$d</string>
+
+    <!-- Gachapon Screen Strings -->
+    <string name="misc_pack_title">Misc Pack (+5 Gear Switches)</string>
+    <string name="misc_pack_button_label">Misc Pack: +5 Gear Switches</string>
+    <string name="swap_atk_matk_button">Swap ATK/MATK (Cost: 1 Switch)</string>
+    <string name="switches_available_format">Switches Available: %1$d</string>
     <string name="gacha_shrine">Gacha Shrine</string>
+    <string name="gacha_screen_title">✨ GACHA SHRINE ✨</string>
+    <string name="gacha_close">X</string>
+    <string name="gacha_armory_tab">🛡️ ARMORY</string>
+    <string name="gacha_alchemist_tab">🧪 ALCHEMIST</string>
+    <string name="gacha_treasury_tab">🏛️ TREASURY</string>
+    <string name="gacha_tickets_format">🎟️ Tickets: %1$d</string>
+    <string name="gacha_free_spin_available">• ✨ Free Spin Available!</string>
+    <string name="gacha_free_spin_countdown">• ⏱️ Free in: %1$s</string>
+    <string name="gacha_spinning">SPINNING...</string>
+    <string name="gacha_processing">PROCESSING...</string>
+    <string name="gacha_legendary_free">👑 LEGENDARY (FREE)</string>
+    <string name="gacha_legendary_ticket">👑 LEGENDARY (1 🎟️)</string>
+    <string name="gacha_free_spin">🎁 FREE SPIN</string>
+    <string name="gacha_spin_ticket">🔄 SPIN (1 🎟️)</string>
+    <string name="gacha_no_tickets">NO TICKETS</string>
+    <string name="gacha_legendary_pull_ready">🔥 LEGENDARY PULL READY!</string>
+    <string name="gacha_pity_progress">🌟 PITY PROGRESS</string>
+    <string name="gacha_armory_banner_title">ARMORY BANNER</string>
+    <string name="gacha_armory_banner_description">Generates elite equipment with power scaled to Floor %1$d!</string>
+    <string name="gacha_armory_banner_rates">Rarity Odds: 60% Rare • 30% Epic • 9% Legendary • 1% Mythic (No Commons)</string>
+    <string name="gacha_alchemist_banner_title">ALCHEMIST BANNER</string>
+    <string name="gacha_alchemist_banner_description">Rewards rare crafting materials in bundled quantities (Ores, Essences, Boss Trophies).</string>
+    <string name="gacha_alchemist_banner_rates">Bundles: 10–25 Common • 5-12 Rare • 3-7 Epic • 2-4 Leg • 1-2 Mythic</string>
+    <string name="gacha_treasury_banner_title">TREASURY BANNER</string>
+    <string name="gacha_treasury_banner_description">Rewards massive Gil amounts scaled to your lifetime earnings, or Magicite!</string>
+    <string name="gacha_treasury_banner_rates">Rewards: 10% Gold • 50% Gold • 100% JACKPOT Gold (Min 100 Gil) or Magicite</string>
+    <string name="gacha_gil_icon">💰</string>
+    <string name="gacha_magicite_icon">💎</string>
+    <string name="gacha_gear_subtitle_format">Slot: %1$s • Lvl %2$d</string>
+    <string name="gacha_cosmic_currency">Cosmic Currency</string>
+    <string name="gacha_you_won">🎉 YOU WON! 🎉</string>
+    <string name="gacha_gear_reward_details_format">Slot: %1$s • Floor Found: %2$d</string>
+    <string name="gacha_quantity_format">Quantity: %1$d</string>
+    <string name="gacha_gil_reward_format">💰 %1$s Gil</string>
+    <string name="gacha_magicite_reward_format">💎 %1$s Magicite</string>
+    <string name="gacha_claim_reward">🎉 CLAIM REWARD</string>
+    <string name="gacha_time_remaining_format">%1$02dh %2$02dm %3$02ds</string>
+    <string name="gacha_ticket_reward_ad">+1 Gachapon Ticket!</string>
+    <string name="gacha_ticket_reward_purchase">+10 Gachapon Tickets!</string>
+    <string name="gacha_error_no_tickets">No tickets available! Watch an ad or buy a 10-ticket pack.</string>
+    <string name="gacha_gear_description_format">Slot: %1$s • Lvl %2$d</string>
+    <string name="gacha_material_reward_name_format">%1$d x%2$s</string>
+    <string name="gacha_material_reward_description_format">Crafting Material (%1$d)</string>
+    <string name="gacha_tier_minor_gold">Minor Gold (10%)</string>
+    <string name="gacha_tier_major_gold">Major Gold (50%)</string>
+    <string name="gacha_tier_jackpot_gold">JACKPOT Gold (100%)</string>
+    <string name="gacha_gil_name_format">%1$s Gil</string>
+    <string name="gacha_magicite_name_format">%1$d Magicite</string>
 
 </resources>
