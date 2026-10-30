@@ -1,6 +1,7 @@
 package com.game.dungeon.ui.screens
 
 import android.app.Activity
+import android.content.Context
 import androidx.compose.animation.animateColor
 import androidx.compose.animation.core.*
 import androidx.compose.foundation.Canvas
@@ -151,7 +152,7 @@ fun GachaponScreen(
                             }
 
                             Text(
-                                text = "✨ GACHA SHRINE ✨",
+                                text = stringResource(R.string.gacha_screen_title),
                                 style = PixelHeading,
                                 color = GoldBright
                             )
@@ -162,7 +163,7 @@ fun GachaponScreen(
                             ) {
                                 MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
                                 PixelButton(
-                                    label = "X",
+                                    label = stringResource(R.string.gacha_close),
                                     onClick = onBack,
                                     enabled = !uiState.isSpinning && !uiState.isBillingInProcess,
                                     modifier = Modifier.size(32.dp),
@@ -192,21 +193,21 @@ fun GachaponScreen(
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         GachaBannerTab(
-                            title = "🛡️ ARMORY",
+                            title = stringResource(R.string.gacha_armory_tab),
                             isSelected = uiState.selectedBanner == GachaBanner.ARMORY,
                             enabled = !uiState.isSpinning && !uiState.isBillingInProcess,
                             onClick = { viewModel.selectBanner(GachaBanner.ARMORY, context) },
                             modifier = Modifier.weight(1f)
                         )
                         GachaBannerTab(
-                            title = "🧪 ALCHEMIST",
+                            title = stringResource(R.string.gacha_alchemist_tab),
                             isSelected = uiState.selectedBanner == GachaBanner.ALCHEMIST,
                             enabled = !uiState.isSpinning && !uiState.isBillingInProcess,
                             onClick = { viewModel.selectBanner(GachaBanner.ALCHEMIST, context) },
                             modifier = Modifier.weight(1f)
                         )
                         GachaBannerTab(
-                            title = "🏛️ TREASURY",
+                            title = stringResource(R.string.gacha_treasury_tab),
                             isSelected = uiState.selectedBanner == GachaBanner.TREASURY,
                             enabled = !uiState.isSpinning && !uiState.isBillingInProcess,
                             onClick = { viewModel.selectBanner(GachaBanner.TREASURY, context) },
@@ -338,21 +339,24 @@ fun GachaponScreen(
                         horizontalArrangement = Arrangement.spacedBy(8.dp)
                     ) {
                         Text(
-                            text = "🎟️ Tickets: ${uiState.gachaTickets}",
+                            text = stringResource(R.string.gacha_tickets_format, uiState.gachaTickets),
                             style = PixelHeading,
                             color = GoldBright,
                             fontSize = 12.sp
                         )
                         if (uiState.isFreeAvailable) {
                             Text(
-                                text = "• ✨ Free Spin Available!",
+                                text = stringResource(R.string.gacha_free_spin_available),
                                 style = PixelSmall,
                                 color = HpGreen,
                                 fontSize = 11.sp
                             )
                         } else if (uiState.timeUntilNextFreeMs > 0L) {
                             Text(
-                                text = "• ⏱️ Free in: ${formatTimeRemaining(uiState.timeUntilNextFreeMs)}",
+                                text = stringResource(
+                                    R.string.gacha_free_spin_countdown,
+                                    formatTimeRemaining(context, uiState.timeUntilNextFreeMs)
+                                ),
                                 style = PixelSmall,
                                 color = StoneGray,
                                 fontSize = 10.sp
@@ -373,13 +377,13 @@ fun GachaponScreen(
                     val canSpin = !uiState.isSpinning && !uiState.isBillingInProcess && (uiState.isFreeAvailable || uiState.gachaTickets > 0)
 
                     val spinButtonLabel = when {
-                        uiState.isSpinning -> "SPINNING..."
-                        uiState.isBillingInProcess -> "PROCESSING..."
-                        uiState.isLegendaryPull && uiState.isFreeAvailable -> "👑 LEGENDARY (FREE)"
-                        uiState.isLegendaryPull -> "👑 LEGENDARY (1 🎟️)"
-                        uiState.isFreeAvailable -> "🎁 FREE SPIN"
-                        uiState.gachaTickets > 0 -> "🔄 SPIN (1 🎟️)"
-                        else -> "NO TICKETS"
+                        uiState.isSpinning -> stringResource(R.string.gacha_spinning)
+                        uiState.isBillingInProcess -> stringResource(R.string.gacha_processing)
+                        uiState.isLegendaryPull && uiState.isFreeAvailable -> stringResource(R.string.gacha_legendary_free)
+                        uiState.isLegendaryPull -> stringResource(R.string.gacha_legendary_ticket)
+                        uiState.isFreeAvailable -> stringResource(R.string.gacha_free_spin)
+                        uiState.gachaTickets > 0 -> stringResource(R.string.gacha_spin_ticket)
+                        else -> stringResource(R.string.gacha_no_tickets)
                     }
 
                     Row(
@@ -391,7 +395,7 @@ fun GachaponScreen(
                     ) {
                         // Watch Ad Button (+1 Ticket)
                         PixelButton(
-                            label = "📺 +1 🎟️",
+                            label = stringResource(R.string.gacha_watch_ad_ticket),
                             onClick = { activity?.let { viewModel.watchAdForTicket(it) } },
                             enabled = !uiState.isSpinning && !uiState.isBillingInProcess,
                             modifier = Modifier
@@ -428,7 +432,10 @@ fun GachaponScreen(
 
                         // Buy 10 Tickets Pack ($0.99)
                         PixelButton(
-                            label = "🛒 10 🎟️\n(${InAppProduct.MISC_PRODUCT.defaultPrice})",
+                            label = stringResource(
+                                R.string.gacha_buy_tickets,
+                                InAppProduct.MISC_PRODUCT.defaultPrice
+                            ),
                             onClick = { activity?.let { viewModel.buyTenTickets(it) } },
                             enabled = !uiState.isSpinning && !uiState.isBillingInProcess,
                             modifier = Modifier
@@ -522,13 +529,18 @@ fun GachaPityProgressBar(
                 verticalAlignment = CenterVertically
             ) {
                 Text(
-                    text = if (isLegendary) "🔥 LEGENDARY PULL READY!" else "🌟 PITY PROGRESS",
+                    text = stringResource(
+                        if (isLegendary) R.string.gacha_legendary_pull_ready else R.string.gacha_pity_progress
+                    ),
                     style = PixelHeading,
                     color = if (isLegendary) glowColor else GoldBright,
                     fontSize = 11.sp
                 )
                 Text(
-                    text = if (isLegendary) "10/10" else "$pityCounter/10",
+                    text = stringResource(
+                        R.string.gacha_pity_count_format,
+                        if (isLegendary) maxPity else pityCounter
+                    ),
                     style = PixelHeading,
                     color = if (isLegendary) glowColor else Color.White,
                     fontSize = 11.sp
@@ -578,19 +590,19 @@ fun BannerDescriptionCard(
 ) {
     val (title, description, rates) = when (banner) {
         GachaBanner.ARMORY -> Triple(
-            "ARMORY BANNER",
-            "Generates elite equipment with power scaled to Floor ${highestFloor + 100}!",
-            "Rarity Odds: 60% Rare • 30% Epic • 9% Legendary • 1% Mythic (No Commons)"
+            stringResource(R.string.gacha_armory_banner_title),
+            stringResource(R.string.gacha_armory_banner_description, highestFloor + 100),
+            stringResource(R.string.gacha_armory_banner_rates)
         )
         GachaBanner.ALCHEMIST -> Triple(
-            "ALCHEMIST BANNER",
-            "Rewards rare crafting materials in bundled quantities (Ores, Essences, Boss Trophies).",
-            "Bundles: 10-25 Common • 5-12 Rare • 3-7 Epic • 2-4 Leg • 1-2 Mythic"
+            stringResource(R.string.gacha_alchemist_banner_title),
+            stringResource(R.string.gacha_alchemist_banner_description),
+            stringResource(R.string.gacha_alchemist_banner_rates)
         )
         GachaBanner.TREASURY -> Triple(
-            "TREASURY BANNER",
-            "Rewards massive Gil amounts scaled to your lifetime earnings, or Magicite!",
-            "Rewards: 10% Gold • 50% Gold • 100% JACKPOT Gold (Min 100 Gil) or Magicite"
+            stringResource(R.string.gacha_treasury_banner_title),
+            stringResource(R.string.gacha_treasury_banner_description),
+            stringResource(R.string.gacha_treasury_banner_rates)
         )
     }
 
@@ -717,14 +729,14 @@ fun GachaRewardCard(
                 }
                 is GachaReward.GilReward -> {
                     Text(
-                        text = "🪙",
+                    text = stringResource(R.string.gacha_gil_icon),
                         fontSize = 26.sp,
                         textAlign = TextAlign.Center
                     )
                 }
                 is GachaReward.MagiciteReward -> {
                     Text(
-                        text = "💎",
+                    text = stringResource(R.string.gacha_magicite_icon),
                         fontSize = 26.sp,
                         textAlign = TextAlign.Center
                     )
@@ -738,9 +750,19 @@ fun GachaRewardCard(
                     reward.item.emoji,
                     reward.item.name
                 )
-                is GachaReward.MaterialReward -> "${reward.material.emoji}${stringResource(reward.material.nameRes)}"
-                is GachaReward.GilReward -> "🪙 ${formatGold(reward.amount)}"
-                is GachaReward.MagiciteReward -> "💎 ${formatMagicite(reward.amount)}"
+                is GachaReward.MaterialReward -> stringResource(
+                    R.string.gacha_material_name_template,
+                    reward.material.emoji,
+                    stringResource(reward.material.nameRes)
+                )
+                is GachaReward.GilReward -> stringResource(
+                    R.string.gacha_gil_amount_format,
+                    formatGold(reward.amount)
+                )
+                is GachaReward.MagiciteReward -> stringResource(
+                    R.string.gacha_magicite_amount_format,
+                    formatMagicite(reward.amount)
+                )
             }
 
             Text(
@@ -755,10 +777,14 @@ fun GachaRewardCard(
 
             // Subtitle / Description
             val rewardSubtitle = when (reward) {
-                is GachaReward.GearReward -> "Slot: ${stringResource(reward.item.slot.nameRes)} • Lvl ${reward.item.floorFound}"
-                is GachaReward.MaterialReward -> "x${reward.amount}"
+                is GachaReward.GearReward -> stringResource(
+                    R.string.gacha_gear_subtitle_format,
+                    stringResource(reward.item.slot.nameRes),
+                    reward.item.floorFound
+                )
+                is GachaReward.MaterialReward -> stringResource(R.string.gacha_material_quantity_format, reward.amount)
                 is GachaReward.GilReward -> reward.tierLabel
-                is GachaReward.MagiciteReward -> "Cosmic Currency"
+                is GachaReward.MagiciteReward -> stringResource(R.string.gacha_cosmic_currency)
             }
 
             Text(
@@ -804,7 +830,7 @@ fun GachaResultDialog(
                 verticalArrangement = Arrangement.spacedBy(12.dp)
             ) {
                 Text(
-                    text = "🎉 YOU WON! 🎉",
+                    text = stringResource(R.string.gacha_you_won),
                     style = PixelHeading,
                     color = GoldBright,
                     fontSize = 18.sp
@@ -868,7 +894,11 @@ fun GachaResultDialog(
                                 }
 
                                 Text(
-                                    text = "Slot: ${stringResource(reward.item.slot.nameRes)} • Floor Found: ${reward.item.floorFound}",
+                                    text = stringResource(
+                                        R.string.gacha_gear_reward_details_format,
+                                        stringResource(reward.item.slot.nameRes),
+                                        reward.item.floorFound
+                                    ),
                                     style = PixelBody,
                                     color = StoneGray,
                                     fontSize = 11.sp,
@@ -891,7 +921,11 @@ fun GachaResultDialog(
                                 }
 
                                 Text(
-                                    text = "${reward.material.emoji}${stringResource(reward.material.nameRes)}",
+                                    text = stringResource(
+                                        R.string.gacha_material_name_template,
+                                        reward.material.emoji,
+                                        stringResource(reward.material.nameRes)
+                                    ),
                                     style = PixelHeading,
                                     color = GoldBright,
                                     fontSize = 16.sp,
@@ -913,7 +947,7 @@ fun GachaResultDialog(
                                 }
 
                                 Text(
-                                    text = "Quantity: ${reward.amount}",
+                                    text = stringResource(R.string.gacha_quantity_format, reward.amount),
                                     style = PixelBody,
                                     color = StoneGray,
                                     fontSize = 11.sp,
@@ -928,7 +962,10 @@ fun GachaResultDialog(
                                 )
 
                                 Text(
-                                    text = "🪙 ${formatGold(reward.amount)} Gil",
+                                    text = stringResource(
+                                        R.string.gacha_gil_reward_format,
+                                        formatGold(reward.amount)
+                                    ),
                                     style = PixelHeading,
                                     color = GoldBright,
                                     fontSize = 16.sp,
@@ -965,7 +1002,10 @@ fun GachaResultDialog(
                                 )
 
                                 Text(
-                                    text = "💎 ${formatMagicite(reward.amount)} Magicite",
+                                    text = stringResource(
+                                        R.string.gacha_magicite_reward_format,
+                                        formatMagicite(reward.amount)
+                                    ),
                                     style = PixelHeading,
                                     color = GoldBright,
                                     fontSize = 16.sp,
@@ -987,7 +1027,7 @@ fun GachaResultDialog(
                                 }
 
                                 Text(
-                                    text = "Cosmic Currency",
+                                    text = stringResource(R.string.gacha_cosmic_currency),
                                     style = PixelBody,
                                     color = StoneGray,
                                     fontSize = 11.sp,
@@ -1001,7 +1041,7 @@ fun GachaResultDialog(
                 Spacer(modifier = Modifier.height(6.dp))
 
                 PixelButton(
-                    label = "🎉 CLAIM REWARD",
+                    label = stringResource(R.string.gacha_claim_reward),
                     onClick = onClaim,
                     modifier = Modifier
                         .fillMaxWidth(0.8f)
@@ -1013,10 +1053,10 @@ fun GachaResultDialog(
     }
 }
 
-private fun formatTimeRemaining(ms: Long): String {
+private fun formatTimeRemaining(context: Context, ms: Long): String {
     val totalSeconds = ms / 1000
     val hours = totalSeconds / 3600
     val minutes = (totalSeconds % 3600) / 60
     val seconds = totalSeconds % 60
-    return String.format(java.util.Locale.US, "%02dh %02dm %02ds", hours, minutes, seconds)
+    return context.getString(R.string.gacha_time_remaining_format, hours, minutes, seconds)
 }

@@ -33,46 +33,45 @@ sealed interface GachaReward {
     val description: String
 
     data class GearReward(
-        val item: Item
+        val item: Item,
+        override val description: String
     ) : GachaReward {
         override val id: String = item.id
         override val name: String = item.name
         override val rarity: Rarity = item.rarity
         override val emoji: String = item.emoji
-        override val description: String = "Slot: ${item.slot.name} • Lvl ${item.floorFound}"
     }
 
     data class MaterialReward(
         val material: Material,
         val amount: Int,
-        val materialName: String
+        override val name: String,
+        override val description: String
     ) : GachaReward {
         override val id: String = "${material.id}_${java.util.UUID.randomUUID()}"
-        override val name: String = "$amount x$materialName"
         override val rarity: Rarity = material.rarity
         override val emoji: String = material.emoji
-        override val description: String = "Crafting Material ($amount)"
     }
 
     data class GilReward(
         val amount: Long,
         val tierLabel: String,
+        override val name: String,
+        override val emoji: String,
         override val rarity: Rarity = Rarity.RARE
     ) : GachaReward {
         override val id: String = "gil_${java.util.UUID.randomUUID()}"
-        override val name: String = "${formatGold(amount)} Gil"
-        override val emoji: String = "🪙"
         override val description: String = tierLabel
     }
 
     data class MagiciteReward(
         val amount: Long,
+        override val name: String,
+        override val emoji: String,
+        override val description: String,
         override val rarity: Rarity = Rarity.EPIC
     ) : GachaReward {
         override val id: String = "magicite_${java.util.UUID.randomUUID()}"
-        override val name: String = "$amount Magicite"
-        override val emoji: String = "💎"
-        override val description: String = "Cosmic Currency"
     }
 }
 
@@ -174,7 +173,11 @@ class GachaponViewModel @Inject constructor(
                 val updatedGs = repository.addGachaTickets(1)
 
                 _uiState.update { it.copy(gachaTickets = updatedGs.gachaTickets) }
-                Toast.makeText(activity, "+1 Gachapon Ticket!", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    activity,
+                    activity.getString(R.string.gacha_ticket_reward_ad),
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
@@ -199,7 +202,11 @@ class GachaponViewModel @Inject constructor(
                             gachaTickets = updatedGs.gachaTickets
                         )
                     }
-                    Toast.makeText(activity, "+10 Gachapon Tickets!", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        activity,
+                        activity.getString(R.string.gacha_ticket_reward_purchase),
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
             },
             onError = { err ->
@@ -230,7 +237,9 @@ class GachaponViewModel @Inject constructor(
         val tickets = currentState.gachaTickets
 
         if (!isFree && tickets <= 0) {
-            _uiState.update { it.copy(errorMessage = "No tickets available! Watch an ad or buy a 10-ticket pack.") }
+            _uiState.update {
+                it.copy(errorMessage = activity.getString(R.string.gacha_error_no_tickets))
+            }
             return
         }
 
@@ -327,7 +336,7 @@ class GachaponViewModel @Inject constructor(
         return when (banner) {
             GachaBanner.ARMORY -> generateArmoryReward(context, gs, isLegendaryPull)
             GachaBanner.ALCHEMIST -> generateAlchemistReward(context, isLegendaryPull)
-            GachaBanner.TREASURY -> generateTreasuryReward(gs, isLegendaryPull)
+            GachaBanner.TREASURY -> generateTreasuryReward(context, gs, isLegendaryPull)
         }
     }
 
@@ -358,7 +367,14 @@ class GachaponViewModel @Inject constructor(
             dimension = gs.currentDimension
         )
         val item = baseItem.copy(rarity = rarity)
-        return GachaReward.GearReward(item)
+        return GachaReward.GearReward(
+            item = item,
+            description = context.getString(
+                R.string.gacha_gear_description_format,
+                context.getString(item.slot.nameRes),
+                item.floorFound
+            )
+        )
     }
 
     private fun generateAlchemistReward(
@@ -406,11 +422,13 @@ class GachaponViewModel @Inject constructor(
         return GachaReward.MaterialReward(
             material = selectedMaterial,
             amount = amount,
-            materialName = materialName
+            name = context.getString(R.string.gacha_material_reward_name_format, amount, materialName),
+            description = context.getString(R.string.gacha_material_reward_description_format, amount)
         )
     }
 
     private fun generateTreasuryReward(
+        context: Context,
         gs: GameState,
         isLegendaryPull: Boolean = false
     ): GachaReward {
@@ -419,15 +437,35 @@ class GachaponViewModel @Inject constructor(
             val roll = Random.nextInt(1, 101)
             val (percent, tierLabel, rarity) = if (isLegendaryPull) {
                 if (roll <= 50) {
-                    Triple(0.50f, "Major Gold (50%)", Rarity.EPIC)
+                    Triple(
+                        0.50f,
+                        context.getString(R.string.gacha_tier_major_gold),
+                        Rarity.EPIC
+                    )
                 } else {
-                    Triple(1.00f, "JACKPOT Gold (100%)", Rarity.LEGENDARY)
+                    Triple(
+                        1.00f,
+                        context.getString(R.string.gacha_tier_jackpot_gold),
+                        Rarity.LEGENDARY
+                    )
                 }
             } else {
                 when {
-                    roll <= 60 -> Triple(0.10f, "Minor Gold (10%)", Rarity.RARE)
-                    roll <= 90 -> Triple(0.50f, "Major Gold (50%)", Rarity.EPIC)
-                    else -> Triple(1.00f, "JACKPOT Gold (100%)", Rarity.LEGENDARY)
+                    roll <= 60 -> Triple(
+                        0.10f,
+                        context.getString(R.string.gacha_tier_minor_gold),
+                        Rarity.RARE
+                    )
+                    roll <= 90 -> Triple(
+                        0.50f,
+                        context.getString(R.string.gacha_tier_major_gold),
+                        Rarity.EPIC
+                    )
+                    else -> Triple(
+                        1.00f,
+                        context.getString(R.string.gacha_tier_jackpot_gold),
+                        Rarity.LEGENDARY
+                    )
                 }
             }
             val calculatedGil = (gs.totalGilEarned * percent).toLong()
@@ -435,6 +473,8 @@ class GachaponViewModel @Inject constructor(
             return GachaReward.GilReward(
                 amount = finalAmount,
                 tierLabel = tierLabel,
+                name = context.getString(R.string.gacha_gil_name_format, formatGold(finalAmount)),
+                emoji = context.getString(R.string.gacha_gil_icon),
                 rarity = rarity
             )
         } else {
@@ -448,7 +488,13 @@ class GachaponViewModel @Inject constructor(
                     else -> Pair(1000L, Rarity.LEGENDARY)
                 }
             }
-            return GachaReward.MagiciteReward(amount = amount, rarity = rarity)
+            return GachaReward.MagiciteReward(
+                amount = amount,
+                name = context.getString(R.string.gacha_magicite_name_format, amount),
+                emoji = context.getString(R.string.gacha_magicite_icon),
+                description = context.getString(R.string.gacha_cosmic_currency),
+                rarity = rarity
+            )
         }
     }
 
