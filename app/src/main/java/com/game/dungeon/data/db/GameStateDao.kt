@@ -14,6 +14,9 @@ interface GameStateDao {
     @Query("SELECT * FROM game_state WHERE id = 1")
     suspend fun getGameStateOnce(): GameState?
 
+    @Query("UPDATE game_state SET gachaTickets = gachaTickets + :amount")
+    suspend fun addGachaTickets(amount: Int)
+
     @Upsert
     suspend fun upsert(state: GameState)
 }

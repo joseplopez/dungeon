@@ -90,6 +90,31 @@ class GameRepository @Inject constructor(
         codexDao.incrementKillCount(entryId = monsterTypeId, category = "MONSTER", amount = 1)
     }
 
+    // --- EXCLUSIVE GACHA ECONOMY MODIFIERS ---
+
+    suspend fun addGachaTickets(amount: Int): GameState {
+        return updateGameStateInternal { current ->
+            current.copy(gachaTickets = current.gachaTickets + amount)
+        }
+    }
+
+    suspend fun consumeGachaTicket(): GameState {
+        return updateGameStateInternal { current ->
+            current.copy(gachaTickets = (current.gachaTickets - 1).coerceAtLeast(0))
+        }
+    }
+
+    suspend fun recordGachaSpin(isFree: Boolean): GameState {
+        return updateGameStateInternal { current ->
+            val isLegendary = current.gachaPityCounter >= 9
+            val nextPity = if (isLegendary) 0 else current.gachaPityCounter + 1
+            current.copy(
+                lastFreeGachaTime = if (isFree) System.currentTimeMillis() else current.lastFreeGachaTime,
+                gachaPityCounter = nextPity
+            )
+        }
+    }
+
     suspend fun discoverMaterial(materialId: String) {
         if (materialId.isBlank()) return
         codexDao.discoverEntry(entryId = materialId, category = "MATERIAL")
@@ -141,8 +166,24 @@ class GameRepository @Inject constructor(
         return sanitized
     }
 
-    suspend fun saveGameState(state: GameState) = database.gameStateDao.upsert(state.sanitize())
 
+    suspend fun saveGameState(state: GameState) {
+        repositoryMutex.withLock {
+            val dbState = database.gameStateDao.getGameStateOnce()
+            val finalState = if (dbState != null) {
+                // CRITICAL FIX: Shield Gacha fields from being overwritten by stale GameState objects
+                // (e.g. if BillingManager held a 5-second old state in memory and tries to save it).
+                state.copy(
+                    gachaTickets = dbState.gachaTickets,
+                    gachaPityCounter = dbState.gachaPityCounter,
+                    lastFreeGachaTime = dbState.lastFreeGachaTime
+                )
+            } else {
+                state
+            }
+            database.gameStateDao.upsert(finalState.sanitize())
+        }
+    }
     fun newGame(): GameState {
         val initialPetLevel = com.game.dungeon.BuildConfig.INITIAL_PET_LEVEL
 
@@ -701,23 +742,14 @@ class GameRepository @Inject constructor(
 
     suspend fun updateGameStateInternal(transform: (GameState) -> GameState): GameState {
         return repositoryMutex.withLock {
-            val current = getGameStateOnce() ?: GameState()
+            val current = database.gameStateDao.getGameStateOnce() ?: GameState()
             val updated = transform(current)
-            saveGameState(updated)
+            // Call upsert directly to avoid deadlocking the Mutex and to bypass the field protection in saveGameState
+            database.gameStateDao.upsert(updated.sanitize())
             updated
         }
     }
 
-    suspend fun recordGachaSpin(isFree: Boolean): GameState {
-        return updateGameStateInternal { current ->
-            val isLegendary = current.gachaPityCounter >= 9
-            val nextPity = if (isLegendary) 0 else current.gachaPityCounter + 1
-            current.copy(
-                lastFreeGachaTime = if (isFree) System.currentTimeMillis() else current.lastFreeGachaTime,
-                gachaPityCounter = nextPity
-            )
-        }
-    }
 
     suspend fun setHasSeenSafariUnlockPopup(hasSeen: Boolean = true) {
         updateGameStateInternal { it.copy(hasSeenSafariUnlockPopup = hasSeen) }

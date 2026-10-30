@@ -170,18 +170,16 @@ class GachaponViewModel @Inject constructor(
         if (_uiState.value.isSpinning || _uiState.value.isBillingInProcess) return
         adManager.showRewardedAd(activity) {
             viewModelScope.launch {
-                val currentGs = repository.getGameStateOnce() ?: gameState.value ?: GameState()
-                val targetId = if (currentGs.id != 0) currentGs.id else 1
-                val newTicketCount = currentGs.gachaTickets + 1
-                val updatedGs = currentGs.copy(id = targetId, gachaTickets = newTicketCount)
+                // Guaranteed safe Mutex-locked addition
+                val updatedGs = repository.addGachaTickets(1)
 
-                repository.saveGameState(updatedGs)
-                _uiState.update { it.copy(gachaTickets = newTicketCount) }
+                _uiState.update { it.copy(gachaTickets = updatedGs.gachaTickets) }
                 Toast.makeText(activity, "+1 Gachapon Ticket!", Toast.LENGTH_SHORT).show()
             }
         }
     }
 
+    // 2. Buy 10 Tickets ($0.99)
     fun buyTenTickets(activity: Activity) {
         if (_uiState.value.isSpinning || _uiState.value.isBillingInProcess) return
         _uiState.update { it.copy(isBillingInProcess = true, errorMessage = null) }
@@ -191,21 +189,14 @@ class GachaponViewModel @Inject constructor(
             product = InAppProduct.MISC_PRODUCT,
             onSuccess = {
                 viewModelScope.launch {
-                    // CRITICAL FIX: Wait for BillingManager to finish its own GameState saves
-                    // This prevents the BillingManager from overwriting our tickets with an old snapshot.
-                    delay(800)
-
-                    val currentGs = repository.getGameStateOnce() ?: gameState.value ?: GameState()
-                    val targetId = if (currentGs.id != 0) currentGs.id else 1
-                    val newTicketCount = currentGs.gachaTickets + 10
-                    val updatedGs = currentGs.copy(id = targetId, gachaTickets = newTicketCount)
-
-                    repository.saveGameState(updatedGs)
+                    // Guaranteed safe Mutex-locked addition.
+                    // No delays needed anymore. Stale states cannot overwrite this.
+                    val updatedGs = repository.addGachaTickets(10)
 
                     _uiState.update { state ->
                         state.copy(
                             isBillingInProcess = false,
-                            gachaTickets = newTicketCount
+                            gachaTickets = updatedGs.gachaTickets
                         )
                     }
                     Toast.makeText(activity, "+10 Gachapon Tickets!", Toast.LENGTH_SHORT).show()
@@ -247,14 +238,12 @@ class GachaponViewModel @Inject constructor(
             val gsBefore = repository.getGameStateOnce() ?: (gameState.value ?: GameState())
             val isLegendary = gsBefore.gachaPityCounter >= 9
 
-            // Consume daily free spin without modifying ticket count, or deduct 1 ticket
+            // Consume daily free spin, or deduct 1 ticket using Mutex
             val updatedGs = if (isFree) {
                 repository.recordGachaSpin(isFree = true)
             } else {
-                val recordGs = repository.recordGachaSpin(isFree = false)
-                val finalGs = recordGs.copy(gachaTickets = (recordGs.gachaTickets - 1).coerceAtLeast(0))
-                repository.saveGameState(finalGs)
-                finalGs
+                repository.consumeGachaTicket()
+                repository.recordGachaSpin(isFree = false)
             }
 
             _uiState.update { state ->
