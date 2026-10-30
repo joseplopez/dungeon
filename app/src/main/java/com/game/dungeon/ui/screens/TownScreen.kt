@@ -28,6 +28,7 @@ import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.unit.Dp
@@ -155,10 +156,16 @@ fun TownScreen(
 
             Column(Modifier.fillMaxSize()) {
                 // Header
-                GoldenBorderBox(Modifier.fillMaxWidth().height(40.dp)) {
-                    Box(Modifier.fillMaxSize().background(BgDarkest)) {
+                GoldenBorderBox(Modifier
+                    .fillMaxWidth()
+                    .height(40.dp)) {
+                    Box(Modifier
+                        .fillMaxSize()
+                        .background(BgDarkest)) {
                         Row(
-                            Modifier.fillMaxSize().padding(horizontal = 12.dp),
+                            Modifier
+                                .fillMaxSize()
+                                .padding(horizontal = 12.dp),
                             verticalAlignment = CenterVertically,
                             horizontalArrangement = Arrangement.SpaceBetween
                         ) {
@@ -228,6 +235,22 @@ fun TownScreen(
                                 launchSingleTop = true
                                 restoreState = true
                             } }
+                        )
+
+                        Spacer(Modifier.width(40.dp))
+
+                        TownBuilding(
+                            name = stringResource(R.string.gacha_shrine),
+                            tag = "GACHAPON",
+                            animTime = animTime,
+                            buildingWidth = 180.dp,
+                            buildingHeight = 150.dp,
+                            onClick = {
+                                navController.navigate("gachapon") {
+                                    launchSingleTop = true
+                                    restoreState = true
+                                }
+                            }
                         )
 
                         Spacer(Modifier.width(40.dp))
@@ -359,7 +382,10 @@ fun TownScreen(
                                     GoldenBorderBox(
                                         Modifier
                                             .padding(bottom = 4.dp)
-                                            .background(BgDarkest.copy(alpha = 0.95f), RoundedCornerShape(6.dp))
+                                            .background(
+                                                BgDarkest.copy(alpha = 0.95f),
+                                                RoundedCornerShape(6.dp)
+                                            )
                                     ) {
                                         Text(
                                             activeSpeechText!!,
@@ -532,6 +558,7 @@ fun TownBuilding(
                 when (tag) {
                     "THE INN" -> drawDetailedInn(animTime)
                     "CRYSTAL SHOP" -> drawDetailedCrystalShop(animTime)
+                    "GACHAPON" -> drawDetailedGachapon(animTime)
                     "BARRACKS" -> drawDetailedBarracks(animTime)
                     "RELICS" -> drawDetailedPortal(animTime)
                     "COLOSSEUM" -> drawDetailedColosseum(animTime)
@@ -612,7 +639,9 @@ fun BulletinBoardDialog(
                 PixelDivider()
 
                 // Highest Floor Record
-                GoldenBorderBox(Modifier.fillMaxWidth().background(BgPanel.copy(alpha = 0.8f))) {
+                GoldenBorderBox(Modifier
+                    .fillMaxWidth()
+                    .background(BgPanel.copy(alpha = 0.8f))) {
                     Row(
                         Modifier.padding(12.dp),
                         verticalAlignment = CenterVertically,
@@ -630,7 +659,10 @@ fun BulletinBoardDialog(
                 Text(safeStringResource(R.string.bulletin_active_perks), style = PixelGold, fontSize = 12.sp)
 
                 Column(
-                    Modifier.fillMaxWidth().background(BgPanel.copy(alpha = 0.6f)).padding(8.dp),
+                    Modifier
+                        .fillMaxWidth()
+                        .background(BgPanel.copy(alpha = 0.6f))
+                        .padding(8.dp),
                     verticalArrangement = Arrangement.spacedBy(6.dp)
                 ) {
                     val perks = mutableListOf<String>()
@@ -662,7 +694,9 @@ fun BulletinBoardDialog(
                 PixelButton(
                     label = safeStringResource(R.string.close_button),
                     onClick = onDismiss,
-                    modifier = Modifier.fillMaxWidth().height(40.dp)
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .height(40.dp)
                 )
             }
         }
@@ -712,10 +746,14 @@ fun UpgradesDialog(
                 .fillMaxSize()
                 .background(BgDarkest)
         ) {
-            Column(Modifier.fillMaxSize().padding(16.dp)) {
+            Column(Modifier
+                .fillMaxSize()
+                .padding(16.dp)) {
                 // Top Header Bar
                 Row(
-                    Modifier.fillMaxWidth().padding(bottom = 8.dp),
+                    Modifier
+                        .fillMaxWidth()
+                        .padding(bottom = 8.dp),
                     horizontalArrangement = Arrangement.SpaceBetween,
                     verticalAlignment = CenterVertically
                 ) {
@@ -752,13 +790,17 @@ fun UpgradesDialog(
                         label = "${safeStringResource(R.string.tab_basic_upgrades)} ($basicMaxed/${basicUpgrades.size})",
                         onClick = { selectedTab = 0 },
                         active = selectedTab == 0,
-                        modifier = Modifier.weight(1f).height(38.dp)
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(38.dp)
                     )
                     PixelButton(
                         label = "✨ ${safeStringResource(R.string.tab_advanced_upgrades)} ($advancedMaxed/${advancedUpgrades.size})",
                         onClick = { selectedTab = 1 },
                         active = selectedTab == 1,
-                        modifier = Modifier.weight(1f).height(38.dp)
+                        modifier = Modifier
+                            .weight(1f)
+                            .height(38.dp)
                     )
                 }
 
@@ -769,7 +811,9 @@ fun UpgradesDialog(
                     columns = GridCells.Fixed(2),
                     horizontalArrangement = Arrangement.spacedBy(12.dp),
                     verticalArrangement = Arrangement.spacedBy(12.dp),
-                    modifier = Modifier.weight(1f).fillMaxWidth()
+                    modifier = Modifier
+                        .weight(1f)
+                        .fillMaxWidth()
                 ) {
                     items(activeList) { type ->
                         val currentLevel = getUpgradeLevel(gs, type)
@@ -783,7 +827,9 @@ fun UpgradesDialog(
                             borderColor = if (isMax) StoneGray else if (type.isAdvanced) GoldBright else GoldDark
                         ) {
                             Column(
-                                Modifier.fillMaxWidth().padding(10.dp),
+                                Modifier
+                                    .fillMaxWidth()
+                                    .padding(10.dp),
                                 verticalArrangement = Arrangement.spacedBy(8.dp)
                             ) {
                                 // Card Top Row: Emoji + Name + Level / Badge
@@ -812,8 +858,15 @@ fun UpgradesDialog(
                                         if (type.isAdvanced) {
                                             Box(
                                                 Modifier
-                                                    .background(GoldBright, RoundedCornerShape(3.dp))
-                                                    .border(1.dp, GoldDark, RoundedCornerShape(3.dp))
+                                                    .background(
+                                                        GoldBright,
+                                                        RoundedCornerShape(3.dp)
+                                                    )
+                                                    .border(
+                                                        1.dp,
+                                                        GoldDark,
+                                                        RoundedCornerShape(3.dp)
+                                                    )
                                                     .padding(horizontal = 6.dp, vertical = 2.dp)
                                             ) {
                                                 Text(
@@ -846,7 +899,10 @@ fun UpgradesDialog(
                                         Modifier
                                             .fillMaxHeight()
                                             .fillMaxWidth(progressFraction)
-                                            .background(if (isMax) HpGreen else GoldBright, RoundedCornerShape(3.dp))
+                                            .background(
+                                                if (isMax) HpGreen else GoldBright,
+                                                RoundedCornerShape(3.dp)
+                                            )
                                     )
                                 }
 
@@ -877,7 +933,9 @@ fun UpgradesDialog(
                                             label = "${formatGold(finalCost)}G",
                                             onClick = { onUpgrade(type) },
                                             enabled = canAfford,
-                                            modifier = Modifier.width(110.dp).height(36.dp)
+                                            modifier = Modifier
+                                                .width(110.dp)
+                                                .height(36.dp)
                                         )
                                     }
                                 }

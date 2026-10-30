@@ -1422,5 +1422,6 @@
     <string name="toast_misc_pack_purchased">Misc Pack Purchased! +10 Safari Tickets!</string>
     <string name="log_safari_ticket_dropped">🎟️ Dropped Safari Ticket x%1$d</string>
     <string name="log_monster_card_dropped">🎴 Dropped Monster Card: %1$s</string>
+    <string name="gacha_shrine">Gacha Shrine</string>
 
 </resources>

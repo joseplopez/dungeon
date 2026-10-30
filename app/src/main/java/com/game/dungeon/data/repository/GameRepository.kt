@@ -25,6 +25,8 @@ import com.game.dungeon.data.models.RelicBonuses
 import com.game.dungeon.data.models.SocketSlot
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.sync.Mutex
+import kotlinx.coroutines.sync.withLock
 import kotlin.math.pow
 import javax.inject.Inject
 import javax.inject.Singleton
@@ -695,19 +697,38 @@ class GameRepository @Inject constructor(
         return Result.success(updatedHero)
     }
 
+    private val repositoryMutex = Mutex()
+
+    suspend fun updateGameStateInternal(transform: (GameState) -> GameState): GameState {
+        return repositoryMutex.withLock {
+            val current = getGameStateOnce() ?: GameState()
+            val updated = transform(current)
+            saveGameState(updated)
+            updated
+        }
+    }
+
+    suspend fun recordGachaSpin(isFree: Boolean): GameState {
+        return updateGameStateInternal { current ->
+            val isLegendary = current.gachaPityCounter >= 9
+            val nextPity = if (isLegendary) 0 else current.gachaPityCounter + 1
+            current.copy(
+                lastFreeGachaTime = if (isFree) System.currentTimeMillis() else current.lastFreeGachaTime,
+                gachaPityCounter = nextPity
+            )
+        }
+    }
+
     suspend fun setHasSeenSafariUnlockPopup(hasSeen: Boolean = true) {
-        val current = database.gameStateDao.getGameStateOnce() ?: GameState()
-        saveGameState(current.copy(hasSeenSafariUnlockPopup = hasSeen))
+        updateGameStateInternal { it.copy(hasSeenSafariUnlockPopup = hasSeen) }
     }
 
     suspend fun addGearSwitches(amount: Int) {
-        val currentState = getGameStateOnce() ?: GameState()
-        saveGameState(currentState.addGearSwitches(amount))
+        updateGameStateInternal { it.addGearSwitches(amount) }
     }
 
     suspend fun addSafariTickets(amount: Int) {
-        val currentState = getGameStateOnce() ?: GameState()
-        saveGameState(currentState.addSafariTickets(amount))
+        updateGameStateInternal { it.addSafariTickets(amount) }
     }
 
     suspend fun addMonsterCard(petId: String) {

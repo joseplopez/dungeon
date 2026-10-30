@@ -82,10 +82,19 @@ data class GameState(
     val hasSeenSafariUnlockPopup: Boolean = false,
     val safariTickets: Int = BuildConfig.INITIAL_SAFARI_TICKETS,
     val tier2Pets: Map<String, Tier2Pet> = emptyMap(),
-    val equippedTier2PetId: String? = null
+    val equippedTier2PetId: String? = null,
+    val lastFreeGachaTime: Long = 0,
+    val gachaPityCounter: Int = 0,
+    val gachaTickets: Int = 0,
 ) {
     fun addGearSwitches(amount: Int): GameState {
         return copy(gearSwitchesAvailable = this.gearSwitchesAvailable + amount)
+    }
+
+    fun isDailyFreeGachaAvailable(): Boolean {
+        val now = System.currentTimeMillis()
+        val oneDayMs = 24 * 60 * 60 * 1000L
+        return (now - lastFreeGachaTime) >= oneDayMs
     }
 
     fun consumeGearSwitch(): GameState {

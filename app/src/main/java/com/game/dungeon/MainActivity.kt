@@ -38,6 +38,7 @@ import com.game.dungeon.ui.components.MusicToggleButton
 import com.game.dungeon.ui.screens.BossLairPrepScreen
 import com.game.dungeon.ui.screens.CodexScreen
 import com.game.dungeon.ui.screens.CraftingScreen
+import com.game.dungeon.ui.screens.GachaponScreen
 import com.game.dungeon.ui.screens.CrystalShopScreen
 import com.game.dungeon.ui.screens.DungeonScreen
 import com.game.dungeon.ui.screens.EquipmentScreen
@@ -165,7 +166,8 @@ class MainActivity : ComponentActivity() {
                                     viewModel = equipmentViewModel,
                                     isMuted = isMuted,
                                     onToggleMusic = { isMuted = !isMuted },
-                                    onBack = { navController.popBackStack() }
+                                    onBack = { navController.popBackStack() },
+                                    onNavigateToGachapon = { navController.navigate("gachapon") }
                                 )
                             }
                             composable("dungeon") {
@@ -254,7 +256,8 @@ class MainActivity : ComponentActivity() {
                                 val craftingViewModel: CraftingViewModel = hiltViewModel()
                                 CraftingScreen(
                                     viewModel = craftingViewModel,
-                                    onBack = { navController.popBackStack() }
+                                    onBack = { navController.popBackStack() },
+                                    onNavigateToGachapon = { navController.navigate("gachapon") }
                                 )
                             }
                             composable("codex") {
@@ -263,6 +266,13 @@ class MainActivity : ComponentActivity() {
                                     isMuted = isMuted,
                                     onToggleMusic = { isMuted = !isMuted },
                                     onBack = { navController.popBackStack() }
+                                )
+                            }
+                            composable("gachapon") {
+                                GachaponScreen(
+                                    onBack = { navController.popBackStack() },
+                                    isMuted = isMuted,
+                                    onToggleMusic = { isMuted = !isMuted }
                                 )
                             }
                         }

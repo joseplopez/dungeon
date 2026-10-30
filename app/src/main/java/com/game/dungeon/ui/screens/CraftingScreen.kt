@@ -53,7 +53,8 @@ fun CraftingScreen(
     viewModel: CraftingViewModel = hiltViewModel(),
     isMuted: Boolean = false,
     onToggleMusic: () -> Unit = {},
-    onBack: () -> Unit = {}
+    onBack: () -> Unit = {},
+    onNavigateToGachapon: () -> Unit = {}
 ) {
     val uiState by viewModel.uiState.collectAsStateWithLifecycle()
     val roster by viewModel.roster.collectAsStateWithLifecycle()
@@ -88,7 +89,8 @@ fun CraftingScreen(
                     onBack = onBack,
                     isMuted = isMuted,
                     onToggleMusic = onToggleMusic,
-                    onOpenSupport = { showSupportDialog = true }
+                    onOpenSupport = { showSupportDialog = true },
+                    onNavigateToGachapon = onNavigateToGachapon
                 )
 
                 Spacer(modifier = Modifier.height(8.dp))
@@ -162,7 +164,8 @@ private fun CraftingHeader(
     onBack: () -> Unit,
     isMuted: Boolean,
     onToggleMusic: () -> Unit,
-    onOpenSupport: () -> Unit
+    onOpenSupport: () -> Unit,
+    onNavigateToGachapon: () -> Unit = {}
 ) {
     GoldenBorderBox(
         modifier = Modifier
@@ -194,6 +197,14 @@ private fun CraftingHeader(
             ) {
                 // Now shows the player's current Gil balance
                 PixelGoldDisplay(amount = gold)
+
+                PixelButton(
+                    label = "🎰",
+                    onClick = onNavigateToGachapon,
+                    modifier = Modifier.size(34.dp),
+                    horizontalPadding = 0.dp,
+                    verticalPadding = 0.dp
+                )
 
                 SupportIconButton(onClick = onOpenSupport)
                 MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
@@ -433,9 +444,29 @@ private fun EnhanceSection(
                     val isMaxed = item.enhancementLevel >= 10 && item.rarity != Rarity.MYTHIC
 
                     if (!isMaxed) {
-                        val baseGoldCost = (nextLevel * 125L * item.floorFound.coerceAtLeast(1)).coerceAtLeast(100L)
+                        val baseGoldCost = (nextLevel * 100L * item.floorFound.coerceAtLeast(1)).coerceAtLeast(100L)
+
+                        val softCap = 1_000_000_000L // 1 Billion Gil threshold
+                        val linearStepPerLevel = 250_000_000L // +250 Million Gil per level after 1B
+
                         val goldCost = if (isMythicAscension) {
-                            (baseGoldCost * Math.pow(1.7, (nextLevel - 10).toDouble())).toLong()
+                            val rawCost = (baseGoldCost * Math.pow(1.5, (nextLevel - 10).toDouble())).toLong()
+
+                            if (rawCost > softCap) {
+                                // Find the exact level where the cost first crossed 1 Billion Gil
+                                var capLevel = 11
+                                while (capLevel < nextLevel) {
+                                    val testBase = (capLevel * 100L * item.floorFound.coerceAtLeast(1)).coerceAtLeast(100L)
+                                    val testCost = (testBase * Math.pow(1.5, (capLevel - 10).toDouble())).toLong()
+                                    if (testCost > softCap) break
+                                    capLevel++
+                                }
+
+                                // 1B Base + steady linear increase per level past the threshold
+                                softCap + ((nextLevel - capLevel) * linearStepPerLevel)
+                            } else {
+                                rawCost
+                            }
                         } else {
                             baseGoldCost
                         }
@@ -451,7 +482,7 @@ private fun EnhanceSection(
 
                         // Strictly linear material cost (+10 shards per ascension level)
                         val requiredOres = if (isMythicAscension) {
-                            ((nextLevel - 10) * 10)
+                            ((nextLevel - 10) * 2) + 10
                         } else {
                             nextLevel
                         }

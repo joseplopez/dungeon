@@ -9,7 +9,7 @@ import com.game.dungeon.data.models.GameState
 import com.game.dungeon.data.models.Hero
 import com.game.dungeon.data.models.Item
 
-@Database(entities = [GameState::class, Hero::class, Item::class, MaterialEntity::class, CodexEntity::class], version = 35, exportSchema = true)
+@Database(entities = [GameState::class, Hero::class, Item::class, MaterialEntity::class, CodexEntity::class], version = 38, exportSchema = true)
 @TypeConverters(Converters::class)
 abstract class GameDatabase : RoomDatabase() {
     abstract val gameStateDao: GameStateDao
@@ -19,6 +19,34 @@ abstract class GameDatabase : RoomDatabase() {
     abstract val codexDao: CodexDao
 
     companion object {
+
+        val MIGRATION_37_38 = object : Migration(37, 38) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                try {
+                db.execSQL("ALTER TABLE game_state ADD COLUMN gachaTickets INTEGER NOT NULL DEFAULT 0")
+                } catch (e: Exception) {
+                    wipeDatabase(db)
+                }
+            }
+        }
+        val MIGRATION_36_37 = object : Migration(36, 37) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                try {
+                    ensureColumn(db, "game_state", "gachaPityCounter", "INTEGER NOT NULL DEFAULT 0")
+                } catch (e: Exception) {
+                    wipeDatabase(db)
+                }
+            }
+        }
+        val MIGRATION_35_36 = object : Migration(35, 36) {
+            override fun migrate(db: SupportSQLiteDatabase) {
+                try {
+                    ensureColumn(db, "game_state", "lastFreeGachaTime", "INTEGER NOT NULL DEFAULT 0")
+                } catch (e: Exception) {
+                    wipeDatabase(db)
+                }
+            }
+        }
         val MIGRATION_34_35 = object : Migration(34, 35) {
             override fun migrate(db: SupportSQLiteDatabase) {
                 try {

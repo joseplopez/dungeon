@@ -744,3 +744,147 @@ fun DrawScope.drawDetailedColosseum(animTime: Float = 0f) {
     // Ground
     pxRectS(2f, 95f, W - 4f, 5f, Color(0xFF1B2631), scale)
 }
+
+/**
+ * 8. THE MIMIC'S VAULT (Giant monstrous chest, glowing loot, gacha chute)
+ */
+fun DrawScope.drawDetailedGachapon(animTime: Float = 0f) {
+    val scale = size.height / 100f
+    val W = size.width / scale
+    val CX = W / 2f
+
+    // === BASE & BACKGROUND ===
+    // Ground line
+    pxRectS(5f, 95f, W - 10f, 5f, Color(0xFF1B2631), scale)
+
+    // Back wall / Dark Void of the open mouth
+    val voidPath = Path().apply {
+        moveTo((CX - 35f) * scale, 50f * scale) // Bottom left of opening
+        lineTo((CX - 30f) * scale, 25f * scale) // Top left of opening (angled)
+        lineTo((CX + 30f) * scale, 25f * scale) // Top right
+        lineTo((CX + 35f) * scale, 50f * scale) // Bottom right
+        close()
+    }
+    drawPath(voidPath, Color(0xFF0A0012)) // Deep abyss purple/black
+
+    // === ANIMATED LOOT ORBS (Inside the Void) ===
+    // Bobbing up and down, cycling colors (Gil Gold, Magicite Cyan, Epic Purple)
+    val orbColors = listOf(Color(0xFFF1C40F), Color(0xFF00E5FF), Color(0xFFA569BD))
+    repeat(5) { i ->
+        val phase = ((animTime + i * 400f) * 0.002f) % 1f
+        val bobY = 32f + kotlin.math.sin(phase * 6.28f + i) * 6f
+        val orbX = (CX - 22f) + i * 11f
+
+        val color = orbColors[i % orbColors.size]
+        val glow = 0.5f + kotlin.math.sin(phase * 6.28f) * 0.3f
+
+        drawCircle(color.copy(alpha = glow), radius = 6f * scale, center = Offset(orbX * scale, bobY * scale))
+        drawCircle(color, radius = 2.5f * scale, center = Offset(orbX * scale, bobY * scale))
+        drawCircle(Color.White.copy(alpha = 0.8f), radius = 1f * scale, center = Offset((orbX - 0.5f) * scale, (bobY - 0.5f) * scale))
+    }
+
+    // === LOWER BODY (The Vault) ===
+    val vaultStartX = CX - 38f
+    val vaultEndX = CX + 38f
+    pxRectS(vaultStartX, 50f, vaultEndX - vaultStartX, 45f, Color(0xFF3E2723), scale) // Wood Base
+
+    // Wood grain / slats
+    for (x in (vaultStartX.toInt() + 5)..(vaultEndX.toInt() - 5) step 8) {
+        pxRectS(x.toFloat(), 50f, 1f, 45f, Color(0xFF2C1A0E), scale)
+    }
+
+    // Heavy Iron Banding & Gold Rivets
+    val ironBands = listOf(50f, 68f, 88f)
+    ironBands.forEach { y ->
+        pxRectS(vaultStartX, y, vaultEndX - vaultStartX, 4f, Color(0xFF2C3E50), scale)
+        pxRectS(vaultStartX, y + 1f, vaultEndX - vaultStartX, 2f, Color(0xFF5D6D7E), scale) // Highlight
+        // Rivets
+        for (rx in (vaultStartX.toInt() + 4)..(vaultEndX.toInt() - 4) step 12) {
+            drawCircle(Color(0xFFF1C40F), radius = 1f * scale, center = Offset(rx.toFloat() * scale, (y + 2f) * scale))
+        }
+    }
+    // Vertical Iron Corners
+    pxRectS(vaultStartX, 50f, 6f, 45f, Color(0xFF2C3E50), scale)
+    pxRectS(vaultEndX - 6f, 50f, 6f, 45f, Color(0xFF2C3E50), scale)
+
+    // === GACHA CHUTE ===
+    // A stone delivery chute in the center bottom
+    val chuteWidth = 24f
+    pxRectS(CX - chuteWidth / 2, 70f, chuteWidth, 25f, Color(0xFF1B2631), scale) // Chute outer
+    val chuteHole = Path().apply {
+        moveTo((CX - 8f) * scale, 90f * scale)
+        lineTo((CX - 8f) * scale, 75f * scale)
+        quadraticTo(CX * scale, 70f * scale, (CX + 8f) * scale, 75f * scale)
+        lineTo((CX + 8f) * scale, 90f * scale)
+        close()
+    }
+    drawPath(chuteHole, Color(0xFF000000))
+
+    // Waiting Gacha Capsule (Only if animTime is pulsing, to make it look alive)
+    val capsulePulse = 0.5f + kotlin.math.sin(animTime * 0.005f) * 0.5f
+    drawCircle(Color(0xFFA569BD).copy(alpha = capsulePulse * 0.5f), radius = 6f * scale, center = Offset(CX * scale, 86f * scale))
+    drawCircle(Color(0xFFF1C40F), radius = 3.5f * scale, center = Offset(CX * scale, 86f * scale)) // Gold bottom half
+    val capsuleTop = Path().apply {
+        moveTo((CX - 3.5f) * scale, 86f * scale)
+        quadraticTo(CX * scale, 80f * scale, (CX + 3.5f) * scale, 86f * scale)
+        close()
+    }
+    drawPath(capsuleTop, Color(0xFFE74C3C)) // Red top half
+    drawLine(Color(0xFF1B2631), Offset((CX - 3.5f) * scale, 86f * scale), Offset((CX + 3.5f) * scale, 86f * scale), strokeWidth = 1f * scale) // Center seam
+
+    // === UPPER LID (Propped Open) ===
+    val lidPath = Path().apply {
+        moveTo((CX - 38f) * scale, 50f * scale) // Bottom left hinge
+        lineTo((CX - 34f) * scale, 22f * scale) // Top left
+        quadraticTo(CX * scale, 12f * scale, (CX + 34f) * scale, 22f * scale) // Domed top
+        lineTo((CX + 38f) * scale, 50f * scale) // Bottom right hinge
+        close()
+    }
+    drawPath(lidPath, Color(0xFF3E2723)) // Wood fill
+    drawPath(lidPath, Color(0xFF2C3E50), style = Stroke(3f * scale)) // Iron border
+
+    // Left and Right iron bands across the lid
+    drawLine(Color(0xFF2C3E50), Offset((CX - 18f) * scale, 50f * scale), Offset((CX - 15f) * scale, 18f * scale), strokeWidth = 4f * scale)
+    drawLine(Color(0xFF2C3E50), Offset((CX + 18f) * scale, 50f * scale), Offset((CX + 15f) * scale, 18f * scale), strokeWidth = 4f * scale)
+
+    // === IRON TEETH (Hanging from the lid edge) ===
+    for (tx in (vaultStartX.toInt() + 6)..(vaultEndX.toInt() - 6) step 10) {
+        val tooth = Path().apply {
+            moveTo(tx.toFloat() * scale, 50f * scale)
+            lineTo((tx.toFloat() + 4f) * scale, 50f * scale)
+            lineTo((tx.toFloat() + 2f) * scale, 56f * scale)
+            close()
+        }
+        drawPath(tooth, Color(0xFFBDC3C7))
+    }
+
+    // === THE MIMIC'S EYE (Center of the Lid) ===
+    val eyeCX = CX
+    val eyeCY = 32f
+
+    // Gold/Brass Eye socket
+    drawCircle(Color(0xFFD4AC0D), radius = 8f * scale, center = Offset(eyeCX * scale, eyeCY * scale))
+    drawCircle(Color(0xFF2C3E50), radius = 8f * scale, center = Offset(eyeCX * scale, eyeCY * scale), style = Stroke(1.5f * scale))
+
+    // Sclera
+    drawCircle(Color(0xFFF1C40F), radius = 6.5f * scale, center = Offset(eyeCX * scale, eyeCY * scale))
+
+    // Animated Slit Pupil
+    val blink = (kotlin.math.sin(animTime * 0.008f) > 0.95f) // Blinks occasionally
+    if (!blink) {
+        val pupilWidth = 1.5f + kotlin.math.sin(animTime * 0.003f) * 0.5f // Pupil dilates slightly
+        val pupil = Path().apply {
+            moveTo(eyeCX * scale, (eyeCY - 5f) * scale)
+            quadraticTo((eyeCX + pupilWidth) * scale, eyeCY * scale, eyeCX * scale, (eyeCY + 5f) * scale)
+            quadraticTo((eyeCX - pupilWidth) * scale, eyeCY * scale, eyeCX * scale, (eyeCY - 5f) * scale)
+            close()
+        }
+        drawPath(pupil, Color(0xFF4A148C)) // Deep purple pupil
+
+        // Eye Catchlight (Reflection)
+        drawCircle(Color.White.copy(alpha = 0.8f), radius = 1.2f * scale, center = Offset((eyeCX + 2f) * scale, (eyeCY - 2f) * scale))
+    } else {
+        // Closed eye line
+        drawLine(Color(0xFF3E2723), Offset((eyeCX - 6f) * scale, eyeCY * scale), Offset((eyeCX + 6f) * scale, eyeCY * scale), strokeWidth = 1.5f * scale)
+    }
+}

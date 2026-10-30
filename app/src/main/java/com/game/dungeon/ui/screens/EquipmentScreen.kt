@@ -57,7 +57,8 @@ fun EquipmentScreen(
     heroViewModel: HeroViewModel = hiltViewModel(),
     isMuted: Boolean,
     onToggleMusic: () -> Unit,
-    onBack: () -> Unit
+    onBack: () -> Unit,
+    onNavigateToGachapon: () -> Unit = {}
 ) {
     val context = LocalContext.current
     val activity = context as? Activity
@@ -113,6 +114,7 @@ fun EquipmentScreen(
                     isMuted = isMuted,
                     onToggleMusic = onToggleMusic,
                     onOpenSupport = { showSupportDialog = true },
+                    onNavigateToGachapon = onNavigateToGachapon,
                     onBack = onBack
                 )
 
@@ -231,6 +233,7 @@ private fun TopBannerHeader(
     isMuted: Boolean,
     onToggleMusic: () -> Unit,
     onOpenSupport: () -> Unit,
+    onNavigateToGachapon: () -> Unit = {},
     onBack: () -> Unit
 ) {
     GoldenBorderBox(
@@ -261,6 +264,13 @@ private fun TopBannerHeader(
                 verticalAlignment = Alignment.CenterVertically,
                 horizontalArrangement = Arrangement.spacedBy(8.dp)
             ) {
+                PixelButton(
+                    label = "🎰",
+                    onClick = onNavigateToGachapon,
+                    modifier = Modifier.size(32.dp),
+                    horizontalPadding = 0.dp,
+                    verticalPadding = 0.dp
+                )
                 SupportIconButton(onClick = onOpenSupport)
                 MusicToggleButton(isMuted = isMuted, onToggle = onToggleMusic)
                 Spacer(Modifier.size(size = 16.dp))
