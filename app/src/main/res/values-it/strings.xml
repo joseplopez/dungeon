@@ -1350,6 +1350,10 @@
     <string name="safari_locked_desc">Raggiungi la Dimensione 11 e il Piano totale 1000 per sbloccare le Carte Compagno di Grado 2.</string>
     <string name="tier2_rank_format">Rango %1$d</string>
     <string name="tier2_boost_format">+%1$d%% %2$s</string>
+    <string name="tier2_combat_unlock">⚔️ Sblocco combattimento: Rango 2</string>
+    <string name="tier2_combat_active">⚔️ Combattimento attivo: %1$d%% Potenza</string>
+    <string name="tier2_role_healer">💚 Guaritore</string>
+    <string name="tier2_role_striker">⚔️ Attaccante</string>
     <string name="btn_rank_up">⬆ Aumenta Rango</string>
     <string name="cards_progress_format">%1$d/%2$d</string>
     <string name="tier1_level_required">Richiede Livello 50 Grado 1</string>

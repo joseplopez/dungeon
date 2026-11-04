@@ -124,14 +124,16 @@ class LeaderboardRepository @Inject constructor(
 
     suspend fun getGlobalLeaderboard(limit: Int = 50): List<LeaderboardEntry> {
         Log.d("LeaderboardRepo", "Fetching Global Leaderboard...")
+        var lastEntry: DataSnapshot? = null
         return try {
             val snapshot = rootRef
                 .orderByChild("maxFloor")
                 .limitToLast(limit)
                 .get()
                 .await()
-            
+
             val entries = snapshot.children.map { doc ->
+                lastEntry = doc
                 mapToEntry(doc)
             }.sortedWith(
                 compareByDescending<LeaderboardEntry> { it.maxFloor }
@@ -143,6 +145,7 @@ class LeaderboardRepository @Inject constructor(
             entries
         } catch (e: Exception) {
             Log.e("LeaderboardRepo", "Global fetch ERROR: ${e.message}")
+            Log.d("LeaderboardRepo", "entries: $lastEntry")
             emptyList()
         }
     }

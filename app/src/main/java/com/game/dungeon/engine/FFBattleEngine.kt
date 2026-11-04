@@ -148,7 +148,7 @@ class FFBattleEngine(private val context: Context) {
             while (enemies.any { it.currentHp > 0 } && aliveHeroes.any { it.isAlive }) {
                 val aliveHeroUnits = aliveHeroes.filter { it.isAlive }
                 val aliveEnemies = enemies.filter { it.currentHp > 0 }
-                val hasPetTurn = equippedTier2Pet != null && equippedTier2Pet.currentRank >= 5
+                val hasPetTurn = equippedTier2Pet != null && equippedTier2Pet.currentRank >= 2
 
                 val turnOrder: List<Any> = (
                     aliveHeroUnits + aliveEnemies + (if (hasPetTurn) listOf(PetUnit(equippedTier2Pet!!)) else emptyList())
@@ -1767,10 +1767,12 @@ class FFBattleEngine(private val context: Context) {
 
         val petName = pet.petId.lowercase().replaceFirstChar { it.uppercase() }
         val isHealer = pet.petId.uppercase().contains("MOOGLE") || pet.petId.uppercase().contains("FAIRY")
+        val powerMultiplier = pet.currentRank * 0.05f
 
         if (isHealer) {
             val wounded = aliveAllies.minByOrNull { it.currentHp.toFloat() / it.maxHp.toFloat() } ?: aliveAllies.random()
-            val healAmount = (wounded.maxHp * 0.25f).toInt().coerceAtLeast(100)
+            val partyMaxHp = aliveAllies.sumOf { it.maxHp }
+            val healAmount = (partyMaxHp * powerMultiplier).toInt().coerceAtLeast(100)
             onEvent(
                 FFBattleEvent.AbilityUsed(
                     heroId = "pet_${pet.petId}",
@@ -1784,7 +1786,8 @@ class FFBattleEngine(private val context: Context) {
         } else {
             val target = aliveEnemies.minByOrNull { it.currentHp } ?: return
             val isCrit = pet.petId.uppercase().contains("CACTUAR") || pet.petId.uppercase().contains("TONBERRY")
-            val damage = if (isCrit) 1500L else 800L
+            val partyTotalPower = aliveAllies.sumOf { it.attack + it.magic }
+            val damage = (partyTotalPower * powerMultiplier).toLong().coerceAtLeast(1L)
 
             onEvent(
                 FFBattleEvent.AbilityUsed(

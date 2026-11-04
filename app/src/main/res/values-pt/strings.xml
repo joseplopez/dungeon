@@ -1351,6 +1351,10 @@
     <string name="safari_locked_desc">Alcance a Dimensão 11 e o Andar Histórico 1000 para desbloquear as Cartas de Companheiro de Nível 2.</string>
     <string name="tier2_rank_format">Rank %1$d</string>
     <string name="tier2_boost_format">+%1$d%% %2$s</string>
+    <string name="tier2_combat_unlock">⚔️ Desbloqueio de Combate: Rank 2</string>
+    <string name="tier2_combat_active">⚔️ Combate Ativo: %1$d%% de Poder</string>
+    <string name="tier2_role_healer">💚 Curador</string>
+    <string name="tier2_role_striker">⚔️ Atacante</string>
     <string name="btn_rank_up">⬆ Subir Rank</string>
     <string name="cards_progress_format">%1$d/%2$d</string>
     <string name="tier1_level_required">Requer Nível 50 de Nível 1</string>

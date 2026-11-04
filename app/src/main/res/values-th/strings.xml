@@ -1351,6 +1351,10 @@
     <string name="safari_locked_desc">ถึงมิติ 11 และชั้นสะสม 1000 เพื่อปลดล็อกการ์ดคู่หูระดับ 2</string>
     <string name="tier2_rank_format">แรงก์ %1$d</string>
     <string name="tier2_boost_format">+%1$d%% %2$s</string>
+    <string name="tier2_combat_unlock">⚔️ ปลดล็อกการต่อสู้: แรงก์ 2</string>
+    <string name="tier2_combat_active">⚔️ การต่อสู้ทำงาน: พลัง %1$d%%</string>
+    <string name="tier2_role_healer">💚 ผู้รักษา</string>
+    <string name="tier2_role_striker">⚔️ ผู้โจมตี</string>
     <string name="btn_rank_up">⬆ เลื่อนแรงก์</string>
     <string name="cards_progress_format">%1$d/%2$d</string>
     <string name="tier1_level_required">ต้องการระดับ 1 เลเวล 50</string>

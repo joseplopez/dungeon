@@ -198,4 +198,90 @@ class FFBattleEngineTest {
         assertEquals(DungeonMode.BOSS_LAIR, dungeonViewModel.battleState.value.dungeonMode)
         assertTrue(gameStateFlow.value.highestBossLairFloor >= 1)
     }
+
+    // ──────────────────────────────────────────────────────────────────────────
+    // 4. TIER 2 PET COMBAT SCALING (RANK >= 2)
+    // ──────────────────────────────────────────────────────────────────────────
+
+    @Test
+    fun `test pet combat turn executes for rank 2 pet with dynamic power scaling`() = runTest {
+        val hero = Hero(
+            id = "hero_1",
+            heroClass = HeroClass.WARRIOR,
+            name = "Warrior",
+            currentHp = 500,
+            currentMp = 100,
+            aiPriority = AIPriority.ATTACK
+        ).apply {
+            attackBonus = 100
+            magicBonus = 100
+        }
+
+        val rank2AttackerPet = com.game.dungeon.data.models.Tier2Pet(
+            petId = "CHOCOBO",
+            currentRank = 2
+        )
+
+        val dimension = FFDimensionData.getDimension(1)
+        var petTurnExecuted = false
+        var petDamageDealt = 0L
+
+        battleEngine.runBattle(
+            heroes = listOf(hero),
+            dimension = dimension,
+            startFloor = 1,
+            speed = BattleSpeed.INSTANT,
+            relicBonuses = defaultRelicBonuses,
+            mode = DungeonMode.REGULAR,
+            equippedTier2Pet = rank2AttackerPet,
+            onEvent = { event ->
+                if (event is FFBattleEvent.DamageDealt && event.attackerId == "pet_CHOCOBO") {
+                    petTurnExecuted = true
+                    petDamageDealt = event.damage
+                }
+            }
+        )
+
+        assertTrue("Pet with rank >= 2 should participate in combat", petTurnExecuted)
+        val expectedPower = hero.attack + hero.magic
+        val expectedDamage = (expectedPower * 0.10f).toLong()
+        assertEquals(expectedDamage, petDamageDealt)
+    }
+
+    @Test
+    fun `test pet combat turn does not execute for rank 1 pet`() = runTest {
+        val hero = Hero(
+            id = "hero_1",
+            heroClass = HeroClass.WARRIOR,
+            name = "Warrior",
+            currentHp = 500,
+            currentMp = 100,
+            aiPriority = AIPriority.ATTACK
+        )
+
+        val rank1Pet = com.game.dungeon.data.models.Tier2Pet(
+            petId = "CHOCOBO",
+            currentRank = 1
+        )
+
+        val dimension = FFDimensionData.getDimension(1)
+        var petTurnExecuted = false
+
+        battleEngine.runBattle(
+            heroes = listOf(hero),
+            dimension = dimension,
+            startFloor = 1,
+            speed = BattleSpeed.INSTANT,
+            relicBonuses = defaultRelicBonuses,
+            mode = DungeonMode.REGULAR,
+            equippedTier2Pet = rank1Pet,
+            onEvent = { event ->
+                if (event is FFBattleEvent.DamageDealt && event.attackerId == "pet_CHOCOBO") {
+                    petTurnExecuted = true
+                }
+            }
+        )
+
+        assertTrue("Pet with rank < 2 should not participate in combat", !petTurnExecuted)
+    }
 }

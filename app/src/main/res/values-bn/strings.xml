@@ -1351,6 +1351,10 @@
     <string name="safari_locked_desc">টিয়ার ২ এর সঙ্গী কার্ড আনলক করতে মাত্রা ১১ এবং আজীবন তলা ১০০০ এ পৌঁছান।</string>
     <string name="tier2_rank_format">র‍্যাঙ্ক %1$d</string>
     <string name="tier2_boost_format">+%1$d%% %2$s</string>
+    <string name="tier2_combat_unlock">⚔️ যুদ্ধ আনলক: র‍্যাঙ্ক 2</string>
+    <string name="tier2_combat_active">⚔️ যুদ্ধ সক্রিয়: %1$d%% শক্তি</string>
+    <string name="tier2_role_healer">💚 আরোগ্যকারী</string>
+    <string name="tier2_role_striker">⚔️ আক্রমণকারী</string>
     <string name="btn_rank_up">⬆ র‍্যাঙ্ক আপ</string>
     <string name="cards_progress_format">%1$d/%2$d</string>
     <string name="tier1_level_required">টিয়ার ১ এর লেভেল ৫০ প্রয়োজন</string>

@@ -1351,6 +1351,10 @@
     <string name="safari_locked_desc">Aşama 2 Yoldaş Kartlarının kilidini açmak için Boyut 11 ve Ömür Boyu Kat 1000e ulaşın.</string>
     <string name="tier2_rank_format">Rütbe %1$d</string>
     <string name="tier2_boost_format">+%%%1$d %2$s</string>
+    <string name="tier2_combat_unlock">⚔️ Savaş Kilidi Açma: Rütbe 2</string>
+    <string name="tier2_combat_active">⚔️ Savaş Aktif: %%%1$d Güç</string>
+    <string name="tier2_role_healer">💚 İyileştirici</string>
+    <string name="tier2_role_striker">⚔️ Saldırgan</string>
     <string name="btn_rank_up">⬆ Rütbe Yükselt</string>
     <string name="cards_progress_format">%1$d/%2$d</string>
     <string name="tier1_level_required">Aşama 1 Seviye 50 Gerektirir</string>

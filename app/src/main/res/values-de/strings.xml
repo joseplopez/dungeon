@@ -1351,6 +1351,10 @@
     <string name="safari_locked_desc">Erreiche Dimension 11 &amp; Gesamtebene 1000, um Begleiterkarten von Rang 2 freizuschalten.</string>
     <string name="tier2_rank_format">Rang %1$d</string>
     <string name="tier2_boost_format">+%1$d%% %2$s</string>
+    <string name="tier2_combat_unlock">⚔️ Kampf-Freischaltung: Rang 2</string>
+    <string name="tier2_combat_active">⚔️ Kampf aktiv: %1$d%% Macht</string>
+    <string name="tier2_role_healer">💚 Heiler</string>
+    <string name="tier2_role_striker">⚔️ Angreifer</string>
     <string name="btn_rank_up">⬆ Rang erhöhen</string>
     <string name="cards_progress_format">%1$d/%2$d</string>
     <string name="tier1_level_required">Erfordert Level 50 auf Rang 1</string>

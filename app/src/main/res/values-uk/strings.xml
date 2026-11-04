@@ -1350,6 +1350,10 @@
     <string name="safari_locked_desc">Досягніть Виміру 11 та 1000 Поверху за весь час, щоб розблокувати Карти Супутників 2-го Рівня.</string>
     <string name="tier2_rank_format">Ранг %1$d</string>
     <string name="tier2_boost_format">+%1$d%% %2$s</string>
+    <string name="tier2_combat_unlock">⚔️ Розблокування бою: Ранг 2</string>
+    <string name="tier2_combat_active">⚔️ Бій активний: %1$d%% Сили</string>
+    <string name="tier2_role_healer">💚 Цілитель</string>
+    <string name="tier2_role_striker">⚔️ Нападник</string>
     <string name="btn_rank_up">⬆ Підвищити Ранг</string>
     <string name="cards_progress_format">%1$d/%2$d</string>
     <string name="tier1_level_required">Потрібен 50-й рівень 1-го Рівня</string>

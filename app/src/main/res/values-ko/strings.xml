@@ -1352,6 +1352,10 @@
     <string name="safari_locked_desc">2티어 동료 카드를 해제하려면 차원 11 및 누적 1000층에 도달하세요.</string>
     <string name="tier2_rank_format">랭크 %1$d</string>
     <string name="tier2_boost_format">+%1$d%% %2$s</string>
+    <string name="tier2_combat_unlock">⚔️ 전투 해금: 랭크 2</string>
+    <string name="tier2_combat_active">⚔️ 전투 활성화: 위력 %1$d%%</string>
+    <string name="tier2_role_healer">💚 힐러</string>
+    <string name="tier2_role_striker">⚔️ 스트라이커</string>
     <string name="btn_rank_up">⬆ 랭크 업</string>
     <string name="cards_progress_format">%1$d/%2$d</string>
     <string name="tier1_level_required">1티어 50레벨 필요</string>

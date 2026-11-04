@@ -33,6 +33,7 @@ class GachaponViewModelTest {
 
     private lateinit var repository: GameRepository
     private lateinit var billingManager: BillingManager
+    private lateinit var adManager: com.game.dungeon.monetization.AdManager
     private lateinit var mockContext: Context
     private lateinit var mockActivity: Activity
     private lateinit var viewModel: GachaponViewModel
@@ -50,6 +51,7 @@ class GachaponViewModelTest {
     fun setUp() {
         repository = mock()
         billingManager = mock()
+        adManager = mock()
         mockContext = mock()
         mockActivity = mock()
 
@@ -73,7 +75,7 @@ class GachaponViewModelTest {
             "MockRes_$resId"
         }
 
-        viewModel = GachaponViewModel(repository, billingManager)
+        viewModel = GachaponViewModel(repository, billingManager, adManager)
     }
 
     @Test

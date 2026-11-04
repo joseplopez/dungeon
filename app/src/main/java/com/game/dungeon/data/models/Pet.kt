@@ -20,22 +20,23 @@ enum class PetType(
     val bonusValue: Float,
     val unlockCost: Int,
     val rarity: Rarity = Rarity.COMMON,
-    val tier2Boosts: List<CombatStat> // ADD THIS
+    val tier2Boosts: List<CombatStat>,
+    val isHealer: Boolean
 ) {
     // TANK (HP & Defense)
-    CHOCOBO(R.string.pet_chocobo_name, R.string.pet_chocobo_desc, "🐤", PetBonusType.ITEM_FIND, 0.02f, 10000, Rarity.COMMON, listOf(CombatStat.HP, CombatStat.DEF)),
+    CHOCOBO(R.string.pet_chocobo_name, R.string.pet_chocobo_desc, "🐤", PetBonusType.ITEM_FIND, 0.02f, 10000, Rarity.COMMON, listOf(CombatStat.HP, CombatStat.DEF), false),
 
     // PURE MAGE (Magic & MP)
-    MOOGLE(R.string.pet_moogle_name, R.string.pet_moogle_desc, "🦇", PetBonusType.EXP_BOOST, 0.05f, 50000, Rarity.RARE, listOf(CombatStat.MAG, CombatStat.MP)),
+    MOOGLE(R.string.pet_moogle_name, R.string.pet_moogle_desc, "🦇", PetBonusType.EXP_BOOST, 0.05f, 50000, Rarity.RARE, listOf(CombatStat.MAG, CombatStat.MP), true),
 
     // SUSTAIN (HP & MP)
-    CAT(R.string.pet_cat_name, R.string.pet_cat_desc, "🐱", PetBonusType.GIL_FIND, 0.03f, 25000, Rarity.COMMON, listOf(CombatStat.HP, CombatStat.MP)),
+    CAT(R.string.pet_cat_name, R.string.pet_cat_desc, "🐱", PetBonusType.GIL_FIND, 0.03f, 25000, Rarity.COMMON, listOf(CombatStat.HP, CombatStat.MP), true),
 
     // GLASS CANNON (Attack & Magic)
-    CACTUAR(R.string.pet_cactuar_name, R.string.pet_cactuar_desc, "🌵", PetBonusType.CRIT_CHANCE, 0.15f, 100000, Rarity.EPIC, listOf(CombatStat.ATK, CombatStat.MAG)),
+    CACTUAR(R.string.pet_cactuar_name, R.string.pet_cactuar_desc, "🌵", PetBonusType.CRIT_CHANCE, 0.15f, 100000, Rarity.EPIC, listOf(CombatStat.ATK, CombatStat.MAG), false),
 
     // BRUISER (Attack & Defense)
-    TONBERRY(R.string.pet_tonberry_name, R.string.pet_tonberry_desc, "🔪", PetBonusType.CRIT_DAMAGE, 1.00f, 250000, Rarity.LEGENDARY, listOf(CombatStat.ATK, CombatStat.DEF))
+    TONBERRY(R.string.pet_tonberry_name, R.string.pet_tonberry_desc, "🔪", PetBonusType.CRIT_DAMAGE, 1.00f, 250000, Rarity.LEGENDARY, listOf(CombatStat.ATK, CombatStat.DEF), false)
 }
 
 // Keep Tier2Pet multiplier at 3% per rank

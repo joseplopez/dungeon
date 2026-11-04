@@ -1364,6 +1364,10 @@
     <string name="safari_locked_desc">درجہ 2 کے ساتھی کارڈز کو انلاک کرنے کے لیے ڈائمینشن 11 اور لائف ٹائم فلور 1000 تک پہنچیں۔</string>
     <string name="tier2_rank_format">رینک %1$d</string>
     <string name="tier2_boost_format">+%1$d%% %2$s</string>
+    <string name="tier2_combat_unlock">⚔️ جنگ کھولیں: رینک 2</string>
+    <string name="tier2_combat_active">⚔️ جنگ فعال: %1$d%% طاقت</string>
+    <string name="tier2_role_healer">💚 معالج</string>
+    <string name="tier2_role_striker">⚔️ حملہ آور</string>
     <string name="btn_rank_up">⬆ رینک بڑھائیں</string>
     <string name="cards_progress_format">%1$d/%2$d</string>
     <string name="tier1_level_required">درجہ 1 کا لیول 50 درکار ہے</string>

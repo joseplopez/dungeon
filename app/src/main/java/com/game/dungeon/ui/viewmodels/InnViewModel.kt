@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Context
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.game.dungeon.BuildConfig
 import com.game.dungeon.analytics.AnalyticsManager
 import com.game.dungeon.data.models.*
 import com.game.dungeon.data.repository.GameRepository
@@ -131,6 +132,28 @@ class InnViewModel @Inject constructor(
 
     init {
         viewModelScope.launch {
+            if (BuildConfig.DEBUG_TIER_2_PETS) {
+                val gs = repository.getGameStateOnce() ?: GameState()
+                if (gs.tier2Pets.isEmpty() || gs.safariTickets < 10) {
+                    val debugPets = PetType.entries.associate { petType ->
+                        petType.name to Tier2Pet(
+                            petId = petType.name,
+                            rarity = petType.rarity,
+                            currentRank = 2,
+                            cardsCollected = 50
+                        )
+                    }
+                    val debugPetLevels = PetType.entries.associateWith { 50 }
+                    repository.saveGameState(
+                        gs.copy(
+                            tier2Pets = debugPets,
+                            petLevels = gs.petLevels + debugPetLevels,
+                            highestFloor = maxOf(gs.highestFloor, 100), // Force Safari unlock
+                            safariTickets = maxOf(gs.safariTickets, 50)
+                        )
+                    )
+                }
+            }
             repository.getGameState().collect { state ->
                 if (state == null) {
                     repository.saveGameState(repository.newGame())

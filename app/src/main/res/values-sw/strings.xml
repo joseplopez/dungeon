@@ -1350,6 +1350,10 @@
     <string name="safari_locked_desc">Fikia Mwelekeo wa 11 na Ghorofa ya Maisha 1000 ili kufungua Kadi za Wenzako za Kiwango cha 2.</string>
     <string name="tier2_rank_format">Cheo %1$d</string>
     <string name="tier2_boost_format">+%1$d%% %2$s</string>
+    <string name="tier2_combat_unlock">⚔️ Fungua Mapambano: Cheo 2</string>
+    <string name="tier2_combat_active">⚔️ Mapambano Yanafanya Kazi: %1$d%% Nguvu</string>
+    <string name="tier2_role_healer">💚 Mganga</string>
+    <string name="tier2_role_striker">⚔️ Mshambuliaji</string>
     <string name="btn_rank_up">⬆ Ongeza Cheo</string>
     <string name="cards_progress_format">%1$d/%2$d</string>
     <string name="tier1_level_required">Inahitaji Kiwango cha 50 Kiwango cha 1</string>

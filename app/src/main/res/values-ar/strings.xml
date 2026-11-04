@@ -1352,6 +1352,10 @@
     <string name="safari_locked_desc">وصل إلى البعد 11 والطابق الإجمالي 1000 لفتح بطاقات المرافقين من الفئة 2.</string>
     <string name="tier2_rank_format">الرتبة %1$d</string>
     <string name="tier2_boost_format">+%1$d%% %2$s</string>
+    <string name="tier2_combat_unlock">⚔️ فتح القتال: الرتبة 2</string>
+    <string name="tier2_combat_active">⚔️ القتال نشط: %1$d%% قوة</string>
+    <string name="tier2_role_healer">💚 معالج</string>
+    <string name="tier2_role_striker">⚔️ مهاجم</string>
     <string name="btn_rank_up">⬆ رفع الرتبة</string>
     <string name="cards_progress_format">%1$d/%2$d</string>
     <string name="tier1_level_required">يتطلب المستوى 50 من الفئة 1</string>

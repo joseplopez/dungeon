@@ -110,6 +110,7 @@ fun DungeonScreen(
                     dimension = dimension,
                     floor = state.currentFloor,
                     dungeonMode = state.dungeonMode,
+                    activePet = state.activePet,
                     floatingLootEffects = state.floatingLootEffects,
                     onRemoveLootEffect = { viewModel.removeFloatingLootEffect(it) }
                 )
@@ -628,6 +629,7 @@ fun BattleArea(
     dimension: FFDimension?,
     floor: Int,
     dungeonMode: DungeonMode = DungeonMode.REGULAR,
+    activePet: Tier2Pet? = null,
     floatingLootEffects: List<DungeonViewModel.FloatingLootEffect> = emptyList(),
     onRemoveLootEffect: (Long) -> Unit = {}
 ) {
@@ -653,7 +655,8 @@ fun BattleArea(
                     hitHeroId = hitHeroId,
                     isCritical = isCritical,
                     sideWidth = sideWidth,
-                    totalHeight = totalHeight
+                    totalHeight = totalHeight,
+                    activePet = activePet
                 )
             }
 
@@ -708,7 +711,8 @@ private fun HeroesSide(
     hitHeroId: String?,
     isCritical: Boolean,
     sideWidth: androidx.compose.ui.unit.Dp,
-    totalHeight: androidx.compose.ui.unit.Dp
+    totalHeight: androidx.compose.ui.unit.Dp,
+    activePet: Tier2Pet? = null
 ) {
     val baseHeroWidth = 80.dp
     val baseHeroHeight = 150.dp
@@ -729,42 +733,66 @@ private fun HeroesSide(
 
     val heroScale = minOf(heroWidthScale, heroHeightScale).coerceIn(0.4f, 1.0f)
 
-    Row(
-        Modifier
+    Column(
+        modifier = Modifier
             .fillMaxHeight()
-            .fillMaxWidth()
-            .padding(horizontal = 4.dp),
-        horizontalArrangement = Arrangement.SpaceEvenly,
-        verticalAlignment = CenterVertically
+            .fillMaxWidth(),
+        horizontalAlignment = CenterHorizontally,
+        verticalArrangement = Arrangement.Center
     ) {
-        heroes.forEach { hero ->
-            key(hero.id) {
-                val scaledWidth = baseHeroWidth * heroScale
-                val scaledHeight = baseHeroHeight * heroScale
+        Row(
+            Modifier
+                .weight(1f)
+                .fillMaxWidth()
+                .padding(horizontal = 4.dp),
+            horizontalArrangement = Arrangement.SpaceEvenly,
+            verticalAlignment = CenterVertically
+        ) {
+            heroes.forEach { hero ->
+                key(hero.id) {
+                    val scaledWidth = baseHeroWidth * heroScale
+                    val scaledHeight = baseHeroHeight * heroScale
 
-                Box(
-                    modifier = Modifier.size(scaledWidth, scaledHeight),
-                    contentAlignment = Center
-                ) {
                     Box(
-                        modifier = Modifier
-                            .requiredSize(baseHeroWidth, baseHeroHeight)
-                            .graphicsLayer(
-                                scaleX = heroScale,
-                                scaleY = heroScale,
-                                transformOrigin = TransformOrigin(0.5f, 0.5f)
-                            ),
+                        modifier = Modifier.size(scaledWidth, scaledHeight),
                         contentAlignment = Center
                     ) {
-                        HeroUnitDisplay(
-                            hero = hero,
-                            isAttacking = attackingUnitId == hero.id,
-                            isHit = hitHeroId == hero.id,
-                            isCritical = isCritical && hitHeroId == hero.id,
-                            isDying = dyingHeroIds.contains(hero.id)
-                        )
+                        Box(
+                            modifier = Modifier
+                                .requiredSize(baseHeroWidth, baseHeroHeight)
+                                .graphicsLayer(
+                                    scaleX = heroScale,
+                                    scaleY = heroScale,
+                                    transformOrigin = TransformOrigin(0.5f, 0.5f)
+                                ),
+                            contentAlignment = Center
+                        ) {
+                            HeroUnitDisplay(
+                                hero = hero,
+                                isAttacking = attackingUnitId == hero.id,
+                                isHit = hitHeroId == hero.id,
+                                isCritical = isCritical && hitHeroId == hero.id,
+                                isDying = dyingHeroIds.contains(hero.id)
+                            )
+                        }
                     }
                 }
+            }
+        }
+
+        if (activePet != null) {
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(bottom = 4.dp),
+                horizontalArrangement = Arrangement.Center,
+                verticalAlignment = CenterVertically
+            ) {
+                PetCombatUnitDisplay(
+                    pet = activePet,
+                    isAttacking = attackingUnitId == "pet_${activePet.petId}",
+                    isHit = false
+                )
             }
         }
     }
@@ -966,6 +994,58 @@ fun HeroUnitDisplay(hero: Hero, isAttacking: Boolean, isHit: Boolean, isCritical
             }
         }
     }
+}
+
+@Composable
+fun PetCombatUnitDisplay(
+    petId: String,
+    isAttacking: Boolean,
+    modifier: Modifier = Modifier,
+    isHit: Boolean = false
+) {
+    val lungeOffset by animateFloatAsState(
+        targetValue = if (isAttacking) 24f else 0f,
+        animationSpec = tween(100, easing = FastOutSlowInEasing),
+        label = "petLunge"
+    )
+
+    val petType = PetType.entries.find { it.name.equals(petId, ignoreCase = true) } ?: PetType.CHOCOBO
+
+    Column(
+        horizontalAlignment = CenterHorizontally,
+        modifier = modifier
+            .offset(x = lungeOffset.dp)
+            .testTag("PetUnit_$petId")
+    ) {
+        Box(Modifier.size(48.dp)) {
+            PetSprite(petType, Modifier.fillMaxSize())
+            if (isHit) {
+                Box(Modifier.align(Center)) {
+                    UnitHitParticles(false)
+                }
+            }
+        }
+        Text(
+            text = petId.lowercase().replaceFirstChar { it.uppercase() },
+            style = PixelSmall.copy(fontSize = 9.sp),
+            color = GoldBright
+        )
+    }
+}
+
+@Composable
+fun PetCombatUnitDisplay(
+    pet: Tier2Pet,
+    isAttacking: Boolean,
+    modifier: Modifier = Modifier,
+    isHit: Boolean = false
+) {
+    PetCombatUnitDisplay(
+        petId = pet.petId,
+        isAttacking = isAttacking,
+        modifier = modifier,
+        isHit = isHit
+    )
 }
 
 @Composable

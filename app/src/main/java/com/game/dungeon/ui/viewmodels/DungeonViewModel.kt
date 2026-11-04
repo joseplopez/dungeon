@@ -142,6 +142,7 @@ class DungeonViewModel @Inject constructor(
     val dimension: FFDimension? = null,
     val heroes: List<Hero> = emptyList(),
     val benchedHeroes: List<Hero> = emptyList(),
+    val activePet: Tier2Pet? = null,
     val enemies: List<Enemy> = emptyList(),
     val battleLog: List<FFLogEntry> = emptyList(),
     val speed: BattleSpeed = BattleSpeed.NORMAL,
@@ -218,6 +219,7 @@ class DungeonViewModel @Inject constructor(
             currentFloor = startFloor.coerceAtLeast(1),
             currentBiome = dimension.getBiomeForFloor(startFloor.coerceAtLeast(1)),
             benchedHeroes = benchedHeroes,
+            activePet = equippedPet,
             dimension = dimension,
             heroes = partyWithStats,
             originalPartySize = party.size,
@@ -928,6 +930,7 @@ class DungeonViewModel @Inject constructor(
 
             battleState.update { it.copy(
                 heroes = partyWithStats,
+                activePet = equippedPet,
                 pendingFallenHeroIds = emptySet(),
                 fallenHeroes = emptyList(),
                 dyingHeroIds = emptySet(),

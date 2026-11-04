@@ -284,6 +284,9 @@ fun Tier2CardItem(
     val neededCards = tier2Pet.getCardsNeededForNextRank()
     val canRankUp = tier2Pet.canRankUp()
     val isRankZero = tier2Pet.currentRank == 0
+    val isHealer = petType.isHealer
+    val roleColor = if (isHealer) HpGreen else Color(0xFFFF5555)
+    val roleText = if (isHealer) safeStringResource(R.string.tier2_role_healer) else safeStringResource(R.string.tier2_role_striker)
 
     Box(
         Modifier
@@ -326,6 +329,32 @@ fun Tier2CardItem(
             )
         }
 
+        // --- TOP CENTER: Combat Role Badge ---
+        Box(
+            Modifier
+                .padding(top = 8.dp)
+                .align(Alignment.TopCenter)
+                .background(Color.Black.copy(alpha = 0.75f), RoundedCornerShape(4.dp))
+                .border(1.dp, roleColor.copy(alpha = 0.8f), RoundedCornerShape(4.dp))
+                .padding(horizontal = 6.dp, vertical = 3.dp)
+        ) {
+            Row(
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(4.dp)
+            ) {
+                Text(
+                    text = roleText,
+                    style = PixelSmall,
+                    color = roleColor,
+                    fontSize = 9.sp,
+                    fontWeight = FontWeight.Bold
+                )
+                if (isEquipped) {
+                    Text("✅", fontSize = 9.sp)
+                }
+            }
+        }
+
         // --- TOP RIGHT: Element Icon ---
         Text(
             text = petType.emoji,
@@ -345,17 +374,6 @@ fun Tier2CardItem(
         ) {
             // Fills the available center space so the sprite grows dynamically
             PetSprite(petType, Modifier.fillMaxSize())
-        }
-
-        // --- COMPACT TOP CHECKMARK ---
-        if (isEquipped) {
-            Text(
-                text = "✅",
-                fontSize = 14.sp,
-                modifier = Modifier
-                    .align(Alignment.TopCenter)
-                    .padding(top = 4.dp)
-            )
         }
 
         // --- BOTTOM: Info & Action Panel ---
@@ -383,6 +401,22 @@ fun Tier2CardItem(
                 color = if (isRankZero) StoneGray else HpGreen,
                 fontSize = 10.sp // Increased from 8
             )
+
+            if (tier2Pet.currentRank < 2) {
+                Text(
+                    text = safeStringResource(R.string.tier2_combat_unlock),
+                    style = PixelSmall,
+                    color = StoneGray,
+                    fontSize = 10.sp
+                )
+            } else {
+                Text(
+                    text = safeStringResource(R.string.tier2_combat_active, tier2Pet.currentRank * 5),
+                    style = PixelSmall,
+                    color = if (isHealer) HpGreen else GoldBright,
+                    fontSize = 10.sp
+                )
+            }
 
             Spacer(Modifier.height(6.dp))
 

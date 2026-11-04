@@ -1351,6 +1351,10 @@
     <string name="safari_locked_desc">Достигните 11-го Измерения и 1000-го Этажа за всё время, чтобы разблокировать Карты Спутников 2-го Уровня.</string>
     <string name="tier2_rank_format">Ранг %1$d</string>
     <string name="tier2_boost_format">+%1$d%% %2$s</string>
+    <string name="tier2_combat_unlock">⚔️ Разблокировка боя: Ранг 2</string>
+    <string name="tier2_combat_active">⚔️ Бой активен: %1$d%% Силы</string>
+    <string name="tier2_role_healer">💚 Лекарь</string>
+    <string name="tier2_role_striker">⚔️ Атакующий</string>
     <string name="btn_rank_up">⬆ Повысить Ранг</string>
     <string name="cards_progress_format">%1$d/%2$d</string>
     <string name="tier1_level_required">Требуется 50-й уровень 1-го Уровня</string>

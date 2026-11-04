@@ -1403,6 +1403,10 @@
     <string name="safari_locked_desc">Reach Dimension 11 &amp; Lifetime Floor 1000 to unlock Tier 2 Companion Cards.</string>
     <string name="tier2_rank_format">Rank %1$d</string>
     <string name="tier2_boost_format">+%1$d%% %2$s</string>
+    <string name="tier2_combat_unlock">⚔️ Combat Unlock: Rank 2</string>
+    <string name="tier2_combat_active">⚔️ Combat Active: %1$d%% Power</string>
+    <string name="tier2_role_healer">💚 Healer</string>
+    <string name="tier2_role_striker">⚔️ Striker</string>
     <string name="btn_rank_up">⬆ Rank Up</string>
     <string name="cards_progress_format">%1$d/%2$d</string>
     <string name="tier1_level_required">Requires Level 50 Tier 1</string>

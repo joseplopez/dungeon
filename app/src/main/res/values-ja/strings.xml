@@ -1350,6 +1350,10 @@
     <string name="safari_locked_desc">次元11と通算1000階に到達して、ティア2のお供カードを解放しましょう。</string>
     <string name="tier2_rank_format">ランク %1$d</string>
     <string name="tier2_boost_format">+%1$d%% %2$s</string>
+    <string name="tier2_combat_unlock">⚔️ 戦闘解放: ランク2</string>
+    <string name="tier2_combat_active">⚔️ 戦闘参加中: 威力%1$d%%</string>
+    <string name="tier2_role_healer">💚 ヒーラー</string>
+    <string name="tier2_role_striker">⚔️ アタッカー</string>
     <string name="btn_rank_up">⬆ ランクアップ</string>
     <string name="cards_progress_format">%1$d/%2$d</string>
     <string name="tier1_level_required">ティア1レベル50が必要</string>

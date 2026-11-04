@@ -1351,6 +1351,10 @@
     <string name="safari_locked_desc">Atteignez la Dimension 11 et l\'Étage cumulé 1000 pour débloquer les Cartes de Compagnon de Rang 2.</string>
     <string name="tier2_rank_format">Rang %1$d</string>
     <string name="tier2_boost_format">+%1$d%% %2$s</string>
+    <string name="tier2_combat_unlock">⚔️ Déblocage combat : Rang 2</string>
+    <string name="tier2_combat_active">⚔️ Combat actif : %1$d%% Puissance</string>
+    <string name="tier2_role_healer">💚 Soigneur</string>
+    <string name="tier2_role_striker">⚔️ Attaquant</string>
     <string name="btn_rank_up">⬆ Augmenter le Rang</string>
     <string name="cards_progress_format">%1$d/%2$d</string>
     <string name="tier1_level_required">Niveau 50 au Rang 1 requis</string>
