@@ -417,20 +417,39 @@ class GameRepository @Inject constructor(
 
         // Base gold calculation
         val baseGoldCost = (requiredLevel * 100L * item.floorFound.coerceAtLeast(1)).coerceAtLeast(100L)
-
-        // NEW: Quadratic Scaling
         val levelOver10 = if (isMythicAscension) (requiredLevel - 10) else 0
 
-        // Gold: Increases smoothly based on the square of levels past 10
+        val softCap = 1_000_000_000L // 1 Billion Gil threshold
+        val linearStepPerLevel = 250_000_000L // +250 Million Gil per level after 1B
+
         val goldCost = if (isMythicAscension) {
-            (baseGoldCost * (1f + 0.10f * (levelOver10 * levelOver10))).toLong()
+            val rawCost = (baseGoldCost * Math.pow(1.5, (requiredLevel - 10).toDouble())).toLong()
+
+            if (rawCost > softCap) {
+                // Find exactly which level the item first breached 1 Billion Gil
+                var thresholdLevel = 10
+                while (true) {
+                    thresholdLevel++
+                    val testBase = (thresholdLevel * 100L * item.floorFound.coerceAtLeast(1)).coerceAtLeast(100L)
+                    val testCost = (testBase * Math.pow(1.5, (thresholdLevel - 10).toDouble())).toLong()
+                    if (testCost > softCap) break
+                }
+
+                // Calculate how many levels we are past that threshold
+                val levelsPastThreshold = (requiredLevel - thresholdLevel).coerceAtLeast(0)
+
+                // 1 Billion Gil (softCap) + 250m for every level past the threshold
+                softCap + (levelsPastThreshold * linearStepPerLevel)
+            } else {
+                rawCost
+            }
         } else {
             baseGoldCost
         }
 
         // Shards: Base 3 + squared progression (Lvl 11 = 4, Lvl 15 = 28, Lvl 20 = 103)
         val requiredOreCount = if (isMythicAscension) {
-            3 + (levelOver10 * levelOver10)
+            ((levelOver10) * 2) + 10
         } else {
             requiredLevel
         }
